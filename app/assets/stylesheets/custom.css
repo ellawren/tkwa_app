@@ -258,7 +258,7 @@ form .field_with_errors .input-prepend .add-on, form .field_with_errors .input-a
   border-color: #b94a48;
 }
 
-.flash { width:96%; padding:2%; background-color:#f5f5f5; margin-bottom:20px; }
+.flash { width:96%; padding:2%; background-color:#f5f5f5; margin-bottom:20px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; }
 
 .error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
 .notice { background: #fff6bf; color: #514721; border-color: #ffd324; }
