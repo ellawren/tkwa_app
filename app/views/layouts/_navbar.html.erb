@@ -28,9 +28,13 @@
              			</ul>
           			</div>
           			<div class="signin-box">
-          				<%= link_to "Sign up", signup_path %></li>
-        				<%= link_to "Sign out", "#" %></li>
-      					<%= link_to "Sign in", "#", class: "btn"  %></li>
+          				<%= link_to "Home", root_path %>
+          				<% if signed_in? %>
+        					Signed in as: &nbsp;<%= link_to current_user.name, current_user %>
+        					<%= link_to "Sign out", signout_path, method: :delete %>
+        				<% else %> 
+        					<%= link_to "Sign in", signin_path, class: "btn"  %>
+      					<% end %>
           			</div>
         		</div>
         		

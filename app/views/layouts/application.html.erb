@@ -15,7 +15,7 @@
     		<div class="spacer"></div>
     		
     		<% flash.each do |key, value| %>
-          		<div class="flash <%= key %>"><%= value %></div>
+          		<%= content_tag(:div, value, class: "flash #{key}") %>
         	<% end %>
         	
     		<%= yield %>
