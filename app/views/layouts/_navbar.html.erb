@@ -8,7 +8,7 @@
 						<span class="i-bar"></span>
 						<span class="i-bar"></span>
 					</a>
-          			<%= link_to "TKWA DB", '#', :class => "brand" %>
+          			<%= link_to "TKWA DB", root_path, :class => "brand" %>
 
           			<div class="nav-collapse">
             			<ul class="nav">
@@ -28,14 +28,15 @@
              			</ul>
           			</div>
           			<div class="signin-box">
-          				<%= link_to "Home", root_path %>
-          				
+						<%= link_to "Help", help_path %>
+
           				<% if signed_in? %>
         					Signed in as: &nbsp;<%= link_to current_user.name, current_user %>
         					<%= link_to "Settings", edit_user_path(current_user) %>
         					<%= link_to "Users", users_path %>
         					<%= link_to "Sign out", signout_path, method: :delete %>
         				<% else %> 
+        					<%= link_to "Sign up", signup_path %>
         					<%= link_to "Sign in", signin_path, class: "btn"  %>
       					<% end %>
           			</div>
