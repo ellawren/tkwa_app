@@ -29,8 +29,11 @@
           			</div>
           			<div class="signin-box">
           				<%= link_to "Home", root_path %>
+          				
           				<% if signed_in? %>
         					Signed in as: &nbsp;<%= link_to current_user.name, current_user %>
+        					<%= link_to "Settings", edit_user_path(current_user) %>
+        					<%= link_to "Users", users_path %>
         					<%= link_to "Sign out", signout_path, method: :delete %>
         				<% else %> 
         					<%= link_to "Sign in", signin_path, class: "btn"  %>
@@ -41,3 +44,18 @@
       		</div>
       		
     	</div> <!-- end navbar -->
+    	
+    	<nav class="round">
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <% if signed_in? %>
+        <li><%= link_to "Profile", current_user %></li>
+      <% end %>
+      <li><%= link_to "Help", help_path %></li>
+      <% if signed_in? %>
+        <li><%= link_to "Sign out", signout_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign in", signin_path %></li>
+      <% end %>
+    </ul>
+  </nav>
