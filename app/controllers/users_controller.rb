@@ -3,6 +3,11 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
   
+  def index
+    @title = "All users"
+    @users = User.paginate(:page => params[:page])
+  end
+  
   def new
     @user = User.new
   end
@@ -45,6 +50,30 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+  end
+  
+  def following
+    if signed_in?
+        @title = "Following"
+    	@user = User.find(params[:id])
+    	@users = @user.followed_users.paginate(page: params[:page])
+    	render 'show_follow'
+    else
+        flash[:notice] = "Please sign in to view this page."
+    	redirect_to(signin_path)
+    end
+  end
+
+  def followers
+    if signed_in?
+    	@title = "Followers"
+    	@user = User.find(params[:id])
+    	@users = @user.followers.paginate(page: params[:page])
+    	render 'show_follow'
+    else
+        flash[:notice] = "Please sign in to view this page."
+    	redirect_to(signin_path)
+    end
   end
   
   private
