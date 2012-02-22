@@ -1,0 +1,18 @@
+<% provide(:title, 'New Project') %>
+<h1>New Project</h1>
+
+<%= form_for(@project) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :number %><br />
+    <%= f.text_field :number %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create Project" %>
+  </div>
+<% end %>
+

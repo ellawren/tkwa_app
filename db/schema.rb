@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120221202721) do
+ActiveRecord::Schema.define(:version => 20120222171226) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -21,6 +21,31 @@ ActiveRecord::Schema.define(:version => 20120221202721) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.decimal  "number",              :precision => 8, :scale => 2
+    t.string   "location"
+    t.string   "client"
+    t.string   "building_type"
+    t.string   "client_type"
+    t.string   "status"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.string   "billing_name"
+    t.string   "billing_address"
+    t.string   "billing_phone"
+    t.string   "billing_email"
+    t.string   "billing_type"
+    t.string   "billing_travel"
+    t.string   "billing_consultant"
+    t.string   "billing_outofpocket"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
