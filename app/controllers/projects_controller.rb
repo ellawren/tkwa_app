@@ -27,6 +27,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
   
+  def index
+    @projects = Project.paginate(page: params[:page])
+    render :layout => 'index_projects'
+  end
+  
   def create
     @project = Project.new(params[:project])
     if @project.save
@@ -41,10 +46,17 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     session[:return_to] ||= request.referer
     if @project.update_attributes(params[:project])
-      flash[:success] = "Project updated"
+      flash[:success] = "Project updated successfully!"
       redirect_to session[:return_to]
     else
       redirect_to session[:return_to]
     end
   end
+  
+  def destroy
+    Project.find(params[:id]).destroy
+    flash[:success] = "Project deleted."
+    redirect_to projects_path
+  end
+  
 end
