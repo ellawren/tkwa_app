@@ -1,0 +1,140 @@
+<% provide(:title, 'Schedule') %>
+
+<h3>Project Schedule</h3>
+  					<div class="notes">
+						Progress bar shows time elapsed as a percentage of total project duration.
+					</div>
+					
+										
+					<div class="schedule-bar span10 offset1  blue-bkg">
+					
+					    <div class="progress progress-info progress-striped">
+    						<div class="bar" style="width: 35%;"></div>
+    					</div>
+    					
+    					<div class="circle circle-begin"><div class="caps">start</div><div class="num-total">1/1/11</div><div class="caps">date</div></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: 5%;"></a>
+    					<div class="phase-marker" style="left:5%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:5%; width: 10%;"></a>
+    					<div class="phase-marker" style="left:15%;"></div>
+    						<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:15%; width: 10%;"></a>
+    					<div class="phase-marker" style="left:25%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:25%; width: 15%;"></a>
+    					<div class="phase-marker future" style="left:40%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:40%; width: 2%;"></a>
+    					<div class="phase-marker future" style="left:42%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca" style="left:42%; width: 58%;"></a>
+    						
+    					<div class="marker todate" style="left:35%;">
+    						<div class="bubble"><div class="caps">current</div>2/1/2012</div>
+						</div>
+						
+						<div class="circle circle-complete"><div class="caps">finish</div><div class="num-total">12/1/13</div><div class="caps">date</div></div>
+						
+					</div>
+					
+					<div class="row">
+					
+						<div class="span5">
+						
+								<br /><br />
+							<div class="well well-white span4">
+											
+								<div class="control-group">
+										<label class="control-label bold">Start Date</label>
+										<div class="controls">
+											<input data-datepicker="datepicker" class="span2" type="text" value="01/05/2011" />
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label bold">Duration</label>
+										<div class="controls">
+											<div class="inputbox">
+												2 years, 2 months
+											</div>
+										</div>
+									</div>
+								
+									<div class="control-group">
+										<label class="control-label bold">Completion Date</label>
+										<div class="controls">
+											<input data-datepicker="datepicker" class="span2" type="text" value="05/08/2011" />
+
+										</div>
+									</div>
+								</div>
+									
+							</div>
+							
+							<div class="span8">
+											
+								<table class="table staff-table flush">
+					
+									<thead>
+										<tr>
+											<th>Phase</th>
+											<th>%</th>
+											<th>Start Date</th>
+											<th>End Date</th>
+											<th>Duration</th>
+										</tr>
+									</thead>
+						
+									<tbody>
+										<tr>
+											<td><div class="inputbox bold">10 Predesign</div></td>
+											<td><input class="span0-5" type="text" value="5"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+										<tr>
+											<td><div class="inputbox bold">20 Schematic</div></td>
+											<td><input class="span0-5" type="text" value="10"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+										<tr>
+											<td><div class="inputbox bold">30 Design Dev</div></td>
+											<td><input class="span0-5" type="text" value="15"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+										<tr>
+											<td><div class="inputbox bold">40 Const Docs</div></td>
+											<td><input class="span0-5" type="text" value="40"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+										<tr>
+											<td><div class="inputbox bold">50 Bidding</div></td>
+											<td><input class="span0-5" type="text" value="5"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+										<tr>
+											<td><div class="inputbox bold">60 CCA</div></td>
+											<td><input class="span0-5" type="text" value="25"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+										<tr>
+											<td><div class="inputbox bold">70 Additional</div></td>
+											<td><input class="span0-5" type="text" value="0"> %</td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
+											<td><div class="inputbox">3 months, 2 weeks</div></td>
+										</tr>
+									</tbody>
+						
+								</table>
+							
+							
+																				
+					</div> <!-- end row -->

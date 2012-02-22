@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222171226) do
+ActiveRecord::Schema.define(:version => 20120222203449) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120222171226) do
     t.string   "billing_outofpocket"
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.string   "ext"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true

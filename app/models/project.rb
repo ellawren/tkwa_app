@@ -28,8 +28,24 @@
 class Project < ActiveRecord::Base
 
 	validates :name, 	presence: true, length: { maximum: 50 }
-	valid_number_regex = /\d{4,6}([\.]\d{2})?/i
-	validates :number, 	presence: true, format: { with: valid_number_regex },
-                    	uniqueness: true, length: { maximum: 9 }
+	validates :number, 	presence: true, uniqueness: true
+    
+    BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
+    					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",
+    					"Medical Elderly", "Medical Clinic", "Medical Hospital", "Mixed Use", 
+    					"Municipal", "Museum", "Offices", "Performing Arts", "Planning", 
+    					"Recreation", "Religious", "Residential Single", "Residential Multi",
+    					"Retail", "Sustainable Design", "Teaching", "Urban Design"
+    				 ]
+    				 
+    CLIENT_TYPES =   [	"Commercial", "Contractor", "Design Professional", "Developer", "Government",
+    					"Industrial", "Institutional", "Owner"
+    				 ]
+    
+    BILLING_TYPES =  			[ "Lump sum", "% of Construction Cost", "Hourly" ]
+    BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
+    BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
+    				 
 		
 end
+

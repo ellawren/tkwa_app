@@ -1,0 +1,7 @@
+<div class="tabnav">
+	<%= link_to "info", info_project_path(@project), :class => is_active?("info") %>
+	<%= link_to "scope", scope_project_path(@project), :class => is_active?("scope") %>
+	<%= link_to "team", team_project_path(@project), :class => is_active?("team") %>
+	<%= link_to "tracking", tracking_project_path(@project), :class => is_active?("tracking") %>
+	<%= link_to "schedule", schedule_project_path(@project), :class => is_active?("schedule") %>
+</div>

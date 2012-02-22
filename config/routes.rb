@@ -6,7 +6,11 @@ TkwaApp::Application.routes.draw do
     end
   end
   
-  resources :projects
+  resources :projects do
+    member do
+      get 'info', 'team', 'scope', 'tracking', 'schedule'
+    end
+  end
   
   resources :sessions, 		only: [:new, :create, :destroy]
   resources :microposts, 	only: [:create, :destroy]

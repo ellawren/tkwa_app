@@ -1,0 +1,278 @@
+<% provide(:title, 'Tracking') %>
+
+<h3>Time Tracking</h3>
+  					<div class="notes">
+						Progress bar shows hours worked as a percentage of total budgeted hours.					
+					</div>
+					
+					<div class="schedule-bar span10 offset1 green-bkg">
+					
+					    <div class="progress progress-green progress-striped">
+    						<div class="bar" style="width: 88%;"></div>
+    					</div>
+    					
+    					<div class="circle circle-begin"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: 12%;"></a>
+    					<div class="phase-marker" style="left:12%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:12%; width: 24%;"></a>
+    					<div class="phase-marker" style="left:36%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="design dev" style="left:36%; width: 26%;"></a>
+    					<div class="phase-marker" style="left:62%;"></div>
+    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:62%; width: 26%;"></a>
+    					<div class="marker target" style="left:90%;">
+    						<div class="bubble"><div class="caps">Target</div>1,294 hours</div>
+    					</div>
+    					
+    					<div class="marker todate" style="left:88%;">
+    						<div class="bubble"><div class="caps">Actual</div><span class="green">1,283 hours</span></div>
+						</div>
+						
+						<div class="circle circle-complete"><div class="caps">Total</div><div class="num-total">1,464</div><div class="caps">Hours</div></div>
+						
+					</div>
+					
+						<table class="table tracking-table">
+						
+							<thead>
+								<tr>
+									<th class="lt"><br /><div class="caps">Name</div></th>
+									<th><div class="inside-block"><div class="number">10</div><div class="caps">Predesign</div></div></th>
+									<th><div class="inside-block"><div class="number">20</div><div class="caps">Schematic</div></div></th>
+									<th><div class="inside-block"><div class="number">30</div><div class="caps">Design Dev</div></div></th>
+									<th class="gray"><a class="tip" rel="tooltip" href="#" data-original-title="current phase"><div class="round-top"></div><div class="inside-block"><div class="number">40</div><div class="caps">Const Docs</div></div></a></th>
+									<th><div class="inside-block"><div class="number">50</div><div class="caps">Bidding</div></div></th>
+									<th><div class="inside-block"><div class="number">60</div><div class="caps">CCA</div></div></th>
+									<th><div class="inside-block"><div class="number">65</div><div class="caps">Interior</div></div></th>
+									<th><div class="inside-block no-bkg"><div class="number light">68</div><div class="caps light">Historic</div></div></th>
+									<th><div class="inside-block"><div class="number">70</div><div class="caps">Additional</div></div></th>
+									<th class="total name"><div class="inside-block">Totals<br />To-Date</div></th>
+									<th class="name"><br />+/-</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td class="lt bold"><div class="inputbox name">Allen Washatko</div>
+										<div class="inputbox italic"></div></td>
+									<td><div class="uneditable-input span1 est">10</div>
+										<div class="act">8</div></td>
+									<td><div class="uneditable-input span1 est">50</div>
+										<div class="act">50</div></td>
+									<td><div class="uneditable-input span1 est">50</div>
+										<div class="act">5</div></td>
+									<td class="gray"><div class="uneditable-input span1 est">50</div>
+										<div class="act over">
+											<a href="#" class="pop" rel="popover" title="Allen Washatko - Phase 40" 
+											data-content="<table class='table-condensed table-striped pop-table'>
+												<thead>
+													<tr>
+														<th>Task</th>
+														<th>Hours</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Administration</td>
+														<td>12.00</td>
+													</tr>
+													<tr>
+														<td>Travel Time</td>
+														<td>2.25</td>
+													</tr>
+													<tr>
+														<td>Meeting</td>
+														<td>7.75</td>
+													</tr>
+													<tr>
+														<td>Drawings</td>
+														<td>38.00</td>
+													</tr>
+												</tbody>
+												<thead>
+													<tr class='lower'>
+														<th>Phase 40 Total</th>
+														<th>60.00</th>
+													</tr>
+												</thead>
+											</table>">60</a>
+										</div></td>
+									<td><div class="uneditable-input span1 est light">10</div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td class="total"><div class="uneditable-input span1 est">160</div>
+										<div class="act">123</div></td>
+									<td><div class="act sum">-37</div></td>
+								</tr>
+								<tr>
+									<td class="lt bold"><div class="inputbox name">Tom Kubala</div>
+										<div class="inputbox italic"></div></td>
+									<td><div class="uneditable-input span1 est">10</div>
+										<div class="act over">15</div></td>
+									<td><div class="uneditable-input span1 est">50</div>
+										<div class="act">50</div></td>
+									<td><div class="uneditable-input span1 est">50</div>
+										<div class="act">40</div></td>
+									<td class="gray"><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est light">40</div>
+										<div class="act"></div></td>
+									<td class="total"><div class="uneditable-input span1 est">110</div>
+										<div class="act">95</div></td>
+									<td><div class="act sum">-15</div></td>
+								</tr>
+								<tr>
+									<td class="lt bold"><div class="inputbox name">Joel Krueger</div>
+										<div class="inputbox italic"></div></td>
+									<td><div class="uneditable-input span1 est">100</div>
+										<div class="act over">135</div></td>
+									<td><div class="uneditable-input span1 est">150</div>
+										<div class="act">150</div></td>
+									<td><div class="uneditable-input span1 est">150</div>
+										<div class="act">150</div></td>
+									<td class="gray"><div class="uneditable-input span1 est">50</div>
+										<div class="act">
+											<a href="#" class="pop" rel="popover" title="Joel Krueger - Phase 40" 
+											data-content="<table class='table-condensed table-striped pop-table'>
+												<thead>
+													<tr>
+														<th>Task</th>
+														<th>Hours</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Administration</td>
+														<td>12.00</td>
+													</tr>
+													<tr>
+														<td>Travel Time</td>
+														<td>2.25</td>
+													</tr>
+													<tr>
+														<td>Meeting</td>
+														<td>7.75</td>
+													</tr>
+													<tr>
+														<td>Drawings</td>
+														<td>28.00</td>
+													</tr>
+												</tbody>
+												<thead>
+													<tr class='lower'>
+														<th>Phase 40 Total</th>
+														<th>50.00</th>
+													</tr>
+												</thead>
+											</table>">50</a>
+										
+										</div></td>
+									<td><div class="uneditable-input span1 est light">50</div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est light">10</div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td>
+									<td class="total"><div class="uneditable-input span1 est">450</div>
+										<div class="act over">485</div></td>
+									<td><div class="act sum over">+35</div></td>
+								</tr>
+								<tr>
+									<td class="lt bold"><div class="inputbox name">Ethan Bartos</div>
+										<div class="inputbox italic"></div></td>
+									<td><div class="uneditable-input span1 est">10</div>
+										<div class="act">10</div></td></td>
+									<td><div class="uneditable-input span1 est">100</div>
+										<div class="act over">105.25</div></td></td>
+									<td><div class="uneditable-input span1 est">200</div>
+										<div class="act">187.5</div></td></td>
+									<td class="gray"><div class="uneditable-input span1 est">200</div>
+										<div class="act over">215.5</div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est light">10</div>
+										<div class="act"></div></td></td>
+									<td class="total"><div class="uneditable-input span1 est">510</div>
+										<div class="act over">518.25</div></td>
+									<td><div class="act sum over">+8.25</div></td>
+								</tr>
+								<tr>
+									<td class="lt bold"><div class="inputbox name">Ariel Steuer</div>
+										<div class="inputbox italic"></div></td>
+									<td><div class="uneditable-input span1 est">4</div>
+										<div class="act">4</div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td class="gray"><div class="uneditable-input span1 est">60</div>
+										<div class="act">58</div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est light">60</div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td><div class="uneditable-input span1 est hide"></div>
+										<div class="act"></div></td></td>
+									<td class="total"><div class="uneditable-input span1 est">64</div>
+										<div class="act">62</div></td>
+									<td><div class="act sum">-2</div></td>
+								</tr>
+								<tr class="bold lower">
+									<td class="lt"><div class="inputbox">Total Budgeted</div><div class="inputbox">Total Actual</div></td>
+									<td><div class="uneditable-input span1 est">134</div>
+										<div class="act">172</div></td>
+									<td><div class="uneditable-input span1 est">350</div>
+										<div class="act over">355.25</div></td>
+									<td><div class="uneditable-input span1 est">450</div>
+										<div class="act">382.5</div></td>
+									<td class="gray bottom"><div class="uneditable-input span1 est">360</div>
+										<div class="act over">383.5</div><div class="round-bottom"></div></td>
+									<td><div class="uneditable-input span1 est light">60</div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est light">10</div>
+										<div class="act"></div></td>
+									<td><div class="uneditable-input span1 est light">60</div>
+										<div class="act"></div></td>
+									<td></td>
+									<td><div class="uneditable-input span1 est light">40</div>
+										<div class="act"></div></td>
+									<td class="total"><div class="uneditable-input span1 est">1294</div>
+										<div class="act">1283.25</div></td>
+									<td><div class="act sum">-10.75</div></td>
+								</tr>
+								
+							</tbody>
+						
+						</table>
+						
+						<div class="notes">
+							Target hours are in <span class="uneditable-input inline bold">black</span>, actual hours are shown in <span class="green">green</span> if they are on track or <span class="red">red</span> if they are over.
+						</div>
