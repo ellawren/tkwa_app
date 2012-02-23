@@ -4,10 +4,11 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>Good Morning.</h1>
+        <h1><%= greeting %></h1>
         <br />
         <p>Welcome to the TKWA Database. It will eventually hold all our projects, contacts, timesheets, and tracking data!</p>
         <br />
+        
         <p>
         	<%= link_to("View Projects", projects_path, class: "btn btn-primary btn-large") %>
         	<%= link_to("View Users", users_path, class: "btn btn-primary btn-large") %>

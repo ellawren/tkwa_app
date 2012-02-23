@@ -8,18 +8,21 @@
 
             			<div class="nav-collapse">
               			    <ul class="nav">
-                				    <li class="active">
+                				    <li <%= is_current?("projects") %>>
                                 <%= link_to "Projects", projects_path %>
                   				      <div class="triangle"></div>
                 				    </li>
-                				    <li class="">
+                				    <li <%= is_current?("contacts") %>>
                   				      <a href="#">Contacts</a>
+                                <div class="triangle"></div>
                 				    </li>
-                				    <li class="">
+                				    <li <%= is_current?("timesheets") %>>
                   				      <a href="#">Timesheets</a>
+                                <div class="triangle"></div>
                 				    </li>
-                				    <li class="">
+                				    <li <%= is_current?("patterns") %>>
                   				      <a href="#">Patterns</a>
+                                <div class="triangle"></div>
                 				    </li>
                			    </ul>
             			</div>

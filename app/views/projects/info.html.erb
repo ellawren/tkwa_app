@@ -36,6 +36,25 @@
 						<%= f.text_field :contact_name, class: "span5" %>
 					</div>
 				</div>
+
+				<div class="control-group">
+					<%= f.label :contact_phone, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :contact_phone, class: "span3" %>
+						&nbsp; Ext: &nbsp;<%= f.text_field :contact_ext, class: "span1" %>
+					</div>
+				</div>
+          				
+          		<div class="control-group">
+					<%= f.label :contact_email, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :contact_email, class: "span5" %>
+					</div>
+				</div>
+
+				<input type="button" class="btn subtle form-offset" value="This is also the billing contact" onClick="copyContact()">
+
+				
 													
 							
 			</div> <!-- end span7 -->

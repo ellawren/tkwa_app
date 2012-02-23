@@ -24,6 +24,7 @@
 #  created_at          :datetime        not null
 #  updated_at          :datetime        not null
 #  ext                 :string(255)
+#  contact_ext         :string(255)
 #
 
 class Project < ActiveRecord::Base

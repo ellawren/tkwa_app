@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223195524) do
+ActiveRecord::Schema.define(:version => 20120223205553) do
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120223195524) do
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
     t.string   "ext"
+    t.string   "contact_ext"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true

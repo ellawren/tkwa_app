@@ -13,5 +13,9 @@ module ApplicationHelper
   def is_active?(page_name)
     	"sel" if params[:action] == page_name
   end
+
+  def is_current?(c_name)
+      "class='active'" if params[:controller] == c_name
+  end
   
 end
