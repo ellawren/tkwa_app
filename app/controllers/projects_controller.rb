@@ -47,9 +47,9 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated successfully!"
-      redirect_to info_project_path(@project)
+      redirect_to(:back) 
     else
-      redirect_to info_project_path(@project)
+      redirect_to(:back) 
     end
   end
   

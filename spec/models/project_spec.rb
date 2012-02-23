@@ -4,7 +4,7 @@
 #
 #  id                  :integer         not null, primary key
 #  name                :string(255)
-#  number              :decimal(, )
+#  number              :decimal(8, 2)
 #  location            :string(255)
 #  client              :string(255)
 #  building_type       :string(255)
@@ -23,6 +23,7 @@
 #  billing_outofpocket :string(255)
 #  created_at          :datetime        not null
 #  updated_at          :datetime        not null
+#  ext                 :string(255)
 #
 
 require 'spec_helper'

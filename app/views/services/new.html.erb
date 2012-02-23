@@ -1,0 +1,16 @@
+<h1>Add Service</h1>
+
+<%= form_for(@service) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :service_name %><br />
+    <%= f.text_field :service_name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Service" %>
+  </div>
+<% end %>

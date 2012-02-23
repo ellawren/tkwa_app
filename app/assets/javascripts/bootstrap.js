@@ -1154,7 +1154,7 @@
         , $e = this.$element
         , o = this.options
 
-      content = $e.attr('data-content')
+      content = $e.attr('datacontent')
         || (typeof o.content == 'function' ? o.content.call($e[0]) :  o.content)
 
       content = content.toString().replace(/(^\s*|\s*$)/, "")

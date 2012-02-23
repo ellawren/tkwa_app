@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222203449) do
+ActiveRecord::Schema.define(:version => 20120223195524) do
+
+  create_table "consultant_roles", :force => true do |t|
+    t.string   "consultant_role_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consultant_roles_projects", :id => false, :force => true do |t|
+    t.integer  "project_id",         :null => false
+    t.integer  "consultant_role_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "consultant_roles_projects", ["project_id", "consultant_role_id"], :name => "index_cons_projects_on_project_id_and_consultant_role_id", :unique => true
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -48,6 +63,30 @@ ActiveRecord::Schema.define(:version => 20120222203449) do
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true
 
+  create_table "projects_reimbursables", :id => false, :force => true do |t|
+    t.integer  "project_id",      :null => false
+    t.integer  "reimbursable_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects_reimbursables", ["project_id", "reimbursable_id"], :name => "index_projects_reimbursables_on_project_id_and_reimbursable_id", :unique => true
+
+  create_table "projects_services", :id => false, :force => true do |t|
+    t.integer  "project_id", :null => false
+    t.integer  "service_id", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects_services", ["project_id", "service_id"], :name => "index_projects_services_on_project_id_and_service_id", :unique => true
+
+  create_table "reimbursables", :force => true do |t|
+    t.string   "reimbursable_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -58,6 +97,13 @@ ActiveRecord::Schema.define(:version => 20120222203449) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "services", :force => true do |t|
+    t.string   "service_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "description"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

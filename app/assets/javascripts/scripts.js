@@ -3,5 +3,8 @@ $(function() {
 		$(".tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
 		
 });
+
+
+
 	
 	

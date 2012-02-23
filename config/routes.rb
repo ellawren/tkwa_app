@@ -11,6 +11,8 @@ TkwaApp::Application.routes.draw do
       get 'info', 'team', 'scope', 'tracking', 'schedule'
     end
   end    
+
+  resources :services
   
   resources :sessions, 		only: [:new, :create, :destroy]
   resources :microposts, 	only: [:create, :destroy]

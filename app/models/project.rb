@@ -4,7 +4,7 @@
 #
 #  id                  :integer         not null, primary key
 #  name                :string(255)
-#  number              :decimal(, )
+#  number              :decimal(8, 2)
 #  location            :string(255)
 #  client              :string(255)
 #  building_type       :string(255)
@@ -23,9 +23,19 @@
 #  billing_outofpocket :string(255)
 #  created_at          :datetime        not null
 #  updated_at          :datetime        not null
+#  ext                 :string(255)
 #
 
 class Project < ActiveRecord::Base
+
+    has_and_belongs_to_many :services
+    has_and_belongs_to_many :reimbursables
+    has_and_belongs_to_many :consultant_roles
+
+    # allows project page to add items via checkboxes
+    accepts_nested_attributes_for :services
+    accepts_nested_attributes_for :reimbursables
+    accepts_nested_attributes_for :consultant_roles
 
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true
@@ -45,7 +55,7 @@ class Project < ActiveRecord::Base
     BILLING_TYPES =  			[ "Lump sum", "% of Construction Cost", "Hourly" ]
     BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
     BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
-    				 
+    			 
 		
 end
 
