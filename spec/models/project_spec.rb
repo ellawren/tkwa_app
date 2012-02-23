@@ -64,23 +64,8 @@ describe Project do
     it { should_not be_valid }
   end
   
-  describe "with a number that's too short" do
-    before { @project.number = 123 }
-    it { should be_invalid }
-  end
-  
-  describe "with a number that's too long" do
-    before { @project.number = 12345678 }
-    it { should be_invalid }
-  end
-  
   describe "with a number that has a decimal" do
     before { @project.number = 123456.78 }
-    it { should be_valid }
-  end
-  
-  describe "with a number that has the wrong format" do
-    before { @project.number = 123456.7 }
     it { should be_valid }
   end
   

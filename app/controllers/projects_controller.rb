@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   def new
   	@project = Project.new
+    render :layout => 'new_project'
   end
   
   def show
@@ -44,12 +45,11 @@ class ProjectsController < ApplicationController
   
   def update
     @project = Project.find(params[:id])
-    session[:return_to] ||= request.referer
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated successfully!"
-      redirect_to session[:return_to]
+      redirect_to info_project_path(@project)
     else
-      redirect_to session[:return_to]
+      redirect_to info_project_path(@project)
     end
   end
   

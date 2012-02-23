@@ -13,10 +13,13 @@
 		<!-- main content -->
     	<div class="container">
     		<div class="spacer"></div>
-    		
+
     		<% flash.each do |key, value| %>
           		<%= content_tag(:div, value, class: "flash #{key}") %>
         	<% end %>
+
+    		<%= yield :page_header %>
+    		<%= yield :tabnav %>
         	
     		<%= content_for?(:content) ? yield(:content) : yield %>
 			

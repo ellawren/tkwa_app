@@ -1,13 +1,13 @@
 <% content_for :page_header do %>
-	<% provide :title, @project.name %>
+	<% provide :title, "New Project" %>
 	<div class="page-header">
-		<h1><span class="lightweight"><%= number_with_precision(@project.number, :strip_insignificant_zeros => true) %></span> &nbsp;<%= @project.name %></h1>
+		<h1>New Project</h1>
 	</div>
 <% end %>
 
 
 <% content_for :tabnav do %>
-	<%= render "tabnav" %>
+	<div class="line"></div>
 <% end %>
 
 
@@ -16,7 +16,7 @@
 		<div class="span14 sh">
 			<div class="row">	
 				<div class="span13 offset05">
-  					<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
+  					<%= content_for?(:content) ? yield(:content) : yield %>
   				</div> <!-- end span13 -->
 			</div> <!-- end row -->	
   		</div> <!-- end span14 -->
