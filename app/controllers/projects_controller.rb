@@ -2,6 +2,11 @@ class ProjectsController < ApplicationController
   def new
   	@project = Project.new
     render :layout => 'new_project'
+    
+  end
+
+  def edit
+    @project = Project.find(params[:id])
   end
   
   def show
@@ -18,6 +23,7 @@ class ProjectsController < ApplicationController
   
   def team
     @project = Project.find(params[:id])
+
   end
   
   def tracking
@@ -35,6 +41,7 @@ class ProjectsController < ApplicationController
   
   def create
     @project = Project.new(params[:project])
+
     if @project.save
       flash[:success] = "Project created successfully!"
       redirect_to info_project_path(@project)

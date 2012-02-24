@@ -10,10 +10,11 @@
 #  password_digest :string(255)
 #  remember_token  :string(255)
 #  admin           :boolean         default(FALSE)
+#  employee_number :integer
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :employee_number
   has_secure_password
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -22,6 +23,9 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
+
+  has_many :projects, :through => :teams
+  has_many :teams, :dependent => :destroy
   
   before_save :create_remember_token
 
@@ -31,6 +35,9 @@ class User < ActiveRecord::Base
                     format:     { with: valid_email_regex },
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6}
+
+  # allows project page to add employees via team join model. must allow destroy.
+  accepts_nested_attributes_for :teams, :allow_destroy => true
   
   def feed
     Micropost.from_users_followed_by(self)

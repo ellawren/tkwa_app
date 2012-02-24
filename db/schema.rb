@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120223205553) do
+ActiveRecord::Schema.define(:version => 20120224161236) do
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -106,6 +106,17 @@ ActiveRecord::Schema.define(:version => 20120223205553) do
     t.text     "description"
   end
 
+  create_table "teams", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["project_id", "user_id"], :name => "index_teams_on_project_id_and_user_id", :unique => true
+  add_index "teams", ["project_id"], :name => "index_teams_on_project_id"
+  add_index "teams", ["user_id"], :name => "index_teams_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -114,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20120223205553) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
+    t.integer  "employee_number"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,13 +1,18 @@
 <%= form_for(@project) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, "Project Name" %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :number %><br />
     <%= f.text_field :number %>
   </div>
+
+  <% f.fields_for :users do |builder| %>
+      <%= builder.text_field :name %>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Create Project" %>
   </div>

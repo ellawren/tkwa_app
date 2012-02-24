@@ -28,10 +28,16 @@
 #
 
 class Project < ActiveRecord::Base
+    has_many :users, :through => :teams
+    has_many :teams, :dependent => :destroy
 
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
+
+    # allows project page to add employees via team join model. must allow destroy.
+    accepts_nested_attributes_for :teams, :allow_destroy => true, :reject_if => lambda { |a| a[:user_id].blank? }
+    # accepts_nested_attributes_for :users
 
     # allows project page to add items via checkboxes
     accepts_nested_attributes_for :services
