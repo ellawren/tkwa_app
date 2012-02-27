@@ -2,7 +2,7 @@ TkwaApp::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :profile
     end
   end
     

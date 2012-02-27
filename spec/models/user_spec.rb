@@ -2,15 +2,27 @@
 #
 # Table name: users
 #
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
-#  employee_number :integer
+#  id               :integer         not null, primary key
+#  name             :string(255)
+#  email            :string(255)
+#  created_at       :datetime        not null
+#  updated_at       :datetime        not null
+#  password_digest  :string(255)
+#  remember_token   :string(255)
+#  admin            :boolean         default(FALSE)
+#  employee_number  :integer
+#  address          :string(255)
+#  cell_phone       :string(255)
+#  home_phone       :string(255)
+#  direct_phone     :string(255)
+#  work_email       :string(255)
+#  home_email       :string(255)
+#  birthday         :date
+#  employer         :string(255)
+#  employer_address :string(255)
+#  employer_phone   :string(255)
+#  employer_ext     :string(255)
+#  employer_title   :string(255)
 #
 
 require 'spec_helper'

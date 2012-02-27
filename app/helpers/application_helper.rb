@@ -29,5 +29,7 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
   end
+
+
   
 end

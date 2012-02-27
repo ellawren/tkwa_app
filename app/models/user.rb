@@ -2,19 +2,34 @@
 #
 # Table name: users
 #
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
-#  employee_number :integer
+#  id               :integer         not null, primary key
+#  name             :string(255)
+#  email            :string(255)
+#  created_at       :datetime        not null
+#  updated_at       :datetime        not null
+#  password_digest  :string(255)
+#  remember_token   :string(255)
+#  admin            :boolean         default(FALSE)
+#  employee_number  :integer
+#  address          :string(255)
+#  cell_phone       :string(255)
+#  home_phone       :string(255)
+#  direct_phone     :string(255)
+#  work_email       :string(255)
+#  home_email       :string(255)
+#  birthday         :date
+#  employer         :string(255)
+#  employer_address :string(255)
+#  employer_phone   :string(255)
+#  employer_ext     :string(255)
+#  employer_title   :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :employee_number
+  attr_accessible :name, :email, :password, :password_confirmation, :employee_number,
+                  :address, :cell_phone, :home_phone, :direct_phone, :work_email,
+                  :home_email, :birthday, :employer, :employer_title, :employer_address,
+                  :employer_phone, :employer_ext
   has_secure_password
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -38,6 +53,7 @@ class User < ActiveRecord::Base
 
   # allows project page to add employees via team join model. must allow destroy.
   accepts_nested_attributes_for :teams, :allow_destroy => true
+
   
   def feed
     Micropost.from_users_followed_by(self)

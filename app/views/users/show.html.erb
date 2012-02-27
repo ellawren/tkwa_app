@@ -1,27 +1,168 @@
-<% provide :title, @user.name %>
-<table class="profile">
-  <tr>
-    <td class="main">
-     	<h1>
-        	<%= gravatar_for @user %>
-        	<%= @user.name %>
-      	</h1>
-      	<%= render 'follow_form' if signed_in? %>
+<% content_for :page_header do %>
+  <% provide :title, @user.name %>
+  <div class="page-header">
+    <h1><%= @user.name %></h1>
+  </div>
+<% end %>
 
-		<% if @user.microposts.any? %>
-			<table class="microposts">
-				<%= render @microposts %>
-			</table>
-			<%= will_paginate @microposts %>
-		<% end %>
-	</td>
-    <td class="stats-right">
-      <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-      <strong>Microposts</strong> <%= @user.microposts.count %>
-      <%= render 'shared/stats' %>
-    </td>
-  </tr>
-</table>
+<%= form_for(@user, html: { class: "form-horizontal" }) do |f| %>
 
-<%= link_to "Edit", edit_user_path(current_user) %>
+   <fieldset>
+
+        <div class="row">
+                      
+            <div class="span7">
+                <h3>Business Contact Info</h3>   
+                <br />
+                
+
+                <div class="control-group">
+                    <%= f.label(:name, class: "control-label") %>
+                    <div class="controls">
+                        <div class="input-box span5 bold"><%= @user.name %></div>
+                    </div>
+                </div>
+
+                <% unless @user.employer_title.blank? %>
+                <div class="control-group">
+                    <%= f.label(:employer_address, "Title", class: "control-label") %>
+                    <div class="controls">
+                        <div class="input-box span5 bold"><%= @user.employer_title %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.employer.blank? %>
+                <div class="control-group">
+                    <%= f.label :employer, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span5 bold"><%= @user.employer %></div>
+                    </div>
+                </div>
+                <% end %>
+                
+                <% unless @user.employer_address.blank? %>
+                <div class="control-group">
+                    <%= f.label(:employer_address, class: "control-label") %>
+                    <div class="controls">
+                        <div class="input-box span5 rows2 bold"><%= simple_format h @user.employer_address %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.employer_phone.blank? %>
+                <div class="control-group">
+                    <%= f.label :employer_phone, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span3 bold">
+                            <%= @user.employer_phone %>
+                            <% unless @user.employer_phone.blank? %>
+                                <% " x " + @user.employer_ext %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.direct_phone.blank? %>
+                <div class="control-group">
+                    <%= f.label :direct_phone, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span3 bold"><%= @user.direct_phone %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.work_email.blank? %>
+                <div class="control-group">
+                    <%= f.label :work_email, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span5 bold"><%= mail_to(@user.work_email) %><br /></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <br /><br />
+                <h3>Personal Contact Info</h3>   
+                <br />
+
+                <% unless @user.address.blank? %>
+                <div class="control-group">
+                    <%= f.label(:address, class: "control-label") %>
+                    <div class="controls">
+                        <div class="input-box span5 rows2 bold"><%= simple_format h @user.address %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.home_phone.blank? %>
+                <div class="control-group">
+                    <%= f.label :home_phone, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span3 bold"><%= @user.home_phone %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.cell_phone.blank? %>
+                <div class="control-group">
+                    <%= f.label :cell_phone, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span3 bold"><%= @user.cell_phone %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.home_email.blank? %>
+                <div class="control-group">
+                    <%= f.label :home_email, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span5 bold"><%= mail_to(@user.home_email) %></div>
+                    </div>
+                </div>
+                <% end %>
+
+                <% unless @user.birthday.blank? %>
+                <div class="control-group">
+                    <%= f.label :birthday, class: "control-label" %>
+                    <div class="controls">
+                        <div class="input-box span3 bold"><%= @user.birthday.strftime("%B %d") %></div>
+                    </div>
+                </div>
+                <% end %>
+                
+                <br /><br />
+                <h3>Password</h3>   
+                <br />
+
+                <div class="control-group">
+                    <%= f.label :password, class: "control-label" %>
+                    <div class="controls">
+                        <%= f.password_field :password, class: "span2" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:password_confirmation, "Confirm Password", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.password_field :password_confirmation, class: "span2" %>
+                    </div>
+                </div>
+
+            </div> <!-- end span7 -->
+          
+        </div> <!-- end row --> 
+
+    </fieldset>
+
+    <br /><br />
+
+    <div class="row">
+        <div class="span12">
+            <div class="actions">
+                <%= link_to "Edit", edit_user_path(@user), class: "btn btn-large span2" %>
+            </div>
+        </div>
+    </div>
+
+<% end %>

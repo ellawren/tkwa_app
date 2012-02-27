@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120224161236) do
+ActiveRecord::Schema.define(:version => 20120227172954) do
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20120224161236) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
   end
 
   add_index "teams", ["project_id", "user_id"], :name => "index_teams_on_project_id_and_user_id", :unique => true
@@ -120,12 +121,24 @@ ActiveRecord::Schema.define(:version => 20120224161236) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
+    t.boolean  "admin",            :default => false
     t.integer  "employee_number"
+    t.string   "address"
+    t.string   "cell_phone"
+    t.string   "home_phone"
+    t.string   "direct_phone"
+    t.string   "work_email"
+    t.string   "home_email"
+    t.date     "birthday"
+    t.string   "employer"
+    t.string   "employer_address"
+    t.string   "employer_phone"
+    t.string   "employer_ext"
+    t.string   "employer_title"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

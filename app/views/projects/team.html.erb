@@ -53,53 +53,18 @@
 					<div class="row">
 					
 						<div class="span13 columns3 contact-list">
-					
-							<div class="well well-white">
-								<span class="bold">Allen Washatko, Project Principal</span><br />
-								The Kubala Washatko Architects, Inc.<br />
-								W61 N617 Mequon Avenue<br />
-								Cedarburg, WI 53012-2017<br />
-								(262) 377-6039<br />
-								<a href="#">awashatko@tkwa.com</a>
-							</div>
-							
-							<div class="well well-white">
-								<span class="bold">Tom Kubala, Project Principal</span><br />
-								The Kubala Washatko Architects, Inc.<br />
-								W61 N617 Mequon Avenue<br />
-								Cedarburg, WI 53012-2017<br />
-								(262) 377-6039<br />
-								<a href="#">tkubala@tkwa.com</a>
-							</div>
-							
-							<div class="well well-white">
-								<span class="bold">Joel Krueger, Project Manager</span><br />
-								The Kubala Washatko Architects, Inc.<br />
-								W61 N617 Mequon Avenue<br />
-								Cedarburg, WI 53012-2017<br />
-								(262) 377-6039<br />
-								<a href="#">jkrueger@tkwa.com</a>
-							</div>
-							
-							<div class="well well-white">
-								<span class="bold">Ethan Bartos, Project Designer</span><br />
-								The Kubala Washatko Architects, Inc.<br />
-								W61 N617 Mequon Avenue<br />
-								Cedarburg, WI 53012-2017<br />
-								(262) 377-6039<br />
-								<a href="#">ebartos@tkwa.com</a>
-							</div>
-							
-							<div class="well well-white">
-								<span class="bold">Ariel Steuer, Interior Designer</span><br />
-								The Kubala Washatko Architects, Inc.<br />
-								W61 N617 Mequon Avenue<br />
-								Cedarburg, WI 53012-2017<br />
-								(262) 377-6039<br />
-								<a href="#">asteuer@tkwa.com</a>
-							</div>
-					
 
+							<% @project.teams.each do |team| %>
+					
+								<div class="well well-white">
+									<span class="bold"><%= User.find_by_id(team.user_id).name %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <%= link_to "view", user_path(User.find_by_id(team.user_id)) %><br />
+									<%= User.find_by_id(team.user_id).employer %><br />
+									<%= User.find_by_id(team.user_id).employer_address %><br />
+									<%= User.find_by_id(team.user_id).employer_phone %>
+									<%= mail_to(User.find_by_id(team.user_id).work_email) %><br />
+								</div>
+							
+							<% end %>
 					
 						</div> <!-- end span13 -->
 					

@@ -2,19 +2,7 @@
 		<%= f.collection_select(:user_id, User.all, :id, :name, { :include_blank => true }, { :class => "span3" } ) %>
      	<%= f.hidden_field :_destroy %>
 
-        <select id="role-1" class="span3">
-        	<option></option>
-            <option>Project Manager</option>
-            <option selected>Project Principal</option>
-            <option>Project Architect</option>
-            <option>Project Designer</option>
-            <option>Historic Preservation</option>
-            <option>LEED Documentation</option>
-            <option>Programming</option>
-            <option>Interior Design</option>
-            <option>Graphic Design</option>
-        </select>
-
+        <%= f.select(:role, Team::STAFF_ROLES, { :include_blank => true }, { :class => "span3" } ) %>
         
      	<%= link_to_remove_fields "remove", f %>
 </div>
