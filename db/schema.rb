@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120227172954) do
+ActiveRecord::Schema.define(:version => 20120227200650) do
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -27,6 +27,28 @@ ActiveRecord::Schema.define(:version => 20120227172954) do
   end
 
   add_index "consultant_roles_projects", ["project_id", "consultant_role_id"], :name => "index_cons_projects_on_project_id_and_consultant_role_id", :unique => true
+
+  create_table "consultant_teams", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "consultant_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "consultant_role"
+  end
+
+  add_index "consultant_teams", ["consultant_id"], :name => "index_consultant_teams_on_consultant_id"
+  add_index "consultant_teams", ["project_id", "consultant_id", "consultant_role"], :name => "index_consultant_teams_on_role_and_ids", :unique => true
+  add_index "consultant_teams", ["project_id"], :name => "index_consultant_teams_on_project_id"
+
+  create_table "consultants", :force => true do |t|
+    t.string   "company"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "contact"
+    t.string   "contact_email"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

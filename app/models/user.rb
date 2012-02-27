@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   has_many :projects, :through => :teams
   has_many :teams, :dependent => :destroy
   
-  before_save :create_remember_token
+  before_save :create_remember_token, :default_values
 
   validates :name, presence: true, length: { maximum: 50 }
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -53,6 +53,12 @@ class User < ActiveRecord::Base
 
   # allows project page to add employees via team join model. must allow destroy.
   accepts_nested_attributes_for :teams, :allow_destroy => true
+
+  def default_values
+    self.employer = "The Kubala Washatko Architects, Inc." unless self.employer
+    self.employer_address = "W61 N617 Mequon Avenue\nCedarburg, WI 53012" unless self.employer_address
+    self.employer_phone = "(262) 377-6039" unless self.employer_phone
+  end
 
   
   def feed

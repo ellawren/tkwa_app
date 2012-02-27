@@ -27,6 +27,26 @@
            		</div>	
            					
         	</div>
+
+        	<div class="table-main shift-left">
+
+				<div class="table-head">
+					<div class="row">
+						<div class="span3">Consultant Name</div>
+						<div class="span3">Role(s)</div>
+					</div>
+				</div>
+
+          		<div class="table-body">
+        			<!-- nested form for team-->
+            		<%= f.fields_for :consultant_teams do |builder| %>
+            			<%= render 'consultant_team_fields', :f => builder %>
+            		<% end %>
+					<%= link_to_add_fields "add consultant", f, :consultant_teams, "btn offset-left table-offset" %>
+           			<!-- end team form -->
+           		</div>	
+           					
+        	</div>
 					
 		</div> <!-- end row -->
 
@@ -47,8 +67,9 @@
 <h3>Contact List</h3>
   				
 					<div class="notes">
-						show all | <a href="#">TKWA staff</a> | <a href="#">all consultants</a> | <a href="#">civil</a> | <a href="#">MEP</a> | <a href="#">landscape</a> 
+						<a id="team-all" class="text-btn">Show All</a> | <a id="team-staff" class="text-btn">TKWA Staff only</a> | <a id="team-consultants" class="text-btn">Consultants only</a>
 					</div>
+
 					
 					<div class="row">
 					
@@ -56,12 +77,24 @@
 
 							<% @project.teams.each do |team| %>
 					
-								<div class="well well-white">
-									<span class="bold"><%= User.find_by_id(team.user_id).name %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <%= link_to "view", user_path(User.find_by_id(team.user_id)) %><br />
+								<div class="well well-white team-staff">
+									<span class="bold"><%= User.find_by_id(team.user_id).name %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <%= link_to "view", user_path(User.find_by_id(team.user_id)), class: "right" %><br />
 									<%= User.find_by_id(team.user_id).employer %><br />
 									<%= User.find_by_id(team.user_id).employer_address %><br />
-									<%= User.find_by_id(team.user_id).employer_phone %>
+									<%= User.find_by_id(team.user_id).employer_phone %><br />
 									<%= mail_to(User.find_by_id(team.user_id).work_email) %><br />
+								</div>
+							
+							<% end %>
+
+							<% @consultant_list.each do |team| %>
+					
+								<div class="well well-white team-consultants">
+									<span class="bold"><%= Consultant.find_by_id(team.consultant_id).company %></span> <%= link_to "view", consultant_path(Consultant.find_by_id(team.consultant_id)), class: "right"  %><br />
+									<span class="bold"><%= list_roles(team.consultant_id, @project.id) %></span><br />
+									<%= Consultant.find_by_id(team.consultant_id).address %><br />
+									<%= Consultant.find_by_id(team.consultant_id).phone %><br />
+									<%= mail_to(Consultant.find_by_id(team.consultant_id).contact_email) %><br />
 								</div>
 							
 							<% end %>

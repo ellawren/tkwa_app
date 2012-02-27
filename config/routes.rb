@@ -1,5 +1,6 @@
 TkwaApp::Application.routes.draw do
 
+
   resources :users do
     member do
       get :following, :followers, :profile
@@ -13,6 +14,7 @@ TkwaApp::Application.routes.draw do
   end    
 
   resources :services
+  resources :consultants
   
   resources :sessions, 		only: [:new, :create, :destroy]
   resources :microposts, 	only: [:create, :destroy]

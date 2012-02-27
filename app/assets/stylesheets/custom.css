@@ -26,6 +26,7 @@
   .span0-5 { width: 30px; }
   .span1-5 { width: 80px; }
   .span2-5 { width: 170px; }
+  .span2-75 { width: 190px; }
   .span3-5 { width: 260px; }
   .span3-75 { width: 280px; }
   .span4-5 { width: 350px; }
@@ -89,12 +90,16 @@
  /********************************************************************************************/
  /* Team */
 
- .table-main  { float:left; width:525px; margin:20px; position:relative; }
+ .table-main  { float:left; width:480px; margin:20px; position:relative; }
  .table-head  { float:left; width:100%; padding:0 0 5px 0; border-bottom:1px solid #555; font-weight:bold; }
  .table-body  { width:100%; }
  .table-row   { float:left; width:100%; padding:6px 0 0 0; border-bottom:1px solid #e6e6e6; }
  .table-row select { margin-right:15px; margin-bottom:6px; }
  .btn.table-offset  { margin-top:10px; }
+ .table-main.shift-left { margin-left:35px; margin-right:0px; }
+
+ .team-staff, .team-consultants { display:block; }
+ .text-btn { cursor:pointer; }
 
 
 /********************************************************************************************/
@@ -114,6 +119,8 @@
     font-size:1em; cursor:default; border:1px solid #e6e6e6; cursor:text; 
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset; margin-left: 0; border-radius: 3px 3px 3px 3px; 
     font-size: 13px; height: 18px; line-height: 18px; margin-bottom: 0; }
+
+    .right { float:right; }
 
   .input-box.rows2  { height:51px; }
   .nofill   { background:none; border:none; box-shadow:none; font-weight:bold; }

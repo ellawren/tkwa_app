@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
   
   def team
     @project = Project.find(params[:id])
+    @consultant_list = ConsultantTeam.find(:all, :select => 'DISTINCT consultant_id', :conditions => [ "project_id = #{@project.id}" ] )
 
   end
   
