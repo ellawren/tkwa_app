@@ -1,0 +1,31 @@
+<% content_for :page_header do %>
+	<% provide :title, "Contacts Index" %>
+	<div class="page-header">
+		<h1>Contacts Index</h1>
+	</div>
+<% end %>
+
+<%= link_to "Add Contact", new_contact_path, class: "btn" %>
+<br /><br /><br />
+<h4>All</h4><br />
+	<ul>
+		<% Contact.all.each do |param| %>
+  			<li><%= link_to param.name, param %></li>
+		<% end %>
+	</ul>
+
+<br /><br />
+<h4>Employees</h4><br />
+	<ul>
+		<% Contact.employee.each do |param| %>
+  			<li><%= link_to param.name, param %></li>
+		<% end %>
+	</ul>
+<br /><br />
+<h4>Consultants</h4><br />
+	<ul>
+		<% Contact.consultant.each do |param| %>
+  			<li><%= link_to param.name, param %></li>
+		<% end %>
+	</ul>
+

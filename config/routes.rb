@@ -1,5 +1,7 @@
 TkwaApp::Application.routes.draw do
 
+  resources :contacts
+  resources :categories
 
   resources :users do
     member do

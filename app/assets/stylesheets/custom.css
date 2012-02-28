@@ -69,7 +69,10 @@
   .triangle { border-left: 62px solid transparent; border-right: 62px solid transparent; border-top: 15px solid #111; position:absolute; top:40px; left:0; display:none; }
   li.active .triangle { display:block; }
 
-
+  .nav a.dropdown-toggle { display:block; line-height:40px;  }
+  .nav li.dropdown,  .nav li.dropdown li { position:relative; width:auto; text-align:left; font-size:9pt; font-weight:normal; text-transform:none; letter-spacing:0px; }
+  .signin-box ul.dropdown-menu a { margin-right: 0px; }
+  .dropdown.open .dropdown-toggle { background: none; color: #FFFFFF; }
 
  /********************************************************************************************/
  /* Tab Navigation */
@@ -110,6 +113,9 @@
 
 .btn.form-offset { margin-left:160px;}
 
+.control-group  { position:relative; }
+.btn.top-right { position:absolute; top:0; right:0; }
+
 
 /********************************************************************************************/
  /* Custom Styles */
@@ -124,8 +130,8 @@
 
   .input-box.rows2  { height:51px; }
   .nofill   { background:none; border:none; box-shadow:none; font-weight:bold; }
-  .form-horizontal.half-width-labels .control-group > label { width: 80px; }
-  .form-horizontal.half-width-labels .controls { margin-left: 100px; }
+  .form-horizontal.half-width-labels .control-group > label { width: 100px; }
+  .form-horizontal.half-width-labels .controls { margin-left: 120px; }
  
   .page-header { margin-bottom:20px; position:relative; border:none; }
  

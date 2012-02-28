@@ -1,0 +1,158 @@
+   <fieldset>
+
+        <div class="row">
+                      
+            <div class="span7-5">
+
+                <h3>General Information</h3>   
+                <br />
+                
+                <div class="control-group">
+                    <%= f.label(:name, class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :name, class: "span5-5" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_title, "Title", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_title, class: "span5-5" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_company, "Company", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_company, class: "span5-5" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_department, "Department", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_department, class: "span5-5" %>
+                    </div>
+                </div>
+
+                <br /><br />
+                <h3>Business Contact Information</h3>   
+                <br />
+
+                <div class="control-group">
+                    <%= f.label(:work_address, "Address", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_area :work_address, class: "span4-5", rows: "2" %>
+                    </div>
+                    <div class="btn top-right span1">Get Map</div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label :work_phone, "Main Phone", class: "control-label" %>
+                    <div class="controls">
+                        <%= f.text_field :work_phone, class: "span3" %>
+                        &nbsp; Ext: &nbsp;<%= f.text_field :work_ext, class: "span1" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_direct, "Direct Phone", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_direct, class: "span3" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_fax, "Fax", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_fax, class: "span3" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_email, "Email", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_email, class: "span4-5" %>
+                    </div>
+                    <div class="btn top-right span1">Compose</div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_url, "Website", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_url, class: "span4-5" %>
+                    </div>
+                    <div class="btn top-right span1">View</div>
+                </div>
+
+                <br /><br />
+                <h3>Personal Contact Information</h3>   
+                <br />
+
+                <div class="control-group">
+                    <%= f.label(:home_address, "Home Address", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_area :home_address, class: "span4-5", rows: "2" %>
+                    </div>
+                    <div class="btn top-right span1">Get Map</div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label :home_phone, "Home Phone", class: "control-label" %>
+                    <div class="controls">
+                        <%= f.text_field :home_phone, class: "span3" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:home_cell, "Cell Phone", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :home_cell, class: "span3" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:home_email, "Personal Email", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :home_email, class: "span4-5" %>
+                    </div>
+                    <div class="btn top-right span1">Compose</div>
+                </div>
+                
+            </div> <!-- end span7-5 -->
+
+            <div class="span3 offset1">
+                <h3>Details</h3>   
+                <br />
+
+                <% unless @current_action == 'new' %>
+                    Created: <strong><%= @contact.created_at.strftime("%b %d, %Y at %l:%M %p")  %></strong><br />
+                    Updated: <strong><%= @contact.updated_at.strftime("%b %d, %Y at %l:%M %p") %></strong><br />
+                <% end %>
+
+                <br />
+
+                <h4>Contact Category</h4>
+                <br />
+                <div class="form-vertical">
+                  
+                        <%= hidden_field_tag "contact[category_ids][]", nil%>
+                        <% Category.all.each do |category| %>
+                            <label class="checkbox">
+                                <%= check_box_tag "contact[category_ids][]", category.id, @contact.category_ids.include?(category.id), id: dom_id(category) %>
+                                <%= category.name %>
+                            </label>
+                        <% end %>
+                    
+                </div>
+
+                
+                <br />
+
+
+
+            </div>
+          
+        </div> <!-- end row --> 
+
+    </fieldset>

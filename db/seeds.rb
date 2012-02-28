@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-services = Service.create([
+Service.delete_all
+Service.create([
 							{ service_name: 'Programming' }, 
 							{ service_name: 'Pattern Writing - Full' },
 							{ service_name: 'Pattern Writing - Outline' },
@@ -36,7 +36,8 @@ services = Service.create([
 							{ service_name: 'Grant Application Writing' }
 		])
 
-reimbursables = Reimbursable.create([
+Reimbursable.delete_all
+Reimbursable.create([
 							{ reimbursable_name: 'Reproduction costs (prints, copies, plots)' }, 
 							{ reimbursable_name: 'Postage and delivery service fees' }, 
 							{ reimbursable_name: 'Long-distance communications' }, 
@@ -47,7 +48,8 @@ reimbursables = Reimbursable.create([
 							{ reimbursable_name: 'Cost of permits, regulatory review, and approval/agency fees' }
 		])
 
-consultant_roles = ConsultantRole.create([
+ConsultantRole.delete_all
+ConsultantRole.create([
         { consultant_role_name: 'Specifications' },
         { consultant_role_name: 'Structural' },
         { consultant_role_name: 'HVAC' },
@@ -70,5 +72,16 @@ consultant_roles = ConsultantRole.create([
         { consultant_role_name: 'Interpretive Planning' },
         { consultant_role_name: 'Building Commissioning' },
         { consultant_role_name: 'Swimming Pool' }
+])
+
+Category.delete_all
+Category.create([
+        { name: 'Client' },
+        { name: 'Marketing' },
+        { name: 'Consultant' },
+        { name: 'Architect' },
+        { name: 'Contractor' },
+        { name: 'Supplier' },
+        { name: 'Employee' }
 ])
 

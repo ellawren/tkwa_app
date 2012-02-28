@@ -529,7 +529,7 @@
 
 }( window.jQuery )
 /* ============================================================
- * bootstrap-dropdown.js v2.0.0
+ * bootstrap-dropdown.js v2.0.1
  * http://twitter.github.com/bootstrap/javascript.html#dropdowns
  * ============================================================
  * Copyright 2012 Twitter, Inc.
@@ -555,7 +555,7 @@
  /* DROPDOWN CLASS DEFINITION
   * ========================= */
 
-  var toggle = '[data-toggle="dropdown"]'
+  var toggle = '[datatoggle="dropdown"]'
     , Dropdown = function ( element ) {
         var $el = $(element).on('click.dropdown.data-api', this.toggle)
         $('html').on('click.dropdown.data-api', function () {
@@ -619,7 +619,7 @@
     $('body').on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
   })
 
-}( window.jQuery )
+}( window.jQuery );
 /* =========================================================
  * bootstrap-modal.js v2.0.0
  * http://twitter.github.com/bootstrap/javascript.html#modals

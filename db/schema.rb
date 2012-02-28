@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120227200650) do
+ActiveRecord::Schema.define(:version => 20120228183634) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories_contacts", :id => false, :force => true do |t|
+    t.integer  "category_id", :null => false
+    t.integer  "contact_id",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories_contacts", ["category_id", "contact_id"], :name => "index_categories_contacts_on_category_id_and_contact_id", :unique => true
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -48,6 +63,31 @@ ActiveRecord::Schema.define(:version => 20120227200650) do
     t.string   "contact_email"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "work_title"
+    t.string   "work_company"
+    t.string   "work_department"
+    t.string   "work_address"
+    t.string   "work_phone"
+    t.string   "work_ext"
+    t.string   "work_assistant"
+    t.string   "work_direct"
+    t.string   "work_fax"
+    t.string   "work_email"
+    t.string   "work_url"
+    t.string   "home_address"
+    t.string   "home_phone"
+    t.string   "home_cell"
+    t.string   "home_email"
+    t.string   "staff_contact"
+    t.text     "notes"
+    t.boolean  "employee",        :default => false
+    t.string   "category"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "microposts", :force => true do |t|
