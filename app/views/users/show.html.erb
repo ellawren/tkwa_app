@@ -138,15 +138,16 @@
 
     </fieldset>
 
-    <br /><br />
+    <% if current_user?(@user) %>
+        <br /><br />
 
-    <div class="row">
-        <div class="span12">
-            <div class="actions">
-                <%= link_to "Edit Contact Info", profile_user_path(@user), class: "btn btn-large span3" %>
-                <%= link_to "edit username/password", edit_user_path(@user)  %>
+        <div class="row">
+            <div class="span12">
+                <div class="actions">
+                    <%= link_to "Edit User Info", edit_user_path(@user), class: "btn btn-large span3" %>
+                </div>
             </div>
         </div>
-    </div>
+    <% end %>
 
 <% end %>

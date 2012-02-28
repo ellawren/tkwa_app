@@ -49,7 +49,12 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: valid_email_regex },
                     uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6}
+
+  # validates :password, length: { minimum: 6}
+
+  validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
+  validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
+
 
   # allows project page to add employees via team join model. must allow destroy.
   accepts_nested_attributes_for :teams, :allow_destroy => true

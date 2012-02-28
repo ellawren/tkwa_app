@@ -103,7 +103,26 @@
                 
                 <br /><br />
 
+            <h3>Change Password</h3>   
+                <div class="notes">
+                    Enter and confirm a new password, or leave these fields blank to preserve your current password.   
+                </div>
 
+                <div class="control-group">
+                    <%= f.label :password, class: "control-label" %>
+                    <div class="controls">
+                        <%= f.password_field :password, class: "span2" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:password_confirmation, "Confirm Password", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.password_field :password_confirmation, class: "span2" %>
+                    </div>
+                </div>
+
+                <br /><br />
             </div> <!-- end span7 -->
           
         </div> <!-- end row --> 
