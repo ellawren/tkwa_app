@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228183634) do
+ActiveRecord::Schema.define(:version => 20120301151236) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -88,7 +88,35 @@ ActiveRecord::Schema.define(:version => 20120228183634) do
     t.string   "category"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.date     "birthday"
   end
+
+  create_table "employee_teams", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "role"
+  end
+
+  add_index "employee_teams", ["contact_id"], :name => "index_employee_teams_on_contact_id"
+  add_index "employee_teams", ["project_id", "contact_id"], :name => "index_employee_teams_on_project_id_and_contact_id", :unique => true
+  add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
+
+  create_table "employees", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "contact_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "number"
+    t.string   "status"
+    t.date     "hire_date"
+    t.date     "leave_date"
+  end
+
+  add_index "employees", ["contact_id"], :name => "index_employees_on_contact_id"
+  add_index "employees", ["user_id", "contact_id"], :name => "index_employees_on_user_id_and_contact_id", :unique => true
+  add_index "employees", ["user_id"], :name => "index_employees_on_user_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -168,39 +196,14 @@ ActiveRecord::Schema.define(:version => 20120228183634) do
     t.text     "description"
   end
 
-  create_table "teams", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "role"
-  end
-
-  add_index "teams", ["project_id", "user_id"], :name => "index_teams_on_project_id_and_user_id", :unique => true
-  add_index "teams", ["project_id"], :name => "index_teams_on_project_id"
-  add_index "teams", ["user_id"], :name => "index_teams_on_user_id"
-
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",            :default => false
-    t.integer  "employee_number"
-    t.string   "address"
-    t.string   "cell_phone"
-    t.string   "home_phone"
-    t.string   "direct_phone"
-    t.string   "work_email"
-    t.string   "home_email"
-    t.date     "birthday"
-    t.string   "employer"
-    t.string   "employer_address"
-    t.string   "employer_phone"
-    t.string   "employer_ext"
-    t.string   "employer_title"
+    t.boolean  "admin",           :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

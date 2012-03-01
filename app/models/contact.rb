@@ -30,18 +30,26 @@
 class Contact < ActiveRecord::Base
 	has_and_belongs_to_many :categories
 
-  	# allows project page to add items via checkboxes
-  	accepts_nested_attributes_for :categories
+  has_one :employee
+  has_one :user, :through => :employee
+  accepts_nested_attributes_for :employee
+
+  # allows project page to add items via checkboxes
+  accepts_nested_attributes_for :categories
+
+  has_many :projects, :through => :employee_teams
+  has_many :employee_teams, :dependent => :destroy
+  # allows project page to add employees via team join model. must allow destroy.
+  accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
 	validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
 
-    # Get all users that have published a post
   	
-    scope :employee, {
+  scope :employee_list, {
   		:select => "contacts.*",
-  		:joins => "INNER JOIN categories_contacts ON categories_contacts.contact_id = contacts.id", 
-  		:conditions=>"category_id = 7"
+  		:joins => "INNER JOIN employees ON employees.contact_id = contacts.id", 
+  		:conditions=> ["status = ?", 'Current' ]
 	}
 
 	scope :consultant, {

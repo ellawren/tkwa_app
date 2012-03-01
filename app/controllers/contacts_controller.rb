@@ -4,7 +4,12 @@ class ContactsController < ApplicationController
   end
 
   def show
-    @contact = Contact.find(params[:id])
+    if signed_in?
+      @contact = Contact.find(params[:id])
+    else
+      flash[:notice] = "Please sign in to view this page."
+      redirect_to(signin_path)
+    end
   end
 
   def new
@@ -22,8 +27,14 @@ class ContactsController < ApplicationController
   end
 
   def edit
-    @contact = Contact.find(params[:id])
+    if signed_in?
+      @contact = Contact.find(params[:id])
+    else
+      flash[:notice] = "Please sign in to view this page."
+      redirect_to(signin_path)
+    end
   end
+
 
   def update
     @contact = Contact.find(params[:id])

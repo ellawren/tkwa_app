@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @contact = Contact.new
+    @employee = @user.build_employee
   end
   
   def create

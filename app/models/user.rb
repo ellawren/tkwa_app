@@ -2,35 +2,25 @@
 #
 # Table name: users
 #
-#  id               :integer         not null, primary key
-#  name             :string(255)
-#  email            :string(255)
-#  created_at       :datetime        not null
-#  updated_at       :datetime        not null
-#  password_digest  :string(255)
-#  remember_token   :string(255)
-#  admin            :boolean         default(FALSE)
-#  employee_number  :integer
-#  address          :string(255)
-#  cell_phone       :string(255)
-#  home_phone       :string(255)
-#  direct_phone     :string(255)
-#  work_email       :string(255)
-#  home_email       :string(255)
-#  birthday         :date
-#  employer         :string(255)
-#  employer_address :string(255)
-#  employer_phone   :string(255)
-#  employer_ext     :string(255)
-#  employer_title   :string(255)
+#  id              :integer         not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean         default(FALSE)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :employee_number,
-                  :address, :cell_phone, :home_phone, :direct_phone, :work_email,
-                  :home_email, :birthday, :employer, :employer_title, :employer_address,
-                  :employer_phone, :employer_ext
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes
+
   has_secure_password
+
+  has_one :employee, :dependent => :destroy
+  has_one :contact, :through => :employee
+  accepts_nested_attributes_for :employee
+
   has_many :microposts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -38,11 +28,10 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-
-  has_many :projects, :through => :teams
-  has_many :teams, :dependent => :destroy
   
-  before_save :create_remember_token, :default_values
+  before_save :create_remember_token
+
+  before_create :create_associated_record
 
   validates :name, presence: true, length: { maximum: 50 }
   valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -50,19 +39,24 @@ class User < ActiveRecord::Base
                     format:     { with: valid_email_regex },
                     uniqueness: { case_sensitive: false }
 
-  # validates :password, length: { minimum: 6}
-
   validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
   validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
 
 
-  # allows project page to add employees via team join model. must allow destroy.
-  accepts_nested_attributes_for :teams, :allow_destroy => true
-
-  def default_values
-    self.employer = "The Kubala Washatko Architects, Inc." unless self.employer
-    self.employer_address = "W61 N617 Mequon Avenue\nCedarburg, WI 53012" unless self.employer_address
-    self.employer_phone = "(262) 377-6039" unless self.employer_phone
+  def create_associated_record
+    # create the associated contact object
+    contact = Contact.create( :name => name, 
+                              :work_company => "The Kubala Washatko Architects, Inc.",
+                              :work_address => "W61 N617 Mequon Avenue\nCedarburg, WI 53012",
+                              :work_phone => "(262) 377-6039",
+                              :work_fax => "(262) 377-2954",
+                              :work_url => "www.tkwa.com",
+                              :work_email => email
+                            )
+    # set the join id of the new contact object
+    self.employee.contact_id = contact.id
+    self.employee.status = "Current"
+    self.employee.hire_date = Date.today
   end
 
   

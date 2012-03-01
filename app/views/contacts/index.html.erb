@@ -17,7 +17,7 @@
 <br /><br />
 <h4>Employees</h4><br />
 	<ul>
-		<% Contact.employee.each do |param| %>
+		<% Contact.employee_list.each do |param| %>
   			<li><%= link_to param.name, param %></li>
 		<% end %>
 	</ul>

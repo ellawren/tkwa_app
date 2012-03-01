@@ -19,10 +19,10 @@
 
           		<div class="table-body">
         			<!-- nested form for team-->
-            		<%= f.fields_for :teams do |builder| %>
-            			<%= render 'team_fields', :f => builder %>
+            		<%= f.fields_for :employee_teams do |builder| %>
+            			<%= render 'employee_team_fields', :f => builder %>
             		<% end %>
-					<%= link_to_add_fields "add employee", f, :teams, "btn offset-left table-offset" %>
+					<%= link_to_add_fields "add employee", f, :employee_teams, "btn offset-left table-offset" %>
            			<!-- end team form -->
            		</div>	
            					
@@ -75,14 +75,14 @@
 					
 						<div class="span13 columns3 contact-list">
 
-							<% @project.teams.each do |team| %>
+							<% @project.employee_teams.each do |team| %>
 					
 								<div class="well well-white team-staff">
-									<span class="bold"><%= User.find_by_id(team.user_id).name %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <%= link_to "view", user_path(User.find_by_id(team.user_id)), class: "right" %><br />
-									<%= User.find_by_id(team.user_id).employer %><br />
-									<%= User.find_by_id(team.user_id).employer_address %><br />
-									<%= User.find_by_id(team.user_id).employer_phone %><br />
-									<%= mail_to(User.find_by_id(team.user_id).work_email) %><br />
+									<span class="bold"><%= Contact.find_by_id(team.contact_id).name %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <%= link_to "view", contact_path(Contact.find_by_id(team.contact_id)), class: "right" %><br />
+									<%= Contact.find_by_id(team.contact_id).work_company %><br />
+									<%= Contact.find_by_id(team.contact_id).work_address %><br />
+									<%= Contact.find_by_id(team.contact_id).work_phone %><br />
+									<%= mail_to(Contact.find_by_id(team.contact_id).work_email) %><br />
 								</div>
 							
 							<% end %>

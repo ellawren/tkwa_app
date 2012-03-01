@@ -3,110 +3,37 @@
         <div class="row">
                       
             <div class="span7">
-                <h3>Business Contact Info</h3>   
-                <br />
-                
 
+<h3>User Information</h3>   
+      <br />
+                
+                <% if @current_action == 'new' %>
                 <div class="control-group">
                     <%= f.label(:name, class: "control-label") %>
                     <div class="controls">
                         <%= f.text_field :name, class: "span5" %>
                     </div>
                 </div>
+                <% end %>
 
                 <div class="control-group">
-                    <%= f.label(:employer_title, "Title", class: "control-label") %>
+                    <%= f.label :email, "Login email", class: "control-label" %>
                     <div class="controls">
-                        <%= f.text_field :employer_title, class: "span5" %>
+                        <%= f.text_field :email, class: "span5" %>
                     </div>
                 </div>
 
-
+                <%= f.fields_for :employee do |e| %>
                 <div class="control-group">
-                    <%= f.label :employer, class: "control-label" %>
+                    <%= e.label :number, "Employee Number", class: "control-label" %>
                     <div class="controls">
-                        <%= f.text_field :employer, class: "span5" %>
+                        <%= e.text_field :number, class: "span1" %>
                     </div>
                 </div>
-
-                
-
-                <div class="control-group">
-                    <%= f.label(:employer_address, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_area :employer_address, class: "span5", rows: "2" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :employer_phone, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :employer_phone, class: "span3" %>
-                        &nbsp; Ext: &nbsp;<%= f.text_field :employer_ext, class: "span1" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :direct_phone, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :direct_phone, class: "span3" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :work_email, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :work_email, class: "span5" %>
-                    </div>
-                </div>
-
-                <br /><br />
-                <h3>Personal Contact Info</h3>   
+                <% end %>
+      <br /><br />
+      <h3>Password</h3>
                 <br />
-
-                <div class="control-group">
-                    <%= f.label(:address, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_area :address, class: "span5", rows: "2" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :home_phone, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :home_phone, class: "span3" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :cell_phone, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :cell_phone, class: "span3" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :home_email, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :home_email, class: "span5" %>
-                    </div>
-                </div>
-
-                
-
-                <div class="control-group">
-                    <%= f.label :birthday, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :birthday, class: "span2", datadatepicker: "datepicker" %>
-                    </div>
-                </div>
-                
-                <br /><br />
-
-            <h3>Change Password</h3>   
-                <div class="notes">
-                    Enter and confirm a new password, or leave these fields blank to preserve your current password.   
-                </div>
 
                 <div class="control-group">
                     <%= f.label :password, class: "control-label" %>
@@ -121,10 +48,13 @@
                         <%= f.password_field :password_confirmation, class: "span2" %>
                     </div>
                 </div>
-
-                <br /><br />
-            </div> <!-- end span7 -->
+            <br /><br />
+            <% if @current_action == 'new' %>
+                <div class="notes">NOTE: New users will be signed in automatically after creation. If you are creating an account for someone else, be sure to log back in as yourself to continue.</div>
+                <% end %>
           
         </div> <!-- end row --> 
 
     </fieldset>
+
+

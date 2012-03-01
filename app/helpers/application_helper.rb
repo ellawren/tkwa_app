@@ -18,6 +18,15 @@ module ApplicationHelper
       "class='active'" if params[:controller] == c_name
   end
 
+
+  def formatted_date(date)
+    if date
+      date.strftime("%m/%d/%Y")
+    else
+      ""
+    end
+  end
+
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end

@@ -118,6 +118,13 @@
                     </div>
                     <div class="btn top-right span1">Compose</div>
                 </div>
+
+                <div class="control-group">
+                    <%= f.label(:birthday, class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :birthday, class: "span2", datadatepicker: "datepicker" %>
+                    </div>
+                </div>
                 
             </div> <!-- end span7-5 -->
 
@@ -126,15 +133,72 @@
                 <br />
 
                 <% unless @current_action == 'new' %>
-                    Created: <strong><%= @contact.created_at.strftime("%b %d, %Y at %l:%M %p")  %></strong><br />
-                    Updated: <strong><%= @contact.updated_at.strftime("%b %d, %Y at %l:%M %p") %></strong><br />
+                    Created: <strong><%= @contact.created_at.strftime("%m/%d/%Y")  %></strong><br />
+                    Updated: <strong><%= @contact.updated_at.strftime("%m/%d/%Y") %></strong><br />
                 <% end %>
 
-                <br />
+                <br /><br />
 
-                <h4>Contact Category</h4>
-                <br />
-                <div class="form-vertical">
+                <!-- if contact is employee, show employee info fields -->
+                <% if is_employee? %>
+                  <div class="form-inline">
+                
+                    <h4>Employee Info</h4>
+                    <br />
+
+                        <!-- if admin, show edit fields -->
+                        <% if current_user.admin? %>
+
+                            <%= f.fields_for :employee do |e| %>
+
+                                <div class="row">
+                                    <%= e.label :number, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :number, class: "span1" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :hire_date, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :hire_date, class: "span1-75", datadatepicker: "datepicker" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :leave_date, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :leave_date, class: "span1-75", datadatepicker: "datepicker" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :status, class: "span1 box-padding" %>
+                                    <div class="span1 box-padding">
+                                        <label class="radio"><%= e.radio_button(:status, "Current") %>Current</label>
+                                        <label class="radio"><%= e.radio_button(:status, "Former") %>Former</label>
+                                    </div>
+                                </div>
+
+                            <% end %>   
+
+                        <!-- if not admin, just show info fields -->
+                        <% else %>
+
+                            Employee Number: <strong><%= @contact.employee.number %></strong><br />
+                            Hire Date: <strong><%= formatted_date(@contact.employee.hire_date) %></strong><br />
+
+                            <% if @contact.employee.leave_date %>
+                                Leave Date: <strong><%= formatted_date(@contact.employee.leave_date) %></strong><br />
+                            <% end %>
+
+                            Status: <strong><%= @contact.employee.status %></strong><br />
+
+                        <!-- end admin conditional -->
+                        <% end %>
+
+                     
+                    <br /><br />  
+                  </div>
+
+                <!-- if contact is not an employee, show contact categories -->
+                <% else %>
+
+                    <div class="form-vertical">
+
+                    <h4>Contact Category</h4>
+                    <br />
                   
                         <%= hidden_field_tag "contact[category_ids][]", nil%>
                         <% Category.all.each do |category| %>
@@ -144,12 +208,12 @@
                             </label>
                         <% end %>
                     
-                </div>
+                    </div>
 
+                <!-- end employee conditional -->
+                <% end %>
                 
                 <br />
-
-
 
             </div>
           
