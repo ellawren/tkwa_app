@@ -118,13 +118,6 @@
                     </div>
                     <div class="btn top-right span1">Compose</div>
                 </div>
-
-                <div class="control-group">
-                    <%= f.label(:birthday, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :birthday, class: "span2", datadatepicker: "datepicker" %>
-                    </div>
-                </div>
                 
             </div> <!-- end span7-5 -->
 
@@ -156,6 +149,10 @@
                                     <%= e.text_field :number, class: "span1" %>
                                 </div>
                                 <div class="row">
+                                    <%= f.label :birthday, class: "span1-5 box-padding" %>
+                                    <%= f.text_field :birthday, class: "span1-75", datadatepicker: "datepicker", value: @contact.birthday.strftime("%B %e") %>
+                                </div>
+                                <div class="row">
                                     <%= e.label :hire_date, class: "span1-5 box-padding" %>
                                     <%= e.text_field :hire_date, class: "span1-75", datadatepicker: "datepicker" %>
                                 </div>
@@ -177,6 +174,9 @@
                         <% else %>
 
                             Employee Number: <strong><%= @contact.employee.number %></strong><br />
+                            <% if @contact.birthday %>
+                                Birthday: <strong><%= @contact.birthday.strftime("%B %e") %><br />
+                            <% end %></strong><br />
                             Hire Date: <strong><%= formatted_date(@contact.employee.hire_date) %></strong><br />
 
                             <% if @contact.employee.leave_date %>

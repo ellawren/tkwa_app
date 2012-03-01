@@ -76,12 +76,12 @@ ConsultantRole.create([
 
 Category.delete_all
 Category.create([
-        { id: 1, name: 'Client' },
-        { id: 2, name: 'Marketing' },
-        { id: 3, name: 'Consultant' },
-        { id: 4, name: 'Architect' },
-        { id: 5, name: 'Contractor' },
-        { id: 6, name: 'Supplier' }
+        { name: 'Client' },
+        { name: 'Marketing' },
+        { name: 'Consultant' },
+        { name: 'Architect' },
+        { name: 'Contractor' },
+        { name: 'Supplier' }
 ])
 
 User.delete_all

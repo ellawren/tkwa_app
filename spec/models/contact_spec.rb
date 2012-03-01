@@ -25,6 +25,7 @@
 #  category        :string(255)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  birthday        :date
 #
 
 require 'spec_helper'

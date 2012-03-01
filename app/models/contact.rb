@@ -25,6 +25,7 @@
 #  category        :string(255)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  birthday        :date
 #
 
 class Contact < ActiveRecord::Base
@@ -49,14 +50,17 @@ class Contact < ActiveRecord::Base
   scope :employee_list, {
   		:select => "contacts.*",
   		:joins => "INNER JOIN employees ON employees.contact_id = contacts.id", 
-  		:conditions=> ["status = ?", 'Current' ]
+  		:conditions => ["status = ?", 'Current' ]
 	}
 
-	scope :consultant, {
+
+	scope :consultant_list, {
   		:select => "contacts.*",
   		:joins => "INNER JOIN categories_contacts ON categories_contacts.contact_id = contacts.id", 
-  		:conditions=>"category_id = 3"
-	}
+  		:conditions =>"category_id = 3",
+}
+
+
 
 
 end

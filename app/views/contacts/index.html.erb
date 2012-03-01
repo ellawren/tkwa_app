@@ -24,7 +24,7 @@
 <br /><br />
 <h4>Consultants</h4><br />
 	<ul>
-		<% Contact.consultant.each do |param| %>
+		<% Contact.consultant_list.each do |param| %>
   			<li><%= link_to param.name, param %></li>
 		<% end %>
 	</ul>
