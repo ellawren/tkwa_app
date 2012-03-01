@@ -46,7 +46,10 @@ class Contact < ActiveRecord::Base
 	validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
 
-  	
+  
+
+  scope :non_employees, where("id NOT IN (SELECT contact_id FROM employees)")
+
   scope :employee_list, {
   		:select => "contacts.*",
   		:joins => "INNER JOIN employees ON employees.contact_id = contacts.id", 

@@ -8,6 +8,10 @@ TkwaApp::Application.routes.draw do
       get :following, :followers, :profile
     end
   end
+
+  resources :projects do
+    get :autocomplete_contact_name, :on => :collection
+  end
     
   resources :projects do
     member do

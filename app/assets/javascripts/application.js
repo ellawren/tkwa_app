@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require jquery.ui.autocomplete
 
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");

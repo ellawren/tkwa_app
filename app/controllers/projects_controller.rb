@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  autocomplete :contact, :name, :full => true, :extra_data => [:work_address, :work_phone, :work_ext, :work_email]
+
   def new
   	@project = Project.new
     render :layout => 'new_project'
@@ -15,6 +17,7 @@ class ProjectsController < ApplicationController
   
   def info
     @project = Project.find(params[:id])
+
   end
   
   def scope

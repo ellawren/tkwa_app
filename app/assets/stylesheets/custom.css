@@ -151,7 +151,11 @@
   .bold { font-weight:bold; }
  
    .notes { color:#999; font-style:italic; margin-bottom:20px; width:100%; margin-top:8px; }
-  
+   span.notes { font-weight:normal; font-size:10pt; padding-left:10px; }
+
+   .links { color:#999; margin-bottom:20px; width:100%; margin-top:8px; }
+   .links a { padding:2px 5px; cursor:pointer; }
+   .links a:first-child { padding-left:0px; }
   
 
 

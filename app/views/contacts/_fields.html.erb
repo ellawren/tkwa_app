@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="row">
                                     <%= f.label :birthday, class: "span1-5 box-padding" %>
-                                    <%= f.text_field :birthday, class: "span1-75", datadatepicker: "datepicker", value: @contact.birthday.strftime("%B %e") %>
+                                    <%= f.text_field :birthday, class: "span1-75", datadatepicker: "datepicker", value: bday_format(@contact.birthday) %>
                                 </div>
                                 <div class="row">
                                     <%= e.label :hire_date, class: "span1-5 box-padding" %>

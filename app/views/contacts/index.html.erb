@@ -9,7 +9,7 @@
 <br /><br /><br />
 <h4>All</h4><br />
 	<ul>
-		<% Contact.all.each do |param| %>
+		<% Contact.non_employees.each do |param| %>
   			<li><%= link_to param.name, param %></li>
 		<% end %>
 	</ul>
