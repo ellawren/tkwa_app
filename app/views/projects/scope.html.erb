@@ -6,7 +6,7 @@
   				
   					<div class="row"> 
   										
-  						<div class="well well-white span3-75">
+  						<div class="well well-white span3-5">
   					
 								<h4>Services Provided</h4><br />
 								<ul>
@@ -16,12 +16,8 @@
 									<% end %>
 								</ul>
 						</div>
-
-
-											
-								
-						
-						<div class="well well-white span3-75">
+															
+						<div class="well well-white span3-5">
 								<h4>Reimbursables</h4><br />
 								<ul>
 									<% @project.reimbursables.each do |param| %>
@@ -30,7 +26,7 @@
 								</ul>
 						</div>
 						
-						<div class="well well-white span3-75">
+						<div class="well well-white span3-5">
 								<h4>Consultants</h4><br />
 								<ul>
 									<% @project.consultant_roles.each do |param| %>
@@ -56,7 +52,7 @@
 			<a id="team-all">Select all</a> | <a id="team-staff">Select none</a>
 		</div>
 
-        <div class="control-group span13 columns4 checkbox-group">
+        <div class="control-group span12 columns4 checkbox-group">
         	<div class="controls">
   				<%= hidden_field_tag "project[service_ids][]", nil%>
     			<% Service.all.each do |service| %>
@@ -74,7 +70,7 @@
 
 		</div>
 
-        <div class="control-group span13 columns4 checkbox-group">
+        <div class="control-group span12 columns4 checkbox-group">
         	<div class="controls">
   				<%= hidden_field_tag "project[reimbursable_ids][]", nil%>
     			<% Reimbursable.all.each do |reimbursable| %>
@@ -91,7 +87,7 @@
 			<a id="check-all">Select all</a> | <a id="team-staff">Select none</a>
 		</div>
 
-        <div class="control-group span13 columns4 checkbox-group">
+        <div class="control-group span12 columns4 checkbox-group">
         	<div class="controls">
   				<%= hidden_field_tag "project[consultant_role_ids][]", nil%>
     			<% ConsultantRole.all.each do |consultant_role| %>

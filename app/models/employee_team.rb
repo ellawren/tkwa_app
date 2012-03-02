@@ -19,6 +19,22 @@ class EmployeeTeam < ActiveRecord::Base
 	validates :project_id, :presence => true
    	validates :contact_id, :presence => true
 
+
+	scope :current, {
+  		:select => "employee_teams.*",
+  		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
+  		:conditions => ["status = ?", 'Current' ]
+	}
+
+	scope :completed, {
+  		:select => "employee_teams.*",
+  		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
+  		:conditions => ["status = ?", 'Completed' ]
+	}
+	
+
+
+
    	EMPLOYEE_ROLES =   [	"Project Principal", "Project Manager", "Project Architect", 
    						"Project Designer", "Interior Designer", "Programming", "Historic Preservation",
    						"Graphic Designer"

@@ -1,8 +1,8 @@
 <div class="table-row">
-		<%= f.collection_select(:contact_id, Contact.employee_list.all, :id, :name, { :include_blank => true }, { :class => "span2-75" } ) %>
+		<%= f.collection_select(:contact_id, Contact.employee_list.all, :id, :name, { :include_blank => true }, { :class => "span2-5" } ) %>
      	<%= f.hidden_field :_destroy %>
 
-     	<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "span2-75" } ) %>
+     	<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "span2-5" } ) %>
 
      	<%= link_to_remove_fields "remove", f %>
 </div>

@@ -20,8 +20,17 @@
 
     		<%= yield :page_header %>
     		<%= yield :tabnav %>
-        	
-    		<%= content_for?(:content) ? yield(:content) : yield %>
+    		
+        	<div class="line"></div>
+			<div class="row">
+				<div class="span14 sh">
+					<div class="row">	
+						<div class="span12 offset1">
+  							<%= content_for?(:content) ? yield(:content) : yield %>
+  						</div> <!-- end span13 -->
+					</div> <!-- end row -->	
+  				</div> <!-- end span14 -->
+			</div> <!-- end row -->	
 			
 			<%= render 'layouts/footer' %>	
 			<%= debug(params) if Rails.env.development? %>

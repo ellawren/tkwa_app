@@ -1,8 +1,8 @@
 <div class="table-row">
-		<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "span2-75" } ) %>
+		<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "span2-5" } ) %>
      	<%= f.hidden_field :_destroy %>
 
-     	<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "span2-75" } ) %>
+     	<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "span2-5" } ) %>
 
      	<%= link_to_remove_fields "remove", f %>
 </div>

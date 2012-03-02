@@ -12,15 +12,7 @@
 
 
 <% content_for :content do %>
-	<div class="row">
-		<div class="span14 sh">
-			<div class="row">	
-				<div class="span13 offset05">
-  					<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
-  				</div> <!-- end span13 -->
-			</div> <!-- end row -->	
-  		</div> <!-- end span14 -->
-	</div> <!-- end row -->	
+  		<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
 <% end %>
 
 

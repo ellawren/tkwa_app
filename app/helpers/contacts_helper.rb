@@ -4,8 +4,12 @@ module ContactsHelper
     	true if @contact.employee
   	end
 
-  	#def is_consultant?
-  	#	true if @contact.categories.any?{|c| c.name == 'Consultant' }
-	#end 
+  	def has_current_projects?
+    	true if @contact.employee_teams.current.count >= 1
+  	end
+
+  	def has_completed_projects?
+    	true if @contact.employee_teams.completed.count >= 1
+  	end
 
 end

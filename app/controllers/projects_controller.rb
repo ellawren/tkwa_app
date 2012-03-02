@@ -3,8 +3,7 @@ class ProjectsController < ApplicationController
 
   def new
   	@project = Project.new
-    render :layout => 'new_project'
-    
+    render :layout => 'new_project' 
   end
 
   def edit

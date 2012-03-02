@@ -78,7 +78,7 @@
  /********************************************************************************************/
  /* Tab Navigation */
  
- .tabnav { width:100%; border-bottom:1px solid #e6e6e6; padding-bottom:4px; margin-bottom:3px; }
+ .tabnav { width:100%; padding-bottom:4px; margin-bottom:3px; }
  .tabnav a { display:inline-block; width:auto; height:auto; padding:2px 10px 1px 10px; margin-right:3px; position:relative; background-color:#fff; color:#999; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; }
  .tabnav a.sel { background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
  .tabnav a:hover { background-color:#f5f5f5; color:#666; }
@@ -94,7 +94,7 @@
  /********************************************************************************************/
  /* Team */
 
- .table-main  { float:left; width:480px; margin:20px; position:relative; }
+ .table-main  { float:left; width:440px; margin:20px; position:relative; }
  .table-head  { float:left; width:100%; padding:0 0 5px 0; border-bottom:1px solid #555; font-weight:bold; }
  .table-body  { width:100%; }
  .table-row   { float:left; width:100%; padding:6px 0 0 0; border-bottom:1px solid #e6e6e6; }
