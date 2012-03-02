@@ -32,9 +32,6 @@ class EmployeeTeam < ActiveRecord::Base
   		:conditions => ["status = ?", 'Completed' ]
 	}
 	
-
-
-
    	EMPLOYEE_ROLES =   [	"Project Principal", "Project Manager", "Project Architect", 
    						"Project Designer", "Interior Designer", "Programming", "Historic Preservation",
    						"Graphic Designer"

@@ -8,6 +8,7 @@ class StaticPagesController < ApplicationController
   end
   
   def home
+    render :layout => 'home_page' 
   end
 
   def help
