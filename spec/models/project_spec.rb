@@ -23,8 +23,33 @@
 #  billing_outofpocket :string(255)
 #  created_at          :datetime        not null
 #  updated_at          :datetime        not null
-#  ext                 :string(255)
+#  billing_ext         :string(255)
 #  contact_ext         :string(255)
+#  start_date          :date
+#  completion_date     :date
+#  pd_start            :date
+#  pd_end              :date
+#  sd_start            :date
+#  sd_end              :date
+#  dd_start            :date
+#  dd_end              :date
+#  cd_start            :date
+#  cd_end              :date
+#  bid_start           :date
+#  bid_end             :date
+#  cca_start           :date
+#  cca_end             :date
+#  add_start           :date
+#  add_end             :date
+#  pd_percent          :integer
+#  sd_percent          :integer
+#  dd_percent          :integer
+#  cd_percent          :integer
+#  bid_percent         :integer
+#  cca_percent         :integer
+#  his_percent         :integer
+#  int_percent         :integer
+#  add_percent         :integer
 #
 
 require 'spec_helper'

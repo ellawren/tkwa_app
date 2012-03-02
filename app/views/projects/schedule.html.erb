@@ -1,35 +1,150 @@
-<% provide(:title, 'Schedule') %>
-
 <h3>Project Schedule</h3>
-  					<div class="notes">
-						Progress bar shows time elapsed as a percentage of total project duration.
-					</div>
-					
+
+<%= form_for(@project, html: { class: "form-horizontal" }) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+  					
+	<fieldset>	
+
+		<div class="notes">
+			Progress bar shows time elapsed as a percentage of total project duration.
+		</div>			
+
+
+							<% unless @project.start_date.blank? || @project.completion_date.blank? %>
+							
+								<% total = (@project.completion_date - @project.start_date).to_i %> 
+
+								<% if @project.pd_percent.blank? 
+									 pd_pc = 0.05 
+								   else 
+									 pd_pc = @project.pd_percent / 100.0 
+								   end 
+
+								   if @project.sd_percent.blank? 
+									 sd_pc = 0.1 
+								   else 
+									 sd_pc = @project.sd_percent / 100.0 
+								   end 
+
+								   if @project.dd_percent.blank? 
+									 dd_pc = 0.15 
+								   else 
+									 dd_pc = @project.dd_percent / 100.0 
+								   end 
+
+								   if @project.cd_percent.blank? 
+									 cd_pc = 0.4 
+								   else 
+									 cd_pc = @project.cd_percent / 100.0 
+								   end 
+
+								   if @project.bid_percent.blank? 
+									 bid_pc = 0.05 
+								   else 
+									 bid_pc = @project.bid_percent / 100.0 
+								   end 
+
+								   if @project.cca_percent.blank? 
+									 cca_pc = 0.25 
+								   else 
+									 cca_pc = @project.cca_percent / 100.0 
+								   end 
+
+								   if @project.add_percent.blank? 
+									 add_pc = 0.00 
+								   else 
+									 add_pc = @project.add_percent / 100.0 
+								   end 
+
+								
+								pd_start = @project.start_date
+									pd_range = (total * pd_pc)
+									pd_end = pd_start + pd_range
+								sd_start = pd_end
+									sd_range = (total * sd_pc)
+									sd_end = sd_start + sd_range
+								dd_start = sd_end
+									dd_range = (total * dd_pc)
+									dd_end = dd_start + dd_range
+								cd_start = dd_end
+									cd_range = (total * cd_pc)
+									cd_end = cd_start + cd_range
+								bid_start = cd_end
+									bid_range = (total * bid_pc)
+									bid_end = bid_start + bid_range
+								cca_start = bid_end
+									cca_range = (total * cca_pc)
+									cca_end = cca_start + cca_range
+								add_start = cca_end
+									add_range = (total * add_pc)
+									add_end = add_start + add_range
+
+								today = Date.today
+								if today > add_end 
+									project_over = true 
+									today_pc = 1
+								else
+									project_over = false
+									today_count = ((today - @project.start_date).to_i ) * 1.0 
+									today_pc = today_count / total
+								end 
+
+								
+								cca_pc_sum = (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc + cca_pc)
+								bid_pc_sum = (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc)
+								cd_pc_sum = (pd_pc + sd_pc + dd_pc + cd_pc)
+								dd_pc_sum = (pd_pc + sd_pc + dd_pc)
+								sd_pc_sum = (pd_pc + sd_pc)
+
+								%>
+
+							<% end %>
 										
 					<div class="schedule-bar span10 offset1  blue-bkg">
 					
+						<!-- show progress bar and mark today's date if project is current -->
 					    <div class="progress progress-info progress-striped">
-    						<div class="bar" style="width: 35%;"></div>
+    						<div class="bar" style="width: <%= today_pc * 100 %>%;"></div>
     					</div>
+    					<% if project_over == false %>
+    						<div class="marker todate" style="left:<%= today_pc * 100 %>%;">
+    							<div class="bubble"><div class="caps">current</div><%= short_date(Time.now) %></div>
+							</div>
+						<% end %>
     					
-    					<div class="circle circle-begin"><div class="caps">start</div><div class="num-total">1/1/11</div><div class="caps">date</div></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: 5%;"></a>
-    					<div class="phase-marker" style="left:5%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:5%; width: 10%;"></a>
-    					<div class="phase-marker" style="left:15%;"></div>
-    						<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:15%; width: 10%;"></a>
-    					<div class="phase-marker" style="left:25%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:25%; width: 15%;"></a>
-    					<div class="phase-marker future" style="left:40%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:40%; width: 2%;"></a>
-    					<div class="phase-marker future" style="left:42%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca" style="left:42%; width: 58%;"></a>
-    						
-    					<div class="marker todate" style="left:35%;">
-    						<div class="bubble"><div class="caps">current</div>2/1/2012</div>
-						</div>
-						
-						<div class="circle circle-complete"><div class="caps">finish</div><div class="num-total">12/1/13</div><div class="caps">date</div></div>
+    					<!-- begin date -->
+    					<div class="circle circle-begin <%= 'circle-filled' if @project.start_date < today %>"><div class="caps">start</div><div class="num-total"><%= short_date(@project.start_date) %></div><div class="caps">date</div></div>
+
+    					<!-- predesign -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: <%= pd_pc * 100 %>%;"></a>
+
+    					<div class="phase-marker <%= 'future' if today_pc < pd_pc %>" style="left:<%= pd_pc * 100 %>%;"></div>
+
+    					<!-- schematic -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:<%= pd_pc * 100 %>%; width: <%= sd_pc * 100 %>%;"></a>
+
+    					<div class="phase-marker <%= 'future' if today_pc < sd_pc_sum %>" style="left:<%= (pd_pc + sd_pc) * 100 %>%;"></div>
+
+    					<!-- design dev -->
+    					<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:<%= (pd_pc + sd_pc) * 100 %>%; width: <%= dd_pc * 100 %>%;"></a>
+    					
+    					<div class="phase-marker <%= 'future' if today_pc < dd_pc_sum %>" style="left:<%= (pd_pc + sd_pc + dd_pc) * 100 %>%;"></div>
+
+    					<!-- const docs -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:<%= (pd_pc + sd_pc + dd_pc) * 100 %>%; width: <%= cd_pc * 100 %>%;"></a>
+    					
+    					<div class="phase-marker <%= 'future' if today_pc < cd_pc_sum %>" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc) * 100 %>%;"></div>
+
+    					<!-- bidding -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc) * 100 %>%; width: <%= bid_pc * 100 %>%;"></a>
+
+    					<div class="phase-marker <%= 'future' if today_pc < bid_pc_sum %>" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc) * 100 %>%;"></div>
+
+    					<!-- cca -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc) * 100 %>%; width: <%= cca_pc * 100 %>%;"></a>
+    					
+    					<!-- end date -->						
+						<div class="circle circle-complete <%= 'circle-filled' if @project.completion_date < today %>"><div class="caps">finish</div><div class="num-total"><%= short_date(@project.completion_date) %></div><div class="caps">date</div></div>
 						
 					</div>
 					
@@ -38,32 +153,23 @@
 						<div class="span5">
 						
 								<br /><br />
-							<div class="well well-white span4">
+							<div class="well well-white span4-5">
 											
-								<div class="control-group">
-										<label class="control-label bold">Start Date</label>
-										<div class="controls">
-											<input data-datepicker="datepicker" class="span2" type="text" value="01/05/2011" />
-										</div>
-									</div>
-									
-									<div class="control-group">
-										<label class="control-label bold">Duration</label>
-										<div class="controls">
-											<div class="inputbox">
-												2 years, 2 months
-											</div>
-										</div>
-									</div>
-								
-									<div class="control-group">
-										<label class="control-label bold">Completion Date</label>
-										<div class="controls">
-											<input data-datepicker="datepicker" class="span2" type="text" value="05/08/2011" />
+								<div class="row">
+                                    <%= f.label :start_date, class: "span2 box-padding bold" %>
+                                    <%= f.text_field :start_date, class: "span2", datadatepicker: "datepicker" %>
+                                </div>
 
-										</div>
-									</div>
-								</div>
+                                <div class="row">
+                                    <%= f.label "Duration", class: "span2 box-padding bold" %>
+                                    <div class="box-padding"><%= time_diff_in_natural_language(@project.completion_date, @project.start_date) %>
+                                    </div>
+                                </div>
+
+								<div class="row">
+                                    <%= f.label :completion_date, class: "span2 box-padding bold" %>
+                                    <%= f.text_field :completion_date, class: "span2", datadatepicker: "datepicker" %>
+                                </div>
 									
 							</div>
 							
@@ -84,57 +190,72 @@
 									<tbody>
 										<tr>
 											<td><div class="inputbox bold">10 Predesign</div></td>
-											<td><input class="span0-5" type="text" value="5"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :pd_percent, class: "span0-5", placeholder: '5' %> %</td>
+											<td><%= f.text_field :pd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :pd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.pd_start, @project.pd_end) %></div></td>
 										</tr>
+
+	
 										<tr>
 											<td><div class="inputbox bold">20 Schematic</div></td>
-											<td><input class="span0-5" type="text" value="10"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :sd_percent, class: "span0-5", placeholder: '10' %> %</td>
+											<td><%= f.text_field :sd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :sd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.sd_start, @project.sd_end) %></div></td>
 										</tr>
 										<tr>
 											<td><div class="inputbox bold">30 Design Dev</div></td>
-											<td><input class="span0-5" type="text" value="15"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :dd_percent, class: "span0-5", placeholder: '15' %> %</td>
+											<td><%= f.text_field :dd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :dd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.dd_start, @project.dd_end) %></div></td>
 										</tr>
 										<tr>
 											<td><div class="inputbox bold">40 Const Docs</div></td>
-											<td><input class="span0-5" type="text" value="40"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :cd_percent, class: "span0-5", placeholder: '40' %> %</td>
+											<td><%= f.text_field :cd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :cd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.cd_start, @project.cd_end) %></div></td>
 										</tr>
 										<tr>
 											<td><div class="inputbox bold">50 Bidding</div></td>
-											<td><input class="span0-5" type="text" value="5"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :bid_percent, class: "span0-5", placeholder: '5' %> %</td>
+											<td><%= f.text_field :bid_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :bid_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.bid_start, @project.bid_end) %></div></td>
 										</tr>
 										<tr>
 											<td><div class="inputbox bold">60 CCA</div></td>
-											<td><input class="span0-5" type="text" value="25"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :cca_percent, class: "span0-5", placeholder: '25' %> %</td>
+											<td><%= f.text_field :cca_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :cca_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.cca_start, @project.cca_end) %></div></td>
 										</tr>
 										<tr>
 											<td><div class="inputbox bold">70 Additional</div></td>
-											<td><input class="span0-5" type="text" value="0"> %</td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><input data-datepicker="datepicker" class="span1-5" type="text" value="01/05/2011" /></td>
-											<td><div class="inputbox">3 months, 2 weeks</div></td>
+											<td><%= f.text_field :add_percent, class: "span0-5", placeholder: '0' %> %</td>
+											<td><%= f.text_field :add_start, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><%= f.text_field :add_end, class: "span1-5", datadatepicker: "datepicker" %></td>
+											<td><div class="inputbox"><%= time_diff_in_natural_language(@project.add_start, @project.add_end) %></div></td>
 										</tr>
 									</tbody>
 						
 								</table>
 							
-							
 																				
 					</div> <!-- end row -->
+
+	</fieldset>
+
+	<br /><br />
+	<div class="row">
+		<div class="span12">
+			<div class="actions">
+    			<%= f.submit "Save Changes", class: "btn-large btn-primary span3" %>
+    			<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
+			</div>
+		</div>
+	</div>
+
+<% end %>

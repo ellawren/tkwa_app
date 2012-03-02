@@ -27,6 +27,14 @@ module ApplicationHelper
     end
   end
 
+  def short_date(date)
+    if date
+      date.strftime("%m/%d/%y")
+    else
+      ""
+    end
+  end
+
   def bday_format(date)
     if date
       date.strftime("%B %e")

@@ -35,12 +35,7 @@
 					<div class="controls">
 						<%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => '...'}) %>
               		</div>
-				</div>
-								
-				
-
-				
-													
+				</div>					
 							
 			</div> <!-- end span7 -->
 			
@@ -59,8 +54,6 @@
 						<%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => '…'}) %>
               		</div>
 				</div>
-			
-				
 									
           		<div class="control-group">
           			<%= f.label :status, class: "control-label" %>
@@ -87,7 +80,7 @@
 				<div class="control-group">
 					<%= f.label(:billing_name, "Billing Contact", class: "control-label") %>
 					<div class="controls">
-						<%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, :update_elements => {:work_address => '#project_billing_address', :work_phone => '#project_billing_phone', :work_ext => '#project_ext', :work_email => '#project_billing_email'}, class: "span5" %>
+						<%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, :update_elements => {:work_address => '#project_billing_address', :work_phone => '#project_billing_phone', :work_ext => '#project_billing_ext', :work_email => '#project_billing_email'}, class: "span5" %>
 					</div>
 				</div>
           				
@@ -102,7 +95,7 @@
 					<%= f.label :billing_phone, class: "control-label" %>
 					<div class="controls">
 						<%= f.text_field :billing_phone, class: "span3" %>
-						&nbsp; Ext: &nbsp;<%= f.text_field :ext, class: "span1" %>
+						&nbsp; Ext: &nbsp;<%= f.text_field :billing_ext, class: "span1" %>
 					</div>
 				</div>
           				

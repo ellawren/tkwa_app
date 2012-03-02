@@ -197,18 +197,20 @@ a.tip:hover { text-decoration:none; }
     
     .circle { position:absolute; width:70px; height:66px; -webkit-border-radius:40px; border-radius:40px; padding:14px 0 0 10px; }
     
-    .circle-begin { top:-32px; left:-75px;background-image: -moz-linear-gradient(-45deg, transparent 4%, rgba(255, 255, 255, 0.15) 4%, rgba(255, 255, 255, 0.15) 19%, transparent 19%, transparent 34%, rgba(255, 255, 255, 0.15) 34%, rgba(255, 255, 255, 0.15) 49%, transparent 49%, transparent 64%, rgba(255, 255, 255, 0.15) 64%, rgba(255, 255, 255, 0.15) 79%, transparent 79%, transparent); }
+    .circle-begin { top:-32px; left:-75px; background:none; }
         
-    .circle-complete { top:-32px; right:-75px; background:#f0f0f0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
+    .blue-bkg .circle-begin ,.circle-complete { top:-32px; right:-75px; background:#f0f0f0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
+
+    .blue-bkg .circle-begin.circle-filled, .circle-complete.circle-filled { box-shadow:none; background-color: #5BC0DE; background-image: -moz-linear-gradient(-45deg, transparent 4%, rgba(255, 255, 255, 0.15) 4%, rgba(255, 255, 255, 0.15) 19%, transparent 19%, transparent 34%, rgba(255, 255, 255, 0.15) 34%, rgba(255, 255, 255, 0.15) 49%, transparent 49%, transparent 64%, rgba(255, 255, 255, 0.15) 64%, rgba(255, 255, 255, 0.15) 79%, transparent 79%, transparent); }
     
-    .circle-complete .caps, .circle-begin .caps { text-align:center; width:60px; }
+    .circle-complete .caps, .circle-begin .caps { text-align:center; width:60px; color:#000; }
     .circle-begin .caps { color:#000; }
     .num-total { font-weight:bold; color:#000; font-size:12pt; text-align:center; width:60px; }
     
-    .blue-bkg .circle-begin { background-color: #5BC0DE; }
+    .blue-bkg .circle-begin { background-color:#f0f0f0; }
     .blue-bkg .phase-marker { border-left:1px solid #348ea5; border-right:1px solid #d0e2e7; }
     
-.green-bkg .circle-begin { background-color: #6dbb68; }
+    .green-bkg .circle-begin { background-color: #6dbb68; }
     .green-bkg .phase-marker { border-left:1px solid #439539; border-right:1px solid #b5d7b1; }
     .phase-marker.future { border-left:1px solid #b6b6b6; border-right:1px solid #fff; }
     

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301151236) do
+ActiveRecord::Schema.define(:version => 20120302173101) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -148,8 +148,33 @@ ActiveRecord::Schema.define(:version => 20120301151236) do
     t.string   "billing_outofpocket"
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
-    t.string   "ext"
+    t.string   "billing_ext"
     t.string   "contact_ext"
+    t.date     "start_date"
+    t.date     "completion_date"
+    t.date     "pd_start"
+    t.date     "pd_end"
+    t.date     "sd_start"
+    t.date     "sd_end"
+    t.date     "dd_start"
+    t.date     "dd_end"
+    t.date     "cd_start"
+    t.date     "cd_end"
+    t.date     "bid_start"
+    t.date     "bid_end"
+    t.date     "cca_start"
+    t.date     "cca_end"
+    t.date     "add_start"
+    t.date     "add_end"
+    t.integer  "pd_percent"
+    t.integer  "sd_percent"
+    t.integer  "dd_percent"
+    t.integer  "cd_percent"
+    t.integer  "bid_percent"
+    t.integer  "cca_percent"
+    t.integer  "his_percent"
+    t.integer  "int_percent"
+    t.integer  "add_percent"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true
