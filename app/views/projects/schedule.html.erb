@@ -8,143 +8,52 @@
 		<div class="notes">
 			Progress bar shows time elapsed as a percentage of total project duration.
 		</div>			
-
-
-							<% unless @project.start_date.blank? || @project.completion_date.blank? %>
-							
-								<% total = (@project.completion_date - @project.start_date).to_i %> 
-
-								<% if @project.pd_percent.blank? 
-									 pd_pc = 0.05 
-								   else 
-									 pd_pc = @project.pd_percent / 100.0 
-								   end 
-
-								   if @project.sd_percent.blank? 
-									 sd_pc = 0.1 
-								   else 
-									 sd_pc = @project.sd_percent / 100.0 
-								   end 
-
-								   if @project.dd_percent.blank? 
-									 dd_pc = 0.15 
-								   else 
-									 dd_pc = @project.dd_percent / 100.0 
-								   end 
-
-								   if @project.cd_percent.blank? 
-									 cd_pc = 0.4 
-								   else 
-									 cd_pc = @project.cd_percent / 100.0 
-								   end 
-
-								   if @project.bid_percent.blank? 
-									 bid_pc = 0.05 
-								   else 
-									 bid_pc = @project.bid_percent / 100.0 
-								   end 
-
-								   if @project.cca_percent.blank? 
-									 cca_pc = 0.25 
-								   else 
-									 cca_pc = @project.cca_percent / 100.0 
-								   end 
-
-								   if @project.add_percent.blank? 
-									 add_pc = 0.00 
-								   else 
-									 add_pc = @project.add_percent / 100.0 
-								   end 
-
-								
-								pd_start = @project.start_date
-									pd_range = (total * pd_pc)
-									pd_end = pd_start + pd_range
-								sd_start = pd_end
-									sd_range = (total * sd_pc)
-									sd_end = sd_start + sd_range
-								dd_start = sd_end
-									dd_range = (total * dd_pc)
-									dd_end = dd_start + dd_range
-								cd_start = dd_end
-									cd_range = (total * cd_pc)
-									cd_end = cd_start + cd_range
-								bid_start = cd_end
-									bid_range = (total * bid_pc)
-									bid_end = bid_start + bid_range
-								cca_start = bid_end
-									cca_range = (total * cca_pc)
-									cca_end = cca_start + cca_range
-								add_start = cca_end
-									add_range = (total * add_pc)
-									add_end = add_start + add_range
-
-								today = Date.today
-								if today > add_end 
-									project_over = true 
-									today_pc = 1
-								else
-									project_over = false
-									today_count = ((today - @project.start_date).to_i ) * 1.0 
-									today_pc = today_count / total
-								end 
-
-								
-								cca_pc_sum = (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc + cca_pc)
-								bid_pc_sum = (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc)
-								cd_pc_sum = (pd_pc + sd_pc + dd_pc + cd_pc)
-								dd_pc_sum = (pd_pc + sd_pc + dd_pc)
-								sd_pc_sum = (pd_pc + sd_pc)
-
-								%>
-
-							<% end %>
 										
 					<div class="schedule-bar span10 offset1  blue-bkg">
 					
 						<!-- show progress bar and mark today's date if project is current -->
 					    <div class="progress progress-info progress-striped">
-    						<div class="bar" style="width: <%= today_pc * 100 %>%;"></div>
+    						<div class="bar" style="width: <%= @progress_width %>%;"></div>
     					</div>
-    					<% if project_over == false %>
-    						<div class="marker todate" style="left:<%= today_pc * 100 %>%;">
+    					<% if @project_over == false %>
+    						<div class="marker todate" style="left:<%= @progress_width %>%;">
     							<div class="bubble"><div class="caps">current</div><%= short_date(Time.now) %></div>
 							</div>
 						<% end %>
     					
     					<!-- begin date -->
-    					<div class="circle circle-begin <%= 'circle-filled' if @project.start_date < today %>"><div class="caps">start</div><div class="num-total"><%= short_date(@project.start_date) %></div><div class="caps">date</div></div>
+    					<div class="circle circle-begin <%= 'circle-filled' if @project_started %>"><div class="caps">start</div><div class="num-total"><%= short_date(@project.start_date) %></div><div class="caps">date</div></div>
 
     					<!-- predesign -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: <%= pd_pc * 100 %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: <%= @pd_width %>%;"></a>
 
-    					<div class="phase-marker <%= 'future' if today_pc < pd_pc %>" style="left:<%= pd_pc * 100 %>%;"></div>
+    					<div class="phase-marker <%= 'future' if @today_pc < @pd_pc %>" style="left:<%= @pd_width %>%;"></div>
 
     					<!-- schematic -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:<%= pd_pc * 100 %>%; width: <%= sd_pc * 100 %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:<%= @pd_width %>%; width: <%= @sd_width %>%;"></a>
 
-    					<div class="phase-marker <%= 'future' if today_pc < sd_pc_sum %>" style="left:<%= (pd_pc + sd_pc) * 100 %>%;"></div>
+    					<div class="phase-marker <%= 'future' if @today_pc < @sd_pc_sum %>" style="left:<%= @dd_left %>%;"></div>
 
     					<!-- design dev -->
-    					<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:<%= (pd_pc + sd_pc) * 100 %>%; width: <%= dd_pc * 100 %>%;"></a>
+    					<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:<%= @dd_left %>%; width: <%= @dd_width %>%;"></a>
     					
-    					<div class="phase-marker <%= 'future' if today_pc < dd_pc_sum %>" style="left:<%= (pd_pc + sd_pc + dd_pc) * 100 %>%;"></div>
+    					<div class="phase-marker <%= 'future' if @today_pc < @dd_pc_sum %>" style="left:<%= @cd_left %>%;"></div>
 
     					<!-- const docs -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:<%= (pd_pc + sd_pc + dd_pc) * 100 %>%; width: <%= cd_pc * 100 %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:<%= @cd_left %>%; width: <%= @cd_width %>%;"></a>
     					
-    					<div class="phase-marker <%= 'future' if today_pc < cd_pc_sum %>" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc) * 100 %>%;"></div>
+    					<div class="phase-marker <%= 'future' if @today_pc < @cd_pc_sum %>" style="left:<%= @bid_left %>%;"></div>
 
     					<!-- bidding -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc) * 100 %>%; width: <%= bid_pc * 100 %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:<%= @bid_left %>%; width: <%= @bid_width %>%;"></a>
 
-    					<div class="phase-marker <%= 'future' if today_pc < bid_pc_sum %>" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc) * 100 %>%;"></div>
+    					<div class="phase-marker <%= 'future' if @today_pc < @bid_pc_sum %>" style="left:<%= @cca_left %>%;"></div>
 
     					<!-- cca -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca" style="left:<%= (pd_pc + sd_pc + dd_pc + cd_pc + bid_pc) * 100 %>%; width: <%= cca_pc * 100 %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca" style="left:<%= @cca_left %>%; width: <%= @cca_width %>%;"></a>
     					
     					<!-- end date -->						
-						<div class="circle circle-complete <%= 'circle-filled' if @project.completion_date < today %>"><div class="caps">finish</div><div class="num-total"><%= short_date(@project.completion_date) %></div><div class="caps">date</div></div>
+						<div class="circle circle-complete <%= 'circle-filled' if @project_over %>"><div class="caps">finish</div><div class="num-total"><%= short_date(@project.completion_date) %></div><div class="caps">date</div></div>
 						
 					</div>
 					

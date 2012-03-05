@@ -33,7 +33,7 @@ module ProjectsHelper
 
   		components.join(", ")
   	  end
-	end
+	   end
 
 
 
