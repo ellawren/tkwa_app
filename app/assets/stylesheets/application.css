@@ -9,7 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require custom
  *= require formtastic
  *= require jquery.ui.all
 */
+
+/* note that the 'require custom' line above ONLY requires custom.css - this is to get around the 
+   wierd precompiled assets thing, but be sure to replace with 'require tree .' and split everything
+   out before final production */
