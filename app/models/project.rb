@@ -50,6 +50,7 @@
 #  his_percent         :integer
 #  int_percent         :integer
 #  add_percent         :integer
+#  client_url          :string(255)
 #
 
 class Project < ActiveRecord::Base

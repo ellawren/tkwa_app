@@ -50,22 +50,37 @@
                 <div class="control-group">
                     <%= f.label :work_phone, "Main Phone", class: "control-label" %>
                     <div class="controls">
-                        <%= f.text_field :work_phone, class: "span3" %>
-                        &nbsp; Ext: &nbsp;<%= f.text_field :work_ext, class: "span1" %>
+                        <%= f.text_field :work_phone, class: "span2-5" %>
+                        &nbsp;&nbsp; Ext: &nbsp;&nbsp;<%= f.text_field :work_ext, class: "span1" %>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <%= f.label(:work_direct, "Direct Phone", class: "control-label") %>
                     <div class="controls">
-                        <%= f.text_field :work_direct, class: "span3" %>
+                        <%= f.text_field :work_direct, class: "span2-5" %>
+                        &nbsp;&nbsp; Ext: &nbsp;&nbsp;<%= f.text_field :direct_ext, class: "span1" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:work_cell, "Business Cell", class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :work_cell, class: "span2-5" %>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <%= f.label(:work_fax, "Fax", class: "control-label") %>
                     <div class="controls">
-                        <%= f.text_field :work_fax, class: "span3" %>
+                        <%= f.text_field :work_fax, class: "span2-5" %>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <%= f.label(:assistant, class: "control-label") %>
+                    <div class="controls">
+                        <%= f.text_field :assistant, class: "span2-5" %>
                     </div>
                 </div>
 
@@ -100,14 +115,14 @@
                 <div class="control-group">
                     <%= f.label :home_phone, "Home Phone", class: "control-label" %>
                     <div class="controls">
-                        <%= f.text_field :home_phone, class: "span3" %>
+                        <%= f.text_field :home_phone, class: "span2-5" %>
                     </div>
                 </div>
 
                 <div class="control-group">
                     <%= f.label(:home_cell, "Cell Phone", class: "control-label") %>
                     <div class="controls">
-                        <%= f.text_field :home_cell, class: "span3" %>
+                        <%= f.text_field :home_cell, class: "span2-5" %>
                     </div>
                 </div>
 
@@ -199,7 +214,7 @@
 
                     <ul>
                         <% @contact.employee_teams.current.each do |team| %>
-                            <li><strong><%= link_to Project.find_by_id(team.project_id).name, project_path(Project.find_by_id(team.project_id)) %></strong><br />
+                            <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
                                 <%= team.role %>
                             </li>
                         <% end %>

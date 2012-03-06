@@ -32,6 +32,14 @@
 				</div>
 
 				<div class="control-group">
+					<%= f.label :client_url, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :client_url, class: "span3-75" %>
+					</div>
+					<a class="btn top-right span1" onclick="openURL('project_client_url');">View</a>
+				</div>
+
+				<div class="control-group">
 					<%= f.label :client_type, class: "control-label" %>
 					<div class="controls">
 						<%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => '...'}) %>
@@ -88,23 +96,25 @@
           		<div class="control-group">
 					<%= f.label :billing_address, class: "control-label" %>
 					<div class="controls">
-						<%= f.text_area :billing_address, class: "span5", rows: "2" %>
+						<%= f.text_area :billing_address, class: "span3-75", rows: "2" %>
 					</div>
+					<a class="btn top-right span1" onclick="openMap('project_billing_address');">Get Map</a>
 				</div>
 								
 				<div class="control-group">
 					<%= f.label :billing_phone, class: "control-label" %>
 					<div class="controls">
-						<%= f.text_field :billing_phone, class: "span3" %>
-						&nbsp; Ext: &nbsp;<%= f.text_field :billing_ext, class: "span1" %>
+						<%= f.text_field :billing_phone, class: "span2-5" %>
+						&nbsp;&nbsp; Ext: &nbsp;&nbsp;<%= f.text_field :billing_ext, class: "span1" %>
 					</div>
 				</div>
           				
           		<div class="control-group">
 					<%= f.label :billing_email, class: "control-label" %>
 					<div class="controls">
-						<%= f.text_field :billing_email, class: "span5" %>
+						<%= f.text_field :billing_email, class: "span3-75" %>
 					</div>
+					<a class="btn top-right span1" onclick="sendEmail('project_billing_email');">Compose</a>
 				</div>
           				
           			

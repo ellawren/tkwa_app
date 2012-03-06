@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305171214) do
+ActiveRecord::Schema.define(:version => 20120306222816) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(:version => 20120305171214) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.date     "birthday"
+    t.string   "direct_ext"
+    t.string   "assistant"
+    t.string   "work_cell"
   end
 
   create_table "employee_teams", :force => true do |t|
@@ -184,6 +187,7 @@ ActiveRecord::Schema.define(:version => 20120305171214) do
     t.integer  "his_percent"
     t.integer  "int_percent"
     t.integer  "add_percent"
+    t.string   "client_url"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true

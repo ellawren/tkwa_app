@@ -26,6 +26,9 @@
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
 #  birthday        :date
+#  direct_ext      :string(255)
+#  assistant       :string(255)
+#  work_cell       :string(255)
 #
 
 require 'spec_helper'
