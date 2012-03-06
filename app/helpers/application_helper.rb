@@ -43,6 +43,10 @@ module ApplicationHelper
     end
   end
 
+  def strip(num)
+    number_with_precision(num, :strip_insignificant_zeros => true)
+  end
+
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end

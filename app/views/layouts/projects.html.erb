@@ -1,7 +1,7 @@
 <% content_for :page_header do %>
 	<% provide :title, @project.name %>
 	<div class="page-header">
-		<h1><span class="lightweight"><%= number_with_precision(@project.number, :strip_insignificant_zeros => true) %></span> &nbsp;<%= @project.name %></h1>
+		<h1><span class="lightweight"><%= strip(@project.number) %></span> &nbsp;<%= @project.name %></h1>
 	</div>
 <% end %>
 

@@ -334,6 +334,9 @@
                  "July", "August", "September", "October", "November", "December"]
   , shortDayNames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
   , startOfWeek: 1
+  , dateFormat: 'mm/dd/yyyy'
+
+
   };
 }( window.jQuery || window.ender );
 

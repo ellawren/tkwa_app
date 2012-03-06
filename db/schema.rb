@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302173101) do
+ActiveRecord::Schema.define(:version => 20120305171214) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -94,9 +94,18 @@ ActiveRecord::Schema.define(:version => 20120302173101) do
   create_table "employee_teams", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "role"
+    t.decimal  "pd_hours",   :precision => 6, :scale => 2
+    t.decimal  "sd_hours",   :precision => 6, :scale => 2
+    t.decimal  "dd_hours",   :precision => 6, :scale => 2
+    t.decimal  "cd_hours",   :precision => 6, :scale => 2
+    t.decimal  "bid_hours",  :precision => 6, :scale => 2
+    t.decimal  "cca_hours",  :precision => 6, :scale => 2
+    t.decimal  "int_hours",  :precision => 6, :scale => 2
+    t.decimal  "his_hours",  :precision => 6, :scale => 2
+    t.decimal  "add_hours",  :precision => 6, :scale => 2
   end
 
   add_index "employee_teams", ["contact_id"], :name => "index_employee_teams_on_contact_id"

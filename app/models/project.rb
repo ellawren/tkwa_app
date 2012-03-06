@@ -53,7 +53,6 @@
 #
 
 class Project < ActiveRecord::Base
-
     has_many :contacts, :through => :employee_teams
     has_many :employee_teams, :dependent => :destroy
 
@@ -75,6 +74,27 @@ class Project < ActiveRecord::Base
 
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true
+
+    def est_phase_total(var)
+        employee_teams.sum(var+'_hours')
+    end
+
+    def est_total
+        pd = est_phase_total('pd') || 0
+        sd = est_phase_total('sd') || 0
+        dd = est_phase_total('dd') || 0
+        cd = est_phase_total('cd') || 0
+        bid = est_phase_total('bid') || 0
+        cca = est_phase_total('cca') || 0
+        int = est_phase_total('int') || 0
+        his = est_phase_total('his') || 0
+        add = est_phase_total('add') || 0
+        pd + sd + dd + cd + bid + cca + int + his + add
+    end   
+
+
+
+
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
     					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",

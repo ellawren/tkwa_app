@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter :require_login
   before_filter :signed_in_user, only: [:index, :edit, :update]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy

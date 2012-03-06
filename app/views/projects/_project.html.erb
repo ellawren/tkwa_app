@@ -1,6 +1,8 @@
 <li>
   <%= link_to project.name, info_project_path(project) %>
-  <% if current_user.admin? %>
-    | <%= link_to "delete", project, method: :delete, confirm: "You sure?" %>
+  <% if signed_in? %>
+  	<% if current_user.admin? %>
+    	| <%= link_to "delete", project, method: :delete, confirm: "You sure?" %>
+  	<% end %>
   <% end %>
 </li>

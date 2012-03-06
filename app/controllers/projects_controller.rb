@@ -31,7 +31,30 @@ class ProjectsController < ApplicationController
   
   def tracking
     @project = Project.find(params[:id])
+    @team_members = EmployeeTeam.find_all_by_project_id(@project.id)
   end
+
+  def time_diff_in_natural_language(from_time, to_time)
+      unless from_time.blank? || to_time.blank?
+      from_time = from_time.to_time if from_time.respond_to?(:to_time)
+      to_time = to_time.to_time if to_time.respond_to?(:to_time)
+      distance_in_seconds = ((to_time - from_time).abs).round
+      components = []
+
+      %w(year month week).each do |interval|
+      # For each interval type, if the amount of time remaining is greater than
+      # one unit, calculate how many units fit into the remaining time.
+        if distance_in_seconds >= 1.send(interval)
+            delta = (distance_in_seconds / 1.send(interval)).floor
+            distance_in_seconds -= delta.send(interval)
+            components << pluralize(delta, interval)
+        end
+      end
+
+      components.join(", ")
+      end
+     end
+
   
   def schedule
     @project = Project.find(params[:id])
@@ -139,7 +162,7 @@ class ProjectsController < ApplicationController
                 @cca_left = (@pd_pc + @sd_pc + @dd_pc + @cd_pc + @bid_pc) * 100
                 @cca_width = @cca_pc * 100 
               end
-              
+
   end
   
   def index

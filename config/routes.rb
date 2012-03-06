@@ -2,6 +2,7 @@ TkwaApp::Application.routes.draw do
 
   resources :contacts
   resources :categories
+  resources :employee_teams
 
   resources :users do
     member do
@@ -11,6 +12,10 @@ TkwaApp::Application.routes.draw do
 
   resources :projects do
     get :autocomplete_contact_name, :on => :collection
+  end
+
+  resources :projects do
+    resources :employee_teams
   end
     
   resources :projects do

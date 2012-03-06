@@ -84,26 +84,26 @@
 											
 						<div class="row">
                             <%= f.label :start_date, class: "span2 box-padding bold" %>
-                            <%= f.text_field :start_date, class: "span2", datadatepicker: "datepicker" %>
+                            <%= f.text_field :start_date, { class: "span2", datadatepicker: "datepicker", :onchange => "getDuration();"} %>
                         </div>
 
                         <div class="row">
                             <%= f.label "Duration", class: "span2 box-padding bold" %>
-                            <div class="box-padding">
-                            	<% if @project.start_date && @project.completion_date %>
-                            		<%= time_diff_in_natural_language(@project.completion_date, @project.start_date) %>
-                            	<% end %>
+                            <div class="box-padding" id="duration">
+                            	<script>window.onload = function(){ getDuration(); }</script>
                             </div>
                         </div>
 
 						<div class="row">
                             <%= f.label :completion_date, class: "span2 box-padding bold" %>
-                            <%= f.text_field :completion_date, class: "span2", datadatepicker: "datepicker" %>
+                            <%= f.text_field :completion_date, class: "span2", datadatepicker: "datepicker", onchange: "getDuration();" %>
                         </div>
 									
 					</div>
 
+
 				</div> <!-- end row -->
+
 
 				<div class="row">
 							
