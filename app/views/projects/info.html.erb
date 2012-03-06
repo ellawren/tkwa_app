@@ -19,8 +19,9 @@
 				<div class="control-group">
 					<%= f.label(:location, "Project Location", class: "control-label") %>
 					<div class="controls">
-						<%= f.text_area :location, class: "span5", rows: "2" %>
+						<%= f.text_area :location, class: "span3-75", rows: "2" %>
 					</div>
+					<a class="btn top-right span1" onclick="openMap('project_location');">Get Map</a>
 				</div>
 								
 				<div class="control-group">

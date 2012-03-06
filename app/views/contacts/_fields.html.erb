@@ -44,7 +44,7 @@
                     <div class="controls">
                         <%= f.text_area :work_address, class: "span4-5", rows: "2" %>
                     </div>
-                    <div class="btn top-right span1">Get Map</div>
+                    <a class="btn top-right span1" onclick="openMap('contact_work_address');">Get Map</a>
                 </div>
 
                 <div class="control-group">
@@ -74,7 +74,7 @@
                     <div class="controls">
                         <%= f.text_field :work_email, class: "span4-5" %>
                     </div>
-                    <div class="btn top-right span1">Compose</div>
+                    <a class="btn top-right span1" onclick="sendEmail('contact_work_email');">Compose</a>
                 </div>
 
                 <div class="control-group">
@@ -82,7 +82,7 @@
                     <div class="controls">
                         <%= f.text_field :work_url, class: "span4-5" %>
                     </div>
-                    <div class="btn top-right span1">View</div>
+                    <a class="btn top-right span1" onclick="openURL('contact_work_url');">View</a>
                 </div>
 
                 <br /><br />
@@ -94,7 +94,7 @@
                     <div class="controls">
                         <%= f.text_area :home_address, class: "span4-5", rows: "2" %>
                     </div>
-                    <div class="btn top-right span1">Get Map</div>
+                    <a class="btn top-right span1" onclick="openMap('contact_home_address');">Get Map</a>
                 </div>
 
                 <div class="control-group">
@@ -116,7 +116,7 @@
                     <div class="controls">
                         <%= f.text_field :home_email, class: "span4-5" %>
                     </div>
-                    <div class="btn top-right span1">Compose</div>
+                    <a class="btn top-right span1" onclick="sendEmail('contact_home_email');">Compose</a>
                 </div>
                 
             </div> <!-- end span7-5 -->

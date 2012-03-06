@@ -139,10 +139,29 @@ $(document).ready(function() {
 });
 
 
-        
+// open map
+function openMap(id) {
+  address = $("#"+id).text();
+  queryString = address.replace(/(\r\n|\n|\r| )/gm,"+");
+  window.open('http://maps.google.com/maps?q=' + queryString);
+}
 
+// send email
+function sendEmail(id) {
+  email = $("#"+id).val();
+  queryString = 'mailto:' + email;
+  location.href=queryString;
+}
 
-
-
+// open URL
+function openURL(id) {
+  url = $("#"+id).val();
+  if (url.substring(0,7) === "http://") {
+    queryString = url;
+  } else {
+    queryString = 'http://' + url;
+  }
+  window.open(queryString);
+}
 	
 	

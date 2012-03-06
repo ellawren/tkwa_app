@@ -13,7 +13,7 @@
     <div class="row">
         <div class="span12">
             <div class="actions">
-                <%= f.submit "Save Changes", class: "btn-large btn-primary span3" %>
+                <%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
                 <%= link_to "Cancel", contact_path(@contact), class: "btn btn-large" %>
                 <% if @contact.employee %>
                     <%= link_to "Edit login/password", edit_user_path(current_user.id), class: "text-btn" %>
