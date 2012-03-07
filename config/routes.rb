@@ -1,60 +1,38 @@
 TkwaApp::Application.routes.draw do
 
 
-
-  resources :contacts
-
-  resources :employees do
-    member do
-      get 'timesheets'
-    end
-  end  
-
-  resources :categories
-  resources :employee_teams
-
   resources :users do
     member do
       get :following, :followers, :profile
     end
   end
-
-  resources :projects do
-    get :autocomplete_contact_name, :on => :collection
-  end
-
-  resources :projects do
-    resources :employee_teams
-  end
     
   resources :projects do
+    resources :employee_teams
+    get :autocomplete_contact_name, :on => :collection
     member do
       get 'info', 'team', 'scope', 'tracking', 'schedule'
     end
   end    
 
-  resources :services
+  resources :categories 
   resources :consultants
-  
-  resources :sessions, 		only: [:new, :create, :destroy]
-  resources :microposts, 	only: [:create, :destroy]
+  resources :contacts
+  resources :employees
+  resources :employee_teams
+  resources :microposts,  only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :services
+  resources :sessions, 		only: [:new, :create, :destroy]
   
   match '/signup',	to: 'users#new'
-  
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
-
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/messages',to: 'static_pages#messages'
-  
-  match '/timesheets',  to: 'employees#index'
     
   root :to => 'static_pages#home'
-  
-  
-  
   
 
   # The priority is based upon order of creation:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307165616) do
+ActiveRecord::Schema.define(:version => 20120307174922) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -115,17 +115,6 @@ ActiveRecord::Schema.define(:version => 20120307165616) do
   add_index "employee_teams", ["project_id", "contact_id"], :name => "index_employee_teams_on_project_id_and_contact_id", :unique => true
   add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
 
-  create_table "employee_timesheets", :force => true do |t|
-    t.integer  "employee_id"
-    t.integer  "timesheet_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "employee_timesheets", ["employee_id", "timesheet_id"], :name => "index_employees_timesheets_on_employee_id_and_timesheet_id", :unique => true
-  add_index "employee_timesheets", ["employee_id"], :name => "index_employees_timesheets_on_employee_id"
-  add_index "employee_timesheets", ["timesheet_id"], :name => "index_employees_timesheets_on_timesheet_id"
-
   create_table "employees", :force => true do |t|
     t.integer  "user_id"
     t.integer  "contact_id"
@@ -221,17 +210,6 @@ ActiveRecord::Schema.define(:version => 20120307165616) do
 
   add_index "projects_services", ["project_id", "service_id"], :name => "index_projects_services_on_project_id_and_service_id", :unique => true
 
-  create_table "projects_timesheets", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "timesheet_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "projects_timesheets", ["project_id", "timesheet_id"], :name => "index_projects_timesheets_on_project_id_and_timesheet_id", :unique => true
-  add_index "projects_timesheets", ["project_id"], :name => "index_projects_timesheets_on_project_id"
-  add_index "projects_timesheets", ["timesheet_id"], :name => "index_projects_timesheets_on_timesheet_id"
-
   create_table "reimbursables", :force => true do |t|
     t.string   "reimbursable_name"
     t.datetime "created_at"
@@ -254,16 +232,6 @@ ActiveRecord::Schema.define(:version => 20120307165616) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-  end
-
-  create_table "timesheets", :force => true do |t|
-    t.integer  "year",                                     :null => false
-    t.integer  "week",                                     :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.decimal  "hours",      :precision => 6, :scale => 2
-    t.string   "phase"
-    t.string   "task"
   end
 
   create_table "users", :force => true do |t|

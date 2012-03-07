@@ -64,9 +64,6 @@ class Project < ActiveRecord::Base
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
 
-    has_many :projects_timesheets, :dependent => :destroy
-    has_many :timesheets, :through => :projects_timesheets
-
     # allows project page to add employees + consultants via team join model. must allow destroy.
     accepts_nested_attributes_for :consultant_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? }
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:contact_id].blank? }

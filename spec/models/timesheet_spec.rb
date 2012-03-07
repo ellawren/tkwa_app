@@ -7,13 +7,15 @@ end
 #
 # Table name: timesheets
 #
-#  id         :integer         not null, primary key
-#  year       :integer         not null
-#  week       :integer         not null
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  hours      :decimal(6, 2)
-#  phase      :string(255)
-#  task       :string(255)
+#  id          :integer         not null, primary key
+#  year        :integer         not null
+#  week        :integer         not null
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  hours       :decimal(6, 2)
+#  phase       :string(255)
+#  task        :string(255)
+#  employee_id :integer
+#  project_id  :integer
 #
 
