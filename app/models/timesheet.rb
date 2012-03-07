@@ -2,22 +2,22 @@
 #
 # Table name: timesheets
 #
-#  id         :integer         not null, primary key
-#  year       :integer         not null
-#  week       :integer         not null
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  hours      :decimal(6, 2)
-#  phase      :string(255)
-#  task       :string(255)
+#  id          :integer         not null, primary key
+#  year        :integer         not null
+#  week        :integer         not null
+#  employee_id :integer         not null
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
 #
 
 class Timesheet < ActiveRecord::Base
-	has_many :employee_timesheets
-    has_many :employees, :through => :employee_timesheets
+  default_scope :order => "year DESC, week DESC"
+  
+  belongs_to :employee
+  has_many :time_entries, :dependent => :destroy
+  accepts_nested_attributes_for :time_entries, :allow_destroy => true
 
-    has_many :projects_timesheets
-    has_many :projects, :through => :projects_timesheets
+  YEARS =   [	"2012", "2011" ]
+ 
 end
-
 

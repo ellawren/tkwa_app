@@ -14,6 +14,10 @@ module ApplicationHelper
     	"sel" if params[:action] == page_name
   end
 
+  def is_week?(week)
+      "sel" if params[:week] == week
+  end
+
   def is_current?(c_name)
       "class='active'" if params[:controller] == c_name
   end

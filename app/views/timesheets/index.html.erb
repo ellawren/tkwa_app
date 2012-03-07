@@ -1,0 +1,24 @@
+<% content_for :page_header do %>
+	<% provide :title, "Timesheets Index" %>
+	<div class="page-header">
+		<h1><%= @contact.name %></h1>
+	</div>
+<% end %>
+
+<% content_for :tabnav do %>
+	<%= render "tabnav_timesheets" %>
+<% end %>
+
+<h3>Timesheets</h3>
+
+<br />
+	<ul>
+		<% @timesheets.each do |param| %>
+  			<li>
+  					<%= link_to "#{param.year}, Week #{param.week}", "/employees/#{param.employee_id}/timesheets/#{param.year}/#{param.week}" %>
+
+  			</li>
+		<% end %>
+	</ul>
+<br /><br />
+

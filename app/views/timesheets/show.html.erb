@@ -1,0 +1,56 @@
+<% content_for :page_header do %>
+	<% provide :title, "Timesheets Show" %>
+	<div class="page-header">
+		<h1><%= @contact.name %></h1>
+	</div>
+<% end %>
+
+<% content_for :tabnav do %>
+	<%= render "tabnav_timesheets" %>
+<% end %>
+
+Year: <%= @timesheet.year %><br />
+Week: <%= @timesheet.week %>
+
+	<%= form_for @timesheet do |f| %>
+	<%= render 'shared/error_messages', :object => f.object %>
+
+		<div class="row">	
+					
+			
+        	<div class="table-main timesheets">
+
+				<div class="table-head">
+					<div class="row">
+						<div class="span3">Proj Name</div>
+						<div class="span2">Date</div>
+						<div class="span1">Hours</div>
+						<div class="span2">Phase</div>
+						<div class="span2-5">Task</div>
+					</div>
+				</div>
+
+          		<div class="table-body">
+        			<!-- nested form for team-->
+            		<%= f.fields_for :time_entries do |builder| %>
+            			<%= render 'time_entry_fields', :f => builder %>
+            		<% end %>
+            		<%= link_to_add_fields "add time", f, :time_entries, "btn offset-left table-offset" %>
+           			<!-- end team form -->
+           		</div>	
+           					
+        	</div>
+
+        </div>
+
+  	<br /><br />
+      	<div class="row">
+			<div class="span12">
+				<div class="actions">
+    				<%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
+    				<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
+				</div>
+			</div>
+		</div>
+    
+	<% end %> <!-- end form -->

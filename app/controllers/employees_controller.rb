@@ -12,10 +12,10 @@ class EmployeesController < ApplicationController
     @employee= Employee.find(params[:id])
   end
 
-  def timesheets
-    @employee = Employee.find(params[:id])
-    @contact = Contact.find(@employee.contact_id)
-  end
+  #def timesheets
+  #  @employee = Employee.find(params[:id])
+  #  @contact = Contact.find(@employee.contact_id)
+  #end
 
   def update
     @employee = Employee.find(params[:id])

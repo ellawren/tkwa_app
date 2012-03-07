@@ -1,6 +1,7 @@
 TkwaApp::Application.routes.draw do
 
 
+
   resources :users do
     member do
       get :following, :followers, :profile
@@ -15,6 +16,12 @@ TkwaApp::Application.routes.draw do
     end
   end    
 
+  resources :employees do
+    resources :timesheets
+  end
+  match '/employees/:id/timesheets/:year/:week' => 'timesheets#show'
+
+  
   resources :categories 
   resources :consultants
   resources :contacts
@@ -24,6 +31,8 @@ TkwaApp::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :services
   resources :sessions, 		only: [:new, :create, :destroy]
+  resources :tasks
+  resources :timesheets, :only => [:index, :create, :update]
   
   match '/signup',	to: 'users#new'
   match '/signin',  to: 'sessions#new'

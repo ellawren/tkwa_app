@@ -16,8 +16,8 @@
                   				      <%= link_to "Contacts", contacts_path %>
                                 <div class="triangle"></div>
                 				    </li>
-                				    <li <%= is_current?("timesheets") %>>
-                  				      <a href="#">Timesheets</a>
+                				    <li <%= is_current?("employees") || is_current?("timesheets") %>>
+                  				      <%= link_to "Timesheets", employees_path %>
                                 <div class="triangle"></div>
                 				    </li>
                 				    <li <%= is_current?("patterns") %>>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307174922) do
+ActiveRecord::Schema.define(:version => 20120307220118) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -233,6 +233,36 @@ ActiveRecord::Schema.define(:version => 20120307174922) do
     t.datetime "updated_at"
     t.text     "description"
   end
+
+  create_table "tasks", :force => true do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "time_entries", :force => true do |t|
+    t.integer  "timesheet_id"
+    t.integer  "project_id"
+    t.date     "date"
+    t.decimal  "hours",        :precision => 6, :scale => 2
+    t.string   "phase"
+    t.string   "task"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  create_table "timesheets", :force => true do |t|
+    t.integer  "year",          :null => false
+    t.integer  "week",          :null => false
+    t.integer  "employee_id",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "selected_year"
+  end
+
+  add_index "timesheets", ["employee_id", "year", "week"], :name => "index_timesheets_on_employee_id_and_year_and_week", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"

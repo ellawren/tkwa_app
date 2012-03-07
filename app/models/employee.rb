@@ -16,4 +16,7 @@
 class Employee < ActiveRecord::Base
 	belongs_to :user
     belongs_to :contact
+
+    has_many :timesheets
+    has_many :time_entries, :through => :timesheets
 end

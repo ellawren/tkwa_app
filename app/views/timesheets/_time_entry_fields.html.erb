@@ -1,0 +1,10 @@
+<div class="table-row">
+  <%= f.hidden_field :timesheet_id, class: "span1", value: "#{@timesheet.id}" %>
+  <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "span3" } ) %>
+  <%= f.text_field :date, class: "span2" %>
+  <%= f.text_field :hours, class: "span1" %>
+  <%= f.select(:phase, TimeEntry::PHASES, { :include_blank => true }, { :class => "span2" } ) %>
+  <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "span2-5" } ) %>
+  
+  <%= link_to_remove_fields "remove", f %>
+</div>

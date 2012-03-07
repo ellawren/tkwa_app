@@ -170,7 +170,7 @@
 
 
 /**************************************************************************************************************/
-/* TABNAV ( nav for project pages) */
+/* TABNAV (nav for project pages) */
 /**************************************************************************************************************/
  
        .tabnav { width:100%; padding-bottom:4px; margin-bottom:3px; }
@@ -182,6 +182,14 @@
 
 
 
+/**************************************************************************************************************/
+/* TIMESHEET NAV (nav for timesheet pages) */
+/**************************************************************************************************************/
+ 
+        .tabnav.timesheets { height:20px; }
+        .tabnav.timesheets select { font-size:12px; height:24px; margin:-5px 12px 0 0; padding:4px 5px 3px 8px; font-weight:bold; border:none; background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
+        .tabnav.timesheets select:hover { background-color:#dcdcdc; color:#000; cursor:pointer; }
+        .tabnav.timesheets form { margin:0px; }
 
 
 /**************************************************************************************************************/
@@ -209,6 +217,11 @@
         .btn.table-offset  { margin-top:10px; }
         .table-main.shift-left { margin-left:35px; margin-right:0px; }
         .team-staff, .team-consultants { display:block; }
+
+     /* timesheets table */
+
+        .timesheets.table-main  { width:940px; }
+        .timesheets.table-main input  { margin-right:14px; }
 
     /* project tracking table */
   

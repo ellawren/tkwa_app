@@ -1,14 +1,15 @@
 <% content_for :page_header do %>
-  <% provide :title, "Timesheets Index" %>
-  <div class="page-header">
-    <h1>Timesheets Index</h1>
-  </div>
+	<% provide :title, "Employees Index" %>
+	<div class="page-header">
+		<h1>Employees Index</h1>
+	</div>
 <% end %>
+
 
 <h4>Employees</h4><br />
 	<ul>
 		<% Contact.employee_list.each do |param| %>
-  			<li><%= link_to param.name, timesheets_employee_path(param) %></li>
+  			<li><%= link_to param.name, employee_timesheets_path(param) %></li>
 		<% end %>
 	</ul>
 <br /><br />
