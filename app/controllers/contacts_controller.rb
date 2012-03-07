@@ -27,6 +27,7 @@ class ContactsController < ApplicationController
     end
   end
 
+
   def edit
     if signed_in?
       @contact = Contact.find(params[:id])

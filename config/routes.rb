@@ -1,6 +1,15 @@
 TkwaApp::Application.routes.draw do
 
+
+
   resources :contacts
+
+  resources :employees do
+    member do
+      get 'timesheets'
+    end
+  end  
+
   resources :categories
   resources :employee_teams
 
@@ -40,7 +49,7 @@ TkwaApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/messages',to: 'static_pages#messages'
   
-  
+  match '/timesheets',  to: 'employees#index'
     
   root :to => 'static_pages#home'
   
