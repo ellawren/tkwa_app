@@ -11,7 +11,7 @@
 		<%= render 'layouts/navbar' %>
 		
 		<!-- main content -->
-    	<div class="container">
+    	<div class="container fifteen">
     		<div class="spacer"></div>
 
     		<% flash.each do |key, value| %>
@@ -23,9 +23,9 @@
     		
         	<div class="line"></div>
 			<div class="row">
-				<div class="span14 sh">
+				<div class="span15 sh">
 					<div class="row">	
-						<div class="span12 offset1">
+						<div class="span13 offset1">
   							<%= content_for?(:content) ? yield(:content) : yield %>
   						</div> <!-- end span13 -->
 					</div> <!-- end row -->	

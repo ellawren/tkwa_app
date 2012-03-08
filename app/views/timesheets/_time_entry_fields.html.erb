@@ -1,10 +1,15 @@
 <div class="table-row">
-  <%= f.hidden_field :timesheet_id, class: "span1", value: "#{@timesheet.id}" %>
-  <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "span3" } ) %>
-  <%= f.text_field :date, class: "span2" %>
-  <%= f.text_field :hours, class: "span1" %>
-  <%= f.select(:phase, TimeEntry::PHASES, { :include_blank => true }, { :class => "span2" } ) %>
-  <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "span2-5" } ) %>
-  
-  <%= link_to_remove_fields "remove", f %>
+  <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
+  <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "span3-25" } ) %>
+  <%= f.select(:phase, TimeEntry::PHASES, { :include_blank => true }, { :class => "span1-75" } ) %>
+  <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "span2-75" } ) %>
+  <%= f.text_field :day1 %>
+  <%= f.text_field :day2 %>
+  <%= f.text_field :day3 %>
+  <%= f.text_field :day4 %>
+  <%= f.text_field :day5 %>
+  <%= f.text_field :day6 %>
+  <%= f.text_field :day7 %>
+  <div class="total"><%=  %> </div>
+  <%= link_to_remove_fields "x", f %>
 </div>

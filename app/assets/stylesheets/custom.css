@@ -16,6 +16,7 @@
         body { margin-bottom:60px; }
         .row { margin-bottom:2px; margin-top:2px; }
         .span14, .container { width: 1100px; }
+        .span15, .container.fifteen { width: 1180px; }
         .span13 {width: 1020px; }
         .span0-5 { width: 30px; }
         .span1-25 { width: 60px; }
@@ -23,6 +24,7 @@
         .span1-75 { width: 100px; }
         .span2-5 { width: 170px; }
         .span2-75 { width: 190px; }
+        .span3-25 { width: 240px; }
         .span3-5 { width: 260px; }
         .span3-75 { width: 280px; }
         .span4-5 { width: 350px; }
@@ -86,7 +88,8 @@
         .well-white { background:#fff; }
         .contact-list .well { display:block; background:#fff; overflow-y: hidden; clear:both; font-size:12px; }
         .textlabel { height:auto; display:inline-block; font-weight:bold; }
-        
+        a.delete-symbol  { float:none; display:inline-block; width:16px; height:16px; padding:1px 2px 3px 2px; color:#333; border-radius:10px; border:1px solid #d0d0d0; text-align:center; font-size:14px; line-height:14px; font-family:'Century Gothic', Helvetica, Arial, sans-serif; }
+        a.delete-symbol:hover { cursor:pointer; background:#fff; text-decoration:none; }
         
     /* presentational classes */
 
@@ -173,23 +176,24 @@
 /* TABNAV (nav for project pages) */
 /**************************************************************************************************************/
  
+     /* basic (for project pages) */
+
        .tabnav { width:100%; padding-bottom:4px; margin-bottom:3px; }
        .tabnav a { display:inline-block; width:auto; height:auto; padding:2px 10px 1px 10px; margin-right:3px; position:relative; background-color:#fff; color:#999; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; }
        .tabnav a.sel { background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
        .tabnav a:hover { background-color:#f5f5f5; color:#666; }
        .tabnav a.sel:hover { background-color:#dcdcdc; color:#000; }
  
+     /* timesheet mods */
 
-
-
-/**************************************************************************************************************/
-/* TIMESHEET NAV (nav for timesheet pages) */
-/**************************************************************************************************************/
- 
-        .tabnav.timesheets { height:20px; }
-        .tabnav.timesheets select { font-size:12px; height:24px; margin:-5px 12px 0 0; padding:4px 5px 3px 8px; font-weight:bold; border:none; background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
-        .tabnav.timesheets select:hover { background-color:#dcdcdc; color:#000; cursor:pointer; }
+        select.date-select { font-size:12px; width:78px; margin:0px 2px 0 0; height:24px; padding:4px 5px 3px 9px; font-weight:bold; border:none; background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
+        select.date-select:hover { background-color:#dcdcdc; color:#000; cursor:pointer; }
+        .tabnav.timesheets { height:23px;  }
+        .tabnav.timesheets a { font-size:10px; width:9px; text-align:center; padding:3px 4px 3px 4px; margin:1px 0 0 0; }
         .tabnav.timesheets form { margin:0px; }
+        .tabnav.timesheets a:hover { text-decoration:none; }
+        .tabnav.timesheets a.past { background-color:#f5f5f5; }
+
 
 
 /**************************************************************************************************************/
@@ -220,8 +224,17 @@
 
      /* timesheets table */
 
-        .timesheets.table-main  { width:940px; }
-        .timesheets.table-main input  { margin-right:14px; }
+        .timesheets.table-main  { width:1020px; }
+        .timesheets.table-main select, .timesheets.table-main input { margin-right:2px; font-size:12px; }
+        .timesheets.table-main input { text-align:center; width:35px; padding-top:4px; padding-bottom:4px; margin-top:2px; }
+        .timesheets.table-main .table-head div { margin-left:0px; margin-right:5px; }
+        .timesheets.table-main .table-head .day-label { width:43px; text-align:center; float:left; margin-right:9px; }
+        .timesheets.table-main .total { float:none; font-weight:bold; display:inline-block; width:65px; text-align:center; font-size:12px;  }
+        .timesheets.table-main .table-footer { border-top:1px solid #555; font-weight:bold; margin-top:-40px; font-size:12px; }
+        .timesheets.table-main .table-footer .day-label.shift-6 { margin-left:550px; }
+        .timesheets.table-main .table-footer div { margin-left:0px; margin-right:5px; }
+        .timesheets.table-main .table-footer .day-label { width:43px; text-align:center; float:left; margin-right:9px; margin-top:3px; }
+
 
     /* project tracking table */
   

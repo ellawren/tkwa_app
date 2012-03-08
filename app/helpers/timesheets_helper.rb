@@ -2,13 +2,59 @@ module TimesheetsHelper
   def date_path(date)
     "#{date.year}/#{date.week}"
   end
-  
+
+  def this_year
+    Time.now.year
+  end
+
   def this_week
-    Date.today.beginning_of_week
+    wk_1 = Time.now.beginning_of_year().beginning_of_week(start_day = :sunday) 
+    wk_now = Time.now.beginning_of_week(start_day = :sunday)
+    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
   end
-  
-  def week_array(date)
-    start = date.beginning_of_week
-    (start...start + 7.days).to_a
+
+  def get_date(day, param)
+    # wk_1 finds the first day of the first week of the given year
+    wk_1 = Date.new( param.year, 1, 1).beginning_of_week(start_day = :sunday) 
+
+    # day_1 finds the first day of the given week number
+    day_1 = (wk_1 + ((param.week-1) * 7)).to_date
+    day_1 + (day-1)
   end
+
+  def date_label(day, param)
+    get_date(day, param).strftime("%b<br/>%d").html_safe
+  end
+
+  def week_array(year)
+    wk = weeks_in_year(year)
+    (1..wk).to_a 
+  end
+
+  def get_week_number(date)
+    wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
+    wk_now = date.beginning_of_week(start_day = :sunday)
+    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
+  end
+
+  def is_week?(week)
+      if params[:week] == week
+        "sel" 
+      elsif get_week_number(Date.today).to_i > week.to_i
+        "past" 
+      end
+  end
+
+
+  def weeks_in_year(year)
+    last_day = Date.new(year, 12, 31)
+    # if the last day of the year is a Saturday, then use that as the last week
+    if ( (last_day.strftime("%w").to_i + 1) == 6 )
+      get_week_number(last_day)
+    # for all other case, week 1 is whatever week Jan1 fall in, so subtract 1 to get the last week
+    else
+      get_week_number(last_day) - 1
+    end
+  end
+
 end

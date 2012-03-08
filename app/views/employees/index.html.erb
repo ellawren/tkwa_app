@@ -5,11 +5,10 @@
 	</div>
 <% end %>
 
-
 <h4>Employees</h4><br />
 	<ul>
 		<% Contact.employee_list.each do |param| %>
-  			<li><%= link_to param.name, employee_timesheets_path(param) %></li>
+  			<li><%= link_to param.name, "/employees/#{param.employee.id}/timesheets/#{this_year}/#{this_week}" %></li>
 		<% end %>
 	</ul>
 <br /><br />

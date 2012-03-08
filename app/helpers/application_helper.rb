@@ -14,13 +14,13 @@ module ApplicationHelper
     	"sel" if params[:action] == page_name
   end
 
-  def is_week?(week)
-      "sel" if params[:week] == week
-  end
+  
 
   def is_current?(c_name)
       "class='active'" if params[:controller] == c_name
   end
+
+  
 
 
   def formatted_date(date)
@@ -52,7 +52,7 @@ module ApplicationHelper
   end
 
   def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", class: "delete-symbol")
   end
 
   def link_to_add_fields(name, f, association, html_class)

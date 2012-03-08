@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307220118) do
+ActiveRecord::Schema.define(:version => 20120308153949) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -245,12 +245,17 @@ ActiveRecord::Schema.define(:version => 20120307220118) do
   create_table "time_entries", :force => true do |t|
     t.integer  "timesheet_id"
     t.integer  "project_id"
-    t.date     "date"
-    t.decimal  "hours",        :precision => 6, :scale => 2
     t.string   "phase"
     t.string   "task"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.decimal  "day1",         :precision => 4, :scale => 2
+    t.decimal  "day2",         :precision => 4, :scale => 2
+    t.decimal  "day3",         :precision => 4, :scale => 2
+    t.decimal  "day4",         :precision => 4, :scale => 2
+    t.decimal  "day5",         :precision => 4, :scale => 2
+    t.decimal  "day6",         :precision => 4, :scale => 2
+    t.decimal  "day7",         :precision => 4, :scale => 2
   end
 
   create_table "timesheets", :force => true do |t|

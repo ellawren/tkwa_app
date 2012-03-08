@@ -24,7 +24,6 @@ class TimesheetsController < ApplicationController
    @employee= Employee.find(@timesheet.employee_id)
    @contact = Contact.find(@employee.contact_id)
 
-   #@time_entries = TimeEntry.find_all_by_timesheet_id(1)
   end
 
   def create

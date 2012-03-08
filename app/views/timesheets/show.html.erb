@@ -10,7 +10,7 @@
 <% end %>
 
 Year: <%= @timesheet.year %><br />
-Week: <%= @timesheet.week %>
+Week: <%= @timesheet.week %><br />
 
 	<%= form_for @timesheet do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
@@ -22,11 +22,17 @@ Week: <%= @timesheet.week %>
 
 				<div class="table-head">
 					<div class="row">
-						<div class="span3">Proj Name</div>
-						<div class="span2">Date</div>
-						<div class="span1">Hours</div>
-						<div class="span2">Phase</div>
-						<div class="span2-5">Task</div>
+						<div class="span3-25"><br />Project Name</div>
+						<div class="span1-75"><br />Phase</div>
+						<div class="span2-75"><br />Task</div>
+						<div class="day-label"><%= date_label(1, @timesheet) %></div>
+						<div class="day-label"><%= date_label(2, @timesheet) %></div>
+						<div class="day-label"><%= date_label(3, @timesheet) %></div>
+						<div class="day-label"><%= date_label(4, @timesheet) %></div>
+						<div class="day-label"><%= date_label(5, @timesheet) %></div>
+						<div class="day-label"><%= date_label(6, @timesheet) %></div>
+						<div class="day-label"><%= date_label(7, @timesheet) %></div>
+						<div class="day-label"><br />Total</div>
 					</div>
 				</div>
 
@@ -38,6 +44,20 @@ Week: <%= @timesheet.week %>
             		<%= link_to_add_fields "add time", f, :time_entries, "btn offset-left table-offset" %>
            			<!-- end team form -->
            		</div>	
+
+           		<div class="table-footer">
+					<div class="row">
+
+						<div class="day-label shift-6"><%= @timesheet.time_entries.sum(:day1) %></div>
+						<div class="day-label"><%= @timesheet.time_entries.sum(:day2) %></div>
+						<div class="day-label"><%= @timesheet.time_entries.sum(:day3) %></div>
+						<div class="day-label"><%= @timesheet.time_entries.sum(:day4) %></div>
+						<div class="day-label"><%= @timesheet.time_entries.sum(:day5) %></div>
+						<div class="day-label"><%= @timesheet.time_entries.sum(:day6) %></div>
+						<div class="day-label"><%= @timesheet.time_entries.sum(:day7) %></div>
+						<div class="day-label"><%= @timesheet.total_hours %></div>
+					</div>
+				</div>
            					
         	</div>
 
