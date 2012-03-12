@@ -107,6 +107,7 @@
         .lightweight { font-weight:100; color:#555; }
         td.text-right { text-align:right;}
         .input-spacer { width:62px; height:30px; margin-bottom:2px;}
+        .flush-left { margin-left:0px; }
 
 
     /* alignment and spacing */
@@ -207,7 +208,6 @@
         table td { border-top-color: #aaa; }
         table tbody tr tr td { border:none; }
         table .lt { text-align:left; padding-left:8px; }
-        th.gray, td.gray { border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; background-color:#fff; }
         td.bottom { border-bottom:1px solid #c9c9c9; }
         .table thead:first-child tr th.gray { border-top:1px solid #c9c9c9; }
         .table tr.lower td { border-top:1px solid #666; }
@@ -242,20 +242,26 @@
     /* project tracking table */
   
         .tracking-table { margin-left: 10px;  }
+        .tracking-table td, .tracking-table th {border-left:1px solid #e6e6e6;}
+        .tracking-table th { padding-top:0px;}
         .tracking-table a:hover { text-decoration:none; }
         .tracking-table .uneditable-input { margin-left:4px; cursor:default; font-size:12px; margin-bottom:2px; }
         .tracking-table .uneditable-input.est { background-color:#f0f0f0; border:none; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;  }
-        .tracking-table tr td:first-child, .tracking-table tr th:first-child { padding-left:0px; }
+        .tracking-table tr td:first-child, .tracking-table tr th:first-child { padding-left:0px; border-left:none; }
+        .tracking-table tr td:last-child, .tracking-table tr th:last-child { border-left:none; }
         .title-min  { min-width:100px; }
         .tracking-table th, .tracking-table td { text-align:center; }
         .round-top, .round-bottom { display:none;}
-        .gray .round-top { display:block; background:#fff; -webkit-border-radius:10px 10px 0 0; border-radius:10px 10px 0 0; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-top:1px solid #c9c9c9; width:auto; height:15px; margin:-25px -9px 0 -9px; }
-        .gray .round-bottom { display:block; background:#fff; -webkit-border-radius:0 0 10px 10px; border-radius:0 0 10px 10px; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-bottom:1px solid #c9c9c9; width:auto; height:15px; margin:8px -9px -25px -9px; }
+
+        .tracking-table th.gray, .tracking-table td.gray { border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; background-color:#fff; font-weight:bold; }
+        .gray .round-top { display:block; background:#fff; -webkit-border-radius:10px 10px 0 0; border-radius:10px 10px 0 0; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-top:1px solid #c9c9c9; width:auto; height:10px; margin:-10px -9px 0 -9px; }
+        .gray .round-bottom { display:block; background:#fff; -webkit-border-radius:0 0 10px 10px; border-radius:0 0 10px 10px; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-bottom:1px solid #c9c9c9; width:auto; height:10px; margin:0px -9px -25px -9px; }
+        
         .act, .act a { color:#6dbb68; padding:4px; font-weight:bold; }
         .act.over, .act.over a { color:#f4735b; } 
         .number { color:#000; font-weight:bold; font-size:20pt; margin-bottom:3px; letter-spacing: 1px; }
         .tracking-table .caps { letter-spacing:0px; }
-        .name { color:#000; font-weight:bold; font-size:10pt; }
+        .name { color:#000; font-weifght:bold; font-size:10pt; }
         .inside-block { background:#fff; padding:10px 3px 6px 3px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; min-width:62px; border:1px solid #f0f0f0; }
         .inside-block:hover { cursor:pointer; background:#f5f5f5; }
         .deactivated .inside-block .number, .deactivated .inside-block .caps { color:#d0d0d0;}
@@ -269,6 +275,9 @@
         .phase-titles label { font-size:11px; width:60px; height:18px; padding:6px; margin:2px; text-align:center; }
         .act.sum { margin-top:32px; }
         .notes .uneditable-input { padding-left:6px; padding-right:6px; }
+        .deactivated .est { display:none; }
+        .tracking-table tr.lower td {padding-bottom:0px;}
+        
 
     /* popover table */
 

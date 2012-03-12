@@ -16,30 +16,19 @@
 
             <div class="span9 offset05">
 
+
                 <br />
 
                 <table class="modal-table">
                   <tr>
-                      <td><%= f.label(:pd_hours, "Predesign") %></td>
-                      <td><%= f.label(:sd_hours, "Schematic") %></td>
-                      <td><%= f.label(:dd_hours, "Design Dev") %></td>
-                      <td><%= f.label(:cd_hours, "Const Docs") %></td>
-                      <td><%= f.label(:bid_hours, "Bidding") %></td>
-                      <td><%= f.label(:cca_hours, "CCA") %></td>
-                      <td><%= f.label(:int_hours, "Interior") %></td>
-                      <td><%= f.label(:his_hours, "Historic") %></td>
-                      <td><%= f.label(:add_hours, "Additional") %></td>
+                      <% @project.available_phases.each do |phase| %>
+                        <td><%= f.label(eval(":#{phase.shorthand}_hours"), phase.name) %></td>
+                      <% end %>
                   </tr>
                   <tr>
-                    <td><%= f.text_field :pd_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :sd_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :dd_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :cd_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :bid_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :cca_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :int_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :his_hours, { :onchange => "getEstHours();"} %></td>
-                    <td><%= f.text_field :add_hours, { :onchange => "getEstHours();"} %></td>
+                      <% @project.available_phases.each do |phase| %>
+                        <td><%= f.text_field eval(":#{phase.shorthand}_hours"), { :onchange => "getEstHours();"} %></td>
+                      <% end %>
                   </tr>
               </table>
               <br />

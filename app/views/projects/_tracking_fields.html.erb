@@ -4,23 +4,18 @@
 			<div class="inputbox italic"><%= link_to "edit", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal" %></div>
 		</td>
 
-		<%= tracking_td(f, f.pd_hours, 'Predesign') %>
-		<%= tracking_td(f, f.sd_hours, 'Schematic') %>
-		<%= tracking_td(f, f.dd_hours, 'Design Dev') %>
-		<%= tracking_td(f, f.cd_hours, 'Const Docs') %>
-		<%= tracking_td(f, f.bid_hours, 'Bidding') %>
-		<%= tracking_td(f, f.cca_hours, 'CCA') %>
-		<%= tracking_td(f, f.int_hours, 'Interior') %>
-		<%= tracking_td(f, f.his_hours, 'Historic') %>
-		<%= tracking_td(f, f.add_hours, 'Additional') %>
+		<% Phase.all.each do |phase| %>
+			<%= tracking_td(f, phase) %>
+		<% end %>
 
 		<td class="total TotalToDate gray">
 			<div class="uneditable-input span1 est"><%= strip(f.est_total) %></div>
-			<div class="uneditable-input span1 act <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>">
-				<% unless @project.employee_actual(f.contact_id, 'Total') == 0 %>
-					<%= strip(@project.employee_actual(f.contact_id, 'Total')) %>
-					<% end %>
-			</div>
+			<% if @project.employee_actual(f.contact_id, 'Total') == 0 %>
+				<div class="input-spacer"></div>
+			<% else %>
+				<div class="uneditable-input span1 act <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= strip(@project.employee_actual(f.contact_id, 'Total')) %></div>
+			<% end %>
+			
 		</td>
 
 		<td>

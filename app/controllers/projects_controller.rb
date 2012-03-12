@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @team_members = EmployeeTeam.find_all_by_project_id(@project.id)
     @all_entries = TimeEntry.find_all_by_project_id(@project.id)
+    @phases = @project.available_phases
 
             estimated = (@project.sum_est).to_f
             actual = (@project.sum_actual).to_f

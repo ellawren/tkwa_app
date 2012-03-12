@@ -31,15 +31,15 @@ class EmployeeTeam < ActiveRecord::Base
   validates :contact_id, :presence => true
 
   def est_total
-    pd = pd_hours || 0
-    sd = sd_hours || 0
-    dd = dd_hours || 0
-    cd = cd_hours || 0
-    bid = bid_hours || 0
-    cca = cca_hours || 0
-    int = int_hours || 0
-    his = his_hours || 0
-    add = add_hours || 0
+    pd = pd_hours.to_f
+    sd = sd_hours.to_f
+    dd = dd_hours.to_f
+    cd = cd_hours.to_f
+    bid = bid_hours.to_f
+    cca = cca_hours.to_f
+    int = int_hours.to_f
+    his = his_hours.to_f
+    add = add_hours.to_f
     pd + sd + dd + cd + bid + cca + int + his + add
   end
 

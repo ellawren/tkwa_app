@@ -5,6 +5,7 @@
 					<h3>Time Tracking</h3>
   					<div class="notes">
 						Progress bar shows hours worked as a percentage of total budgeted hours.<br />
+						
 					</div>				
 				</div>
 
@@ -85,15 +86,15 @@
 							<thead>
 								<tr>
 									<th class="lt"><br /><div class="caps title-min">Name</div></th>
-									<th class="Predesign"><div class="round-top"></div><div class="inside-block" id="phase-10"><div class="number">10</div><div class="caps">Predesign</div></div></th>
-									<th class="Schematic"><div class="round-top"></div><div class="inside-block" id="phase-20"><div class="number">20</div><div class="caps">Schematic</div></div></th>
-									<th class="DesignDev"><div class="round-top"></div><div class="inside-block" id="phase-30"><div class="number">30</div><div class="caps">Design Dev</div></div></th>
-									<th class="ConstDocs"><div class="round-top"></div><div class="inside-block" id="phase-40"><div class="number">40</div><div class="caps">Const Docs</div></div></th>
-									<th class="Bidding"><div class="round-top"></div><div class="inside-block" id="phase-50"><div class="number">50</div><div class="caps">Bidding</div></div></th>
-									<th class="CCA"><div class="round-top"></div><div class="inside-block" id="phase-60"><div class="number">60</div><div class="caps">CCA</div></div></th>
-									<th class="Interior"><div class="round-top"></div><div class="inside-block" id="phase-65"><div class="number">65</div><div class="caps">Interior</div></div></th>
-									<th class="Historic deactivated"><div class="round-top"></div><div class="inside-block" id="phase-68"><div class="number">68</div><div class="caps">Historic</div></div></th>
-									<th class="Additional"><div class="round-top"></div><div class="inside-block" id="phase-70"><div class="number">70</div><div class="caps">Additional</div></div></th>
+									<% Phase.all.each do |phase| %>
+										<th class="<%= phase.name.gsub(/[ ]*/, '') %> <% if @phases.include?(phase) %><% else %>deactivated<% end %>">
+											<div class="round-top"></div>
+											<div class="inside-block" id="phase-<%= phase.number %>">
+												<div class="number"><%= phase.number %></div>
+												<div class="caps"><%= phase.name %></div>
+											</div>
+										</th>
+									<% end %>
 									<th class="total name TotalToDate gray"><div class="round-top"></div><div class="inside-block" id="total">Totals<br />To-Date</div></th>
 									<th class="name"><br />+/-</th>
 								</tr>
@@ -107,33 +108,21 @@
 
 								<tr class="bold lower">
 									<td class="lt"><div class="inputbox">Total Budgeted</div><div class="inputbox">Total Actual</div></td>
-									<td class="Predesign"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('pd')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('pd'), @project.phase_actual('Predesign')) %>"><%= strip(@project.phase_actual('Predesign')) %></div><div class="round-bottom"></div></td>
 
-									<td class="Schematic"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('sd')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('sd'), @project.phase_actual('Schematic')) %>"><%= strip(@project.phase_actual('Schematic')) %></div><div class="round-bottom"></div></td>
-
-									<td class="DesignDev"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('dd')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('dd'), @project.phase_actual('DesignDev')) %>"><%= strip(@project.phase_actual('Design Dev')) %></div><div class="round-bottom"></div></td>
-
-									<td class="ConstDocs"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('cd')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('cd'), @project.phase_actual('ConstDocs')) %>"><%= strip(@project.phase_actual('Const Docs')) %></div><div class="round-bottom"></div></td>
-
-									<td class="Bidding"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('bid')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('bid'), @project.phase_actual('Bidding')) %>"><%= strip(@project.phase_actual('Bidding')) %></div><div class="round-bottom"></div></td>
-
-									<td class="CCA"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('cca')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('cca'), @project.phase_actual('CCA')) %>"><%= strip(@project.phase_actual('CCA')) %></div><div class="round-bottom"></div></td>
-
-									<td class="Interior"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('int')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('int'), @project.phase_actual('Interior')) %>"><%= strip(@project.phase_actual('Interior')) %></div><div class="round-bottom"></div></td>
-
-									<td class="Historic"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('his')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('his'), @project.phase_actual('Historic')) %>"><%= strip(@project.phase_actual('Historic')) %></div><div class="round-bottom"></div></td>
-
-									<td class="Additional"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('add')) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('add'), @project.phase_actual('Additional')) %>"><%= strip(@project.phase_actual('Additional')) %></div><div class="round-bottom"></div></td>
-
+									<% Phase.all.each do |phase| %>
+										<td class="<%= phase.name.gsub(/[ ]*/, '') %> <% if @phases.include?(phase) %><% else %>deactivated<% end %>">
+											<div class="uneditable-input span1 est">
+												<%= strip(@project.phase_est(phase.shorthand)) %>
+											</div>
+											<% if @project.phase_actual("#{phase.name}") == 0 %>
+												<div class="input-spacer"></div>
+											<% else %>
+												<div class="uneditable-input span1 act <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.name}')) %>"><%= strip(@project.phase_actual("#{phase.name}")) %></div>
+											<% end %>
+											<div class="round-bottom"></div>
+										</td>
+									<% end %>
+									
 									<td class="total TotalToDate gray"><div class="uneditable-input span1 est"><%= strip(@project.sum_est) %></div>
 										<div class="uneditable-input span1 act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= @project.sum_actual %></div><div class="round-bottom"></div></td>
 

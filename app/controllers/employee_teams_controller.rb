@@ -5,6 +5,7 @@ class EmployeeTeamsController < ApplicationController
     @employee_team = EmployeeTeam.find(params[:id])
     @employee = Contact.find(@employee_team.contact_id)
     @project = Project.find(@employee_team.project_id)
+    @phases = @project.available_phases
     render :layout => 'modal' 
   end
 

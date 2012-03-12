@@ -2,12 +2,24 @@
 					<div class="row"> 
 						<h3>Scope Summary</h3>
 	  					<div class="notes">
+	  						<%= @project.available_phases %><br />
+	  						<%= @project.available_phase?(65) %>
 						</div>	
 					</div>
   				
   					<div class="row"> 
+
+  						<div class="well well-white span2-5 flush-left">
+  					
+								<h4>Phases</h4><br />
+								<ul>
+									<% @project.phases.each do |param| %>
+  										<li><%= param.number %>: <%= param.name %></li>
+									<% end %>
+								</ul>
+						</div>
   										
-  						<div class="well well-white span3-5">
+  						<div class="well well-white span3-25">
   					
 								<h4>Services Provided</h4><br />
 								<ul>
@@ -18,7 +30,7 @@
 								</ul>
 						</div>
 															
-						<div class="well well-white span3-5">
+						<div class="well well-white span3-25">
 								<h4>Reimbursables</h4><br />
 								<ul>
 									<% @project.reimbursables.each do |param| %>
@@ -27,7 +39,7 @@
 								</ul>
 						</div>
 						
-						<div class="well well-white span3-5">
+						<div class="well well-white span2-5">
 								<h4>Consultants</h4><br />
 								<ul>
 									<% @project.consultant_roles.each do |param| %>

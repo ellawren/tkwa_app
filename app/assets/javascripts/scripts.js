@@ -246,15 +246,15 @@ function getDuration(){
 
 function getEstHours() {
 
-    pd = $("#employee_team_pd_hours").val();
-    sd = $("#employee_team_sd_hours").val();
-    dd = $("#employee_team_dd_hours").val();
-    cd = $("#employee_team_cd_hours").val();
-    bid = $("#employee_team_bid_hours").val();
-    cca = $("#employee_team_cca_hours").val();
-    inth = $("#employee_team_int_hours").val();
-    his = $("#employee_team_his_hours").val();
-    add = $("#employee_team_add_hours").val();
+    pd = $("#employee_team_pd_hours").val() || 0;
+    sd = $("#employee_team_sd_hours").val() || 0;
+    dd = $("#employee_team_dd_hours").val() || 0;
+    cd = $("#employee_team_cd_hours").val() || 0;
+    bid = $("#employee_team_bid_hours").val() || 0;
+    cca = $("#employee_team_cca_hours").val() || 0;
+    inth = $("#employee_team_int_hours").val() || 0;
+    his = $("#employee_team_his_hours").val() || 0;
+    add = $("#employee_team_add_hours").val() || 0;
 
     if (pd === "") { pdh = 0; } else { pdh = parseFloat(pd); }
     if (sd === "") { sdh = 0; } else { sdh = parseFloat(sd); }

@@ -79,6 +79,14 @@ class Project < ActiveRecord::Base
 	validates :number, 	presence: true, uniqueness: true
 
 
+    def available_phases
+        available_phases = []
+        self.phase_ids.each do |t|
+          available_phases.push(Phase.find_by_id(t))
+        end
+        available_phases
+    end
+
 
     def employee_hours(total_hours, contactid, phase)
       employeeid = Employee.find_by_contact_id(contactid).id
