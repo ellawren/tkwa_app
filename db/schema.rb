@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312191002) do
+ActiveRecord::Schema.define(:version => 20120312192102) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -151,8 +151,8 @@ ActiveRecord::Schema.define(:version => 20120312191002) do
   create_table "phases_projects", :id => false, :force => true do |t|
     t.integer  "project_id", :null => false
     t.integer  "phase_id",   :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "phases_projects", ["project_id", "phase_id"], :name => "index_phases_projects_on_project_id_and_phase_id", :unique => true

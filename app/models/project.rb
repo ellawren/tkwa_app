@@ -78,7 +78,7 @@ class Project < ActiveRecord::Base
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true
 
-    
+
 
     def employee_hours(total_hours, contactid, phase)
       employeeid = Employee.find_by_contact_id(contactid).id

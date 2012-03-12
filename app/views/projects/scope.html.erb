@@ -49,13 +49,13 @@
 	<fieldset>
 		<h3>Project Phases<span class="notes">Selected are available for employees to enter hours.</span></h3>
 
-		<div class="control-group span12 columns4 checkbox-group">
+		<div class="control-group span12 checkbox-group">
         	<div class="controls">
   				<%= hidden_field_tag "project[phase_ids][]", nil%>
-    			<% Service.all.each do |service| %>
+    			<% Phase.all.each do |phase| %>
     				<label class="checkbox">
-  						<%= check_box_tag "project[service_ids][]", service.id, @project.service_ids.include?(service.id), id: dom_id(service) %>
-  						<%= service.service_name %>
+  						<%= check_box_tag "project[phase_ids][]", phase.id, @project.phase_ids.include?(phase.id), id: dom_id(phase) %>
+  						<%= phase.number %>: <%= phase.full_name %>
   					</label>
 				<% end %>
 			</div>
