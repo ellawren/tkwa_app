@@ -1,5 +1,6 @@
 <div class="table-row">
   <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
+  <%= f.hidden_field :employee_id, value: "#{@timesheet.employee_id}" %>
   <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "span3-25" } ) %>
   <%= f.select(:phase, TimeEntry::PHASES, { :include_blank => true }, { :class => "span1-75" } ) %>
   <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "span2-75" } ) %>
@@ -10,6 +11,6 @@
   <%= f.text_field :day5 %>
   <%= f.text_field :day6 %>
   <%= f.text_field :day7 %>
-  <div class="total"><%=  %> </div>
+  <div class="total"><%= f.object.entry_total %></div>
   <%= link_to_remove_fields "x", f %>
 </div>

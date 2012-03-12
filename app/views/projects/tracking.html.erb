@@ -1,37 +1,77 @@
 <%= form_for @project do |f| %>
 <%= render 'shared/error_messages', :object => f.object %>
 
-	<h3>Time Tracking</h3>
-
+				<div class="row">
+					<h3>Time Tracking</h3>
   					<div class="notes">
-						Progress bar shows hours worked as a percentage of total budgeted hours.
-					</div>
+						Progress bar shows hours worked as a percentage of total budgeted hours.<br />
+					</div>				
+				</div>
 
 				<div class="row">
 					
 					<div class="schedule-bar span10 offset1 green-bkg">
 					
 					    <div class="progress progress-green progress-striped">
-    						<div class="bar" style="width: 88%;"></div>
+    						<div class="bar" style="width: <%= @percent_complete %>%;"></div>
     					</div>
     					
     					<div class="circle circle-begin circle-filled"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: 12%;"></a>
-    					<div class="phase-marker" style="left:12%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:12%; width: 24%;"></a>
-    					<div class="phase-marker" style="left:36%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="design dev" style="left:36%; width: 26%;"></a>
-    					<div class="phase-marker" style="left:62%;"></div>
-    						<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:62%; width: 26%;"></a>
-    					<div class="marker target" style="left:90%;">
-    						<div class="bubble"><div class="caps">Target</div>1,294 hours</div>
+
+    					<!-- predesign -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign: <%= strip(@project.phase_est('pd')) %> hours" style="width: <%= @pd_pc %>%;"></a>
+
+    					<div class="phase-marker future" style="left:<%= @pd_pc %>%;"></div>
+    					
+    					<!-- schematic -->
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic: <%= strip(@project.phase_est('sd')) %> hours" style="left:<%= @pd_pc %>%; width: <%= @sd_pc %>%;"></a>
+
+    					<!-- design development -->
+    					<div class="phase-marker future" style="left:<%= @dd_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="design dev: <%= strip(@project.phase_est('dd')) %> hours" style="left:<%= @dd_left %>%; width: <%= @dd_pc %>%;"></a>
+
+    					<!-- const docs -->
+    					<div class="phase-marker future" style="left: <%= @cd_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs: <%= strip(@project.phase_est('cd')) %> hours" style="left: <%= @cd_left %>%; width: <%= @cd_pc %>%;"></a>
+
+    					<!-- bidding -->
+    					<div class="phase-marker future" style="left: <%= @bid_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding: <%= strip(@project.phase_est('bid')) %> hours" style="left: <%= @bid_left %>%; width: <%= @bid_pc %>%;"></a>
+
+    					<!-- cca -->
+    					<div class="phase-marker future" style="left: <%= @cca_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca: <%= strip(@project.phase_est('cca')) %> hours" style="left: <%= @cca_left %>%; width: <%= @cca_pc %>%;"></a>
+
+    					<!-- interior -->
+    					<div class="phase-marker future" style="left: <%= @int_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="interior: <%= strip(@project.phase_est('int')) %> hours" style="left: <%= @int_left %>%; width: <%= @int_pc %>%;"></a>
+
+    					<!-- historic -->
+    					<div class="phase-marker future" style="left: <%= @his_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="historic: <%= strip(@project.phase_est('his')) %> hours" style="left: <%= @his_left %>%; width: <%= @his_pc %>%;"></a>
+
+    					<!-- additional -->
+    					<div class="phase-marker future" style="left: <%= @add_left %>%;"></div>
+    					
+    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="additional: <%= strip(@project.phase_est('add')) %> hours" style="left: <%= @add_left %>%; width: <%= @add_pc %>%;"></a>
+
+    					<!-- target marker-->
+    					<div class="marker target" style="left:13%;">
+    						<div class="bubble"><div class="caps">Target</div>135 hours</div>
     					</div>
     					
-    					<div class="marker todate" style="left:88%;">
-    						<div class="bubble"><div class="caps">Actual</div><span class="green">1,283 hours</span></div>
+    					<!-- actual marker -->
+    					<div class="marker todate" style="left:<%= @percent_complete %>%;">
+    						<div class="bubble"><div class="caps">Actual</div><span class="green"><%= @project.sum_actual %> hours</span></div>
 						</div>
 						
-						<div class="circle circle-complete"><div class="caps">Total</div><div class="num-total"><%= strip(@project.est_total) %></div><div class="caps">Hours</div></div>
+						<div class="circle circle-complete"><div class="caps">Total</div><div class="num-total"><%= strip(@project.sum_est) %></div><div class="caps">Hours</div></div>
 						
 					</div>
 
@@ -45,16 +85,16 @@
 							<thead>
 								<tr>
 									<th class="lt"><br /><div class="caps title-min">Name</div></th>
-									<th><div class="inside-block"><div class="number">10</div><div class="caps">Predesign</div></div></th>
-									<th><div class="inside-block"><div class="number">20</div><div class="caps">Schematic</div></div></th>
-									<th><div class="inside-block"><div class="number">30</div><div class="caps">Design Dev</div></div></th>
-									<th class="gray"><a class="tip" rel="tooltip" href="#" data-original-title="current phase"><div class="round-top"></div><div class="inside-block"><div class="number">40</div><div class="caps">Const Docs</div></div></a></th>
-									<th><div class="inside-block"><div class="number">50</div><div class="caps">Bidding</div></div></th>
-									<th><div class="inside-block"><div class="number">60</div><div class="caps">CCA</div></div></th>
-									<th><div class="inside-block"><div class="number">65</div><div class="caps">Interior</div></div></th>
-									<th><div class="inside-block no-bkg"><div class="number light">68</div><div class="caps light">Historic</div></div></th>
-									<th><div class="inside-block"><div class="number">70</div><div class="caps">Additional</div></div></th>
-									<th class="total name"><div class="inside-block">Totals<br />To-Date</div></th>
+									<th class="Predesign"><div class="round-top"></div><div class="inside-block" id="phase-10"><div class="number">10</div><div class="caps">Predesign</div></div></th>
+									<th class="Schematic"><div class="round-top"></div><div class="inside-block" id="phase-20"><div class="number">20</div><div class="caps">Schematic</div></div></th>
+									<th class="DesignDev"><div class="round-top"></div><div class="inside-block" id="phase-30"><div class="number">30</div><div class="caps">Design Dev</div></div></th>
+									<th class="ConstDocs"><div class="round-top"></div><div class="inside-block" id="phase-40"><div class="number">40</div><div class="caps">Const Docs</div></div></th>
+									<th class="Bidding"><div class="round-top"></div><div class="inside-block" id="phase-50"><div class="number">50</div><div class="caps">Bidding</div></div></th>
+									<th class="CCA"><div class="round-top"></div><div class="inside-block" id="phase-60"><div class="number">60</div><div class="caps">CCA</div></div></th>
+									<th class="Interior"><div class="round-top"></div><div class="inside-block" id="phase-65"><div class="number">65</div><div class="caps">Interior</div></div></th>
+									<th class="Historic deactivated"><div class="round-top"></div><div class="inside-block" id="phase-68"><div class="number">68</div><div class="caps">Historic</div></div></th>
+									<th class="Additional"><div class="round-top"></div><div class="inside-block" id="phase-70"><div class="number">70</div><div class="caps">Additional</div></div></th>
+									<th class="total name TotalToDate gray"><div class="round-top"></div><div class="inside-block" id="total">Totals<br />To-Date</div></th>
 									<th class="name"><br />+/-</th>
 								</tr>
 							</thead>
@@ -67,27 +107,37 @@
 
 								<tr class="bold lower">
 									<td class="lt"><div class="inputbox">Total Budgeted</div><div class="inputbox">Total Actual</div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(@project.est_phase_total('pd')) %></div>
-										<div class="act">--</div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(@project.est_phase_total('sd')) %></div>
-										<div class="act over">--</div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(@project.est_phase_total('dd')) %></div>
-										<div class="act">--</div></td>
-									<td class="gray bottom"><div class="uneditable-input span1 est"><%= strip(@project.est_phase_total('cd')) %></div>
-										<div class="act over">--</div><div class="round-bottom"></div></td>
-									<td><div class="uneditable-input span1 est light"><%= strip(@project.est_phase_total('bid')) %></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est light"><%= strip(@project.est_phase_total('cca')) %></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est light"><%= strip(@project.est_phase_total('int')) %></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est light"><%= strip(@project.est_phase_total('his')) %></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est light"><%= strip(@project.est_phase_total('add')) %></div>
-										<div class="act"></div></td>
-									<td class="total"><div class="uneditable-input span1 est"><%= strip(@project.est_total) %></div>
-										<div class="act">--</div></td>
-									<td><div class="act sum">--</div></td>
+									<td class="Predesign"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('pd')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('pd'), @project.phase_actual('Predesign')) %>"><%= strip(@project.phase_actual('Predesign')) %></div><div class="round-bottom"></div></td>
+
+									<td class="Schematic"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('sd')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('sd'), @project.phase_actual('Schematic')) %>"><%= strip(@project.phase_actual('Schematic')) %></div><div class="round-bottom"></div></td>
+
+									<td class="DesignDev"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('dd')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('dd'), @project.phase_actual('DesignDev')) %>"><%= strip(@project.phase_actual('Design Dev')) %></div><div class="round-bottom"></div></td>
+
+									<td class="ConstDocs"><div class="uneditable-input span1 est"><%= strip(@project.phase_est('cd')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('cd'), @project.phase_actual('ConstDocs')) %>"><%= strip(@project.phase_actual('Const Docs')) %></div><div class="round-bottom"></div></td>
+
+									<td class="Bidding"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('bid')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('bid'), @project.phase_actual('Bidding')) %>"><%= strip(@project.phase_actual('Bidding')) %></div><div class="round-bottom"></div></td>
+
+									<td class="CCA"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('cca')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('cca'), @project.phase_actual('CCA')) %>"><%= strip(@project.phase_actual('CCA')) %></div><div class="round-bottom"></div></td>
+
+									<td class="Interior"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('int')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('int'), @project.phase_actual('Interior')) %>"><%= strip(@project.phase_actual('Interior')) %></div><div class="round-bottom"></div></td>
+
+									<td class="Historic"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('his')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('his'), @project.phase_actual('Historic')) %>"><%= strip(@project.phase_actual('Historic')) %></div><div class="round-bottom"></div></td>
+
+									<td class="Additional"><div class="uneditable-input span1 est light"><%= strip(@project.phase_est('add')) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.phase_est('add'), @project.phase_actual('Additional')) %>"><%= strip(@project.phase_actual('Additional')) %></div><div class="round-bottom"></div></td>
+
+									<td class="total TotalToDate gray"><div class="uneditable-input span1 est"><%= strip(@project.sum_est) %></div>
+										<div class="uneditable-input span1 act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= @project.sum_actual %></div><div class="round-bottom"></div></td>
+
+									<td><div class="act sum <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= over_under(@project.sum_est, @project.sum_actual) %></div></td>
 								</tr>
 								
 							</tbody>
@@ -95,8 +145,8 @@
 						</table>
 
 						<br /><br />
-						<div class="notes">
-							Target hours are in <span class="uneditable-input inline bold">black</span>, actual hours are shown in <span class="green">green</span> if they are on track or <span class="red">red</span> if they are over.
+						<div class="notes tracking-table">
+							Target hours are in<span class="uneditable-input est inline bold">black</span> , actual hours are shown in<span class="uneditable-input act inline">green</span> if they are on track or<span class="uneditable-input act inline over">red</span> if they are over.
 						</div>
 
 				</div>

@@ -12,6 +12,52 @@ module ProjectsHelper
 		  end	
   	end
 
+    def all_hours(id, phase)
+      array = Array.new(TimeEntry.find_all_by_project_id_and_phase(id, phase))
+    end
+      
+    def tracking_td(f, est_hours, phase)
+      actual_hours = @project.employee_actual(f.contact_id, phase)
+      if est_hours == nil
+        est = "<div class='input-spacer'></div>"
+      else
+        est = "<div class='uneditable-input span1 est'>#{strip(est_hours)}</div>"
+      end
+
+      if actual_hours == 0
+        act = "<div class='act'></div></td>"
+      else
+        employee_id = Employee.find_by_contact_id(f.contact_id).id
+        time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase(f.project_id, employee_id, phase)
+
+        table_data = []
+        time_entries.each do |t|
+          table_data.push("<tr><td>#{t.task}</td><td class='text-right'>#{t.entry_total}</td></tr>")
+        end
+        act = "<a href='#' class='pop' rel='popover' title='#{employee_name(f.contact_id)} - #{phase}' data-content=\"
+                <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th class='text-right'>Hours</th></tr></thead><tbody>#{table_data.join}</tbody>
+                </table>\"><div class='uneditable-input span1 act #{is_over?(est_hours, actual_hours)}'>#{strip(actual_hours)}</div></a>"
+      end
+
+      "<td class=\"#{phase.gsub!(/[ ]*/, '')}\"> #{est} #{act} </td>".html_safe
+    end
+
+    def is_over?(estimated_hours, actual_hours)
+      "over" if estimated_hours.to_f < actual_hours.to_f
+    end
+
+    def over_under(estimated_hours, actual_hours)
+      unless actual_hours == 0
+        result = (actual_hours - estimated_hours).to_f
+        if result > 0
+          "+" + strip(result)
+        else
+          strip(result)
+        end
+      end
+    end
+
+
     def employee_name(contactid)
       employee = Contact.find(contactid)
       employee.name
@@ -24,21 +70,19 @@ module ProjectsHelper
   		distance_in_seconds = ((to_time - from_time).abs).round
   		components = []
 
-  		%w(year month week).each do |interval|
-    	# For each interval type, if the amount of time remaining is greater than
-    	# one unit, calculate how many units fit into the remaining time.
-    		if distance_in_seconds >= 1.send(interval)
-      			delta = (distance_in_seconds / 1.send(interval)).floor
-      			distance_in_seconds -= delta.send(interval)
-      			components << pluralize(delta, interval)
-    		end
-  		end
-
-  		components.join(", ")
+      		%w(year month week).each do |interval|
+        	# For each interval type, if the amount of time remaining is greater than
+        	# one unit, calculate how many units fit into the remaining time.
+        		if distance_in_seconds >= 1.send(interval)
+          			delta = (distance_in_seconds / 1.send(interval)).floor
+          			distance_in_seconds -= delta.send(interval)
+          			components << pluralize(delta, interval)
+        		end
+      		end
+  		    components.join(", ")
   	  end
-	   end
 
-
-
+    end
 
 end
+

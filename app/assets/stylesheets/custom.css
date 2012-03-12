@@ -105,6 +105,8 @@
         .hidden { visibility:hidden; }
         .shaded { background-color:#f5f5f5; }
         .lightweight { font-weight:100; color:#555; }
+        td.text-right { text-align:right;}
+        .input-spacer { width:62px; height:30px; margin-bottom:2px;}
 
 
     /* alignment and spacing */
@@ -152,6 +154,7 @@
 
         .triangle { border-left: 62px solid transparent; border-right: 62px solid transparent; border-top: 15px solid #111; position:absolute; top:40px; left:0; display:none; }
         li.active .triangle { display:block; }
+        .navbar .nav .active > a, .navbar .nav .active > a:hover { background-color: #000; }
 
     /* signin box */
 
@@ -219,7 +222,7 @@
         .table-row   { float:left; width:100%; padding:6px 0 0 0; border-bottom:1px solid #e6e6e6; }
         .table-row select { margin-right:15px; margin-bottom:6px; }
         .btn.table-offset  { margin-top:10px; }
-        .table-main.shift-left { margin-left:35px; margin-right:0px; }
+        .table-main.shift-left { margin-left:65px; margin-right:0px; }
         .team-staff, .team-consultants { display:block; }
 
      /* timesheets table */
@@ -234,40 +237,43 @@
         .timesheets.table-main .table-footer .day-label.shift-6 { margin-left:550px; }
         .timesheets.table-main .table-footer div { margin-left:0px; margin-right:5px; }
         .timesheets.table-main .table-footer .day-label { width:43px; text-align:center; float:left; margin-right:9px; margin-top:3px; }
-
+        .timesheets.table-main .table-head .total { margin-left: 5px;}
 
     /* project tracking table */
   
-        .tracking-table { margin-left: -10px; }
-        .tracking-table .uneditable-input.span1 { margin-left:4px; cursor:default; }
+        .tracking-table { margin-left: 10px;  }
+        .tracking-table a:hover { text-decoration:none; }
+        .tracking-table .uneditable-input { margin-left:4px; cursor:default; font-size:12px; margin-bottom:2px; }
+        .tracking-table .uneditable-input.est { background-color:#f0f0f0; border:none; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;  }
         .tracking-table tr td:first-child, .tracking-table tr th:first-child { padding-left:0px; }
         .title-min  { min-width:100px; }
         .tracking-table th, .tracking-table td { text-align:center; }
-        .round-top { background:#fff; -webkit-border-radius:10px 10px 0 0; border-radius:10px 10px 0 0; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-top:1px solid #c9c9c9; width:auto; height:15px; margin:-25px -9px 0 -9px; }
-        .round-bottom { background:#fff; -webkit-border-radius:0 0 10px 10px; border-radius:0 0 10px 10px; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-bottom:1px solid #c9c9c9; width:auto; height:15px; margin:5px -9px -25px -9px; }
-        .actual .uneditable-input { margin:0 auto; font-size:1em; cursor:default; border-color:#dcdcdc; }
-        .actual .est { font-weight:bold; color:#000; }
-        .actual .act, .actual .act a { color:#6dbb68; padding:4px; }
-        .actual .act.over, .actual .act.over a { color:#f4735b; } 
+        .round-top, .round-bottom { display:none;}
+        .gray .round-top { display:block; background:#fff; -webkit-border-radius:10px 10px 0 0; border-radius:10px 10px 0 0; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-top:1px solid #c9c9c9; width:auto; height:15px; margin:-25px -9px 0 -9px; }
+        .gray .round-bottom { display:block; background:#fff; -webkit-border-radius:0 0 10px 10px; border-radius:0 0 10px 10px; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-bottom:1px solid #c9c9c9; width:auto; height:15px; margin:8px -9px -25px -9px; }
+        .act, .act a { color:#6dbb68; padding:4px; font-weight:bold; }
+        .act.over, .act.over a { color:#f4735b; } 
         .number { color:#000; font-weight:bold; font-size:20pt; margin-bottom:3px; letter-spacing: 1px; }
         .tracking-table .caps { letter-spacing:0px; }
         .name { color:#000; font-weight:bold; font-size:10pt; }
-        .inside-block { background:#f0f0f0; padding:10px 3px 6px 3px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; min-width:62px; }
-        .inside-block:hover { cursor:pointer; background:#e5e5e5; }
-        .inside-block.no-bkg, .gray .inside-block { background:none; box-shadow:none; }
-        .inside-block.no-bkg:hover, .gray .inside-block:hover { background:none; }
-        .inside-block.no-bkg { cursor:not-allowed; }
+        .inside-block { background:#fff; padding:10px 3px 6px 3px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; min-width:62px; border:1px solid #f0f0f0; }
+        .inside-block:hover { cursor:pointer; background:#f5f5f5; }
+        .deactivated .inside-block .number, .deactivated .inside-block .caps { color:#d0d0d0;}
+        .deactivated .inside-block, .gray .inside-block { background:none; box-shadow:none; border:none; }
+        .deactivated .inside-block:hover, .gray .inside-block:hover { background:none; }
+        .deactivated .inside-block { cursor:not-allowed; }
         .name .inside-block { line-height:20px; }
-        .est.light, .light { color:#d0d0d0; }
+        .light .uneditable-input, .light .act { color:#d0d0d0; }
         .budget input { color:#000; font-weight:bold; }
         th.total, td.total { border-left:1px solid #999; }
         .phase-titles label { font-size:11px; width:60px; height:18px; padding:6px; margin:2px; text-align:center; }
-        .act.sum { margin-top:40px; }
+        .act.sum { margin-top:32px; }
+        .notes .uneditable-input { padding-left:6px; padding-right:6px; }
 
     /* popover table */
 
         .pop-table { width:100%; margin-top:0px; }
-        .pop-table tr td, .pop-table tr th { text-align:left; }
+        .pop-table tr td:first-child, .pop-table tr th:first-child { text-align:left; }
         .pop-table tr.lower th { border-top:1px solid #d0d0d0; }
 
     /* staff and consultants tables */

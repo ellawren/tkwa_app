@@ -55,6 +55,160 @@ $(document).ready(function() {
 
 });
 
+// select current on tracking page
+$(document).ready(function() {
+  $("#phase-10").click(function () {
+    if ( $('th.Predesign').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).addClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).addClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-20").click(function () {
+    if ( $('th.Schematic').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).addClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).addClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-30").click(function () {
+    if ( $('th.DesignDev').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).addClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-40").click(function () {
+    if ( $('th.ConstDocs').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).addClass( "gray" ).removeClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-50").click(function () {
+    if ( $('th.Bidding').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Bidding" ).addClass( "gray" ).removeClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-60").click(function () {
+    if ( $('th.CCA').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".CCA" ).addClass( "gray" ).removeClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-65").click(function () {
+    if ( $('th.Interior').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Interior" ).addClass( "gray" ).removeClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-68").click(function () {
+    if ( $('th.Historic').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Historic" ).addClass( "gray" ).removeClass( "light" );
+        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+  $("#phase-70").click(function () {
+    if ( $('th.Additional').hasClass('deactivated') ) {
+    } else {
+        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Interior" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Historic" ).removeClass( "gray" ).removeClass( "light" );
+        $( ".Additional" ).addClass( "gray" ).removeClass( "light" );
+        $( ".TotalToDate" ).removeClass( "gray" );
+    }
+  });
+
+  $("#total").click(function () {
+      $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".Interior" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".Historic" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".Additional" ).removeClass( "gray" ).removeClass( "light" );
+      $( ".TotalToDate" ).addClass( "gray" );
+  });
+  
+
+});
+
 
 //duration function for schedule page
 

@@ -1,19 +1,23 @@
 <%= form_for @project do |f| %>
 <%= render 'shared/error_messages', :object => f.object %>
 
-	<h3>Project Team</h3>
-  		<div class="notes">
-			Select project team members and their roles. Adding a TKWA staff member to the project enables time tracking.
-		</div>		
+		<div class="row">	
+			<h3>Project Team</h3>
+  			<div class="notes">
+				Select project team members and their roles. Adding a TKWA staff member to the project enables time tracking.
+			</div>		
+		</div>
 					
 		<div class="row">	
+
+			<div class="span13">
 					
 			<div class="table-main">
 
 				<div class="table-head">
 					<div class="row">
-						<div class="span2-5">TKWA Staff Name</div>
-						<div class="span2-5">Role</div>
+						<div class="span2-75">TKWA Staff Name</div>
+						<div class="span2-75">Role</div>
 					</div>
 				</div>
 
@@ -32,8 +36,8 @@
 
 				<div class="table-head">
 					<div class="row">
-						<div class="span2-5">Consultant Name</div>
-						<div class="span2-5">Role(s)</div>
+						<div class="span2-75">Consultant Name</div>
+						<div class="span2-75">Role(s)</div>
 					</div>
 				</div>
 
@@ -47,59 +51,58 @@
            		</div>	
            					
         	</div>
+        	</div>
 					
 		</div> <!-- end row -->
 
 		<br /><br />
       	<div class="row">
-			<div class="span12">
 				<div class="actions">
     				<%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
     				<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
 				</div>
-			</div>
 		</div>
     
 <% end %> <!-- end form -->
 
 <br /><br />
-					
-<h3>Contact List</h3>
-  				
-					<div class="links">
-						<a id="team-all">Show All</a> | <a id="team-staff">TKWA Staff only</a> | <a id="team-consultants">Consultants only</a>
-					</div>
 
-					
 					<div class="row">
 					
-						<div class="span12 columns3 contact-list">
+						<h3>Contact List</h3>
+  				
+						<div class="links">
+							<a id="team-all">Show All</a> | <a id="team-staff">TKWA Staff only</a> | <a id="team-consultants">Consultants only</a>
+						</div>
+					</div>
+					
+					<div class="row columns3 contact-list">
+					
 
-							<% @project.employee_teams.each do |team| %>
-					
-								<div class="well well-white team-staff">
-									<span class="bold"><%= link_to Contact.find_by_id(team.contact_id).name, contact_path(Contact.find_by_id(team.contact_id)) %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <br />
-									<%= Contact.find_by_id(team.contact_id).work_company %><br />
-									<%= Contact.find_by_id(team.contact_id).work_address.gsub(/\n/, '<br/>').html_safe %><br />
-									<%= Contact.find_by_id(team.contact_id).work_phone %><br />
-									<%= mail_to(Contact.find_by_id(team.contact_id).work_email) %><br />
-								</div>
-							
-							<% end %>
+						<% @project.employee_teams.each do |team| %>
+				
+							<div class="well well-white team-staff">
+								<span class="bold"><%= link_to Contact.find_by_id(team.contact_id).name, contact_path(Contact.find_by_id(team.contact_id)) %><% unless team.role.blank? %>, <%= team.role %><% end %></span> <br />
+								<%= Contact.find_by_id(team.contact_id).work_company %><br />
+								<%= Contact.find_by_id(team.contact_id).work_address.gsub(/\n/, '<br/>').html_safe %><br />
+								<%= Contact.find_by_id(team.contact_id).work_phone %><br />
+								<%= mail_to(Contact.find_by_id(team.contact_id).work_email) %><br />
+							</div>
+						
+						<% end %>
 
-							<% @consultant_list.each do |team| %>
+						<% @consultant_list.each do |team| %>
+				
+							<div class="well well-white team-consultants">
+								<span class="bold"><%= link_to Consultant.find_by_id(team.consultant_id).company, consultant_path(Consultant.find_by_id(team.consultant_id)) %></span><br />
+								<span class="bold"><%= list_roles(team.consultant_id, @project.id) %></span><br />
+								<%= Consultant.find_by_id(team.consultant_id).address.gsub(/\n/, '<br/>').html_safe %><br />
+								<%= Consultant.find_by_id(team.consultant_id).phone %><br />
+								<%= mail_to(Consultant.find_by_id(team.consultant_id).contact_email) %><br />
+							</div>
+						
+						<% end %>
 					
-								<div class="well well-white team-consultants">
-									<span class="bold"><%= link_to Consultant.find_by_id(team.consultant_id).company, consultant_path(Consultant.find_by_id(team.consultant_id)) %></span><br />
-									<span class="bold"><%= list_roles(team.consultant_id, @project.id) %></span><br />
-									<%= Consultant.find_by_id(team.consultant_id).address.gsub(/\n/, '<br/>').html_safe %><br />
-									<%= Consultant.find_by_id(team.consultant_id).phone %><br />
-									<%= mail_to(Consultant.find_by_id(team.consultant_id).contact_email) %><br />
-								</div>
-							
-							<% end %>
-					
-						</div> <!-- end span13 -->
 					
 					</div> <!-- end row -->
 

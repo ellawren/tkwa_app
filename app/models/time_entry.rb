@@ -16,6 +16,7 @@
 #  day5         :decimal(4, 2)
 #  day6         :decimal(4, 2)
 #  day7         :decimal(4, 2)
+#  employee_id  :integer
 #
 
 class TimeEntry < ActiveRecord::Base
@@ -25,7 +26,7 @@ class TimeEntry < ActiveRecord::Base
   
   validates_presence_of :phase, :message => "must be selected"
 
-  def total_hours
+  def entry_total
         d1 = day1 || 0
         d2 = day2 || 0
         d3 = day3 || 0

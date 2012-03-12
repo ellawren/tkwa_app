@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308153949) do
+ActiveRecord::Schema.define(:version => 20120312191002) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -139,6 +139,24 @@ ActiveRecord::Schema.define(:version => 20120308153949) do
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
+  create_table "phases", :force => true do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.string   "shorthand"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "full_name"
+  end
+
+  create_table "phases_projects", :id => false, :force => true do |t|
+    t.integer  "project_id", :null => false
+    t.integer  "phase_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "phases_projects", ["project_id", "phase_id"], :name => "index_phases_projects_on_project_id_and_phase_id", :unique => true
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.decimal  "number",              :precision => 8, :scale => 2
@@ -256,7 +274,10 @@ ActiveRecord::Schema.define(:version => 20120308153949) do
     t.decimal  "day5",         :precision => 4, :scale => 2
     t.decimal  "day6",         :precision => 4, :scale => 2
     t.decimal  "day7",         :precision => 4, :scale => 2
+    t.integer  "employee_id"
   end
+
+  add_index "time_entries", ["employee_id", "phase"], :name => "index_time_entries_on_employee_id_and_phase"
 
   create_table "timesheets", :force => true do |t|
     t.integer  "year",          :null => false

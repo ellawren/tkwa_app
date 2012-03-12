@@ -9,6 +9,8 @@
 	<%= render "tabnav_timesheets" %>
 <% end %>
 
+
+
 Year: <%= @timesheet.year %><br />
 Week: <%= @timesheet.week %><br />
 
@@ -32,7 +34,7 @@ Week: <%= @timesheet.week %><br />
 						<div class="day-label"><%= date_label(5, @timesheet) %></div>
 						<div class="day-label"><%= date_label(6, @timesheet) %></div>
 						<div class="day-label"><%= date_label(7, @timesheet) %></div>
-						<div class="day-label"><br />Total</div>
+						<div class="total"><br />Total</div>
 					</div>
 				</div>
 
@@ -55,7 +57,7 @@ Week: <%= @timesheet.week %><br />
 						<div class="day-label"><%= @timesheet.time_entries.sum(:day5) %></div>
 						<div class="day-label"><%= @timesheet.time_entries.sum(:day6) %></div>
 						<div class="day-label"><%= @timesheet.time_entries.sum(:day7) %></div>
-						<div class="day-label"><%= @timesheet.total_hours %></div>
+						<div class="inputbox total"><%= @timesheet.total_hours %></div>
 					</div>
 				</div>
            					

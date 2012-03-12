@@ -1,63 +1,29 @@
 <tr>
-									<td class="lt bold"><div class="inputbox name"><%= employee_name(f.contact_id) %>
-										<div class="inputbox italic">
-											<%= link_to "edit", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal" %>
-										</div></td>
+		<td class="lt bold">
+			<div class="inputbox name"><%= employee_name(f.contact_id) %>
+			<div class="inputbox italic"><%= link_to "edit", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal" %></div>
+		</td>
 
-									<td><div class="uneditable-input span1 est"><%= strip(f.pd_hours) %></div>
-										<div class="act over">--</div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.sd_hours) %></div></div>
-										<div class="act">--</div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.dd_hours) %></div></div>
-										<div class="act">--</div></td>
-									<td class="gray"><div class="uneditable-input span1 est"><%= strip(f.cd_hours) %></div></div>
-										<div class="act">
-											<a href="#" class="pop" rel="popover" title="Joel Krueger - Phase 40" 
-											data-content="<table class='table-condensed table-striped pop-table'>
-												<thead>
-													<tr>
-														<th>Task</th>
-														<th>Hours</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Administration</td>
-														<td>12.00</td>
-													</tr>
-													<tr>
-														<td>Travel Time</td>
-														<td>2.25</td>
-													</tr>
-													<tr>
-														<td>Meeting</td>
-														<td>7.75</td>
-													</tr>
-													<tr>
-														<td>Drawings</td>
-														<td>28.00</td>
-													</tr>
-												</tbody>
-												<thead>
-													<tr class='lower'>
-														<th>Phase 40 Total</th>
-														<th>50.00</th>
-													</tr>
-												</thead>
-											</table>">--</a>
-										
-										</div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.bid_hours) %></div></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.cca_hours) %></div></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.int_hours) %></div></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.his_hours) %></div></div>
-										<div class="act"></div></td>
-									<td><div class="uneditable-input span1 est"><%= strip(f.add_hours) %></div></div>
-										<div class="act"></div></td>
-									<td class="total"><div class="uneditable-input span1 est"><%= strip(f.est_total) %></div>
-										<div class="act over">--</div></td>
-									<td><div class="act sum over">--</div></td>
-								</tr>
+		<%= tracking_td(f, f.pd_hours, 'Predesign') %>
+		<%= tracking_td(f, f.sd_hours, 'Schematic') %>
+		<%= tracking_td(f, f.dd_hours, 'Design Dev') %>
+		<%= tracking_td(f, f.cd_hours, 'Const Docs') %>
+		<%= tracking_td(f, f.bid_hours, 'Bidding') %>
+		<%= tracking_td(f, f.cca_hours, 'CCA') %>
+		<%= tracking_td(f, f.int_hours, 'Interior') %>
+		<%= tracking_td(f, f.his_hours, 'Historic') %>
+		<%= tracking_td(f, f.add_hours, 'Additional') %>
+
+		<td class="total TotalToDate gray">
+			<div class="uneditable-input span1 est"><%= strip(f.est_total) %></div>
+			<div class="uneditable-input span1 act <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>">
+				<% unless @project.employee_actual(f.contact_id, 'Total') == 0 %>
+					<%= strip(@project.employee_actual(f.contact_id, 'Total')) %>
+					<% end %>
+			</div>
+		</td>
+
+		<td>
+			<div class="act sum <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= over_under(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %></div>
+		</td>
+</tr>

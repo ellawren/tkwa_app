@@ -20,8 +20,6 @@ module ApplicationHelper
       "class='active'" if params[:controller] == c_name
   end
 
-  
-
 
   def formatted_date(date)
     if date
