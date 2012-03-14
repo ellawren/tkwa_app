@@ -26,8 +26,9 @@ class ProjectsController < ApplicationController
   def team
     @project = Project.find(params[:id])
     @consultant_list = ConsultantTeam.find(:all, :select => 'DISTINCT consultant_id', :conditions => [ "project_id = #{@project.id}" ] )
-
   end
+
+
   
   def tracking
     @project = Project.find(params[:id])
@@ -35,9 +36,9 @@ class ProjectsController < ApplicationController
     @all_entries = TimeEntry.find_all_by_project_id(@project.id)
     @phases = @project.available_phases
 
-            estimated = (@project.sum_est).to_f
-            actual = (@project.sum_actual).to_f
-            @percent_complete = estimated/actual
+            estimated = @project.sum_est
+            actual = @project.sum_actual
+            @percent_complete = actual/estimated *100
 
             @pd_pc = @project.phase_est('pd').to_f/estimated *100
             @sd_pc = @project.phase_est('sd').to_f/estimated *100

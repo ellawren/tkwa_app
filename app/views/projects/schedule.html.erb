@@ -34,35 +34,35 @@
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: <%= @pd_width %>%;"></a>
 
     					<% if @pd_pc %>
-    						<div class="phase-marker <%= 'future' if @today_pc < @pd_pc %>" style="left:<%= @pd_width %>%;"></div>
+    						<div class="phase-marker" style="left:<%= @pd_width %>%;"></div>
     					<% end %>
 
     					<!-- schematic -->
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:<%= @pd_width %>%; width: <%= @sd_width %>%;"></a>
 
     					<% if @sd_pc_sum %>
-    					<div class="phase-marker <%= 'future' if @today_pc < @sd_pc_sum %>" style="left:<%= @dd_left %>%;"></div>
+    					<div class="phase-marker" style="left:<%= @dd_left %>%;"></div>
     					<% end %>
 
     					<!-- design dev -->
     					<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:<%= @dd_left %>%; width: <%= @dd_width %>%;"></a>
     					
     					<% if @dd_pc_sum %>
-    					<div class="phase-marker <%= 'future' if @today_pc < @dd_pc_sum %>" style="left:<%= @cd_left %>%;"></div>
+    					<div class="phase-marker" style="left:<%= @cd_left %>%;"></div>
     					<% end %>
 
     					<!-- const docs -->
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:<%= @cd_left %>%; width: <%= @cd_width %>%;"></a>
     					
     					<% if @cd_pc_sum %>
-    					<div class="phase-marker <%= 'future' if @today_pc < @cd_pc_sum %>" style="left:<%= @bid_left %>%;"></div>
+    					<div class="phase-marker" style="left:<%= @bid_left %>%;"></div>
     					<% end %>
 
     					<!-- bidding -->
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:<%= @bid_left %>%; width: <%= @bid_width %>%;"></a>
 
     					<% if @bid_pc_sum %>
-    					<div class="phase-marker <%= 'future' if @today_pc < @bid_pc_sum %>" style="left:<%= @cca_left %>%;"></div>
+    					<div class="phase-marker" style="left:<%= @cca_left %>%;"></div>
     					<% end %>
 
     					<!-- cca -->

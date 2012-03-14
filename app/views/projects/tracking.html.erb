@@ -17,62 +17,70 @@
     						<div class="bar" style="width: <%= @percent_complete %>%;"></div>
     					</div>
     					
-    					<div class="circle circle-begin circle-filled"></div>
+    					<!-- circle begin -->
+    					<div class="circle circle-begin <% if @project.sum_actual > 0 && @project.sum_est > 0 %>circle-filled<% end %>"></div>
 
     					<!-- predesign -->
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign: <%= strip(@project.phase_est('pd')) %> hours" style="width: <%= @pd_pc %>%;"></a>
 
-    					<div class="phase-marker future" style="left:<%= @pd_pc %>%;"></div>
+    					<div class="phase-marker" style="left:<%= @pd_pc %>%;"></div>
     					
     					<!-- schematic -->
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic: <%= strip(@project.phase_est('sd')) %> hours" style="left:<%= @pd_pc %>%; width: <%= @sd_pc %>%;"></a>
 
     					<!-- design development -->
-    					<div class="phase-marker future" style="left:<%= @dd_left %>%;"></div>
+    					<div class="phase-marker" style="left:<%= @dd_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="design dev: <%= strip(@project.phase_est('dd')) %> hours" style="left:<%= @dd_left %>%; width: <%= @dd_pc %>%;"></a>
 
     					<!-- const docs -->
-    					<div class="phase-marker future" style="left: <%= @cd_left %>%;"></div>
+    					<div class="phase-marker" style="left: <%= @cd_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs: <%= strip(@project.phase_est('cd')) %> hours" style="left: <%= @cd_left %>%; width: <%= @cd_pc %>%;"></a>
 
     					<!-- bidding -->
-    					<div class="phase-marker future" style="left: <%= @bid_left %>%;"></div>
+    					<div class="phase-marker" style="left: <%= @bid_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding: <%= strip(@project.phase_est('bid')) %> hours" style="left: <%= @bid_left %>%; width: <%= @bid_pc %>%;"></a>
 
     					<!-- cca -->
-    					<div class="phase-marker future" style="left: <%= @cca_left %>%;"></div>
+    					<div class="phase-marker" style="left: <%= @cca_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca: <%= strip(@project.phase_est('cca')) %> hours" style="left: <%= @cca_left %>%; width: <%= @cca_pc %>%;"></a>
 
     					<!-- interior -->
-    					<div class="phase-marker future" style="left: <%= @int_left %>%;"></div>
+    					<div class="phase-marker" style="left: <%= @int_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="interior: <%= strip(@project.phase_est('int')) %> hours" style="left: <%= @int_left %>%; width: <%= @int_pc %>%;"></a>
 
     					<!-- historic -->
-    					<div class="phase-marker future" style="left: <%= @his_left %>%;"></div>
+    					<div class="phase-marker" style="left: <%= @his_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="historic: <%= strip(@project.phase_est('his')) %> hours" style="left: <%= @his_left %>%; width: <%= @his_pc %>%;"></a>
 
     					<!-- additional -->
-    					<div class="phase-marker future" style="left: <%= @add_left %>%;"></div>
+    					<div class="phase-marker" style="left: <%= @add_left %>%;"></div>
     					
     					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="additional: <%= strip(@project.phase_est('add')) %> hours" style="left: <%= @add_left %>%; width: <%= @add_pc %>%;"></a>
 
     					<!-- target marker-->
-    					<div class="marker target" style="left:13%;">
+    					<!--<div class="marker target" style="left:13%;">
     						<div class="bubble"><div class="caps">Target</div>135 hours</div>
-    					</div>
+    					</div>-->
     					
     					<!-- actual marker -->
-    					<div class="marker todate" style="left:<%= @percent_complete %>%;">
-    						<div class="bubble"><div class="caps">Actual</div><span class="green"><%= @project.sum_actual %> hours</span></div>
-						</div>
+    					<% if @project.sum_actual > 0 && @percent_complete < 100 %>
+	    					<div class="marker todate" style="left:<%= @percent_complete %>%;">
+	    						<div class="bubble"><div class="caps">Actual</div><span class="green"><%= @project.sum_actual %> hours</span></div>
+							</div>
+						<% end %>
 						
-						<div class="circle circle-complete"><div class="caps">Total</div><div class="num-total"><%= strip(@project.sum_est) %></div><div class="caps">Hours</div></div>
+						<!-- circle end -->
+						<% if @percent_complete >= 100 && @project.sum_est > 0 %>
+							<div class="circle circle-complete circle-filled"><div class="caps">Total</div><div class="num-total"><%= strip(@project.sum_actual) %></div><div class="caps">Hours</div></div>
+						<% else %>
+							<div class="circle circle-complete"><div class="caps">Total</div><div class="num-total"><% if @project.sum_est > 0  %><%= strip(@project.sum_est) %><% else %><%= strip(@project.sum_actual) %><% end %></div><div class="caps">Hours</div></div>
+						<% end %>
 						
 					</div>
 
@@ -111,9 +119,13 @@
 
 									<% Phase.all.each do |phase| %>
 										<td class="<%= phase.name.gsub(/[ ]*/, '') %> <% if @phases.include?(phase) %><% else %>deactivated<% end %>">
-											<div class="uneditable-input span1 est">
-												<%= strip(@project.phase_est(phase.shorthand)) %>
-											</div>
+											<% if @project.phase_est(phase.shorthand) == 0 %>
+												<div class="input-spacer"></div>
+											<% else %>
+												<div class="uneditable-input span1 est">
+													<%= strip(@project.phase_est(phase.shorthand)) %>
+												</div>
+											<% end %>
 											<% if @project.phase_actual("#{phase.name}") == 0 %>
 												<div class="input-spacer"></div>
 											<% else %>
@@ -123,8 +135,19 @@
 										</td>
 									<% end %>
 									
-									<td class="total TotalToDate gray"><div class="uneditable-input span1 est"><%= strip(@project.sum_est) %></div>
-										<div class="uneditable-input span1 act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= @project.sum_actual %></div><div class="round-bottom"></div></td>
+									<td class="total TotalToDate gray">
+										<% if @project.sum_est == 0 %>
+											<div class="input-spacer"></div>
+										<% else %>
+											<div class="uneditable-input span1 est"><%= strip(@project.sum_est) %></div>
+										<% end %>
+										<% if @project.sum_actual == 0 %>
+												<div class="input-spacer"></div>
+										<% else %>
+											<div class="uneditable-input span1 act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= @project.sum_actual %></div>
+										<% end %>
+										<div class="round-bottom"></div>
+									</td>
 
 									<td><div class="act sum <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= over_under(@project.sum_est, @project.sum_actual) %></div></td>
 								</tr>

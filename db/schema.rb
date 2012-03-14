@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312192102) do
+ActiveRecord::Schema.define(:version => 20120314164909) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -263,7 +263,6 @@ ActiveRecord::Schema.define(:version => 20120312192102) do
   create_table "time_entries", :force => true do |t|
     t.integer  "timesheet_id"
     t.integer  "project_id"
-    t.string   "phase"
     t.string   "task"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
@@ -275,9 +274,8 @@ ActiveRecord::Schema.define(:version => 20120312192102) do
     t.decimal  "day6",         :precision => 4, :scale => 2
     t.decimal  "day7",         :precision => 4, :scale => 2
     t.integer  "employee_id"
+    t.integer  "phase_number"
   end
-
-  add_index "time_entries", ["employee_id", "phase"], :name => "index_time_entries_on_employee_id_and_phase"
 
   create_table "timesheets", :force => true do |t|
     t.integer  "year",          :null => false

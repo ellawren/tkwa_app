@@ -8,9 +8,7 @@
 <% content_for :tabnav do %>
 	<%= render "tabnav_timesheets" %>
 <% end %>
-
-
-
+<script>changePhase();</script>
 Year: <%= @timesheet.year %><br />
 Week: <%= @timesheet.week %><br />
 
@@ -24,7 +22,7 @@ Week: <%= @timesheet.week %><br />
 
 				<div class="table-head">
 					<div class="row">
-						<div class="span3-25"><br />Project Name</div>
+						<div class="span3-25 right20"><br />Project Name</div>
 						<div class="span1-75"><br />Phase</div>
 						<div class="span2-75"><br />Task</div>
 						<div class="day-label"><%= date_label(1, @timesheet) %></div>

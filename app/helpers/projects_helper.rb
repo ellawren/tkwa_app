@@ -13,11 +13,11 @@ module ProjectsHelper
   	end
 
     def all_hours(id, phase)
-      array = Array.new(TimeEntry.find_all_by_project_id_and_phase(id, phase))
+      array = Array.new(TimeEntry.find_all_by_project_id_and_phase_number(id, phase.number))
     end
       
     def tracking_td(f, phase)
-      actual_hours = @project.employee_actual(f.contact_id, phase.name)
+      actual_hours = @project.employee_actual(f.contact_id, phase.number)
       est_hours = eval("f.#{phase.shorthand}_hours")
       if est_hours == nil
         est = "<div class='input-spacer'></div>"
@@ -29,7 +29,7 @@ module ProjectsHelper
         act = "<div class='act'></div></td>"
       else
         employee_id = Employee.find_by_contact_id(f.contact_id).id
-        time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase(f.project_id, employee_id, phase.name)
+        time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(f.project_id, employee_id, phase.number)
 
         table_data = []
         time_entries.each do |t|

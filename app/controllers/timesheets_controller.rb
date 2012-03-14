@@ -15,6 +15,7 @@ class TimesheetsController < ApplicationController
    @timesheet = Timesheet.find_by_employee_id(params[:employee_id])
   end
 
+
   def show
 
    @year = params[:year].to_i
@@ -24,6 +25,7 @@ class TimesheetsController < ApplicationController
    @employee= Employee.find(@timesheet.employee_id)
    @contact = Contact.find(@employee.contact_id)
 
+   1.times { @timesheet.time_entries.build }
   end
 
   def create

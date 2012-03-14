@@ -90,7 +90,7 @@ class Project < ActiveRecord::Base
 
     def employee_hours(total_hours, contactid, phase)
       employeeid = Employee.find_by_contact_id(contactid).id
-      total_hours.find_all_by_employee_id_and_phase(employeeid, phase)
+      total_hours.find_all_by_employee_id_and_phase_number(employeeid, phase)
     end
 
     # sum of estimated hours entered for project, by phase
@@ -100,7 +100,7 @@ class Project < ActiveRecord::Base
 
     # sum of actual hours entered for project, by phase
     def phase_actual(phase)
-        time_entries = TimeEntry.find_all_by_project_id_and_phase(self.id, phase)
+        time_entries = TimeEntry.find_all_by_project_id_and_phase_number(self.id, phase)
         array = []
         sum = 0
         time_entries.each do |t| 
@@ -124,7 +124,7 @@ class Project < ActiveRecord::Base
             sum
         else
             employee_id = Employee.find_by_contact_id(contact_id).id
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase(self.id, employee_id, phase)
+            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
             array = []
             sum = 0
             time_entries.each do |t| 
@@ -146,7 +146,7 @@ class Project < ActiveRecord::Base
         int = phase_est('int') || 0
         his = phase_est('his') || 0
         add = phase_est('add') || 0
-        pd + sd + dd + cd + bid + cca + int + his + add
+        (pd + sd + dd + cd + bid + cca + int + his + add).to_f
     end   
 
     # sum of actual hours entered for project
@@ -158,7 +158,7 @@ class Project < ActiveRecord::Base
             array.push(t.entry_total)
         end
         array.map{|x| sum += x}
-        sum
+        sum.to_f
     end
 
     def employee_records(contact_id, phase)

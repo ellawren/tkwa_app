@@ -41,6 +41,11 @@
         label.checkbox { clear:both; overflow-y:hidden; }
         .control-label { text-transform:capitalize; }
         .form-horizontal .control-group { margin-bottom: 12px; }
+        .input-span { padding:6px; margin-left:0px; }
+        .input-span a { font-weight:bold; }
+        .input-span.span3-25 { width:240px; }
+        .input-span.span2-75 { width:184px;  }
+        .input-span.span1-75 { width:96px;  }
         .input-box.span1 { width: 50px; }
         .input-box.span2 { width: 130px; }
         .input-box.span3 { width: 210px; }
@@ -88,7 +93,7 @@
         .well-white { background:#fff; }
         .contact-list .well { display:block; background:#fff; overflow-y: hidden; clear:both; font-size:12px; }
         .textlabel { height:auto; display:inline-block; font-weight:bold; }
-        a.delete-symbol  { float:none; display:inline-block; width:16px; height:16px; padding:1px 2px 3px 2px; color:#333; border-radius:10px; border:1px solid #d0d0d0; text-align:center; font-size:14px; line-height:14px; font-family:'Century Gothic', Helvetica, Arial, sans-serif; }
+        a.delete-symbol  { float:none; display:inline-block; width:16px; height:16px; padding:1px 2px 3px 2px; color:#f4735b; border-radius:10px; border:1px solid #d0d0d0; text-align:center; font-size:14px; line-height:16px; }
         a.delete-symbol:hover { cursor:pointer; background:#fff; text-decoration:none; }
         
     /* presentational classes */
@@ -103,11 +108,13 @@
         .spansm { width:35px; }
         .lightgray { color:#999; }
         .hidden { visibility:hidden; }
+        .no-display     { display:none; }
         .shaded { background-color:#f5f5f5; }
         .lightweight { font-weight:100; color:#555; }
         td.text-right { text-align:right;}
         .input-spacer { width:62px; height:30px; margin-bottom:2px;}
         .flush-left { margin-left:0px; }
+        option.disabled { color:#d0d0d0;}
 
 
     /* alignment and spacing */
@@ -233,11 +240,17 @@
         .timesheets.table-main .table-head div { margin-left:0px; margin-right:5px; }
         .timesheets.table-main .table-head .day-label { width:43px; text-align:center; float:left; margin-right:9px; }
         .timesheets.table-main .total { float:none; font-weight:bold; display:inline-block; width:65px; text-align:center; font-size:12px;  }
-        .timesheets.table-main .table-footer { border-top:1px solid #555; font-weight:bold; margin-top:-40px; font-size:12px; }
+        .timesheets.table-main .table-footer { border-top:2px solid #555; font-weight:bold; margin-top:-35px; font-size:12px; }
         .timesheets.table-main .table-footer .day-label.shift-6 { margin-left:550px; }
         .timesheets.table-main .table-footer div { margin-left:0px; margin-right:5px; }
         .timesheets.table-main .table-footer .day-label { width:43px; text-align:center; float:left; margin-right:9px; margin-top:3px; }
         .timesheets.table-main .table-head .total { margin-left: 5px;}
+        .timesheets.table-main .first-row    { border-top:1px solid #555; }
+        .timesheets.table-main .unsaved     { background-color:#f0f0f0; border:1px solid #d6d6d6; border-radius:8px; margin-bottom:4px; margin-top:-2px;}
+        .timesheets.table-main .unsaved .delete-symbol   { display:none;}
+        .timesheets.table-main .table-head div.right20        { margin-right:20px; }
+        .timesheets.table-main .unsaved .span3-25 { width:230px; margin-left:10px; margin-right:10px; }
+
 
     /* project tracking table */
   
@@ -312,8 +325,8 @@
 
     /* basic styling for circles */
 
-        .circle { position:absolute; width:80px; height:66px; -webkit-border-radius:40px; border-radius:40px; padding:14px 0 0 0px; text-align:center; top:-32px; right:-75px; background:#f0f0f0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
-        .circle-begin { top:-32px; left:-75px; background:none; }  
+        .circle { position:absolute; width:80px; height:66px; -webkit-border-radius:40px; border-radius:40px; padding:14px 0 0 0px; text-align:center; top:-32px; right:-75px; background-color:#f0f0f0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
+        .circle-begin { top:-32px; left:-75px; z-index:99; }  
         .circle .caps { text-align:center; width:auto; color:#666; }
         .num-total { font-weight:bold; color:#000; font-size:12pt; text-align:center; width:auto; }
 
@@ -326,10 +339,7 @@
 
     /* phase markers */
 
-        .phase-marker { position:absolute; top:0; height:18px; }
-        .blue-bkg .phase-marker { border-left:1px solid #348ea5; border-right:1px solid #d0e2e7; }    
-        .green-bkg .phase-marker { border-left:1px solid #439539; border-right:1px solid #b5d7b1; }
-        .phase-marker.future { border-left:1px solid #b6b6b6; border-right:1px solid #fff; }
+        .phase-marker { position:absolute; top:0; height:18px; border-left:1px solid rgba(100, 100, 100, 0.3); border-right:1px solid rgba(255, 255, 255, 0.6); }
 
     /* target and to-date bubbles */
 

@@ -16,7 +16,7 @@ class Timesheet < ActiveRecord::Base
   
   belongs_to :employee
   has_many :time_entries, :dependent => :destroy
-  accepts_nested_attributes_for :time_entries, :allow_destroy => true
+  accepts_nested_attributes_for :time_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:project_id].blank? }
 
   YEARS =   [	"2012", "2011" ]
 

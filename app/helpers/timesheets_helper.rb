@@ -57,4 +57,20 @@ module TimesheetsHelper
     end
   end
 
+  def all_entries(project, timesheet)
+    TimeEntry.find_all_by_project_id_and_timesheet_id(project, timesheet)
+  end
+
+  def first_entry(project, timesheet)
+    TimeEntry.find_by_project_id_and_timesheet_id(project, timesheet)
+  end
+
+  def is_first?(object)
+    true if ( all_entries(object.project_id, object.timesheet_id).count > 1 && object.id == first_entry(object.project_id, object.timesheet_id).id ) || all_entries(object.project_id, object.timesheet_id).count == 1
+  end
+
+  def unsaved?(object)
+    true if object.project_id == nil
+  end
+
 end

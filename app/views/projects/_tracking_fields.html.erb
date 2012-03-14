@@ -9,7 +9,11 @@
 		<% end %>
 
 		<td class="total TotalToDate gray">
-			<div class="uneditable-input span1 est"><%= strip(f.est_total) %></div>
+			<% if f.est_total == 0 %>
+				<div class="input-spacer"></div>
+			<% else %>
+				<div class="uneditable-input span1 est"><%= strip(f.est_total) %></div>
+			<% end %>
 			<% if @project.employee_actual(f.contact_id, 'Total') == 0 %>
 				<div class="input-spacer"></div>
 			<% else %>

@@ -1,3 +1,52 @@
+
+// these are currently not used, too many bugs
+
+function changePhase() {
+    var phases;
+    phases = $('#timesheet_time_entries_attributes_0_phase_number').html();
+ 
+    return $('.project-selector').change(function () {
+      var options, project, num;
+      num = $(this).attr('id').replace(/[^0-9]/g, '');
+      project = $('#timesheet_time_entries_attributes_' + num + '_project_id :selected').text();
+      options = $(phases).filter("optgroup[label='" + project + "']").html();
+      if (options) {
+          $('#timesheet_time_entries_attributes_' + num + '_phase').html(options);
+      } else {
+          $('#timesheet_time_entries_attributes_' + num + '_phase').empty();
+      }
+      return end;
+ 
+    });
+}
+
+
+
+
+
+(function() {
+
+  jQuery(function() {
+    //var phases;
+    //phases = $('#timesheet_time_entries_attributes_0_phase').html();
+    //return $('#timesheet_time_entries_attributes_0_project_id').change(function() {
+    $('.timesheet-project-select2').change(function() {
+      //var options, project, num;
+      num = $(this).attr('id').replace(/[^0-9]/g, '');
+      alert(num);
+      //project = $('#timesheet_time_entries_attributes_0_project_id :selected').text();
+      //options = $(phases).filter("optgroup[label='" + project + "']").html();
+      //if (options) {
+      //  $('#timesheet_time_entries_attributes_0_phase').html(options);
+      //} else {
+      //  $('#timesheet_time_entries_attributes_0_phase').empty();
+      //}
+      //return end;
+    });
+  });
+
+}).call(this);
+
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   //$(link).closest(".input").hide();
@@ -8,6 +57,7 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
+  changePhase();
 }
 
 
@@ -317,5 +367,12 @@ function openURL(id) {
   }
   window.open(queryString);
 }
-	
+
+
+
+
+
+
+
+
 	

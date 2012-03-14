@@ -1,9 +1,34 @@
-<div class="table-row">
+<div class="table-row <% if is_first?(f.object) %>first-row<% end %><% if unsaved?(f.object) %>unsaved<% end %>">
   <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
   <%= f.hidden_field :employee_id, value: "#{@timesheet.employee_id}" %>
-  <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "span3-25" } ) %>
-  <%= f.collection_select(:phase, Phase.all, :name, :name, { :include_blank => true }, { :class => "span1-75" } ) %>
-  <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "span2-75" } ) %>
+
+  <% if f.object.project_id %>
+    <div class="input-span span3-25">
+      <% if is_first?(f.object) %>
+        <%= link_to Project.find(f.object.project_id).name, tracking_project_path(f.object.project_id) %> 
+      <% end %>
+    </div>
+  <% else %>
+    <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "span3-25 project-selector" } ) %>
+  <% end %>
+
+  <% if f.object.phase_number %>
+    <div class="input-span span1-75">
+      <%= Phase.find_by_number(f.object.phase_number).name %>
+    </div>
+  <% else %>
+    <%= f.collection_select :phase_number, Phase.order(:number), :number, :name, { include_blank: true }, { :class => "span1-75 phase-selector" } %>
+  <% end %>
+
+  <% if f.object.task %>
+    <div class="input-span span2-75">
+      <%= f.object.task %>
+    </div>
+  <% else %>
+    <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "span2-75" } ) %>
+  <% end %>
+
+  
   <%= f.text_field :day1 %>
   <%= f.text_field :day2 %>
   <%= f.text_field :day3 %>
