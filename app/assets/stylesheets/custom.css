@@ -237,16 +237,17 @@
         .timesheets.table-main  { width:1020px; }
         .timesheets.table-main select, .timesheets.table-main input { margin-right:2px; font-size:12px; }
         .timesheets.table-main input { text-align:center; width:35px; padding-top:4px; padding-bottom:4px; margin-top:2px; }
+        .timesheets.table-main .table-head { border-bottom: 2px solid #555; }
         .timesheets.table-main .table-head div { margin-left:0px; margin-right:5px; }
         .timesheets.table-main .table-head .day-label { width:43px; text-align:center; float:left; margin-right:9px; }
         .timesheets.table-main .total { float:none; font-weight:bold; display:inline-block; width:65px; text-align:center; font-size:12px;  }
         .timesheets.table-main .table-footer { border-top:2px solid #555; font-weight:bold; margin-top:-35px; font-size:12px; }
-        .timesheets.table-main .table-footer .day-label.shift-6 { margin-left:550px; }
+        .timesheets.table-main .table-footer .day-label.shift-6 { margin-left:560px; }
         .timesheets.table-main .table-footer div { margin-left:0px; margin-right:5px; }
         .timesheets.table-main .table-footer .day-label { width:43px; text-align:center; float:left; margin-right:9px; margin-top:3px; }
         .timesheets.table-main .table-head .total { margin-left: 5px;}
-        .timesheets.table-main .first-row    { border-top:1px solid #555; }
-        .timesheets.table-main .unsaved     { background-color:#f0f0f0; border:1px solid #d6d6d6; border-radius:8px; margin-bottom:4px; margin-top:-2px;}
+        .timesheets.table-main .first-row    { border-top:1px solid #555; margin-top:-1px; }
+        .timesheets.table-main .unsaved     { background-color:#f0f0f0; border:1px solid #d6d6d6; border-radius:8px; margin-bottom:4px; margin-top:6px;}
         .timesheets.table-main .unsaved .delete-symbol   { display:none;}
         .timesheets.table-main .table-head div.right20        { margin-right:20px; }
         .timesheets.table-main .unsaved .span3-25 { width:230px; margin-left:10px; margin-right:10px; }

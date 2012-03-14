@@ -23,8 +23,8 @@ group :assets do
   gem 'jquery-ui-rails'
   
   # these two are for coffeescript
-  gem 'therubyracer'
-  gem 'barista'
+  # gem 'therubyracer'
+  # gem 'barista'
 
 end
 
