@@ -2,6 +2,7 @@ TkwaApp::Application.routes.draw do
 
 
 
+
   resources :users do
     member do
       get :following, :followers, :profile
@@ -27,6 +28,7 @@ TkwaApp::Application.routes.draw do
   resources :contacts
   resources :employees
   resources :employee_teams
+  resources :holidays
   resources :microposts,  only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :services

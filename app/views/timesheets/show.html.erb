@@ -8,15 +8,13 @@
 <% content_for :tabnav do %>
 	<%= render "tabnav_timesheets" %>
 <% end %>
-<script>changePhase();</script>
-Year: <%= @timesheet.year %><br />
-Week: <%= @timesheet.week %><br />
+	
 
 	<%= form_for @timesheet do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 
-		<div class="row">	
-					
+		<h3>Billable Time</h3>
+		<div class="row">		
 			
         	<div class="table-main timesheets">
 
@@ -25,13 +23,13 @@ Week: <%= @timesheet.week %><br />
 						<div class="span3-25 right20"><br />Project Name</div>
 						<div class="span1-75"><br />Phase</div>
 						<div class="span2-75"><br />Task</div>
-						<div class="day-label"><%= date_label(1, @timesheet) %></div>
-						<div class="day-label"><%= date_label(2, @timesheet) %></div>
-						<div class="day-label"><%= date_label(3, @timesheet) %></div>
-						<div class="day-label"><%= date_label(4, @timesheet) %></div>
-						<div class="day-label"><%= date_label(5, @timesheet) %></div>
-						<div class="day-label"><%= date_label(6, @timesheet) %></div>
-						<div class="day-label"><%= date_label(7, @timesheet) %></div>
+						<div class="day-label <% if is_today?(1, @timesheet) %>today<% end %>"><%= date_label(1, @timesheet) %></div>
+						<div class="day-label <% if is_today?(2, @timesheet) %>today<% end %>"><%= date_label(2, @timesheet) %></div>
+						<div class="day-label <% if is_today?(3, @timesheet) %>today<% end %>"><%= date_label(3, @timesheet) %></div>
+						<div class="day-label <% if is_today?(4, @timesheet) %>today<% end %>"><%= date_label(4, @timesheet) %></div>
+						<div class="day-label <% if is_today?(5, @timesheet) %>today<% end %>"><%= date_label(5, @timesheet) %></div>
+						<div class="day-label <% if is_today?(6, @timesheet) %>today<% end %>"><%= date_label(6, @timesheet) %></div>
+						<div class="day-label <% if is_today?(7, @timesheet) %>today<% end %>"><%= date_label(7, @timesheet) %></div>
 						<div class="total"><br />Total</div>
 					</div>
 				</div>
@@ -41,36 +39,85 @@ Week: <%= @timesheet.week %><br />
             		<%= f.fields_for :time_entries do |builder| %>
             			<%= render 'time_entry_fields', :f => builder %>
             		<% end %>
-            		<%= link_to_add_fields "add time", f, :time_entries, "btn offset-left table-offset" %>
+            		<%= link_to_add_fields "add new entry", f, :time_entries, "btn offset-left table-offset" %>
            			<!-- end team form -->
            		</div>	
 
            		<div class="table-footer">
 					<div class="row">
 
-						<div class="day-label shift-6"><%= @timesheet.time_entries.sum(:day1) %></div>
-						<div class="day-label"><%= @timesheet.time_entries.sum(:day2) %></div>
-						<div class="day-label"><%= @timesheet.time_entries.sum(:day3) %></div>
-						<div class="day-label"><%= @timesheet.time_entries.sum(:day4) %></div>
-						<div class="day-label"><%= @timesheet.time_entries.sum(:day5) %></div>
-						<div class="day-label"><%= @timesheet.time_entries.sum(:day6) %></div>
-						<div class="day-label"><%= @timesheet.time_entries.sum(:day7) %></div>
-						<div class="inputbox total"><%= @timesheet.total_hours %></div>
+						<div class="day-label shift-6"><%= sum_nonzero(:day1) %></div>
+						<div class="day-label"><%= sum_nonzero(:day2) %></div>
+						<div class="day-label"><%= sum_nonzero(:day3) %></div>
+						<div class="day-label"><%= sum_nonzero(:day4) %></div>
+						<div class="day-label"><%= sum_nonzero(:day5) %></div>
+						<div class="day-label"><%= sum_nonzero(:day6) %></div>
+						<div class="day-label"><%= sum_nonzero(:day7) %></div>
+						<div class="inputbox total"><%= nonzero?(@timesheet.total_hours) %></div>
 					</div>
 				</div>
            					
         	</div>
 
         </div>
+    	<br /><br />
 
-  	<br /><br />
+    	<h3>Non-Billable Time</h3>
+
+    	<div class="row">
+
+    		<div class="table-main timesheets non-billable">
+
+    			<div class="table-head">
+					<div class="row">
+						<div class="input-span nb-category-title"><br />Category</div>
+						<div class="day-label <% if is_today?(1, @timesheet) %>today<% end %>"><%= date_label(1, @timesheet) %></div>
+						<div class="day-label <% if is_today?(2, @timesheet) %>today<% end %>"><%= date_label(2, @timesheet) %></div>
+						<div class="day-label <% if is_today?(3, @timesheet) %>today<% end %>"><%= date_label(3, @timesheet) %></div>
+						<div class="day-label <% if is_today?(4, @timesheet) %>today<% end %>"><%= date_label(4, @timesheet) %></div>
+						<div class="day-label <% if is_today?(5, @timesheet) %>today<% end %>"><%= date_label(5, @timesheet) %></div>
+						<div class="day-label <% if is_today?(6, @timesheet) %>today<% end %>"><%= date_label(6, @timesheet) %></div>
+						<div class="day-label <% if is_today?(7, @timesheet) %>today<% end %>"><%= date_label(7, @timesheet) %></div>
+						<div class="total"><br />Total</div>
+					</div>
+				</div>
+
+				<div class="table-body">
+        			<!-- nested form for team-->
+            		<%= f.fields_for :non_billable_entries do |builder| %>
+            			<%= render 'non_billable_entry_fields', :f => builder %>
+            		<% end %>
+            		<%= link_to_add_fields "add new entry", f, :non_billable_entries, "btn offset-left table-offset" %>
+           			<!-- end team form -->
+           		</div>	
+
+           		<div class="table-footer">
+					<div class="row">
+
+						<div class="day-label shift-6"><%= sum_nonzero(:day1) %></div>
+						<div class="day-label"><%= sum_nonzero(:day2) %></div>
+						<div class="day-label"><%= sum_nonzero(:day3) %></div>
+						<div class="day-label"><%= sum_nonzero(:day4) %></div>
+						<div class="day-label"><%= sum_nonzero(:day5) %></div>
+						<div class="day-label"><%= sum_nonzero(:day6) %></div>
+						<div class="day-label"><%= sum_nonzero(:day7) %></div>
+						<div class="inputbox total"><%= nonzero?(@timesheet.nb_total_hours) %></div>
+					</div>
+				</div>
+
+    		</div>
+
+    	</div>
+  		<br /><br />
       	<div class="row">
+
 			<div class="span12">
 				<div class="actions">
-    				<%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
+    				<%= f.submit "Save + Update", class: "btn btn-large btn-primary span3" %>
     				<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
 				</div>
 			</div>
+
 		</div>
     
 	<% end %> <!-- end form -->

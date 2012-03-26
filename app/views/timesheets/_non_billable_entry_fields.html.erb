@@ -1,0 +1,30 @@
+<div class="table-row <% if nb_unsaved?(f.object) %>unsaved<% end %> <% if f.object.category == "Holiday" %>holiday<% end %>">
+  <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
+  <%= f.hidden_field :employee_id, value: "#{@timesheet.employee_id}" %>
+   
+  <% if f.object.category %> 
+    <div class="input-span span2-5 nb-category">
+      <%= f.object.category %>
+    </div>
+  <% else %>
+    <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true}, class: "span2-5") %>
+  <% end %>
+
+  <% if f.object.description %> 
+    <div class="input-span span5 nb-description">
+      <%= f.object.description %>
+    </div>
+  <% else %>
+    <%= f.text_area :description, class: "span5 nb-description rows1" %>
+  <% end %>
+
+  <%= f.text_field :day1, class: "weekend" %>
+  <%= f.text_field :day2 %>
+  <%= f.text_field :day3 %>
+  <%= f.text_field :day4 %>
+  <%= f.text_field :day5 %>
+  <%= f.text_field :day6 %>
+  <%= f.text_field :day7, class: "weekend" %>
+  <div class="total"><%= f.object.entry_total %></div>
+  <%= link_to_remove_fields "x", f %>
+</div>

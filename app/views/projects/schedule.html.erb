@@ -31,42 +31,42 @@
     					</div>
 
     					<!-- predesign -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign" style="width: <%= @pd_width %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="predesign" style="width: <%= @pd_width %>%;"></a>
 
     					<% if @pd_pc %>
     						<div class="phase-marker" style="left:<%= @pd_width %>%;"></div>
     					<% end %>
 
     					<!-- schematic -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic" style="left:<%= @pd_width %>%; width: <%= @sd_width %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="schematic" style="left:<%= @pd_width %>%; width: <%= @sd_width %>%;"></a>
 
     					<% if @sd_pc_sum %>
     					<div class="phase-marker" style="left:<%= @dd_left %>%;"></div>
     					<% end %>
 
     					<!-- design dev -->
-    					<a class="phase-link tip current-phase" rel="tooltip" href="#" data-original-title="design dev" style="left:<%= @dd_left %>%; width: <%= @dd_width %>%;"></a>
+    					<a class="phase-link tip current-phase" rel="tooltip" href="#" dataoriginaltitle="design dev" style="left:<%= @dd_left %>%; width: <%= @dd_width %>%;"></a>
     					
     					<% if @dd_pc_sum %>
     					<div class="phase-marker" style="left:<%= @cd_left %>%;"></div>
     					<% end %>
 
     					<!-- const docs -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs" style="left:<%= @cd_left %>%; width: <%= @cd_width %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="const docs" style="left:<%= @cd_left %>%; width: <%= @cd_width %>%;"></a>
     					
     					<% if @cd_pc_sum %>
     					<div class="phase-marker" style="left:<%= @bid_left %>%;"></div>
     					<% end %>
 
     					<!-- bidding -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding" style="left:<%= @bid_left %>%; width: <%= @bid_width %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="bidding" style="left:<%= @bid_left %>%; width: <%= @bid_width %>%;"></a>
 
     					<% if @bid_pc_sum %>
     					<div class="phase-marker" style="left:<%= @cca_left %>%;"></div>
     					<% end %>
 
     					<!-- cca -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca" style="left:<%= @cca_left %>%; width: <%= @cca_width %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="cca" style="left:<%= @cca_left %>%; width: <%= @cca_width %>%;"></a>
     					
     					<!-- end date -->						
 						<div class="circle circle-complete <%= 'circle-filled' if @project_over %>">

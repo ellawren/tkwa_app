@@ -3,16 +3,6 @@ module TimesheetsHelper
     "#{date.year}/#{date.week}"
   end
 
-  def this_year
-    Time.now.year
-  end
-
-  def this_week
-    wk_1 = Time.now.beginning_of_year().beginning_of_week(start_day = :sunday) 
-    wk_now = Time.now.beginning_of_week(start_day = :sunday)
-    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
-  end
-
   def get_date(day, param)
     # wk_1 finds the first day of the first week of the given year
     wk_1 = Date.new( param.year, 1, 1).beginning_of_week(start_day = :sunday) 
@@ -23,7 +13,11 @@ module TimesheetsHelper
   end
 
   def date_label(day, param)
-    get_date(day, param).strftime("%b<br/>%d").html_safe
+    get_date(day, param).strftime("<span class='caps'>%a</span><br/>%-m/%-d").html_safe
+  end
+
+  def is_today?(day, param)
+    true if get_date(day, param) == Date.today
   end
 
   def week_array(year)
@@ -31,11 +25,6 @@ module TimesheetsHelper
     (1..wk).to_a 
   end
 
-  def get_week_number(date)
-    wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
-    wk_now = date.beginning_of_week(start_day = :sunday)
-    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
-  end
 
   def is_week?(week)
       if params[:week] == week
@@ -45,6 +34,17 @@ module TimesheetsHelper
       end
   end
 
+  def sum_nonzero(day)
+    if @timesheet.time_entries.sum(day) > 0
+      @timesheet.time_entries.sum(day)
+    end
+  end
+
+  def nonzero?(value)
+    if value > 0
+      value
+    end
+  end
 
   def weeks_in_year(year)
     last_day = Date.new(year, 12, 31)
@@ -71,6 +71,10 @@ module TimesheetsHelper
 
   def unsaved?(object)
     true if object.project_id == nil
+  end
+
+  def nb_unsaved?(object)
+    true if object.category == nil
   end
 
 end

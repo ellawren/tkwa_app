@@ -4,7 +4,7 @@
 				<div class="row">
 					<h3>Time Tracking</h3>
   					<div class="notes">
-						Progress bar shows hours worked as a percentage of total budgeted hours.<br />
+						Progress bar shows hours worked as a percentage of total budgeted hours.
 						
 					</div>				
 				</div>
@@ -21,47 +21,47 @@
     					<div class="circle circle-begin <% if @project.sum_actual > 0 && @project.sum_est > 0 %>circle-filled<% end %>"></div>
 
     					<!-- predesign -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="predesign: <%= strip(@project.phase_est('pd')) %> hours" style="width: <%= @pd_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="predesign: <%= strip(@project.phase_est('pd')) %> hours" style="width: <%= @pd_pc %>%;"></a>
 
     					<div class="phase-marker" style="left:<%= @pd_pc %>%;"></div>
     					
     					<!-- schematic -->
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="schematic: <%= strip(@project.phase_est('sd')) %> hours" style="left:<%= @pd_pc %>%; width: <%= @sd_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="schematic: <%= strip(@project.phase_est('sd')) %> hours" style="left:<%= @pd_pc %>%; width: <%= @sd_pc %>%;"></a>
 
     					<!-- design development -->
     					<div class="phase-marker" style="left:<%= @dd_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="design dev: <%= strip(@project.phase_est('dd')) %> hours" style="left:<%= @dd_left %>%; width: <%= @dd_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="design dev: <%= strip(@project.phase_est('dd')) %> hours" style="left:<%= @dd_left %>%; width: <%= @dd_pc %>%;"></a>
 
     					<!-- const docs -->
     					<div class="phase-marker" style="left: <%= @cd_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="const docs: <%= strip(@project.phase_est('cd')) %> hours" style="left: <%= @cd_left %>%; width: <%= @cd_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="const docs: <%= strip(@project.phase_est('cd')) %> hours" style="left: <%= @cd_left %>%; width: <%= @cd_pc %>%;"></a>
 
     					<!-- bidding -->
     					<div class="phase-marker" style="left: <%= @bid_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="bidding: <%= strip(@project.phase_est('bid')) %> hours" style="left: <%= @bid_left %>%; width: <%= @bid_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="bidding: <%= strip(@project.phase_est('bid')) %> hours" style="left: <%= @bid_left %>%; width: <%= @bid_pc %>%;"></a>
 
     					<!-- cca -->
     					<div class="phase-marker" style="left: <%= @cca_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="cca: <%= strip(@project.phase_est('cca')) %> hours" style="left: <%= @cca_left %>%; width: <%= @cca_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="cca: <%= strip(@project.phase_est('cca')) %> hours" style="left: <%= @cca_left %>%; width: <%= @cca_pc %>%;"></a>
 
     					<!-- interior -->
     					<div class="phase-marker" style="left: <%= @int_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="interior: <%= strip(@project.phase_est('int')) %> hours" style="left: <%= @int_left %>%; width: <%= @int_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="interior: <%= strip(@project.phase_est('int')) %> hours" style="left: <%= @int_left %>%; width: <%= @int_pc %>%;"></a>
 
     					<!-- historic -->
     					<div class="phase-marker" style="left: <%= @his_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="historic: <%= strip(@project.phase_est('his')) %> hours" style="left: <%= @his_left %>%; width: <%= @his_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="historic: <%= strip(@project.phase_est('his')) %> hours" style="left: <%= @his_left %>%; width: <%= @his_pc %>%;"></a>
 
     					<!-- additional -->
     					<div class="phase-marker" style="left: <%= @add_left %>%;"></div>
     					
-    					<a class="phase-link tip" rel="tooltip" href="#" data-original-title="additional: <%= strip(@project.phase_est('add')) %> hours" style="left: <%= @add_left %>%; width: <%= @add_pc %>%;"></a>
+    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="additional: <%= strip(@project.phase_est('add')) %> hours" style="left: <%= @add_left %>%; width: <%= @add_pc %>%;"></a>
 
     					<!-- target marker-->
     					<!--<div class="marker target" style="left:13%;">
@@ -156,11 +156,26 @@
 						
 						</table>
 
-						<br /><br />
+						<br />
 						<div class="notes tracking-table">
-							Target hours are in<span class="uneditable-input est inline bold">black</span> , actual hours are shown in<span class="uneditable-input act inline">green</span> if they are on track or<span class="uneditable-input act inline over">red</span> if they are over.
+							<div class="uneditable-input est inline-block">black</div> = Target hours based on project budget. Staying at or below this number will keep the project profitable.<br />
+							<div class="uneditable-input act inline-block">green</div> = Actual hours as entered on timesheets (on track). Hover over number for breakdown by task.<br />
+							<div class="uneditable-input act inline-block over">red</div> = Actual hours as entered on timesheets (over target). Hover over number for breakdown by task.
 						</div>
-
+						
 				</div>
+				<br /><br />
+
+				<div class="row">
+					<h3>Task Breakdown</h3>
+  					<div class="notes"></div>				
+				</div>
+
+				<div class="row">
+					<ul>
+						<%= hours_by_task(@all_entries) %>
+					</ul>
+				</div>
+
 
 <% end %>						

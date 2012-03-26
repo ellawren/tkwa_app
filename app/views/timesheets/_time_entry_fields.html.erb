@@ -1,11 +1,11 @@
-<div class="table-row <% if is_first?(f.object) %>first-row<% end %><% if unsaved?(f.object) %>unsaved<% end %>">
+<div class="table-row <% if is_first?(f.object) %>first-row<% end %> <% if unsaved?(f.object) %>unsaved<% end %>">
   <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
   <%= f.hidden_field :employee_id, value: "#{@timesheet.employee_id}" %>
 
   <% if f.object.project_id %>
     <div class="input-span span3-25">
       <% if is_first?(f.object) %>
-        <%= link_to Project.find(f.object.project_id).name, tracking_project_path(f.object.project_id) %> 
+        <%= link_to Project.find(f.object.project_id).name, tracking_project_path(f.object.project_id), class: "tip-bottom", rel: "tooltip", dataoriginaltitle: "click to view tracking page" %> 
       <% end %>
     </div>
   <% else %>
@@ -29,13 +29,13 @@
   <% end %>
 
   
-  <%= f.text_field :day1 %>
+  <%= f.text_field :day1, class: "weekend" %>
   <%= f.text_field :day2 %>
   <%= f.text_field :day3 %>
   <%= f.text_field :day4 %>
   <%= f.text_field :day5 %>
   <%= f.text_field :day6 %>
-  <%= f.text_field :day7 %>
+  <%= f.text_field :day7, class: "weekend" %>
   <div class="total"><%= f.object.entry_total %></div>
   <%= link_to_remove_fields "x", f %>
 </div>

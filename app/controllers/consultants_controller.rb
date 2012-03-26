@@ -1,4 +1,5 @@
 class ConsultantsController < ApplicationController
+  
   def index
     # @consultants = Consultant.paginate(page: params[:page])
     @consultants = Consultant.all
@@ -40,4 +41,5 @@ class ConsultantsController < ApplicationController
     flash[:success] = "Consultant destroyed."
     redirect_to consultants_path
   end
+
 end

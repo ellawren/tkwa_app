@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314164909) do
+ActiveRecord::Schema.define(:version => 20120326201113) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -130,6 +130,13 @@ ActiveRecord::Schema.define(:version => 20120314164909) do
   add_index "employees", ["user_id", "contact_id"], :name => "index_employees_on_user_id_and_contact_id", :unique => true
   add_index "employees", ["user_id"], :name => "index_employees_on_user_id"
 
+  create_table "holidays", :force => true do |t|
+    t.date     "date"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -138,6 +145,22 @@ ActiveRecord::Schema.define(:version => 20120314164909) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "non_billable_entries", :force => true do |t|
+    t.integer  "timesheet_id"
+    t.integer  "employee_id"
+    t.string   "category"
+    t.string   "description"
+    t.decimal  "day1",         :precision => 4, :scale => 2
+    t.decimal  "day2",         :precision => 4, :scale => 2
+    t.decimal  "day3",         :precision => 4, :scale => 2
+    t.decimal  "day4",         :precision => 4, :scale => 2
+    t.decimal  "day5",         :precision => 4, :scale => 2
+    t.decimal  "day6",         :precision => 4, :scale => 2
+    t.decimal  "day7",         :precision => 4, :scale => 2
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
 
   create_table "phases", :force => true do |t|
     t.string   "name"
@@ -227,6 +250,15 @@ ActiveRecord::Schema.define(:version => 20120314164909) do
   end
 
   add_index "projects_services", ["project_id", "service_id"], :name => "index_projects_services_on_project_id_and_service_id", :unique => true
+
+  create_table "projects_tasks", :id => false, :force => true do |t|
+    t.integer  "project_id", :null => false
+    t.integer  "task_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects_tasks", ["project_id", "task_id"], :name => "index_projects_tasks_on_project_id_and_task_id", :unique => true
 
   create_table "reimbursables", :force => true do |t|
     t.string   "reimbursable_name"

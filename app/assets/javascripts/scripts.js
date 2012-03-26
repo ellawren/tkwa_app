@@ -47,6 +47,15 @@ function changePhase() {
 
 }).call(this);
 
+
+
+
+
+
+
+
+
+
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   //$(link).closest(".input").hide();
@@ -64,7 +73,7 @@ function add_fields(link, association, content) {
 $(function() {
 		$(".pop").popover({ placement: 'right', animation:true });
 		$(".tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
-		
+		$(".tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
 });
 
 
@@ -290,6 +299,13 @@ function getDuration(){
 
         $("#duration").text( fullDate.join(", ") );
      }
+}
+
+// unsaved entry hours calc
+
+function getEntryHours() {
+  num = $(this).attr('id').replace(/[^0-9]/g, '');
+  alert(num);
 }
 
 // total hours calc

@@ -136,23 +136,23 @@
                 
             </div> <!-- end span7-5 -->
 
-            <div class="span3 offset1">
+            <div class="span4 offset1">
                 <h3>Details</h3>   
-                <br />
+                    <div class="contact-shaded">
 
-                <% unless @current_action == 'new' %>
-                    Created: <strong><%= @contact.created_at.strftime("%m/%d/%Y")  %></strong><br />
-                    Updated: <strong><%= @contact.updated_at.strftime("%m/%d/%Y") %></strong><br />
-                <% end %>
+                        <% unless @current_action == 'new' %>
+                            Created: <strong><%= @contact.created_at.strftime("%m/%d/%Y")  %></strong><br />
+                            Updated: <strong><%= @contact.updated_at.strftime("%m/%d/%Y") %></strong><br />
+                        <% end %>
 
-                <br /><br />
+                    </div>
 
                 <!-- if contact is employee, show employee info fields -->
                 <% if is_employee? %>
-                  <div class="form-inline">
+                <div class="form-inline">
                 
-                    <h4>Employee Info</h4>
-                    <br />
+                    <h3>Employee Info</h3>
+                    <div class="contact-shaded">
 
                         <!-- if admin, show edit fields -->
                         <% if current_user.admin? %>
@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="row">
                                     <%= f.label :birthday, class: "span1-5 box-padding" %>
-                                    <%= f.text_field :birthday, class: "span1-75", datadatepicker: "datepicker", value: bday_format(@contact.birthday) %>
+                                    <%= f.text_field :birthday, class: "span1-75", datadatepicker: "datepicker" %>
                                 </div>
                                 <div class="row">
                                     <%= e.label :hire_date, class: "span1-5 box-padding" %>
@@ -190,77 +190,73 @@
 
                             Employee Number: <strong><%= @contact.employee.number %></strong><br />
                             <% if @contact.birthday %>
-                                Birthday: <strong><%= @contact.birthday.strftime("%B %e") %><br />
-                            <% end %></strong><br />
+                                Birthday: <strong><%= @contact.birthday.strftime("%B %e") %></strong><br />
+                            <% end %>
                             Hire Date: <strong><%= formatted_date(@contact.employee.hire_date) %></strong><br />
 
                             <% if @contact.employee.leave_date %>
                                 Leave Date: <strong><%= formatted_date(@contact.employee.leave_date) %></strong><br />
                             <% end %>
 
-                            Status: <strong><%= @contact.employee.status %></strong><br />
+                            Status: <strong><%= @contact.employee.status %></strong>
 
-                        <!-- end admin conditional -->
-                        <% end %>
+                        <% end %> <!-- end admin conditional -->
+                        
+                    </div>
 
-                     
-                    <br /><br />  
-                  </div>
+                </div> <!-- end employee form -->
 
-                <% if has_current_projects? %>
+                    <% if has_current_projects? %>
 
-                    <h4>Current Projects</h4>
-                    <br />
+                        <h3>Current Projects</h3>
+                        <div class="contact-shaded">
+                            <ul>
+                                <% @contact.employee_teams.current.each do |team| %>
+                                    <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
+                                        <%= team.role %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                        
+                    <% end %>
 
-                    <ul>
-                        <% @contact.employee_teams.current.each do |team| %>
-                            <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
-                                <%= team.role %>
-                            </li>
-                        <% end %>
-                    </ul>
+                    <% if has_completed_projects? %>
 
-                <% end %>
+                        <h3>Completed Projects</h3>
+                        <div class="contact-shaded">
+                            <ul>
+                                <% @contact.employee_teams.completed.each do |team| %>
+                                    <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
+                                        <%= team.role %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </div>
 
-                <% if has_completed_projects? %>
-
-                    <h4>Completed Projects</h4>
-                    <br />
-
-                    <ul>
-                        <% @contact.employee_teams.completed.each do |team| %>
-                            <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
-                                <%= team.role %>
-                            </li>
-                        <% end %>
-                    </ul>
-
-                <% end %>
+                    <% end %>
 
                 <!-- if contact is not an employee, show contact categories -->
                 <% else %>
 
                     <div class="form-vertical">
 
-                    <h4>Contact Category</h4>
-                    <br />
-                  
-                        <%= hidden_field_tag "contact[category_ids][]", nil%>
-                        <% Category.all.each do |category| %>
-                            <label class="checkbox">
-                                <%= check_box_tag "contact[category_ids][]", category.id, @contact.category_ids.include?(category.id), id: dom_id(category) %>
-                                <%= category.name %>
-                            </label>
-                        <% end %>
+                        <h3>Contact Category</h3>
+                        <div class="contact-shaded">
+                            <%= hidden_field_tag "contact[category_ids][]", nil%>
+                            <% Category.all.each do |category| %>
+                                <label class="checkbox">
+                                    <%= check_box_tag "contact[category_ids][]", category.id, @contact.category_ids.include?(category.id), id: dom_id(category) %>
+                                    <%= category.name %>
+                                </label>
+                            <% end %>
+                        </div>
                     
                     </div>
 
-                <!-- end employee conditional -->
-                <% end %>
-                
-                <br />
+                <% end %> <!-- end employee conditional -->
 
-            </div>
+            </div> <!-- end span4 (sidebar) --> 
           
         </div> <!-- end row --> 
 

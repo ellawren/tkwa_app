@@ -31,16 +31,23 @@ module ProjectsHelper
         employee_id = Employee.find_by_contact_id(f.contact_id).id
         time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(f.project_id, employee_id, phase.number)
 
-        table_data = []
-        time_entries.each do |t|
-          table_data.push("<tr><td>#{t.task}</td><td class='text-right'>#{t.entry_total}</td></tr>")
-        end
-        act = "<a href='#' class='pop' rel='popover' title='#{employee_name(f.contact_id)} - #{phase.name}' data-content=\"
-                <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th class='text-right'>Hours</th></tr></thead><tbody>#{table_data.join}</tbody>
+        str = []
+            task_array(time_entries).each do |task| 
+                array = []
+                sum = 0
+                TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number_and_task(f.project_id, employee_id, phase.number, task).each do |t| 
+                    array.push(t.entry_total)
+                end
+                array.map{|x| sum += x}
+                str.push("<tr><td>#{task}</td><td>#{sum.to_f}</td></tr>")
+            end 
+
+        act = "<a class='pop' rel='popover' title='#{employee_name(f.contact_id)} - #{phase.name}' data-content=\"
+                <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th>Hours</th></tr></thead><tbody>#{str.join}</tbody>
                 </table>\"><div class='uneditable-input span1 act #{is_over?(est_hours, actual_hours)}'>#{strip(actual_hours)}</div></a>"
       end
 
-      "<td class=\"#{phase.name.gsub!(/[ ]*/, '')}\"> #{est} #{act} </td>".html_safe
+      "<td class=\"#{phase.name.gsub(/[ ]*/, '')}\"> #{est} #{act} </td>".html_safe
     end
 
     def is_over?(estimated_hours, actual_hours)
@@ -57,6 +64,38 @@ module ProjectsHelper
         end
       end
     end
+
+    def unique_tasks(array)
+        task_list = [] 
+        array.uniq.each do |task| 
+           task_list.push(task) 
+        end 
+        task_list
+    end
+
+    def task_array(all_entries)
+        task_array = [] 
+        all_entries.each do |entry| 
+            task_array.push(entry.task) 
+        end 
+        unique_tasks(task_array)
+    end
+
+
+    def hours_by_task(entries)
+      str = []
+          task_array(entries).each do |task| 
+              array = []
+              sum = 0
+              TimeEntry.find_all_by_task(task).each do |t| 
+                  array.push(t.entry_total)
+              end
+              array.map{|x| sum += x}
+              str.push("<li> #{task} #{sum.to_f}</li>")
+          end 
+      str.join("").html_safe
+    end
+
 
 
     def employee_name(contactid)

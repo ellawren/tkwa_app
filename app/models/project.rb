@@ -64,6 +64,7 @@ class Project < ActiveRecord::Base
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
     has_and_belongs_to_many :phases
+    has_and_belongs_to_many :tasks
 
     # allows project page to add employees + consultants via team join model. must allow destroy.
     accepts_nested_attributes_for :consultant_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? }
@@ -74,6 +75,7 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :reimbursables
     accepts_nested_attributes_for :consultant_roles
     accepts_nested_attributes_for :phases
+    accepts_nested_attributes_for :tasks
 
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true

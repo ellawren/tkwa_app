@@ -26,6 +26,9 @@ class TimesheetsController < ApplicationController
    @contact = Contact.find(@employee.contact_id)
 
    1.times { @timesheet.time_entries.build }
+   1.times { @timesheet.non_billable_entries.build }
+
+
   end
 
   def create

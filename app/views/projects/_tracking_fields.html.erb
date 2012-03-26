@@ -1,7 +1,7 @@
 <tr>
 		<td class="lt bold">
 			<div class="inputbox name"><%= employee_name(f.contact_id) %>
-			<div class="inputbox italic"><%= link_to "edit", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal" %></div>
+			<div class="inputbox small-link"><%= link_to "edit targets", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal" %></div>
 		</td>
 
 		<% Phase.all.each do |phase| %>

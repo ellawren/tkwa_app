@@ -27,14 +27,15 @@ class TimeEntry < ActiveRecord::Base
   validates_presence_of :phase_number, :message => "must be selected"
 
 
+
   def entry_total
-        d1 = day1 || 0
-        d2 = day2 || 0
-        d3 = day3 || 0
-        d4 = day4 || 0
-        d5 = day5 || 0
-        d6 = day6 || 0
-        d7 = day7 || 0
+        d1 = day1.to_f
+        d2 = day2.to_f
+        d3 = day3.to_f
+        d4 = day4.to_f
+        d5 = day5.to_f
+        d6 = day6.to_f
+        d7 = day7.to_f
         d1 + d2 + d3 + d4 + d5 + d6 + d7
     end   
 
