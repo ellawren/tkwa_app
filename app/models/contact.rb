@@ -32,6 +32,7 @@
 #
 
 class Contact < ActiveRecord::Base
+  default_scope order('name')
 	has_and_belongs_to_many :categories
 
   has_one :employee
@@ -49,7 +50,6 @@ class Contact < ActiveRecord::Base
 	validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
 
-  
 
   scope :non_employees, where("id NOT IN (SELECT contact_id FROM employees)")
 
@@ -63,8 +63,16 @@ class Contact < ActiveRecord::Base
 	scope :consultant_list, {
   		:select => "contacts.*",
   		:joins => "INNER JOIN categories_contacts ON categories_contacts.contact_id = contacts.id", 
-  		:conditions =>"category_id = 3",
-}
+  		:conditions =>"category_id = 3"
+  }
+
+  def project_list
+    arr = []
+    self.employee_teams.current.each do |team|
+      arr.push(Project.find(team.project_id))
+    end
+    arr.sort { |a,b| a.name <=> b.name }
+  end
 
 
 

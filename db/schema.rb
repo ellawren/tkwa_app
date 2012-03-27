@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326201113) do
+ActiveRecord::Schema.define(:version => 20120327191507) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(:version => 20120326201113) do
     t.string   "status"
     t.date     "hire_date"
     t.date     "leave_date"
+    t.decimal  "week_hours",     :precision => 4, :scale => 2
+    t.decimal  "vacation_hours", :precision => 4, :scale => 2
   end
 
   add_index "employees", ["contact_id"], :name => "index_employees_on_contact_id"

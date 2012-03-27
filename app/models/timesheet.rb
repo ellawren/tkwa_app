@@ -47,6 +47,12 @@ class Timesheet < ActiveRecord::Base
     non_billable_entries.sum(:day7) 
   end
 
+  def timesheet_total
+    total_hours + nb_total_hours
+  end
+
+
+
 
 
 end

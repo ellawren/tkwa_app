@@ -12,12 +12,42 @@ module TimesheetsHelper
     day_1 + (day-1)
   end
 
+  def parse_date(week, year)
+    # wk_1 finds the first day of the first week of the given year
+    wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
+
+    # day_1 finds the first day of the given week number
+    day_1 = (wk_1 + ((week-1) * 7)).to_date
+    day_7 = day_1 + 6
+    if day_1.month == day_7.month
+      str = day_1.strftime("%b %-d") + "-" + day_7.strftime("%-d")
+    else
+      str = day_1.strftime("%b %-d") + "-" + day_7.strftime("%b %-d")
+    end
+    str
+  end
+
+  def parse_date_full(week, year)
+    # wk_1 finds the first day of the first week of the given year
+    wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
+
+    # day_1 finds the first day of the given week number
+    day_1 = (wk_1 + ((week-1) * 7)).to_date
+    day_7 = day_1 + 6
+    if day_1.month == day_7.month
+      str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%-d")
+    else
+      str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%B %-d")
+    end
+    str
+  end
+
   def date_label(day, param)
-    get_date(day, param).strftime("<span class='caps'>%a</span><br/>%-m/%-d").html_safe
+    get_date(day, param).strftime("<div class='caps'>%a</div>%-m/%-d").html_safe
   end
 
   def is_today?(day, param)
-    true if get_date(day, param) == Date.today
+    "today" if get_date(day, param) == Date.today
   end
 
   def week_array(year)
@@ -27,10 +57,16 @@ module TimesheetsHelper
 
 
   def is_week?(week)
-      if params[:week] == week
-        "sel" 
-      elsif get_week_number(Date.today).to_i > week.to_i
-        "past" 
+      if (params[:week] == week) && (get_week_number(Date.today).to_i == week.to_i)
+        "curr sel tip-bottom" 
+      elsif params[:week] == week
+        "sel tip-bottom" 
+      elsif get_week_number(Date.today).to_i == week.to_i
+        "curr tip-bottom" 
+      elsif get_week_number(Date.today + 7).to_i > week.to_i
+        "past tip-bottom" 
+      else
+        "tip-bottom"
       end
   end
 
@@ -40,9 +76,21 @@ module TimesheetsHelper
     end
   end
 
+  def sum_nb_nonzero(day)
+    if @timesheet.non_billable_entries.sum(day) > 0
+      @timesheet.non_billable_entries.sum(day)
+    end
+  end
+
   def nonzero?(value)
     if value > 0
       value
+    end
+  end
+
+  def timesheet_sum(day)
+    if @timesheet.time_entries.sum(day) + @timesheet.non_billable_entries.sum(day) > 0
+      @timesheet.time_entries.sum(day) + @timesheet.non_billable_entries.sum(day)
     end
   end
 
@@ -75,6 +123,16 @@ module TimesheetsHelper
 
   def nb_unsaved?(object)
     true if object.category == nil
+  end
+
+  def over_under_calc(goal, total)
+    week_goal = goal || 40
+    if week_goal > total
+      str = "-#{strip(week_goal - total)}"
+    elsif week_goal < total
+      str = "+#{strip(total - week_goal)}"
+    end
+    str
   end
 
 end

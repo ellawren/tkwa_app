@@ -54,6 +54,8 @@
 #
 
 class Project < ActiveRecord::Base
+    default_scope order('name')
+
     has_many :contacts, :through => :employee_teams
     has_many :employee_teams, :dependent => :destroy
 
@@ -167,6 +169,8 @@ class Project < ActiveRecord::Base
         employee_id = Employee.find_by_contact_id(contact_id).id
         TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
     end
+
+    
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
     					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",

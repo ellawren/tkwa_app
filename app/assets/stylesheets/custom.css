@@ -42,9 +42,10 @@
         label.checkbox { clear:both; overflow-y:hidden; }
         .control-label { text-transform:capitalize; }
         .form-horizontal .control-group { margin-bottom: 12px; }
+        .input-div { padding:6px; margin-right:6px; margin-left:0px;  }
         .input-span { padding:6px; margin-left:0px; }
         .input-span a { font-weight:bold; }
-        .input-span.span3-25 { width:240px; }
+        .input-span.span3-25 { width:241px; }
         .input-span.span2-75 { width:184px;  }
         .input-span.span1-75 { width:96px;  }
         .input-box.span1 { width: 50px; }
@@ -115,11 +116,14 @@
         td.text-right { text-align:right;}
         .input-spacer { width:62px; height:30px; margin-bottom:2px;}
         .flush-left { margin-left:0px; }
+        .shift-left { margin-left:-20px; }
         option.disabled { color:#d0d0d0;}
         .small-link a    { font-size:11px; font-weight:normal; }
         .inline-block   { display:inline-block;}
         .contact-shaded        { background-color:#eee; padding:15px; margin:2px 0 25px 0; }
         textarea.rows1  { height: 18px;}
+        .no-line        { border:none;}
+        .white { background:#fff; }
 
 
     /* alignment and spacing */
@@ -204,10 +208,14 @@
         select.date-select { font-size:12px; width:78px; margin:0px 2px 0 0; height:24px; padding:4px 5px 3px 9px; font-weight:bold; border:none; background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
         select.date-select:hover { background-color:#dcdcdc; color:#000; cursor:pointer; }
         .tabnav.timesheets { height:23px;  }
-        .tabnav.timesheets a { font-size:10px; width:9px; text-align:center; padding:3px 4px 3px 4px; margin:1px 0 0 0; }
+        .tabnav.timesheets a { font-size:10px; width:9px; text-align:center; padding:3px 4px 3px 4px; margin:1px 0 0 0; color:#ccc; }
         .tabnav.timesheets form { margin:0px; }
-        .tabnav.timesheets a:hover { text-decoration:none; }
-        .tabnav.timesheets a.past { background-color:#f5f5f5; }
+        .tabnav.timesheets a:hover { text-decoration:none; color:#666;  }
+        .tabnav.timesheets a.past { background-color:#f5f5f5; color:#666; }
+        .tabnav.timesheets a.past:hover { background-color:#e9e9e9; color:#666; }
+        .tabnav.timesheets a.curr { background-color:#E6EFC2; color:#000; }
+        .tabnav.timesheets a.sel { background-color:#d4ddae; color:#000; }
+        .tabnav.timesheets a.sel:hover { background-color:#c7d09f; }
 
 
 
@@ -229,7 +237,7 @@
 
         .table-main  { float:left; width:440px; margin:20px; position:relative; }
         .table-head  { float:left; width:100%; padding:0 0 5px 0; border-bottom:1px solid #555; font-weight:bold; }
-        .table-body  { width:100%; }
+        .table-body  { float:left; width:100%; }
         .table-row   { float:left; width:100%; padding:6px 0 0 0; border-bottom:1px solid #e6e6e6; }
         .table-row select { margin-right:15px; margin-bottom:6px; }
         .btn.table-offset  { margin-top:10px; }
@@ -238,42 +246,61 @@
 
      /* timesheets table */
 
-        .timesheets.table-main  { width:1020px; }
-        .timesheets.table-main select, .timesheets.table-main input { margin-right:2px; font-size:12px; }
-        .timesheets.table-main input { text-align:center; width:35px; padding-top:4px; padding-bottom:4px; margin-top:2px; }
+        .timesheets.table-main  { width:1040px; margin-left:0px; font-size:12px; margin-top:0px;}
+        .timesheets.table-main select { margin-right:9px; float:left; margin-top:5px; }
+        .timesheets.table-main .entry input { text-align:center; width:36px; padding-top:4px; padding-bottom:4px; margin:5px 0px 6px 0px;font-size:12px; }
         .timesheets.table-main .first-row    { border-top:1px solid #555; margin-top:-1px; }
         .weekend  { background-color:#f0f0f0;}
-        .today    { background-color:#555; color:#fff; border-radius:4px; }
+        .today    { background-color:#E6EFC2; }
 
-        .timesheets.table-main .table-head { border-bottom: 2px solid #555; padding-bottom:2px; }
-        .timesheets.table-main .table-head div { margin-left:0px; margin-right:5px; }
-        .timesheets.table-main .table-head .day-label { width:48px; text-align:center; float:left; margin-right:9px; margin-left:-5px; padding:3px 0; }
-        .timesheets.table-main .table-head div.right20        { margin-right:20px; }
+        .timesheets.table-main .table-head { padding:0 10px 0 18px; border:0px; }
+        .timesheets.table-main .row { margin:0px; }
+        .timesheets.table-main .table-head .caps { margin:9px 5px 0 0; }
+        .timesheets.table-main .table-head .caps.right12        { margin-right:12px; }
+        .timesheets.table-main .total.caps { float:left; line-height:12px; margin-top:5px; }
 
-        .timesheets.table-main .table-footer { border-top:2px solid #555; font-weight:bold; margin-top:-35px; font-size:12px; }
-        .timesheets.table-main .table-footer .day-label.shift-6 { margin-left:560px; }
-        .timesheets.table-main .table-footer div { margin-left:0px; margin-right:5px; }
-        .timesheets.table-main .table-footer .day-label { width:43px; text-align:center; float:left; margin-right:9px; margin-top:3px; }
+        .day-label { width:49px; text-align:center; height:100%; float:left; margin:0px; padding:0px 2px 4px 2px; border-top:2px solid #000; font-size:14px; }
+        .timesheets.table-main .table-head .day-label .caps { margin:0px; padding-top:3px; }
+        .day-label.left { border-left:2px solid #000; margin-left:-1px; padding-left:3px; }
+        .day-label.right { border-right:2px solid #000; padding-right:4px; }
 
-        .timesheets.table-main .total { float:none; font-weight:bold; display:inline-block; width:65px; text-align:center; font-size:12px; margin-left:5px; }
+        .time-entries { float:left; border-left:2px solid #000; border-right:2px solid #000; padding:0 5px; }
+        
+        .entry  { float:left; padding:0 2px; }
+
+        .timesheets.table-main .table-body       { border:2px solid #000; padding:0 10px; position:relative; }
+        .timesheets.table-main .table-body .input-span      { margin-top:5px; }
+        .timesheets.table-main .table-row        { padding:0; border-bottom: 1px dotted rgba(100,100,100,.3); }
+
+        .timesheets.table-main .table-footer { float:left; font-weight:bold; margin-top:0px; font-size:12px; }
+        .timesheets.table-main .table-footer .time-entries { margin-left:569px; border-bottom:2px solid #000; padding:0 5px 0 5px; }
+        .timesheets.table-main .sum { width:49px; height:22px; text-align:center; float:left; padding:6px 3px 3px 0; }
+        .timesheets.table-main .table-footer .total { padding:8px 0; }
+
+        .add-button      { position:absolute; bottom:-38px; left:117px; }
+        .save-button     { position:absolute; bottom:-37px; left:10px; }
+
+        .timesheets.table-main .total { float:none; display:inline-block; width:60px; min-height:6px; text-align:center;  }
         .timesheets.table-main .table-head .total, .timesheets.table-main .table-footer .total { margin-left: 5px;}
         
+        .week-label     { padding-top:2px; width:550px; margin-left:-5px; }
+        .timesheets.table-main.weekly-totals .table-row     { border:none; margin-left:-10px; padding-left:10px; margin-right:-10px; padding-right:10px; }
+        .timesheets.table-main.weekly-totals .table-body .input-span.total    { float:left; margin-top:0px; margin-left:5px; width:55px; padding-left:0px; padding-right:0px; overflow:hidden; }
+        .timesheets.table-main .row { margin-right:-18px; }
+        .over-under     { float:right; width:45px; margin:0px; padding:16px 0 0 0; font-size:12px; }
+        .input-span.over-under { float:left; padding-top:1px; font-size:12px; text-align:center; width:50px; color:#999; margin-right:-10px; overflow:hidden; }
+
+
+
         /* holiday */
         .timesheets.table-main .holiday, .timesheets.table-main .holiday input    { color:#34b4bf; }
         .timesheets.table-main .holiday .delete-symbol   { display:none;}
 
-        /* unsaved */
-        .timesheets.table-main .unsaved    { background-color:#e9e9e9; border:1px solid #ddd; border-radius:8px; margin-bottom:1px; margin-top:3px; }
-        .timesheets.table-main .unsaved input, .timesheets.table-main .unsaved select { border-color:#ccc;}
-        .timesheets.table-main .unsaved .delete-symbol   { display:none;}
-        .timesheets.table-main .unsaved .span3-25 { width:230px; margin-left:10px; margin-right:10px; }
-        .timesheets.table-main .unsaved .total { display:none; }
-
-        .non-billable .nb-category      { float:left; width:173px; margin-right:10px; text-align:left; font-weight:bold; margin-top:2px; }
-        .non-billable .nb-category-title{ float:left; height:18px; width:540px; margin-right:10px; text-align:left; font-weight:bold; }
-        .non-billable .nb-description { width:336px; margin-right:10px; text-align:left; margin-top:2px; }
-        .timesheets.table-main .unsaved .span2-5 { margin-left:10px; margin-right:10px; }
-        .timesheets.table-main .unsaved .span5 { width:333px; margin-right:10px; text-align:left; max-width:333px; }
+        .timesheets.table-main .unsaved { border-top:1px solid #555; border-bottom:none; margin-top:-1px; }
+        .category-label      { float:left; width:547px; }
+        .non-billable .nb-category { float:left; width:182px; }
+        .unsaved .nb-category           { width:185px; }
+        .non-billable .nb-description { float:left; width:341px; text-align:left; margin:4px 10px 4px 0px; }
 
     /* project tracking table */
   

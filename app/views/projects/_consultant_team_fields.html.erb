@@ -1,9 +1,22 @@
 <div class="table-row">
+	<% if f.object.consultant_id %>
+		<div class="input-div span2-75 bold">
+			<%= link_to Consultant.find(f.object.consultant_id).company, consultant_path(f.object.consultant_id) %>
+		</div>
+	<% else %>
 		<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "span2-75" } ) %>
-     	<%= f.hidden_field :_destroy %>
+	<% end %>
+		
+    <%= f.hidden_field :_destroy %>
 
+    <% if f.object.consultant_role %>
+		<div class="input-div span2-75">
+			<%= f.object.consultant_role %>
+		</div>
+	<% else %>
      	<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "span2-75" } ) %>
+    <% end %>
 
-     	<%= link_to_remove_fields "x", f %>
+    <%= link_to_remove_fields "x", f %>
 </div>
 	    

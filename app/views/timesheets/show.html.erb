@@ -1,7 +1,7 @@
 <% content_for :page_header do %>
 	<% provide :title, "Timesheets Show" %>
 	<div class="page-header">
-		<h1><%= @contact.name %></h1>
+		<h1><%= @contact.name %> <span class="lightweight"><%= parse_date_full(@timesheet.week, @timesheet.year) %></h1>
 	</div>
 <% end %>
 
@@ -13,24 +13,26 @@
 	<%= form_for @timesheet do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 
-		<h3>Billable Time</h3>
+		<h3 class="shift-left no-line">Billable Time</h3>
+		<div class="notes shift-left">Enter billable time below. All of your current projects are listed in the Projects dropdown menu. After adding a project, click its name to view the team tracking page and check your time spent against the project budget.</div>
+
 		<div class="row">		
 			
         	<div class="table-main timesheets">
 
 				<div class="table-head">
 					<div class="row">
-						<div class="span3-25 right20"><br />Project Name</div>
-						<div class="span1-75"><br />Phase</div>
-						<div class="span2-75"><br />Task</div>
-						<div class="day-label <% if is_today?(1, @timesheet) %>today<% end %>"><%= date_label(1, @timesheet) %></div>
-						<div class="day-label <% if is_today?(2, @timesheet) %>today<% end %>"><%= date_label(2, @timesheet) %></div>
-						<div class="day-label <% if is_today?(3, @timesheet) %>today<% end %>"><%= date_label(3, @timesheet) %></div>
-						<div class="day-label <% if is_today?(4, @timesheet) %>today<% end %>"><%= date_label(4, @timesheet) %></div>
-						<div class="day-label <% if is_today?(5, @timesheet) %>today<% end %>"><%= date_label(5, @timesheet) %></div>
-						<div class="day-label <% if is_today?(6, @timesheet) %>today<% end %>"><%= date_label(6, @timesheet) %></div>
-						<div class="day-label <% if is_today?(7, @timesheet) %>today<% end %>"><%= date_label(7, @timesheet) %></div>
-						<div class="total"><br />Total</div>
+						<div class="span3-25 right12 caps"><br />Project Name</div>
+						<div class="span1-75 caps"><br />Phase</div>
+						<div class="span2-75 caps"><br />Task</div>
+						<div class="day-label left <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
+						<div class="day-label <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
+						<div class="day-label <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
+						<div class="day-label <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
+						<div class="day-label <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
+						<div class="day-label <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
+						<div class="day-label right <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
+						<div class="total caps"><br />Billable<br />Total</div>
 					</div>
 				</div>
 
@@ -39,20 +41,22 @@
             		<%= f.fields_for :time_entries do |builder| %>
             			<%= render 'time_entry_fields', :f => builder %>
             		<% end %>
-            		<%= link_to_add_fields "add new entry", f, :time_entries, "btn offset-left table-offset" %>
+            		<%= link_to_add_fields "add a line", f, :time_entries, "btn add-button" %>
+            		<%= f.submit "save changes", class: "btn btn-primary save-button" %>
            			<!-- end team form -->
            		</div>	
 
            		<div class="table-footer">
 					<div class="row">
-
-						<div class="day-label shift-6"><%= sum_nonzero(:day1) %></div>
-						<div class="day-label"><%= sum_nonzero(:day2) %></div>
-						<div class="day-label"><%= sum_nonzero(:day3) %></div>
-						<div class="day-label"><%= sum_nonzero(:day4) %></div>
-						<div class="day-label"><%= sum_nonzero(:day5) %></div>
-						<div class="day-label"><%= sum_nonzero(:day6) %></div>
-						<div class="day-label"><%= sum_nonzero(:day7) %></div>
+						<div class="time-entries white">  
+							<div class="sum shift-6 <%= is_today?(1, @timesheet) %>"><%= sum_nonzero(:day1) %></div>
+							<div class="sum <%= is_today?(2, @timesheet) %>"><%= sum_nonzero(:day2) %></div>
+							<div class="sum <%= is_today?(3, @timesheet) %>"><%= sum_nonzero(:day3) %></div>
+							<div class="sum <%= is_today?(4, @timesheet) %>"><%= sum_nonzero(:day4) %></div>
+							<div class="sum <%= is_today?(5, @timesheet) %>"><%= sum_nonzero(:day5) %></div>
+							<div class="sum <%= is_today?(6, @timesheet) %>"><%= sum_nonzero(:day6) %></div>
+							<div class="sum <%= is_today?(7, @timesheet) %>"><%= sum_nonzero(:day7) %></div>
+						</div>
 						<div class="inputbox total"><%= nonzero?(@timesheet.total_hours) %></div>
 					</div>
 				</div>
@@ -62,7 +66,8 @@
         </div>
     	<br /><br />
 
-    	<h3>Non-Billable Time</h3>
+    	<h3 class="shift-left no-line">Non-Billable Time</h3>
+		<div class="notes shift-left">All the following categories require prior approval. Holidays are entered automatically and cannot be edited.</div>
 
     	<div class="row">
 
@@ -70,15 +75,15 @@
 
     			<div class="table-head">
 					<div class="row">
-						<div class="input-span nb-category-title"><br />Category</div>
-						<div class="day-label <% if is_today?(1, @timesheet) %>today<% end %>"><%= date_label(1, @timesheet) %></div>
-						<div class="day-label <% if is_today?(2, @timesheet) %>today<% end %>"><%= date_label(2, @timesheet) %></div>
-						<div class="day-label <% if is_today?(3, @timesheet) %>today<% end %>"><%= date_label(3, @timesheet) %></div>
-						<div class="day-label <% if is_today?(4, @timesheet) %>today<% end %>"><%= date_label(4, @timesheet) %></div>
-						<div class="day-label <% if is_today?(5, @timesheet) %>today<% end %>"><%= date_label(5, @timesheet) %></div>
-						<div class="day-label <% if is_today?(6, @timesheet) %>today<% end %>"><%= date_label(6, @timesheet) %></div>
-						<div class="day-label <% if is_today?(7, @timesheet) %>today<% end %>"><%= date_label(7, @timesheet) %></div>
-						<div class="total"><br />Total</div>
+						<div class="category-label caps"><br />Category</div>
+						<div class="day-label left <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
+						<div class="day-label <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
+						<div class="day-label <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
+						<div class="day-label <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
+						<div class="day-label <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
+						<div class="day-label <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
+						<div class="day-label right <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
+						<div class="total caps">Non<br />Billable<br />Total</div>
 					</div>
 				</div>
 
@@ -87,20 +92,22 @@
             		<%= f.fields_for :non_billable_entries do |builder| %>
             			<%= render 'non_billable_entry_fields', :f => builder %>
             		<% end %>
-            		<%= link_to_add_fields "add new entry", f, :non_billable_entries, "btn offset-left table-offset" %>
+            		<%= link_to_add_fields "add a line", f, :non_billable_entries, "btn add-button" %>
+            		<%= f.submit "save changes", class: "btn btn-primary save-button" %>
            			<!-- end team form -->
            		</div>	
 
            		<div class="table-footer">
 					<div class="row">
-
-						<div class="day-label shift-6"><%= sum_nonzero(:day1) %></div>
-						<div class="day-label"><%= sum_nonzero(:day2) %></div>
-						<div class="day-label"><%= sum_nonzero(:day3) %></div>
-						<div class="day-label"><%= sum_nonzero(:day4) %></div>
-						<div class="day-label"><%= sum_nonzero(:day5) %></div>
-						<div class="day-label"><%= sum_nonzero(:day6) %></div>
-						<div class="day-label"><%= sum_nonzero(:day7) %></div>
+						<div class="time-entries white">  
+							<div class="sum shift-6 <%= is_today?(1, @timesheet) %>"><%= sum_nb_nonzero(:day1) %></div>
+							<div class="sum <%= is_today?(2, @timesheet) %>"><%= sum_nb_nonzero(:day2) %></div>
+							<div class="sum <%= is_today?(3, @timesheet) %>"><%= sum_nb_nonzero(:day3) %></div>
+							<div class="sum <%= is_today?(4, @timesheet) %>"><%= sum_nb_nonzero(:day4) %></div>
+							<div class="sum <%= is_today?(5, @timesheet) %>"><%= sum_nb_nonzero(:day5) %></div>
+							<div class="sum <%= is_today?(6, @timesheet) %>"><%= sum_nb_nonzero(:day6) %></div>
+							<div class="sum <%= is_today?(7, @timesheet) %>"><%= sum_nb_nonzero(:day7) %></div>
+						</div>
 						<div class="inputbox total"><%= nonzero?(@timesheet.nb_total_hours) %></div>
 					</div>
 				</div>
@@ -108,16 +115,49 @@
     		</div>
 
     	</div>
-  		<br /><br />
-      	<div class="row">
 
-			<div class="span12">
-				<div class="actions">
-    				<%= f.submit "Save + Update", class: "btn btn-large btn-primary span3" %>
-    				<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
+    	<br /><br />
+
+    	<h3 class="shift-left no-line">Summary</h3>
+
+    	<div class="row">
+    		<div class="table-main timesheets weekly-totals">
+
+    			<div class="table-head">
+					<div class="row">
+						<div class="category-label caps"><br /></div>
+						<div class="day-label left <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
+						<div class="day-label <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
+						<div class="day-label <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
+						<div class="day-label <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
+						<div class="day-label <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
+						<div class="day-label <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
+						<div class="day-label right <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
+						<div class="total caps"><br /><br />Total</div>
+						<div class="over-under caps">+/-</div>
+					</div>
 				</div>
+
+				<div class="table-body">
+					<div class="table-row white">
+						<div class="input-span week-label bold">
+							Totals for the week of <%= get_date(1, @timesheet).strftime("%B %-d -") %> <%= get_date(7, @timesheet).strftime("%B %-d") %>
+						</div>
+						<div class="time-entries bold">  
+						    <div class="sum <%= is_today?(1, @timesheet) %>"><%= timesheet_sum(:day1) %></div>
+						    <div class="sum <%= is_today?(2, @timesheet) %>"><%= timesheet_sum(:day2) %></div>
+						    <div class="sum <%= is_today?(3, @timesheet) %>"><%= timesheet_sum(:day3) %></div>
+						    <div class="sum <%= is_today?(4, @timesheet) %>"><%= timesheet_sum(:day4) %></div>
+						    <div class="sum <%= is_today?(5, @timesheet) %>"><%= timesheet_sum(:day5) %></div>
+						    <div class="sum <%= is_today?(6, @timesheet) %>"><%= timesheet_sum(:day6) %></div>
+						    <div class="sum <%= is_today?(7, @timesheet) %>"><%= timesheet_sum(:day7) %></div>
+						</div>
+  						<div class="input-span total bold"><%= nonzero?(@timesheet.timesheet_total) %></div>
+  						<div class="input-span over-under"><%= over_under_calc(@employee.week_hours, @timesheet.timesheet_total) %></div>
+					</div>
+				</div>	
 			</div>
 
-		</div>
-    
+    	</div>
+      	
 	<% end %> <!-- end form -->
