@@ -8,7 +8,6 @@ end
 # Table name: holidays
 #
 #  id         :integer         not null, primary key
-#  year       :integer
 #  date       :date
 #  name       :string(255)
 #  created_at :datetime        not null

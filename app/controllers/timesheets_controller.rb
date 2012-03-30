@@ -43,12 +43,9 @@ class TimesheetsController < ApplicationController
 
   def update
     @timesheet = Timesheet.find(params[:id])
-    @year = @timesheet.year
-    @week = @timesheet.week
-
 
     if @timesheet.update_attributes(params[:timesheet])
-      flash[:success] = "Timesheet updated"
+      flash[:success] = "Timesheet updated!"
       redirect_to "/employees/#{@timesheet.employee_id}/timesheets/#{@timesheet.year}/#{@timesheet.week}"
     else
       flash[:error] = "Something went wrong."

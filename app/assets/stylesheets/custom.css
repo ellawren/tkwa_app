@@ -30,6 +30,14 @@
         .span3-75 { width: 280px; }
         .span4-5 { width: 350px; }
         .span5-5 { width: 440px; }
+        .span6-5 { width: 530px; }
+        .span7-25 { width: 580px; }
+        .span7-5 { width: 620px; }
+        .span8-5 { width: 710px; }
+        .span12-25 { width: 960px; }
+        .span12-5 { width: 980px; }
+        .span13-25 { width: 1040px; }
+        .span13-5 { width: 1060px; }
         .offset05 { margin-left: 60px; }
         .offset075 { margin-left: 90px; }
         .offset025 { margin-left: 40px; }
@@ -92,7 +100,7 @@
         .links { color:#999; margin-bottom:20px; width:100%; margin-top:8px; }
         .links a { padding:2px 5px; cursor:pointer; }
         .links a:first-child { padding-left:0px; }
-        .well-white { background:#fff; }
+        
         .contact-list .well { display:block; background:#fff; overflow-y: hidden; clear:both; font-size:12px; }
         .textlabel { height:auto; display:inline-block; font-weight:bold; }
         a.delete-symbol  { float:none; display:inline-block; width:16px; height:16px; padding:1px 2px 3px 2px; color:#f4735b; border-radius:10px; border:1px solid #d0d0d0; text-align:center; font-size:14px; line-height:16px; }
@@ -113,10 +121,12 @@
         .no-display     { display:none; }
         .shaded { background-color:#f5f5f5; }
         .lightweight { font-weight:100; color:#555; }
+        .midweight { font-weight:300; color:#999; }
         td.text-right { text-align:right;}
         .input-spacer { width:62px; height:30px; margin-bottom:2px;}
         .flush-left { margin-left:0px; }
         .shift-left { margin-left:-20px; }
+        .half-shift-left { margin-left:-10px; }
         option.disabled { color:#d0d0d0;}
         .small-link a    { font-size:11px; font-weight:normal; }
         .inline-block   { display:inline-block;}
@@ -124,6 +134,7 @@
         textarea.rows1  { height: 18px;}
         .no-line        { border:none;}
         .white { background:#fff; }
+
 
 
     /* alignment and spacing */
@@ -155,11 +166,10 @@
     /* bits and pieces */
 
         #scope-edit { display:none; }
+        .well   { background:#f0f0f0;  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.08) inset; }
+        .well-white { background:#fff;  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2) inset; border:1px solid #e6e6e6; }
 
-
-
-
-
+        .chart { position:absolute; top:0; left:0;}
 
 
 /**************************************************************************************************************/
@@ -233,6 +243,13 @@
         .table thead:first-child tr th { border-bottom:1px solid #666; }
         .table tr td:first-child, .table tr th:first-child { padding-left:0px; text-align:left; }
 
+        table.right-align       { margin:10px 0px; }
+        table.right-align th, table.right-align td { text-align:right;}
+        table.right-align th:first-child, table.right-align td:first-child { text-align:left; padding-left:6px; }
+        tr.total td { border-top:1px solid #000; }
+        table.no-borders td       { border:none; }
+        table.right-align-last th:last-child, table.right-align-last td:last-child { text-align:right; padding-right:6px; }
+
     /* project team table */
 
         .table-main  { float:left; width:440px; margin:20px; position:relative; }
@@ -252,55 +269,54 @@
         .timesheets.table-main .first-row    { border-top:1px solid #555; margin-top:-1px; }
         .weekend  { background-color:#f0f0f0;}
         .today    { background-color:#E6EFC2; }
-
         .timesheets.table-main .table-head { padding:0 10px 0 18px; border:0px; }
         .timesheets.table-main .row { margin:0px; }
         .timesheets.table-main .table-head .caps { margin:9px 5px 0 0; }
         .timesheets.table-main .table-head .caps.right12        { margin-right:12px; }
         .timesheets.table-main .total.caps { float:left; line-height:12px; margin-top:5px; }
-
         .day-label { width:49px; text-align:center; height:100%; float:left; margin:0px; padding:0px 2px 4px 2px; border-top:2px solid #000; font-size:14px; }
         .timesheets.table-main .table-head .day-label .caps { margin:0px; padding-top:3px; }
         .day-label.left { border-left:2px solid #000; margin-left:-1px; padding-left:3px; }
         .day-label.right { border-right:2px solid #000; padding-right:4px; }
-
         .time-entries { float:left; border-left:2px solid #000; border-right:2px solid #000; padding:0 5px; }
-        
         .entry  { float:left; padding:0 2px; }
-
         .timesheets.table-main .table-body       { border:2px solid #000; padding:0 10px; position:relative; }
         .timesheets.table-main .table-body .input-span      { margin-top:5px; }
         .timesheets.table-main .table-row        { padding:0; border-bottom: 1px dotted rgba(100,100,100,.3); }
-
         .timesheets.table-main .table-footer { float:left; font-weight:bold; margin-top:0px; font-size:12px; }
         .timesheets.table-main .table-footer .time-entries { margin-left:569px; border-bottom:2px solid #000; padding:0 5px 0 5px; }
         .timesheets.table-main .sum { width:49px; height:22px; text-align:center; float:left; padding:6px 3px 3px 0; }
         .timesheets.table-main .table-footer .total { padding:8px 0; }
-
         .add-button      { position:absolute; bottom:-38px; left:117px; }
         .save-button     { position:absolute; bottom:-37px; left:10px; }
-
         .timesheets.table-main .total { float:none; display:inline-block; width:60px; min-height:6px; text-align:center;  }
-        .timesheets.table-main .table-head .total, .timesheets.table-main .table-footer .total { margin-left: 5px;}
-        
+        .timesheets.table-main .table-head .total, .timesheets.table-main .table-footer .total { margin-left: 5px; }
         .week-label     { padding-top:2px; width:550px; margin-left:-5px; }
         .timesheets.table-main.weekly-totals .table-row     { border:none; margin-left:-10px; padding-left:10px; margin-right:-10px; padding-right:10px; }
         .timesheets.table-main.weekly-totals .table-body .input-span.total    { float:left; margin-top:0px; margin-left:5px; width:55px; padding-left:0px; padding-right:0px; overflow:hidden; }
         .timesheets.table-main .row { margin-right:-18px; }
         .over-under     { float:right; width:45px; margin:0px; padding:16px 0 0 0; font-size:12px; }
         .input-span.over-under { float:left; padding-top:1px; font-size:12px; text-align:center; width:50px; color:#999; margin-right:-10px; overflow:hidden; }
-
+        .category-label      { float:left; width:547px; }
+        .non-billable .nb-category { float:left; width:182px; }
+        .non-billable .nb-description { float:left; width:341px; text-align:left; margin:4px 10px 4px 0px; }
 
 
         /* holiday */
         .timesheets.table-main .holiday, .timesheets.table-main .holiday input    { color:#34b4bf; }
         .timesheets.table-main .holiday .delete-symbol   { display:none;}
 
+        /* unsaved */
         .timesheets.table-main .unsaved { border-top:1px solid #555; border-bottom:none; margin-top:-1px; }
-        .category-label      { float:left; width:547px; }
-        .non-billable .nb-category { float:left; width:182px; }
         .unsaved .nb-category           { width:185px; }
-        .non-billable .nb-description { float:left; width:341px; text-align:left; margin:4px 10px 4px 0px; }
+        .unsaved .delete-symbol { display:none;}
+
+        /* chart */
+        .chart-box { margin-right:-30px; margin-left:30px; width:390px; height:400px; position:relative; }
+        .chart  { width:550px; height:550px; }
+        .legend { position:absolute; top:365px; padding-left:25px;}
+        .legend .color { width:15px; height:15px; background:#fff; }
+        
 
     /* project tracking table */
   

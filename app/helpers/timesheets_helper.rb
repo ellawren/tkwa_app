@@ -27,6 +27,10 @@ module TimesheetsHelper
     str
   end
 
+  def year_begin(week, year)
+    wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
+  end
+
   def parse_date_full(week, year)
     # wk_1 finds the first day of the first week of the given year
     wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
@@ -35,9 +39,9 @@ module TimesheetsHelper
     day_1 = (wk_1 + ((week-1) * 7)).to_date
     day_7 = day_1 + 6
     if day_1.month == day_7.month
-      str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%-d")
+      str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%-d, %Y")
     else
-      str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%B %-d")
+      str = day_1.strftime("%B %-d") + " - " + day_7.strftime("%B %-d, %Y")
     end
     str
   end
@@ -54,7 +58,6 @@ module TimesheetsHelper
     wk = weeks_in_year(year)
     (1..wk).to_a 
   end
-
 
   def is_week?(week)
       if (params[:week] == week) && (get_week_number(Date.today).to_i == week.to_i)
@@ -125,14 +128,17 @@ module TimesheetsHelper
     true if object.category == nil
   end
 
-  def over_under_calc(goal, total)
-    week_goal = goal || 40
-    if week_goal > total
-      str = "-#{strip(week_goal - total)}"
-    elsif week_goal < total
-      str = "+#{strip(total - week_goal)}"
-    end
-    str
+  def color_array
+    colors = ['#dbdca1','#ccd8ad', '#b5d7b1', '#9ccdb1', '#9cc5c1',  '#9cc6d1', '#9cc2d4', '#b6c3d9', '#bfbdda', '#bfbbd3', '#d5bad9']
   end
 
-end
+  def is_over?(var)
+      reg = /^[+]/
+      if var.match(reg)
+        "class='red'"
+      else
+        "class='green'"
+      end
+  end
+
+end  

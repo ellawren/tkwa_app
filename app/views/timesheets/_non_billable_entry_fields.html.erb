@@ -6,6 +6,7 @@
     <div class="input-span span2-5 nb-category bold">
       <%= f.object.category %>
     </div>
+    <%= f.hidden_field :category, value: "#{f.object.category}" %>
   <% else %>
     <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true}, class: "span2-5 nb-category") %>
   <% end %>

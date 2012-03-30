@@ -77,6 +77,10 @@ module ApplicationHelper
     number_with_precision(num, :strip_insignificant_zeros => true)
   end
 
+  def decimal(num)
+    number_with_precision(num, :precision => 2)  
+  end
+
   def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", class: "delete-symbol")
   end

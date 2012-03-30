@@ -8,6 +8,7 @@
         <%= link_to Project.find(f.object.project_id).name, tracking_project_path(f.object.project_id), class: "tip-bottom", rel: "tooltip", dataoriginaltitle: "click to view tracking page" %> 
       <% end %>
     </div>
+    <%= f.hidden_field :project_id, value: "#{f.object.project_id}" %>
   <% else %>
     <%= f.collection_select(:project_id, @contact.project_list, :id, :name, { :include_blank => true }, { :class => "span3-25 project-selector" } ) %>
   <% end %>

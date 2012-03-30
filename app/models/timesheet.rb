@@ -51,9 +51,141 @@ class Timesheet < ActiveRecord::Base
     total_hours + nb_total_hours
   end
 
+  def year_to_date
+      year_to_date = Timesheet.find(:all, :conditions => ['employee_id = ? AND year = ? AND week <= ?', employee.id, year, week ])
+  end
 
+  def all_hours(line, column)
+        employee = Employee.find(employee_id)
+        weeks = weeks_in_year(year)
+        week_total = employee.week_hours || 40
+        week_billable = employee.billable_goal || 40
+        week_non_billable = week_total - week_billable
+        year_total = week_total * weeks
+        year_billable = week_billable  * weeks
+        year_non_billable = week_non_billable * weeks
 
+        if column == "target"
+              eval("year_#{line}")
+        elsif column == "remaining"
+              over_under_calc( eval("year_#{line}") , ytd(line) )
+        elsif column == "over-under"
+              over_under_calc( (eval("week_#{line}") * week) , ytd(line) )
+        elsif column == "completed"
+              ytd(line)
+        end
+  end
 
+  def over_under_calc(goal, actual)
+      if goal > actual
+        "(#{goal - actual})"
+      elsif goal < actual
+        "+ #{actual - goal}"
+      end
+  end
 
+  def ytd(var)
+    array = []
+    year_to_date.each do |y|
+        if var == "total"
+          array.push(y.timesheet_total.to_f)
+        elsif var == "billable"
+          array.push(y.total_hours.to_f)
+        elsif var == "non_billable"
+          array.push(y.nb_total_hours.to_f)
+        end
+      end
+    array.sum
+  end
+
+  def get_week_number(date)
+    wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
+    wk_now = date.beginning_of_week(start_day = :sunday)
+    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
+  end
+
+  def weeks_in_year(year)
+    last_day = Date.new(year, 12, 31)
+    # if the last day of the year is a Saturday, then use that as the last week
+    if ( (last_day.strftime("%w").to_i + 1) == 6 )
+      get_week_number(last_day)
+    # for all other case, week 1 is whatever week Jan1 fall in, so subtract 1 to get the last week
+    else
+      get_week_number(last_day) - 1
+    end
+  end
+
+  def ytd_nb_categories
+    array = []
+    year_to_date.each do |y|
+      y.non_billable_entries.each do |entry|
+          array.push(entry.category)
+      end
+    end
+    array.push("Vacation")
+    unique_items(array).sort
+  end
+
+  def ytd_nb_subtotal(category)
+    array = []
+    year_to_date.each do |y|
+      y.non_billable_entries.each do |entry|
+        if entry.category == category
+          array.push(entry.entry_total)
+        end
+      end
+    end
+    array.sum
+  end
+
+  def ytd_projects
+    array = []
+    year_to_date.each do |y|
+      y.time_entries.each do |entry|
+          array.push(entry.project_id)
+      end
+    end
+    unique_items(array)
+  end
+
+  def ytd_project_hours(project)
+    array = []
+    year_to_date.each do |y|
+      y.time_entries.each do |entry|
+        if entry.project_id == project
+          array.push(entry.entry_total)
+        end
+      end
+    end
+    array.sum
+  end
+
+  def unique_items(array)
+      item_list = [] 
+      array.uniq.each do |i| 
+         item_list.push(i) 
+      end 
+      item_list
+  end
+
+  def generate_percentages
+    objects = year_to_date
+    total = ytd("total")
+    hash = {}
+    #add non-billable value-key pairs to main array
+    ytd_nb_categories.each do |category|
+        hash[category] = ytd_nb_subtotal(category)
+    end 
+    #create billable value-key pairs and add to array
+    ytd_projects.each do |project|
+        hash[ Project.find(project).name ] = ytd_project_hours(project)
+    end
+    hash.sort_by { |k,v| -v }
+  end
+
+  
+  
 end
+
+  
 

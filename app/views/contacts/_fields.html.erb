@@ -180,8 +180,16 @@
                                     <%= e.text_field :week_hours, class: "span1" %>
                                 </div>
                                 <div class="row">
+                                    <%= e.label :billable_goal, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :billable_goal, class: "span1" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :holiday_hours, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :holiday_hours, class: "span1" %>
+                                </div>
+                                <div class="row">
                                     <%= e.label :vacation_hours, "Vacation Hours", class: "span1-5 box-padding" %>
-                                    <%= e.text_field :vacation_hours, class: "span1" %>
+                                    <%= e.text_field :vacation_hours, class: "span1-75" %>
                                 </div>
                                 <div class="row">
                                     <%= e.label :status, class: "span1 box-padding" %>
