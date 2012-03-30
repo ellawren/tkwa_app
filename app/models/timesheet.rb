@@ -76,7 +76,9 @@ class Timesheet < ActiveRecord::Base
         end
   end
 
-  def over_under_calc(goal, actual)
+  def over_under_calc(g, a)
+      goal = g.to_f
+      actual = a.to_f
       if goal > actual
         "(#{goal - actual})"
       elsif goal < actual

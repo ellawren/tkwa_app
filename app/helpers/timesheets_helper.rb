@@ -132,7 +132,7 @@ module TimesheetsHelper
     colors = ['#dbdca1','#ccd8ad', '#b5d7b1', '#9ccdb1', '#9cc5c1',  '#9cc6d1', '#9cc2d4', '#b6c3d9', '#bfbdda', '#bfbbd3', '#d5bad9']
   end
 
-  def is_over?(var)
+  def over?(var)
       reg = /^[+]/
       if var.match(reg)
         "class='red'"
