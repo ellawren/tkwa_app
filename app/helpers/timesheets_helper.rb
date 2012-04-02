@@ -134,11 +134,20 @@ module TimesheetsHelper
 
   def over?(var)
       reg = /^[+]/
-      if var.match(reg)
-        "class='red'"
-      else
-        "class='green'"
-      end
+        if var.match(reg)
+          "class='red'"
+        else
+          "class='green'"
+        end
+  end
+
+  def over_s?(var)
+      reg = /^[+]/
+        if var.match(reg)
+          "red"
+        else
+          "green"
+        end
   end
 
 end  

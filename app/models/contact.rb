@@ -29,6 +29,8 @@
 #  direct_ext      :string(255)
 #  assistant       :string(255)
 #  work_cell       :string(255)
+#  post_nominals   :string(255)
+#  prefix          :string(255)
 #
 
 class Contact < ActiveRecord::Base

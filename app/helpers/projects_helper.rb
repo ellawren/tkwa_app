@@ -54,16 +54,9 @@ module ProjectsHelper
       "over" if estimated_hours.to_f < actual_hours.to_f
     end
 
-    def over_under(estimated_hours, actual_hours)
-      unless actual_hours == 0
-        result = (actual_hours - estimated_hours).to_f
-        if result > 0
-          "+" + strip(result)
-        else
-          strip(result)
-        end
-      end
-    end
+
+
+    
 
     def unique_tasks(array)
         task_list = [] 
@@ -95,6 +88,37 @@ module ProjectsHelper
           end 
       str.join("").html_safe
     end
+
+    def hours_by_task_array(entries)
+      hash = {}
+          task_array(entries).each do |task| 
+              array = []
+              sum = 0
+              TimeEntry.find_all_by_task(task).each do |t| 
+                  array.push(t.entry_total)
+              end
+              array.map{|x| sum += x}
+              hash[task] = sum.to_f
+          end 
+      hash.sort_by { |k,v| -v }
+    end
+
+
+    def generate_percentages
+        objects = year_to_date
+        total = ytd("total")
+        hash = {}
+        #add non-billable value-key pairs to main array
+        ytd_nb_categories_short.each do |category|
+            hash[category] = ytd_nb_subtotal(category)
+        end 
+        #create billable value-key pairs and add to array
+        ytd_projects.each do |project|
+            hash[ Project.find(project).name ] = ytd_project_hours(project)
+        end
+        hash.sort_by { |k,v| -v }
+      end
+
 
 
 

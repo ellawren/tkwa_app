@@ -22,10 +22,12 @@ TkwaApp::Application.routes.draw do
   end
   match '/employees/:id/timesheets/:year/:week' => 'timesheets#show'
 
+  resources :contacts do
+    get :autocomplete_contact_work_company, :on => :collection
+  end
   
   resources :categories 
   resources :consultants
-  resources :contacts
   resources :employees
   resources :employee_teams
   resources :holidays

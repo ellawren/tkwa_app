@@ -103,6 +103,16 @@ $(document).ready(function() {
 
 });
 
+// toggle 
+$(document).ready(function() {
+  $("#submit").click( function () {
+      $( "#timesheet_complete" ).val('t');
+  });
+
+  $("#unsubmit").click( function () {
+      $( "#timesheet_complete" ).val('f');
+  });
+});
 
 
 // toggle scope edit on projects/scope page

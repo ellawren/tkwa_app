@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329185825) do
+ActiveRecord::Schema.define(:version => 20120402191724) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20120329185825) do
     t.string   "direct_ext"
     t.string   "assistant"
     t.string   "work_cell"
+    t.string   "post_nominals"
+    t.string   "prefix"
   end
 
   create_table "employee_teams", :force => true do |t|
@@ -314,12 +316,13 @@ ActiveRecord::Schema.define(:version => 20120329185825) do
   end
 
   create_table "timesheets", :force => true do |t|
-    t.integer  "year",          :null => false
-    t.integer  "week",          :null => false
-    t.integer  "employee_id",   :null => false
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "year",                             :null => false
+    t.integer  "week",                             :null => false
+    t.integer  "employee_id",                      :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "selected_year"
+    t.boolean  "complete",      :default => false
   end
 
   add_index "timesheets", ["employee_id", "year", "week"], :name => "index_timesheets_on_employee_id_and_year_and_week", :unique => true

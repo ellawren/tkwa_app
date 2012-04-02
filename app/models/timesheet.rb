@@ -9,6 +9,7 @@
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #  selected_year :integer
+#  complete      :boolean         default(FALSE)
 #
 
 
@@ -48,7 +49,7 @@ class Timesheet < ActiveRecord::Base
   end
 
   def timesheet_total
-    total_hours + nb_total_hours
+    total_hours.to_f + nb_total_hours.to_f
   end
 
   def year_to_date
@@ -79,7 +80,7 @@ class Timesheet < ActiveRecord::Base
   def over_under_calc(g, a)
       goal = g.to_f
       actual = a.to_f
-      if goal > actual
+      if goal >= actual
         "(#{goal - actual})"
       elsif goal < actual
         "+ #{actual - goal}"
@@ -125,6 +126,16 @@ class Timesheet < ActiveRecord::Base
       end
     end
     array.push("Vacation")
+    unique_items(array).sort
+  end
+
+  def ytd_nb_categories_short
+    array = []
+    year_to_date.each do |y|
+      y.non_billable_entries.each do |entry|
+          array.push(entry.category)
+      end
+    end
     unique_items(array).sort
   end
 
@@ -175,7 +186,7 @@ class Timesheet < ActiveRecord::Base
     total = ytd("total")
     hash = {}
     #add non-billable value-key pairs to main array
-    ytd_nb_categories.each do |category|
+    ytd_nb_categories_short.each do |category|
         hash[category] = ytd_nb_subtotal(category)
     end 
     #create billable value-key pairs and add to array
@@ -183,6 +194,10 @@ class Timesheet < ActiveRecord::Base
         hash[ Project.find(project).name ] = ytd_project_hours(project)
     end
     hash.sort_by { |k,v| -v }
+  end
+
+  def open?
+    true if complete == false
   end
 
   

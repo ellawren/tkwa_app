@@ -1,7 +1,13 @@
 <% content_for :page_header do %>
 	<% provide :title, "Timesheets Show" %>
 	<div class="page-header">
-		<h1><%= @contact.name %> <span class="lightweight"><%= parse_date_full(@timesheet.week, @timesheet.year) %></h1>
+		<h1><%= @contact.name %> <span class="lightweight"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span>
+			<% if @timesheet.open? %>
+				<div id="page-status" class="lightweight">open</div>
+			<% else %>
+				<div id="page-status" class="lightweight complete">complete</div>
+			<% end %>
+		</h1>
 	</div>
 <% end %>
 
@@ -10,7 +16,7 @@
 <% end %>
 	
 
-	<%= form_for @timesheet do |f| %>
+	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 
 		<h3 class="shift-left no-line">Billable Time</h3>
@@ -41,8 +47,10 @@
             		<%= f.fields_for :time_entries do |builder| %>
             			<%= render 'time_entry_fields', :f => builder %>
             		<% end %>
-            		<%= link_to_add_fields "add a line", f, :time_entries, "btn add-button" %>
-            		<%= f.submit "save changes", class: "btn btn-primary save-button" %>
+            		<% if @timesheet.open? %>
+	            		<%= link_to_add_fields "add a line", f, :time_entries, "btn add-button" %>
+	            		<%= f.submit "save changes", class: "btn btn-primary save-button" %>
+	            	<% end %>
            			<!-- end team form -->
            		</div>	
 
@@ -92,8 +100,10 @@
             		<%= f.fields_for :non_billable_entries do |builder| %>
             			<%= render 'non_billable_entry_fields', :f => builder %>
             		<% end %>
-            		<%= link_to_add_fields "add a line", f, :non_billable_entries, "btn add-button" %>
-            		<%= f.submit "save changes", class: "btn btn-primary save-button" %>
+            		<% if @timesheet.open? %>
+	            		<%= link_to_add_fields "add a line", f, :non_billable_entries, "btn add-button" %>
+	            		<%= f.submit "save changes", class: "btn btn-primary save-button" %>
+	            	<% end %>
            			<!-- end team form -->
            		</div>	
 
@@ -133,7 +143,7 @@
 						<div class="day-label <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
 						<div class="day-label right <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
 						<div class="total caps"><br /><br />Total</div>
-						<div class="over-under caps">+/-</div>
+						<div class="over-under caps">+/- *</div>
 					</div>
 				</div>
 
@@ -152,18 +162,27 @@
 						    <div class="sum <%= is_today?(7, @timesheet) %>"><%= timesheet_sum(:day7) %></div>
 						</div>
   						<div class="input-span total bold"><%= nonzero?(@timesheet.timesheet_total) %></div>
-  						<div class="input-span over-under"><%= @timesheet.over_under_calc(@employee.week_hours, @timesheet.timesheet_total) %></div>
+  						<div class="input-span over-under <%= over_s?(@timesheet.all_hours("total", "over-under")) %>"><%= decimal(@timesheet.all_hours("total", "over-under")) %></div>
 					</div>
 				</div>	
+				<div class="italic right">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <%= strip(@employee.week_hours) || 40 %> hour week.</div>
 			</div>
 
     	</div>
+    	
 	
 	    <br />
 		<div class="row">
 			<div class="span13-25">
 				<div class="actions right">
-	    			<%= f.submit "Submit Timesheet", class: "btn btn-large btn-primary span3" %>
+					<%= f.hidden_field :complete %>
+					<% if @timesheet.open? %>
+						<%= f.submit "Submit Timesheet", id:"submit", class: "btn btn-large #{"btn-primary" if @timesheet.open?} span3" %>
+					<% else %>
+						<%= f.submit "Re-open Timesheet", id:"unsubmit", class: "btn btn-large span3" %>
+					<% end %>
+
+	    			
 				</div>
 			</div>
 		</div>
@@ -177,9 +196,8 @@
 </div> <!-- end row -->	
 <div class="line"></div>
 
-
 <br /><br /><br />
-<h3 class="no-line">Year-to-Date Hours&nbsp;<span class="lightweight"><%= year_begin(@timesheet.week, @timesheet.year).strftime("%B %d, %Y") %> - <%= get_date(7, @timesheet).strftime("%B %d, %Y") %></span></h3>
+<h3 class="no-line page-break">Year-to-Date Hours&nbsp;<span class="lightweight"><%= year_begin(@timesheet.week, @timesheet.year).strftime("%B %d, %Y") %> - <%= get_date(7, @timesheet).strftime("%B %d, %Y") %></span></h3>
 
 <div class="line"></div>
 	<div class="row">
@@ -193,9 +211,9 @@
 					    		<thead>
 					    			<tr>
 						    			<th>All Hours</th>
-						    			<th><%= @timesheet.year %> Target</th>
+						    			<th>Total</th>
 						    			<th>Remaining for Year</th>
-						    			<th>Remaining<br />through <%= get_date(7, @timesheet).strftime("%B %d") %></th>
+						    			<th>Remaining<br />through <%= get_date(7, @timesheet).strftime("%B %d") %>*</th>
 						    			<th>Completed Hours</th>
 						    			
 						    		</tr>
@@ -238,32 +256,8 @@
 					    </div>
 					</div>
 
+
 					<div class="span5 right chart-box">
-
-				    	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-					    <script type="text/javascript">
-					      google.load("visualization", "1", {packages:["corechart"]});
-					      google.setOnLoadCallback(drawChart);
-					      function drawChart() {
-					        var data = new google.visualization.DataTable();
-					        data.addColumn('string', 'Task');
-					        data.addColumn('number', 'Hours');
-					        data.addRows(<%= raw @timesheet.generate_percentages %>
-					        );
-
-					        var options = {
-					          title: '',
-					          sliceVisibilityThreshold: 1/100,
-					          legend:{position: 'none'},
-					          backgroundColor: 'transparent',
-					          colors:<%= raw color_array %>,
-					          chartArea:{left:40,top:10}
-					        };
-
-					        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-					        chart.draw(data, options);
-					      }
-					    </script>
 
 					    <div id="chart_div" class="chart"></div>
 					    <div class="legend">
@@ -290,6 +284,7 @@
 					    </div>
     				</div>
 
+					<div class="italic span8 half-shift-left">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <%= strip(@employee.week_hours) || 40 %> hour week.</div>
 
 					<div class="span8 well half-shift-left">  
 			    		<div class="span7-25">
@@ -311,7 +306,7 @@
 						    						<%= decimal(@employee.vacation_hours) %>
 						    					<% end %>
 						    				</td>
-						    				<td>	
+						    				<td <%= over?(@timesheet.over_under_calc( @employee.vacation_hours, @timesheet.ytd_nb_subtotal(category) )) %>>	
 						    					<% if category == "Vacation" %>
 						    						<%= decimal(@timesheet.over_under_calc( @employee.vacation_hours, @timesheet.ytd_nb_subtotal(category) )) %>
 						    					<% end %>
@@ -354,9 +349,33 @@
 					    	</table>
 					    </div>
 			    	</div>
-
 			    	
-					
 			    </div>
+
+
+			    <!-- chart -->
+				<script type="text/javascript">
+				      google.load("visualization", "1", {packages:["corechart"]});
+				      google.setOnLoadCallback(drawChart);
+				      function drawChart() {
+				        var data = new google.visualization.DataTable();
+				        data.addColumn('string', 'Task');
+				        data.addColumn('number', 'Hours');
+				        data.addRows(<%= raw @timesheet.generate_percentages %>
+				        );
+
+				        var options = {
+				          title: '',
+				          sliceVisibilityThreshold: 1/100,
+				          legend:{position: 'none'},
+				          backgroundColor: 'transparent',
+				          colors:<%= raw color_array %>,
+				          chartArea:{left:40,top:10}
+				        };
+
+				        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+				        chart.draw(data, options);
+				      }
+				</script>
 
 			    

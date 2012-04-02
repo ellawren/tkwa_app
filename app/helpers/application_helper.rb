@@ -48,6 +48,15 @@ module ApplicationHelper
       "class='active'" if params[:controller] == c_name
   end
 
+  def over_under(g, a)
+      goal = g.to_f
+      actual = a.to_f
+      if goal >= actual
+        "(#{goal - actual})"
+      elsif goal < actual
+        "+ #{actual - goal}"
+      end
+  end
 
   def formatted_date(date)
     if date

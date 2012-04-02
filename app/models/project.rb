@@ -155,7 +155,7 @@ class Project < ActiveRecord::Base
 
     # sum of actual hours entered for project
     def sum_actual
-        time_entries = TimeEntry.find_all_by_project_id(self.id)
+        time_entries = TimeEntry.find_all_by_project_id(id)
         array = []
         sum = 0
         time_entries.each do |t| 
@@ -169,6 +169,7 @@ class Project < ActiveRecord::Base
         employee_id = Employee.find_by_contact_id(contact_id).id
         TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
     end
+
 
     
     

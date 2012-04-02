@@ -2,9 +2,14 @@
 /* TWITTER BOOTSTRAP 2.0 -- default class mods and additions
 /**************************************************************************************************************/
  
+
+        body { margin:0 30px;}
+
     /* nav bar */
 
         .nav li { position:relative; width:125px; text-align:center; font-size:8pt; font-weight:100; text-transform:uppercase; letter-spacing:2px; }
+        .navbar .brand  { margin-left:00px; padding:8px 20px 12px 0px; }
+        .navbar .container.fifteen { padding-left:30px; padding-right:30px; }
 
     /* typography */
 
@@ -29,7 +34,9 @@
         .span3-5 { width: 260px; }
         .span3-75 { width: 280px; }
         .span4-5 { width: 350px; }
+        .span5-25 { width: 420px; }
         .span5-5 { width: 440px; }
+        .span5-75 { width: 460px; }
         .span6-5 { width: 530px; }
         .span7-25 { width: 580px; }
         .span7-5 { width: 620px; }
@@ -70,7 +77,7 @@
         .input-box.span12 { width: 930px; }
         .input-box { color:#000; background-color:#fff; padding:5px; margin:0px; font-size:1em; cursor:default; border:1px solid #e6e6e6; cursor:text; box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1) inset; margin-left: 0; border-radius: 3px 3px 3px 3px; font-size: 13px; height: 18px; line-height: 18px; margin-bottom: 0; }
         .box-padding  { padding:6px; }
-        .input-box.rows2  { height:51px; }
+        .input-box.rows2, .input-div.rows2  { height:51px; }
         .inputbox { padding:4px 0; width:auto; }
         .form-horizontal.half-width-labels .control-group > label { width: 100px; }
         .form-horizontal.half-width-labels .controls { margin-left: 120px; }
@@ -113,16 +120,19 @@
         .inline { display:inline; width:auto; }
         .bold { color:#000; font-weight:bold; }
         .caps { font-size:7pt; font-weight:normal; text-transform:uppercase; color:#888; letter-spacing:1px; }
-        .red { color:#f4735b; }
-        .green { color:#6dbb68; }
+        .red, .input-span.over-under.red  { color:#f4735b; }
+        .green, .input-span.over-under.green   { color:#6dbb68; }
         .spansm { width:35px; }
         .lightgray { color:#999; }
+        .italic         { color:#999; font-style:italic; margin:5px 0px; }
+                .italic.right { text-align:right; margin-right:-25px; }
+                .italic.span8 { margin-top:-15px; margin-bottom:15px; }
         .hidden { visibility:hidden; }
         .no-display     { display:none; }
         .shaded { background-color:#f5f5f5; }
         .lightweight { font-weight:100; color:#555; }
         .midweight { font-weight:300; color:#999; }
-        td.text-right { text-align:right;}
+        .text-right { text-align:right;}
         .input-spacer { width:62px; height:30px; margin-bottom:2px;}
         .flush-left { margin-left:0px; }
         .shift-left { margin-left:-20px; }
@@ -134,6 +144,7 @@
         textarea.rows1  { height: 18px;}
         .no-line        { border:none;}
         .white { background:#fff; }
+        .white-space    { white-space: pre-line;}
 
 
 
@@ -143,6 +154,7 @@
         .clearfix { clear:both; }
         .alignleft { margin-left:0px; }
         .right { float:right; }
+
 
     /* tooltips */
 
@@ -218,12 +230,12 @@
         select.date-select { font-size:12px; width:78px; margin:0px 2px 0 0; height:24px; padding:4px 5px 3px 9px; font-weight:bold; border:none; background-color:#ebebeb; color:#000; -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset; }
         select.date-select:hover { background-color:#dcdcdc; color:#000; cursor:pointer; }
         .tabnav.timesheets { height:23px;  }
-        .tabnav.timesheets a { font-size:10px; width:9px; text-align:center; padding:3px 4px 3px 4px; margin:1px 0 0 0; color:#ccc; }
+        .tabnav.timesheets a { font-size:10px; width:9px; text-align:center; padding:3px 4px 2px 4px; margin:1px 0 0 0; color:#ccc; }
         .tabnav.timesheets form { margin:0px; }
         .tabnav.timesheets a:hover { text-decoration:none; color:#666;  }
         .tabnav.timesheets a.past { background-color:#f5f5f5; color:#666; }
         .tabnav.timesheets a.past:hover { background-color:#e9e9e9; color:#666; }
-        .tabnav.timesheets a.curr { background-color:#E6EFC2; color:#000; }
+        .tabnav.timesheets a.curr { background-color:#e8ead7; color:#000; }
         .tabnav.timesheets a.sel { background-color:#d4ddae; color:#000; }
         .tabnav.timesheets a.sel:hover { background-color:#c7d09f; }
 
@@ -286,7 +298,7 @@
         .timesheets.table-main .table-footer { float:left; font-weight:bold; margin-top:0px; font-size:12px; }
         .timesheets.table-main .table-footer .time-entries { margin-left:569px; border-bottom:2px solid #000; padding:0 5px 0 5px; }
         .timesheets.table-main .sum { width:49px; height:22px; text-align:center; float:left; padding:6px 3px 3px 0; }
-        .timesheets.table-main .table-footer .total { padding:8px 0; }
+        .timesheets.table-main .table-footer .total { padding:8px 0; float:left; }
         .add-button      { position:absolute; bottom:-38px; left:117px; }
         .save-button     { position:absolute; bottom:-37px; left:10px; }
         .timesheets.table-main .total { float:none; display:inline-block; width:60px; min-height:6px; text-align:center;  }
@@ -300,7 +312,11 @@
         .category-label      { float:left; width:547px; }
         .non-billable .nb-category { float:left; width:182px; }
         .non-billable .nb-description { float:left; width:341px; text-align:left; margin:4px 10px 4px 0px; }
-
+        #page-status    { float:right; border-radius:8px; background:#f0f0f0; padding:9px 16px; margin-top:-2px; font-size:20px; text-transform:uppercase; color:#ccc; letter-spacing:1px; }
+        #page-status.complete { background-color:#555; color:#fff; } 
+        #unsubmit         { color:#ccc;}
+        .complete .timesheets.table-main input, .complete select { cursor:not-allowed; }
+        .complete .unsaved { visibility:hidden;}
 
         /* holiday */
         .timesheets.table-main .holiday, .timesheets.table-main .holiday input    { color:#34b4bf; }
@@ -315,13 +331,17 @@
         .chart-box { margin-right:-30px; margin-left:30px; width:390px; height:400px; position:relative; }
         .chart  { width:550px; height:550px; }
         .legend { position:absolute; top:365px; padding-left:25px;}
+        .tracking.legend { position:static; padding-left:20px; }
+        .tracking.legend table { margin:10px; }
+        .tracking.legend table td:first-child { padding-left:10px; }
+        .tracking.legend table td:last-child { padding-right:10px; }
         .legend .color { width:15px; height:15px; background:#fff; }
         
 
     /* project tracking table */
   
         .tracking-table { margin-left: 0; width:800px;  }
-        .tracking-table td, .tracking-table th {border-left:1px solid #e6e6e6;}
+        .tracking-table td, .tracking-table th {border-left:1px solid #e6e6e6; }
         .tracking-table th { padding-top:0px;}
         .tracking-table a:hover { text-decoration:none; }
         .tracking-table .uneditable-input { margin-left:4px; cursor:default; font-size:12px; margin-bottom:2px; }
@@ -336,7 +356,8 @@
         .tracking-table th.gray, .tracking-table td.gray { border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; background-color:#fff; font-weight:bold; }
         .gray .round-top { display:block; background:#fff; -webkit-border-radius:10px 10px 0 0; border-radius:10px 10px 0 0; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-top:1px solid #c9c9c9; width:auto; height:10px; margin:-10px -9px 0 -9px; }
         .gray .round-bottom { display:block; background:#fff; -webkit-border-radius:0 0 10px 10px; border-radius:0 0 10px 10px; border-left:1px solid #c9c9c9; border-right:1px solid #c9c9c9; border-bottom:1px solid #c9c9c9; width:auto; height:10px; margin:0px -9px -25px -9px; }
-        
+        .gray .inside-block { padding-right:4px; }
+
         .act, .act a { color:#6dbb68; padding:4px; font-weight:bold; }
         .act.over, .act.over a { color:#f4735b; } 
         .number { color:#000; font-weight:bold; font-size:20pt; margin-bottom:3px; letter-spacing: 1px; }
@@ -488,9 +509,11 @@
 
 
 
+/**************************************************************************************************************/
+/* JQUERY UI */
+/**************************************************************************************************************/
 
-
-
+.ui-menu .ui-menu-item a { line-height: 1.2; font-size:13px; font-family:Helvetica, "Helvetica Neue", Arial, sans-serif; }
 
 
 

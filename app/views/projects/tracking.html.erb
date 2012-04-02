@@ -126,10 +126,10 @@
 													<%= strip(@project.phase_est(phase.shorthand)) %>
 												</div>
 											<% end %>
-											<% if @project.phase_actual("#{phase.name}") == 0 %>
+											<% if @project.phase_actual("#{phase.number}") == 0 %>
 												<div class="input-spacer"></div>
 											<% else %>
-												<div class="uneditable-input span1 act <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.name}')) %>"><%= strip(@project.phase_actual("#{phase.name}")) %></div>
+												<div class="uneditable-input span1 act <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>"><%= strip(@project.phase_actual("#{phase.number}")) %></div>
 											<% end %>
 											<div class="round-bottom"></div>
 										</td>
@@ -144,7 +144,7 @@
 										<% if @project.sum_actual == 0 %>
 												<div class="input-spacer"></div>
 										<% else %>
-											<div class="uneditable-input span1 act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= @project.sum_actual %></div>
+											<div class="uneditable-input span1 act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= strip(@project.sum_actual) %></div>
 										<% end %>
 										<div class="round-bottom"></div>
 									</td>
@@ -164,18 +164,89 @@
 						</div>
 						
 				</div>
-				<br /><br />
+				
+
+
+				    	</div> <!-- end span13 -->
+	  </div> <!-- end row -->	
+	</div> <!-- end span14 -->
+</div> <!-- end row -->	
+<div class="line"></div>
+
+<br /><br /><br />
+<h3 class="no-line page-break">Task Breakdown</h3>
+
+<div class="line"></div>
+	<div class="row">
+		<div class="span15 sh">
+			<div class="row">	
+				<div class="span13 offset1">
 
 				<div class="row">
-					<h3>Task Breakdown</h3>
-  					<div class="notes"></div>				
+					<div class="notes half-shift-left">
+							The charts below display all tasks that have been entered for this project. The 'Hours' column sums task hours across all employees/phases.
+						</div>
+					<br />
+					<div class="span7 well well-white half-shift-left">
+						
+						<div class="tracking legend">
+					    	<table class="table span5-75 right-align-last no-borders">
+					    		<thead>
+						    		<tr class="bold table-header">
+						    			<th></th>
+						    			<th>Task</th>
+						    			<th>Hours</th>
+						    		</tr>
+						    	</thead>
+						    	<tbody>
+					    		<% i = 0 %>
+						    	<% hours_by_task_array(@all_entries).take(10).each do |k| %>
+						    		<tr>
+						    			<td><div class="color" style="background:<%= color_array[i] %>"></div></td>
+						    			<td><%= k[0] %></td>
+						    			<td><%= decimal(k[1]) %></td>
+						    		</tr>
+						    		<% i += 1 %>
+						    	<% end %>
+						    </tbody>
+					    	</table>
+					    </div>
+					</div>
+					<div class="span5 chart-box">
+
+					    <div id="chart_div" class="chart"></div>
+					    
+    				</div>
+					
 				</div>
 
-				<div class="row">
-					<ul>
-						<%= hours_by_task(@all_entries) %>
-					</ul>
-				</div>
 
 
-<% end %>						
+
+		
+
+<!-- chart -->
+				<script type="text/javascript">
+				      google.load("visualization", "1", {packages:["corechart"]});
+				      google.setOnLoadCallback(drawChart);
+				      function drawChart() {
+				        var data = new google.visualization.DataTable();
+				        data.addColumn('string', 'Task');
+				        data.addColumn('number', 'Hours');
+				        data.addRows(<%= raw hours_by_task_array(@all_entries) %>
+				        );
+
+				        var options = {
+				          title: '',
+				          sliceVisibilityThreshold: 1/100,
+				          legend:{position: 'none'},
+				          backgroundColor: 'transparent',
+				          colors:<%= raw color_array %>,
+				          chartArea:{left:40,top:10}
+				        };
+
+				        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+				        chart.draw(data, options);
+				      }
+				</script>				
+<% end %>
