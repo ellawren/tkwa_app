@@ -171,7 +171,67 @@ class Project < ActiveRecord::Base
     end
 
 
+
+    def budget
+        array = []
+        sum = 0
+        employee_teams.each do |team|
+            employee_id = Employee.find_by_contact_id(team.contact_id).id
+            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate
+            array.push((team.est_total * rate).to_f)
+        end
+        array.map{|x| sum += x}
+        sum
+    end
+
+    def actual
+        array = []
+        sum = 0
+        employee_teams.each do |team|
+            array.push(employee_act_costs(team.contact_id, "Total"))
+        end
+        array.map{|x| sum += x}
+        sum
+    end
+
+    def employee_est_costs(contact_id, phase)
+        if phase == "Total"
+            team = EmployeeTeam.find_by_contact_id_and_project_id(contact_id, id)
+            employee_id = Employee.find_by_contact_id(contact_id).id
+            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate
+            (team.est_total * rate).to_f
+        end
+    end
     
+    def employee_act_costs(contact_id, phase)
+        if phase == "Total"
+            employee_id = Employee.find_by_contact_id(contact_id).id
+            time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
+
+            array = []
+            sum = 0
+            time_entries.each do |t| 
+                year = Timesheet.find(t.timesheet_id).year
+                rate = DataRecord.find_by_employee_id_and_year(employee_id, year).billable_rate
+                array.push(t.entry_total * rate)
+            end
+            array.map{|x| sum += x}
+            sum
+        else
+            employee_id = Employee.find_by_contact_id(contact_id).id
+            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
+            array = []
+            sum = 0
+            time_entries.each do |t| 
+                year = Timesheet.find(t.timesheet_id).year
+                rate = DataRecord.find_by_employee_id_and_year(employee_id, year).billable_rate
+                array.push(t.entry_total * rate)
+            end
+            array.map{|x| sum += x}
+            sum
+        end
+    end
+
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
     					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",

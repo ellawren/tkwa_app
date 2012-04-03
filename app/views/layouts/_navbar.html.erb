@@ -37,8 +37,8 @@
                                 <div class="dropdown" id="menu1">
                                     <%= link_to current_user.name, "#menu1", class: "dropdown-toggle", datatoggle: "dropdown" %>
                                     <ul class="dropdown-menu">
-                                        <li><%= link_to "Go to timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %></li>
-                                        <li><%= link_to "Edit my contact info", edit_contact_path(current_user.employee.contact_id) %></li>
+                                        <li><%= link_to "Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %></li>
+                                        <li><%= link_to "Employee info", edit_contact_path(current_user.employee.contact_id) %></li>
                                         <li><%= link_to "Edit my login/password", edit_user_path(current_user) %></li>
                                         <li class="divider"></li>
                                         <li><%= link_to "Sign out", signout_path, method: :delete %></li>

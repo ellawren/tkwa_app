@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402191724) do
+ActiveRecord::Schema.define(:version => 20120403192454) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -96,6 +96,27 @@ ActiveRecord::Schema.define(:version => 20120402191724) do
     t.string   "prefix"
   end
 
+  create_table "data_records", :force => true do |t|
+    t.integer  "year"
+    t.decimal  "week",        :precision => 4, :scale => 2
+    t.decimal  "vacation",    :precision => 6, :scale => 2
+    t.decimal  "holiday",     :precision => 4, :scale => 2
+    t.decimal  "billable",    :precision => 6, :scale => 2
+    t.decimal  "rate",        :precision => 6, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "employee_id"
+  end
+
+  create_table "data_records_employees", :id => false, :force => true do |t|
+    t.integer  "data_record_id", :null => false
+    t.integer  "employee_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "data_records_employees", ["data_record_id", "employee_id"], :name => "index_data_records_employees_on_data_record_id_and_employee_id", :unique => true
+
   create_table "employee_teams", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "project_id"
@@ -126,15 +147,19 @@ ActiveRecord::Schema.define(:version => 20120402191724) do
     t.string   "status"
     t.date     "hire_date"
     t.date     "leave_date"
-    t.decimal  "week_hours",     :precision => 4, :scale => 2
-    t.decimal  "vacation_hours", :precision => 6, :scale => 2
-    t.decimal  "holiday_hours",  :precision => 4, :scale => 2
-    t.decimal  "billable_goal",  :precision => 4, :scale => 2
   end
 
   add_index "employees", ["contact_id"], :name => "index_employees_on_contact_id"
   add_index "employees", ["user_id", "contact_id"], :name => "index_employees_on_user_id_and_contact_id", :unique => true
   add_index "employees", ["user_id"], :name => "index_employees_on_user_id"
+
+  create_table "globals", :force => true do |t|
+    t.integer  "year"
+    t.decimal  "multiplier", :precision => 4, :scale => 2
+    t.decimal  "mileage",    :precision => 4, :scale => 2
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
 
   create_table "holidays", :force => true do |t|
     t.date     "date"

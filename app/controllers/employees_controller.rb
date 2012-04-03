@@ -10,12 +10,8 @@ class EmployeesController < ApplicationController
 
   def edit
     @employee= Employee.find(params[:id])
+    render :layout => 'modal' 
   end
-
-  #def timesheets
-  #  @employee = Employee.find(params[:id])
-  #  @contact = Contact.find(@employee.contact_id)
-  #end
 
   def update
     @employee = Employee.find(params[:id])
@@ -26,6 +22,5 @@ class EmployeesController < ApplicationController
       redirect_to(:back) 
     end
   end
-
   
 end

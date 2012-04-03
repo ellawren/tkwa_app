@@ -58,9 +58,10 @@ class Timesheet < ActiveRecord::Base
 
   def all_hours(line, column)
         employee = Employee.find(employee_id)
+        data_record = DataRecord.find_by_employee_id_and_year(employee_id, year)
         weeks = weeks_in_year(year)
-        week_total = employee.week_hours || 40
-        week_billable = employee.billable_goal || 40
+        week_total = data_record.week || 40
+        week_billable = data_record.billable || 40
         week_non_billable = week_total - week_billable
         year_total = week_total * weeks
         year_billable = week_billable  * weeks

@@ -2,19 +2,15 @@
 #
 # Table name: employees
 #
-#  id             :integer         not null, primary key
-#  user_id        :integer
-#  contact_id     :integer
-#  created_at     :datetime
-#  updated_at     :datetime
-#  number         :integer
-#  status         :string(255)
-#  hire_date      :date
-#  leave_date     :date
-#  week_hours     :decimal(4, 2)
-#  vacation_hours :decimal(6, 2)
-#  holiday_hours  :decimal(4, 2)
-#  billable_goal  :decimal(4, 2)
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  contact_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  number     :integer
+#  status     :string(255)
+#  hire_date  :date
+#  leave_date :date
 #
 
 class Employee < ActiveRecord::Base
@@ -22,5 +18,8 @@ class Employee < ActiveRecord::Base
     belongs_to :contact
 
     has_many :timesheets
+    has_many :data_records
     has_many :time_entries, :through => :timesheets
+
+    accepts_nested_attributes_for :data_records
 end

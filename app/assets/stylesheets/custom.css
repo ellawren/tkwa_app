@@ -261,6 +261,7 @@
         tr.total td { border-top:1px solid #000; }
         table.no-borders td       { border:none; }
         table.right-align-last th:last-child, table.right-align-last td:last-child { text-align:right; padding-right:6px; }
+        table td.left-align, table th.left-align       { text-align:left; }
 
     /* project team table */
 
@@ -316,7 +317,6 @@
         #page-status.complete { background-color:#555; color:#fff; } 
         #unsubmit         { color:#ccc;}
         .complete .timesheets.table-main input, .complete select { cursor:not-allowed; }
-        .complete .unsaved { visibility:hidden;}
 
         /* holiday */
         .timesheets.table-main .holiday, .timesheets.table-main .holiday input    { color:#34b4bf; }

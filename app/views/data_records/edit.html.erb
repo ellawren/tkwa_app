@@ -1,0 +1,49 @@
+<div class="modal-header">
+    
+    <div class="row">
+          <div class="span10 offset05">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3><%= @data_record.employee.contact.name %> <span class="lightweight"><%= @data_record.year %></span></h3>
+          </div>
+    </div>
+</div>
+
+<div class="modal-body">
+	<%= form_for [@employee, @data_record] do |f| %>
+
+          <div class="row">
+
+            <div class="span9 offset05">
+
+
+                <br />
+
+                <table class="modal-table">
+                  <tr>
+                        <td>Total Hours<br />Per Week</td>
+                        <td>Billable Hours<br />Per Week</td>
+                        <td>Comp Hours<br />Per Holiday</td>
+                        <td>Vacation Hours<br />Per Year</td>
+                        <td>Hourly Rate</td>
+                  </tr>
+                  <tr>
+                        <td><%= f.text_field :week %></td>
+                        <td><%= f.text_field :billable %></td>
+                        <td><%= f.text_field :holiday %></td>
+                        <td><%= f.text_field :vacation %></td>
+                        <td><%= f.text_field :rate %></td>
+                  </tr>
+              </table>
+              <br />
+
+              <div class="actions">
+                  <%= f.submit "Save Changes", class: "btn-large btn-primary span3" %>
+                  <a class="btn btn-large" data-dismiss="modal">Cancel</a>
+              </div>
+
+          </div> <!-- end span9 -->
+
+        </div> <!-- end row -->
+        <br />
+    <% end %>
+</div>

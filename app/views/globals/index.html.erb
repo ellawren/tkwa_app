@@ -1,0 +1,22 @@
+<h1>Global Values</h1>
+<br /><br />
+<table class="table right-align">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Multiplier</th>
+            <th>Mileage</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    	<% @globals.each do |param| %>
+        <tr>
+            <td><%= link_to param.year, edit_global_path(param) %></td>
+            <td><%= param.multiplier %></td>
+            <td><%= param.mileage %></td>
+            <td></td>
+        </tr>
+		<% end %>
+    </tbody>
+</table>

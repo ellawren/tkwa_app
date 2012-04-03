@@ -164,11 +164,34 @@
 						</div>
 						
 				</div>
+
+
+
+			</div> <!-- end span13 -->
+		</div> <!-- end row -->	
+	</div> <!-- end span14 -->
+</div> <!-- end row -->	
+<div class="line"></div>
+
+<br /><br /><br />
+<h3 class="no-line page-break">Project Budget</h3>
+
+<div class="line"></div>
+<div class="row">
+	<div class="span15 sh">
+		<div class="row">	
+			<div class="span13 offset1">
 				
+				Estimated Project Hours = <%= @project.sum_est %><br />
+				Estimated Project Budget = <%= number_to_currency(@project.budget) %><br />
+				Estimated Avg. Hourly Rate = <%= number_to_currency(@project.budget / @project.sum_est) %><br />
+				<br />
+				Actual Project Hours (to date) = <%= @project.sum_actual %><br />
+				Actual Project Cost (to date) = <%= number_to_currency(@project.actual) %><br />
+				Actual Avg. Hourly Rate = <%= number_to_currency(@project.actual / @project.sum_actual) %><br /><br />
 
-
-				    	</div> <!-- end span13 -->
-	  </div> <!-- end row -->	
+			</div> <!-- end span13 -->
+		</div> <!-- end row -->	
 	</div> <!-- end span14 -->
 </div> <!-- end row -->	
 <div class="line"></div>
@@ -177,10 +200,12 @@
 <h3 class="no-line page-break">Task Breakdown</h3>
 
 <div class="line"></div>
-	<div class="row">
-		<div class="span15 sh">
-			<div class="row">	
-				<div class="span13 offset1">
+<div class="row">
+	<div class="span15 sh">
+		<div class="row">	
+			<div class="span13 offset1">
+
+
 
 				<div class="row">
 					<div class="notes half-shift-left">
@@ -238,7 +263,7 @@
 
 				        var options = {
 				          title: '',
-				          sliceVisibilityThreshold: 1/100,
+				          sliceVisibilityThreshold: 1/200,
 				          legend:{position: 'none'},
 				          backgroundColor: 'transparent',
 				          colors:<%= raw color_array %>,

@@ -1,0 +1,15 @@
+<% content_for :page_header do %>
+  <% provide :title, "Edit Globals" %>
+  <div class="page-header">
+    <h1>Add Globals</h1>
+  </div>
+<% end %>
+
+<%= form_for(@global) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'fields', f: f %>
+
+  <div class="actions">
+    <%= f.submit "Create", class: "btn" %>
+  </div>
+<% end %>

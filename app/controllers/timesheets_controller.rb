@@ -24,6 +24,7 @@ class TimesheetsController < ApplicationController
    @timesheet = Timesheet.find_or_create_by_employee_id_and_year_and_week(params[:id], params[:year], params[:week])
    @employee= Employee.find(@timesheet.employee_id)
    @contact = Contact.find(@employee.contact_id)
+   @data_record = DataRecord.find_or_create_by_employee_id_and_year(@employee.id, @timesheet.year)
 
    1.times { @timesheet.time_entries.build }
    1.times { @timesheet.non_billable_entries.build }

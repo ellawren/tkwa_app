@@ -1,8 +1,6 @@
 TkwaApp::Application.routes.draw do
 
 
-
-
   resources :users do
     member do
       get :following, :followers, :profile
@@ -20,7 +18,8 @@ TkwaApp::Application.routes.draw do
   resources :employees do
     resources :timesheets
   end
-  match '/employees/:id/timesheets/:year/:week' => 'timesheets#show'
+  match '/employees/:id/timesheets/:year/:week', to: 'timesheets#show'
+  match '/employees/:id/data_records/:year', to: 'data_records#edit'
 
   resources :contacts do
     get :autocomplete_contact_work_company, :on => :collection
@@ -28,8 +27,10 @@ TkwaApp::Application.routes.draw do
   
   resources :categories 
   resources :consultants
+  resources :data_records
   resources :employees
   resources :employee_teams
+  resources :globals
   resources :holidays
   resources :microposts,  only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

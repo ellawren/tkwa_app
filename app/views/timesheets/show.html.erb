@@ -165,7 +165,7 @@
   						<div class="input-span over-under <%= over_s?(@timesheet.all_hours("total", "over-under")) %>"><%= decimal(@timesheet.all_hours("total", "over-under")) %></div>
 					</div>
 				</div>	
-				<div class="italic right">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <%= strip(@employee.week_hours) || 40 %> hour week.</div>
+				<div class="italic right">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <%= strip( @data_record.week) || 40 %> hour week.</div>
 			</div>
 
     	</div>
@@ -284,7 +284,7 @@
 					    </div>
     				</div>
 
-					<div class="italic span8 half-shift-left">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <%= strip(@employee.week_hours) || 40 %> hour week.</div>
+					<div class="italic span8 half-shift-left">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <%= strip(@data_record.week) || 40 %> hour week.</div>
 
 					<div class="span8 well half-shift-left">  
 			    		<div class="span7-25">
@@ -303,12 +303,12 @@
 						    				<td><%= category %></td>
 						    				<td>
 						    					<% if category == "Vacation" %>
-						    						<%= decimal(@employee.vacation_hours) %>
+						    						<%= decimal(@data_record.vacation) %>
 						    					<% end %>
 						    				</td>
-						    				<td <%= over?(@timesheet.over_under_calc( @employee.vacation_hours, @timesheet.ytd_nb_subtotal(category) )) %>>	
+						    				<td <%= over?(@timesheet.over_under_calc( @data_record.vacation, @timesheet.ytd_nb_subtotal(category) )) %>>	
 						    					<% if category == "Vacation" %>
-						    						<%= decimal(@timesheet.over_under_calc( @employee.vacation_hours, @timesheet.ytd_nb_subtotal(category) )) %>
+						    						<%= decimal(@timesheet.over_under_calc( @data_record.vacation, @timesheet.ytd_nb_subtotal(category) )) %>
 						    					<% end %>
 						    				</td>
 						    				<td><%= decimal(@timesheet.ytd_nb_subtotal(category)) %></td>
@@ -366,7 +366,7 @@
 
 				        var options = {
 				          title: '',
-				          sliceVisibilityThreshold: 1/100,
+				          sliceVisibilityThreshold: 1/200,
 				          legend:{position: 'none'},
 				          backgroundColor: 'transparent',
 				          colors:<%= raw color_array %>,
