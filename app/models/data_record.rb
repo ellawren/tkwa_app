@@ -22,10 +22,10 @@ class DataRecord < ActiveRecord::Base
 
 	def billable_rate
 		if rate?
-			if Global.find_by_year(year).multiplier == nil
-				multiplier = 2.8
+			if Global.find_by_year(year)
+				multiplier = Global.find_by_year(year).multiplier || 2.8
 			else
-				multiplier = Global.find_by_year(year).multiplier
+				multiplier = 2.8
 			end
 			rate * (multiplier + 1)
 		end
