@@ -1,0 +1,8 @@
+<div class="table-row">
+	<div class="input-div"><%= @consultant.company %></div>
+	<div class="input-div"><%= f.text_field :date, class: "span3", datadatepicker: "datepicker" %></div>
+	<div class="input-div"><%= f.text_field :amount, class: "span3" %></div>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to_remove_fields "  ", f %>
+</div>
+	   

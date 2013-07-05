@@ -51,6 +51,10 @@
 #  int_percent         :integer
 #  add_percent         :integer
 #  client_url          :string(255)
+#  contract_amount     :decimal(12, 2)
+#  extra_services      :decimal(12, 2)
+#  payroll             :decimal(12, 2)
+#  alt_contact         :string(255)
 #
 
 require 'spec_helper'

@@ -1,25 +1,15 @@
-<% content_for :page_header do %>
-  <% provide :title, "Edit Contact" %>
-  <div class="page-header">
-    <h1><%= @contact.name %></h1>
-  </div>
-<% end %>
+<%= form_for @contact do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
 
-<%= form_for(@contact, html: { class: "form-horizontal" }) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= render 'fields', f: f %>
-  <br /><br />
+   <div class="content">
 
-    <div class="row">
-        <div class="span12">
-            <div class="actions">
-                <%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
-                <%= link_to "Cancel", contact_path(@contact), class: "btn btn-large" %>
-                <% if @contact.employee %>
-                    <%= link_to "Edit login/password", edit_user_path(current_user.id), class: "text-btn" %>
-                <% end %>
-            </div>
+        <%= render 'fields', :f => f %>
+
+        <div class="save-row">
+            <%= f.submit "Update", class: "btn btn-primary save-btn" %>
         </div>
-    </div>
+
+    </div> <!-- end content -->
 
 <% end %>
+

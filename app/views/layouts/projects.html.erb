@@ -1,19 +1,27 @@
 <% content_for :page_header do %>
-	<% provide :title, @project.name %>
-	<div class="page-header">
-		<h1><span class="lightweight"><%= strip(@project.number) %></span> &nbsp;<%= @project.name %></h1>
-	</div>
-<% end %>
+<% provide :title, @project.name %>
 
+	<div class="page-header">
+        <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+        <ul class="controls">
+            <li><a href="#">options</a></li>
+            <li><a href="#">delete</a></li>
+        </ul>
+        <!--<div class="controls">
+            <%= link_to "", projects_path, :class => "button search tip", :rel => "tooltip", :title => "search projects" %>
+			<%= link_to "", new_project_path, :class => "button add tip", :rel => "tooltip", :title => "add a new project" %>
+            <a class="button print tip" rel="tooltip" title="print this page"></a>
+            <a class="button delete tip" rel="tooltip" title="delete project"></a>
+        </div>-->
+    </div>		
+<% end %>
 
 <% content_for :tabnav do %>
 	<%= render "tabnav" %>
 <% end %>
 
-
 <% content_for :content do %>
   		<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
 <% end %>
-
 
 <%= render :template => 'layouts/application' %>

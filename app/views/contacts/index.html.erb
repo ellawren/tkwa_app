@@ -1,32 +1,69 @@
 <% content_for :page_header do %>
-	<% provide :title, "Contacts Index" %>
+	<% provide :title, "Contacts" %>
 	<div class="page-header">
-		<h1>Contacts Index</h1>
-	</div>
+        <h1>Search Contacts</h1>
+        <ul class="controls">
+            <li><a href="/contacts/">reset</a></li>
+            <li><a href="#">advanced search</a></li>
+        </ul>
+    </div>
+    <div class="description">Enter all or part of the contact name. Choose an option from the menu at left to narrow your search. To show all contacts within a category, just leave the name field blank.</div>
 <% end %>
 
-<%= link_to "Add Contact", new_contact_path, class: "btn" %>
-<%= link_to "Add Consultant", new_consultant_path, class: "btn" %>
-<br /><br /><br />
-<h4>All</h4><br />
-	<ul>
-		<% Contact.non_employees.each do |param| %>
-  			<li><%= link_to param.name, param %></li>
-		<% end %>
-	</ul>
+<div class="gray-box">
 
-<br /><br />
-<h4>Employees</h4><br />
-	<ul>
-		<% Contact.employee_list.each do |param| %>
-  			<li><%= link_to param.name, param %></li>
-		<% end %>
-	</ul>
-<br /><br />
-<h4>Consultants</h4><br />
-	<ul>
-		<% Contact.consultant_list.each do |param| %>
-  			<li><%= link_to param.name, param %></li>
-		<% end %>
-	</ul>
+	<%= search_form_for @q do |f| %>
+
+		<div class="status-options">
+			<div><%= f.radio_button(:category_cont, "") %><label class="radio">All</label></div>
+	        <div><%= f.radio_button(:category_cont, "Employee") %><label class="radio">Employee</label></div>
+	        <div><%= f.radio_button(:category_cont, "Client") %><label class="radio">Client</label></div>
+			<div><%= f.radio_button(:category_cont, "Consultant") %><label class="radio">Consultant</label></div>
+		</div>
+
+		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "contact name" %>    
+		<%= f.submit "search", class: "btn btn-primary search-btn" %>
+			     
+	<% end %>
+
+</div>
+
+<% if (params.has_key?(:q)) %>
+
+	<% if @contacts.count == 0 %>
+		<div class="search-results">No matches.<br><a href="/contacts/">Clear search and try again.</a></div>
+	<% else %>
+
+	<h2>Search Results</h2>
+
+		<table class="table search-results">
+		    <tbody>
+		        <% @contacts.each do |param| %>
+		            <%= render 'contact', :f => param %>
+		        <% end %>
+		    </tbody>
+		</table>
+
+	<% end %>
+
+<% end %>
+
+<div class="page-header with-spacer contact">
+    <h1>Add A New Contact</h1>
+</div>
+
+<%= form_for @contact do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+   <div class="content">
+
+        <%= render 'fields', :f => f %>
+
+        <div class="save-row">
+            <%= f.submit "Add Contact", class: "btn btn-primary save-btn" %>
+        </div>
+
+    </div> <!-- end content -->
+
+<% end %>
 

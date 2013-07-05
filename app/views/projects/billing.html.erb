@@ -1,0 +1,104 @@
+<%= form_for @project do |f| %>
+
+    <h2>Contract + Fees</h2>
+
+        <div class="half billing">
+            <div class="input-row">
+                <%= f.label(:contract_amount, "Total Contract Amount", class: "input-label") %>
+                <%= f.text_field :contract_amount, value: number_to_currency(@project.contract_amount), class: ""  %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:extra_services, "Extra Services", class: "input-label") %>
+                <div class="plus">+</div><%= f.text_field :extra_services, value: number_to_currency(@project.extra_services), class: "margin-left" %>
+            </div>
+            <div class="input-row">
+                <label class="input-label">Total Consultant Contracts<br>(entered below)</label>
+                <div class="minus">-</div><div class="text-field margin-left bold"><%= number_to_currency(@project.consultant_contract_total) %></div>
+            </div>
+            <div class="sum-line"></div>
+            <div class="input-row">
+                <label class="input-label">Total Fee</label>
+                <div class="text-field total-fee"><%= number_to_currency(@project.tkwa_fee) %></div>
+            </div>  
+            <div class="input-row">
+                <%= f.label(:payroll, "Payroll Costs To Date", class: "input-label") %>
+                <%= f.text_field :payroll, value: number_to_currency(@project.payroll), class: "" %>
+            </div>
+            <div class="input-row">
+                <label class="input-label">Current Profit/Loss</label>
+                <div class="text-field bold"><%= over_under_currency(@project.payroll, @project.tkwa_fee) %></div>
+            </div>  
+        </div>
+        <div class="half last">
+
+                <div class="input-row">
+                    <div class="input-label">
+                        <%= f.label(:billing_type, "Billing Type", class: "inline-label") %>
+                        <a class="edit-link fui-new" href="#"></a>
+                    </div>
+                    <%= f.select(:billing_type, Project::BILLING_TYPES, {:prompt => ' '}, {:class => 'custom-select billing'}) %>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-label">
+                        <%= f.label(:billing_travel, "Travel Billing", class: "inline-label") %>
+                        <a class="edit-link fui-new" href="#"></a>
+                    </div>
+                    <%= f.select(:billing_travel, Project::BILLING_TRAVEL_TYPES, {:prompt => ' '}, {:class => 'custom-select billing'}) %>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-label">
+                        <%= f.label(:billing_consultant, "Consultant Billing", class: "inline-label") %>
+                        <a class="edit-link fui-new" href="#"></a>
+                    </div>
+                    <%= f.select(:billing_consultant, Project::BILLING_CONSULTANT_TYPES, {:prompt => ' '}, {:class => 'custom-select billing'}) %>
+                </div>
+                <div class="input-row">
+                    <%= f.label(:billing_outofpocket, "Out-of-pocket", class: "input-label") %>
+                    <div class="text">Expenses +</div>
+                    <%= f.text_field :billing_outofpocket, class: "oop" %>
+                    <div class="text">% markup</div>
+                </div>
+                        
+            </div> <!-- end half -->
+
+        <div class="save-row">
+            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        </div>
+
+
+<% end %>
+<%= form_for @project do |f| %>
+
+    <h2>Consultant Billing</h2>
+
+    <table class="table billing-table">
+
+        <thead>
+            <tr>
+                <th>Firm</th>
+                <th>Role</th>
+                <th class="align-right">Contract Amount</th>
+                <th class="align-right">Billed to-date</th>
+                <th class="align-right">Percent</th>
+            </tr>
+        </thead>
+            
+        <tbody>
+            <%= f.fields_for :consultant_teams do |builder| %>
+            		<%= render 'consultant_billing_fields', :f => builder %>
+            <% end %>
+            <tr class="footer">
+                <td></td>
+                <td></td>
+                <td><div class="text-field lg bold"><%= number_to_currency(@project.consultant_contract_total) %></div></td>
+                <td><div class="text-field med bold"><%= number_to_currency(@project.project_bills_total) %></div></td>
+                <td><div class="text-field small bold"><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %></div></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+<% end %>
+

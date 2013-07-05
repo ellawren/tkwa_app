@@ -1,22 +1,27 @@
-<div class="table-row">
-	<% if f.object.contact_id %>
-		<div class="input-div span2-75 bold">
-			<%= link_to Contact.find(f.object.contact_id).name, contact_path(f.object.contact_id) %>
-		</div>
-	<% else %>
-		<%= f.collection_select(:contact_id, Contact.employee_list.all, :id, :name, { :include_blank => true }, { :class => "span2-75" } ) %>
-	<% end %>
+<div class="row">
+	
+	<%= f.collection_select(:contact_id, Contact.employee_list.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+	
+    <%= f.hidden_field :_destroy %>
+    
+	<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "custom-select" } ) %>
+    
+    <%= link_to_remove_fields_2 "  ", f %>
 
+</div>
+
+<!-- <div class="table-row">
+	<div class="input-div">
+		<%= f.collection_select(:contact_id, Contact.employee_list.all, :id, :name, { :include_blank => true }, { :class => "span3-5" } ) %>
+	</div>
     <%= f.hidden_field :_destroy %>
 
-    <% if f.object.role %>
-		<div class="input-div span2-75">
-			<%= f.object.role %>
-		</div>
-	<% else %>
-     	<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "span2-75" } ) %>
-    <% end %>
+    <div class="input-div">
+	    <%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "span3-5" } ) %>
+    </div>
 
-     	<%= link_to_remove_fields "x", f %>
-</div>
+    <%= link_to_remove_fields "  ", f %>
+
+</div> -->
 	    
+

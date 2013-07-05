@@ -1,58 +1,33 @@
-
-// these are currently not used, too many bugs
-
-function changePhase() {
-    var phases;
-    phases = $('#timesheet_time_entries_attributes_0_phase_number').html();
- 
-    return $('.project-selector').change(function () {
-      var options, project, num;
-      num = $(this).attr('id').replace(/[^0-9]/g, '');
-      project = $('#timesheet_time_entries_attributes_' + num + '_project_id :selected').text();
-      options = $(phases).filter("optgroup[label='" + project + "']").html();
-      if (options) {
-          $('#timesheet_time_entries_attributes_' + num + '_phase').html(options);
-      } else {
-          $('#timesheet_time_entries_attributes_' + num + '_phase').empty();
-      }
-      return end;
- 
-    });
-}
-
-
-
-
-
-(function() {
-
-  jQuery(function() {
-    //var phases;
-    //phases = $('#timesheet_time_entries_attributes_0_phase').html();
-    //return $('#timesheet_time_entries_attributes_0_project_id').change(function() {
-    $('.timesheet-project-select2').change(function() {
-      //var options, project, num;
-      num = $(this).attr('id').replace(/[^0-9]/g, '');
-      alert(num);
-      //project = $('#timesheet_time_entries_attributes_0_project_id :selected').text();
-      //options = $(phases).filter("optgroup[label='" + project + "']").html();
-      //if (options) {
-      //  $('#timesheet_time_entries_attributes_0_phase').html(options);
-      //} else {
-      //  $('#timesheet_time_entries_attributes_0_phase').empty();
-      //}
-      //return end;
-    });
+$(document).ready(function() {
+  
+  //init modal on project tracking page
+  $('a.modal-btn').on('click', function(e) {
+      e.preventDefault();
+      var url = $(this).attr('href');
+      $(".modal-body").html('<iframe id="externalSite" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
   });
 
-}).call(this);
+  // hover function on search results - projects/contacts index
+  $('tr.results-row').click( function() {
+      window.location = $(this).find('a').attr('href');
+  }).hover( function() {
+      $(this).toggleClass('hover');
+  });
+
+});
 
 
 
 
 
 
+$(document).ready(function() {
+    $( ".datepicker" ).datepicker({noOffset: true});
+  });
 
+$(document).ready(function() {
+  $(".chzn-select").chosen();
+  });
 
 
 
@@ -62,19 +37,37 @@ function remove_fields(link) {
   $(link).closest(".table-row").hide();
 }
 
+function remove_fields_2(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  //$(link).closest(".input").hide();
+  $(link).closest(".row").hide();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
+  return false;
   changePhase();
+  $(".chzn-select").chosen();
 }
 
+function add_category_fields(link, cat, content) {
+  $('.' + cat).html(content);
+  num = parseInt(cat.substr(cat.length - 2)) + 1;
+  cat = ".cat0" + num;
+  $(cat).show();
+  $(link).hide();
+  return false;
+}
 
-$(function() {
-		$(".pop").popover({ placement: 'right', animation:true });
-		$(".tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
-		$(".tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+$(document).ready(function() {
+    $("a.pop").popover({ placement: 'right', animation:true });
+		$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
+		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
 });
+
+
 
 
 function copyContact() {
@@ -114,169 +107,19 @@ $(document).ready(function() {
   });
 });
 
-
-// toggle scope edit on projects/scope page
+// toggle search options
 $(document).ready(function() {
-	$("#scope-toggle").one( "click", function () {
-    	$( "#scope-summary" ).css( "display","none" );
-    	$( "#scope-edit" ).css( "display","block" );
-  	});
+  $("#show-more").click(function () {
+      $( "#more-options" ).css( "display","block" );
+      $( "#show-more" ).css( "display","none" );
+      $( "#hide-more" ).css( "display","block" );
+  });
+
 
 });
 
-// select current on tracking page
-$(document).ready(function() {
-  $("#phase-10").click(function () {
-    if ( $('th.Predesign').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).addClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).addClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-20").click(function () {
-    if ( $('th.Schematic').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).addClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).addClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-30").click(function () {
-    if ( $('th.DesignDev').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).addClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-40").click(function () {
-    if ( $('th.ConstDocs').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).addClass( "gray" ).removeClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).addClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-50").click(function () {
-    if ( $('th.Bidding').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Bidding" ).addClass( "gray" ).removeClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-60").click(function () {
-    if ( $('th.CCA').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".CCA" ).addClass( "gray" ).removeClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-65").click(function () {
-    if ( $('th.Interior').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Interior" ).addClass( "gray" ).removeClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).addClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-68").click(function () {
-    if ( $('th.Historic').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Historic" ).addClass( "gray" ).removeClass( "light" );
-        $( ".Additional" ).removeClass( "gray" ).addClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
-  $("#phase-70").click(function () {
-    if ( $('th.Additional').hasClass('deactivated') ) {
-    } else {
-        $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Interior" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Historic" ).removeClass( "gray" ).removeClass( "light" );
-        $( ".Additional" ).addClass( "gray" ).removeClass( "light" );
-        $( ".TotalToDate" ).removeClass( "gray" );
-    }
-  });
 
-  $("#total").click(function () {
-      $( ".Predesign" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".Schematic" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".DesignDev" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".ConstDocs" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".Bidding" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".CCA" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".Interior" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".Historic" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".Additional" ).removeClass( "gray" ).removeClass( "light" );
-      $( ".TotalToDate" ).addClass( "gray" );
-  });
-  
 
-});
 
 
 //duration function for schedule page
@@ -350,23 +193,24 @@ function getEstHours() {
 
 // modal popup to edit employee team hours
 
-$(document).ready(function() {
+//$(document).ready(function() {
 
     // Support for AJAX loaded modal window.
     // Focuses on first input textbox after it loads the window.
-    $('[datatoggle="modal"]').click(function(e) {
-    e.preventDefault();
-    var href = $(this).attr('href');
-    if (href.indexOf('#') == 0) {
-        $(href).modal('open');
-    } else {
-        $.get(href, function(data) {
-        $('<div class="modal fade" >' + data + '</div>').modal();
-        })
-    }
-    });
+   // $('[data-toggle="modal"]').click(function(e) {
+   // e.preventDefault();
+   // var href = $(this).attr('href');
+   // if (href.indexOf('#') == 0) {
+    //    $(href).modal('open');
+    //} else {
+    //    $.get(href, function(data) {
+    //    $('<div class="modal fade" >' + data + '</div>').modal();
+    //    })
 
-});
+    //
+    //});
+
+//});
 
 
 // open map
@@ -374,6 +218,20 @@ function openMap(id) {
   address = $("#"+id).text();
   queryString = address.replace(/(\r\n|\n|\r| )/gm,"+");
   window.open('http://maps.google.com/maps?q=' + queryString);
+}
+
+// show map
+function showMap(id) {
+  address = $("#"+id).text();
+  queryString = address.replace(/(\r\n|\n|\r| )/gm,"+");
+  document.write("<iframe width=\"690\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q=" + queryString + "&amp;ie=UTF8&amp;hq=&amp;hnear=" + queryString + "&amp;t=m&amp;z=14&amp;output=embed\"></iframe><br /><small><a href=\"https://maps.google.com/maps?q=" + queryString + "&amp;ie=UTF8&amp;hq=&amp;hnear=" + queryString + "&amp;style=\"color:#0000FF;text-align:left\">View Larger Map</a></small>");
+}
+
+
+// send email
+function mailTo(address) {
+  queryString = 'mailto:' + address;
+  location.href=queryString;
 }
 
 // send email
@@ -394,11 +252,5 @@ function openURL(id) {
   window.open(queryString);
 }
 
+// modal window
 
-
-
-
-
-
-
-	

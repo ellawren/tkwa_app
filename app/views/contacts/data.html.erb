@@ -1,0 +1,130 @@
+<%= form_for @contact do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+   <div class="content">
+
+                 <h2>Details</h2>   
+
+                <!-- if contact is employee, show employee info fields -->
+                <% if is_employee? %>
+                <div class="form-inline">
+                
+                    <h3>Employee Info</h3>
+                    <div class="contact-shaded">
+
+                        <!-- if admin, show edit fields -->
+                        <% if current_user.admin? %>
+
+                            <%= f.fields_for :employee do |e| %>
+
+                                <div class="row">
+                                    <%= e.label :number, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :number, class: "span1" %>
+                                </div>
+                                <div class="row">
+                                    <%= f.label :birthday, class: "span1-5 box-padding" %>
+                                    <%= f.text_field :birthday, class: "span1-75 datepicker" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :hire_date, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :hire_date, class: "span1-75 datepicker" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :leave_date, class: "span1-5 box-padding" %>
+                                    <%= e.text_field :leave_date, class: "span1-75 datepicker" %>
+                                </div>
+                                <div class="row">
+                                    <%= e.label :status, class: "span1 box-padding" %>
+                                    <div class="span1 box-padding">
+                                        <label class="radio"><%= e.radio_button(:status, "Current") %>Current</label>
+                                        <label class="radio"><%= e.radio_button(:status, "Former") %>Former</label>
+                                    </div>
+                                </div>
+
+                            <% end %>   
+
+                        <!-- if not admin, just show info fields -->
+                        <% else %>
+
+                            Employee Number: <strong><%= @contact.employee.number %></strong><br />
+                            <% if @contact.birthday %>
+                                Birthday: <strong><%= @contact.birthday.strftime("%B %e") %></strong><br />
+                            <% end %>
+                            Hire Date: <strong><%= formatted_date(@contact.employee.hire_date) %></strong><br />
+
+                            <% if @contact.employee.leave_date %>
+                                Leave Date: <strong><%= formatted_date(@contact.employee.leave_date) %></strong><br />
+                            <% end %>
+
+                            Status: <strong><%= @contact.employee.status %></strong>
+
+                        <% end %> <!-- end admin conditional -->
+                        
+                    </div>
+
+                </div> <!-- end employee form -->
+
+                    <% if has_current_projects? %>
+
+                        <h3>Current Projects</h3>
+                        <div class="contact-shaded">
+                            <ul>
+                                <% @contact.employee_teams.current.each do |team| %>
+                                    <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
+                                        <%= team.role %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                        
+                    <% end %>
+
+                    <% if has_completed_projects? %>
+
+                        <h3>Completed Projects</h3>
+                        <div class="contact-shaded">
+                            <ul>
+                                <% @contact.employee_teams.completed.each do |team| %>
+                                    <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong><br />
+                                        <%= team.role %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </div>
+
+                    <% end %>
+
+                <!-- if contact is not an employee, show contact categories -->
+                <% else %>
+
+                    <div class="form-vertical">
+
+                        <h3>Contact Category</h3>
+                        <div class="contact-shaded">
+                            <%= hidden_field_tag "contact[category_ids][]", nil%>
+                            <% Category.all.each do |category| %>
+                                <label class="checkbox">
+                                    <%= check_box_tag "contact[category_ids][]", category.id, @contact.category_ids.include?(category.id), id: dom_id(category) %>
+                                    <%= category.name %>
+                                </label>
+                            <% end %>
+                        </div>
+                    
+                    </div>
+
+                <% end %> <!-- end employee conditional -->
+
+            </div>
+
+
+        <div class="save-row">
+            <%= f.submit "Update", class: "btn btn-primary save-btn" %>
+        </div>
+
+    </div> <!-- end content -->
+
+<% end %>
+
+
+
+  

@@ -2,8 +2,24 @@ class ContactsController < ApplicationController
     autocomplete :contact, :work_company, :full => true, :extra_data => [:work_address, :work_phone, :work_fax, :work_url]
 
   def index
-    @contacts = Contact.all
+    @q = Contact.search(params[:q])
     @categories = Category.all
+    @contacts = @q.result(:distinct => true)
+    @contact = Contact.new
+    if @contacts.count == 1 
+      redirect_to contact_path(@contacts.first(params[:id]))
+    else
+      render :layout => 'search' 
+    end
+    
+  end
+
+  def notes
+    @contact = Contact.find(params[:id])
+  end
+
+  def data
+    @contact = Contact.find(params[:id])
   end
 
   def show

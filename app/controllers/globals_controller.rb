@@ -5,12 +5,13 @@ class GlobalsController < ApplicationController
     @globals = Global.all
   end
 
-  def show
-    @global = Global.find(params[:id])
-  end
-
   def edit
-    @global = Global.find(params[:id])
+    if params[:year].to_i > 2000 && params[:year].to_i < 2050
+        @global = Global.find_or_create_by_year(params[:year])
+    else
+        redirect_to globals_path
+    end
+    # @global = Global.find(params[:id])
   end
 
   def new

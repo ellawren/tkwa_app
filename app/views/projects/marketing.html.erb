@@ -1,0 +1,66 @@
+<%= form_for @project do |f| %>
+
+    <h2>Marketing Information</h2>
+
+        <div class="wide">
+                    
+             <div class="input-row">
+                  <%= f.label(:mkt_location, "Location", class: "input-label") %>
+                  <%= f.text_field :mkt_location, class: "" %>
+            </div>
+            <div class="input-row">
+                  <%= f.label(:mkt_size, "Size", class: "input-label") %>
+                  <%= f.text_field :mkt_size, class: "" %>
+            </div>  
+            <div class="input-row">
+                  <%= f.label(:mkt_cost, "Cost", class: "input-label") %>
+                  <%= f.text_field :mkt_cost, class: "" %>
+            </div> 
+        </div>
+        <div class="narrow">
+            <div class="input-row">
+                  <%= f.label(:mkt_reference, "Reference", class: "input-label") %>
+                  <%= f.autocomplete_field :mkt_reference, autocomplete_contact_name_projects_path, class: "" %>
+            </div>
+            <!--<% if @project.mkt_reference %>
+                    <% if Contact.exists?(:name => @project.mkt_reference) %>
+                        <div class="text-area">
+                            <% @mkt_reference = Contact.find_by_name(@project.mkt_reference) %>
+                            <% if @mkt_reference.work_address %>
+                                <%= @mkt_reference.name %><br />
+                                <%= @mkt_reference.work_address.gsub(/\n/, '<br />').html_safe %><br />
+                            <% end %>
+                            <%= number_to_phone(@mkt_reference.work_phone, :area_code => true) %><br />
+                            <a href="mailto:<%= @mkt_reference.work_email %>"><%= @mkt_reference.work_email %></a>
+                            <%= link_to "view contact", contact_path(@mkt_reference), class: "btn right"%>
+                        </div>
+                    <% end %>
+                <% end %>-->
+        </div>
+
+        <h2>Project Description</h2>
+
+            <div class="full">
+
+                <div class="input-row">
+                    <%= f.label(:mkt_description, "Description", class: "input-label") %>
+                    <%= f.text_area :mkt_description, class: "", rows: "20" %>
+                </div>
+
+            </div>
+
+        <div class="save-row">
+            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        </div>
+
+        <!-- print-formatted description
+            <div class="mkt-description">
+                <% unless @project.mkt_location == "" %>Location: <%= @project.mkt_location %><br /><% end %>
+                <% unless @project.mkt_size == "" %>Size: <%= @project.mkt_size %><br /><% end %>
+                <% unless @project.mkt_cost == "" %>Cost: <%= @project.mkt_cost %><br /><br /><% end %>
+                <%= add_breaks(@project.mkt_description).html_safe %>
+            </div>
+        -->
+
+<% end %>
+

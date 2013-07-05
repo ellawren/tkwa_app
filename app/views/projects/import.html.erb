@@ -1,0 +1,18 @@
+<% content_for :page_header do %>
+	<% provide :title, "Import CSV File" %>
+	<div class="page-header">
+		<h1>Import CSV File</h1>
+	</div>
+<% end %>
+
+<%= form_tag '/csv_import', class: "search form-horizontal", :multipart => true do %>
+	<div class="control-group">
+		<label class="control-label">Select File:</label>
+		<div class="controls">
+			<%= file_field_tag "file", class: "well well-white form-search span5" %>
+			
+	    </div>
+    </div>
+    <br />
+	<%= submit_tag("Import", :class => "btn btn-primary form-search span2") %>
+<% end %>

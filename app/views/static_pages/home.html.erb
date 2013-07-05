@@ -1,42 +1,52 @@
 <% provide(:title, 'Home') %>
 
+    <div class="demo-headline">
+        <h1 class="demo-logo">
+            <%= greeting %>
+            <small>Welcome to the TKWA Database.</small>
+        </h1>
+    </div> <!-- /demo-headline -->
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1><%= greeting %></h1>
-        <br />
+    <div class="row demo-tiles">
 
-        <p>Welcome to the TKWA Database. It will eventually hold all our projects, contacts, timesheets, and tracking data!</p>
-        <br />
-        
-        <p>
-        	<%= link_to("View Projects", projects_path, class: "btn btn-primary btn-large") %>
-        	<%= link_to("View Users", users_path, class: "btn btn-primary btn-large") %>
-        	<%= link_to("View Messages", messages_path, class: "btn btn-primary btn-large") %>
-        </p>
-
-      </div>
-
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-
+        <div class="span3">
+            <div class="tile">
+              <%= image_tag("icons/forecast.png", :alt => "projects", :class => "tile-image big-illustration") %>
+                <h3 class="tile-title">Projects</h3>
+                <p>Project billing, tracking, scheduling and reports.</p>
+                <%= link_to "Go to Projects", projects_path, :class => "btn btn-primary btn-large btn-block" %>
+            </div>
         </div>
-        <div class="span4">
-          <h2>Heading</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
 
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
+        <div class="span3">
+            <div class="tile">
+                <%= image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "tile-image big-illustration") %>
+                <h3 class="tile-title">Contacts</h3>
+                <p>Clients, consultants, employees, and friends.</p>
+                <%= link_to "Go to Contacts", contacts_path, :class => "btn btn-primary btn-large btn-block" %>
+            </div>
         </div>
-      </div>
 
+        <div class="span3">
+            <div class="tile">
+                <%= image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "tile-image big-illustration") %>
+                <h3 class="tile-title">Timesheets</h3>
+                <p>Employee time tracking and targets.</p>
+                <% if signed_in? %>
+                    <%= link_to "Go to Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}", :class => "btn btn-primary btn-large btn-block" %>
+                <% else %>
+                    <a class="btn btn-primary btn-large btn-block disabled">Go to Timesheets</a>
+                <% end %>
+            </div>
+        </div>
 
+        <div class="span3">
+            <div class="tile">
+                <%= image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "tile-image big-illustration") %>
+                <h3 class="tile-title">Patterns</h3>
+                <p>Database of pattern language for all our projects.</p>
+                <%= link_to "Go to Patterns", "#", :class => "btn btn-primary btn-large btn-block" %>
+            </div>
+        </div>
 
+  </div> <!-- end tiles -->

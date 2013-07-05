@@ -9,8 +9,8 @@
 #  updated_at :datetime
 #  number     :integer
 #  status     :string(255)
-#  hire_date  :date
-#  leave_date :date
+#  hire_date  :string(255)
+#  leave_date :string(255)
 #
 
 require 'spec_helper'

@@ -47,7 +47,7 @@ module TimesheetsHelper
   end
 
   def date_label(day, param)
-    get_date(day, param).strftime("<div class='caps'>%a</div>%-m/%-d").html_safe
+    get_date(day, param).strftime("%a<div class='blanch'>%h<br>%e</div>").html_safe
   end
 
   def is_today?(day, param)

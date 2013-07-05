@@ -1,27 +1,49 @@
 TkwaApp::Application.routes.draw do
 
 
+
+
   resources :users do
     member do
       get :following, :followers, :profile
     end
   end
-    
+  
+  post "/csv_import" => 'projects#csv_import'
+  match '/projects/current',  to: 'projects#current'
+  match '/projects/import',   to: 'projects#import'
+
   resources :projects do
     resources :employee_teams
     get :autocomplete_contact_name, :on => :collection
     member do
-      get 'info', 'team', 'scope', 'tracking', 'schedule'
+      get 'info', 'team', 'scope', 'tracking', 'schedule', 'billing', 'shop_drawings', 'marketing', 'summary', 'current'
     end
   end    
+
+
 
   resources :employees do
     resources :timesheets
   end
-  match '/employees/:id/timesheets/:year/:week', to: 'timesheets#show'
-  match '/employees/:id/data_records/:year', to: 'data_records#edit'
+  
+  match '/employees/:id/timesheets/:year/:week',  to: 'timesheets#show'
+  match '/employees/:id/data_records/:year',      to: 'data_records#edit'
+  match '/globals/:year',                         to: 'globals#edit'
+  match '/contacts/employees',                    to: 'contacts#employees'
+  match '/contacts/consultants',                  to: 'contacts#consultants'
+  match '/consultant_teams/:consultant_team_id/bills',            to: 'bills#index'
+
+#need both of these for routing to work correctly on project billing page
+resources :consultant_teams do
+  resources :bills
+end
+resources :bills
 
   resources :contacts do
+    member do
+      get 'employees', 'consultants', 'data'
+    end
     get :autocomplete_contact_work_company, :on => :collection
   end
   
@@ -30,7 +52,7 @@ TkwaApp::Application.routes.draw do
   resources :data_records
   resources :employees
   resources :employee_teams
-  resources :globals
+  resources :globals, :only => [:index, :create, :update]
   resources :holidays
   resources :microposts,  only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
@@ -45,6 +67,7 @@ TkwaApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/messages',to: 'static_pages#messages'
+  match '/admin',   to: 'static_pages#admin'
     
   root :to => 'static_pages#home'
   

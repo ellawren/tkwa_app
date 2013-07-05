@@ -1,75 +1,51 @@
-<%= form_for @project do |f| %>
-<%= render 'shared/error_messages', :object => f.object %>
+	<%= form_for @project do |f| %>
+        <div class="half">
 
-		<div class="row">	
-			<h3>Project Team</h3>
-  			<div class="notes">
-				Select project team members and their roles. Adding a TKWA staff member to the project enables time tracking.
-			</div>		
+	        <h2>Design Team</h2>
+	        <% if @project.employee_teams.count != 0 %>
+		        <div class="header-row">
+		            <div>Name</div>
+		            <div>Role</div>
+		        </div>
+		    <% end %>
+
+	        <!-- nested form for team-->
+		    	<%= f.fields_for :employee_teams do |builder| %>
+		    		<%= render 'employee_team_fields', :f => builder %>
+		    	<% end %>
+				<%= link_to_add_fields_2 "", f, :employee_teams, "add fui-plus" %>
+		   	<!-- end team form -->
+
 		</div>
-					
-		<div class="row">	
 
-			<div class="span13">
-					
-			<div class="table-main">
+		<div class="half last">
 
-				<div class="table-head">
-					<div class="row">
-						<div class="span2-75">TKWA Staff Name</div>
-						<div class="span2-75">Role</div>
-					</div>
-				</div>
+			<h2>Consultant Team</h2>
+	        <% if @project.consultant_teams.count != 0 %>
+		        <div class="header-row">
+		            <div>Company</div>
+		            <div>Role</div>
+		        </div>
+		    <% end %>
 
-          		<div class="table-body">
-        			<!-- nested form for team-->
-            		<%= f.fields_for :employee_teams do |builder| %>
-            			<%= render 'employee_team_fields', :f => builder %>
-            		<% end %>
-					<%= link_to_add_fields "add employee", f, :employee_teams, "btn offset-left table-offset" %>
-           			<!-- end team form -->
-           		</div>	
-           					
-        	</div>
+	        <!-- nested form for team-->
+	    		<%= f.fields_for :consultant_teams do |builder| %>
+	    			<%= render 'consultant_team_fields', :f => builder %>
+	    		<% end %>
+				<%= link_to_add_fields "", f, :consultant_teams, "add fui-plus consultant" %>
+	   		<!-- end team form -->
 
-        	<div class="table-main shift-left">
-
-				<div class="table-head">
-					<div class="row">
-						<div class="span2-75">Consultant Name</div>
-						<div class="span2-75">Role(s)</div>
-					</div>
-				</div>
-
-          		<div class="table-body">
-        			<!-- nested form for team-->
-            		<%= f.fields_for :consultant_teams do |builder| %>
-            			<%= render 'consultant_team_fields', :f => builder %>
-            		<% end %>
-					<%= link_to_add_fields "add consultant", f, :consultant_teams, "btn offset-left table-offset" %>
-           			<!-- end team form -->
-           		</div>	
-           					
-        	</div>
-        	</div>
-					
-		</div> <!-- end row -->
-
-		<br /><br />
-      	<div class="row">
-				<div class="actions">
-    				<%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
-    				<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
-				</div>
 		</div>
-    
-<% end %> <!-- end form -->
+		    
+        
+		<div class="save-row">
+	        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+		</div>
 
-<br /><br />
+	<% end %>
 
-					<div class="row">
-					
-						<h3>Contact List</h3>
+
+				<!--	<h3>Contact List</h3>
   				
 						<div class="links">
 							<a id="team-all">Show All</a> | <a id="team-staff">TKWA Staff only</a> | <a id="team-consultants">Consultants only</a>
@@ -105,5 +81,3 @@
 					
 					
 					</div> <!-- end row -->
-
-

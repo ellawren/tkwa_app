@@ -5,6 +5,7 @@ gem 'rails', '3.2.1'
 gem 'pg'
 gem 'formtastic'
 gem 'rails3-jquery-autocomplete'
+gem "ransack"
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'

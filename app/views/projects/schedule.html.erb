@@ -1,196 +1,227 @@
-<h3>Project Schedule</h3>
-
-<%= form_for(@project, html: { class: "form-horizontal" }) do |f| %>
+<%= form_for @project do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
-  					
-	<fieldset>	
 
-			<% if @project.start_date && @project.completion_date %>	
+	<%= image_tag("schedule.jpg", :class => "icon") %>
 
-			<div class="notes">
-				Progress bar shows time elapsed as a percentage of total project duration.
-			</div>	
+	<div class="content">
 
-				<div class="row">
+		<h2>schedule</h2>
+            <div class="span">
+            	<%= f.label :start_date, "start date", class: "label" %>
+                <%= f.text_field :start_date, { class: "input span3 left", datadatepicker: "datepicker", :onchange => "getDuration();"} %>
+            </div>
+            <div class="span">
+            	<%= f.label :completion_date, "completion date", class: "label" %>
+                <%= f.text_field :completion_date, class: "input span3 left", datadatepicker: "datepicker", onchange: "getDuration();" %>
+            </div>
+            <div class="span">
+            	<div class="label">duration</div>
+                <div class="input-cell span3 left" id="duration"><script>window.onload = function(){ getDuration(); }</script></div>
+            </div>
 
-					<div class="schedule-bar span10 offset1  blue-bkg">
-					
-						<!-- show progress bar and mark today's date if project is current -->
-					    <div class="progress progress-info progress-striped">
-    						<div class="bar" style="width: <%= @progress_width %>%;"></div>
-    					</div>
-    					<% if @project_over == false %>
-    						<div class="marker todate" style="left:<%= @progress_width %>%;">
-    							<div class="bubble"><div class="caps">current</div><%= short_date(Time.now) %></div>
-							</div>
-						<% end %>
-    					
-    					<!-- begin date -->
-    					<div class="circle circle-begin <%= 'circle-filled' if @project_started %>">
-    							<div class="caps">start</div><div class="num-total"><%= short_date(@project.start_date) %></div><div class="caps">date</div>
-    					</div>
+	</div> <!-- end content -->
 
-    					<!-- predesign -->
-    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="predesign" style="width: <%= @pd_width %>%;"></a>
+    <table class="table schedule-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>2012<br /><span class="blanch">jan</span></th>
+            <th ><br /><span class="blanch">feb</span></th>
+            <th><br /><span class="blanch">mar</span></th>
+            <th><br /><span class="blanch">apr</span></th>
+            <th><br /><span class="blanch">may</span></th>
+            <th><br /><span class="blanch">jun</span></th>
+            <th><br /><span class="blanch">jul</span></th>
+            <th><br /><span class="blanch">aug</span></th>
+            <th><br /><span class="blanch">sep</span></th>
+            <th><br /><span class="blanch">oct</span></th>
+            <th><br /><span class="blanch">nov</span></th>
+            <th><br /><span class="blanch">dec</span></th>
+            <th>2013<br /><span class="blanch">jan</span></th>
+            <th ><br /><span class="blanch">feb</span></th>
+            <th><br /><span class="blanch">mar</span></th>
+            <th><br /><span class="blanch">apr</span></th>
+            <th><br /><span class="blanch">may</span></th>
+            <th><br /><span class="blanch">jun</span></th>
+            <th><br /><span class="blanch">jul</span></th>
+            <th><br /><span class="blanch">aug</span></th>
+            <th><br /><span class="blanch">sep</span></th>
+            <th><br /><span class="blanch">oct</span></th>
+            <th><br /><span class="blanch">nov</span></th>
+            <th><br /><span class="blanch">dec</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bold">Predesign</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Schematic</td>
+            <td></td>
+            <td></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Design Dev</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Const Docs</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Bidding</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="shaded"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="bold">Construction</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+            <td class="shaded"></td>
+          </tr>
+          
+        </tbody>
+        
+      </table>
 
-    					<% if @pd_pc %>
-    						<div class="phase-marker" style="left:<%= @pd_width %>%;"></div>
-    					<% end %>
-
-    					<!-- schematic -->
-    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="schematic" style="left:<%= @pd_width %>%; width: <%= @sd_width %>%;"></a>
-
-    					<% if @sd_pc_sum %>
-    					<div class="phase-marker" style="left:<%= @dd_left %>%;"></div>
-    					<% end %>
-
-    					<!-- design dev -->
-    					<a class="phase-link tip current-phase" rel="tooltip" href="#" dataoriginaltitle="design dev" style="left:<%= @dd_left %>%; width: <%= @dd_width %>%;"></a>
-    					
-    					<% if @dd_pc_sum %>
-    					<div class="phase-marker" style="left:<%= @cd_left %>%;"></div>
-    					<% end %>
-
-    					<!-- const docs -->
-    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="const docs" style="left:<%= @cd_left %>%; width: <%= @cd_width %>%;"></a>
-    					
-    					<% if @cd_pc_sum %>
-    					<div class="phase-marker" style="left:<%= @bid_left %>%;"></div>
-    					<% end %>
-
-    					<!-- bidding -->
-    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="bidding" style="left:<%= @bid_left %>%; width: <%= @bid_width %>%;"></a>
-
-    					<% if @bid_pc_sum %>
-    					<div class="phase-marker" style="left:<%= @cca_left %>%;"></div>
-    					<% end %>
-
-    					<!-- cca -->
-    					<a class="phase-link tip" rel="tooltip" href="#" dataoriginaltitle="cca" style="left:<%= @cca_left %>%; width: <%= @cca_width %>%;"></a>
-    					
-    					<!-- end date -->						
-						<div class="circle circle-complete <%= 'circle-filled' if @project_over %>">
-								<div class="caps">finish</div><div class="num-total"><%= short_date(@project.completion_date) %></div><div class="caps">date</div></div>
-					</div>
-
-				</div> <!-- end row -->
-
-			<% end %> <!-- end schedule bar conditional -->
-					
-				<div class="row">
-						
-					<br /><br />
-					<div class="well well-white span4-5">
-											
-						<div class="row">
-                            <%= f.label :start_date, class: "span2 box-padding bold" %>
-                            <%= f.text_field :start_date, { class: "span2", datadatepicker: "datepicker", :onchange => "getDuration();"} %>
-                        </div>
-
-                        <div class="row">
-                            <%= f.label "Duration", class: "span2 box-padding bold" %>
-                            <div class="box-padding" id="duration">
-                            	<script>window.onload = function(){ getDuration(); }</script>
-                            </div>
-                        </div>
-
-						<div class="row">
-                            <%= f.label :completion_date, class: "span2 box-padding bold" %>
-                            <%= f.text_field :completion_date, class: "span2", datadatepicker: "datepicker", onchange: "getDuration();" %>
-                        </div>
-									
-					</div>
-
-
-				</div> <!-- end row -->
-
-
-				<div class="row">
-							
-					<div class="span8">
-											
-						<table class="table staff-table flush">
-			
-							<thead>
-								<tr>
-									<th>Phase</th>
-									<th>%</th>
-									<th>Start Date</th>
-									<th>End Date</th>
-									<th>Duration</th>
-								</tr>
-							</thead>
-				
-							<tbody>
-								<tr>
-									<td><div class="inputbox bold">10 Predesign</div></td>
-									<td><%= f.text_field :pd_percent, class: "span0-5", placeholder: '5' %> %</td>
-									<td><%= f.text_field :pd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :pd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.pd_start, @project.pd_end) %></div></td>
-								</tr>
-
-
-								<tr>
-									<td><div class="inputbox bold">20 Schematic</div></td>
-									<td><%= f.text_field :sd_percent, class: "span0-5", placeholder: '10' %> %</td>
-									<td><%= f.text_field :sd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :sd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.sd_start, @project.sd_end) %></div></td>
-								</tr>
-								<tr>
-									<td><div class="inputbox bold">30 Design Dev</div></td>
-									<td><%= f.text_field :dd_percent, class: "span0-5", placeholder: '15' %> %</td>
-									<td><%= f.text_field :dd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :dd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.dd_start, @project.dd_end) %></div></td>
-								</tr>
-								<tr>
-									<td><div class="inputbox bold">40 Const Docs</div></td>
-									<td><%= f.text_field :cd_percent, class: "span0-5", placeholder: '40' %> %</td>
-									<td><%= f.text_field :cd_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :cd_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.cd_start, @project.cd_end) %></div></td>
-								</tr>
-								<tr>
-									<td><div class="inputbox bold">50 Bidding</div></td>
-									<td><%= f.text_field :bid_percent, class: "span0-5", placeholder: '5' %> %</td>
-									<td><%= f.text_field :bid_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :bid_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.bid_start, @project.bid_end) %></div></td>
-								</tr>
-								<tr>
-									<td><div class="inputbox bold">60 CCA</div></td>
-									<td><%= f.text_field :cca_percent, class: "span0-5", placeholder: '25' %> %</td>
-									<td><%= f.text_field :cca_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :cca_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.cca_start, @project.cca_end) %></div></td>
-								</tr>
-								<tr>
-									<td><div class="inputbox bold">70 Additional</div></td>
-									<td><%= f.text_field :add_percent, class: "span0-5", placeholder: '0' %> %</td>
-									<td><%= f.text_field :add_start, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><%= f.text_field :add_end, class: "span1-5", datadatepicker: "datepicker" %></td>
-									<td><div class="inputbox"><%= time_diff_in_natural_language(@project.add_start, @project.add_end) %></div></td>
-								</tr>
-							</tbody>
-				
-						</table>
-
-					</div> <!-- end span -->		
-																				
-				</div> <!-- end row -->
-
-	</fieldset>
-
-	<br /><br />
-	<div class="row">
-		<div class="span12">
-			<div class="actions">
-    			<%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
-    			<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
-			</div>
-		</div>
+	<div class="cutout">
+	    <%= f.submit "save", class: "btn btn-large btn-primary save-button" %>
 	</div>
+
 
 <% end %>

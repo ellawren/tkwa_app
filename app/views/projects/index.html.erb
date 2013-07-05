@@ -1,9 +1,101 @@
-<%= link_to "Add Project", new_project_path, class: "btn" %>
-<br /><br />
-<%= will_paginate %>
+<% content_for :page_header do %>
+	<% provide :title, "Projects" %>
+	<div class="page-header">
+        <h1>Search Projects</h1>
+        <ul class="controls">
+            <li><a href="/projects/">reset</a></li>
+            <li><a href="#">advanced search</a></li>
+        </ul>
+    </div>
+	<div class="description">Enter all or part of the project name. Choose an option from the menu at left to narrow your search. To show all projects within a category, just leave the name and number fields blank.</div>
+<% end %>
 
-<ul class="projects">
-  <%= render @projects %>
-</ul>
+<div class="gray-box">
 
-<%= will_paginate %>
+	<%= search_form_for @q do |f| %>
+
+		<div class="status-options">
+	        <div><%= f.radio_button(:status_cont, "") %><label class="radio">All</label></div>
+	        <div><%= f.radio_button(:status_cont, "Potential") %><label class="radio">Potential</label></div>
+			<div><%= f.radio_button(:status_cont, "Current") %><label class="radio">Current</label></div>
+			<div><%= f.radio_button(:status_cont, "Completed") %><label class="radio">Completed</label></div>
+		</div>
+
+		<%= f.text_field :name_cont, class: "search-name", placeholder: "project name" %>   
+		<%= f.text_field :number_eq, class: "search-number", placeholder: "number" %>    
+		<%= f.submit "search", class: "btn btn-primary search-btn" %>
+			     
+	<% end %>
+
+</div>
+
+<% if (params.has_key?(:q)) %>
+
+	<% if @projects.count == 0 %>
+		<div class="search-results">No matches.<br><a href="/projects/">Clear search and try again.</a></div>
+	<% else %>
+
+    <h2>Search Results</h2>
+
+		<table class="table search-results">
+		    <tbody>
+		        <% @projects.each do |param| %>
+		            <%= render 'project', :f => param %>
+		        <% end %>
+		    </tbody>
+		</table>
+
+	<% end %>
+
+<% end %>
+
+<div class="page-header with-spacer">
+    <h1>Add A New Project</h1>
+</div>
+
+<%= form_for @project do |f| %>
+
+  <div class="content">
+
+        <div class="wide">
+            <div class="input-row">
+                <%= f.label(:name, "Project Name", class: "input-label") %>
+                <%= f.text_field :name, class: "" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:location, "Location", class: "input-label") %>
+                <%= f.text_area :location, class: "", rows: "2" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:name, "Client", class: "input-label") %>
+                <%= f.text_field :client, class: "" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
+                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "" %>
+            </div>
+        </div>
+
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label(:number, "Project Number", class: "input-label") %>
+                <%= f.text_field :number, class: "" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:building_type, "Building Type", class: "input-label") %>
+                <%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:client_type, "Client Type", class: "input-label") %>
+                <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %></div>
+            </div>
+        </div>
+
+        <div class="save-row">
+            <%= f.submit "Create Project", class: "btn btn-primary save-btn" %>
+        </div>
+
+  </div> <!-- end content -->
+
+<% end %>
+

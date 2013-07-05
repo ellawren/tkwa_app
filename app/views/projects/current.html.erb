@@ -1,0 +1,24 @@
+<% content_for :page_header do %>
+  <% provide :title, "Current Projects" %>
+  <div class="page-header">
+    <h1>Current Projects</h1>
+  </div>
+<% end %>
+
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>Number</th>
+	            <th>Name</th>
+	            <th>Building Type</th>
+	            <th>Project Manager</th>
+	            <th>Status</th>
+	            <th></th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <% Project.current.each do |param| %>
+	            <%= render 'project', :f => param %>
+	        <% end %>
+	    </tbody>
+	</table>

@@ -1,0 +1,56 @@
+
+<div class="modal-header">
+    <h3>Consultant Billing: <%= @consultant.company %></h3>
+    <a class="close" data-dismiss="modal">×</a>
+</div>
+
+<div class="modal-body">
+
+	<%= form_for @bill do |f| %>
+	<%= f.hidden_field :consultant_team_id, value: "#{@team_id}" %>
+
+		<table class="table modal-table cbilling-table">
+			<thead>
+				<tr>
+					<th>company</th>
+					<th class="right-offset">date</th>
+					<th class="right-offset">amount</th>
+					<th class="span2"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @bills.each do |param| %>
+					<tr>
+						<td><%= @consultant.company %></td>
+						<td class="right-offset"><%= param.date %></td>
+						<td class="right-offset"><%= number_to_currency(param.amount) %></td>
+						<td class="right-offset"><%= link_to "delete", param, method: :delete %></td>
+					</tr>
+				<% end %>
+				<tr>
+						<td><%= @consultant.company %></td>
+						<td class="right"><%= f.text_field :date, class: "input span3 right datepicker" %></td>
+						<td class="right"><%= f.text_field :amount, class: "input span3 right", id:"txtDate" %></td>
+						<td></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="right-offset bold"><%= number_to_currency(@bill.bills_total(@team_id)) %></td>
+					<td></td>
+				</tr>
+			</tfoot>
+		</table>
+
+
+	  	<div class="actions">
+	    	<%= f.submit "save + close", class: "btn btn-large btn-primary" %>
+	    	<a class="btn btn-large" data-dismiss="modal">cancel</a>
+	  	</div>
+
+	<% end %>
+
+</div>
+

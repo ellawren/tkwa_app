@@ -20,13 +20,13 @@ module ProjectsHelper
       actual_hours = @project.employee_actual(f.contact_id, phase.number)
       est_hours = eval("f.#{phase.shorthand}_hours")
       if est_hours == nil
-        est = "<div class='input-spacer'></div>"
+        est = "<div class='input-spacer est'></div>"
       else
-        est = "<div class='uneditable-input span1 est'>#{strip(est_hours)}</div>"
+        est = "<div class='input est' >#{strip(est_hours)}</div>"
       end
 
       if actual_hours == 0
-        act = "<div class='act'></div></td>"
+        act = "<div class='input-spacer act'></div>"
       else
         employee_id = Employee.find_by_contact_id(f.contact_id).id
         time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(f.project_id, employee_id, phase.number)
@@ -42,18 +42,19 @@ module ProjectsHelper
                 str.push("<tr><td>#{task}</td><td>#{sum.to_f}</td></tr>")
             end 
 
-        act = "<a class='pop' rel='popover' title='#{employee_name(f.contact_id)} - #{phase.name}' data-content=\"
+
+        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'><a class='pop no-hover' rel='popover' data-original-title='#{employee_name(f.contact_id)} - #{phase.name}' data-content=\"
                 <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th>Hours</th></tr></thead><tbody>#{str.join}</tbody>
-                </table>\"><div class='uneditable-input span1 act #{is_over?(est_hours, actual_hours)}'>#{strip(actual_hours)}</div></a>"
+                </table>\">#{strip(actual_hours)}</a></div>"
       end
 
-      "<td class=\"#{phase.name.gsub(/[ ]*/, '')}\"> #{est} #{act} </td>".html_safe
+      "<td class=\"phase-cell #{phase.name.gsub(/[ ]*/, '')}\"> #{act} #{est} </td>".html_safe
     end
+
 
     def is_over?(estimated_hours, actual_hours)
       "over" if estimated_hours.to_f < actual_hours.to_f
     end
-
 
 
     
@@ -146,6 +147,11 @@ module ProjectsHelper
   		    components.join(", ")
   	  end
 
+    end
+
+    def estimated_billing(project, phase)
+
+      # DataRecord.find_by_employee_id(Employee.find_by_contact_id(f.contact_id).id).billable_rate.to_f
     end
 
 end

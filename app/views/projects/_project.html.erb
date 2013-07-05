@@ -1,8 +1,13 @@
-<li>
-  <%= link_to project.name, info_project_path(project) %>
-  <% if signed_in? %>
-  	<% if current_user.admin? %>
-    	| <%= link_to "delete", project, method: :delete, confirm: "You sure?" %>
-  	<% end %>
-  <% end %>
-</li>
+				<tr>
+	            	<td><%= link_to strip(f.number), info_project_path(f) %></td>
+	                <td><%= link_to f.name, info_project_path(f) %></td>
+	                <!--<td><%= f.building_type %></td>
+	                <td></td>
+	                <td><%= f.status %></td>-->
+	                <td><% if signed_in? %>
+					  	<% if current_user.admin? %>
+					    	<%= link_to "delete", f, method: :delete, confirm: "You sure?" %>
+					  	<% end %>
+					  <% end %>
+					</td>
+	            </tr>

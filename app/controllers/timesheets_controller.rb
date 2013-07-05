@@ -26,10 +26,10 @@ class TimesheetsController < ApplicationController
    @contact = Contact.find(@employee.contact_id)
    @data_record = DataRecord.find_or_create_by_employee_id_and_year(@employee.id, @timesheet.year)
 
-   1.times { @timesheet.time_entries.build }
-   1.times { @timesheet.non_billable_entries.build }
+   #1.times { @timesheet.time_entries.build }
+   #1.times { @timesheet.non_billable_entries.build }
 
-
+   render :layout => 'search' 
   end
 
   def create

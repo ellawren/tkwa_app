@@ -1,173 +1,62 @@
-<h3>Project Information</h3>
-<%= form_for(@project, html: { class: "form-horizontal" }) do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+	<%= form_for @project do |f| %>
+		
+		<h2>Project Information</h2>
 
-	<fieldset>
-		<div class="notes"></div>
-				
-		<div class="row">
-											
-			<div class="span7">
-							
-				<div class="control-group">
-					<%= f.label(:name, "Project Name", class: "control-label") %>
-					<div class="controls">
-  						<%= f.text_field :name, class: "span5" %>
-					</div>
-				</div>
-								
-				<div class="control-group">
-					<%= f.label(:location, "Project Location", class: "control-label") %>
-					<div class="controls">
-						<%= f.text_area :location, class: "span3-5", rows: "2" %>
-					</div>
-					<a class="btn top-right span1-5" onclick="openMap('project_location');">Get Map</a>
-				</div>
-								
-				<div class="control-group">
-					<%= f.label :client, class: "control-label" %>
-					<div class="controls">
-						<%= f.text_field :client, class: "span3-5" %>
-					</div>
-				</div>
+		<div class="wide">
+            <div class="input-row">
+                <%= f.label(:name, "Project Name", class: "input-label") %>
+                <%= f.text_field :name, class: "" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:location, "Location", class: "input-label") %>
+                <%= f.text_area :location, class: "", rows: "2" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:name, "Client", class: "input-label") %>
+                <%= f.text_field :client, class: "" %>
+            </div>
+        </div>
 
-				<div class="control-group">
-					<%= f.label(:client_url, "Client Website", class: "control-label") %>
-					<div class="controls">
-						<%= f.text_field :client_url, class: "span3-5" %>
-					</div>
-					<a class="btn top-right span1-5" onclick="openURL('project_client_url');">View</a>
-				</div>
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label(:number, "Project Number", class: "input-label") %>
+                <%= f.text_field :number, class: "" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:building_type, "Building Type", class: "input-label") %>
+                <%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
+            </div>
+            <div class="input-row">
+            	<%= f.label(:client_type, "Client Type", class: "input-label") %>
+		        <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %></div>
+		    </div>
+        </div>
 
-				<div class="control-group">
-					<%= f.label :client_type, class: "control-label" %>
-					<div class="controls">
-						<%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}) %>
-              		</div>
-				</div>					
-							
-			</div> <!-- end span7 -->
-			
-			<div class="span5">
-							
-				<div class="control-group">
-					<%= f.label(:number, "Project Number", class: "control-label") %>
-					<div class="controls">
-						<%= f.text_field :number, class: "span2" %>
-					</div>
-				</div>
-								
-				<div class="control-group">
-					<%= f.label :building_type, class: "control-label" %>
-					<div class="controls">
-						<%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => ' '}) %>
-              		</div>
-				</div>
-									
-          		<div class="control-group">
-          			<%= f.label :status, class: "control-label" %>
-          			<div class="controls">
-		          		<label class="radio"><%= f.radio_button(:status, "Potential") %>Potential</label>
-						<label class="radio"><%= f.radio_button(:status, "Current") %>Current</label>
-						<label class="radio"><%= f.radio_button(:status, "Completed") %>Completed</label>
-					</div>						
-          		</div>
-							
-			</div> <!-- /span5 -->
+        <h2>Billing Information</h2>
+						
+			<div class="wide">
 					
-		</div> <!-- /row -->
-						
-		<br /><br />
-						
-		<h3>Billing + Contract Information</h3>
-		<div class="notes"></div>
-						
-		<div class="row">
-							
-			<div class="span7">
-					
-				<div class="control-group">
-					<%= f.label(:billing_name, "Billing Contact", class: "control-label") %>
-					<div class="controls">
-						<%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, :update_elements => {:work_address => '#project_billing_address', :work_phone => '#project_billing_phone', :work_ext => '#project_billing_ext', :work_email => '#project_billing_email'}, class: "span3-5" %>
-					</div>
-					<% if Contact.exists?(:name => @project.billing_name) %>
-					<%= link_to "View Contact", contact_path(Contact.find_by_name(@project.billing_name)), class: "btn top-right span1-5"%>
-					<% else %>
-						<a class="btn top-right span1-5">Add</a>
-					<% end %>
+				<div class="input-row">
+					<%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
+                	<%= f.text_field :billing_name, class: "" %>
 				</div>
           				
-          		<div class="control-group">
-					<%= f.label :billing_address, class: "control-label" %>
-					<div class="controls">
-						<%= f.text_area :billing_address, class: "span3-5", rows: "2" %>
-					</div>
-					<a class="btn top-right span1-5" onclick="openMap('project_billing_address');">Get Map</a>
+          		<div class="input-row">
+          			<%= f.label(:billing_address, "Billing Address", class: "input-label") %>
+                	<%= f.text_area :billing_address, class: "", rows: "2" %>
 				</div>
 								
-				<div class="control-group">
-					<%= f.label :billing_phone, class: "control-label" %>
-					<div class="controls">
-						<%= f.text_field :billing_phone, class: "span2-25" %>
-						&nbsp;&nbsp; Ext: &nbsp;&nbsp;<%= f.text_field :billing_ext, class: "span1" %>
-					</div>
+				<div class="input-row">
+					<%= f.label(:billing_phone, "Billing Phone", class: "input-label") %>
+                    <%= f.text_field :billing_phone, value: number_to_phone(@project.billing_phone, :area_code => true), class: "" %>
 				</div>
           				
-          		<div class="control-group">
-					<%= f.label :billing_email, class: "control-label" %>
-					<div class="controls">
-						<%= f.text_field :billing_email, class: "span3-5" %>
-					</div>
-					<a class="btn top-right span1-5" onclick="sendEmail('project_billing_email');">Compose</a>
-				</div>
-          				
-          			
-          	</div> <!-- end span7 -->
-          					
-          	<div class="span5">
-				
-          		<div class="control-group">
-					<%= f.label :billing_type, class: "control-label" %>
-					<div class="controls">
-						<%= f.select(:billing_type, Project::BILLING_TYPES, {:prompt => ' '}) %>
-              		</div>
-            	</div>
-            
-            	<div class="control-group">
-					<%= f.label(:billing_travel, "Travel Billing", class: "control-label") %>
-					<div class="controls">
-						<%= f.select(:billing_travel, Project::BILLING_TRAVEL_TYPES, {:prompt => ' '}) %>
-              		</div>
-            	</div>
-            
-            	<div class="control-group">
-					<%= f.label(:billing_consultant, "Consultant Billing", class: "control-label") %>
-					<div class="controls">
-						<%= f.select(:billing_consultant, Project::BILLING_CONSULTANT_TYPES, {:prompt => ' '}) %>
-              		</div>
-            	</div>
-          						
-          		<div class="control-group">
-					<%= f.label(:billing_outofpocket, "Out-of-Pocket", class: "control-label") %>
-					<div class="controls">
-						Bill expenses + <%= f.text_field :billing_outofpocket, class: "span1" %> % markup
-					</div>
-				</div>
-          				
-  			</div> <!-- end span5 -->
-  							
-  		</div> <!-- end row -->	
-	</fieldset>
-	<br /><br />
-	<div class="row">
-		<div class="span12">
-			<div class="actions">
-    			<%= f.submit "Save Changes", class: "btn btn-large btn-primary span3" %>
-    			<input type="reset" class="btn btn-large" value="Cancel" onClick="window.location.reload()">
-			</div>
+          	</div> <!-- end wide -->
+  
+        <div class="save-row">
+	        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
 		</div>
-	</div>
 
-<% end %>
-			
+	<% end %>
+
+	

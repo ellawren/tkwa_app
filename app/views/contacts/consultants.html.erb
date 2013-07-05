@@ -1,0 +1,29 @@
+<% content_for :page_header do %>
+	<% provide :title, "Consultants" %>
+	<div class="page-header">
+		<h1>Consultants</h1>
+	</div>
+<% end %>
+
+<% content_for :tabnav do %>
+	<%= render "tabnav_contacts" %>
+<% end %>
+
+<br />
+
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>Name</th>
+	            <th>Company</th>
+	            <th>Phone</th>
+	            <th>Email</th>
+	            <th></th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <% Contact.consultant_list.each do |param| %>
+	            <%= render 'contact', :f => param %>
+	        <% end %>
+	    </tbody>
+	</table>

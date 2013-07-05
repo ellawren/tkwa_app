@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><%= full_title(yield(:title)) %></title>
+		<%= render 'layouts/header' %>
+  		<%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+	
+		<%= render 'layouts/navbar' %>
+		
+		<!-- main content -->
+    	<div class="container">
+
+
+
+		    		<% flash.each do |key, value| %>
+		          		<%= content_tag(:div, value, class: "flash #{key}") %>
+		        	<% end %>
+
+		    		<%= yield :page_header %>
+		    		<%= yield :tabnav %>
+		      	
+		  			<%= content_for?(:content) ? yield(:content) : yield %>
+
+					<%= render 'layouts/footer' %>	
+					<%= debug(params) if Rails.env.development? %>
+
+
+			
+    	</div> <!-- end container -->
+	
+        <script src="js/scripts.js"></script>  
+
+    </body>  
+</html>  

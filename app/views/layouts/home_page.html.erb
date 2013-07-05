@@ -8,11 +8,42 @@
 	
 	<body>
 	
-		<%= render 'layouts/navbar' %>
+		<div id="navbar">
+
+		    <div class="container">
+		        <% if signed_in? %>
+		            
+		            <div class="navbar navbar-inverse">
+		                <ul class="nav">
+		                	<li><a class="disabled">Signed in as </a></li>
+		                    <li>
+		                        <%= link_to current_user.name, edit_contact_path(current_user.employee.contact_id) %>
+		                        <ul>
+		                            <li><a href="#fakelink">Settings</a></li>
+		                            <li><a href="#fakelink">Admin</a></li>
+		                            <li><a href="#fakelink">Log Out</a></li>
+		                        </ul> <!-- end sub menu -->
+		                    </li>
+		                </ul>
+		            </div> <!-- end nav menu -->
+		                
+		        <% else %> 
+		            <!--<%= link_to "Sign up", signup_path %>-->
+		            <div class="navbar navbar-inverse">
+		                <ul class="nav">
+		                    <li>
+		                        <%= link_to "Sign in", signin_path, class: "btn signin-btn"  %>
+		                    </li>
+		                </ul>
+		            </div> <!-- end nav menu -->
+		                
+		        <% end %>     
+		    </div>
+
+		</div> <!-- end navbar -->
 
 		<!-- main content -->
-    	<div class="container fifteen">
-    		<div class="spacer"></div>
+    	<div class="container">
 
     		<% flash.each do |key, value| %>
           		<%= content_tag(:div, value, class: "flash #{key}") %>

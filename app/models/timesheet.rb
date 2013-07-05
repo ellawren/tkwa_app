@@ -23,9 +23,9 @@ class Timesheet < ActiveRecord::Base
   has_many :non_billable_entries, :dependent => :destroy
   accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
 
-  YEARS =   [	"2012", "2011" ]
+  YEARS =   [	"2013", "2012", "2011" ]
 
-  NON_BILLABLE_CATEGORIES =   [ "Admin Meeting", "Computer Systems", "Education/Training", "Marketing", "Staff/Scheduling Meeting",  
+  NON_BILLABLE_CATEGORIES =   [ "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
                                 "Studio Projects", "Sustainable Research", "Vacation" ]
 
   def total_hours
@@ -54,6 +54,14 @@ class Timesheet < ActiveRecord::Base
 
   def year_to_date
       year_to_date = Timesheet.find(:all, :conditions => ['employee_id = ? AND year = ? AND week <= ?', employee.id, year, week ])
+  end
+
+  def week_goal
+    @data_record || 40
+  end
+
+  def ytd_goal(week)
+      week_goal * week
   end
 
   def all_hours(line, column)

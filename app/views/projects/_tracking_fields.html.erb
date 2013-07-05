@@ -1,28 +1,29 @@
 <tr>
-		<td class="lt bold">
-			<div class="inputbox name"><%= employee_name(f.contact_id) %>
-			<div class="inputbox small-link"><%= link_to "edit targets", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal" %></div>
-		</td>
-
+	<td class="name"><%= employee_name(f.contact_id) %><br />
+		<%= link_to "edit targets", edit_project_employee_team_path(f.project_id, f.id), datatoggle: "modal", datatarget: "#myModal", class: "modal-btn edit-targets" %>
+		<!--<%= DataRecord.find_by_employee_id(Employee.find_by_contact_id(f.contact_id).id).billable_rate.to_f %>-->
+		</div>
+	</td>
+	<td class="smalltext"><div class="input-sm act">actual</div><div class="input-sm est">target</div></td>
 		<% Phase.all.each do |phase| %>
 			<%= tracking_td(f, phase) %>
 		<% end %>
 
-		<td class="total TotalToDate gray">
-			<% if f.est_total == 0 %>
-				<div class="input-spacer"></div>
-			<% else %>
-				<div class="uneditable-input span1 est"><%= strip(f.est_total) %></div>
-			<% end %>
+		<td class="total TotalToDate gray border-left">
 			<% if @project.employee_actual(f.contact_id, 'Total') == 0 %>
-				<div class="input-spacer"></div>
+				<div class="input-spacer span1 act"></div>
 			<% else %>
-				<div class="uneditable-input span1 act <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= strip(@project.employee_actual(f.contact_id, 'Total')) %></div>
+				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= strip(@project.employee_actual(f.contact_id, 'Total')) %></div>
 			<% end %>
-			
+			<% if f.est_total == 0 %>
+				<div class="input-spacer span1 est"></div>
+			<% else %>
+				<div class="input span1 est bold"><%= strip(f.est_total) %></div>
+			<% end %>
 		</td>
 
-		<td>
-			<div class="act sum <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= over_under(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %></div>
+		<td class="border-left Remaining">
+			
+			<div class="act sum <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= remaining(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %></div>
 		</td>
 </tr>

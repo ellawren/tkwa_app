@@ -1,2 +1,16 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<%= form_for @category do |f| %>
+
+	<h2>Add a New Contact Category</h2>
+    <div class="wide">
+        <div class="input-row">
+            <%= f.label(:name, "Category Name", class: "input-label") %>
+            <%= f.text_field :name %>
+        </div>
+    </div>
+
+    <div class="save-row">
+        <%= f.submit "Create Category", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>
+

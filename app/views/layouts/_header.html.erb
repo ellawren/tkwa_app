@@ -7,11 +7,20 @@
   	<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   	
   	<!-- styles -->
-    <%= stylesheet_link_tag 'bootstrap/bootstrap',  media: 'all' %>
 		<%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_link_tag 'print', media: 'print' %>
+
+    <!-- fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css">
 		
 		<!-- scripts -->
 		<%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'autocomplete-rails.js' %>
-    <script type="text/javascript" src="google_visualization_api"></script>
+
+<script>
+    $(function() {
+    $(".pop").popover({ placement: 'right', animation:true });
+    $(".tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
+    $(".tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+});
+</script>

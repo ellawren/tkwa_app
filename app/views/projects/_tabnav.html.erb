@@ -1,7 +1,10 @@
-<div class="tabnav">
-	<%= link_to "info", info_project_path(@project), :class => is_active?("info") %>
-	<%= link_to "scope", scope_project_path(@project), :class => is_active?("scope") %>
-	<%= link_to "team", team_project_path(@project), :class => is_active?("team") %>
-	<%= link_to "schedule", schedule_project_path(@project), :class => is_active?("schedule") %>
-	<%= link_to "tracking", tracking_project_path(@project), :class => is_active?("tracking") %>
-</div>
+<ul class="tabnav">
+	<li class="<%= is_active?("info")%>"><%= link_to "info", info_project_path(@project) %></li>
+	<li class="<%= is_active?("scope")%>"><%= link_to "scope", scope_project_path(@project) %></li>
+	<li class="<%= is_active?("team")%>"><%= link_to "team", team_project_path(@project) %></li>
+	<!--<li class="<%= is_active?("schedule")%>"><%= link_to "schedule", schedule_project_path(@project) %></li>-->
+	<li class="<%= is_active?("tracking")%>"><%= link_to "tracking", tracking_project_path(@project) %></li>
+	<li class="<%= is_active?("billing")%>"><%= link_to "billing", billing_project_path(@project) %></li>
+	<!--<li class="<%= is_active?("shop_drawings")%>"><%= link_to "shop drawings", shop_drawings_project_path(@project) %></li>-->
+	<li class="<%= is_active?("marketing")%>"><%= link_to "marketing", marketing_project_path(@project) %></li>
+</ul>

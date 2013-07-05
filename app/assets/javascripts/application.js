@@ -10,8 +10,21 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
+//= require jquery-1.8.3.min
+//= require jquery-ui-1.10.3.custom.min
+//= require jquery.ui.touch-punch.min
+//= require bootstrap
+//= require bootstrap-select
+//= require bootstrap-pop
+//= require bootstrap-switch
+//= require flatui-checkbox
+//= require flatui-radio
+//= require jquery.tagsinput
+//= require jquery.placeholder
+//= require jquery.stacktable
+//= require application-flat-ui
 //= require jquery.ui.autocomplete
+//= require scripts
+//= require new
 
+/* note that js files are called individually for testing - be sure to replace with 'require tree .' and remove unused parts before final production */

@@ -24,6 +24,7 @@
 
 			<% Contact.employee_list.each do |param| %>
 				<tr>
+					<td><%= param.id %></td>
 					<td><%= param.employee.number %></td>
   					<td class="left-align"><%= link_to param.name, "/employees/#{param.employee.id}/data_records/#{this_year}", datatoggle: "modal" %></td>
 					<% data = DataRecord.find_or_create_by_year_and_employee_id(this_year, param.employee.id) %>

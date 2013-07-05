@@ -1,9 +1,18 @@
 class ProjectsController < ApplicationController
+  require 'csv'
   autocomplete :contact, :name, :full => true, :extra_data => [:work_address, :work_phone, :work_ext, :work_email]
 
   def new
   	@project = Project.new
-    render :layout => 'new_project' 
+    render :layout => 'projects_static' 
+  end
+
+  def current
+    render :layout => 'projects_static' 
+  end
+
+  def import
+    render :layout => 'projects_static' 
   end
 
   def edit
@@ -16,17 +25,54 @@ class ProjectsController < ApplicationController
   
   def info
     @project = Project.find(params[:id])
-
   end
   
   def scope
     @project = Project.find(params[:id])
+  end
+
+  def billing
+    @project = Project.find(params[:id])
+  end
+
+  def shop_drawings
+    @project = Project.find(params[:id])
+  end
+
+  def marketing
+    @project = Project.find(params[:id])
+  end
+
+  def summary
+    @project = Project.find(params[:id])
+    @consultant_list = ConsultantTeam.find(:all, :select => 'DISTINCT consultant_id', :conditions => [ "project_id = #{@project.id}" ] )
   end
   
   def team
     @project = Project.find(params[:id])
     @consultant_list = ConsultantTeam.find(:all, :select => 'DISTINCT consultant_id', :conditions => [ "project_id = #{@project.id}" ] )
   end
+
+  def csv_import  
+    file = params[:file]  
+    CSV.new(file.tempfile, :headers => true).each do |row|
+        if row[3] != ''
+          if Project.find_all_by_number(row[3]).count == 0
+            Project.create!(:name => row[0],  
+                       :location => row[1],  
+                       :client => row[2],  
+                       :number => row[3],    
+                       :building_type => row[4],  
+                       :billing_name => "#{row[5]} #{row[6]}", 
+                       :billing_address => row[7], 
+                       :billing_phone => row[8],  
+                       :status => 'Current')  
+          end
+        end
+    end  
+    redirect_to projects_current_path
+  end
+
 
 
   
@@ -191,8 +237,14 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @projects = Project.paginate(page: params[:page])
-    render :layout => 'index_projects'
+    @project = Project.new
+    @q = Project.search(params[:q])
+    @projects = @q.result(:distinct => true)
+    if @projects.count == 1 
+      redirect_to info_project_path(@projects.first(params[:id]))
+    else
+      render :layout => 'search' 
+    end
   end
   
   def create
@@ -202,6 +254,7 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project created successfully!"
       redirect_to info_project_path(@project)
     else
+      flash[:error] = "Project could not be created."
       render 'new'
     end
   end
@@ -219,7 +272,7 @@ class ProjectsController < ApplicationController
   def destroy
     Project.find(params[:id]).destroy
     flash[:success] = "Project deleted."
-    redirect_to projects_path
+    redirect_to(:back) 
   end
   
 end

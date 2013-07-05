@@ -1,22 +1,14 @@
 <% content_for :page_header do %>
-  <% provide :title, "Add New Contact" %>
-  <div class="page-header">
-    <h1>Add New Contact</h1>
+  <% provide :title, "New Contact" %>
+  <div class="header">
+          <h1>New Contact</h1>
+          <div class="controls">
+            <%= link_to "", contacts_path, :class => "button search" %>
+            <%= link_to "", new_contact_path, :class => "button add" %>
+            <div class="button print"></div>
+            <div class="button delete"></div>
+          </div>
   </div>
 <% end %>
 
-<%= form_for(@contact, html: { class: "form-horizontal half-width-labels" }) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= render 'fields', f: f %>
-  
-  <br /><br />
-
-    <div class="row">
-        <div class="span12">
-            <div class="actions">
-                <%= f.submit "Create", class: "btn btn-large btn-primary span3" %>
-            </div>
-        </div>
-    </div>
-
-<% end %>
+<%= render 'fields' %>

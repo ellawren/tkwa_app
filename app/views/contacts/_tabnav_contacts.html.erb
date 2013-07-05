@@ -1,0 +1,11 @@
+<!--<div class="tabnav">
+	<%= link_to "search", contacts_path, :class => is_active?("index") %>
+	<%= link_to "add new", new_contact_path, :class => is_active?("new") %>
+	<%= link_to "employees", contacts_employees_path, :class => is_active?("employees") %>
+	<%= link_to "consultants", contacts_consultants_path, :class => is_active?("consultants") %>
+</div>-->
+
+<ul class="tabnav">
+	<li class="<%= is_active?("show")%>"><%= link_to "info", contact_path(@contact) %></li>
+	<%= yield :category_tab %>
+</ul>

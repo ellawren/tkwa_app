@@ -1,10 +1,21 @@
 			<!-- footer -->
-			<footer>
-				<div class="row">
-					<div class="footer span15">
-						©2012, The Kubala Washatko Architects, Inc. | <%= link_to "Home", root_path %>
+			<div class="container">
+				<footer>
+					<div class="row">
+						<div class="footer span15">
+							<span class="default">©</span> 2013, The Kubala Washatko Architects, Inc. &nbsp; | &nbsp; <%= link_to "Home", root_path %>
+						</div>
 					</div>
-				</div>
-			</footer>
+				</footer>
+			</div>
+			<%= javascript_include_tag 'autocomplete-rails.js' %>
+
+	<% if on_page?("timesheets", "show") || on_page?("projects", "tracking") %>
+
+	    <script type="text/javascript"
+	  src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart","piechart"]}]}'>
+	    </script>
+
+	<% end %>
 
 			

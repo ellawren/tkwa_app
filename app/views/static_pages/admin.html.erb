@@ -1,0 +1,59 @@
+<% content_for :page_header do %>
+	<% provide :title, "Admin" %>
+	<div class="page-header">
+		<h1>Admin</h1>
+	</div>
+<% end %>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Section</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>Globals</td>
+                <td><%= link_to "Index", globals_path %></td>
+                <td><%= link_to "Add New", new_global_path %></td>
+            </tr>
+            <tr>
+                <td>Employee Data Records</td>
+                <td><%= link_to "Index", employees_path %></td>
+                <td><%= link_to "Add New", new_global_path %></td>
+            </tr>
+            <tr>
+                <td>Categories</td>
+                <td><%= link_to "Index", categories_path %></td>
+                <td><%= link_to "Add New", new_category_path %></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Holidays</td>
+                <td><%= link_to "Index", holidays_path %></td>
+                <td><%= link_to "Add New", new_holiday_path %></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Services</td>
+                <td><%= link_to "Index", services_path %></td>
+                <td><%= link_to "Add New", new_service_path %></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Tasks</td>
+                <td><%= link_to "Index", tasks_path %></td>
+                <td><%= link_to "Add New", new_task_path %></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Users</td>
+                <td><%= link_to "Index", users_path %></td>
+                <td><%= link_to "Add New", new_user_path %></td>
+                <td></td>
+            </tr>
+    </tbody>
+</table>
+

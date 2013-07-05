@@ -51,6 +51,10 @@
 #  int_percent         :integer
 #  add_percent         :integer
 #  client_url          :string(255)
+#  contract_amount     :decimal(12, 2)
+#  extra_services      :decimal(12, 2)
+#  payroll             :decimal(12, 2)
+#  alt_contact         :string(255)
 #
 
 class Project < ActiveRecord::Base
@@ -61,6 +65,8 @@ class Project < ActiveRecord::Base
 
     has_many :consultants, :through => :consultant_teams
     has_many :consultant_teams, :dependent => :destroy
+
+    has_many :bills, :through => :consultant_teams
 
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
@@ -82,6 +88,77 @@ class Project < ActiveRecord::Base
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true
 
+    def contract_amount=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:contract_amount] = num.to_f
+    end
+
+    def payroll=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:payroll] = num.to_f
+    end
+
+    def extra_services=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:extra_services] = num.to_f
+    end
+
+    def tkwa_fee
+        (self.contract_amount.to_f + self.extra_services.to_f) - self.consultant_contract_total.to_f
+    end
+
+    def consultant_contract_total
+        contracts = self.consultant_teams
+        array = []
+        sum = 0
+        contracts.each do |c| 
+            array.push(c.consultant_contract.to_f)
+        end
+        array.map{|x| sum += x}
+        sum
+    end
+
+    def current_profit
+        if tkwa_fee && payroll
+            ( tkwa_fee.to_f - payroll.to_f )
+        end
+    end
+
+    def billed_to_date
+        if payroll && tkwa_fee
+            ( payroll.to_f/tkwa_fee.to_f ) * 100
+        end
+    end
+
+
+    def project_bills_total
+        #initialize empty bill array and sum
+        bill_array = []
+        sum = 0
+        #find all consultant teams associated with current project
+        teams = ConsultantTeam.find_all_by_project_id(self.id)
+        #for each consultant team, create array of bills and add to master array
+        teams.each do |t| 
+            bills = Bill.find_all_by_consultant_team_id(t.id)
+            bills.each do |b|
+                bill_array.push(b.amount)
+            end
+        end
+        bill_array.map{|x| sum += x}
+        sum
+    end
+
+    def consultant_percent_billed
+      if consultant_contract_total && project_bills_total
+        ( project_bills_total.to_f / consultant_contract_total.to_f ) * 100
+      end
+    end
+
+
+    scope :current, {
+        :select => "projects.*",
+        :conditions => ["status = ?", 'Current' ]
+    }
 
     def available_phases
         available_phases = []
@@ -114,6 +191,8 @@ class Project < ActiveRecord::Base
         sum
     end
 
+
+
     # sum of actual hours entered for project, by employee
     def employee_actual(contact_id, phase)
         if phase == "Total"
@@ -137,6 +216,112 @@ class Project < ActiveRecord::Base
             array.map{|x| sum += x}
             sum
         end
+    end
+
+
+    # calculate actual billing for each employee by phase
+    # this function is used to calculate actual_billing_total (also in this file)
+    def actual_billing(contact_id, phase)
+        employee_id = Employee.find_by_contact_id(contact_id).id
+
+        if phase == "Total"
+            time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
+        else
+            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
+        end
+
+        year_array_full = []
+        time_entries.each do |t| 
+            year = Timesheet.find_by_id(t.timesheet_id).year
+            year_array_full.push(year)
+        end
+        year_array = year_array_full.uniq
+
+        sum_array = []
+        total = 0
+        year_array.each do |y|
+            array = []
+            sum = 0
+            time_entries.each do |t| 
+                array.push(t.entry_total)
+            end
+            array.map{|x| sum += x}
+            data = DataRecord.find_or_create_by_year_and_employee_id(2012, employee_id)
+            sum_array.push(sum * data.billable_rate)
+        end
+
+        sum_array.map{|x| total += x}
+        total
+    end
+
+    # sums the employee totals for each phase using actual_billing (also in this file)
+    # this result shows up under "Total Billing - Actual" on the tracking page
+    def actual_billing_total(phase)
+        if phase == "Total"
+            time_entries = TimeEntry.find_all_by_project_id(self.id)
+        else
+            time_entries = TimeEntry.find_all_by_project_id_and_phase_number(self.id, phase)
+        end
+
+        employee_array_full = []
+        time_entries.each do |t| 
+            employee_array_full.push(t.employee_id)
+        end
+        employee_array = employee_array_full.uniq
+
+        total_array = []
+        sum = 0
+        employee_array.each do |e|
+            employee = Employee.find_by_id(e)
+            number = self.actual_billing(employee.contact_id, phase)
+            total_array.push( number )
+        end
+
+        total_array.map{|x| sum += x}
+        sum
+
+    end
+
+    # calculate target billing for each employee by phase
+    # this result shows up under "Total Billing - Target" on the tracking page
+    def target_billing_total(phase)
+        if phase == "Total"
+            teams = EmployeeTeam.find_all_by_project_id(self.id)
+
+            total_array = []
+            sum = 0
+            teams.each do |t| 
+                est_hours = t.est_total
+                employee_id = Employee.find_by_contact_id(t.contact_id).id
+                data = DataRecord.find_or_create_by_year_and_employee_id(Time.now.year, employee_id)
+                
+                unless est_hours.nil?
+                    billing = est_hours * data.billable_rate
+                    total_array.push(billing)
+                end
+            end
+            total_array.map{|x| sum += x}
+            sum
+        else
+            p = Phase.find_by_number(phase)
+            teams = EmployeeTeam.find_all_by_project_id(self.id)
+
+            total_array = []
+            sum = 0
+            teams.each do |t| 
+                est_hours = eval("t.#{p.shorthand}_hours")
+                employee_id = Employee.find_by_contact_id(t.contact_id).id
+                data = DataRecord.find_or_create_by_year_and_employee_id(Time.now.year, employee_id)
+                
+                unless est_hours.nil?
+                    billing = est_hours * data.billable_rate
+                    total_array.push(billing)
+                end
+            end
+            total_array.map{|x| sum += x}
+            sum
+        end
+        
     end
 
     # sum of estimated hours entered for project
@@ -177,7 +362,7 @@ class Project < ActiveRecord::Base
         sum = 0
         employee_teams.each do |team|
             employee_id = Employee.find_by_contact_id(team.contact_id).id
-            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate
+            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate || 110
             array.push((team.est_total * rate).to_f)
         end
         array.map{|x| sum += x}
@@ -198,7 +383,7 @@ class Project < ActiveRecord::Base
         if phase == "Total"
             team = EmployeeTeam.find_by_contact_id_and_project_id(contact_id, id)
             employee_id = Employee.find_by_contact_id(contact_id).id
-            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate
+            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate || 110
             (team.est_total * rate).to_f
         end
     end
@@ -212,7 +397,7 @@ class Project < ActiveRecord::Base
             sum = 0
             time_entries.each do |t| 
                 year = Timesheet.find(t.timesheet_id).year
-                rate = DataRecord.find_by_employee_id_and_year(employee_id, year).billable_rate
+                rate = DataRecord.find_by_employee_id_and_year(employee_id, year).billable_rate || 110
                 array.push(t.entry_total * rate)
             end
             array.map{|x| sum += x}
@@ -231,6 +416,9 @@ class Project < ActiveRecord::Base
             sum
         end
     end
+
+
+
 
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 

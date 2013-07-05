@@ -7,35 +7,46 @@
 	</head>
 	
 	<body>
+
+    <%= render 'layouts/navbar' %>
+
+        <!-- main content -->
+        <div class="container">
 	
-		<%= render 'layouts/navbar' %>
-		
-		<!-- main content -->
-    	<div class="container fifteen">
-    		<div class="spacer"></div>
+            		<!--<% flash.each do |key, value| %>
+                  <div class="modal fade in" id="success">
+                    <div class="modal-body">
+                      <%= content_tag(:div, value, class: "flash #{key}") %>
+                    </div>
+                  </div>
+                <% end %>-->
+                  		
+                <% flash.each do |key, value| %>
+                  <%= content_tag(:div, value, class: "flash #{key}") %>
+                <% end %>
+                
 
-    		<% flash.each do |key, value| %>
-          		<%= content_tag(:div, value, class: "flash #{key}") %>
-        	<% end %>
+            		<%= yield :page_header %>
+            		<%= yield :tabnav %>
+            		
+                	<div class="box">
+          				<%= content_for?(:content) ? yield(:content) : yield %>
+          			</div> <!-- end box -->
 
-    		<%= yield :page_header %>
-    		<%= yield :tabnav %>
-    		
-        	<div class="line"></div>
-			<div class="row">
-				<div class="span15 sh">
-					<div class="row">	
-						<div class="span13 offset1">
-  							<%= content_for?(:content) ? yield(:content) : yield %>
-  						</div> <!-- end span13 -->
-					</div> <!-- end row -->	
-  				</div> <!-- end span14 -->
-			</div> <!-- end row -->	
-			
-			<%= render 'layouts/footer' %>	
-			<%= debug(params) if Rails.env.development? %>
+        			<%= render 'layouts/footer' %>	
+        			<%= debug(params) if Rails.env.development? %>
+                    
     	</div> <!-- end container -->
 	
-	</body>
-  
-</html>
+      <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+      <script>
+      jQuery(document).ready(function($) {
+          $('#success').modal()
+      });
+        window.setTimeout(function() { 
+          $(".modal").modal("hide");
+        }, 1500);
+      </script>
+
+    </body>  
+</html>  

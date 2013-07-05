@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403192454) do
+ActiveRecord::Schema.define(:version => 20130129185612) do
+
+  create_table "bills", :force => true do |t|
+    t.string   "date"
+    t.decimal  "amount"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "consultant_team_id", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -46,9 +54,10 @@ ActiveRecord::Schema.define(:version => 20120403192454) do
   create_table "consultant_teams", :force => true do |t|
     t.integer  "project_id"
     t.integer  "consultant_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
     t.string   "consultant_role"
+    t.decimal  "consultant_contract", :precision => 12, :scale => 2
   end
 
   add_index "consultant_teams", ["consultant_id"], :name => "index_consultant_teams_on_consultant_id"
@@ -88,24 +97,37 @@ ActiveRecord::Schema.define(:version => 20120403192454) do
     t.string   "category"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
-    t.date     "birthday"
+    t.string   "birthday"
     t.string   "direct_ext"
     t.string   "assistant"
     t.string   "work_cell"
     t.string   "post_nominals"
     t.string   "prefix"
+    t.string   "cat01"
+    t.string   "cat02"
+    t.string   "cat03"
+    t.string   "cat04"
+    t.string   "cat05"
+    t.string   "cat06"
   end
 
   create_table "data_records", :force => true do |t|
     t.integer  "year"
-    t.decimal  "week",        :precision => 4, :scale => 2
-    t.decimal  "vacation",    :precision => 6, :scale => 2
-    t.decimal  "holiday",     :precision => 4, :scale => 2
-    t.decimal  "billable",    :precision => 6, :scale => 2
-    t.decimal  "rate",        :precision => 6, :scale => 2
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.decimal  "week",           :precision => 4, :scale => 2
+    t.decimal  "vacation",       :precision => 6, :scale => 2
+    t.decimal  "holiday",        :precision => 4, :scale => 2
+    t.decimal  "billable",       :precision => 6, :scale => 2
+    t.decimal  "rate",           :precision => 6, :scale => 2
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.integer  "employee_id"
+    t.decimal  "admin_meeting",  :precision => 6, :scale => 2
+    t.decimal  "computer",       :precision => 6, :scale => 2
+    t.decimal  "education",      :precision => 6, :scale => 2
+    t.decimal  "marketing",      :precision => 6, :scale => 2
+    t.decimal  "staff_meeting",  :precision => 6, :scale => 2
+    t.decimal  "stdio_projects", :precision => 6, :scale => 2
+    t.decimal  "research",       :precision => 6, :scale => 2
   end
 
   create_table "data_records_employees", :id => false, :force => true do |t|
@@ -145,8 +167,8 @@ ActiveRecord::Schema.define(:version => 20120403192454) do
     t.datetime "updated_at"
     t.integer  "number"
     t.string   "status"
-    t.date     "hire_date"
-    t.date     "leave_date"
+    t.string   "hire_date"
+    t.string   "leave_date"
   end
 
   add_index "employees", ["contact_id"], :name => "index_employees_on_contact_id"
@@ -213,7 +235,7 @@ ActiveRecord::Schema.define(:version => 20120403192454) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.decimal  "number",              :precision => 8, :scale => 2
+    t.decimal  "number",              :precision => 8,  :scale => 2
     t.string   "location"
     t.string   "client"
     t.string   "building_type"
@@ -230,8 +252,8 @@ ActiveRecord::Schema.define(:version => 20120403192454) do
     t.string   "billing_travel"
     t.string   "billing_consultant"
     t.string   "billing_outofpocket"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
     t.string   "billing_ext"
     t.string   "contact_ext"
     t.date     "start_date"
@@ -260,6 +282,15 @@ ActiveRecord::Schema.define(:version => 20120403192454) do
     t.integer  "int_percent"
     t.integer  "add_percent"
     t.string   "client_url"
+    t.decimal  "contract_amount",     :precision => 12, :scale => 2
+    t.decimal  "extra_services",      :precision => 12, :scale => 2
+    t.decimal  "payroll",             :precision => 12, :scale => 2
+    t.string   "alt_contact"
+    t.string   "mkt_location"
+    t.string   "mkt_size"
+    t.string   "mkt_cost"
+    t.text     "mkt_description"
+    t.string   "mkt_reference"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true
