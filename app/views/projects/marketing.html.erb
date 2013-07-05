@@ -19,7 +19,7 @@
         </div>
         <div class="narrow">
             <div class="input-row">
-                  <%= f.label(:mkt_reference, "Reference", class: "input-label") %>
+                  <%= f.label(:mkt_reference, "Reference Name", class: "input-label") %>
                   <%= f.autocomplete_field :mkt_reference, autocomplete_contact_name_projects_path, class: "" %>
             </div>
             <!--<% if @project.mkt_reference %>
@@ -53,14 +53,6 @@
             <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
         </div>
 
-        <!-- print-formatted description
-            <div class="mkt-description">
-                <% unless @project.mkt_location == "" %>Location: <%= @project.mkt_location %><br /><% end %>
-                <% unless @project.mkt_size == "" %>Size: <%= @project.mkt_size %><br /><% end %>
-                <% unless @project.mkt_cost == "" %>Cost: <%= @project.mkt_cost %><br /><br /><% end %>
-                <%= add_breaks(@project.mkt_description).html_safe %>
-            </div>
-        -->
 
 <% end %>
 
