@@ -5,7 +5,7 @@
 		</div>
 	</td>
 	<td class="smalltext"><div class="input-sm act">actual</div><div class="input-sm est">target</div></td>
-		<% Phase.all.each do |phase| %>
+		<% @project.available_phases.each do |phase| %>
 			<%= tracking_td(f, phase) %>
 		<% end %>
 

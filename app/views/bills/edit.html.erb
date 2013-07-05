@@ -1,18 +1,23 @@
-<h1>Bills#edit</h1>
-<p>Find me in app/views/bills/edit.html.erb</p>
 
-<%= f.fields_for :bills do |f| %>
 
-	<div class="span">
-	    <%= f.label(:date, class: "label") %>
-	    <%= f.text_field :date, class: "input span6" %>
-	</div>
-	<div class="span">
-	   <%= f.label(:amount, class: "label") %>
-	   <%= f.text_field :amount, class: "input span6" %>
-	</div>
+<div class="header-span">
+    <h3>Bills</h3>
+</div>
 
-<% end %>
+<div class="body-span">
+	<%= f.fields_for :bills do |f| %>
+
+		<div class="span">
+		    <%= f.label(:date, class: "label") %>
+		    <%= f.text_field :date, class: "input span6" %>
+		</div>
+		<div class="span">
+		   <%= f.label(:amount, class: "label") %>
+		   <%= f.text_field :amount, class: "input span6" %>
+		</div>
+
+	<% end %>
+</div>
 
 
 

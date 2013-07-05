@@ -73,6 +73,16 @@
 
     <h2>Consultant Billing</h2>
 
+    <!-- modal for consultant billing edit -->
+        <div class="modal hide fade consultant" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel"> </h3>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    <!-- end modal -->
+
     <table class="table billing-table">
 
         <thead>
@@ -94,11 +104,15 @@
                 <td></td>
                 <td><div class="text-field lg bold"><%= number_to_currency(@project.consultant_contract_total) %></div></td>
                 <td><div class="text-field med bold"><%= number_to_currency(@project.project_bills_total) %></div></td>
-                <td><div class="text-field small bold"><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %></div></td>
+                <td><div class="text-field small bold"><% if f.object.consultant_percent_billed > 0 %><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %><% end %></div></td>
                 <td></td>
             </tr>
         </tbody>
     </table>
+
+    <div class="save-row">
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+    </div>
 
 <% end %>
 

@@ -1,8 +1,23 @@
 <%= form_for @project do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-    <h2>Project Scope</h2>
-    <p class="description">Selected items are included in the architectural fee. Items that are not selected are billed as #70 Additional Services.<br><br></p>
+    <p class="description top-margin">Selected items are included in the architectural fee. Items that are not selected are billed as #70 Additional Services.<br><br></p>
+
+    <div class="full phases">
+        <div class="column-header">
+    	   <h3>Phases</h3>
+        </div>
+		<%= hidden_field_tag "project[phase_ids][]", nil %>
+		<% Phase.all.each do |phase| %>
+			<label class="checkbox">
+				<div class="overlay">
+					<div class="number"><%= phase.number %></div>
+					<div class="phase-name"><%= phase.name %></div>
+				</div>
+				<%= check_box_tag "project[phase_ids][]", phase.id, @project.phase_ids.include?(phase.id), id: dom_id(phase), data_toggle: "checkbox" %>
+			</label>
+		<% end %>
+	</div>
 
 	<div class="third">
         <div class="column-header">

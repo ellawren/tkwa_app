@@ -16,7 +16,7 @@ class ConsultantsController < ApplicationController
   def create
     @consultant = Consultant.new(params[:consultant])
     if @consultant.save
-      redirect_to @consultant
+      redirect_to consultants_path
     else
       render 'new'
     end

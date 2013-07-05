@@ -26,6 +26,13 @@ a:hover { color:#1abc9c; }
 ul.nav a.disabled, ul.nav a.disabled:hover { color:#6b8299; margin-right:3px; }
 ul.nav li.home { margin-left:15px; }
 
+.login-box { float:right; width:552px; height:60px; margin-top:15px; }
+	.login-box div { float:left; width:200px; }
+	.login-box label { color:#fff; display:block; width:100%; float:left; margin-bottom:0px; }
+	.login-box input { display:inline-block; float:left; margin-right:15px; padding:5px 3px; width:180px; }
+	.login-box .btn { background-color:#1abc9c; margin:20px 0 0 0; padding:7px 8px; width:90px; }
+		.login-box .btn:hover { background-color: #48c9b0; }
+	.login-box a { float:left; font-size:14px; margin:30px 0 0 16px; }
 
 /* page structure */
 .container { margin-top:60px; }
@@ -179,7 +186,7 @@ label.checkbox { width:100%; margin-left:0px; float:left; color:#ced5da; }
 /* tracking table */
 table.tracking-table { font-size:10pt; margin-top:30px; margin-bottom:40px; border-collapse:collapse; float:left; }
 table.tracking-table th { width:5%;  text-align:left; font-size: 10pt; padding-top:20px; padding-bottom:4px; border-bottom:1px solid #666; font-weight:700; }
-table.tracking-table th.table-cell { font-size:14pt; font-weight:900; border-left:1px solid #bbb; text-align:center; padding-top:0px; min-width:65px; }
+table.tracking-table th.table-cell { font-size:14pt; font-weight:900; border-left:1px solid #bbb; text-align:center; min-width:70px; padding:0px 6px; }
 table.tracking-table th .blanch { font-size: 8pt; font-weight:500; text-transform:uppercase;  }
 table.tracking-table th.table-cell.TotalToDate { font-size: 10pt; padding-top:20px; border-left:1px solid #666; }
 
@@ -253,7 +260,7 @@ table.tracking-table tbody tr.lower td.total, table.tracking-table tbody tr.bill
 table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold { padding-left:6px; padding-top:8px; font-size:12px; }
 
 /* billing table */
-.billing-table { width:100%; font-size:10pt; margin-top:0px; margin-bottom:60px; border-collapse:collapse; float:left; }
+.billing-table { width:100%; font-size:10pt; margin-top:0px; margin-bottom:0px; border-collapse:collapse; float:left; }
 .billing-table .col-head { text-align:left; font-family:"Oswald", "Arial Narrow", sans-serif; font-size: 10pt; padding-bottom:4px; border-bottom:1px solid #666; font-weight:400; }
 .billing-table .td-select { width:24%; margin-right:4px; height:18px; }
 .billing-table .styled-select { width:98%;margin-top:3px; }
@@ -357,8 +364,10 @@ footer { background-color: #fff; margin-bottom:40px; font-size:13px; }
 	.submit-cutout { position:absolute; right:185px; bottom:-10px; width:80px; height:68px; background:url(/assets/cutout-sm.jpg); }
 	input.btn.gray-button { min-width:50px; width:73px; height:73px; padding:15px 10px 15px 10px; font-size:12pt; line-height:15px; border-radius:40px; vertical-align:middle; text-align:center; float:left; margin:4px 0 0 4px; color:#000; font-family:Argumentum-Light; }
 
-    .modal { left:38%; top:50%; width: 860px; border-radius:15px; overflow:hidden;  }
-    .modal , .modal.fade-in { top:200px; height:280px; }
+    .modal { left:38%; top:50%; width:860px; height:280px; border-radius:15px; overflow:hidden; top:200px; }
+    .modal.consultant { min-height:260px; height:auto; }
+    	.modal.consultant .modal-body { height:100%; }
+
     .modal-backdrop { min-height:1400px; }
     .modal-backdrop, .modal-backdrop.fade.in { opacity: 0.4; filter: alpha(opacity=40); }
     .modal-header { position:relative; padding:30px 30px 10px 55px; border-top-right-radius:15px; border-top-left-radius:15px;  background-color:#f5f5f5; }
@@ -471,7 +480,22 @@ footer { background-color: #fff; margin-bottom:40px; font-size:13px; }
 .inline-edit-link { margin-left:5px; }
 
 
-/* modal - edit employee targets */
+/* scope - phases */
+
+.phases { margin-bottom:30px; }
+.phases label.checkbox { width:93px; margin-right:10px; height:80px; padding-left:0px; z-index:99; position:relative; text-align:center; }
+.phases label.checkbox:last-child { margin-right:0px; }
+	.phases .checkbox .icons { width:93px; height:80px; border-radius:8px; color:#85a5a6; z-index:90; position:relative; background-color:#ecf0f5; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+	.phases .checkbox.checked .icons { width:93px; height:80px; background-color:#86cc71; color:#fff; }
+		.phases .checkbox .icons .first-icon, .phases .checkbox .icons .second-icon { display:none; }
+		.phases .checkbox .overlay { position:absolute; top:0px; left:0px; color:#bcc6cc; z-index:100; width:93px; padding:20px 0 0 0; height:60px; }
+			.phases .checkbox.checked .overlay { color:#fff; }
+		.phases .checkbox .number { font-weight:100; font-size:36px; }
+		.phases .checkbox .phase-name { font-weight:500; font-size:14px; margin-top:10px; }
+
+p.top-margin { float:left; margin-top:30px; }
+
+a.control-link { float:right; }
 
 
 

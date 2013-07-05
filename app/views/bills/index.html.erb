@@ -1,10 +1,22 @@
+<style>
+  .header-span, .body-span { width:100%; font-family: "Lato", sans-serif; color:#34495e; }
+  .header-span h3 { width:100%; font-weight:900;font-size:16px; color:#34495e;  margin-bottom:40px; }
+  .modal-table { width:100%; color:#34495e; }
+  	.modal-table th { text-align:right; border-bottom:1px solid #7f8c8d; font-size:14px; font-weight:900; }
+  	.modal-table td { border-bottom:1px solid #e1e6eb; padding:5px 0; text-align:right; }
+  		.modal-table td:first-child, .modal-table th:first-child { text-align:left; }
+  	.modal-table input { width:120px; height:34px; padding:8px; border: 2px solid #e1e6eb; font-family: "Lato", sans-serif; color:#1abc9c; text-align:right; font-size:13px; border-radius:8px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+  		.modal-table input:focus { outline:none; border-color:#1abc9c; }
 
-<div class="modal-header">
+    input.btn { float:left; margin-top:20px; padding:8px 16px 16px 16px; width:160px; border-radius:8px; background-color:#1abc9c; color:#fff; border:none; outline:none; height:34px; font-size:13px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; cursor:pointer; }
+    input.btn:hover { background-color:#16a085; }
+</style>
+
+<div class="header-span">
     <h3>Consultant Billing: <%= @consultant.company %></h3>
-    <a class="close" data-dismiss="modal">×</a>
 </div>
 
-<div class="modal-body">
+<div class="body-span">
 
 	<%= form_for @bill do |f| %>
 	<%= f.hidden_field :consultant_team_id, value: "#{@team_id}" %>
@@ -12,25 +24,25 @@
 		<table class="table modal-table cbilling-table">
 			<thead>
 				<tr>
-					<th>company</th>
-					<th class="right-offset">date</th>
-					<th class="right-offset">amount</th>
-					<th class="span2"></th>
+					<th>Company</th>
+					<th>Date</th>
+					<th>Amount</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @bills.each do |param| %>
 					<tr>
 						<td><%= @consultant.company %></td>
-						<td class="right-offset"><%= param.date %></td>
-						<td class="right-offset"><%= number_to_currency(param.amount) %></td>
-						<td class="right-offset"><%= link_to "delete", param, method: :delete %></td>
+						<td><%= param.date %></td>
+						<td><%= number_to_currency(param.amount) %></td>
+						<td><%= link_to "delete", param, method: :delete %></td>
 					</tr>
 				<% end %>
 				<tr>
 						<td><%= @consultant.company %></td>
-						<td class="right"><%= f.text_field :date, class: "input span3 right datepicker" %></td>
-						<td class="right"><%= f.text_field :amount, class: "input span3 right", id:"txtDate" %></td>
+						<td><%= f.text_field :date, class: "input span3 right datepicker" %></td>
+						<td><%= f.text_field :amount, class: "input span3 right", id:"txtDate" %></td>
 						<td></td>
 				</tr>
 			</tbody>

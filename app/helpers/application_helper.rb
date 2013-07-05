@@ -78,7 +78,7 @@ module ApplicationHelper
   end
 
   def is_current?(c_name)
-      "class='active'" if params[:controller] == c_name
+      "class='active'" if c_name.include?(params[:controller])
   end
 
   def over_under(g, a)

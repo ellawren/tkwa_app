@@ -168,7 +168,6 @@ class Project < ActiveRecord::Base
         available_phases
     end
 
-
     def employee_hours(total_hours, contactid, phase)
       employeeid = Employee.find_by_contact_id(contactid).id
       total_hours.find_all_by_employee_id_and_phase_number(employeeid, phase)

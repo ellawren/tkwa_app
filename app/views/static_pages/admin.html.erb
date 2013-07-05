@@ -6,28 +6,23 @@
 <% end %>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>Section</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
-            <tr>
-                <td>Globals</td>
-                <td><%= link_to "Index", globals_path %></td>
-                <td><%= link_to "Add New", new_global_path %></td>
-            </tr>
+
             <tr>
                 <td>Employee Data Records</td>
                 <td><%= link_to "Index", employees_path %></td>
-                <td><%= link_to "Add New", new_global_path %></td>
+                <td><%= link_to "Add New", new_employee_path %></td>
             </tr>
             <tr>
                 <td>Categories</td>
                 <td><%= link_to "Index", categories_path %></td>
                 <td><%= link_to "Add New", new_category_path %></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Consultants</td>
+                <td><%= link_to "Index", consultants_path %></td>
+                <td><%= link_to "Add New", new_consultant_path %></td>
                 <td></td>
             </tr>
             <tr>

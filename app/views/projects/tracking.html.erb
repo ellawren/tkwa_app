@@ -13,7 +13,6 @@
 
 		<h2>Time Tracking</h2>
 		<p class="description">The table below compares <span class="bold">actual hours</span> as entered on timesheets with <span class="bold">target hours</span> as determined by our fee. Staying as close as possible to the target will keep a project profitable, while going over (shown in <span class="bold over">red</span>) represents a net loss. Hover over actual hours for a breakdown by task.</div>
-
 					
 		<table class="table tracking-table">
 		
@@ -21,13 +20,9 @@
                 <tr>
                     <th class="bold">Team Member</th>
                     <th class="smalltext"></th>
-                    <th class="table-cell">10<br /><span class="blanch">predesign</span></th>
-                    <th class="table-cell">20<br /><span class="blanch">schematic</span></th>
-                    <th class="table-cell">30<br /><span class="blanch">design dev</span></th>
-                    <th class="table-cell">40<br /><span class="blanch">const docs</span></th>
-                    <th class="table-cell">50<br /><span class="blanch">bidding</span></th>
-                    <th class="table-cell">60<br /><span class="blanch">cc admin</span></th>
-                    <th class="table-cell">70<br /><span class="blanch">additional</span></th>
+                    <% @project.available_phases.each do |phase| %>
+                    	<th class="table-cell"><%= phase.number %><br /><span class="blanch"><%= phase.name %></span></th>
+                    <% end %>
                     <th class="table-cell bold TotalToDate">Total</th>
                     <th class="bold Remaining"></th>
                 </tr>
@@ -45,7 +40,7 @@
 					<td class="bold">TOTAL HOURS</td>
 				<td class="smalltext"><div class="input-sm act">actual</div><div class="input-sm est">target</div></td>
 
-					<% Phase.all.each do |phase| %>
+					<% @project.available_phases.each do |phase| %>
 						<td class="phase-cell <%= phase.name.gsub(/[ ]*/, '') %> <% if @phases.include?(phase) %><% else %>deactivated<% end %>">
 							<% if @project.phase_actual("#{phase.number}") == 0 %>
 								<div class="input-spacer act"></div>
@@ -85,90 +80,22 @@
 						<div class="input-sm act">actual</div>
 						<div class="input-sm est">target</div>
 					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(10) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(10), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(10) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(10), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(20) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(20), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(20) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(20), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(30) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(30), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(30) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(30), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(40) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(40), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(40) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(40), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(50) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(50), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(50) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(50), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(60) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(60), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(60) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(60), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="phase-cell">
-						<% if @project.actual_billing_total(70) == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total(70), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total(70) == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total(70), :precision => 0) %></div>
-						<% end %>
-					</td>
+
+					<% @project.available_phases.each do |phase| %>
+						<td class="phase-cell">
+							<% if @project.actual_billing_total(phase.number) == 0 %>
+								<div class="input-spacer act"></div>
+							<% else %>
+								<div class='input act'><%= number_to_currency(@project.actual_billing_total("#{phase.shorthand}"), :precision => 0) %></div>
+							<% end %>
+							<% if @project.target_billing_total(phase.number) == 0 %>
+								<div class="input-spacer est"></div>
+							<% else %>
+								<div class='input est'><%= number_to_currency(@project.target_billing_total(phase.number), :precision => 0) %></div>
+							<% end %>
+						</td>
+					<% end %>
+				
 					<td class="total">
 						<% if @project.actual_billing_total('Total') == 0 %>
 							<div class="input-spacer act"></div>

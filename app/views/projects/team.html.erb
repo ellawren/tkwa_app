@@ -20,7 +20,8 @@
 
 		<div class="half last">
 
-			<h2>Consultant Team</h2>
+			<h2>Consultant Team <%= link_to "", consultants_path, :class => "control-link fui-new" %></h2>
+
 	        <% if @project.consultant_teams.count != 0 %>
 		        <div class="header-row">
 		            <div>Company</div>

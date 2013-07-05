@@ -1,34 +1,21 @@
-<fieldset>
-
-        <div class="row"> <div class="field">
-
-    			<div class="control-group">
-                    <%= f.label(:company, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :company, class: "span5" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label(:address, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_area :address, class: "span5", rows: "2" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :phone, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :phone, class: "span3" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label :contact_email, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :contact_email, class: "span5" %>
-                    </div>
-                </div>
-  		</div>
-
-</fieldset>
+    <h2>Consultant Info</h2>
+    <div class="wide">
+        <div class="input-row">
+            <%= f.label(:company, "Company Name", class: "input-label") %>
+            <%= f.text_field :company %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:address, "Address", class: "input-label") %>
+            <%= f.text_area :address, class: "", rows: "2" %>
+        </div>   
+        <div class="input-row">
+            <%= f.label(:contact_email, "Contact Email", class: "input-label") %>
+            <%= f.text_field :contact_email %>
+        </div> 
+    </div>
+    <div class="narrow">
+        <div class="input-row">
+            <%= f.label(:phone, "Phone", class: "input-label" ) %>
+            <%= f.text_field :phone %>
+        </div>
+    </div>
