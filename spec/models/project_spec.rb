@@ -55,6 +55,12 @@
 #  extra_services      :decimal(12, 2)
 #  payroll             :decimal(12, 2)
 #  alt_contact         :string(255)
+#  mkt_location        :string(255)
+#  mkt_size            :string(255)
+#  mkt_cost            :string(255)
+#  mkt_description     :text
+#  mkt_reference       :string(255)
+#  mkt_status          :string(255)
 #
 
 require 'spec_helper'

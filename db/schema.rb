@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129185612) do
+ActiveRecord::Schema.define(:version => 20130705210321) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(:version => 20130129185612) do
     t.string   "mkt_cost"
     t.text     "mkt_description"
     t.string   "mkt_reference"
+    t.string   "mkt_status"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true

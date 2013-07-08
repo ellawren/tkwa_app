@@ -1,12 +1,5 @@
 $(document).ready(function() {
-  
-  //init modal on project tracking page
-  $('a.modal-btn').on('click', function(e) {
-      e.preventDefault();
-      var url = $(this).attr('href');
-      $(".modal-body").html('<iframe id="externalSite" width="100%" height="100%" frameborder="0" scrolling="no" allowtransparency="true" src="'+url+'"></iframe>');
-  });
-
+ 
   // hover function on search results - projects/contacts index
   $('tr.results-row').click( function() {
       window.location = $(this).find('a').attr('href');
@@ -21,7 +14,6 @@ $(document).ready(function() {
 $(".phases .checkbox .icons").html("10");
 
 
-
 $(document).ready(function() {
     $( ".datepicker" ).datepicker({noOffset: true});
   });
@@ -29,7 +21,6 @@ $(document).ready(function() {
 $(document).ready(function() {
   $(".chzn-select").chosen();
   });
-
 
 
 function remove_fields(link) {
@@ -67,8 +58,6 @@ $(document).ready(function() {
 		$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
 		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
 });
-
-
 
 
 function copyContact() {
