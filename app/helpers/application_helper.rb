@@ -186,7 +186,7 @@ module ApplicationHelper
 
 
   def add_breaks(s)
-    s.gsub(/\n/, '<br>')
+    s.gsub(/\n/, '<br>').html_safe
   end
 
     def link_to_remove_fields(name, f)

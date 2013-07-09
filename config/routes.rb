@@ -17,7 +17,7 @@ TkwaApp::Application.routes.draw do
     resources :employee_teams
     get :autocomplete_contact_name, :on => :collection
     member do
-      get 'info', 'team', 'scope', 'tracking', 'schedule', 'billing', 'shop_drawings', 'marketing', 'summary', 'current'
+      get 'info', 'team', 'scope', 'tracking', 'schedule', 'billing', 'shop_drawings', 'marketing', 'summary', 'current', 'patterns'
     end
   end    
 
@@ -60,6 +60,7 @@ resources :bills
   resources :sessions, 		only: [:new, :create, :destroy]
   resources :tasks
   resources :timesheets, :only => [:index, :create, :update]
+  resources :patterns
   
   match '/signup',	to: 'users#new'
   match '/signin',  to: 'sessions#new'

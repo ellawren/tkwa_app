@@ -135,6 +135,8 @@ textarea { resize:vertical; }
 .add:after { content:"add team member"; font-size:14px; font-family: "Lato", sans-serif; margin-left:6px;  font-weight:700; color:#86cc71; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 .add.consultant:after { content:"add consultant"; }
 .add.category:after { content:"add category"; }
+.add.pattern:after { content:"add pattern"; }
+
 .add.category { margin-left:82px; }
 .cat03, .cat04, .cat05, .cat06 { display:none; }
 .show { display:block; }
@@ -528,4 +530,33 @@ a.control-link { float:right; }
   		.modal-table.cbilling-table td:first-child, .modal-table.cbilling-table th:first-child { text-align:left; }
   	.modal-table.cbilling-table input { width:120px; height:34px; padding:8px; border: 2px solid #e1e6eb; font-family: "Lato", sans-serif; color:#1abc9c; text-align:right; font-size:13px; border-radius:8px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
   		.modal-table.cbilling-table input:focus { outline:none; border-color:#1abc9c; }
+
+
+/* patterns */
+
+.pattern { float:left; width:100%; border:2px solid #e1e6eb; padding:15px; border-radius:8px; margin-bottom:10px; }
+
+.pattern label { width:100%; }
+.pattern input, .pattern textarea { width:90%; }
+
+.p-number { float:left; width:50px; }
+.p-name { float:left; width:300px; margin-left:16px; margin-right:500px; }
+.p-issue { float:left; width:400px; margin-left:66px; }
+.p-solution { float:left; width:400px; }
+
+.v-number { float:left; width:40px; background-color:#34495e; color:#fff; text-align:center; border-radius:20px; height:16px; margin-bottom:30px; padding:10px 0 14px; font-size:16px; }
+.v-name { float:left; width:300px; font-weight:900; font-size:16px; padding:10px 0 10px 12px; margin-right:500px; margin-bottom:10px; }
+.v-issue { float:left; width:410px; margin-left:10px; line-height:20px; }
+.v-solution { float:left; width:410px; margin-left:50px; line-height:20px; }
+
+.v-issue:before { content:"issue"; float:left; display:inline-block; line-height:14px; background-color:#e1e6eb; padding:2px 6px; font-size:10px; text-transform:uppercase; margin-right:14px; }
+.v-solution:before { content:"solution"; float:left; display:inline-block; line-height:14px; background-color:#e1e6eb; padding:2px 6px; font-size:10px; text-transform:uppercase; margin-right:10px; }
+
+
+
+
+
+
+
+
 

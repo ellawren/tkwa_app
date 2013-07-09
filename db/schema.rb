@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705210321) do
+ActiveRecord::Schema.define(:version => 20130709141250) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -213,6 +213,31 @@ ActiveRecord::Schema.define(:version => 20130705210321) do
     t.decimal  "day7",         :precision => 4, :scale => 2
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+  end
+
+  create_table "patterns", :force => true do |t|
+    t.string   "name"
+    t.text     "issue"
+    t.text     "solution"
+    t.string   "author"
+    t.text     "background"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.integer  "project_id"
+    t.integer  "number"
+    t.string   "group"
+    t.integer  "rating"
+    t.string   "authors"
+    t.text     "challenges"
+    t.string   "approval"
+    t.string   "diagram_file_name"
+    t.string   "diagram_content_type"
+    t.integer  "diagram_file_size"
+    t.datetime "diagram_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "phases", :force => true do |t|

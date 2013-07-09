@@ -38,4 +38,7 @@ TkwaApp::Application.configure do
   # do not serve precompiled assets!
   config.serve_static_assets = false
 
+  # ImageMagick path for Paperclip
+  Paperclip.options[:command_path] = "/opt/local/bin/"
+
 end

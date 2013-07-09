@@ -22,7 +22,7 @@
 	<div class="third">
         <div class="column-header">
     	   <h3>Services</h3>
-           <a class="control-link fui-new" href="#"></a>
+    	   <%= link_to "", services_path, class: "control-link fui-new" %>
         </div>
 		<%= hidden_field_tag "project[service_ids][]", nil %>
 		<% Service.all.each do |service| %>

@@ -39,6 +39,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def patterns
+    @project = Project.find(params[:id])
+  end
+
   def marketing
     @project = Project.find(params[:id])
   end

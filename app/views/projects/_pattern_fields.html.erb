@@ -1,0 +1,40 @@
+    <div class="pattern">
+
+        <% if f.object.id %>
+            <div class="v-number">
+                <%= f.object.number %>
+            </div>
+            <div class="v-name">
+                <%= f.object.name %>
+            </div>
+            <div class="v-issue">
+                <%= add_breaks(f.object.issue) %>
+            </div>
+            <div class="v-solution">
+                <%= add_breaks(f.object.solution) %>
+            </div>
+        <% else %>
+            <%= f.hidden_field :project_id, value: "#{@project.id}" %>
+
+            <div class="p-number">
+                <%= f.label :number, class: "" %>
+                <%= f.text_field :number, class: "" %>
+            </div>
+
+            <div class="p-name">
+                <%= f.label :name, class: "" %>
+                <%= f.text_field :name, class: "" %>
+            </div>
+
+            <div class="p-issue">
+                <%= f.label :issue, class: "" %>
+                <%= f.text_area :issue, class: "", rows: 6 %>
+            </div>
+
+            <div class="p-solution">
+                <%= f.label :solution, class: "" %>
+                <%= f.text_area :solution, class: "", rows: 6 %>
+            </div>
+        <% end %>
+
+    </div>

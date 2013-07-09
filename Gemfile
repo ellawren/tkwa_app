@@ -7,6 +7,7 @@ gem 'formtastic'
 gem 'rails3-jquery-autocomplete'
 gem 'ransack'
 gem 'jquery-rails'
+gem 'paperclip', '~> 3.0'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'

@@ -1,0 +1,7 @@
+<li>
+  <%= link_to pattern.name, edit_pattern_path(pattern) %>
+  <%= Project.find(pattern.project_id).name %>
+  <% if current_user.admin? %>
+    | <%= link_to "delete", pattern, method: :delete, confirm: "You sure?" %>
+  <% end %>
+</li>

@@ -74,6 +74,9 @@ class Project < ActiveRecord::Base
 
     has_many :bills, :through => :consultant_teams
 
+    has_many :patterns 
+    accepts_nested_attributes_for :patterns, :allow_destroy => true
+
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
@@ -83,6 +86,7 @@ class Project < ActiveRecord::Base
     # allows project page to add employees + consultants via team join model. must allow destroy.
     accepts_nested_attributes_for :consultant_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? }
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:contact_id].blank? }
+
 
     # allows project page to add items via checkboxes
     accepts_nested_attributes_for :services
