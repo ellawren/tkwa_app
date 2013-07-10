@@ -29,9 +29,6 @@
 
 </div>
 
-<%= link_to "Consultants", consultants_path %>
-<a href="#">Forecast</a>
-
 <% if (params.has_key?(:q)) %>
 
 	<% if @projects.count == 0 %>
@@ -52,53 +49,27 @@
 
 <% end %>
 
-<div class="page-header with-spacer">
-    <h1>Add A New Project</h1>
-</div>
+<div class="row icons">
 
-<%= form_for @project do |f| %>
+    <div class="tile-box">
+        <%= link_to image_tag("bell.png", :alt => "new-project", :class => "round-icon"), new_project_path %>
+        <%= link_to "Add A New Project", new_project_path, :class => "tile-label" %>
+    </div>
 
-  <div class="content">
+    <div class="tile-box">
+        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
+        <%= link_to "View Consultants", consultants_path, :class => "tile-label" %>
+    </div>
 
-        <div class="wide">
-            <div class="input-row">
-                <%= f.label(:name, "Project Name", class: "input-label") %>
-                <%= f.text_field :name, class: "" %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:location, "Location", class: "input-label") %>
-                <%= f.text_area :location, class: "", rows: "2" %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:name, "Client", class: "input-label") %>
-                <%= f.text_field :client, class: "" %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
-                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "" %>
-            </div>
-        </div>
+    <div class="tile-box">
+        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), "#" %>
+        <%= link_to "6-Month Forecast", "#", :class => "tile-label" %>
+    </div>
 
-        <div class="narrow">
-            <div class="input-row">
-                <%= f.label(:number, "Project Number", class: "input-label") %>
-                <%= f.text_field :number, class: "" %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:building_type, "Building Type", class: "input-label") %>
-                <%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:client_type, "Client Type", class: "input-label") %>
-                <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %></div>
-            </div>
-        </div>
+    <div class="tile-box">
+        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), "#" %>
+        <%= link_to "Potential Projects", "#", :class => "tile-label" %>
+    </div>
 
-        <div class="save-row">
-            <%= f.submit "Create Project", class: "btn btn-primary save-btn" %>
-        </div>
-
-  </div> <!-- end content -->
-
-<% end %>
+  </div> <!-- end tiles -->
 

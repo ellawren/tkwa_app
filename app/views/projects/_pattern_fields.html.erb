@@ -5,13 +5,18 @@
                 <%= f.object.number %>
             </div>
             <div class="v-name">
-                <%= f.object.name %>
+                <%= link_to f.object.name, edit_pattern_path(f.object.id) %>
             </div>
             <div class="v-issue">
                 <%= add_breaks(f.object.issue) %>
             </div>
             <div class="v-solution">
                 <%= add_breaks(f.object.solution) %>
+            </div>
+            <div class="v-diagram">
+                <% if f.object.diagram.url %>
+                    <%= image_tag f.object.diagram.url(:thumb) %>
+                <% end %>
             </div>
         <% else %>
             <%= f.hidden_field :project_id, value: "#{@project.id}" %>
@@ -34,6 +39,10 @@
             <div class="p-solution">
                 <%= f.label :solution, class: "" %>
                 <%= f.text_area :solution, class: "", rows: 6 %>
+            </div>
+            <div class="p-diagram">
+                <%= f.label(:diagram, "Diagram", class: "input-label") %>
+                <%= f.file_field :diagram %>
             </div>
         <% end %>
 

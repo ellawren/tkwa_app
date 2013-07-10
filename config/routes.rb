@@ -1,8 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-
-
-
   resources :users do
     member do
       get :following, :followers, :profile
@@ -20,8 +17,6 @@ TkwaApp::Application.routes.draw do
       get 'info', 'team', 'scope', 'tracking', 'schedule', 'billing', 'shop_drawings', 'marketing', 'summary', 'current', 'patterns'
     end
   end    
-
-
 
   resources :employees do
     resources :timesheets
@@ -46,7 +41,8 @@ resources :bills
     end
     get :autocomplete_contact_work_company, :on => :collection
   end
-  
+
+
   resources :categories 
   resources :consultants
   resources :data_records

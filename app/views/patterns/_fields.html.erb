@@ -1,0 +1,108 @@
+    <div class="full patterns">
+        <div class="input-row">
+            <%= f.label(:number, "Pattern Number", class: "input-label") %>
+            <%= f.text_field :number, class: "small" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:name, "Pattern Name", class: "input-label") %>
+            <%= f.text_field :name, class: "pattern-name" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:project_id, "Project", class: "input-label") %>
+            <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+            <% if f.object.project_id %>
+                <div class="project-link">
+                    <%= link_to "go to project page", patterns_project_path(Project.find(f.object.project_id)), class: "btn" %>
+                </div>
+            <% end %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:issue, "Issue", class: "input-label") %>
+            <%= f.text_area :issue, class: "pattern-text", rows: "6" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:solution, "Solution", class: "input-label") %>
+            <%= f.text_area :solution, class: "pattern-text", rows: "6" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:diagram, "Images", class: "input-label") %>
+            <div class="image-box">
+                <% if f.object.diagram_file_name %>
+                    <div class="image-placeholder" id="diagram-placeholder">
+                        <%= image_tag @pattern.diagram.url(:medium), class: "diagram" %>
+                    </div>
+                    <div class="image-name" id="diagram-name"><%= f.object.diagram_file_name %></div>
+                    <div class="add-image" >
+                        <%= f.file_field :diagram %>
+                        <div class="text">Change Diagram</div>
+                    </div>
+                    <label for="pattern_delete_diagram" class="fui-cross">
+                        <%= f.check_box(:delete_diagram) %>
+                    </label>
+                <% else %>
+                    <div class="image-placeholder" id="diagram-placeholder"></div>
+                    <div class="image-name" id="photo-name"></div>
+                    <div class="add-image no-x" >
+                        <%= f.file_field :diagram %>
+                        <div class="text">Add Diagram</div>
+                    </div>
+                <% end %>
+            </div>
+            <div class="image-box">
+                <% if f.object.photo_file_name %>
+                    <div class="image-placeholder" id="photo-placeholder">
+                        <%= image_tag @pattern.photo.url(:medium), class: "diagram" %>
+                    </div>
+                    <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
+                    <div class="add-image" >
+                        <%= f.file_field :photo %>
+                        <div class="text">Change Photo</div>
+                    </div>
+                    <label for="pattern_delete_photo" class="fui-cross">
+                        <%= f.check_box(:delete_photo) %>
+                    </label>
+                <% else %>
+                    <div class="image-placeholder" id="photo-placeholder"></div>
+                    <div class="image-name" id="photo-name"></div>
+                    <div class="add-image no-x" >
+                        <%= f.file_field :photo %>
+                        <div class="text">Add Photo</div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <div class="input-row">
+            
+        </div>
+    </div>
+
+    <script>
+    $('#pattern_photo').live('change', function(){
+        text = $(this).val().replace(/C:\\fakepath\\/i, '');
+        $('#photo-name').html(text);
+        $('#photo-placeholder').empty();
+    });
+    $('#pattern_diagram').live('change', function(){
+        text = $(this).val().replace(/C:\\fakepath\\/i, '');
+        $('#diagram-name').html(text);
+        $('#diagram-placeholder').empty();
+    });
+    $('#pattern_delete_diagram').live('change', function(){
+        if($(this).is(':checked')){
+            $('#diagram-placeholder').empty();
+            $('#diagram-name').empty();
+            $('label[for="pattern_delete_diagram"]').addClass('checked');
+        } else {
+            location.reload();
+        }
+    });
+    $('#pattern_delete_photo').live('change', function(){
+        if($(this).is(':checked')){
+            $('#photo-placeholder').empty();
+            $('#photo-name').empty();
+            $('label[for="pattern_delete_photo"]').addClass('checked');
+        } else {
+            location.reload();
+        }
+    });
+    </script>

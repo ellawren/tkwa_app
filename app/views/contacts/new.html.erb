@@ -1,14 +1,15 @@
-<% content_for :page_header do %>
-  <% provide :title, "New Contact" %>
-  <div class="header">
-          <h1>New Contact</h1>
-          <div class="controls">
-            <%= link_to "", contacts_path, :class => "button search" %>
-            <%= link_to "", new_contact_path, :class => "button add" %>
-            <div class="button print"></div>
-            <div class="button delete"></div>
-          </div>
-  </div>
-<% end %>
 
-<%= render 'fields' %>
+<%= form_for @contact do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+   <div class="content">
+
+        <%= render 'fields', :f => f %>
+
+        <div class="save-row">
+            <%= f.submit "Add Contact", class: "btn btn-primary save-btn" %>
+        </div>
+
+    </div> <!-- end content -->
+
+<% end %>

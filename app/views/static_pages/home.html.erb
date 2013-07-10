@@ -1,52 +1,112 @@
 <% provide(:title, 'Home') %>
 
-    <div class="demo-headline">
-        <h1 class="demo-logo">
-            <%= greeting %>
-            <small>Welcome to the TKWA Database.</small>
-        </h1>
-    </div> <!-- /demo-headline -->
+        <div id="navbar">
 
-    <div class="row demo-tiles">
+            <div class="container main">
 
-        <div class="span3">
-            <div class="tile">
-              <%= image_tag("icons/forecast.png", :alt => "projects", :class => "tile-image big-illustration") %>
-                <h3 class="tile-title">Projects</h3>
-                <p>Project billing, tracking, scheduling and reports.</p>
-                <%= link_to "Go to Projects", projects_path, :class => "btn btn-primary btn-large btn-block" %>
-            </div>
-        </div>
+                <div class="demo-headline">
+                    <h1 class="demo-logo">
+                        <%= greeting %>
+                        <small>Welcome to the TKWA Database. Where would you like to go?</small>
+                    </h1>
+                </div> <!-- /demo-headline -->
 
-        <div class="span3">
-            <div class="tile">
-                <%= image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "tile-image big-illustration") %>
-                <h3 class="tile-title">Contacts</h3>
-                <p>Clients, consultants, employees, and friends.</p>
-                <%= link_to "Go to Contacts", contacts_path, :class => "btn btn-primary btn-large btn-block" %>
-            </div>
-        </div>
-
-        <div class="span3">
-            <div class="tile">
-                <%= image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "tile-image big-illustration") %>
-                <h3 class="tile-title">Timesheets</h3>
-                <p>Employee time tracking and targets.</p>
                 <% if signed_in? %>
-                    <%= link_to "Go to Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}", :class => "btn btn-primary btn-large btn-block" %>
-                <% else %>
-                    <a class="btn btn-primary btn-large btn-block disabled">Go to Timesheets</a>
-                <% end %>
-            </div>
-        </div>
 
-        <div class="span3">
-            <div class="tile">
-                <%= image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "tile-image big-illustration") %>
-                <h3 class="tile-title">Patterns</h3>
-                <p>Database of pattern language for all our projects.</p>
-                <%= link_to "Go to Patterns", patterns_path, :class => "btn btn-primary btn-large btn-block" %>
-            </div>
-        </div>
+                    <div class="row icons">
 
-  </div> <!-- end tiles -->
+                        <div class="tile-box">
+                            <%= link_to image_tag("icons/Pocket@2x.png", :alt => "projects", :class => "round-icon resize"), projects_path %>
+                            <%= link_to "Projects", projects_path, :class => "tile-label" %>
+                            <p>Project billing, tracking, scheduling and reports.</p>
+                        </div>
+
+                        <div class="tile-box">
+                            <%= link_to image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "round-icon resize"), contacts_path %>
+                            <%= link_to "Contacts", contacts_path, :class => "tile-label" %>
+                            <p>Clients, consultants, employees, and friends.</p>
+                        </div>
+
+                        <div class="tile-box">
+                            <%= link_to image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "round-icon resize"), "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %>
+                            <%= link_to "Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}", :class => "tile-label" %>
+                            <p>Employee time tracking and targets.</p>
+                        </div>
+
+                        <div class="tile-box">
+                            <%= link_to image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "round-icon resize"), patterns_path %>
+                            <%= link_to "Patterns", patterns_path, :class => "tile-label" %>
+                            <p>Database of pattern language for all our projects.</p>
+                        </div>
+
+                    </div> <!-- end tiles -->
+
+                </div> <!-- end container -->
+                <div class="container sub">
+
+                <div class="navbar navbar-inverse signin-box">
+                    <ul class="nav">
+                        <li><a class="disabled">Signed in as </a></li>
+                        <li>
+                            <%= link_to current_user.name, edit_contact_path(current_user.employee.contact_id) %>
+                            <ul>
+                                <li><%= link_to "Settings", edit_user_path(current_user.employee.user_id) %></li>
+                                <li><%= link_to "Admin", admin_path %></li>
+                                <li><%= link_to "Log Out", signout_path %></li>
+                            </ul> <!-- end sub menu -->
+                        </li>
+                    </ul>
+                   </div>
+                    
+            <% else %> 
+                <div class="container">
+                    <div class="navbar navbar-inverse logged-out">
+                        <div class="login-box">
+                             <%= form_for(:session, url: sessions_path) do |f| %>
+                                <div>
+                                    <%= f.label :email, "Email" %>
+                                    <%= f.text_field :email %>
+                                </div>
+                                <div>
+                                    <%= f.label :password, "Password" %>
+                                    <%= f.text_field :password %>
+                                </div>
+                                <%= f.submit "Sign in", class: "btn" %>
+                            <% end %>
+                        </div>
+                    </div> <!-- end nav menu -->
+                </div>
+                <div class="container">
+                        <%= link_to "Not a member? Sign up!", signup_path, class: "signup-link" %>
+                    </div>
+                </div>
+                
+                <div class="container sub"></div> 
+            <% end %>  
+                
+        </div> <!-- end navbar -->
+
+
+
+
+                        <script>
+
+
+                        function scroll_redirect(page) {
+                            $('#navbar').animate({
+                               height: '80px'
+                            }, { duration: 1000, queue: false });
+                            $('.demo-headline').animate({ opacity: 0, }, 1000, function() {
+                                    window.location = '/' + page;
+                            });
+
+                        }
+
+                        </script>
+
+
+
+
+
+
+

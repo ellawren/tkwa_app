@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title><%= full_title(yield(:title)) %></title>
-		<%= render 'layouts/header' %>
-  		<%= csrf_meta_tags %>
-	</head>
-	
-	<body>
-	
-		<%= render 'layouts/navbar' %>
-		
-		<!-- main content -->
-    	<div class="container">
+<% content_for :content do %>
+  		<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
+<% end %>
 
-    		<% flash.each do |key, value| %>
-          		<%= content_tag(:div, value, class: "flash #{key}") %>
-        	<% end %>
-
-    		<%= yield :page_header %>
-      	
-  			<%= content_for?(:content) ? yield(:content) : yield %>
-
-			<%= render 'layouts/footer' %>	
-			<%= debug(params) if Rails.env.development? %>
-
-    	</div> <!-- end container -->
-	
-        <script src="js/scripts.js"></script>  
-
-    </body>  
-</html>  
+<%= render :template => 'layouts/application' %>

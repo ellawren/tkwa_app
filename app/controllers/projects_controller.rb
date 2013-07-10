@@ -241,7 +241,6 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @project = Project.new
     @q = Project.search(params[:q])
     @projects = @q.result(:distinct => true)
     if @projects.count == 1 

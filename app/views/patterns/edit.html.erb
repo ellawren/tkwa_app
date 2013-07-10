@@ -1,38 +1,16 @@
+<% content_for :page_header do %>
+    <% provide :title, @pattern.name %>
+    <div class="page-header">
+      <h1><%= @pattern.number %>. <%= @pattern.name %></h1>
+    </div>
+<% end %>
+
 <%= form_for(@pattern, :html => { :multipart => true }) do |f| %>
         
-    <h2>Pattern Info</h2>
-
-    <div class="wide">
-        <div class="input-row">
-            <%= f.label(:name, "Pattern Name", class: "input-label") %>
-            <%= f.text_field :name, class: "" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:issue, "Issue", class: "input-label") %>
-            <%= f.text_area :issue, class: "", rows: "4" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:solution, "Solution", class: "input-label") %>
-            <%= f.text_area :solution, class: "", rows: "4" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:diagram, "Diagram", class: "input-label") %>
-            <%= f.file_field :diagram %>
-        </div>
-        <div class="input-row">
-            <% if f.object.project_id %>
-                <%= link_to Project.find(f.object.project_id).name, patterns_project_path(Project.find(f.object.project_id)) %>
-            <% end %>
-            <% if f.object.diagram %>
-                <%= image_tag @pattern.diagram.url %>
-            <% end %>
-        </div>
-    </div>
+    <%= render 'fields', f: f %>
 
     <div class="save-row">
         <%= f.submit "Update Pattern", class: "btn btn-primary save-btn" %>
     </div>
 
 <% end %>
-
-<img src="/system/patterns/diagrams/000/000/004/original/jsw_04.jpg" />
