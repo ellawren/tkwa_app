@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Signed in as #{user.name}!"
       redirect_back_or root_path
     else
-      flash.now[:error] = 'Invalid email/password combination'
+      flash[:error] = 'Email and password do not match.'
       redirect_back_or root_path
     end
   end

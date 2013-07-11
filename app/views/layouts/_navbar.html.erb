@@ -5,11 +5,10 @@
     <div class="container">
         <% if signed_in? %>
             <ul id="nav">
-                <li <%= is_current?("projects consultants") %>><%= link_to "Projects", projects_path %></li>
+                <li <%= is_current?("projects consultants potential_projects") %>><%= link_to "Projects", projects_path %></li>
                 <li <%= is_current?("contacts") %>><%= link_to "Contacts", contacts_path %></li>
                 <li <%= is_current?("employees") || is_current?("timesheets") %>><%= link_to "Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %></li>
                 <li <%= is_current?("patterns") %>><%= link_to "Patterns", patterns_path %></li>
-                <li <%= is_current?("library") %>><a href="#">Library</a></li>
             </ul>
 
             <div class="navbar navbar-inverse">

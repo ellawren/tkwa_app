@@ -1,0 +1,5 @@
+<% content_for :content do %>
+        <%= content_for?(:contacts_content) ? yield(:contacts_content) : yield %>
+<% end %>
+
+<%= render :template => 'layouts/application' %>

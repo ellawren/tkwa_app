@@ -23,16 +23,12 @@ class ContactsController < ApplicationController
   end
 
   def show
-    if signed_in?
       @contact = Contact.find(params[:id])
-    else
-      flash[:notice] = "Please sign in to view this page."
-      redirect_to(signin_path)
-    end
   end
 
   def new
     @contact = Contact.new
+    render :layout => 'contacts_static' 
   end
 
   def create

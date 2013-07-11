@@ -18,15 +18,20 @@ TkwaApp::Application.routes.draw do
     end
   end    
 
+  resources :potential_projects do
+    member do
+      get 'info', 'team', 'scope', 'tracking', 'schedule', 'patterns'
+    end
+  end   
+
   resources :employees do
     resources :timesheets
   end
-  
+
   match '/employees/:id/timesheets/:year/:week',  to: 'timesheets#show'
   match '/employees/:id/data_records/:year',      to: 'data_records#edit'
   match '/globals/:year',                         to: 'globals#edit'
-  match '/contacts/employees',                    to: 'contacts#employees'
-  match '/contacts/consultants',                  to: 'contacts#consultants'
+
   match '/consultant_teams/:consultant_team_id/bills',            to: 'bills#index'
 
 #need both of these for routing to work correctly on project billing page
@@ -35,12 +40,13 @@ resources :consultant_teams do
 end
 resources :bills
 
-  resources :contacts do
-    member do
-      get 'employees', 'consultants', 'data'
-    end
-    get :autocomplete_contact_work_company, :on => :collection
-  end
+resources :contacts
+#  resources :contacts do
+ #   member do
+ #     get 'employees', 'consultants', 'data'
+ #   end
+ #   get :autocomplete_contact_work_company, :on => :collection
+ # end
 
 
   resources :categories 
@@ -51,6 +57,7 @@ resources :bills
   resources :globals, :only => [:index, :create, :update]
   resources :holidays
   resources :microposts,  only: [:create, :destroy]
+  resources :potential_projects
   resources :relationships, only: [:create, :destroy]
   resources :services
   resources :sessions, 		only: [:new, :create, :destroy]
@@ -65,10 +72,9 @@ resources :bills
   match '/about',   to: 'static_pages#about'
   match '/messages',to: 'static_pages#messages'
   match '/admin',   to: 'static_pages#admin'
-    
+
   root :to => 'static_pages#home'
   
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -122,7 +122,7 @@
  /* RADIO DATA-API
 	* =============== */
 
-	$(document).on('click.radio.data-api', '[data-toggle^=radio], .radio', function (e) {
+	$(document).on('click.radio.data-api', '[data_toggle^=radio], .radio', function (e) {
 		var $radio = $(e.target);
 		if (e.target.tagName != "A") {		
 			e && e.preventDefault() && e.stopPropagation();
@@ -132,7 +132,7 @@
 	});
 	
 	$(window).on('load', function () {
-		$('[data-toggle="radio"]').each(function () {
+		$('[data_toggle="radio"]').each(function () {
 			var $radio = $(this);
 			$radio.radio();
 		});

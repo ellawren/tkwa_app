@@ -11,4 +11,5 @@
 class ConsultantRole < ActiveRecord::Base
 	#default_scope :order => "consultant_role_name"
 	has_and_belongs_to_many :projects
+	has_and_belongs_to_many :potential_projects
 end

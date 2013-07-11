@@ -1,0 +1,66 @@
+
+<%= form_for @potential_project do |f| %>
+
+	<div class="full phases">
+        <div class="column-header">
+    	   <h3>Phases</h3>
+        </div>
+		<%= hidden_field_tag "potential_project[phase_ids][]", nil %>
+		<% Phase.all.each do |phase| %>
+			<label class="checkbox">
+				<div class="overlay">
+					<div class="number"><%= phase.number %></div>
+					<div class="phase-name"><%= phase.name %></div>
+				</div>
+				<%= check_box_tag "potential_project[phase_ids][]", phase.id, @potential_project.phase_ids.include?(phase.id), id: dom_id(phase), data_toggle: "checkbox" %>
+			</label>
+		<% end %>
+	</div>
+    
+    <div class="third">
+        <div class="column-header">
+    	   <h3>Services</h3>
+    	   <%= link_to "", services_path, class: "control-link fui-new" %>
+        </div>
+		<%= hidden_field_tag "potential_project[service_ids][]", nil %>
+		<% Service.all.each do |service| %>
+			<label class="checkbox">
+				<%= check_box_tag "potential_project[service_ids][]", service.id, @potential_project.service_ids.include?(service.id), id: dom_id(service), data_toggle: "checkbox" %>
+				<%= service.service_name %>
+			</label>
+		<% end %>
+	</div>
+
+	<div class="third">
+        <div class="column-header">
+    	   <h3>Reimbursables</h3>
+            <a class="control-link fui-new" href="#"></a>
+        </div>
+		<%= hidden_field_tag "potential_project[reimbursable_ids][]", nil %>
+		<% Reimbursable.all.each do |reimbursable| %>
+			<label class="checkbox">
+				<%= check_box_tag "potential_project[reimbursable_ids][]", reimbursable.id, @potential_project.reimbursable_ids.include?(reimbursable.id), id: dom_id(reimbursable), data_toggle: "checkbox" %>
+				<%= reimbursable.reimbursable_name %>
+			</label>
+		<% end %>
+	</div>
+
+	<div class="third last">
+        <div class="column-header">
+    	   <h3>Consultants</h3>
+            <a class="control-link fui-new" href="#"></a>
+        </div>
+		<%= hidden_field_tag "potential_project[consultant_role_ids][]", nil %>
+		<% ConsultantRole.all.each do |consultant_role| %>
+			<label class="checkbox">
+					<%= check_box_tag "potential_project[consultant_role_ids][]", consultant_role.id, @potential_project.consultant_role_ids.include?(consultant_role.id), id: dom_id(consultant_role), data_toggle: "checkbox" %>
+					<%= consultant_role.consultant_role_name %>
+				</label>
+		<% end %>
+	</div>
+  
+    <div class="save-row">
+        <%= f.submit "Update Potential Project", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>

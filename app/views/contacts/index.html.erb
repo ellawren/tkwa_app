@@ -1,13 +1,11 @@
 <% content_for :page_header do %>
 	<% provide :title, "Contacts" %>
-	<div class="page-header">
-        <h1>Search Contacts</h1>
-        <ul class="controls">
-            <li><a href="/contacts/">reset</a></li>
+        <h2>Search Contacts</h2>
+        <!--<ul class="controls">
+            <li><a href="/projects/">reset</a></li>
             <li><a href="#">advanced search</a></li>
-        </ul>
-    </div>
-    <div class="description">Enter all or part of the contact name. Choose an option from the menu at left to narrow your search. To show all contacts within a category, just leave the name field blank.</div>
+        </ul>-->
+	<div class="description">Enter all or part of the contact name. Choose an option from the menu at left to narrow your search. To show all contact within a category, just leave the name field blank.</div>
 <% end %>
 
 <div class="gray-box">
@@ -18,7 +16,6 @@
 			<div><%= f.radio_button(:category_cont, "") %><label class="radio">All</label></div>
 	        <div><%= f.radio_button(:category_cont, "Employee") %><label class="radio">Employee</label></div>
 	        <div><%= f.radio_button(:category_cont, "Client") %><label class="radio">Client</label></div>
-			<div><%= f.radio_button(:category_cont, "Consultant") %><label class="radio">Consultant</label></div>
 		</div>
 
 		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "contact name" %>    
@@ -48,22 +45,22 @@
 
 <% end %>
 
-<div class="page-header with-spacer contact">
-    <h1>Add A New Contact</h1>
-</div>
+<div class="row icons three">
 
-<%= form_for @contact do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+    <div class="tile-box">
+        <%= link_to image_tag("contacts.png", :alt => "new-contact", :class => "round-icon"), new_contact_path %>
+        <%= link_to "Add A New Contact", new_contact_path, :class => "tile-label" %>
+    </div>
 
-   <div class="content">
+    <div class="tile-box disabled">
+        <%= link_to image_tag("data.png", :alt => "employees", :class => "round-icon"), "#" %>
+        <%= link_to "Employee Data", "#", :class => "tile-label" %>
+    </div>
 
-        <%= render 'fields', :f => f %>
+    <div class="tile-box disabled">
+        <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
+        <%= link_to "Create Mailing List", "#", :class => "tile-label" %>
+    </div>
 
-        <div class="save-row">
-            <%= f.submit "Add Contact", class: "btn btn-primary save-btn" %>
-        </div>
-
-    </div> <!-- end content -->
-
-<% end %>
+  </div> <!-- end tiles -->
 

@@ -4,14 +4,14 @@
 
             <div class="container main">
 
-                <div class="demo-headline">
-                    <h1 class="demo-logo">
-                        <%= greeting %>
-                        <small>Welcome to the TKWA Database. Where would you like to go?</small>
-                    </h1>
-                </div> <!-- /demo-headline -->
-
                 <% if signed_in? %>
+
+                    <div class="demo-headline">
+                        <h1 class="demo-logo">
+                            <%= greeting %>
+                            <small>Welcome to the TKWA Database. Where would you like to go?</small>
+                        </h1>
+                    </div> <!-- /demo-headline -->
 
                     <div class="row icons">
 
@@ -59,10 +59,21 @@
                    </div>
                     
             <% else %> 
+
+                <div class="demo-headline">
+                    <h1 class="demo-logo">
+                        <%= greeting %>
+                        <small>Please sign in.</small>
+                    </h1>
+                </div> <!-- /demo-headline -->
+
                 <div class="container">
                     <div class="navbar navbar-inverse logged-out">
                         <div class="login-box">
                              <%= form_for(:session, url: sessions_path) do |f| %>
+                                <% flash.each do |key, value| %>
+                                    <%= content_tag(:div, value, class: "flash #{key}") %>
+                                <% end %>
                                 <div>
                                     <%= f.label :email, "Email" %>
                                     <%= f.text_field :email %>

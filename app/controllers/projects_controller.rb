@@ -243,6 +243,8 @@ class ProjectsController < ApplicationController
   def index
     @q = Project.search(params[:q])
     @projects = @q.result(:distinct => true)
+    @contact = Contact.find(current_user.employee.contact_id)
+
     if @projects.count == 1 
       redirect_to info_project_path(@projects.first(params[:id]))
     else

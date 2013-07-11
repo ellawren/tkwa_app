@@ -1,0 +1,6 @@
+<li>
+  <%= link_to potential_project.name, info_potential_project_path(potential_project) %>
+  <% if current_user.admin? %>
+    | <%= link_to "delete", potential_project, method: :delete, confirm: "You sure?" %>
+  <% end %>
+</li>

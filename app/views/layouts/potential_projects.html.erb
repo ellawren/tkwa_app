@@ -1,0 +1,21 @@
+<% content_for :page_header do %>
+<% provide :title, @potential_project.name %>
+    <div class="header-label">Potential Project</div>
+	<div class="page-header potential">
+        <h1><%= @potential_project.name %></h1>
+        <ul class="controls">
+            <li><a href="#">options</a></li>
+            <li><a href="#">delete</a></li>
+        </ul>
+    </div>	
+<% end %>
+
+<% content_for :tabnav do %>
+	<%= render "tabnav" %>
+<% end %>
+
+<% content_for :content do %>
+  		<%= content_for?(:potential_projects_content) ? yield(:potential_projects_content) : yield %>
+<% end %>
+
+<%= render :template => 'layouts/application' %>

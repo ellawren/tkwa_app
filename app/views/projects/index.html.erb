@@ -1,12 +1,10 @@
 <% content_for :page_header do %>
 	<% provide :title, "Projects" %>
-	<div class="page-header">
-        <h1>Search Projects</h1>
-        <ul class="controls">
+        <h2>Search Projects</h2>
+        <!--<ul class="controls">
             <li><a href="/projects/">reset</a></li>
             <li><a href="#">advanced search</a></li>
-        </ul>
-    </div>
+        </ul>-->
 	<div class="description">Enter all or part of the project name. Choose an option from the menu at left to narrow your search. To show all projects within a category, just leave the name and number fields blank.</div>
 <% end %>
 
@@ -16,9 +14,9 @@
 
 		<div class="status-options">
 	        <div><%= f.radio_button(:status_cont, "") %><label class="radio">All</label></div>
-	        <div><%= f.radio_button(:status_cont, "Potential") %><label class="radio">Potential</label></div>
-			<div><%= f.radio_button(:status_cont, "Current") %><label class="radio">Current</label></div>
-			<div><%= f.radio_button(:status_cont, "Completed") %><label class="radio">Completed</label></div>
+	        <!--<div><%= f.radio_button(:status_cont, "potential") %><label class="radio">Potential</label></div>-->
+			<div><%= f.radio_button(:status_cont, "current") %><label class="radio">Current</label></div>
+			<div><%= f.radio_button(:status_cont, "completed") %><label class="radio">Completed</label></div>
 		</div>
 
 		<%= f.text_field :name_cont, class: "search-name", placeholder: "project name" %>   
@@ -67,9 +65,18 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), "#" %>
-        <%= link_to "Potential Projects", "#", :class => "tile-label" %>
+        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), potential_projects_path %>
+        <%= link_to "Potential Projects", potential_projects_path, :class => "tile-label" %>
     </div>
 
   </div> <!-- end tiles -->
+
+<% if has_current_projects? %>
+  <h2>My Current Projects</h2>
+  	<ul class="my-projects">
+        <% @contact.employee_teams.current.each do |team| %>
+        <li><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></li>
+        <% end %>
+     </ul>
+<% end %>
 

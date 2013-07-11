@@ -12,7 +12,7 @@
                 <%= f.text_area :location, class: "", rows: "2" %>
             </div>
             <div class="input-row">
-                <%= f.label(:name, "Client", class: "input-label") %>
+                <%= f.label(:client, "Client", class: "input-label") %>
                 <%= f.text_field :client, class: "" %>
             </div>
         </div>
@@ -28,8 +28,21 @@
             </div>
             <div class="input-row">
             	<%= f.label(:client_type, "Client Type", class: "input-label") %>
-		        <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %></div>
+		        <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %>
 		    </div>
+            <div class="input-row">
+                <%= f.label(:status, "Status", class: "input-label") %>
+                    <div class="radio-group">
+                        <label class="radio">
+                            <%= f.radio_button :status, "current", data_toggle: "radio" %>
+                            Current
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :status, "completed", data_toggle: "radio" %>
+                            Completed
+                        </label>
+                    </div>
+            </div>
         </div>
 
         <h2>Billing Information</h2>

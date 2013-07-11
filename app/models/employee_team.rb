@@ -47,13 +47,13 @@ class EmployeeTeam < ActiveRecord::Base
 	scope :current, {
   		:select => "employee_teams.*",
   		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
-  		:conditions => ["status = ?", 'Current' ]
+  		:conditions => ["status = ?", 'current' ]
 	}
 
 	scope :completed, {
   		:select => "employee_teams.*",
   		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
-  		:conditions => ["status = ?", 'Completed' ]
+  		:conditions => ["status = ?", 'completed' ]
 	}
 	
    	EMPLOYEE_ROLES =   [	"Project Principal", "Project Manager", "Project Architect", 

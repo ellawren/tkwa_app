@@ -1,0 +1,2 @@
+module PotentialProjectsHelper
+end
