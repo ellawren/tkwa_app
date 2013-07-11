@@ -1,6 +1,7 @@
 class PotentialProjectsController < ApplicationController
   def new
   	@potential_project = PotentialProject.new
+    render :layout =>  'potential_projects_static'
   end
 
   def show
@@ -33,6 +34,7 @@ class PotentialProjectsController < ApplicationController
 
   def index
   	@potential_projects = PotentialProject.all
+    render :layout =>  'potential_projects_static'
   end
 
   def create
