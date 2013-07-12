@@ -98,6 +98,12 @@ class Project < ActiveRecord::Base
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true
 
+    scope :with_patterns, {
+        :select => "DISTINCT projects.*",
+        :joins => "INNER JOIN patterns ON patterns.project_id = projects.id"
+    }
+
+
     def contract_amount=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)
         self[:contract_amount] = num.to_f

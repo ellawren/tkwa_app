@@ -32,6 +32,7 @@ arrow-down.png: arrow-down-443f6df6acfe617d777ba3bc61fc247c.png
 arrow.png: arrow-08e8f7561d3f9070f34f46a35d2a8098.png
 bell.png: bell-9d6bbf34fa41ad8f7a0cd38d91a5d396.png
 billing.jpg: billing-65024c6746cb5395d2e4a9b263182a45.jpg
+browse.png: browse-1d59df8ba2fc6fbeb595ac712d15210a.png
 check-no.jpg: check-no-e5d2057e32d9f1ec9b6bf579ebd18819.jpg
 check-yes.jpg: check-yes-447ab7007ece5e4a73cf8a6f4dd33f67.jpg
 checkbox.jpg: checkbox-8f358f6feab2d7111b6f602ce5534683.jpg
@@ -87,7 +88,9 @@ icons/Retina-Ready@2x.png: icons/Retina-Ready@2x-8e4edb707b88766b141553a4fbea8c3
 icons/Toilet-Paper@2x.png: icons/Toilet-Paper@2x-47b270286012bb3c438b0bb22661a308.png
 icons/Watches@2x.png: icons/Watches@2x-c8c4a085ea511ce0d9e596f0a8d4e831.png
 icons/forecast.png: icons/forecast-2344b11f890ddd138ba19a3f9fa5e50f.png
+icons/pencils.png: icons/pencils-d9f0ef6f6ff466f4f754a466dd0a6114.png
 info.jpg: info-f166c8ebb285fe068b3ec66e821b82db.jpg
+layouts.png: layouts-16fb54555f2f1322b228eb99d873725b.png
 login/icon.png: login/icon-79d4eb88a54704d66ba1afe390d726e0.png
 login/imac-2x.png: login/imac-2x-019bc2a9ab40280cced50c383e8294c6.png
 login/imac.png: login/imac-81dc77afd0ebab05344233552b2a8868.png
@@ -95,6 +98,7 @@ mail.png: mail-06e42752cc85cf8e4ad2e8ba80a9edb7.png
 marketing.jpg: marketing-b633cf3bc41c0927274402b54c0c93ce.jpg
 monkey-header.jpg: monkey-header-e220dc5448cc5da019b6fabfa8570da4.jpg
 monkey.png: monkey-6657fd27994a904968bed631cace81a6.png
+pencils.png: pencils-e58a2124ac104f1b3c0ce5504a01d6d4.png
 pinstripes40.jpg: pinstripes40-98c4759c553ffa21dcff2e12ce303950.jpg
 potential.png: potential-856f2d92b7d53f5d919a4660a5c1513a.png
 print-green.jpg: print-green-345705a1a5efddeb6bbb530353de2ed8.jpg
@@ -143,7 +147,7 @@ video/volume-full.png: video/volume-full-cdf1ed5ce9f2e6ca65ec54cf4937e749.png
 video/volume-off-2x.png: video/volume-off-2x-33c4b7826b64772363e93050f1725941.png
 video/volume-off.png: video/volume-off-6b6e213cc94cce3b1154ff032f2678be.png
 application.js: application-58c9bb38beb94ed8ef4adfc45210b9b2.js
-application.css: application-8f49cffe248dcf9a45d47b751094717d.css
+application.css: application-e146e3c22c21a8141c390d59d5e7e935.css
 blueprint/plugins/buttons/icons/cross.png: blueprint/plugins/buttons/icons/cross-c2651300ae2e326a9727177155b48bf7.png
 blueprint/plugins/buttons/icons/key.png: blueprint/plugins/buttons/icons/key-9db9f7ef5cb5f66d1dd4a2adfbf0a87b.png
 blueprint/plugins/buttons/icons/tick.png: blueprint/plugins/buttons/icons/tick-749c8298fcbfe4490ba9f7e4a9079637.png

@@ -1,0 +1,22 @@
+<% content_for :page_header do %>
+  <% provide :title, "Browse Patterns" %>
+  <div class="page-header">
+    <h1>Browse Patterns</h1>
+  </div>
+<% end %>
+
+
+<div class="gray-box controls">
+
+</div>
+
+
+<ul id="pattern-tiles" >
+	<% @patterns.each do |p| %>
+		<li>
+			<%= image_tag p.diagram.url(:medium), class: "diagram" %>
+			<div class="title"><%= p.name %></div>
+		</li>
+	<% end %>
+</ul>
+

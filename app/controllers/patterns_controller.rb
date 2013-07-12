@@ -1,6 +1,16 @@
 class PatternsController < ApplicationController
 	def index
-	    @patterns = Pattern.all
+	    @q = Pattern.search(params[:q])
+	    @patterns = @q.result(:distinct => true)
+	    if @patterns.count == 1 
+	      redirect_to pattern_path(@patterns.first(params[:id]))
+	    else
+	      render :layout => 'search' 
+	    end
+	end
+
+	def browse
+		@patterns = Pattern.all
 	end
 
 	def show

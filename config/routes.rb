@@ -10,6 +10,8 @@ TkwaApp::Application.routes.draw do
   match '/projects/current',  to: 'projects#current'
   match '/projects/import',   to: 'projects#import'
 
+  match '/patterns/browse',   to: 'patterns#browse'
+
   resources :projects do
     resources :employee_teams
     get :autocomplete_contact_name, :on => :collection

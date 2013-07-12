@@ -2,7 +2,6 @@ class ContactsController < ApplicationController
     autocomplete :contact, :work_company, :full => true, :extra_data => [:work_address, :work_phone, :work_fax, :work_url]
 
   def index
-    @contact = Contact.new
     @q = Contact.search(params[:q])
     @categories = Category.all
     @contacts = @q.result(:distinct => true)

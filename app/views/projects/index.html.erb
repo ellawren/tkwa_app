@@ -1,12 +1,17 @@
 <% content_for :page_header do %>
 	<% provide :title, "Projects" %>
-        <h2>Search Projects</h2>
+    <div class="page-header">
+        <h1>Projects Database</h1>
         <!--<ul class="controls">
             <li><a href="/projects/">reset</a></li>
             <li><a href="#">advanced search</a></li>
         </ul>-->
-	<div class="description">Enter all or part of the project name. Choose an option from the menu at left to narrow your search. To show all projects within a category, just leave the name and number fields blank.</div>
+    </div>
 <% end %>
+
+<h2 class="first">Search Projects</h2>
+
+<div class="description">Enter all or part of the project name. Choose an option from the menu at left to narrow your search. To show all projects within a category, just leave the name and number fields blank.</div>
 
 <div class="gray-box">
 
@@ -19,9 +24,9 @@
 			<div><%= f.radio_button(:status_cont, "completed") %><label class="radio">Completed</label></div>
 		</div>
 
-		<%= f.text_field :name_cont, class: "search-name", placeholder: "project name" %>   
-		<%= f.text_field :number_eq, class: "search-number", placeholder: "number" %>    
-		<%= f.submit "search", class: "btn btn-primary search-btn" %>
+		<%= f.text_field :name_cont, class: "search-name", placeholder: "Project Name" %>   
+		<%= f.text_field :number_eq, class: "search-number", placeholder: "Number" %>    
+		<%= f.submit "Search", class: "btn btn-primary search-btn" %>
 			     
 	<% end %>
 
@@ -59,7 +64,7 @@
         <%= link_to "View Consultants", consultants_path, :class => "tile-label" %>
     </div>
 
-    <div class="tile-box">
+    <div class="tile-box disabled">
         <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), "#" %>
         <%= link_to "6-Month Forecast", "#", :class => "tile-label" %>
     </div>

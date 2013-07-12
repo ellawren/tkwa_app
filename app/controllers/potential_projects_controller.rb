@@ -41,7 +41,7 @@ class PotentialProjectsController < ApplicationController
     @potential_project = PotentialProject.new(params[:potential_project])
     if @potential_project.save
       flash[:success] = "Project created successsfully!"
-      redirect_to info_potential_project_path
+      redirect_to info_potential_project_path(@potential_project)
     else
       render 'new'
     end

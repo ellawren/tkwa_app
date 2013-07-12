@@ -1,8 +1,6 @@
-<li>
-<%= image_tag pattern.diagram.url(:thumb), class: "img-thumb" %>
-  <%= link_to pattern.name, edit_pattern_path(pattern) %>
-  <%= Project.find(pattern.project_id).name %>
-  <% if current_user.admin? %>
-    | <%= link_to "delete", pattern, method: :delete, confirm: "You sure?" %>
-  <% end %>
-</li>
+
+					<tr class="results-row">
+						<td><%= link_to "#{f.number}", edit_pattern_path(f) %></td>
+		                <td class="bold"><%= link_to "#{f.name}", edit_pattern_path(f) %></td>
+		                <td><%= Project.find(f.project_id).name %></td>
+		            </tr>

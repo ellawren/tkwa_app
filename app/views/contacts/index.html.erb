@@ -1,14 +1,19 @@
 <% content_for :page_header do %>
 	<% provide :title, "Contacts" %>
-        <h2>Search Contacts</h2>
+    <div class="page-header">
+        <h1>Contacts Database</h1>
         <!--<ul class="controls">
             <li><a href="/projects/">reset</a></li>
             <li><a href="#">advanced search</a></li>
         </ul>-->
-	<div class="description">Enter all or part of the contact name. Choose an option from the menu at left to narrow your search. To show all contact within a category, just leave the name field blank.</div>
+	</div>
 <% end %>
 
-<div class="gray-box">
+<h2 class="first">Search Contacts</h2>
+
+<div class="description">Enter all or part of the contact name and/or company. Choose an option from the menu at left to narrow your search. To show all contacts within a category, just leave the name field blank.</div>
+
+<div class="gray-box contacts">
 
 	<%= search_form_for @q do |f| %>
 
@@ -16,14 +21,18 @@
 			<div><%= f.radio_button(:category_cont, "") %><label class="radio">All</label></div>
 	        <div><%= f.radio_button(:category_cont, "Employee") %><label class="radio">Employee</label></div>
 	        <div><%= f.radio_button(:category_cont, "Client") %><label class="radio">Client</label></div>
+	        <div><%= f.radio_button(:category_cont, "Consultant") %><label class="radio">Consultant</label></div>
+	        <div><%= f.radio_button(:category_cont, "Supplier") %><label class="radio">Supplier</label></div>
 		</div>
 
-		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "contact name" %>    
-		<%= f.submit "search", class: "btn btn-primary search-btn" %>
+		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>    
+		<%= f.text_field :work_company_cont, class: "search-name contact company", placeholder: "Company Name" %>   
+		<%= f.submit "Search", class: "btn btn-primary search-btn contact" %>
 			     
 	<% end %>
 
 </div>
+
 
 <% if (params.has_key?(:q)) %>
 
@@ -44,6 +53,8 @@
 	<% end %>
 
 <% end %>
+
+
 
 <div class="row icons three">
 
