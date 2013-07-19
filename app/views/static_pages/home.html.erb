@@ -100,21 +100,23 @@
 <div class="container">
     <ul id="messages">
         <h3>Studio Messages <a id="add-message">add message</a> <a id="my-messages" href="/messages">my messages</a></h3>
-        <% Message.studio_messages.each do |param| %>
-            <li>
-                
-                <% if User.find(param.user_id).photo.url %>
-                    <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
-                <% end %>
-                <div class="content">
-                    <%= param.content %>
-                </div>
-                <div class="byline">
-                    <%= User.find(param.user_id).name %> |
-                    <% unless param.project_id.blank? %><%= Project.find(param.project_id).name %><% end %>
-                    <%= link_to "edit", edit_message_path(param) %>
-                </div>
-            </li>
+        <% if Message.studio_messages %>
+            <% Message.studio_messages.each do |param| %>
+                <li>
+                    
+                    <% if User.find(param.user_id).photo.url %>
+                        <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
+                    <% end %>
+                    <div class="content">
+                        <%= param.content %>
+                    </div>
+                    <div class="byline">
+                        <%= User.find(param.user_id).name %> |
+                        <% unless param.project_id.blank? %><%= Project.find(param.project_id).name %><% end %>
+                        <%= link_to "edit", edit_message_path(param) %>
+                    </div>
+                </li>
+            <% end %>
         <% end %>
         <div id="new-message">
             <%= form_for(@message) do |f| %>
