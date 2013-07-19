@@ -58,8 +58,6 @@ class Contact < ActiveRecord::Base
 	validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
 
-
-
   before_save do
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')

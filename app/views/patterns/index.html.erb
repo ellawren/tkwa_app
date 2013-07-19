@@ -63,7 +63,8 @@
 
 <script>
 $('#q_project_id_eq').on('change', function() {
-	if ( $(this).val != "" ) {
+	var v = $(this).find('option:selected').val();
+	if ( v != "" ) {
   		$(this).addClass('active');
   	}
 });

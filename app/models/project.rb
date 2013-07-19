@@ -98,6 +98,11 @@ class Project < ActiveRecord::Base
 	validates :name, 	presence: true, length: { maximum: 50 }
 	validates :number, 	presence: true, uniqueness: true
 
+    before_save :default_values
+    def default_values
+        self.status ||= 'current'
+    end
+
     scope :with_patterns, {
         :select => "DISTINCT projects.*",
         :joins => "INNER JOIN patterns ON patterns.project_id = projects.id"
@@ -181,7 +186,7 @@ class Project < ActiveRecord::Base
         self.phase_ids.each do |t|
           available_phases.push(Phase.find_by_id(t))
         end
-        available_phases
+        available_phases.sort_by{|e| e[:number]}
     end
 
     def employee_hours(total_hours, contactid, phase)

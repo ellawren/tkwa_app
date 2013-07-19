@@ -1,0 +1,88 @@
+ 
+ <% if f.object.id %>
+    <div id="<%= f.object.id %>" class="pattern">
+        <div class="view-fields">
+            <a class="btn edit-pattern">quick edit</a>
+            <%= link_to "advanced edit", edit_pattern_path(f.object.id), class: "btn" %>
+            <div class="v-number">
+                <%= f.object.number %>
+            </div>
+            <div class="v-name">
+                <%= link_to f.object.name, edit_pattern_path(f.object.id) %>
+            </div>
+            <div class="v-issue">
+                <%= add_breaks(f.object.issue) %>
+            </div>
+            <div class="v-solution">
+                <%= add_breaks(f.object.solution) %>
+            </div>
+            <div class="v-diagram">
+                <% if f.object.diagram.url %>
+                    <%= image_tag f.object.diagram.url(:thumb) %>
+                <% end %>
+            </div>
+        </div>
+        <div class="edit-fields">
+            <%= f.hidden_field :project_id, value: "#{@project.id}" %>
+
+            <div class="p-number">
+                <%= f.label :number, class: "" %>
+                <%= f.text_field :number, class: "" %>
+            </div>
+
+            <div class="p-name">
+                <%= f.label :name, class: "" %>
+                <%= f.text_field :name, class: "" %>
+            </div>
+
+            <div class="p-issue">
+                <%= f.label :issue, class: "" %>
+                <%= f.text_area :issue, class: "", rows: 6 %>
+            </div>
+
+            <div class="p-solution">
+                <%= f.label :solution, class: "" %>
+                <%= f.text_area :solution, class: "", rows: 6 %>
+            </div>
+            <div class="p-diagram">
+                <%= f.label(:diagram, "Diagram", class: "input-label") %>
+                <%= f.file_field :diagram %>
+            </div>
+
+            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+            <a class="text-button">cancel</a>
+        </div>
+
+    </div>
+<% else %>
+    <div class="pattern">
+            <%= f.hidden_field :project_id, value: "#{@project.id}" %>
+
+            <div class="p-number">
+                <%= f.label :number, class: "" %>
+                <%= f.text_field :number, class: "" %>
+            </div>
+
+            <div class="p-name">
+                <%= f.label :name, class: "" %>
+                <%= f.text_field :name, class: "" %>
+            </div>
+
+            <div class="p-issue">
+                <%= f.label :issue, class: "" %>
+                <%= f.text_area :issue, class: "", rows: 6 %>
+            </div>
+
+            <div class="p-solution">
+                <%= f.label :solution, class: "" %>
+                <%= f.text_area :solution, class: "", rows: 6 %>
+            </div>
+            <div class="p-diagram">
+                <%= f.label(:diagram, "Diagram", class: "input-label") %>
+                <%= f.file_field :diagram %>
+            </div>
+            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+    </div>
+<% end %>
+
+    

@@ -206,7 +206,7 @@ class Timesheet < ActiveRecord::Base
   end
 
   def open?
-    true if complete == false
+    true if complete == true
   end
 
   

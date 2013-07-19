@@ -17,6 +17,7 @@
 //= require bootstrap-select
 //= require bootstrap-pop
 //= require bootstrap-switch
+//= require bootstrap-datepicker
 //= require flatui-checkbox
 //= require flatui-radio
 //= require jquery.tagsinput

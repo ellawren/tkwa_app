@@ -97,25 +97,38 @@
                 
         </div> <!-- end navbar -->
 
+<div class="container">
+    <ul id="messages">
+        <h3>Studio Messages <a id="add-message">add message</a> <a id="my-messages" href="/messages">my messages</a></h3>
+        <% Message.studio_messages.each do |param| %>
+            <li>
+                
+                <% if User.find(param.user_id).photo.url %>
+                    <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
+                <% end %>
+                <div class="content">
+                    <%= param.content %>
+                </div>
+                <div class="byline">
+                    <%= User.find(param.user_id).name %> |
+                    <% unless param.project_id.blank? %><%= Project.find(param.project_id).name %><% end %>
+                    <%= link_to "edit", edit_message_path(param) %>
+                </div>
+            </li>
+        <% end %>
+        <div id="new-message">
+            <%= form_for(@message) do |f| %>
+                <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+                <%= f.hidden_field :category, value: "studio" %>
+                <%= f.text_area :content, class: "message-content-home" %>
+                <%= f.label(:expiration, "Display until:", class: "inline-label") %>
+                <input class="datepicker" data-date-format="mm/dd/yyyy" id="message_expiration" name="message[expiration]" size="30" type="text" value="<%= f.object.expiration %>">
+                <%= f.submit "Add Message", class: "btn btn-primary save-btn message-submit" %>
+            <% end %>
+        </div>
+    </ul>
 
-
-
-                        <script>
-
-
-                        function scroll_redirect(page) {
-                            $('#navbar').animate({
-                               height: '80px'
-                            }, { duration: 1000, queue: false });
-                            $('.demo-headline').animate({ opacity: 0, }, 1000, function() {
-                                    window.location = '/' + page;
-                            });
-
-                        }
-
-                        </script>
-
-
+</div>
 
 
 

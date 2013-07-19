@@ -1,60 +1,83 @@
-   <fieldset>
-
-        <div class="row">
-                      
-            <div class="span7">
-
-<h3>User Information</h3>   
-      <br />
+    <h3>User Information</h3>  
+     
+    <div class="wide">
                 
-                <% if @current_action == 'new' %>
-                <div class="control-group">
-                    <%= f.label(:name, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :name, class: "span5" %>
+        <% if @current_action == 'new' %>
+        <div class="input-row">
+            <%= f.label(:name, class: "input-label") %>
+            <%= f.text_field :name, class: "span5" %>
+        </div>
+        <% end %>
+
+        <div class="input-row">
+            <%= f.label :email, "Login email", class: "input-label" %>
+            <%= f.text_field :email %>
+        </div>
+
+        <div class="input-row">
+            <%= f.label :photo, "Photo", class: "input-label" %>
+            <div class="image-box">
+                <% if f.object.photo_file_name %>
+                    <div class="image-placeholder" id="photo-placeholder">
+                        <%= image_tag @user.photo.url(:medium), class: "diagram" %>
                     </div>
-                </div>
+                    <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
+                    <div class="add-image" >
+                        <%= f.file_field :photo %>
+                        <div class="text">Change Photo</div>
+                    </div>
+                    <label for="user_delete_photo" class="fui-cross">
+                        <%= f.check_box(:delete_photo) %>
+                    </label>
+                <% else %>
+                    <div class="image-placeholder" id="photo-placeholder"></div>
+                    <div class="image-name" id="photo-name"></div>
+                    <div class="add-image no-x" >
+                        <%= f.file_field :photo %>
+                        <div class="text">Select Photo</div>
+                    </div>
                 <% end %>
+            </div>
+        </div>
 
-                <div class="control-group">
-                    <%= f.label :email, "Login email", class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :email, class: "span5" %>
-                    </div>
-                </div>
+        <%= f.fields_for :employee do |e| %>
+            <div class="input-row">
+                <%= e.label :number, "Employee Number", class: "input-label" %>
+                <%= e.text_field :number  %>
+            </div>
+        <% end %>
 
-                <%= f.fields_for :employee do |e| %>
-                <div class="control-group">
-                    <%= e.label :number, "Employee Number", class: "control-label" %>
-                    <div class="controls">
-                        <%= e.text_field :number, class: "span1" %>
-                    </div>
-                </div>
-                <% end %>
-      <br /><br />
-      <h3>Password</h3>
-                <br />
+        <h3>Password</h3>
 
-                <div class="control-group">
-                    <%= f.label :password, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.password_field :password, class: "span2" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label(:password_confirmation, "Confirm Password", class: "control-label") %>
-                    <div class="controls">
-                        <%= f.password_field :password_confirmation, class: "span2" %>
-                    </div>
-                </div>
-            <br /><br />
-            <% if @current_action == 'new' %>
-                <div class="notes">NOTE: New users will be signed in automatically after creation. If you are creating an account for someone else, be sure to log back in as yourself to continue.</div>
-                <% end %>
+        <div class="input-row">
+            <%= f.label :password, class: "input-label" %>
+             <%= f.password_field :password %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:password_confirmation, "Confirm Password", class: "input-label") %>
+            <%= f.password_field :password_confirmation %>
+        </div>
+        <% if @current_action == 'new' %>
+            <div class="notes">NOTE: New users will be signed in automatically after creation. If you are creating an account for someone else, be sure to log back in as yourself to continue.</div>
+        <% end %>
           
-        </div> <!-- end row --> 
-
-    </fieldset>
+    </div> <!-- end row --> 
 
 
+<script>
+    $('#user_photo').live('change', function(){
+        text = $(this).val().replace(/C:\\fakepath\\/i, '');
+        $('#photo-name').html(text);
+        $('#photo-placeholder').empty();
+    });
+   
+    $('#user_delete_photo').live('change', function(){
+        if($(this).is(':checked')){
+            $('#photo-placeholder').empty();
+            $('#photo-name').empty();
+            $('label[for="user_delete_photo"]').addClass('checked');
+        } else {
+            location.reload();
+        }
+    });
+    </script>

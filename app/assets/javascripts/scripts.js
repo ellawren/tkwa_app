@@ -7,16 +7,31 @@ $(document).ready(function() {
       $(this).toggleClass('hover');
   });
 
+  // edit button on pattern projects page
+  $('.edit-pattern').click( function() {
+    $(this).parent('.view-fields').hide();
+    $(this).parent().parent('.pattern').children('.edit-fields').show();
+  });
+
+  $('.text-button').click( function() {
+    $(this).parent('.edit-fields').hide();
+    $(this).parent().parent('.pattern').children('.view-fields').show();
+  });
+
+  $( ".datepicker" ).datepicker();
+
+  $('#add-message').click( function() {
+    $('#new-message').show();
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $('#message-content').focus();
+  });
+
 });
 
 
   //scope
 $(".phases .checkbox .icons").html("10");
 
-
-$(document).ready(function() {
-    $( ".datepicker" ).datepicker({noOffset: true});
-  });
 
 $(document).ready(function() {
   $(".chzn-select").chosen();

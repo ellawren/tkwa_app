@@ -2,18 +2,26 @@
 #
 # Table name: users
 #
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
+#  id                 :integer         not null, primary key
+#  name               :string(255)
+#  email              :string(255)
+#  created_at         :datetime        not null
+#  updated_at         :datetime        not null
+#  password_digest    :string(255)
+#  remember_token     :string(255)
+#  admin              :boolean         default(FALSE)
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
+#  photo_file_size    :integer
+#  photo_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes, :photo, :delete_photo
+  has_attached_file :photo, :styles => { :medium => "210x210>", :thumb => "80x80>" }
+
+  attr_accessor :delete_photo
+  before_validation { photo.clear if delete_photo == '1' }
 
   has_secure_password
 

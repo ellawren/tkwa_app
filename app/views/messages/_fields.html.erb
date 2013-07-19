@@ -1,0 +1,35 @@
+    <div class="full">
+        <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+        <div class="input-row">
+            <%= f.label(:content, "Content", class: "input-label") %>
+            <%= f.text_area :content, class: "message-content" %>
+        </div>
+
+        <div class="input-row">
+            <%= f.label(:expiration, "Display until", class: "input-label") %>
+            <input class="datepicker" data-date-format="mm/dd/yyyy" id="message_expiration" name="message[expiration]" size="30" type="text" value="<%= f.object.expiration %>">
+        </div>
+
+        <div class="input-row radio-select">
+                <%= f.label(:category, "Category", class: "input-label") %>
+                    <div class="radio-group">
+                        <label class="radio">
+                            <%= f.radio_button :category, "studio", data_toggle: "radio" %>
+                            <div class="label-text">Studio</div>
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :category, "project", data_toggle: "radio" %>
+                            <div class="label-text">Project</div>
+                            <div class="project-select">
+                                <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+                            </div>
+                        </label>
+
+                        <label class="radio">
+                            <%= f.radio_button :category, "potential", data_toggle: "radio" %>
+                            <div class="label-text">Potential Project</div>
+                        </label>
+                    </div>
+            </div>
+    </div>
+

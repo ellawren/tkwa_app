@@ -10,8 +10,6 @@ TkwaApp::Application.routes.draw do
   match '/projects/current',  to: 'projects#current'
   match '/projects/import',   to: 'projects#import'
 
-  match '/patterns/browse',   to: 'patterns#browse'
-
   resources :projects do
     resources :employee_teams
     get :autocomplete_contact_name, :on => :collection
@@ -33,7 +31,6 @@ TkwaApp::Application.routes.draw do
   match '/employees/:id/timesheets/:year/:week',  to: 'timesheets#show'
   match '/employees/:id/data_records/:year',      to: 'data_records#edit'
   match '/globals/:year',                         to: 'globals#edit'
-
   match '/consultant_teams/:consultant_team_id/bills',            to: 'bills#index'
 
 #need both of these for routing to work correctly on project billing page
@@ -50,7 +47,6 @@ resources :contacts
  #   get :autocomplete_contact_work_company, :on => :collection
  # end
 
-
   resources :categories 
   resources :consultants
   resources :data_records
@@ -59,12 +55,19 @@ resources :contacts
   resources :globals, :only => [:index, :create, :update]
   resources :holidays
   resources :microposts,  only: [:create, :destroy]
+  resources :messages
   resources :potential_projects
   resources :relationships, only: [:create, :destroy]
   resources :services
   resources :sessions, 		only: [:new, :create, :destroy]
   resources :tasks
   resources :timesheets, :only => [:index, :create, :update]
+
+  get 'time_entries/update_phases', :as => 'update_phases'
+
+  match '/patterns/browse',   to: 'patterns#browse'
+  match '/patterns/browse/:id',   to: 'patterns#browse'
+  match '/patterns/projects/:id',   to: 'patterns#projects'
   resources :patterns
   
   match '/signup',	to: 'users#new'

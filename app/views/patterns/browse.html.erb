@@ -7,7 +7,8 @@
 
 
 <div class="gray-box controls">
-
+	<%= collection_select(:pattern_search, :project_id, Project.with_patterns, :id, :name, { :include_blank => true, :selected => @project_id }, { :class => "pattern-name custom-select default-green" } ) %>
+	<%= link_to "Search", "/patterns/browse", class: "btn btn-primary search-btn patterns", id: "browse_button" %>
 </div>
 
 
@@ -20,3 +21,10 @@
 	<% end %>
 </ul>
 
+<script>
+$('#pattern_search_project_id').on('change', function() {
+	var v = $(this).find('option:selected').val();
+    $('#browse_button').attr('href', "/patterns/browse/"+v);
+});
+
+</script>

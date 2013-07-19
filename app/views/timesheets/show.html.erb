@@ -2,42 +2,22 @@
 	<% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
 	<div class="page-header">
         <h1><%= @contact.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
-
-        
-        	<div class="switch-span">
-        		<%= form_for @timesheet do |f| %>
-        			<%= @timesheet.complete %>
-					<%= f.check_box(:complete, { data_toggle: "switch"  } )  %> 
-
-
-
-        		<% end %>
-				<!--<input type="checkbox" checked="" data-toggle="switch" />-->
-			</div>
-		<ul class="controls">
-		    <!--<% if @timesheet.open? %>
-				<li><div class="label">open</div></li>
-			<% else %>
-				<li>complete</li>
-			<% end %>  -->      
-		</ul>
     </div>		
 <% end %>
-
-<script>
-$("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
-</script>
-
-<%= javascript_include_tag 'bootstrap-switch.js' %>
 
 <% content_for :tabnav do %>
 	<%= render "tabnav_timesheets" %>
 <% end %>
+
+<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
+
+<div class="switch-box">
+	<%= f.check_box(:complete, { data_toggle: "switch"  } )  %> 
+</div>
 	
 <div class="box">
-	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
-	
+
     <div class="table-main timesheets">
 
 		<div class="table-head">
@@ -141,7 +121,7 @@ $("[data-toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwi
 		</div>
 
 		<div class="summary">
-			<div class="summary-label">Week Total</div>
+			<div class="summary-label">Week Totals</div>
 			<div class="span">
 				<!--<div class="total ytd nb-shift-fields"><%= decimal(@timesheet.all_hours("total", "completed")) %></div>
 				<div class="total ytd"><%= precise(@timesheet.all_hours("total", "target")) %></div>

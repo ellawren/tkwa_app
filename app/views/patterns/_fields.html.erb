@@ -12,7 +12,7 @@
             <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
             <% if f.object.project_id %>
                 <div class="project-link">
-                    <%= link_to "go to project page", patterns_project_path(Project.find(f.object.project_id)), class: "btn" %>
+                    <%= link_to "project patterns", "/patterns/projects/#{f.object.project_id}", class: "btn" %>
                 </div>
             <% end %>
         </div>
@@ -44,7 +44,7 @@
                     <div class="image-name" id="photo-name"></div>
                     <div class="add-image no-x" >
                         <%= f.file_field :diagram %>
-                        <div class="text">Add Diagram</div>
+                        <div class="text">Select Diagram</div>
                     </div>
                 <% end %>
             </div>
@@ -66,7 +66,7 @@
                     <div class="image-name" id="photo-name"></div>
                     <div class="add-image no-x" >
                         <%= f.file_field :photo %>
-                        <div class="text">Add Photo</div>
+                        <div class="text">Select Photo</div>
                     </div>
                 <% end %>
             </div>

@@ -8,10 +8,11 @@ class StaticPagesController < ApplicationController
   end
   
   def home
-    @qp = Project.search(params[:q])
-    @projects = @qp.result(:distinct => true)
-    @qc = Contact.search(params[:q])
-    @contacts = @qc.result(:distinct => true)
+    # @qp = Project.search(params[:q])
+    # @projects = @qp.result(:distinct => true)
+    # @qc = Contact.search(params[:q])
+    # @contacts = @qc.result(:distinct => true)
+    @message = Message.new
     render :layout => 'home_page' 
   end
 

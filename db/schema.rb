@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711182621) do
+ActiveRecord::Schema.define(:version => 20130719184854) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -197,6 +197,17 @@ ActiveRecord::Schema.define(:version => 20130711182621) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "messages", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "category"
+    t.string   "expiration"
+    t.date     "exp_date"
   end
 
   create_table "microposts", :force => true do |t|
@@ -454,13 +465,13 @@ ActiveRecord::Schema.define(:version => 20130711182621) do
   end
 
   create_table "timesheets", :force => true do |t|
-    t.integer  "year",                             :null => false
-    t.integer  "week",                             :null => false
-    t.integer  "employee_id",                      :null => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.integer  "year",                            :null => false
+    t.integer  "week",                            :null => false
+    t.integer  "employee_id",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "selected_year"
-    t.boolean  "complete",      :default => false
+    t.boolean  "complete",      :default => true
   end
 
   add_index "timesheets", ["employee_id", "year", "week"], :name => "index_timesheets_on_employee_id_and_year_and_week", :unique => true
@@ -468,11 +479,15 @@ ActiveRecord::Schema.define(:version => 20130711182621) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
+    t.boolean  "admin",              :default => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -78,7 +78,13 @@ module ApplicationHelper
   end
 
   def is_current?(c_name)
+     # execption for projects/:id/patterns
+     if params[:controller] == "projects" && params[:action] == "patterns"
+      "class='active'" if c_name.include?(params[:action])
+     # all other pages
+     else
       "class='active'" if c_name.include?(params[:controller])
+    end
   end
 
   def over_under(g, a)

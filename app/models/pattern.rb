@@ -1,5 +1,5 @@
 class Pattern < ActiveRecord::Base
-	default_scope order('number ASC')
+	default_scope order('project_id DESC, number ASC')
 	belongs_to :project
 
 	has_attached_file :diagram, :styles => { :medium => "300x300>", :thumb => "100x100>" }

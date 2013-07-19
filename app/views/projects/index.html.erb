@@ -79,8 +79,8 @@
 <% if has_current_projects? %>
   <h2>My Current Projects</h2>
   	<ul class="my-projects">
-        <% @contact.employee_teams.current.each do |team| %>
-        <li><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></li>
+        <% @contact.project_list.each do |team| %>
+        <li><%= link_to Project.find_by_id(team.id).name, info_project_path(Project.find_by_id(team.id)) %></li>
         <% end %>
      </ul>
 <% end %>

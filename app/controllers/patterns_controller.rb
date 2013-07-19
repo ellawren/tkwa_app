@@ -10,7 +10,13 @@ class PatternsController < ApplicationController
 	end
 
 	def browse
-		@patterns = Pattern.all
+		if params[:id]
+			@project_id = Project.find(params[:id]).id
+			@patterns = Pattern.find_all_by_project_id(params[:id])
+		else
+			@project_id = nil
+			@patterns = Pattern.all
+		end
 	end
 
 	def show
@@ -21,12 +27,17 @@ class PatternsController < ApplicationController
 	    @pattern = Pattern.new
 	end
 
+	def projects
+		@project = Project.find(params[:id])
+		@patterns = Pattern.find_all_by_project_id(params[:id])
+	end
+
 	def create
 	    @pattern = Pattern.new(params[:pattern])
 	    if @pattern.save
-	      redirect_to patterns_path
+	      render 'edit'
 	    else
-	      render 'new'
+	    	redirect_to patterns_path
 	    end
 	end
 
