@@ -103,7 +103,6 @@
         <% if Message.studio_messages %>
             <% Message.studio_messages.each do |param| %>
                 <li>
-                    
                     <% if User.find(param.user_id).photo.url %>
                         <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
                     <% end %>
