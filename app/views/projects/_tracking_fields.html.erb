@@ -1,5 +1,5 @@
 <tr>
-	<td class="name"><%= employee_name(f.contact_id) %><br />
+	<td class="tname"><%= employee_name(f.contact_id) %><br />
 		<a href="<%= edit_project_employee_team_path(f.project_id, f.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets">edit targets</a>
 		<!--<%= DataRecord.find_by_employee_id(Employee.find_by_contact_id(f.contact_id).id).billable_rate.to_f %>-->
 		</div>

@@ -25,8 +25,8 @@
 #  updated_at          :datetime        not null
 #  billing_ext         :string(255)
 #  contact_ext         :string(255)
-#  start_date          :date
-#  completion_date     :date
+#  start_date          :string(255)
+#  completion_date     :string(255)
 #  pd_start            :date
 #  pd_end              :date
 #  sd_start            :date
@@ -61,6 +61,7 @@
 #  mkt_description     :text
 #  mkt_reference       :string(255)
 #  mkt_status          :string(255)
+#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- patterns\n- marketing\n")
 #
 
 class Project < ActiveRecord::Base
@@ -76,6 +77,9 @@ class Project < ActiveRecord::Base
 
     has_many :patterns 
     accepts_nested_attributes_for :patterns, :allow_destroy => true
+
+    has_many :schedule_items
+    accepts_nested_attributes_for :schedule_items, :allow_destroy => true
 
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
@@ -188,6 +192,30 @@ class Project < ActiveRecord::Base
         end
         available_phases.sort_by{|e| e[:number]}
     end
+
+    def schedule_item_list(phase)
+        p = Phase.find(phase).id
+        items = []
+        self.schedule_items.each do |item|
+            if item.phase_id == phase
+                items.push(item)
+            end
+        end
+        items
+    end
+
+    def schedule
+        gantt = []
+        self.available_phases.each do |p|
+            self.schedule_item_list(p.id).each_with_index do |item, index|
+                unless item.start.blank? || item.end.blank?
+                    gantt.push("{ name: \"#{if index == 0 then Phase.find(item.phase_id).name end }\", desc: \"#{item.desc}\" , values: [{ id: \"#{item.id}\", from: \"/Date(#{(DateTime.strptime(item.start, "%m/%d/%Y").to_f*1000).ceil})/\", to: \"/Date(#{(DateTime.strptime(item.end, "%m/%d/%Y").to_f*1000).ceil})/\", label: \"#{item.desc}\", customClass: \"gantt-#{Phase.find(item.phase_id).shorthand}\", dep: \"\", dataObj: {myTitle: \"<div class='pop-title gantt-#{Phase.find(item.phase_id).shorthand}'>#{item.desc}</div>\", myContent: \"<div class='pop-label gantt-#{Phase.find(item.phase_id).shorthand}'>Start Date:</div>#{item.start}<br><div class='pop-label gantt-#{Phase.find(item.phase_id).shorthand}'>End Date:</div>#{item.end}<br><div class='pop-label gantt-#{Phase.find(item.phase_id).shorthand}'>Duration:</div>#{item.duration}\", myID: \"#{item.id}\" }}] }")
+                end
+            end
+        end
+        gantt.join(", ").html_safe
+    end
+
 
     def employee_hours(total_hours, contactid, phase)
       employeeid = Employee.find_by_contact_id(contactid).id
@@ -457,7 +485,7 @@ class Project < ActiveRecord::Base
     BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
     BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
     
-
+    VIEW_OPTIONS =  [ 'scope', 'team', 'tracking', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
 
 end
 

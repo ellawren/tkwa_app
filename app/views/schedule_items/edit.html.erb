@@ -1,0 +1,34 @@
+<% content_for :page_header do %>
+    <% provide :title, "Edit Schedule Item" %>
+    <div class="page-header">
+      <h1>Edit Schedule Item</h1>
+    </div>
+<% end %>
+
+<%= form_for(@schedule_item) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div id="schedule-list">
+	    <div class="header">
+	        <div class="phase">Phase</div>
+	        <div class="desc">Description</div>
+	        <div class="start">Start Date</div>
+	        <div class="end">End Date</div>
+	        <div class="duration">Duration</div>
+	    </div>
+	    <div class="schedule-item">
+	        <%= f.hidden_field :project_id, value: "#{@project.id}" %>
+	        <%= f.collection_select :phase_id, @project.available_phases, :id, :name, { include_blank: true }, { :class => "phase custom-select" } %>
+	        <%= f.text_field :desc, class: "desc" %>
+	        <%= f.text_field :start, class: "start-date datepicker" %>
+	        <%= f.text_field :end, class: "end-date datepicker" %>
+	        <%= f.text_field :duration, class: "duration", :readonly => true %>
+	    </div>
+	</div>
+
+    <%= render 'fields', f: f %>
+
+  <div class="save-row schedule">
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+    </div>
+<% end %>

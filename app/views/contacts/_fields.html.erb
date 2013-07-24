@@ -1,3 +1,4 @@
+    <% if @contact.view_options.include?('name') %>
         <h2>Name</h2>
         <div class="wide">
             <div class="input-row">
@@ -37,6 +38,8 @@
                     <%= link_to_add_category("", f, "cat02", "add fui-plus category") %>
                 <% end %>
         </div>
+    <% end %>
+    <% if @contact.view_options.include?('work') %>
         <h2>Work Information</h2>
         <div class="wide">
             <div class="input-row">
@@ -86,6 +89,8 @@
                 <%= f.text_field :assistant, class: "phone" %>
             </div>
         </div>
+    <% end %>
+    <% if @contact.view_options.include?('personal') %>
 
         <h2>Personal Information</h2>
 
@@ -110,6 +115,7 @@
                 <%= f.text_field :home_cell,value: number_to_phone(@contact.home_cell, :area_code => true), class: "phone" %>
             </div>
         </div>
+    <% end %>
 
 
 

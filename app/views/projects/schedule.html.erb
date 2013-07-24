@@ -1,227 +1,28 @@
-<%= form_for @project do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+<h2>Schedule</h2>
+<p class="description">Click any item's colored bar to edit its information, or click the green button below the chart to add a new schedule item.</p>
 
-	<%= image_tag("schedule.jpg", :class => "icon") %>
-
-	<div class="content">
-
-		<h2>schedule</h2>
-            <div class="span">
-            	<%= f.label :start_date, "start date", class: "label" %>
-                <%= f.text_field :start_date, { class: "input span3 left", datadatepicker: "datepicker", :onchange => "getDuration();"} %>
-            </div>
-            <div class="span">
-            	<%= f.label :completion_date, "completion date", class: "label" %>
-                <%= f.text_field :completion_date, class: "input span3 left", datadatepicker: "datepicker", onchange: "getDuration();" %>
-            </div>
-            <div class="span">
-            	<div class="label">duration</div>
-                <div class="input-cell span3 left" id="duration"><script>window.onload = function(){ getDuration(); }</script></div>
-            </div>
-
-	</div> <!-- end content -->
-
-    <table class="table schedule-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>2012<br /><span class="blanch">jan</span></th>
-            <th ><br /><span class="blanch">feb</span></th>
-            <th><br /><span class="blanch">mar</span></th>
-            <th><br /><span class="blanch">apr</span></th>
-            <th><br /><span class="blanch">may</span></th>
-            <th><br /><span class="blanch">jun</span></th>
-            <th><br /><span class="blanch">jul</span></th>
-            <th><br /><span class="blanch">aug</span></th>
-            <th><br /><span class="blanch">sep</span></th>
-            <th><br /><span class="blanch">oct</span></th>
-            <th><br /><span class="blanch">nov</span></th>
-            <th><br /><span class="blanch">dec</span></th>
-            <th>2013<br /><span class="blanch">jan</span></th>
-            <th ><br /><span class="blanch">feb</span></th>
-            <th><br /><span class="blanch">mar</span></th>
-            <th><br /><span class="blanch">apr</span></th>
-            <th><br /><span class="blanch">may</span></th>
-            <th><br /><span class="blanch">jun</span></th>
-            <th><br /><span class="blanch">jul</span></th>
-            <th><br /><span class="blanch">aug</span></th>
-            <th><br /><span class="blanch">sep</span></th>
-            <th><br /><span class="blanch">oct</span></th>
-            <th><br /><span class="blanch">nov</span></th>
-            <th><br /><span class="blanch">dec</span></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="bold">Predesign</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="bold">Schematic</td>
-            <td></td>
-            <td></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="bold">Design Dev</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="bold">Const Docs</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="bold">Bidding</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="shaded"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td class="bold">Construction</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-            <td class="shaded"></td>
-          </tr>
-          
-        </tbody>
-        
-      </table>
-
-	<div class="cutout">
-	    <%= f.submit "save", class: "btn btn-large btn-primary save-button" %>
-	</div>
-
-
+<% unless @project.schedule_items.empty? %>
+    <div class="contain">
+        <div class="gantt"></div>
+    </div>
+<% else %>
+    <p>This project schedule has not been set up yet. Click "add schedule item" below to get started.</p>
 <% end %>
+
+<!-- modal to edit schedule items -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Edit Schedule Item</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+</div>
+<!-- end modal -->
+
+<!--<%= form_for @project do |f| %>
+    <div id="schedule-list">
+        <%= link_to_add_schedule_fields("add schedule item",f, :schedule_items, "add-schedule-item") %>
+    </div>
+<% end %>-->
+<a href="/projects/<%= @project.id %>/schedule_items/new" data-target="#myModal" data-toggle="modal" class="add-schedule-item">add a line</a>

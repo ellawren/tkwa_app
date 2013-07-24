@@ -1,49 +1,49 @@
 <% provide(:title, 'Home') %>
 
+    <% if signed_in? %>
+    <!-- - - - - - - - - - - - - - - - - - LOGGED IN HOMEPAGE - - - - - - - - - - - - - - - - -->
+
         <div id="navbar">
 
             <div class="container main">
+                <div class="demo-headline">
+                    <h1 class="demo-logo">
+                        <%= greeting %>
+                        <small>Welcome to the TKWA Database. Where would you like to go?</small>
+                    </h1>
+                </div> <!-- /demo-headline -->
 
-                <% if signed_in? %>
+                <div class="row icons">
 
-                    <div class="demo-headline">
-                        <h1 class="demo-logo">
-                            <%= greeting %>
-                            <small>Welcome to the TKWA Database. Where would you like to go?</small>
-                        </h1>
-                    </div> <!-- /demo-headline -->
+                    <div class="tile-box">
+                        <%= link_to image_tag("icons/Pocket@2x.png", :alt => "projects", :class => "round-icon resize"), projects_path %>
+                        <%= link_to "Projects", projects_path, :class => "tile-label" %>
+                        <p>Project billing, tracking, scheduling and reports.</p>
+                    </div>
 
-                    <div class="row icons">
+                    <div class="tile-box">
+                        <%= link_to image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "round-icon resize"), contacts_path %>
+                        <%= link_to "Contacts", contacts_path, :class => "tile-label" %>
+                        <p>Clients, consultants, employees, and friends.</p>
+                    </div>
 
-                        <div class="tile-box">
-                            <%= link_to image_tag("icons/Pocket@2x.png", :alt => "projects", :class => "round-icon resize"), projects_path %>
-                            <%= link_to "Projects", projects_path, :class => "tile-label" %>
-                            <p>Project billing, tracking, scheduling and reports.</p>
-                        </div>
+                    <div class="tile-box">
+                        <%= link_to image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "round-icon resize"), "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %>
+                        <%= link_to "Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}", :class => "tile-label" %>
+                        <p>Employee time tracking and targets.</p>
+                    </div>
 
-                        <div class="tile-box">
-                            <%= link_to image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "round-icon resize"), contacts_path %>
-                            <%= link_to "Contacts", contacts_path, :class => "tile-label" %>
-                            <p>Clients, consultants, employees, and friends.</p>
-                        </div>
+                    <div class="tile-box">
+                        <%= link_to image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "round-icon resize"), patterns_path %>
+                        <%= link_to "Patterns", patterns_path, :class => "tile-label" %>
+                        <p>Database of pattern language for all our projects.</p>
+                    </div>
 
-                        <div class="tile-box">
-                            <%= link_to image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "round-icon resize"), "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %>
-                            <%= link_to "Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}", :class => "tile-label" %>
-                            <p>Employee time tracking and targets.</p>
-                        </div>
+                </div> <!-- end icons -->
 
-                        <div class="tile-box">
-                            <%= link_to image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "round-icon resize"), patterns_path %>
-                            <%= link_to "Patterns", patterns_path, :class => "tile-label" %>
-                            <p>Database of pattern language for all our projects.</p>
-                        </div>
+            </div> <!-- end container main -->
 
-                    </div> <!-- end tiles -->
-
-                </div> <!-- end container -->
-                <div class="container sub">
-
+            <div class="container sub">
                 <div class="navbar navbar-inverse signin-box">
                     <ul class="nav">
                         <li><a class="disabled">Signed in as </a></li>
@@ -56,16 +56,61 @@
                             </ul> <!-- end sub menu -->
                         </li>
                     </ul>
-                   </div>
-                    
-            <% else %> 
+                </div> <!-- end navbar -->
+            </div> <!-- end container sub-->
+
+            <div class="container">
+
+                <ul id="messages">
+                    <h3>Studio Messages <a id="add-message">add message</a> <a id="my-messages" href="/messages">my messages</a></h3>
+                    <% if Message.studio_messages %>
+                        <% Message.studio_messages.each do |param| %>
+                            <li>
+                                <% if User.find(param.user_id).photo.url %>
+                                    <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
+                                <% end %>
+                                <div class="content">
+                                    <%= param.content %>
+                                </div>
+                                <div class="byline">
+                                    <%= User.find(param.user_id).name %> |
+                                    <% unless param.project_id.blank? %><%= Project.find(param.project_id).name %><% end %>
+                                    <%= link_to "edit", edit_message_path(param) %>
+                                </div>
+                            </li>
+                        <% end %>
+                    <% end %>
+                    <div id="new-message">
+                        <%= form_for(@message) do |f| %>
+                            <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
+                            <%= f.hidden_field :category, value: "studio" %>
+                            <%= f.text_area :content, class: "message-content-home" %>
+                            <%= f.label(:expiration, "Display until:", class: "expiration-tag") %>
+                            <input class="datepicker" data-date-format="mm/dd/yyyy" id="message_expiration" name="message[expiration]" size="30" type="text" value="<%= f.object.expiration %>">
+                            <a id="cancel-message">cancel</a>
+                            <%= f.submit "Add Message", class: "btn btn-primary save-btn message-submit" %>
+
+                        <% end %>
+                    </div>
+                </ul>
+
+            </div> <!-- end messages container -->
+
+        </div> <!-- end navbar -->
+
+    <% else %> 
+    <!-- - - - - - - - - - - - - - - - - - LOGGED OUT HOMEPAGE - - - - - - - - - - - - - - - - -->
+    
+        <div id="navbar">
+
+            <div class="container main">
 
                 <div class="demo-headline">
                     <h1 class="demo-logo">
                         <%= greeting %>
                         <small>Please sign in.</small>
                     </h1>
-                </div> <!-- /demo-headline -->
+                </div> <!--  end demo-headline -->
 
                 <div class="container">
                     <div class="navbar navbar-inverse logged-out">
@@ -87,49 +132,21 @@
                         </div>
                     </div> <!-- end nav menu -->
                 </div>
+
                 <div class="container">
-                        <%= link_to "Not a member? Sign up!", signup_path, class: "signup-link" %>
-                    </div>
+                    <%= link_to "Not a member? Sign up!", signup_path, class: "signup-link" %>
                 </div>
+
+            </div> <!-- end container main -->
                 
-                <div class="container sub"></div> 
-            <% end %>  
-                
+            <div class="container sub"></div> 
+
         </div> <!-- end navbar -->
+    
+    <% end %>  
+                
+        
 
-<div class="container">
-    <ul id="messages">
-        <h3>Studio Messages <a id="add-message">add message</a> <a id="my-messages" href="/messages">my messages</a></h3>
-        <% if Message.studio_messages %>
-            <% Message.studio_messages.each do |param| %>
-                <li>
-                    <% if User.find(param.user_id).photo.url %>
-                        <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
-                    <% end %>
-                    <div class="content">
-                        <%= param.content %>
-                    </div>
-                    <div class="byline">
-                        <%= User.find(param.user_id).name %> |
-                        <% unless param.project_id.blank? %><%= Project.find(param.project_id).name %><% end %>
-                        <%= link_to "edit", edit_message_path(param) %>
-                    </div>
-                </li>
-            <% end %>
-        <% end %>
-        <div id="new-message">
-            <%= form_for(@message) do |f| %>
-                <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
-                <%= f.hidden_field :category, value: "studio" %>
-                <%= f.text_area :content, class: "message-content-home" %>
-                <%= f.label(:expiration, "Display until:", class: "inline-label") %>
-                <input class="datepicker" data-date-format="mm/dd/yyyy" id="message_expiration" name="message[expiration]" size="30" type="text" value="<%= f.object.expiration %>">
-                <%= f.submit "Add Message", class: "btn btn-primary save-btn message-submit" %>
-            <% end %>
-        </div>
-    </ul>
-
-</div>
 
 
 

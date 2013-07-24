@@ -37,6 +37,7 @@
 #  cat04           :string(255)
 #  cat05           :string(255)
 #  cat06           :string(255)
+#  view_options    :string(255)     default("---\n- name\n- work\n- personal\n")
 #
 
 class Contact < ActiveRecord::Base
@@ -92,6 +93,7 @@ class Contact < ActiveRecord::Base
       } unless id.empty?
   end)
 
+  VIEW_OPTIONS =       [ "name", "work", "personal" ]
 
   def project_list
     arr = []

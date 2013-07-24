@@ -26,6 +26,11 @@ $(document).ready(function() {
     $('#message-content').focus();
   });
 
+  $('#cancel-message').click( function() {
+    $('#new-message').slideUp();
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  });
+
 });
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719184854) do
+ActiveRecord::Schema.define(:version => 20130723163737) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20130719184854) do
     t.text     "notes"
     t.boolean  "employee",        :default => false
     t.string   "category"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.string   "birthday"
     t.string   "direct_ext"
     t.string   "assistant"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130719184854) do
     t.string   "cat04"
     t.string   "cat05"
     t.string   "cat06"
+    t.string   "view_options",    :default => "---\n- name\n- work\n- personal\n"
   end
 
   create_table "data_records", :force => true do |t|
@@ -344,12 +345,12 @@ ActiveRecord::Schema.define(:version => 20130719184854) do
     t.string   "billing_travel"
     t.string   "billing_consultant"
     t.string   "billing_outofpocket"
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                                                                                                                               :null => false
+    t.datetime "updated_at",                                                                                                                               :null => false
     t.string   "billing_ext"
     t.string   "contact_ext"
-    t.date     "start_date"
-    t.date     "completion_date"
+    t.string   "start_date"
+    t.string   "completion_date"
     t.date     "pd_start"
     t.date     "pd_end"
     t.date     "sd_start"
@@ -384,6 +385,7 @@ ActiveRecord::Schema.define(:version => 20130719184854) do
     t.text     "mkt_description"
     t.string   "mkt_reference"
     t.string   "mkt_status"
+    t.string   "view_options",                                       :default => "---\n- scope\n- team\n- tracking\n- billing\n- patterns\n- marketing\n"
   end
 
   add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true
@@ -431,6 +433,17 @@ ActiveRecord::Schema.define(:version => 20130719184854) do
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
+
+  create_table "schedule_items", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "phase_id"
+    t.string   "desc"
+    t.string   "start"
+    t.string   "end"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "duration"
+  end
 
   create_table "services", :force => true do |t|
     t.string   "service_name"

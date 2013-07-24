@@ -25,8 +25,8 @@
 #  updated_at          :datetime        not null
 #  billing_ext         :string(255)
 #  contact_ext         :string(255)
-#  start_date          :date
-#  completion_date     :date
+#  start_date          :string(255)
+#  completion_date     :string(255)
 #  pd_start            :date
 #  pd_end              :date
 #  sd_start            :date
@@ -61,6 +61,7 @@
 #  mkt_description     :text
 #  mkt_reference       :string(255)
 #  mkt_status          :string(255)
+#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- patterns\n- marketing\n")
 #
 
 require 'spec_helper'

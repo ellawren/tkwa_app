@@ -12,6 +12,7 @@ TkwaApp::Application.routes.draw do
 
   resources :projects do
     resources :employee_teams
+    resources :schedule_items
     get :autocomplete_contact_name, :on => :collection
     member do
       get 'info', 'team', 'scope', 'tracking', 'schedule', 'billing', 'shop_drawings', 'marketing', 'summary', 'current', 'patterns'
@@ -58,6 +59,7 @@ resources :contacts
   resources :messages
   resources :potential_projects
   resources :relationships, only: [:create, :destroy]
+  resources :schedule_items
   resources :services
   resources :sessions, 		only: [:new, :create, :destroy]
   resources :tasks

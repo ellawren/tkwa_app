@@ -14,7 +14,6 @@
  *= require flat-ui.css
  *= require datepicker.css
  *= require style.css
-
 */
 
 /* note that css files are called individually for testing - be sure to replace with 'require tree .' and split everything
