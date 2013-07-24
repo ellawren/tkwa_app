@@ -35,8 +35,7 @@
     <%= form_for @project do |f| %>
         <div class="modal-body">
             <p>Select sections to toggle on/off.</p>
-
-            
+    
             <% Project::VIEW_OPTIONS.each do |option| %>
                 <label class="checkbox">
                     <%= check_box_tag "project[view_options][]", option, @project.view_options.include?(option), data_toggle: "checkbox" %>
