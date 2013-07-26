@@ -46,24 +46,26 @@
     float: left;
     height: 35px;
     line-height: 35px;
-    margin-left: -24px;
+    margin-left: -35px;
 }
 
 .fn-gantt .leftPanel .fn-label {
     display: inline-block;
     margin: 0 0 0 5px;
     color: #2c3445;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    text-overflow:ellipsis;
+    overflow:hidden;
     font-size:12px;
 }
 
 .fn-gantt .leftPanel .name .fn-label { width:70px; padding-left:6px; } 
-.fn-gantt .leftPanel .desc .fn-label { width:150px; } 
+.fn-gantt .leftPanel .desc .fn-label { width:230px; line-height:16px; height:35px; margin-left:15px; } 
+.fn-gantt .leftPanel .desc .fn-label.bold { margin-left:5px; }
+
+.fn-gantt .bar.phase .fn-label { cursor:default; text-transform:uppercase; opacity:.5;}
 
 .fn-gantt .leftPanel .row0 {
-    border-top: 1px solid #ced5da;
+    
 }
 .fn-gantt .leftPanel .name, .fn-gantt .leftPanel .desc {
     float: left;
@@ -76,10 +78,11 @@
 .fn-gantt .leftPanel .name {
     width: 85px;
     font-weight: 900;
+    display:none;
 }
 
 .fn-gantt .leftPanel .desc {
-    width: 165px;
+    width: 265px; overflow:visible;
 }
 
 .fn-gantt .leftPanel .fn-wide, .fn-gantt .leftPanel .fn-wide .fn-label {
@@ -88,7 +91,7 @@
 
 .fn-gantt .spacer {
     margin: -2px 0 1px 0;
-    border-bottom: none;
+    border-bottom: 1px solid #ddd;
     background-color: #fff;
 }
 
@@ -199,11 +202,15 @@
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
-    color: #fff !important;
+    color: #fff;
     text-align: center;
     font-size: 12px;
     cursor:pointer;
 }
+
+.fn-gantt .leftPanel a .fn-label { -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+.fn-gantt .leftPanel a:hover .fn-label { color:#1abc9c; }
+
 
 .fn-gantt .gantt-pd { background-color: #86cc71; }
 .fn-gantt .gantt-sd { background-color: #5bae60; }
@@ -213,6 +220,16 @@
 .fn-gantt .gantt-cca { background-color: #5b54a4; }
 .fn-gantt .gantt-int { background-color: #814470; }
 .fn-gantt .gantt-add { background-color: #983545; }
+
+.fn-gantt .meeting { background-color: #2c3445; }
+.fn-gantt .deadline { background-color: #c0392b; }
+
+.fn-gantt .bar.meeting .fn-label { color: #2c3445; overflow:visible; margin-left:26px; margin-top:-4px; }
+.fn-gantt .bar.deadline .fn-label { color: #c0392b; overflow:visible; margin-left:12px; }
+
+.fn-gantt .bar.meeting { width:20px !important; height:20px; border-radius:30px; cursor:pointer; }
+.fn-gantt .bar.deadline { width:5px !important; cursor:pointer; }
+
 
 
 /* === BOTTOM NAVIGATION === */

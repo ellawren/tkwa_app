@@ -1,2 +1,6 @@
 <h1>ScheduleItems#show</h1>
 <p>Find me in app/views/schedule_items/show.html.erb</p>
+
+
+<%= link_to 'Destroy', schedule_item_path(@schedule_item),
+            :confirm => 'Are you sure?', :method => :delete %>

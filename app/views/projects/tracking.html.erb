@@ -24,7 +24,7 @@
                     	<th class="table-cell"><%= phase.number %><br /><span class="blanch"><%= phase.name %></span></th>
                     <% end %>
                     <th class="table-cell bold TotalToDate">Total</th>
-                    <th class="bold Remaining"></th>
+                    <th class="table-cell bold Remaining">Remaining</th>
                 </tr>
             </thead>
 			
@@ -70,7 +70,8 @@
 						<% end %>
 					</td>
 
-					<td class="border-left Remaining"><div class="act sum <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= remaining(@project.sum_est, @project.sum_actual) %></div></td>
+					<td class="border-left Remaining"><%= remaining(@project.sum_est, @project.sum_actual) %></td>
+
 				</tr>
 
 				<tr class="billing">
@@ -109,9 +110,7 @@
 						<% end %>
 					</td>
 					<td class="border-left Remaining">
-						<div class="act sum <%= is_over?(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>">
-							<%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>
-						</div>
+						<%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>
 					</td>
 
 				</tr>

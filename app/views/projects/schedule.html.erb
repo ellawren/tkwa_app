@@ -1,13 +1,18 @@
 <h2>Schedule</h2>
-<p class="description">Click any item's colored bar to edit its information, or click the green button below the chart to add a new schedule item.</p>
 
 <% unless @project.schedule_items.empty? %>
+    <p class="description">Click any item to edit its information, or click the green button below the chart to add a new line. Schedule items can only be added for phases activated in the Project Scope.</p>
     <div class="contain">
         <div class="gantt"></div>
     </div>
+    <a href="/projects/<%= @project.id %>/schedule_items/new" data-target="#myModal" data-toggle="modal" class="add-schedule-item">Add a line</a>
+    <a href="/projects/<%= @project.id %>/schedule_full" target="_blank" class="text-link">View full schedule</a>
+
 <% else %>
-    <p>This project schedule has not been set up yet. Click "add schedule item" below to get started.</p>
+    <p>This project's schedule has not been set up yet.</p>
+    <a href="/projects/<%= @project.id %>/schedule_items/new" data-target="#myModal" data-toggle="modal" class="add-schedule-item">Let's get started!</a>
 <% end %>
+
 
 <!-- modal to edit schedule items -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -20,9 +25,4 @@
 </div>
 <!-- end modal -->
 
-<!--<%= form_for @project do |f| %>
-    <div id="schedule-list">
-        <%= link_to_add_schedule_fields("add schedule item",f, :schedule_items, "add-schedule-item") %>
-    </div>
-<% end %>-->
-<a href="/projects/<%= @project.id %>/schedule_items/new" data-target="#myModal" data-toggle="modal" class="add-schedule-item">add a line</a>
+

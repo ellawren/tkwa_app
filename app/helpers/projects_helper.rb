@@ -15,6 +15,10 @@ module ProjectsHelper
     def all_hours(id, phase)
       array = Array.new(TimeEntry.find_all_by_project_id_and_phase_number(id, phase.number))
     end
+
+    def floor_to(x)
+        (self * 10**x).floor.to_f / 10**x
+    end
       
     def tracking_td(f, phase)
       actual_hours = @project.employee_actual(f.contact_id, phase.number)
@@ -56,7 +60,41 @@ module ProjectsHelper
       "over" if estimated_hours.to_f < actual_hours.to_f
     end
 
+  # tracking table - remaining hours
+  def remaining(g, a)
+        goal = g.to_f
+        actual = a.to_f
+        if goal == 0 && actual == 0
+         ""
+        else 
+          r = goal - actual
+          if r >= 10
+            "<div class=\"act sum\"><div class=\"num\">#{r}</div></div>".html_safe
+          elsif r <= -10
+            "<div class=\"act sum over\"><div class=\"num\">#{r}</div></div>".html_safe
+          else
+            "<div class=\"act sum caution1\"><div class=\"num\">#{r}</div></div>".html_safe
+          end
+        end
+    end
 
+  # tracking table - remaining currency
+      def remaining_currency(g, a)
+        goal = g.to_f
+        actual = a.to_f
+        if goal == 0 && actual == 0
+          ""
+        else 
+          r = goal - actual
+          if r >= 10
+            "<div class=\"act sum\"><div class=\"num\">#{r}</div></div>".html_safe
+          elsif r <= -10
+            "<div class=\"act sum over\"><div class=\"num\">#{r}</div></div>".html_safe
+          else
+            "<div class=\"act sum caution1\"><div class=\"num\">#{r}</div></div>".html_safe
+          end
+        end
+    end
     
 
     def unique_tasks(array)
@@ -128,26 +166,7 @@ module ProjectsHelper
       employee.name
     end
 
-  	def time_diff_in_natural_language(from_time, to_time)
-  	  unless from_time.blank? || to_time.blank?
-  		from_time = from_time.to_time if from_time.respond_to?(:to_time)
-  		to_time = to_time.to_time if to_time.respond_to?(:to_time)
-  		distance_in_seconds = ((to_time - from_time).abs).round
-  		components = []
-
-      		%w(year month week).each do |interval|
-        	# For each interval type, if the amount of time remaining is greater than
-        	# one unit, calculate how many units fit into the remaining time.
-        		if distance_in_seconds >= 1.send(interval)
-          			delta = (distance_in_seconds / 1.send(interval)).floor
-          			distance_in_seconds -= delta.send(interval)
-          			components << pluralize(delta, interval)
-        		end
-      		end
-  		    components.join(", ")
-  	  end
-
-    end
+  	
 
     def estimated_billing(project, phase)
 

@@ -1,0 +1,7 @@
+<% unless @project.schedule_items.empty? %>
+    <div class="contain full">
+        <div class="gantt full"></div>
+    </div>
+<% else %>
+    <p>This project schedule has not been set up yet. Click "add schedule item" below to get started.</p>
+<% end %>

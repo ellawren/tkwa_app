@@ -16,5 +16,7 @@ end
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  duration   :string(255)
+#  start_date :date
+#  meeting    :string(255)     default("task")
 #
 

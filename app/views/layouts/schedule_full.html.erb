@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title><%= full_title(yield(:title)) %></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        
+        <!-- styles -->
+        <%= stylesheet_link_tag 'application', media: 'all' %>
+        <%= stylesheet_link_tag 'gantt', media: 'all' %>
+
+        <!-- scripts --> 
+        <!-- linked separately because including the full ist interferes with the gantt chart -->
+        <%= javascript_include_tag "jquery-1.8.3.min" -%>
+        <%= javascript_include_tag "gantt/jquery.fn.gantt" -%>
+        <%= javascript_include_tag "bootstrap" -%> <!-- for the modal windows -->
+        <%= javascript_include_tag "flatui-checkbox" -%> <!-- for the options popup -->
+        <%= javascript_include_tag "bootstrap-datepicker" -%>
+
+        <!-- fonts -->
+        <link href="http://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Oswald:400,700,300" rel="stylesheet" type="text/css">
+        <%= csrf_meta_tags %>
+    </head>
+  
+    <body class="print">
+
+        <div class="container">
+
+            <div class="page-header">
+                <h1><%= @project.name %> <span class="light">Project Schedule</span></h1>
+            </div>  
+
+            <div class="box">
+                <%= content_for?(:content) ? yield(:content) : yield %>
+            </div> <!-- end box -->
+
+        </div>
+
+    </body>
+</html>
+
+<!-- - - - - - - - - - - - - - - - - - SCHEDULE PAGE SCRIPTS - - - - - - - - - - - - - - - - - - - - - - - - -->
+<script>
+
+    // initialize datepicker + duration calc
+    $('.start-date').datepicker().on('changeDate', function(ev){
+            object = $(this);
+            duration("start", object);
+    });
+
+    $('.end-date').datepicker().on('changeDate', function(ev){
+        object = $(this);
+        duration("end", object);
+    });
+
+    // calculate duration
+    function duration(which, object){
+
+        if ( which == "start") {
+            end_id = "#" + $(object).attr('id').replace("start", "end");
+            duration_id = "#" + $(object).attr('id').replace("start", "duration");
+            start_date = parseDate($(object).val());
+            end_date = parseDate($(end_id).val());
+        } else if ( which == "end") {
+            start_id = "#" + $(object).attr('id').replace("end", "start");
+            duration_id = "#" + $(object).attr('id').replace("end", "duration");
+            end_date = parseDate($(object).val());
+            start_date = parseDate($(start_id).val());
+        }
+        if ( start_date <= end_date ) {
+            count = (( end_date - start_date ) / 86400000 ) + 1 ; // convert milliseconds to days, add 1
+            y = Math.floor(count/365.25);
+            m = Math.floor((count - (y*365.25))/30.4);
+            w = Math.floor((count - (y*365.25) - (m*30.4))/7);
+            d = Math.floor( count - (y*365.25) - (m*30.4) - (w*7) );
+            fullDate = []
+            if (y == 0) { years = ""; } else if ( y == 1) { years = y + " year"; fullDate.push(years); } else { years = y + " years"; fullDate.push(years); }
+            if (m == 0) { months = ""; } else if ( m == 1) { months = m + " month"; fullDate.push(months); } else { months = m + " months"; fullDate.push(months); }
+            if ( y == 0 ) {
+                if (w == 0) { weeks = ""; } else if ( w == 1) { weeks = w + " week"; fullDate.push(weeks); } else { weeks = w + " weeks"; fullDate.push(weeks); }
+                if ( y == 0 && m == 0 ) {
+                    if (d == 0) { days = ""; } else if ( d == 1) { days = d + " day"; fullDate.push(days); } else { days = d + " days"; fullDate.push(days); }
+                }
+            }
+            text = fullDate.join(", ");
+        } else {
+            text = "n/a";
+        }
+        $(duration_id).val(text);
+    }
+
+    // parse date
+    function parseDate(date) {
+            var strs = date.split("/");
+            var month = strs[0];
+            var day = strs[1];
+            var year = strs[2];
+            var d = new Date(year, month, day);
+            return d;
+     }
+
+    // add_fields function, also because scripts are not linked 
+    function add_fields(link, association, content) {
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g")
+        $(link).before(content.replace(regexp, new_id));
+        event.preventDefault();
+        $('.start-date').datepicker().on('changeDate', function(ev){
+            object = $(this);
+            duration("start", object);
+        });
+
+        $('.end-date').datepicker().on('changeDate', function(ev){
+            object = $(this);
+            duration("end", object);
+        });
+
+    }
+
+
+    // gantt code
+    $(function() {
+
+      "use strict";
+
+      $(".gantt").gantt({
+        source: [
+            <%= @project.schedule %>
+        ],
+        navigate: "scroll",
+        scale: "weeks",
+        maxScale: "months",
+        minScale: "days",
+        itemsPerPage: 1000,
+        onItemClick: function(data) {
+            $('#myModal').modal({ remote: "/schedule_items/" + data.myID + "/edit" })
+        },
+        //onAddClick: function(dt, rowId) {
+        //  alert("Empty space clicked - add an item!");
+        //},
+        onRender: function() {
+          if (window.console && typeof console.log === "function") {
+            console.log("chart rendered");
+          }
+        }
+      });
+
+      $(".gantt").popover({
+        selector: ".bar",
+        title: function() {
+            return $(this).data('dataObj').myTitle;
+        },
+        content: function() {
+            return $(this).data('dataObj').myContent;
+        },
+        trigger: "hover"
+      });
+
+    });
+
+    //reset modal remote on close
+    $('#myModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+
+    </script>

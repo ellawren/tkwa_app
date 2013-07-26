@@ -23,7 +23,6 @@
 		</td>
 
 		<td class="border-left Remaining">
-			
-			<div class="act sum <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= remaining(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %></div>
+			<%= remaining(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>
 		</td>
 </tr>

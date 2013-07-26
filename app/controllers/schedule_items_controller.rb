@@ -39,8 +39,8 @@ class ScheduleItemsController < ApplicationController
 
 	def destroy
 	    ScheduleItem.find(params[:id]).destroy
-	    flash[:success] = "Schedule Item destroyed."
-	    redirect_to schedule_items_path
+	    flash[:success] = "Schedule item deleted."
+	    redirect_to(:back) 
 	end
 
 end

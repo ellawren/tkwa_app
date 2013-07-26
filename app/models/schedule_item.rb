@@ -1,10 +1,20 @@
 class ScheduleItem < ActiveRecord::Base
-	default_scope order('phase_id, start')
+	default_scope order('phase_id, start_date')
 	belongs_to :project
 	belongs_to :phase
 
 	validates :start, 	presence: true
 	validates :end, 	presence: true
+	validate :check_duration
+
+	def check_duration
+  		errors.add(:duration, "start date must be before end date") if duration == "n/a"
+	end
+
+	before_save :date_parse
+    def date_parse
+        self.start_date = Date.strptime(self.start, "%m/%d/%Y")
+    end
 end
 # == Schema Information
 #
@@ -19,5 +29,7 @@ end
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  duration   :string(255)
+#  start_date :date
+#  meeting    :string(255)     default("task")
 #
 

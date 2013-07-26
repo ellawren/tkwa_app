@@ -137,7 +137,7 @@
                 ys = new Date(sd.getFullYear(), 0, (7 - ys.getDay()));
             }
             var daysCount = sd.getDayOfYear() - ys.getDayOfYear();
-            return Math.ceil(daysCount / 7);
+            return Math.ceil(daysCount / 7 );
 
         };
 
@@ -323,9 +323,16 @@
                         entries.push('</div>');
 
                         if (entry.desc) {
-                            entries.push('<div class="row desc row' + i + ' " id="RowdId_' + i + '" data-id="' + entry.id + '">');
-                            entries.push('<span class="fn-label' + (entry.cssClass ? ' ' + entry.cssClass : '') + '">' + entry.desc + '</span>');
-                            entries.push('</div>');
+                            if ( entry.id == "phase" ) {
+                                entries.push('<div class="row desc row' + i + ' " id="RowdId_' + i + '" data-id="' + entry.id + '">');
+                                entries.push('<span class="fn-label bold' + (entry.cssClass ? ' ' + entry.cssClass : '') + '">' + entry.desc + '</span>');
+                                entries.push('</div>');
+
+                            } else {
+                                entries.push('<div class="row desc row' + i + ' " id="RowdId_' + i + '" data-id="' + entry.id + '">');
+                                entries.push('<a href="/projects/' + entry.p_id + '/schedule_items/' + entry.id + '/edit" data-target="#myModal" data-toggle="modal"><span class="fn-label' + (entry.cssClass ? ' ' + entry.cssClass : '') + '">' + entry.desc + '</span></a>');
+                                entries.push('</div>');
+                            }
                         }
 
                     }
@@ -1050,7 +1057,13 @@
                                     var topEl = $(element).find("#rowheader" + i);
 
                                     var top = tools.getCellSize() * 5 + 2 + parseInt(topEl.attr("offset"), 10);
-                                    _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
+                                    if ( day.customClass.indexOf("meeting") >= 0 ) {
+                                        _bar.css({ 'margin-top': top + 6, 'margin-left': Math.floor(cFrom) + 8 }); // this line moves the meeting dot down and over a bit
+                                    } else if ( day.customClass.indexOf("deadline") >= 0 ) {
+                                         _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) + 30 }); // this line moves the deadline marker to the right of the box
+                                    } else {
+                                        _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
+                                    }
 
                                     datapanel.append(_bar);
                                     break;
@@ -1094,8 +1107,13 @@
                                     var topEl = $(element).find("#rowheader" + i);
 
                                     var top = tools.getCellSize() * 3 + 2 + parseInt(topEl.attr("offset"), 10);
-                                    _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
-
+                                    if ( day.customClass.indexOf("meeting") >= 0 ) {
+                                        _bar.css({ 'margin-top': top + 6, 'margin-left': Math.floor(cFrom) + 8 }); // this line moves the meeting dot down and over a bit
+                                    } else if ( day.customClass.indexOf("deadline") >= 0 ) {
+                                         _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) + 30 }); // this line moves the deadline marker to the right of the box
+                                    } else {
+                                        _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
+                                    }
                                     datapanel.append(_bar);
                                     break;
 
@@ -1135,7 +1153,13 @@
                                     var topEl = $(element).find("#rowheader" + i);
 
                                     var top = tools.getCellSize() * 2 + 2 + parseInt(topEl.attr("offset"), 10);
-                                    _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
+                                    if ( day.customClass.indexOf("meeting") >= 0 ) {
+                                        _bar.css({ 'margin-top': top + 6, 'margin-left': Math.floor(cFrom) + 8 }); // this line moves the meeting dot down and over a bit
+                                    } else if ( day.customClass.indexOf("deadline") >= 0 ) {
+                                         _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) + 30 }); // this line moves the deadline marker to the right of the box
+                                    } else {
+                                        _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
+                                    }
 
                                     datapanel.append(_bar);
                                     break;
@@ -1162,7 +1186,13 @@
                                     var topEl = $(element).find("#rowheader" + i);
 
                                     var top = tools.getCellSize() * 4 + 2 + parseInt(topEl.attr("offset"), 10);
-                                    _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) });
+                                    if ( day.customClass.indexOf("meeting") >= 0 ) {
+                                        _bar.css({ 'margin-top': top + 6, 'margin-left': Math.floor(cFrom) - 27 }); // this line moves the meeting dot down and over a bit
+                                    } else if ( day.customClass.indexOf("deadline") >= 0 ) {
+                                         _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) - 5 }); // this line moves the deadline marker to the right of the box
+                                    } else {
+                                        _bar.css({ 'margin-top': top, 'margin-left': Math.floor(cFrom) - 35 });
+                                    }
 
                                     datapanel.append(_bar);
 

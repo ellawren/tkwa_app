@@ -112,8 +112,8 @@ textarea { resize:vertical; color: #16a085; border: 2px solid #e1e6eb; font-size
 	.half .input-label { float:left; width:150px; padding:10px 0;}
 	.half .custom-select.billing { width:300px; }
 
-	.half.billing input[type="text"] { float:left; width:150px; text-align:right; }
-		.half.billing input[type="text"].margin-left { float:left; width:120px; }
+	.half.billing input[type="text"] { float:left; width:160px; text-align:right; }
+		.half.billing input[type="text"].margin-left { float:left; width:130px; }
 	.half.billing .input-label { float:left; width:240px; padding:10px 0;}
 
 .full{ float:left; width:100%; }
@@ -253,6 +253,8 @@ table.tracking-table th { width:5%;  text-align:left; font-size: 10pt; padding-t
 table.tracking-table th.table-cell { font-size:14pt; font-weight:900; border-left:1px solid #bbb; text-align:center; min-width:70px; padding:0px 4px; }
 table.tracking-table th .blanch { font-size: 8pt; font-weight:500; text-transform:uppercase;  }
 table.tracking-table th.table-cell.TotalToDate { font-size: 10pt; padding-top:20px; border-left:1px solid #666; }
+table.tracking-table th.table-cell.Remaining { font-size: 10pt; padding-top:20px; border-left:none; }
+
 table.tracking-table th:first-child { padding-left:0px; }
 
 table.tracking-table tbody tr { border-bottom:1px solid #bbb;  }
@@ -290,21 +292,18 @@ td.total .input.est, td.total .input-spacer.est  { border-radius:0 4px 4px 0; }
 
 span.plus { font-size:13pt; }
 
-td.Remaining .sum, table.tracking-table th.Remaining { text-align:center; }
+td.Remaining .sum { text-align:center; }
 table.tracking-table tbody tr.lower td { border-top: 1px solid #666;  background-color:#f3f6f9; }
 table.tracking-table tbody tr.lower {  border-bottom:0px; position:relative; }
-.tiny { height:16px; font-size:8pt; font-weight:400; display:block; width:100%; padding:0 8px 7px 2px; }
-.num { height:16px; font-size:10pt; font-weight:900;  display:block; width:100%; padding:5px 8px 0 2px; }
-
-.over .num { padding:0 8px 9px 2px; }
-.over .tiny { padding:3px 8px 0 2px; }
+.num { height:26px; }
 
 td.Remaining .sum { margin-left:10%; margin-right:0px; }
 
-.Remaining .act.sum { background-color:rgba(153,203,120,.3); color:#000; padding-left:6px; padding-right:6px; border-radius:4px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
-.Remaining .act.sum.over { background-color:rgba(250,166,151,.4); }
+.Remaining .act.sum { background-color:#86cc71; color:#fff; width:70px; height:20px; padding:13px 0; margin-left:10px; border-radius:10px; font-weight:400; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+.Remaining .act.sum.caution1 { background-color:#f1c40f; }
+.Remaining .act.sum.caution2 { background-color:#e67e22; }
+.Remaining .act.sum.over { background-color:#e64c3c; }
 
-.Remaining .over:hover { background-color:rgba(250,166,151,.6); cursor:pointer; }
 
 table.tracking-table tbody tr.billing { border-bottom:1px solid #666; border-top:1px solid #666; background-color:#f3f6f9; }
 table.tracking-table tbody tr.billing th { width:5%; } 
@@ -357,7 +356,7 @@ table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold {
 
 .sum-line { border-top:2px solid #000; float:left; margin:6px 0 6px 0; width:400px; }
 
-.half input[type="text"].oop { width:30px; margin:0 5px; text-align:center; padding: 8px 10px 8px 5px; }
+.half input[type="text"].oop { width:50px; margin:0 5px; text-align:center; padding: 8px 10px 8px 5px; }
 .text { padding:10px 0; float:left; }
 
 .edit-link { float:left; margin-left:8px; margin-top:4px; font-size:12px; }
@@ -370,7 +369,10 @@ table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold {
 
 th.align-right { text-align:center; }
 
-tr.footer td { text-align:right; font-weight:900; border-top:1px solid #999;  }
+tr.footer td { text-align:right; font-weight:900; border-top:2px solid #344953;  }
+
+.text-input.contract-amount { width:120px; }
+.table.billing-table tbody { border-top:2px solid #344953; }
 
 /* footer */
 footer { float:left; width:100%; display:block; background-color: #fff; margin-bottom:40px; font-size:13px; margin-top:60px; }
@@ -465,7 +467,7 @@ footer { float:left; width:100%; display:block; background-color: #fff; margin-b
 	.timesheets .table-head .date .blanch { text-align:center; width:40px; font-size:15px; font-weight:900; padding:4px 0 0 0; margin:0px; }
 	.timesheets .time-entries { float:left; }
  	.timesheets .time-entries .entry { float:left; }
- 	.timesheets .time-entries .text-input { width:40px; text-align:center; padding:8px 5px 8px 0px; margin:2px 4px 2px 0; }
+ 	.timesheets .time-entries .text-input { width:39px; text-align:center; padding:0px 3px; margin:2px 4px 2px 0; }
  	.timesheets .time-entries .text-input.weekend { background-color:#f5f7f9; }
 	.timesheets .time-entries .entry.today .text-input { border-color:#86cc71; color:#5bae60;}
 	.timesheets .time-entries .entry.today .text-input:focus { border-color:#5bae60; }
@@ -574,8 +576,10 @@ a.control-link { float:right; }
   .modal th.table-cell { font-size:14pt; font-weight:900; width:80px; text-align:center; padding-top:0px; color:#34495e; }
   .modal-table th .number { width:100%; height:24px; }
   .modal-table th .blanch { width:100%; font-size:8pt; font-weight:500; text-transform:uppercase;  }
-  .modal input.btn { float:left; margin-top:15px; margin-bottom:30px; padding:8px 16px 20px 16px; width:160px; border-radius:8px; background-color:#1abc9c; color:#fff; border:none; outline:none; height:38px; font-size:13px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; cursor:pointer; }
-  .modal input.btn:hover { background-color:#16a085; }
+  .modal input.btn-primary { float:left; margin-top:15px; margin-bottom:30px; padding:8px 16px 20px 16px; width:160px; border-radius:8px; background-color:#1abc9c; color:#fff; border:none; outline:none; height:38px; font-size:13px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; cursor:pointer; }
+  .modal a.btn { float:left; margin-top:15px; margin-bottom:30px; width:auto; padding:8px 16px ; border-radius:8px; border:none; outline:none; font-size:13px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; cursor:pointer; }
+
+  .modal input.btn-primary:hover { background-color:#16a085; }
   .modal-table td { margin:8px 0; }
   .modal-table td.modal-total { width:80px; padding-top:14px; height:34px;text-align:center; font-size:14px; color:#34495e; font-weight:900; }
 
@@ -695,6 +699,11 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 
 .container.schedule { margin-bottom:60px; }
 .contain { float:left; width: 100%; clear:all; }
+.contain.full { width: auto; padding-right:50px; }
+.gantt.full { width: auto; padding-left:250px; }
+.gantt.full .fn-gantt, .gantt.full .fn-gantt .fn-content { width: auto; overflow:visible;}
+.gantt.full .fn-gantt .leftPanel { margin-left:-250px; }
+.gantt.full .fn-gantt .bottom { display:none; }
 
 #schedule-list { float:left; display:block; }
 	#schedule-list .header { width:100%; font-weight:900; font-size:12px; float:left; height:30px; }
@@ -714,13 +723,13 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 	.modal-body #schedule-list .header .phase { width:125px; }
 	.modal-body #schedule-list select.phase { width:125px; }
 	.modal-body .save-row.schedule { margin-top:10px; margin-bottom:10px; }
-	.modal .save-row.schedule input.btn { width:200px; }
+	.modal .save-row.schedule input.btn-primary { width:200px; }
 	#myModal .modal-header { padding-left:45px; }
 
 .test-box { float:left; width:100%; height:100px; }
 
 .add-schedule-item { float:left; padding:10px 20px; background-color:#86cc71; border-radius:8px; color:#fff;}
-.add-schedule-item:hover { background-color:#5bae60; color:#fff; }
+.add-schedule-item:hover, .add-schedule-item:focus{ background-color:#5bae60; color:#fff; text-decoration:none; }
 
 .pop-label { font-size:11px; display:inline-block; width:55px; background:#344953; color:#fff; padding:4px 8px; border-radius:6px; margin:3px 10px 3px 0; }
 	.pop-label.gantt-pd { background-color: #86cc71; }
@@ -731,6 +740,8 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 	.pop-label.gantt-cca { background-color: #5b54a4; }
 	.pop-label.gantt-int { background-color: #814470; }
 	.pop-label.gantt-add { background-color: #983545; }
+	.pop-label.meeting { background-color: #2c3445; }
+	.pop-label.deadline { background-color: #c0392b; }
 
 .pop-title { font-weight:900; }
 	.pop-title.gantt-pd { color: #86cc71; }
@@ -741,9 +752,17 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 	.pop-title.gantt-cca { color: #5b54a4; }
 	.pop-title.gantt-int { color: #814470; }
 	.pop-title.gantt-add { color: #983545; }
+	.pop-title.meeting { color: #2c3445; }
+	.pop-title.deadline { color: #c0392b; }
 
 .datepicker.dropdown-menu { z-index:1080; }
 
+.save-row.schedule div { float:left; }
+
+.text-link { float:left; padding:8px 20px; }
 
 
+/* print */
+
+.print .container { margin:50px; width:auto; }
 

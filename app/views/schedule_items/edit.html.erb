@@ -25,10 +25,27 @@
 	        <%= f.text_field :duration, class: "duration", :readonly => true %>
 	    </div>
 	</div>
+    <div class="input-row">
+        <div class="radio-group">
+        	<label class="radio">
+                <%= f.radio_button :meeting, "task", data_toggle: "radio" %>
+                Task
+            </label>
+            <label class="radio">
+                <%= f.radio_button :meeting, "meeting", data_toggle: "radio" %>
+                Meeting
+            </label>
+            <label class="radio">
+                <%= f.radio_button :meeting, "deadline", data_toggle: "radio" %>
+                Deadline
+            </label>
+        </div>
+    </div>
 
     <%= render 'fields', f: f %>
 
   <div class="save-row schedule">
-        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
-    </div>
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn", method: "update" %>
+        <%= link_to 'Delete', schedule_item_path(@schedule_item),
+            :confirm => 'Are you sure?', :method => :delete, class: "btn" %>
 <% end %>

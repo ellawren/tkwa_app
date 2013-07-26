@@ -2,7 +2,7 @@
     <td><%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select" } ) %></td>
     <%= f.hidden_field :_destroy %>
     <td><%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "custom-select" } ) %></td>
-    <td><%= f.text_field :consultant_contract, class: "text-input", value: number_to_currency(f.object.consultant_contract) %></td>
+    <td><%= f.text_field :consultant_contract, class: "text-input contract-amount", value: number_to_currency(f.object.consultant_contract) %></td>
     <td><div class="text-field med bold"><%= number_to_currency(f.object.consultant_bills_total) %></div></td>
      <td><div class="text-field small bold"><%= number_to_percentage(f.object.percent_billed, :precision => 0) %></div></td>
     <td><% if f.object.consultant_id %><a href="<%= consultant_team_bills_path(f.object.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small">add bill</a><% end %></td>

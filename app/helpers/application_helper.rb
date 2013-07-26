@@ -97,30 +97,6 @@ module ApplicationHelper
       end
   end
 
-  def remaining(g, a)
-      goal = g.to_f
-      actual = a.to_f
-      if goal == 0 && actual == 0
-        ""
-      elsif goal >= actual
-        "<div class=\"num\">#{goal - actual}</div><div class=\"tiny\">remaining</div>".html_safe
-      elsif goal < actual
-        "<div class=\"tiny\">over by</div><div class=\"num\">#{actual - goal}</div>".html_safe
-      end
-  end
-
-    def remaining_currency(g, a)
-      goal = g.to_f
-      actual = a.to_f
-      if goal == 0 && actual == 0
-        ""
-      elsif goal >= actual
-        "<div class=\"num\">#{number_to_currency(goal - actual, :precision => 0)}</div><div class=\"tiny\">remaining</div>".html_safe
-      elsif goal < actual
-        "<div class=\"tiny\">over by</div><div class=\"num\">#{number_to_currency(actual - goal, :precision => 0)}</div>".html_safe
-      end
-  end
-
   def over_under_currency(g, a)
       goal = g.to_f
       actual = a.to_f
@@ -189,6 +165,8 @@ module ApplicationHelper
     end
     html
   end  
+
+  
 
 
   def add_breaks(s)
