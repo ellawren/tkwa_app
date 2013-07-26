@@ -27,6 +27,7 @@
 	</div>
     <div class="input-row">
         <div class="radio-group">
+            <%= hidden_field_tag "schedule_item[meeting]", nil %>
         	<label class="radio">
                 <%= f.radio_button :meeting, "task", data_toggle: "radio" %>
                 Task
