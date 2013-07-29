@@ -1,0 +1,11 @@
+<div class="shop_drawing">
+	<%= f.hidden_field :project_id, value: "#{@project.id}" %>
+	<%= f.text_field :date_received, class: "datepicker" %>
+	<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select" } ) %>
+	
+    <%= f.hidden_field :_destroy %>
+    
+    
+    <%= link_to_remove_fields_2 "  ", f %>
+
+</div>

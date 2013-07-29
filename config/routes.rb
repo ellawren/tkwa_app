@@ -13,17 +13,12 @@ TkwaApp::Application.routes.draw do
   resources :projects do
     resources :employee_teams
     resources :schedule_items
+    resources :shop_drawings
     get :autocomplete_contact_name, :on => :collection
     member do
-      get 'info', 'team', 'scope', 'tracking', 'schedule', 'schedule_full', 'billing', 'shop_drawings', 'marketing', 'summary', 'current', 'patterns'
+      get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns'
     end
   end    
-
-  resources :potential_projects do
-    member do
-      get 'info', 'team', 'scope', 'tracking', 'schedule', 'patterns'
-    end
-  end   
 
   resources :employees do
     resources :timesheets
@@ -57,11 +52,11 @@ resources :contacts
   resources :holidays
   resources :microposts,  only: [:create, :destroy]
   resources :messages
-  resources :potential_projects
   resources :relationships, only: [:create, :destroy]
   resources :schedule_items
   resources :services
   resources :sessions, 		only: [:new, :create, :destroy]
+  resources :shop_drawings
   resources :tasks
   resources :timesheets, :only => [:index, :create, :update]
 
@@ -79,6 +74,7 @@ resources :contacts
   match '/about',   to: 'static_pages#about'
   match '/messages',to: 'static_pages#messages'
   match '/admin',   to: 'static_pages#admin'
+  match '/potential_projects',   to: 'static_pages#potential_projects'
 
   root :to => 'static_pages#home'
   

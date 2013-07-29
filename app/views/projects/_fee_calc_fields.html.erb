@@ -1,0 +1,19 @@
+<tr>
+	<td class="tname"><%= employee_name(f.object.contact_id) %><br />
+		<%= f.hidden_field :contact_id %>
+		</div>
+	</td>
+	<% @project.available_phases.each do |phase| %>
+        <td class="phase-cell <%= phase.name.gsub(/[ ]*/, '') %>">
+            <%= f.text_field eval(":#{phase.shorthand}_hours") %>
+        </td>
+    <% end %>
+
+		<td class="total TotalToDate gray border-left">
+			<% if f.object.est_total == 0 %>
+				<div class="input-spacer span1"></div>
+			<% else %>
+				<div class="input span1bold"><%= strip(f.object.est_total) %></div>
+			<% end %>
+		</td>
+</tr>

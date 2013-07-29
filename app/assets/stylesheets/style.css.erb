@@ -63,6 +63,7 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; list-
 /* section headers */
 h2 { font-weight:900; float:left; display:block; width:100%; font-size:13pt; margin:30px 0 20px; height:34px; border-bottom:1px solid #e1e6eb; clear:all; }
 h3 { font-weight:900;font-size:11pt; }
+h4 { font-weight:900; float:left; display:block; width:100%; font-size:11pt; margin:30px 0 0px; height:34px; clear:all; }
 
 h2.first { margin-top:0px; }
 
@@ -78,7 +79,9 @@ textarea { resize:vertical; color: #16a085; border: 2px solid #e1e6eb; font-size
 	.wide input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input { float:left; width:340px; }
 	.wide textarea { width:340px; }
 	.wide .input-label { float:left; width:150px; padding:10px 0;}
+		.wide .input-label.small-label { width:90px; }
 	.wide.last { width:520px; margin-left:80px; }
+		.wide.last .radio-group { width:420px; position:relative;}
 
 	.wide .address { margin-left:160px; width:355px; }
 		.wide .address a { color:#34495e; }
@@ -87,6 +90,7 @@ textarea { resize:vertical; color: #16a085; border: 2px solid #e1e6eb; font-size
 
 .narrow { float:left; width:340px; }
 	.narrow input[type="text"] { float:left; width:190px; }
+	.narrow input[type="text"].input-narrow { width:166px; }
 	.narrow .input-cell { width:170px; }
 	.narrow textarea { width:163px; resize:vertical; }
 	.narrow .custom-select { width:190px; }
@@ -647,10 +651,26 @@ label[for="pattern_delete_diagram"].checked, label[for="pattern_delete_diagram"]
 
 /* potential projects */
 
-.header-label { float:left; background-color:#1abc9c; color:#fff; margin-top:-6px; margin-bottom:-10px; text-transform:uppercase; font-size:10px; width:100px; padding:2px 8px; }
+a.header-label { float:left; display:block;  background-color:#1abc9c; color:#fff; margin-top:04px; margin-bottom:-10px; text-transform:uppercase; font-size:10px; width:110px; padding:2px 8px; }
+a.header-label:hover { opacity:.8; }
 .potential.page-header h1 { color:#34495e;  }
 
+.fee-calc tr .input { margin-top:15px; font-size:13px; }
+.fee-calc tr.billing .input, .fee-calc tr.lower .input  { margin-top:10px; }
 
+.fee-calc tr input { max-width:125px; margin:5px 10px 5px 20px; text-align:center; }
+.fee-calc td.tname { min-width:125px; padding-top:20px; }
+.fee-calc td.total  { min-width:125px; }
+
+table.tracking-table.fee-calc tr.lower td.bold, table.tracking-table.fee-calc tr.billing td.bold { padding-top:15px; }
+.radio-hint { position:absolute; display:none; top:0px; left:100px; font-style:italic; color:#e64c3c; }
+.radio-note { position:absolute; top:0px; left:100px; color:#bcc6cc; font-style:italic; }
+
+table.potential thead th { font-size:13px;  padding-bottom:2px; color:#344953; }
+table.potential tbody tr { -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+table.potential tbody tr:hover { background-color:#f6f8fa; }
+table.potential tbody td { color:#16a085; }
+table.potential tbody td a { font-weight:900; color:#16a085; }
 
 
 /* pattern browser */
@@ -760,6 +780,9 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 .save-row.schedule div { float:left; }
 
 .text-link { float:left; padding:8px 20px; }
+
+
+/* shop drawings */
 
 
 /* print */

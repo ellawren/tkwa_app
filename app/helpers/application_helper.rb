@@ -78,12 +78,15 @@ module ApplicationHelper
   end
 
   def is_current?(c_name)
-     # execption for projects/:id/patterns
-     if params[:controller] == "projects" && params[:action] == "patterns"
-      "class='active'" if c_name.include?(params[:action])
-     # all other pages
-     else
-      "class='active'" if c_name.include?(params[:controller])
+    # execption for projects/:id/patterns
+    if params[:controller] == "projects" && params[:action] == "patterns"
+        "class='active'" if c_name.include?(params[:action])
+    # execption for /potential_projects
+    elsif params[:controller] == "static_pages" && params[:action] == "potential_projects"
+        "class='active'" if c_name.include?(params[:action])
+    # all other pages
+    else
+        "class='active'" if c_name.include?(params[:controller])
     end
   end
 

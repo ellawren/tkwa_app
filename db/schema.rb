@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725152123) do
+ActiveRecord::Schema.define(:version => 20130729192423) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -41,15 +41,6 @@ ActiveRecord::Schema.define(:version => 20130725152123) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "consultant_roles_potential_projects", :id => false, :force => true do |t|
-    t.integer  "potential_project_id", :null => false
-    t.integer  "consultant_role_id",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "consultant_roles_potential_projects", ["potential_project_id", "consultant_role_id"], :name => "potential_consultants_index", :unique => true
 
   create_table "consultant_roles_projects", :id => false, :force => true do |t|
     t.integer  "project_id",         :null => false
@@ -270,15 +261,6 @@ ActiveRecord::Schema.define(:version => 20130725152123) do
     t.string   "full_name"
   end
 
-  create_table "phases_potential_projects", :id => false, :force => true do |t|
-    t.integer  "potential_project_id", :null => false
-    t.integer  "phase_id",             :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "phases_potential_projects", ["potential_project_id", "phase_id"], :name => "potential_phases_index", :unique => true
-
   create_table "phases_projects", :id => false, :force => true do |t|
     t.integer  "project_id", :null => false
     t.integer  "phase_id",   :null => false
@@ -287,44 +269,6 @@ ActiveRecord::Schema.define(:version => 20130725152123) do
   end
 
   add_index "phases_projects", ["project_id", "phase_id"], :name => "index_phases_projects_on_project_id_and_phase_id", :unique => true
-
-  create_table "potential_projects", :force => true do |t|
-    t.string   "name"
-    t.string   "location"
-    t.string   "client"
-    t.string   "contact_name"
-    t.string   "contact_phone"
-    t.string   "contact_email"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "potential_projects_reimbursables", :id => false, :force => true do |t|
-    t.integer  "potential_project_id", :null => false
-    t.integer  "reimbursable_id",      :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "potential_projects_reimbursables", ["potential_project_id", "reimbursable_id"], :name => "potential_reimbursables_index", :unique => true
-
-  create_table "potential_projects_services", :id => false, :force => true do |t|
-    t.integer  "potential_project_id", :null => false
-    t.integer  "service_id",           :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "potential_projects_services", ["potential_project_id", "service_id"], :name => "potential_services_index", :unique => true
-
-  create_table "potential_projects_tasks", :id => false, :force => true do |t|
-    t.integer  "potential_project_id", :null => false
-    t.integer  "task_id",              :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "potential_projects_tasks", ["potential_project_id", "task_id"], :name => "potential_tasks_index", :unique => true
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -345,8 +289,8 @@ ActiveRecord::Schema.define(:version => 20130725152123) do
     t.string   "billing_travel"
     t.string   "billing_consultant"
     t.string   "billing_outofpocket"
-    t.datetime "created_at",                                                                                                                               :null => false
-    t.datetime "updated_at",                                                                                                                               :null => false
+    t.datetime "created_at",                                                                                                                  :null => false
+    t.datetime "updated_at",                                                                                                                  :null => false
     t.string   "billing_ext"
     t.string   "contact_ext"
     t.string   "start_date"
@@ -385,10 +329,11 @@ ActiveRecord::Schema.define(:version => 20130725152123) do
     t.text     "mkt_description"
     t.string   "mkt_reference"
     t.string   "mkt_status"
-    t.string   "view_options",                                       :default => "---\n- scope\n- team\n- tracking\n- billing\n- patterns\n- marketing\n"
+    t.string   "view_options",                                       :default => "---\n- scope\n- team\n- tracking\n- billing\n- schedule\n"
+    t.string   "proposal_date"
+    t.string   "interview_date"
+    t.string   "awarded",                                            :default => "pending"
   end
-
-  add_index "projects", ["number"], :name => "index_projects_on_number", :unique => true
 
   create_table "projects_reimbursables", :id => false, :force => true do |t|
     t.integer  "project_id",      :null => false
@@ -452,6 +397,25 @@ ActiveRecord::Schema.define(:version => 20130725152123) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "shop_drawings", :force => true do |t|
+    t.string   "date_received"
+    t.integer  "project_id"
+    t.integer  "consultant_id"
+    t.string   "spec"
+    t.string   "letter"
+    t.string   "description"
+    t.string   "number"
+    t.string   "date_sent"
+    t.string   "date_returned"
+    t.string   "number_sent"
+    t.string   "number_returned"
+    t.string   "final_action_date"
+    t.string   "notes"
+    t.string   "review_status"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "tasks", :force => true do |t|

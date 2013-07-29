@@ -91,6 +91,7 @@ icons/Mail@2x-green.png: icons/Mail@2x-green-62768745ab21345ebdd865d02255e3e6.pn
 icons/Mail@2x.png: icons/Mail@2x-39c79b09653ccc8f974208daa4d03f33.png
 icons/Map@2x.png: icons/Map@2x-be4497bd11bc55c1ea42350851fd77d2.png
 icons/Pensils@2x.png: icons/Pensils@2x-8d547afe3de2b6a679457c6706f88486.png
+icons/Pocket@2x-round.png: icons/Pocket@2x-round-4159cfe88fac18487f4aee9710eca32d.png
 icons/Pocket@2x.png: icons/Pocket@2x-c6664123669a5dd19e35bfb59c0a480d.png
 icons/Retina-Ready@2x.png: icons/Retina-Ready@2x-8e4edb707b88766b141553a4fbea8c38.png
 icons/Toilet-Paper@2x.png: icons/Toilet-Paper@2x-47b270286012bb3c438b0bb22661a308.png
@@ -155,7 +156,7 @@ video/volume-full.png: video/volume-full-cdf1ed5ce9f2e6ca65ec54cf4937e749.png
 video/volume-off-2x.png: video/volume-off-2x-33c4b7826b64772363e93050f1725941.png
 video/volume-off.png: video/volume-off-6b6e213cc94cce3b1154ff032f2678be.png
 application.js: application-62a9b4ade6d14829aeff9ee8541fc346.js
-application.css: application-8c3f79dcb82898408d6208419682c4d1.css
+application.css: application-b0209a8c4d37efd21801afd42d9bd819.css
 blueprint/plugins/buttons/icons/cross.png: blueprint/plugins/buttons/icons/cross-c2651300ae2e326a9727177155b48bf7.png
 blueprint/plugins/buttons/icons/key.png: blueprint/plugins/buttons/icons/key-9db9f7ef5cb5f66d1dd4a2adfbf0a87b.png
 blueprint/plugins/buttons/icons/tick.png: blueprint/plugins/buttons/icons/tick-749c8298fcbfe4490ba9f7e4a9079637.png

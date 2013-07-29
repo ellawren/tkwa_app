@@ -5,6 +5,8 @@ class ScheduleItem < ActiveRecord::Base
 
 	validates :start, 	presence: true
 	validates :end, 	presence: true
+	validates :phase, 	presence: true
+	validates :desc, 	presence: true
 	validate :check_duration
 
 	def check_duration

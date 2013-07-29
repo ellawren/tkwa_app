@@ -1,4 +1,42 @@
 	<%= form_for @project do |f| %>
+
+        <% if @project.status == "potential" %>
+            <h2>Potential Project Status</h2>
+            <div class="narrow">
+                <div class="input-row">
+                    <%= f.label(:proposal_date, "Proposal Due Date", class: "input-label") %>
+                    <%= f.text_field :proposal_date, class: "datepicker" %>
+                </div>
+                <div class="input-row">
+                    <%= f.label(:interview_date, "Interview Date", class: "input-label") %>
+                    <%= f.text_field :interview_date, class: "datepicker" %>
+                </div>
+            </div>
+            <div class="wide last">
+                <div class="input-row">
+                    <%= f.label(:awarded, "Awarded?", class: "input-label small-label") %>
+                        <div class="radio-group">
+                            <label class="radio">
+                                <%= f.radio_button :awarded, "pending", data_toggle: "radio" %>
+                                Pending
+                                <div id="note" class="radio-note">If we get this project, select 'Yes' to move it into Current Projects. If not, select 'No' to remove it from the Potential Projects list.</div>
+                            </label>
+                            <label class="radio">
+                                <%= f.radio_button :awarded, "yes", data_toggle: "radio" %>
+                                Yes
+                                <div id="awarded" class="radio-hint">Awesome! Don't forget to change the status to 'Current" and add a project number.</div>
+                            </label>
+
+                            <label class="radio">
+                                <%= f.radio_button :awarded, "no", data_toggle: "radio" %>
+                                No
+                                <div id="not-awarded" class="radio-hint">Note: This project will no longer show up as 'active' on the Potential Projects page.</div>
+                            </label>
+                        </div>
+                </div>
+
+            </div>
+        <% end %>
 		
 		<h2>Project Information</h2>
 
@@ -34,6 +72,10 @@
                 <%= f.label(:status, "Status", class: "input-label") %>
                     <div class="radio-group">
                         <label class="radio">
+                            <%= f.radio_button :status, "potential", data_toggle: "radio" %>
+                            Potential
+                        </label>
+                        <label class="radio">
                             <%= f.radio_button :status, "current", data_toggle: "radio" %>
                             Current
                         </label>
@@ -44,27 +86,50 @@
                     </div>
             </div>
         </div>
+        <% if @project.status == "potential" %>
+            <h2>Contact Information</h2>
+                            
+                <div class="wide">
+                        
+                    <div class="input-row">
+                        <%= f.label(:contact_name, "Contact Name", class: "input-label") %>
+                        <%= f.text_field :contact_name, class: "" %>
+                    </div>
+                    <div class="input-row">
+                        <%= f.label(:contact_email, "Contact Email", class: "input-label") %>
+                        <%= f.text_field :contact_email, class: "" %>
+                    </div>        
+ 
+                    <div class="input-row">
+                        <%= f.label(:contact_phone, "Contact Phone", class: "input-label") %>
+                        <%= f.text_field :contact_phone, value: number_to_phone(@project.contact_phone, :area_code => true), class: "" %>
+                    </div>
+                            
+                </div> <!-- end wide -->
 
-        <h2>Billing Information</h2>
-						
-			<div class="wide">
-					
-				<div class="input-row">
-					<%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
-                	<%= f.text_field :billing_name, class: "" %>
-				</div>
-          				
-          		<div class="input-row">
-          			<%= f.label(:billing_address, "Billing Address", class: "input-label") %>
-                	<%= f.text_area :billing_address, class: "", rows: "2" %>
-				</div>
-								
-				<div class="input-row">
-					<%= f.label(:billing_phone, "Billing Phone", class: "input-label") %>
-                    <%= f.text_field :billing_phone, value: number_to_phone(@project.billing_phone, :area_code => true), class: "" %>
-				</div>
-          				
-          	</div> <!-- end wide -->
+        <% else %>
+
+            <h2>Billing Information</h2>
+    						
+    			<div class="wide">
+    					
+    				<div class="input-row">
+    					<%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
+                    	<%= f.text_field :billing_name, class: "" %>
+    				</div>
+              				
+              		<div class="input-row">
+              			<%= f.label(:billing_address, "Billing Address", class: "input-label") %>
+                    	<%= f.text_area :billing_address, class: "", rows: "2" %>
+    				</div>
+    								
+    				<div class="input-row">
+    					<%= f.label(:billing_phone, "Billing Phone", class: "input-label") %>
+                        <%= f.text_field :billing_phone, value: number_to_phone(@project.billing_phone, :area_code => true), class: "" %>
+    				</div>
+              				
+              	</div> <!-- end wide -->
+        <% end %>
   
         <div class="save-row">
 	        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
@@ -72,4 +137,44 @@
 
 	<% end %>
 
-	
+	<script>
+    if ( $('#project_status_potential').attr('checked') == 'checked' ) {
+        $('#project_number').parent('.input-row').hide();
+    }
+
+    $('#project_status_potential').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#project_number').parent('.input-row').hide();
+        } else {
+            $('#project_number').parent('.input-row').show();
+        }
+    });
+
+    $('#project_awarded_yes').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#awarded').fadeIn("slow");
+            $('#note').fadeOut("slow");
+        } else {
+            $('#awarded').fadeOut("slow");
+        }
+    });
+
+    $('#project_awarded_no').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#not-awarded').fadeIn("slow");
+            $('#note').fadeOut("slow");
+        } else {
+            $('#not-awarded').fadeOut("slow");
+        }
+    });
+
+    $('#project_awarded_pending').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#not-awarded').fadeOut("slow");
+            $('#awarded').fadeOut("slow");
+            $('#note').fadeIn("slow");
+        } else {
+            $('#note').fadeOut("slow");
+        }
+    });
+    </script>

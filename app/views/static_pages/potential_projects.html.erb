@@ -1,0 +1,88 @@
+<% content_for :page_header do %>
+	<% provide :title, "Potential Projects" %>
+	<div class="page-header">
+		<h1>Potential Projects</h1>
+	</div>
+<% end %>
+
+<%= link_to "Add New Potential Project", new_project_path(:status => 'potential'), class: "btn"%>
+
+<% if @potential_projects.count >= 1 %>
+	<h4>Active Potential Projects</h4>
+
+	<table class="table potential">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Created</th>
+				<th>Proposal Due Date</th>
+				<th>Interview Date</th>
+				<th>Awarded?</th>
+		</thead>
+		<tbody>
+			<% @potential_projects.each do |p| %>
+				<tr>
+					<td><%= link_to p.name, info_project_path(p.id) %></td>
+					<td><%= p.created_at.strftime("%m/%d/%Y") %></td>
+					<td><%= p.proposal_date %></td>
+					<td><%= p.interview_date %></td>
+					<td><%= p.awarded %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
+
+<% if @inactive_projects.count >= 1 %>
+	<h4>Inactive Potential Projects</h4>
+
+	<table class="table potential">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Created</th>
+				<th>Proposal Due Date</th>
+				<th>Interview Date</th>
+				<th>Awarded?</th>
+		</thead>
+		<tbody>
+			<% @inactive_projects.each do |p| %>
+				<tr>
+					<td><%= link_to p.name, info_project_path(p.id) %></td>
+					<td><%= p.created_at.strftime("%m/%d/%Y") %></td>
+					<td><%= p.proposal_date %></td>
+					<td><%= p.interview_date %></td>
+					<td><%= p.awarded %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
+
+<% if @awarded_projects.count >= 1 %>
+	<h4>Awarded Potential Projects</h4>
+
+	<table class="table potential">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Created</th>
+				<th>Proposal Due Date</th>
+				<th>Interview Date</th>
+				<th>Awarded?</th>
+		</thead>
+		<tbody>
+			<% @awarded_projects.each do |p| %>
+				<tr>
+					<td><%= link_to p.name, info_project_path(p.id) %></td>
+					<td><%= p.created_at.strftime("%m/%d/%Y") %></td>
+					<td><%= p.proposal_date %></td>
+					<td><%= p.interview_date %></td>
+					<td><%= p.awarded %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
+
+

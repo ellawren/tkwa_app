@@ -1,20 +1,25 @@
 <% content_for :page_header do %>
 <% provide :title, @project.name %>
 
-	<div class="page-header">
-        <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+    <% if @project.status == "potential" %>
+        <a class="header-label" href="/potential_projects">Potential Projects</a>
+        <div class="page-header">
+            <h1><%= @project.name %></h1>
+    <% else %>
+        <div class="page-header">
+            <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+    <% end %>
         <ul class="controls">
-            <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
+            <% unless @project.status == "potential" %>
+                <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
+            <% end %>
             <li><a href="#">delete</a></li>
         </ul>
-        <!--<div class="controls">
-            <%= link_to "", projects_path, :class => "button search tip", :rel => "tooltip", :title => "search projects" %>
-			<%= link_to "", new_project_path, :class => "button add tip", :rel => "tooltip", :title => "add a new project" %>
-            <a class="button print tip" rel="tooltip" title="print this page"></a>
-            <a class="button delete tip" rel="tooltip" title="delete project"></a>
-        </div>-->
+
     </div>		
 <% end %>
+
+
 
 <% content_for :tabnav do %>
 	<%= render "tabnav" %>
@@ -25,7 +30,7 @@
 <% end %>
 
 <!-- modal for view options -->
-<div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
 
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

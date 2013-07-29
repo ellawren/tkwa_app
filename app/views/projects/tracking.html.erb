@@ -87,7 +87,7 @@
 							<% if @project.actual_billing_total(phase.number) == 0 %>
 								<div class="input-spacer act"></div>
 							<% else %>
-								<div class='input act'><%= number_to_currency(@project.actual_billing_total("#{phase.shorthand}"), :precision => 0) %></div>
+								<div class='input act'><%= number_to_currency(@project.actual_billing_total(phase.number), :precision => 0) %></div>
 							<% end %>
 							<% if @project.target_billing_total(phase.number) == 0 %>
 								<div class="input-spacer est"></div>
@@ -118,7 +118,6 @@
 			</tbody>
 
 		</table>
-
 
 <% end %>
 

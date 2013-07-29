@@ -1,11 +1,12 @@
 <% content_for :page_header do %>
-    <% provide :title, "Add Pattern" %>
+    <% provide :title, "New Project" %>
     <div class="page-header">
         <h1>New Project</h1>
     </div>
 <% end %>
 
     <%= form_for @project do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         
         <h2>Project Information</h2>
 
@@ -27,7 +28,7 @@
         <div class="narrow">
             <div class="input-row">
                 <%= f.label(:number, "Project Number", class: "input-label") %>
-                <%= f.text_field :number, class: "" %>
+                <%= f.text_field :number, class: "input-narrow" %>
             </div>
             <div class="input-row">
                 <%= f.label(:building_type, "Building Type", class: "input-label") %>
@@ -35,7 +36,24 @@
             </div>
             <div class="input-row">
                 <%= f.label(:client_type, "Client Type", class: "input-label") %>
-                <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %></div>
+                <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:status, "Status", class: "input-label") %>
+                    <div class="radio-group">
+                        <label class="radio">
+                            <%= f.radio_button :status, "potential", data_toggle: "radio" %>
+                            Potential
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :status, "current", data_toggle: "radio" %>
+                            Current
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :status, "completed", data_toggle: "radio" %>
+                            Completed
+                        </label>
+                    </div>
             </div>
         </div>
 
@@ -61,7 +79,7 @@
             </div> <!-- end wide -->
   
         <div class="save-row">
-            <%= f.submit "Add Project", class: "btn btn-primary save-btn" %>
+            <%= f.submit "Add Project", class: "btn btn-primary save-btn", action: "create", controller: "projects" %>
         </div>
 
     <% end %>

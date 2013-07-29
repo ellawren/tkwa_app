@@ -55,6 +55,17 @@ module ProjectsHelper
       "<td class=\"phase-cell #{phase.name.gsub(/[ ]*/, '')}\"> #{act} #{est} </td>".html_safe
     end
 
+    def fee_calc_td(f, phase)
+      est_hours = eval("f.#{phase.shorthand}_hours")
+      if est_hours == nil
+        est = "<div class='input-spacer'></div>"
+      else
+        est = "<div class='input' >#{strip(est_hours)}</div>"
+      end
+
+      "<td class=\"phase-cell #{phase.name.gsub(/[ ]*/, '')}\">#{est}</td>".html_safe
+    end
+
 
     def is_over?(estimated_hours, actual_hours)
       "over" if estimated_hours.to_f < actual_hours.to_f
@@ -87,11 +98,11 @@ module ProjectsHelper
         else 
           r = goal - actual
           if r >= 10
-            "<div class=\"act sum\"><div class=\"num\">#{r}</div></div>".html_safe
+            "<div class=\"act sum\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
           elsif r <= -10
-            "<div class=\"act sum over\"><div class=\"num\">#{r}</div></div>".html_safe
+            "<div class=\"act sum over\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
           else
-            "<div class=\"act sum caution1\"><div class=\"num\">#{r}</div></div>".html_safe
+            "<div class=\"act sum caution1\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
           end
         end
     end

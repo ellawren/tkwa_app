@@ -69,13 +69,24 @@
                 <%= content_tag(:div, value, class: "flash #{key}") %>
             <% end %>
 
-            <div class="page-header">
-                <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+            <!-- page header -->
+            <% if @project.status == "potential" %>
+                <a class="header-label" href="/potential_projects">Potential Projects</a>
+                <div class="page-header">
+                    <h1><%= @project.name %></h1>
+            <% else %>
+                <div class="page-header">
+                    <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+            <% end %>
                 <ul class="controls">
-                    <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
+                    <% unless @project.status == "potential" %>
+                        <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
+                    <% end %>
                     <li><a href="#">delete</a></li>
                 </ul>
-            </div>  
+
+            </div>   
+            <!-- end header -->   
 
             <%= render "tabnav" %>
 
@@ -219,10 +230,6 @@
         $(this).removeData('modal');
     })
 
-    //click on leftPanel label
-    $(".fn-label").click( function() {
-        //id = $(this).parent('.row').attr('data-id');
-        alert("hi");
-    })
+
 
     </script>

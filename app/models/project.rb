@@ -81,6 +81,9 @@ class Project < ActiveRecord::Base
     has_many :schedule_items
     accepts_nested_attributes_for :schedule_items, :allow_destroy => true
 
+    has_many :shop_drawings
+    accepts_nested_attributes_for :shop_drawings, :allow_destroy => true
+
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
@@ -99,17 +102,36 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :phases
     accepts_nested_attributes_for :tasks
 
-	validates :name, 	presence: true, length: { maximum: 50 }
-	validates :number, 	presence: true, uniqueness: true
+	validates :name, presence: true, length: { maximum: 50 }
+    validates :number, uniqueness: { :message => "Project must be assigned a number." }, if: lambda { |p| p.try(:status) != 'potential' }
+    validates :status, presence: true
 
     before_save :default_values
     def default_values
         self.status ||= 'current'
+        if self.status == 'potential'
+            self.number = "000000"
+        end
     end
 
     scope :with_patterns, {
         :select => "DISTINCT projects.*",
         :joins => "INNER JOIN patterns ON patterns.project_id = projects.id"
+    }
+
+    scope :potential_projects, {
+        :select => "projects.*",
+        :conditions => ["status = ? AND awarded = ?", 'potential', 'pending' ]
+    }
+
+    scope :inactive_projects, {
+        :select => "projects.*",
+        :conditions => ["status = ? AND awarded = ?", 'potential', 'no' ]
+    }
+
+    scope :awarded_projects, {
+        :select => "projects.*",
+        :conditions => ["status = ? AND awarded = ?", 'current', 'yes' ]
     }
 
 
