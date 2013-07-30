@@ -1,5 +1,6 @@
 <tr>
-	<td class="tname"><%= employee_name(f.object.contact_id) %><br />
+	<td class="tname"><%= employee_name(f.object.contact_id) %> 
+		<div class="rate"><%= billable_rate(f.object.contact_id) %></div>
 		<%= f.hidden_field :contact_id %>
 		</div>
 	</td>

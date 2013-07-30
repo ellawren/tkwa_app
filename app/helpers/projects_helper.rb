@@ -177,6 +177,12 @@ module ProjectsHelper
       employee.name
     end
 
+    def billable_rate(contactid)
+      employee = Employee.find_by_contact_id(contactid)
+      datarecord = DataRecord.find_by_employee_id(employee.id)
+      number_to_currency(datarecord.billable_rate)
+    end
+
   	
 
     def estimated_billing(project, phase)

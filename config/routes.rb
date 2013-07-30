@@ -52,6 +52,7 @@ resources :contacts
   resources :holidays
   resources :microposts,  only: [:create, :destroy]
   resources :messages
+  resources :phases
   resources :relationships, only: [:create, :destroy]
   resources :schedule_items
   resources :services

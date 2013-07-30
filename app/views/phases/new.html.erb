@@ -1,0 +1,15 @@
+<% content_for :page_header do %>
+  <% provide :title, "Add New Phase" %>
+  <div class="page-header">
+    <h1>Add New Phase</h1>
+  </div>
+<% end %>
+
+<%= form_for @phase do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'fields', f: f %>
+
+  <div class="actions">
+    <%= f.submit "Create Phase", class: "btn btn-large" %>
+  </div>
+<% end %>

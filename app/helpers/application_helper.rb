@@ -84,6 +84,9 @@ module ApplicationHelper
     # execption for /potential_projects
     elsif params[:controller] == "static_pages" && params[:action] == "potential_projects"
         "class='active'" if c_name.include?(params[:action])
+    # execption for /phases
+    elsif params[:controller] == "phases"
+        "class='active'" if c_name.include?('projects')
     # all other pages
     else
         "class='active'" if c_name.include?(params[:controller])
