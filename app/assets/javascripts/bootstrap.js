@@ -216,11 +216,12 @@
     , backdrop: function (callback) {
         var that = this
           , animate = this.$element.hasClass('fade') ? 'fade' : ''
+          , flash = this.$element.hasClass('flash') ? 'flash' : ''
 
         if (this.isShown && this.options.backdrop) {
           var doAnimate = $.support.transition && animate
 
-          this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+          this.$backdrop = $('<div class="modal-backdrop ' + animate + ' ' + flash + '" />')
             .appendTo(document.body)
 
           this.$backdrop.click(

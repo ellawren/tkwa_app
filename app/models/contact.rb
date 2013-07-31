@@ -103,6 +103,14 @@ class Contact < ActiveRecord::Base
     arr.sort { |a,b| a.name <=> b.name }
   end
 
+  def project_ids
+    arr = []
+    self.project_list.each do |team|
+      arr.push(team.id)
+    end
+    arr
+  end
+
   CONTACT_CATEGORIES =   [  "Client", "Consultant", "Contractor", "Supplier", "Architect",
               "Marketing", "Employee"
              ]

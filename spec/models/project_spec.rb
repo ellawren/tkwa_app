@@ -61,7 +61,10 @@
 #  mkt_description     :text
 #  mkt_reference       :string(255)
 #  mkt_status          :string(255)
-#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- patterns\n- marketing\n")
+#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- schedule\n")
+#  proposal_date       :string(255)
+#  interview_date      :string(255)
+#  awarded             :string(255)     default("pending")
 #
 
 require 'spec_helper'

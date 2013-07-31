@@ -51,7 +51,8 @@
                             <%= link_to current_user.name, edit_contact_path(current_user.employee.contact_id) %>
                             <ul>
                                 <li><%= link_to "Settings", edit_user_path(current_user.employee.user_id) %></li>
-                                <li><%= link_to "Admin", admin_path %></li>
+                                <li><%= link_to "My Messages", messages_path %></li>
+                                <% if current_user.admin? %><li><%= link_to "Admin", admin_path %></li> <% end %>
                                 <li><%= link_to "Log Out", signout_path %></li>
                             </ul> <!-- end sub menu -->
                         </li>
@@ -69,6 +70,9 @@
                                 <% if User.find(param.user_id).photo.url %>
                                     <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
                                 <% end %>
+                                <div class="project-name">
+                                    <% unless param.project_id.blank? %><%= link_to Project.find(param.project_id).name, Project.find(param.project_id) %><% end %>
+                                </div>
                                 <div class="content">
                                     <%= param.content %>
                                 </div>

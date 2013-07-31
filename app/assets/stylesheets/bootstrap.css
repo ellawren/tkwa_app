@@ -5185,6 +5185,7 @@ input[type="submit"].btn.btn-mini {
   z-index: 1040;
   background-color: #000000;
 }
+
 .modal-backdrop.fade {
   opacity: 0;
 }
@@ -5192,6 +5193,12 @@ input[type="submit"].btn.btn-mini {
 .modal-backdrop.fade.in {
   opacity: 0.8;
   filter: alpha(opacity=80);
+}
+.modal-backdrop.flash.fade.in {
+  -webkit-transition: opacity .3s linear, top 0s ease-out;
+  -moz-transition: opacity .3s linear, top 0s ease-out;
+  -o-transition: opacity .3s linear, top 0s ease-out;
+  transition: opacity .3s linear, top 0s ease-out;
 }
 .modal {
   position: fixed;
@@ -5223,6 +5230,13 @@ input[type="submit"].btn.btn-mini {
   -o-transition: opacity .3s linear, top .3s ease-out;
   transition: opacity .3s linear, top .3s ease-out;
   top: -25%;
+}
+
+.modal.flash.fade.in {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 .modal.fade.in {
   top: 10%;

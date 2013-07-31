@@ -42,6 +42,10 @@ module ApplicationHelper
     end
   end
 
+  def current_employee
+    Employee.find_by_user_id(current_user.id)
+  end
+
   def link_to_add_category(name, f, cat, html_class)
     if f.object.cat01.blank?
         catz = "cat01"
@@ -185,6 +189,10 @@ module ApplicationHelper
 
   def link_to_remove_fields_2(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_2(this)", class: "delete fui-cross")
+  end
+
+  def link_to_remove_fields_3(name, f)
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_3(this)", class: "delete fui-cross")
   end
 
   def link_to_add_category_fields(name, f, cat, html_class)

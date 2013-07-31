@@ -24,5 +24,6 @@ end
 #  review_status     :string(255)
 #  created_at        :datetime        not null
 #  updated_at        :datetime        not null
+#  final_action      :string(255)
 #
 

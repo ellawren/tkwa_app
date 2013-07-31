@@ -11,20 +11,21 @@
     
         <!-- main content -->
         <div class="container">
-	
-            		<!--<% flash.each do |key, value| %>
-                  <div class="modal fade in" id="success">
-                    <div class="modal-body">
-                      <%= content_tag(:div, value, class: "flash #{key}") %>
-                    </div>
-                  </div>
-                <% end %>-->
-                  		
+
                 <% flash.each do |key, value| %>
                   <%= content_tag(:div, value, class: "flash #{key}") %>
                 <% end %>
-                
 
+                <!-- flash modal -->
+                <!--<div id="flash" class="modal flash fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-body">
+                      <% flash.each do |key, value| %>
+                        <%= content_tag(:div, value, class: "flash #{key}") %>
+                      <% end %>
+                    </div>
+                </div>-->
+                <!-- end flash modal -->
+                  	
             		<%= yield :page_header %>
             		<%= yield :tabnav %>
             		
@@ -36,6 +37,21 @@
         			<%= debug(params) if Rails.env.development? %>
                     
     	</div> <!-- end container -->
+
+  <!-- uncomment this to use modal flashes -->
+  <!--   <% if flash.count >= 1 %>
+        <script>
+              setTimeout(function () {
+                  var $modal = $('#flash')
+                  $modal.modal('show'); // show modal
+                  setTimeout(function () {
+                      $modal.modal('hide'); // hide modal
+                  }, 1000);    
+              });
+        </script>
+      <% else %>
+      <% end %>
+  -->
 
     </body>  
 </html>  

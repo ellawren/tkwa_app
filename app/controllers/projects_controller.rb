@@ -101,7 +101,7 @@ class ProjectsController < ApplicationController
   end
   
   def index
-    @q = Project.search(params[:q])
+    @q = Project.all_projects.search(params[:q])
     @projects = @q.result(:distinct => true)
     @contact = Contact.find(current_user.employee.contact_id)
 

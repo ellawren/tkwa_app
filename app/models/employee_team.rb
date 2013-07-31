@@ -31,16 +31,13 @@ class EmployeeTeam < ActiveRecord::Base
   validates :contact_id, :presence => true
 
   def est_total
-    pd = pd_hours.to_f
-    sd = sd_hours.to_f
-    dd = dd_hours.to_f
-    cd = cd_hours.to_f
-    bid = bid_hours.to_f
-    cca = cca_hours.to_f
-    int = int_hours.to_f
-    his = his_hours.to_f
-    add = add_hours.to_f
-    pd + sd + dd + cd + bid + cca + int + his + add
+    array = []
+    sum = 0
+    Project.find(self.project_id).available_phases.each do |phase|
+        array.push( eval("#{phase.shorthand}_hours.to_f") )
+    end
+    array.map{|x| sum += x}
+    sum.to_f
   end
 
 

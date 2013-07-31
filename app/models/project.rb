@@ -61,7 +61,10 @@
 #  mkt_description     :text
 #  mkt_reference       :string(255)
 #  mkt_status          :string(255)
-#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- patterns\n- marketing\n")
+#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- schedule\n")
+#  proposal_date       :string(255)
+#  interview_date      :string(255)
+#  awarded             :string(255)     default("pending")
 #
 
 class Project < ActiveRecord::Base
@@ -82,7 +85,7 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :schedule_items, :allow_destroy => true
 
     has_many :shop_drawings
-    accepts_nested_attributes_for :shop_drawings, :allow_destroy => true
+    accepts_nested_attributes_for :shop_drawings, :allow_destroy => true, :reject_if => lambda { |a| a[:date_received].blank? }
 
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
@@ -117,6 +120,11 @@ class Project < ActiveRecord::Base
     scope :with_patterns, {
         :select => "DISTINCT projects.*",
         :joins => "INNER JOIN patterns ON patterns.project_id = projects.id"
+    }
+
+    scope :all_projects, {
+        :select => "projects.*",
+        :conditions => ["status != ?", 'potential' ]
     }
 
     scope :potential_projects, {
@@ -347,7 +355,9 @@ class Project < ActiveRecord::Base
             array = []
             sum = 0
             time_entries.each do |t| 
-                array.push(t.entry_total)
+                if available_phases.map{|a| a.number}.include? t.phase_number
+                    array.push(t.entry_total)
+                end
             end
             array.map{|x| sum += x}
             sum
@@ -378,8 +388,8 @@ class Project < ActiveRecord::Base
 
         year_array_full = []
         time_entries.each do |t| 
-            year = Timesheet.find_by_id(t.timesheet_id).year
-            year_array_full.push(year)
+                year = Timesheet.find_by_id(t.timesheet_id).year
+                year_array_full.push(year)
         end
         year_array = year_array_full.uniq
 
@@ -389,7 +399,9 @@ class Project < ActiveRecord::Base
             array = []
             sum = 0
             time_entries.each do |t| 
-                array.push(t.entry_total)
+                if available_phases.map{|a| a.number}.include? t.phase_number
+                    array.push(t.entry_total)
+                end
             end
             array.map{|x| sum += x}
             data = DataRecord.find_or_create_by_year_and_employee_id(2012, employee_id)
@@ -472,16 +484,13 @@ class Project < ActiveRecord::Base
 
     # sum of estimated hours entered for project
     def sum_est
-        pd = phase_est('pd') || 0
-        sd = phase_est('sd') || 0
-        dd = phase_est('dd') || 0
-        cd = phase_est('cd') || 0
-        bid = phase_est('bid') || 0
-        cca = phase_est('cca') || 0
-        int = phase_est('int') || 0
-        his = phase_est('his') || 0
-        add = phase_est('add') || 0
-        (pd + sd + dd + cd + bid + cca + int + his + add).to_f
+        array = []
+        sum = 0
+        available_phases.each do |phase|
+            array.push(phase_est(phase.shorthand).to_f )
+        end
+        array.map{|x| sum += x}
+        sum.to_f
     end   
 
     # sum of actual hours entered for project
@@ -490,7 +499,9 @@ class Project < ActiveRecord::Base
         array = []
         sum = 0
         time_entries.each do |t| 
-            array.push(t.entry_total)
+            if available_phases.map{|a| a.number}.include? t.phase_number
+                array.push(t.entry_total)
+            end
         end
         array.map{|x| sum += x}
         sum.to_f

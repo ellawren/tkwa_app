@@ -55,13 +55,18 @@ function remove_fields_2(link) {
   $(link).closest(".row").hide();
 }
 
+function remove_fields_3(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".shop-drawing").hide();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
+  $( ".datepicker" ).datepicker();
   return false;
-  changePhase();
-  $(".chzn-select").chosen();
+  
 }
 
 function add_category_fields(link, cat, content) {

@@ -1,18 +1,28 @@
 <%= form_for @project do |f| %>
 
-    <div class="header">
-        <div class="phase">Phase</div>
-        <div class="desc">Description</div>
-        <div class="start">Start Date</div>
-        <div class="end">End Date</div>
-        <div class="duration">Duration</div>
-    </div>
-	<!-- nested form for team-->
+<h2>Shop Drawing Log</h2>
+
+    <div id="shop-drawings">
+        <div class="header">
+            <div class="received">Received</div>
+            <div class="spec">Spec Section</div>
+            <div class="desc">Description</div>
+            <div class="consultant">Consultant</div>
+            <div class="status">Review Status</div>
+            <div class="final-action">Final Action</div>
+        </div>
+    
+    	<!-- nested form for shop drawings-->
         <%= f.fields_for :shop_drawings do |builder| %>
             <%= render 'shop_drawing_fields', :f => builder %>
         <% end %>
         <%= link_to_add_fields "", f, :shop_drawings, "add fui-plus drawing" %>
-    <!-- end team form -->
+        <!-- end shop drawing form -->
+    </div>
+
+    <div class="save-row">
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+    </div>
 
 <% end %>
 

@@ -6,6 +6,17 @@ class Message < ActiveRecord::Base
         :conditions => ["category = ? AND exp_date > ?", 'studio', Time.now ]
     }
 
+    scope :current, {
+        :select => "messages.*",
+        :conditions => ["exp_date > ?", Time.now ]
+    }
+
+    scope :user_messages, lambda { |project_id| where(:project_id => project_id) }
+
+    def self.all_messages(id_array)
+        user_messages(id_array).current + studio_messages
+    end
+
     before_save :date_parse
     def date_parse
         self.exp_date = Date.strptime(self.expiration, "%m/%d/%Y")
