@@ -63,6 +63,6 @@ class EmployeeTeam < ActiveRecord::Base
 	
    	EMPLOYEE_ROLES =   [	"Project Principal", "Project Manager", "Project Architect", 
    						"Project Designer", "Interior Designer", "Programming", "Historic Preservation",
-   						"Graphic Designer"
+   						"Graphic Designer", "Project Intern", "Administration"
     				 ]
 end

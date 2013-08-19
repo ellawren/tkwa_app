@@ -9,7 +9,7 @@
 #  client              :string(255)
 #  building_type       :string(255)
 #  client_type         :string(255)
-#  status              :string(255)
+#  status              :string(255)     default("current")
 #  contact_name        :string(255)
 #  contact_phone       :string(255)
 #  contact_email       :string(255)
@@ -61,10 +61,11 @@
 #  mkt_description     :text
 #  mkt_reference       :string(255)
 #  mkt_status          :string(255)
-#  view_options        :string(255)     default("---\n- scope\n- team\n- tracking\n- billing\n- schedule\n")
+#  view_options        :string(255)     default("---\n- setup\n- scope\n- forecast\n- tracking\n- billing\n")
 #  proposal_date       :string(255)
 #  interview_date      :string(255)
 #  awarded             :string(255)     default("pending")
+#  contact_address     :string(255)
 #
 
 class Project < ActiveRecord::Base
@@ -616,7 +617,7 @@ class Project < ActiveRecord::Base
     BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
     BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
     
-    VIEW_OPTIONS =  [ 'scope', 'team', 'tracking', 'forecast', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
+    VIEW_OPTIONS =  [ 'scope', 'setup', 'tracking', 'forecast', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
 
 end
 

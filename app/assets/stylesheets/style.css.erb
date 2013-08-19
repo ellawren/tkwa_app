@@ -64,11 +64,12 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; list-
 			ul.tabnav.timesheets li a.curr { color:#16a085; }
 
 /* section headers */
-h2 { font-weight:900; float:left; display:block; width:100%; font-size:13pt; margin:30px 0 20px; height:34px; border-bottom:1px solid #e1e6eb; clear:all; }
+h2 { font-weight:900; float:left; display:block; width:100%; font-size:11pt; margin:30px 0 20px; height:34px; border-bottom:1px solid #e1e6eb; clear:all; }
 h3 { font-weight:900;font-size:11pt; }
 h4 { font-weight:900; float:left; display:block; width:100%; font-size:11pt; margin:30px 0 0px; height:34px; clear:all; }
 
 h2.first { margin-top:0px; }
+h2 .note { font-size:12px; color:#bcc6cc; font-family:"Asap"; font-style:italic; font-weight:normal; margin-left:4px; }
 
 /* section content */
 .input-row { width:100%; float:left; }
@@ -76,11 +77,12 @@ input[type="text"], input[type="password"], input[type="datetime"], input[type="
 textarea { resize:vertical; color: #16a085; border: 2px solid #e1e6eb; font-size:14px; padding:5px 10px; }
 .input-label { color:#c3cacf; cursor:default; }
 .input-cell { float:left; color: #16a085; font-size:14px; height:20px; padding:0px 5px; border-radius:6px; padding:10px; }
-button.input-button { margin:1px 0 0 10px; width:68px; height:35px; padding-top:5px; }
+button.input-button { margin:1px 0 0 10px; width:68px; height:35px; font-size:11px; line-height:12px; padding:3px 12px;}
 
 .wide { float:left; width:600px; }
 	.wide input[type="text"], .wide textarea, .wide .uneditable-input { float:left; width:340px; }
 		.wide input[type="text"].button-right, .wide textarea.button-right { width:260px; }
+		.wide input[type="text"].i-am-messed-up { height:34px; }
 	.wide .input-label { float:left; width:150px; padding:10px 0;}
 		.wide .input-label.small-label { width:90px; }
 	.wide.last { width:520px; margin-left:80px; }
@@ -93,7 +95,9 @@ button.input-button { margin:1px 0 0 10px; width:68px; height:35px; padding-top:
 
 .narrow { float:left; width:340px; }
 	.narrow input[type="text"] { float:left; width:190px; }
+		.narrow input[type="text"].i-am-messed-up { width:166px;  }
 	.narrow input[type="text"].input-narrow { width:166px; }
+
 
 	.narrow .input-cell { width:170px; }
 	.narrow textarea { width:163px; resize:vertical; }
@@ -119,13 +123,18 @@ button.input-button { margin:1px 0 0 10px; width:68px; height:35px; padding-top:
 	.half .custom-select { width:200px; }
 	.half .custom-select:first-child, .half .header-row div:first-child { margin-right:15px; }
 	.half.last { margin-left: 40px; }
-	.half input[type="text"] { float:left; width:200px; text-align:right; }
+	.half input[type="text"], .half textarea { float:left; width:300px; }
+		.half input[type="text"].i-am-messed-up, .half textarea.i-am-messed-up { float:left; width:276px; height:34px; }
+		.half.billing input[type="text"] { width:200px; text-align:right; }
 	.half .input-label { float:left; width:150px; padding:10px 0;}
 	.half .custom-select.billing { width:300px; }
 
 	.half.billing input[type="text"] { float:left; width:160px; text-align:right; }
 		.half.billing input[type="text"].margin-left { float:left; width:130px; }
 	.half.billing .input-label { float:left; width:240px; padding:10px 0;}
+
+	.half input[type="text"].button-right, .half textarea.button-right { width:220px; }
+		.half input[type="text"].button-right.i-am-messed-up, .half textarea.button-right.i-am-messed-up { width:195px; }
 
 .full{ float:left; width:100%; }
 	.full .input-label { float:left; width:150px; padding:10px 0;}
@@ -141,7 +150,7 @@ button.input-button { margin:1px 0 0 10px; width:68px; height:35px; padding-top:
 .delete { float:left; display:block; color:#ced5da; font-size:20px; cursor:pointer; margin:6px 0 0 12px; }
 .delete:hover { color:#e64c3c; }
 
-.add { cursor:pointer; margin-top:8px; }
+.add { cursor:pointer; margin-top:20px; }
 .add:after { content:"select team member"; font-size:14px; font-family: "Lato", sans-serif; margin-left:6px;  font-weight:700; color:#86cc71; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 .add.consultant:after { content:"select consultant"; }
 .add.category:after { content:"select another category"; }
@@ -382,7 +391,7 @@ table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold {
 
 .text-input { width:100px; }
 
-th.align-right { text-align:center; }
+th.align-right { text-align:right; }
 
 tr.footer td { text-align:right; font-weight:900; border-top:2px solid #344953;  }
 

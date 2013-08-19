@@ -1,13 +1,11 @@
 <ul class="tabnav">
 	<li class="<%= is_active?("info")%>"><%= link_to "info", info_project_path(@project) %></li>
+	<li class="<%= is_active?("setup")%>"><%= link_to "setup", setup_project_path(@project) %></li>
 	<% if @project.view_options.include?('scope') %>
 		<li class="<%= is_active?("scope")%>"><%= link_to "scope", scope_project_path(@project) %></li>
 	<% end %>
-	<% if @project.view_options.include?('team') %>
-		<li class="<%= is_active?("team")%>"><%= link_to "team", team_project_path(@project) %></li>
-	<% end %>
-	<% if @project.view_options.include?('schedule') %>
-		<li class="<%= is_active?("schedule")%>"><%= link_to "schedule", schedule_project_path(@project) %></li>
+	<% if @project.view_options.include?('forecast') %>
+		<li class="<%= is_active?("forecast")%>"><%= link_to "forecast", forecast_project_path(@project) %></li>
 	<% end %>
 	<% if @project.status == "potential" %>
 		<li class="<%= is_active?("fee_calc")%>"><%= link_to "fee calculation", fee_calc_project_path(@project) %></li>
@@ -16,8 +14,8 @@
 			<li class="<%= is_active?("tracking")%>"><%= link_to "tracking", tracking_project_path(@project) %></li>
 		<% end %>
 	<% end %>
-	<% if @project.view_options.include?('forecast') %>
-		<li class="<%= is_active?("forecast")%>"><%= link_to "forecast", forecast_project_path(@project) %></li>
+	<% if @project.view_options.include?('schedule') %>
+		<li class="<%= is_active?("schedule")%>"><%= link_to "schedule", schedule_project_path(@project) %></li>
 	<% end %>
 	<% unless @project.status == "potential" %>
 		<% if @project.view_options.include?('billing') %>

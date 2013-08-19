@@ -1,17 +1,20 @@
 <%= form_for @project do |f| %>
 <%= render 'shared/error_messages', :object => f.object %> 
 
- 		<!-- modal for employee target edit -->
-		<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  	<div class="modal-header">
-		    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    	<h3 id="myModalLabel"> </h3>
-		  	</div>
-		  	<div class="modal-body"></div>
-		</div>
-		<!-- end modal -->
+	<!-- modal for employee target edit -->
+	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="myModalLabel"> </h3>
+	  	</div>
+	  	<div class="modal-body"></div>
+	</div>
+	<!-- end modal -->
 
-		<h2>Time Tracking</h2>
+	<h2>Fee Tracking</h2>
+	<% if @project.employee_teams.length == 0 || @project.phases.length == 0 %>
+		<p class="description">This project's team and phases have not been set up yet. Click the 'setup' tab in the bar above to add team members and select phases.</p>
+	<% else %>
 		<p class="description">The table below compares <span class="bold">actual hours</span> as entered on timesheets with <span class="bold">target hours</span> as determined by our fee. Staying as close as possible to the target will keep a project profitable, while going over (shown in <span class="bold over">red</span>) represents a net loss. Hover over actual hours for a breakdown by task.</div>
 
 			
@@ -120,6 +123,8 @@
 			</tbody>
 
 		</table>
+
+	<% end %>
 
 <% end %>
 

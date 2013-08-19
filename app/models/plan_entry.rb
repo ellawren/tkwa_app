@@ -10,7 +10,7 @@ end
 #  id          :integer         not null, primary key
 #  employee_id :integer         not null
 #  project_id  :integer         not null
-#  hours       :decimal(6, 2)
+#  hours       :integer(3)
 #  year        :integer         not null
 #  week        :integer         not null
 #  created_at  :datetime        not null

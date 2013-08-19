@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816152158) do
+ActiveRecord::Schema.define(:version => 20130819195738) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -287,7 +287,7 @@ ActiveRecord::Schema.define(:version => 20130816152158) do
     t.string   "client"
     t.string   "building_type"
     t.string   "client_type"
-    t.string   "status"
+    t.string   "status",                                             :default => "current"
     t.string   "contact_name"
     t.string   "contact_phone"
     t.string   "contact_email"
@@ -299,8 +299,8 @@ ActiveRecord::Schema.define(:version => 20130816152158) do
     t.string   "billing_travel"
     t.string   "billing_consultant"
     t.string   "billing_outofpocket"
-    t.datetime "created_at",                                                                                                                  :null => false
-    t.datetime "updated_at",                                                                                                                  :null => false
+    t.datetime "created_at",                                                                                                                   :null => false
+    t.datetime "updated_at",                                                                                                                   :null => false
     t.string   "billing_ext"
     t.string   "contact_ext"
     t.string   "start_date"
@@ -339,10 +339,11 @@ ActiveRecord::Schema.define(:version => 20130816152158) do
     t.text     "mkt_description"
     t.string   "mkt_reference"
     t.string   "mkt_status"
-    t.string   "view_options",                                       :default => "---\n- scope\n- team\n- tracking\n- billing\n- schedule\n"
+    t.string   "view_options",                                       :default => "---\n- setup\n- scope\n- forecast\n- tracking\n- billing\n"
     t.string   "proposal_date"
     t.string   "interview_date"
     t.string   "awarded",                                            :default => "pending"
+    t.string   "contact_address"
   end
 
   create_table "projects_reimbursables", :id => false, :force => true do |t|

@@ -26,6 +26,10 @@ class ProjectsController < ApplicationController
   def info
     @project = Project.find(params[:id])
   end
+
+  def setup
+    @project = Project.find(params[:id])
+  end
   
   def scope
     @project = Project.find(params[:id])

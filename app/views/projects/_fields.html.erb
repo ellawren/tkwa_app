@@ -1,0 +1,147 @@
+<% if @project.status == "potential" %>
+            <h2>Potential Project Status</h2>
+            <div class="narrow">
+                <div class="input-row">
+                    <%= f.label(:proposal_date, "Proposal Due Date", class: "input-label") %>
+                    <%= f.text_field :proposal_date, class: "datepicker" %>
+                </div>
+                <div class="input-row">
+                    <%= f.label(:interview_date, "Interview Date", class: "input-label") %>
+                    <%= f.text_field :interview_date, class: "datepicker" %>
+                </div>
+            </div>
+            <div class="wide last">
+                <div class="input-row">
+                    <%= f.label(:awarded, "Awarded?", class: "input-label small-label") %>
+                        <div class="radio-group">
+                            <label class="radio">
+                                <%= f.radio_button :awarded, "pending", data_toggle: "radio" %>
+                                Pending
+                                <div id="note" class="radio-note">If we get this project, select 'Yes' to move it into Current Projects. If not, select 'No' to remove it from the Potential Projects list.</div>
+                            </label>
+                            <label class="radio">
+                                <%= f.radio_button :awarded, "yes", data_toggle: "radio" %>
+                                Yes
+                                <div id="awarded" class="radio-hint">Awesome! Don't forget to change the status to 'Current" and add a project number.</div>
+                            </label>
+
+                            <label class="radio">
+                                <%= f.radio_button :awarded, "no", data_toggle: "radio" %>
+                                No
+                                <div id="not-awarded" class="radio-hint">Note: This project will no longer show up as 'active' on the Potential Projects page.</div>
+                            </label>
+                        </div>
+                </div>
+
+            </div>
+        <% end %>
+        
+        <h2>Project Information</h2>
+
+        <div class="wide">
+            <div class="input-row">
+                <%= f.label(:name, "Project Name", class: "input-label") %>
+                <%= f.text_field :name, class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:location, "Location", class: "input-label") %>
+                <%= f.text_area :location, class: "#{'button-right' unless f.object.location.blank? }", rows: "2" %>
+                <% unless f.object.location.blank? %>
+                    <button class="btn input-button" onclick="showMap('project_location'); return false;">Google maps</button>
+                <% end %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:client, "Client", class: "input-label") %>
+                <%= f.text_field :client, class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:client_url, "Client Website", class: "input-label") %>
+                <%= f.text_field :client_url, class: "#{'button-right' unless f.object.client_url.blank?} #{'i-am-messed-up' if params[:action] == 'new' }" %>
+                <% unless f.object.client_url.blank? %>
+                    <button class="btn input-button" onclick="openURL('project_client_url'); return false;">open website</button>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label(:number, "Project Number", class: "input-label") %>
+                <%= f.text_field :number, class: "#{'i-am-messed-up' if params[:action] == 'new' }"%>
+            </div>
+            <div class="input-row">
+                <%= f.label(:building_type, "Building Type", class: "input-label") %>
+                <%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
+            </div>
+            <!--<div class="input-row">
+                <%= f.label(:client_type, "Client Type", class: "input-label") %>
+                <%= f.select(:client_type, Project::CLIENT_TYPES, {:prompt => ' '}, {:class => 'custom-select'} ) %>
+            </div>-->
+            <div class="input-row">
+                <%= f.label(:status, "Status", class: "input-label") %>
+                    <div class="radio-group">
+                        <label class="radio">
+                            <%= f.radio_button :status, "potential", data_toggle: "radio" %>
+                            Potential
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :status, "current", data_toggle: "radio" %>
+                            Current
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :status, "completed", data_toggle: "radio" %>
+                            Completed
+                        </label>
+                    </div>
+            </div>
+        </div>
+
+
+        <div class="half">
+            <h2>Billing Contact</h2>
+                
+            <div class="input-row">
+                <%= f.label(:billing_name, "Name", class: "input-label") %>
+                <%= f.text_field :billing_name, class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
+            </div>
+                    
+            <div class="input-row">
+                <%= f.label(:billing_address, "Address", class: "input-label") %>
+                <%= f.text_area :billing_address, class: "#{'i-am-messed-up' if params[:action] == 'new' }", rows: "2" %>
+            </div>
+                            
+            <div class="input-row">
+                <%= f.label(:billing_phone, "Phone", class: "input-label") %>
+                <%= f.text_field :billing_phone, value: number_to_phone(@project.billing_phone, :area_code => true), class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:billing_email, "Email", class: "input-label") %>
+                <%= f.text_field :billing_email, class: "#{'button-right' unless f.object.billing_email.blank?} #{'i-am-messed-up' if params[:action] == 'new' }" %>
+                <% unless f.object.billing_email.blank? %>
+                    <button class="btn input-button" onclick="mailTo('<%= f.object.billing_email %>'); return false;">send email</button>
+                <% end %>
+            </div> 
+                    
+        </div> <!-- end half -->
+        <div class="half last">
+            <h2>Project Contact <span class="note">(if different from billing)</span></h2>
+                
+            <div class="input-row">
+                <%= f.label(:contact_name, "Name", class: "input-label") %>
+                <%= f.text_field :contact_name, class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:contact_address, "Address", class: "input-label") %>
+                <%= f.text_area :contact_address, class: "#{'i-am-messed-up' if params[:action] == 'new' }", rows: "2" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:contact_phone, "Phone", class: "input-label") %>
+                <%= f.text_field :contact_phone, value: number_to_phone(@project.contact_phone, :area_code => true), class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:contact_email, "Email", class: "input-label") %>
+                <%= f.text_field :contact_email, class: "#{'button-right' unless f.object.contact_email.blank?} #{'i-am-messed-up' if params[:action] == 'new' }" %>
+                <% unless f.object.contact_email.blank? %>
+                    <button class="btn input-button" onclick="mailTo('<%= f.object.contact_email %>'); return false;">send email</button>
+                <% end %>
+            </div>        
+        </div> <!-- end half -->

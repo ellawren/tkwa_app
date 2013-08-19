@@ -67,8 +67,8 @@
 <div class="row icons">
 
     <div class="tile-box">
-        <%= link_to image_tag("bell.png", :alt => "new-project", :class => "round-icon"), new_project_path %>
-        <%= link_to "Add A New Project", new_project_path, :class => "tile-label" %>
+        <%= link_to image_tag("bell.png", :alt => "new-project", :class => "round-icon"), new_project_path(:status => 'current') %>
+        <%= link_to "Add A New Project", new_project_path(:status => 'current'), :class => "tile-label" %>
     </div>
 
     <div class="tile-box">

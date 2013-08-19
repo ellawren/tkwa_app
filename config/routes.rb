@@ -17,7 +17,7 @@ TkwaApp::Application.routes.draw do
     resources :shop_drawings
     get :autocomplete_contact_name, :on => :collection
     member do
-      get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns', 'forecast'
+      get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'setup', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns', 'forecast'
     end
   end    
 
