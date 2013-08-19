@@ -84,6 +84,9 @@ class Project < ActiveRecord::Base
     has_many :schedule_items
     accepts_nested_attributes_for :schedule_items, :allow_destroy => true
 
+    has_many :plan_entries
+    accepts_nested_attributes_for :plan_entries, :allow_destroy => true
+
     has_many :shop_drawings
     accepts_nested_attributes_for :shop_drawings, :allow_destroy => true, :reject_if => lambda { |a| a[:date_received].blank? }
 
@@ -132,14 +135,14 @@ class Project < ActiveRecord::Base
         :conditions => ["status = ? AND awarded = ?", 'potential', 'pending' ]
     }
 
-    scope :inactive_projects, {
+    scope :past_potential_projects, {
         :select => "projects.*",
-        :conditions => ["status = ? AND awarded = ?", 'potential', 'no' ]
+        :conditions => ["awarded = ? OR awarded = ?", 'yes', 'no' ]
     }
 
-    scope :awarded_projects, {
+    scope :current, {
         :select => "projects.*",
-        :conditions => ["status = ? AND awarded = ?", 'current', 'yes' ]
+        :conditions => ["status = ?", 'current' ]
     }
 
 
@@ -208,12 +211,6 @@ class Project < ActiveRecord::Base
         ( project_bills_total.to_f / consultant_contract_total.to_f ) * 100
       end
     end
-
-
-    scope :current, {
-        :select => "projects.*",
-        :conditions => ["status = ?", 'Current' ]
-    }
 
     def available_phases
         available_phases = []
@@ -574,9 +571,34 @@ class Project < ActiveRecord::Base
         end
     end
 
+    def employee_forecast(employee_id, four_month_array)
+        entries = []
+        four_month_array.each do |w, y|
+            entries.push(PlanEntry.find_or_create_by_project_id_and_employee_id_and_year_and_week(self.id, employee_id, y, w))
+        end
+        entries
+    end
 
-
-
+    def forecast_week_total(four_month_array)
+        x = []
+        four_month_array.each do |w, y|
+            plan_entries = PlanEntry.find_all_by_project_id_and_year_and_week(self.id, y, w)
+            array = []
+            sum = 0
+            plan_entries.each do |e|
+                if e.hours?
+                    array.push(e.hours)
+                end
+            end
+            array.map{|x| sum += x}
+            if sum == 0
+                x.push("")
+            else
+                x.push(sum)
+            end
+        end
+        x
+    end
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
     					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",
@@ -594,7 +616,7 @@ class Project < ActiveRecord::Base
     BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
     BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
     
-    VIEW_OPTIONS =  [ 'scope', 'team', 'tracking', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
+    VIEW_OPTIONS =  [ 'scope', 'team', 'tracking', 'forecast', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
 
 end
 

@@ -17,7 +17,7 @@ class ShopDrawing < ActiveRecord::Base
 
 	def final_action_div
 		if self.final_action?
-			status = "<label class=\"plaintext\">#{self.final_action} #{self.final_action_date}</label>"
+			status = "<label class=\"plaintext\">#{self.final_action}<br>#{self.final_action_date}</label>"
 		else
 			status = "<label class=\"plaintext add-action\">add action</label>"
 		end

@@ -40,6 +40,14 @@ class EmployeeTeam < ActiveRecord::Base
     sum.to_f
   end
 
+  def employee_id
+    Employee.find_by_contact_id(self.contact_id).id
+  end
+
+  def employee_name
+    Employee.find_by_contact_id(self.contact_id).name
+  end
+
 
 	scope :current, {
   		:select => "employee_teams.*",

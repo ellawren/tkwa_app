@@ -15,8 +15,11 @@
 <ul id="pattern-tiles" >
 	<% @patterns.each do |p| %>
 		<li>
-			<%= image_tag p.diagram.url(:medium), class: "diagram" %>
+			<div class="number"><%= p.number %> /</div>
 			<div class="title"><%= p.name %></div>
+			<div class="issue"><%= p.issue %></div>
+			<div class="solution"><%= p.solution %></div>
+			<div class="diagram"></div>
 		</li>
 	<% end %>
 </ul>

@@ -1,0 +1,42 @@
+<% content_for :page_header do %>
+	<% provide :title, "Plan Entries Index" %>
+	<div class="page-header">
+		<h1>Plan Entries Index</h1>
+	</div>
+<% end %>
+<%= link_to "Add Plan Entry", new_plan_entry_path, class: "btn" %>
+
+<h3>Plan Entries</h3>
+
+<br />
+
+<% Project.all.each do |p| %>
+	<% if p.plan_entries.count >= 1 %>
+	<div class="bold"><%= p.name %></div>
+	<br>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Week 30</th>
+				<th>Week 31</th>
+				<th>Week 32</th>
+				<th>Week 33</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% p.employee_teams.each do |e| %>
+			<tr>
+				<td><%= e.employee_name %></td>
+				<td><%= p.employee_forecast(e.employee_id, 2013, 30).hours %></td>
+				<td><%= p.employee_forecast(e.employee_id, 2013, 31).hours %></td>
+				<td><%= p.employee_forecast(e.employee_id, 2013, 32).hours %></td>
+				<td><%= p.employee_forecast(e.employee_id, 2013, 33).hours %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>
+<% end %>
+
+

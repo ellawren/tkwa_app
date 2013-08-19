@@ -190,5 +190,26 @@ module ProjectsHelper
       # DataRecord.find_by_employee_id(Employee.find_by_contact_id(f.contact_id).id).billable_rate.to_f
     end
 
+    def forecast_week_total_all(four_month_array)
+        x = []
+        four_month_array.each do |w, y|
+            plan_entries = PlanEntry.find_all_by_year_and_week(y, w)
+            array = []
+            sum = 0
+            plan_entries.each do |e|
+                if e.hours?
+                    array.push(e.hours)
+                end
+            end
+            array.map{|x| sum += x}
+            if sum == 0
+                x.push("")
+            else
+                x.push(sum)
+            end
+        end
+        x
+    end
+
 end
 

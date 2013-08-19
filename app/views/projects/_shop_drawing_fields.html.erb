@@ -3,40 +3,61 @@
 	<%= f.text_field :date_received, class: "datepicker received" %>
 	
 	<%= f.text_field :spec, class: "spec" %>
-
+    <div class="letter">O</div>
 	<%= f.text_field :description, class: "desc" %>
 
 	<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select consultant" } ) %>
 
-    <a data-toggle="modal" href="#modal-<%= f.object.id %>" class="status"><%= f.object.current_status %></a>
-    <a data-toggle="modal" href="#modal-<%= f.object.id %>" class="status"><%= f.object.final_action_div %></a>
+    <a data-toggle="modal" href="#modal-<%= f.object.id %>-status" class="status"><%= f.object.current_status %></a>
+    <a data-toggle="modal" href="#modal-<%= f.object.id %>-final" class="status"><%= f.object.final_action_div %></a>
     <%= link_to_remove_fields_3 "  ", f %>
 
 </div>
 
-<!-- modal to edit schedule items -->
-<div id="modal-<%= f.object.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- modal to edit review status -->
+<div id="modal-<%= f.object.id %>-status" class="modal hide fade shop-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
-        <h3 id="myModalLabel">Current Status</h3>
+        <h3 id="myModalLabel"><%= f.object.spec %>: <%= f.object.description %></h3>
     </div>
     <div class="modal-body dwg-modal">
     	<div class="header">
             <div class="sent">Date Sent</div>
-            <div class="review-status">Review Status</div>
             <div class="returned">Date Returned</div>
-            <div class="final-action">Final Action</div>
-            <div class="final-date">Final Action Date</div>
+            <div class="review-status">Review Status</div>
+            
         </div>
         <div class="modal-fields">
     		<%= f.text_field :date_sent, class: "datepicker sent" %>
-    		<%= f.select(:review_status, [['Approved', 'Approved'], ['Approved As Noted', 'Approved As Noted'], ['Revise + Resubmit', 'Revise + Resubmit'], ['Not Approved', 'Not Approved']], { :include_blank => true },{:class => 'custom-select review-status'}) %>
             <%= f.text_field :date_returned, class: "datepicker returned" %>
-            <%= f.select(:final_action, [['Sent to Contractor', 'Sent to Contractor'], ['Sent to Owner', 'Sent to Owner'], ['Filed', 'Filed'], ['A/E file', 'A/E file']], { :include_blank => true },{:class => 'custom-select final-action'}) %>
-            <%= f.text_field :final_action_date, class: "datepicker final-date" %>
+    		<%= f.select(:review_status, [['Approved', 'Approved'], ['Approved As Noted', 'Approved As Noted'], ['Revise + Resubmit', 'Revise + Resubmit'], ['Not Approved', 'Not Approved']], { :include_blank => true },{:class => 'custom-select review-status'}) %>
+            
     	</div>
     </div>
     <div class="modal-footer">
     	<%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Done Editing</button>-->
+    </div>
+</div>
+<!-- end modal -->
+
+<!-- modal to edit final action -->
+<div id="modal-<%= f.object.id %>-final" class="modal hide fade shop-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel"><%= f.object.spec %>: <%= f.object.description %></h3>
+    </div>
+    <div class="modal-body dwg-modal">
+        <div class="header">
+            <div class="final-date">Final Action Date</div>
+            <div class="final-action">Final Action</div>
+        </div>
+        <div class="modal-fields">
+            <%= f.text_field :final_action_date, class: "datepicker final-date" %>
+            <%= f.select(:final_action, [['Sent to Contractor', 'Sent to Contractor'], ['Sent to Owner', 'Sent to Owner'], ['Filed', 'Filed'], ['A/E file', 'A/E file']], { :include_blank => true },{:class => 'custom-select final-action'}) %>
+           <!-- <%= f.text_field :notes, class: "" %> -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
         <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Done Editing</button>-->
     </div>
 </div>

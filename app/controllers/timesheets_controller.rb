@@ -26,8 +26,8 @@ class TimesheetsController < ApplicationController
    @contact = Contact.find(@employee.contact_id)
    @data_record = DataRecord.find_or_create_by_employee_id_and_year(@employee.id, @timesheet.year)
 
-   #1.times { @timesheet.time_entries.build }
-   #1.times { @timesheet.non_billable_entries.build }
+   1.times { @timesheet.time_entries.build }
+   1.times { @timesheet.non_billable_entries.build }
 
    render :layout => 'search' 
   end
@@ -47,10 +47,10 @@ class TimesheetsController < ApplicationController
 
     if @timesheet.update_attributes(params[:timesheet])
       flash[:success] = "Timesheet updated!"
-      redirect_to "/employees/#{@timesheet.employee_id}/timesheets/#{@timesheet.year}/#{@timesheet.week}"
+      redirect_to(:back) 
     else
       flash[:error] = "Something went wrong."
-      redirect_to "/employees/#{@timesheet.employee_id}/timesheets/#{@timesheet.year}/#{@timesheet.week}"
+      redirect_to(:back) 
     end
   end
 

@@ -9,6 +9,7 @@ TkwaApp::Application.routes.draw do
   post "/csv_import" => 'projects#csv_import'
   match '/projects/current',  to: 'projects#current'
   match '/projects/import',   to: 'projects#import'
+  match '/projects/forecast_index',   to: 'projects#forecast_index'
 
   resources :projects do
     resources :employee_teams
@@ -16,7 +17,7 @@ TkwaApp::Application.routes.draw do
     resources :shop_drawings
     get :autocomplete_contact_name, :on => :collection
     member do
-      get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns'
+      get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns', 'forecast'
     end
   end    
 
@@ -35,13 +36,12 @@ resources :consultant_teams do
 end
 resources :bills
 
-resources :contacts
-#  resources :contacts do
- #   member do
- #     get 'employees', 'consultants', 'data'
- #   end
+resources :contacts do
+    member do
+      get 'data'
+    end
  #   get :autocomplete_contact_work_company, :on => :collection
- # end
+end
 
   resources :categories 
   resources :consultants
@@ -53,6 +53,7 @@ resources :contacts
   resources :microposts,  only: [:create, :destroy]
   resources :messages
   resources :phases
+  resources :plan_entries
   resources :relationships, only: [:create, :destroy]
   resources :schedule_items
   resources :services

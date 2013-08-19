@@ -1,4 +1,4 @@
-<div class="table-row <% if nb_unsaved?(f.object) %>unsaved<% end %> <% if f.object.category == "Holiday" %>holiday<% end %>">
+<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %>">
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :employee_id, value: "#{@timesheet.employee_id}" %>
    

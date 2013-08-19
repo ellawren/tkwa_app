@@ -47,6 +47,15 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def forecast
+    @project = Project.find(params[:id])
+  end
+
+  def forecast_index
+    @projects = Project.current.all
+    render :layout => 'projects_static' 
+  end
+
   def summary
     @project = Project.find(params[:id])
     @consultant_list = ConsultantTeam.find(:all, :select => 'DISTINCT consultant_id', :conditions => [ "project_id = #{@project.id}" ] )

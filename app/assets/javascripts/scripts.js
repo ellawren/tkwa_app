@@ -239,7 +239,7 @@ function openMap(id) {
 function showMap(id) {
   address = $("#"+id).text();
   queryString = address.replace(/(\r\n|\n|\r| )/gm,"+");
-  document.write("<iframe width=\"690\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?q=" + queryString + "&amp;ie=UTF8&amp;hq=&amp;hnear=" + queryString + "&amp;t=m&amp;z=14&amp;output=embed\"></iframe><br /><small><a href=\"https://maps.google.com/maps?q=" + queryString + "&amp;ie=UTF8&amp;hq=&amp;hnear=" + queryString + "&amp;style=\"color:#0000FF;text-align:left\">View Larger Map</a></small>");
+  window.open("https://maps.google.com/maps?q=" + queryString + "&amp;ie=UTF8&amp;hq=&amp;hnear=" + queryString )
 }
 
 

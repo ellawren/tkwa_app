@@ -148,7 +148,7 @@ def category_array
     list = []
     id = self.id.to_s
     self.category_array.each do |c|
-      list.push("<li><a href='/contacts/" + id + "/data?" + c + "'>" + c + " data</a></li>")
+      list.push("<li><a href='/contacts/" + id + "/data?cat=" + c + "'>" + c + " data</a></li>")
     end
     list.join.html_safe
 

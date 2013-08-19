@@ -20,6 +20,11 @@ class Employee < ActiveRecord::Base
     has_many :timesheets
     has_many :data_records
     has_many :time_entries, :through => :timesheets
+    has_many :plan_entries
 
     accepts_nested_attributes_for :data_records
+
+    def name
+    	Contact.find(self.contact_id).name
+    end
 end

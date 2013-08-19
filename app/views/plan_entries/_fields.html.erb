@@ -1,0 +1,25 @@
+<div class="wide">
+
+    <div class="input-row">
+        <%= f.label(:hours, class: "input-label") %>
+        <%= f.text_field :hours, class: "" %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:year, class: "input-label") %>
+        <%= f.text_field :year, class: "" %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:week, class: "input-label") %>
+        <%= f.text_field :week, class: "" %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:project_id, class: "input-label") %>
+        <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:employee_id, class: "input-label") %>
+        <%= f.collection_select(:employee_id, Employee.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>
+ 
+</div>
+

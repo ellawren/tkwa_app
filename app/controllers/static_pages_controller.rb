@@ -9,8 +9,7 @@ skip_before_filter :signed_in_user, :only => [:home]
 
   def potential_projects
 	@potential_projects = Project.potential_projects
-	@inactive_projects = Project.inactive_projects
-	@awarded_projects = Project.awarded_projects
+	@past_potential_projects = Project.past_potential_projects
   end
   
 end

@@ -21,17 +21,111 @@ module ApplicationHelper
   end
 
   def get_week_number(date)
-    wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
-    wk_now = date.beginning_of_week(start_day = :sunday)
-    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
+    # this prevents the first week of a year from being counted as the last week of the prev year
+    #if date.beginning_of_week(start_day = :sunday) == (date - 1.year).end_of_year.beginning_of_week(start_day = :sunday) ||
+    #  date.beginning_of_week(start_day = :sunday) == (date + 1.year).beginning_of_year.beginning_of_week(start_day = :sunday)
+    #  1
+    #else
+      wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
+      wk_now = date.beginning_of_week(start_day = :sunday)
+      ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
+    #end
   end
 
   def get_day(date)
     date.wday + 1
   end
+
+
+  def month_shading(week, year)
+    # jan / mar / may / jul / sep / nov
+    year_start = "1/1/#{year}".to_date.beginning_of_week(start_day = :sunday) 
+    if (year_start + (week-1).weeks).strftime("%b") == 'Jan' || 
+       (year_start + (week-1).weeks).strftime("%b") == 'Mar' ||
+       (year_start + (week-1).weeks).strftime("%b") == 'May' ||
+       (year_start + (week-1).weeks).strftime("%b") == 'Jul' ||
+       (year_start + (week-1).weeks).strftime("%b") == 'Sep' ||
+       (year_start + (week-1).weeks).strftime("%b") == 'Nov'
+      "gray"
+    end
+  end
+
+  def four_month_array
+    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+    arr = []
+    (start_date..end_date).each do |date|
+      if date.strftime("%a") == "Sun"
+        if get_week_number(date) == 1 
+          date = date.end_of_week(start_day = :sunday)
+          arr.push([get_week_number(date), date.year])
+        else
+          arr.push([get_week_number(date), date.year])
+        end
+      end
+    end
+    arr
+  end
+
+  def four_month_year_array
+    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+    arr = []
+    (start_date..end_date).each do |date|
+      if date.strftime("%a") == "Sun"
+        if get_week_number(date) == 1 
+            date = date.end_of_week(start_day = :sunday)
+        end
+        if arr.include?(date.year)
+          arr.push("")
+        else
+          arr.push(date.year)
+        end
+      end
+    end
+    arr
+  end
+
+  def four_month_monthname_array
+    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+    arr = []
+    (start_date..end_date).each do |date|
+      if date.strftime("%a") == "Sun"
+        if get_week_number(date) == 1 
+            date = date.end_of_week(start_day = :sunday)
+        end
+        if arr.include?(date.strftime("%b"))
+          arr.push("")
+        else
+          arr.push(date.strftime("%b"))
+        end
+      end
+    end
+    arr
+  end
+
+  def four_month_weeknum_array
+    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+    arr = []
+    (start_date..end_date).each do |date|
+      if date.strftime("%a") == "Sun"
+          arr.push(get_week_number(date))
+      end
+    end
+    arr
+  end
+
+
   
   def is_active?(page_name)
-    	"sel" if params[:action] == page_name
+    	# exception for contact data pages
+      if params[:controller] == "contacts" && params[:action] == "data"
+        "sel" if params[:cat] == page_name
+      else
+        "sel" if params[:action] == page_name
+      end
   end
 
   def is_set?(field, cat, label, select)
@@ -91,6 +185,9 @@ module ApplicationHelper
     # execption for /phases
     elsif params[:controller] == "phases"
         "class='active'" if c_name.include?('projects')
+    # execption for /employees
+    elsif params[:controller] == "employees"
+        "class='active'" if c_name.include?('contacts')
     # all other pages
     else
         "class='active'" if c_name.include?(params[:controller])
