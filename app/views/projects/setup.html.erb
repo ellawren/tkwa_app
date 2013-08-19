@@ -1,8 +1,7 @@
 	<%= form_for @project do |f| %>
 		<div class="full phases top-margin">
-	        <div class="column-header">
-	    	   <h3>Phases</h3>
-	        </div>
+	    	<h2>Phases</h2>
+	    	<p class="description">Click phases to make them available for this project. Available phases are shown in green. Employees cannot add time to inactive phases.</p>
 			<%= hidden_field_tag "project[phase_ids][]", nil %>
 			<% Phase.find(:all, :order => 'number').each do |phase| %>
 				<label class="checkbox">
