@@ -144,7 +144,7 @@ button.input-button { margin:1px 0 0 10px; width:68px; height:35px; font-size:11
 
 .radio-group { float:left; margin-top:10px; }
 
-.custom-select { float:left; height:40px; line-height:26px; background-image:url(/assets/select-arrow.png); background-repeat:no-repeat; background-position:right; border: 2px solid #e1e6eb; color: #16a085; font-family: "Lato", sans-serif; font-size: 14px; padding: 4px 5px; text-indent: 6px; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; }
+.custom-select { float:left; height:36px; line-height:26px; background-image:url(/assets/select-arrow.png); background-repeat:no-repeat; background-position:right; border: 2px solid #e1e6eb; color: #16a085; font-family: "Lato", sans-serif; font-size: 14px; padding: 4px 5px; text-indent: 6px; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; }
 .custom-select:focus { outline:none; }
 
 .delete { float:left; display:block; color:#ced5da; font-size:20px; cursor:pointer; margin:6px 0 0 12px; }
@@ -239,7 +239,7 @@ ul.my-projects li a:hover { background-color:#1abc9c; color:#fff; }
 
 /* project index/contact index - icons */
 .row.icons { margin:40px 0 20px 50px; float:left; }
-.row.icons.three { margin:40px 0 20px 140px; float:left; }
+.row.icons.three { margin:40px 150px 20px; float:left; }
 
 .tile-box { float:left; position:relative; width:200px; height:220px; margin:0 5px; }
 
@@ -491,7 +491,7 @@ footer { float:left; width:100%; display:block; background-color: #fff; margin-b
 	.timesheets .table-head .date .blanch { text-align:center; width:40px; font-size:15px; font-weight:900; padding:4px 0 0 0; margin:0px; }
 	.timesheets .time-entries { float:left; }
  	.timesheets .time-entries .entry { float:left; }
- 	.timesheets .time-entries .text-input { width:39px; text-align:center; padding:0px 3px; margin:2px 4px 2px 0; }
+ 	.timesheets .time-entries .text-input { width:39px; height:32px; text-align:center; padding:0px 3px; margin:2px 4px 2px 0; }
  	.timesheets .time-entries .text-input.weekend { background-color:#f5f7f9; }
 	.timesheets .time-entries .entry.today .text-input { border-color:#f1c40f; }
 	.timesheets .time-entries .entry.today .text-input:focus { border-color:#5bae60; }
@@ -506,7 +506,7 @@ footer { float:left; width:100%; display:block; background-color: #fff; margin-b
 
 	/* nb - description */
 	.timesheets .table-head .nb-description { width:276px; padding-left:12px; margin-top:17px; float:left; }
-	.text-input.nb-description { float:left; margin:2px 4px 2px 0; width:256px; text-align:left; }
+	.text-input.nb-description { float:left; margin:2px 4px 2px 0; height:32px; width:256px; text-align:left; }
 
 	/* add link */
   	.add-link       { float:left; float:left; display:block; margin-top:3px; padding:2px 0 0 26px; background:url(/assets/add-mini-tall.png); background-repeat:no-repeat; text-decoration:none; font-family:Argumentum-Medium; }
@@ -532,9 +532,9 @@ footer { float:left; width:100%; display:block; background-color: #fff; margin-b
 	/* summary */
 
 	.summary { float:left; position:relative; width:100%; background-color:#2c3445; color:#fff; border-radius:6px 0 0 6px; padding:6px 4px 2px 4px; margin:5px 0; width:862px; }
-		.summary .summary-label { float:left; width:447px; height:26px; padding:14px 8px 7px 12px; }
+		.summary .summary-label { float:left; width:447px; height:24px; padding:12px 8px 7px 12px; }
 		.summary .span { width:371px; float:left; height:38px; margin-left:24px; }
-			.summary .span .sum { float:left; width:36px; height:22px; padding:11px 4px 4px 4px; border:2px solid #344953; font-size:13px; font-weight:400; text-align:center; margin:1px 3px 2px 2px; background-color:#344953; border-radius:6px; }
+			.summary .span .sum { float:left; width:36px; height:20px; padding:9px 4px 4px 4px; border:2px solid #344953; font-size:13px; font-weight:400; text-align:center; margin:1px 3px 2px 2px; background-color:#344953; border-radius:6px; }
 			.summary .span .total { float:left; margin:0 9 0 4px; padding:10px 5px 6px 5px; width:50px; height:20px; font-size:13px; font-weight:900; text-align:center; }
 				.summary .span .sum.today { border-color:#f1c40f; }
 	.table-main.timesheets .table-head.summary-header { border-bottom:none; }
@@ -542,7 +542,7 @@ footer { float:left; width:100%; display:block; background-color: #fff; margin-b
 	/* these are for the round total bubble */
 	/*.summary:after { content:" "; position:absolute; right:-10px; top:0px; border-top:28px solid transparent; border-bottom:28px solid transparent; border-left:10px solid #2c3445; }*/
 	/*.timesheet-total { width:78px; height:28px; padding:36px 6px 34px 14px; text-align:center; float:left; margin:-18px -27px 0 -10px; border-radius:50px; font-size:22px; font-weight:700; border:3px solid #e1e6eb; color:#344953; }*/
-	.timesheet-total { width:50px; height:18px; font-size:14px; float:left; background-color:#2c3445; color:#fff; margin-top:5px; padding:19px 10px 18px 10px; border-radius:0 6px 6px 0; }
+	.timesheet-total { width:50px; height:16px; font-size:14px; float:left; background-color:#2c3445; color:#fff; margin-top:5px; padding:17px 10px 18px 10px; border-radius:0 6px 6px 0; }
 
 .switch-box { float:right; margin-top:-65px; }
 
@@ -551,7 +551,7 @@ footer { float:left; width:100%; display:block; background-color: #fff; margin-b
 
 /* scope - phases */
 
-.phases { margin-top:30px; }
+.phases { }
 .phases label.checkbox { width:108px; margin-right:10px; height:100px; padding-left:0px; z-index:99; position:relative; text-align:center; }
 .phases label.checkbox:last-child { margin-right:0px; }
 	.phases .checkbox .icons { width:108px; height:100px; border-radius:8px; color:#85a5a6; z-index:90; position:relative; background-color:#ecf0f5; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
@@ -893,15 +893,29 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 
 /* forecast index */
 
-.table.forecast tr.project td { border-top:1px solid #344953; }
-.table.forecast tr.employee td:first-child { font-weight:400; padding-left:20px; }
-.table.forecast.index td { border-right: 1px solid #f1f1f1; text-align:center; width:34px; }
-.table.forecast.index td:first-child { text-align:left; width:auto; }
+.table.forecast tr.head td { border-top:1px solid #344953; }
+.table.forecast tr.subhead td:first-child { font-weight:400; padding-left:20px; }
 .table.forecast.index td.gray { background-color:rgba(245,247,250, .5); }
 .table.forecast.index td a { color:#16a085;}
 	.table.forecast.index td a:hover { color:#1abc9c;}
 .table.forecast.index tfoot td { color:#344953; }
-.table.forecast.index tbody { height:300px; overflow:scroll; }
+.table.forecast.index tr { display:block; width:940px; }
+.table.forecast.index tbody { height:493px; width:960px; overflow-y:auto; overflow-x:visible; display:block; }
+.table.forecast th.buttons { text-align:left; }
+.table.forecast th.buttons .btn { padding:2px 12px; font-size:13px; margin:-15px 0 5px; background-color:#ced5da; }
+.table.forecast th.buttons .btn:hover { opacity:.7;}
+.table.forecast th.buttons .btn.active { background-color:#1abc9c; color:#fff; }
+.table.forecast.index tr.head td:first-child { padding-right:20px; }
+.table.forecast.index tbody tr:last-child td { border-bottom:none; }
+
+.table.forecast.index td { border-right: 1px solid #f1f1f1; text-align:center; width:35px; max-width:35px; min-width:35px; }
+.table.forecast.index tr td:first-child { width:200px; max-width:200px; min-width:200px; text-align:left; }
+
+.table.forecast.index tr th { width:38px; max-width:38px; min-width:38px; }
+.table.forecast.index thead tr th:first-child  { width:220px; max-width:220px; min-width:220px; }
+
+.table.forecast.index tfoot tr td  { border-top:2px solid #344953; width:35px; max-width:35px; min-width:35px; }
+.table.forecast.index tfoot tr td:first-child { width:218px; max-width:218px; min-width:218px; }
 
 /* errors */
 

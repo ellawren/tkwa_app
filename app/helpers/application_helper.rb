@@ -50,9 +50,9 @@ module ApplicationHelper
     end
   end
 
-  def four_month_array
-    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
-    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+  def four_month_array(start)
+    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = start_date + 17.weeks
     arr = []
     (start_date..end_date).each do |date|
       if date.strftime("%a") == "Sun"
@@ -67,9 +67,9 @@ module ApplicationHelper
     arr
   end
 
-  def four_month_year_array
-    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
-    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+  def four_month_year_array(start)
+    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = start_date + 17.weeks
     arr = []
     (start_date..end_date).each do |date|
       if date.strftime("%a") == "Sun"
@@ -86,9 +86,9 @@ module ApplicationHelper
     arr
   end
 
-  def four_month_monthname_array
-    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
-    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+  def four_month_monthname_array(start)
+    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = start_date + 17.weeks
     arr = []
     (start_date..end_date).each do |date|
       if date.strftime("%a") == "Sun"
@@ -105,9 +105,9 @@ module ApplicationHelper
     arr
   end
 
-  def four_month_weeknum_array
-    start_date = (Date.today.beginning_of_month).beginning_of_week(start_day = :sunday)
-    end_date = ((Date.today.beginning_of_month + 3.months).end_of_month).beginning_of_week(start_day = :sunday)
+  def four_month_weeknum_array(start)
+    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    end_date = start_date + 17.weeks
     arr = []
     (start_date..end_date).each do |date|
       if date.strftime("%a") == "Sun"

@@ -4,50 +4,77 @@
         <h1>4-Month Forecast</h1>
     </div>
 <% end %>
+<% date = Date.today %>
 
 <table class="table forecast index">
     <thead>
         <tr>
             <th></th>
-            <% four_month_year_array.each do |w| %>
+            <% four_month_year_array(date).each do |w| %>
                 <th><%= w %></th>
             <% end %>
         </tr>
         <tr>
-            <th></th>
-            <% four_month_monthname_array.each do |w| %>
+            <th class="buttons">
+                <%= link_to "by project", projects_forecast_index_path(:view => 'project'), :class => "btn #{'active' if params[:view] != 'employee'}" %>
+                <%= link_to "by employee", projects_forecast_index_path(:view => 'employee'), :class => "btn #{'active' if params[:view] == 'employee'}" %>
+            </th>
+            <% four_month_monthname_array(date).each do |w| %>
                 <th><%= w %></th>
             <% end %>
         </tr>
         <tr class="week">
             <th></th>
-            <% four_month_weeknum_array.each do |w| %>
+            <% four_month_weeknum_array(date).each do |w| %>
                 <th <%= "class='current'" if w == this_week %>><%= w %></th>
             <% end %>
         </tr>
     </thead>
     <tbody>
-        <% Project.current.each do |p| %>
-            <tr class="project">
-                <td><%= link_to p.name, forecast_project_path(p.id) %></td>
-                <% four_month_array.each do |w, y| %>
-                    <td class="<%= month_shading(w, y) %>"></td>
+        <% if params[:view] != 'employee' %>
+            <% Project.current.each do |p| %>
+                <% if p.employee_teams.current.count > 0 %>
+                    <tr class="head">
+                        <td><%= link_to p.name, forecast_project_path(p.id) %></td>
+                        <% four_month_array(date).each do |w, y| %>
+                            <td class="<%= month_shading(w, y) %>"></td>
+                        <% end %>
+                    </tr>
+                    <% p.employee_teams.each do |e| %>
+                    <tr class="subhead">
+                        <td><%= e.employee_name %></td>
+                        <% p.employee_forecast(e.employee_id, four_month_array(date)).each do |plan| %>
+                            <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
+                        <% end %>
+                    </tr>
+                    <% end %>
                 <% end %>
-            </tr>
-            <% p.employee_teams.each do |e| %>
-            <tr class="employee">
-                <td><%= e.employee_name %></td>
-                <% p.employee_forecast(e.employee_id, four_month_array).each do |plan| %>
-                    <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
+            <% end %>
+        <% else %>
+            <% Employee.current.each do |e| %>
+                <% if Contact.find(e.contact_id).employee_teams.current.count > 0 %>
+                    <tr class="head">
+                        <td><%=  e.name %></td>
+                        <% four_month_array(date).each do |w, y| %>
+                            <td class="<%= month_shading(w, y) %>"></td>
+                        <% end %>
+                    </tr>
+                    <% Contact.find(e.contact_id).employee_teams.current.each do |t| %>
+                        <tr class="subhead">
+                            <td><%= t.project_name %></td>
+                            <% e.project_forecast(t.project_id, four_month_array(date)).each do |plan| %>
+                                <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
+                            <% end %>
+                        </tr>
+                    <% end %>
                 <% end %>
-            </tr>
             <% end %>
         <% end %>
     </tbody>
     <tfoot>
         <tr>
             <td></td>
-            <% forecast_week_total_all(four_month_array).each do |w| %>
+            <% forecast_week_total_all(four_month_array(date)).each do |w| %>
                 <td><%= w %></td>
             <% end %>
         </tr>

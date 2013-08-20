@@ -8,6 +8,10 @@ class HolidaysController < ApplicationController
     @holiday = Holiday.find(params[:id])
   end
 
+  def edit
+    @holiday = Holiday.find(params[:id])
+  end
+
   def new
     @holiday = Holiday.new
   end

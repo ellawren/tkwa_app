@@ -48,6 +48,10 @@ class EmployeeTeam < ActiveRecord::Base
     Employee.find_by_contact_id(self.contact_id).name
   end
 
+  def project_name
+    Project.find(self.project_id).name
+  end
+
 
 	scope :current, {
   		:select => "employee_teams.*",

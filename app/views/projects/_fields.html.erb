@@ -1,13 +1,13 @@
-<% if @project.status == "potential" %>
+<% if @project.status == "potential" || params[:status] == 'potential' %>
             <h2>Potential Project Status</h2>
             <div class="narrow">
                 <div class="input-row">
                     <%= f.label(:proposal_date, "Proposal Due Date", class: "input-label") %>
-                    <%= f.text_field :proposal_date, class: "datepicker" %>
+                    <%= f.text_field :proposal_date, class: "datepicker i-am-messed-up" %>
                 </div>
                 <div class="input-row">
                     <%= f.label(:interview_date, "Interview Date", class: "input-label") %>
-                    <%= f.text_field :interview_date, class: "datepicker" %>
+                    <%= f.text_field :interview_date, class: "datepicker i-am-messed-up" %>
                 </div>
             </div>
             <div class="wide last">
@@ -78,15 +78,27 @@
             </div>-->
             <div class="input-row">
                 <%= f.label(:status, "Status", class: "input-label") %>
+                    <%= hidden_field_tag "project[status]", nil %>
                     <div class="radio-group">
-                        <label class="radio">
-                            <%= f.radio_button :status, "potential", data_toggle: "radio" %>
-                            Potential
-                        </label>
-                        <label class="radio">
-                            <%= f.radio_button :status, "current", data_toggle: "radio" %>
-                            Current
-                        </label>
+                        <% if params[:action] == 'new' %>
+                            <label class="radio">
+                                <%= radio_button_tag("project[status]", "potential", params[:status] == 'potential', { data_toggle: "radio" } ) %>
+                                Potential
+                            </label>
+                            <label class="radio">
+                                <%= radio_button_tag("project[status]", "current", params[:status] == 'current', { data_toggle: "radio" } ) %>
+                                Current
+                            </label>
+                        <% else %>
+                            <label class="radio">
+                                <%= f.radio_button :status, "potential", data_toggle: "radio" %>
+                                Potential
+                            </label>
+                            <label class="radio">
+                                <%= f.radio_button :status, "current", data_toggle: "radio" %>
+                                Current
+                            </label>
+                        <% end %>
                         <label class="radio">
                             <%= f.radio_button :status, "completed", data_toggle: "radio" %>
                             Completed

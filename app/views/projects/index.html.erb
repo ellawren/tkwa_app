@@ -64,7 +64,7 @@
 
 <% end %>
 
-<div class="row icons">
+<div class="row icons three">
 
     <div class="tile-box">
         <%= link_to image_tag("bell.png", :alt => "new-project", :class => "round-icon"), new_project_path(:status => 'current') %>
@@ -72,13 +72,8 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
-        <%= link_to "View Consultants", consultants_path, :class => "tile-label" %>
-    </div>
-
-    <div class="tile-box">
         <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), projects_forecast_index_path %>
-        <%= link_to "6-Month Forecast", projects_forecast_index_path, :class => "tile-label" %>
+        <%= link_to "4-Month Forecast", projects_forecast_index_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box">

@@ -1,25 +1,41 @@
 <% content_for :page_header do %>
-	<% provide :title, "Timesheets Index" %>
+	<% provide :title, "Timesheets" %>
 	<div class="page-header">
-		<h1><%= @contact.name %></h1>
+		<h1><%= current_user.name.split[0] %>'s Timesheets</h1>
 	</div>
 <% end %>
 
-<% content_for :tabnav do %>
-	<%= render "tabnav_timesheets" %>
-<% end %>
+<div class="row icons">
 
-<h3>Timesheets</h3>
+	<div class="tile-box">
+        <%= link_to image_tag("data.png", :alt => "timesheets", :class => "round-icon"), "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %>
+        <%= link_to "Timesheets", "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}", :class => "tile-label" %>
+    </div>
 
-<br />
-	<ul>
-		<% @timesheets.each do |param| %>
-  			<li>
-  					<%= link_to "#{param.year}, Week #{param.week}", "/employees/#{param.employee_id}/timesheets/#{param.year}/#{param.week}" %>
+    <div class="tile-box">
+        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), projects_forecast_index_path %>
+        <%= link_to "Forecast", projects_forecast_index_path, :class => "tile-label" %>
+    </div>
 
-  			</li>
+    <div class="tile-box disabled">
+        <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
+        <%= link_to "Expense Reports", "#", :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box disabled">
+        <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
+        <%= link_to "Targets", "#", :class => "tile-label" %>
+    </div>
+
+</div> <!-- end tiles -->
+
+<h2><%= Date.today.year %> Holidays</h2>
+
+	<table class="table">
+		<% Holiday.all.each do |h| %>
+			<tr>
+				<td><%= h.name %></td>
+				<td><%= h.date.strftime("%a, %b %e, %Y") %></td>
+			</tr>
 		<% end %>
-	</ul>
-<br /><br />
-
-<h3>Holidays</h3>
+	</table>

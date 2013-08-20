@@ -30,7 +30,8 @@
 				  			<tr>
 				  				<td class="span2"><%= param.date.strftime("%B %d (%a)") %></td>
 				  				<td class="span3"><%= param.name %></td>
-				  				<td class="span1"><%= link_to "View details", holiday_path(param) %></td>
+				  				<td class="span1"><%= link_to "View", holiday_path(param) %></td>
+				  				<td class="span1"><%= link_to "Edit", edit_holiday_path(param) %></td>
 				  				<td class="span1"><% if current_user.admin? %>
 			    						<%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
 			  						<% end %>
