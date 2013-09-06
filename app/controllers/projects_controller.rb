@@ -55,6 +55,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def edit_forecast
+    @project = Project.find(params[:id])
+    render :layout => 'modal' 
+  end
+
   def forecast_index
     @projects = Project.current.all
     render :layout => 'projects_static' 

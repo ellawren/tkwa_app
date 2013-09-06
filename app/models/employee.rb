@@ -18,13 +18,15 @@ class Employee < ActiveRecord::Base
     belongs_to :contact
     default_scope joins(:contact).order('contacts.name ASC')
 
-
     has_many :timesheets
     has_many :data_records
     has_many :time_entries, :through => :timesheets
     has_many :plan_entries
 
     accepts_nested_attributes_for :data_records
+    accepts_nested_attributes_for :plan_entries, :allow_destroy => true
+    accepts_nested_attributes_for :employee_teams
+
 
     def name
     	Contact.find(self.contact_id).name
@@ -35,11 +37,32 @@ class Employee < ActiveRecord::Base
         :conditions => ["leave_date = ?", '' ]
     }
 
-    def project_forecast(project_id, four_month_array)
+    def employee_forecast(project_id, four_month_array)
         entries = []
         four_month_array.each do |w, y|
             entries.push(PlanEntry.find_or_create_by_project_id_and_employee_id_and_year_and_week(project_id, self.id, y, w))
         end
         entries
+    end
+
+    def forecast_week_total(four_month_array)
+        x = []
+        four_month_array.each do |w, y|
+            plan_entries = PlanEntry.find_all_by_employee_id_and_year_and_week(self.id, y, w)
+            array = []
+            sum = 0
+            plan_entries.each do |e|
+                if e.hours?
+                    array.push(e.hours)
+                end
+            end
+            array.map{|x| sum += x}
+            if sum == 0
+                x.push("")
+            else
+                x.push(sum)
+            end
+        end
+        x
     end
 end

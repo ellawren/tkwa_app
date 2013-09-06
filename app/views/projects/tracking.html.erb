@@ -134,4 +134,11 @@ $(document).ready(function() {
 		$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
 		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
 });
+
+
+//reset modal remote on close
+    $('#myModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+
 </script>

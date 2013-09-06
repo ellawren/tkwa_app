@@ -6,6 +6,16 @@
 <% end %>
 <% date = Date.today %>
 
+<!-- modal for forecast edit edit -->
+<div class="modal hide fade forecast-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"> </h3>
+    </div>
+    <div class="modal-body"></div>
+</div>
+<!-- end modal -->
+
 <table class="table forecast index">
     <thead>
         <tr>
@@ -35,7 +45,9 @@
             <% Project.current.each do |p| %>
                 <% if p.employee_teams.current.count > 0 %>
                     <tr class="head">
-                        <td><%= link_to p.name, forecast_project_path(p.id) %></td>
+                        <td>
+                            <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
+                        </td>
                         <% four_month_array(date).each do |w, y| %>
                             <td class="<%= month_shading(w, y) %>"></td>
                         <% end %>
@@ -54,7 +66,9 @@
             <% Employee.current.each do |e| %>
                 <% if Contact.find(e.contact_id).employee_teams.current.count > 0 %>
                     <tr class="head">
-                        <td><%=  e.name %></td>
+                        <td>
+                            <a href="<%= edit_employee_forecast_employee_path(e.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= e.name %></a>
+                        </td>
                         <% four_month_array(date).each do |w, y| %>
                             <td class="<%= month_shading(w, y) %>"></td>
                         <% end %>
@@ -62,7 +76,7 @@
                     <% Contact.find(e.contact_id).employee_teams.current.each do |t| %>
                         <tr class="subhead">
                             <td><%= t.project_name %></td>
-                            <% e.project_forecast(t.project_id, four_month_array(date)).each do |plan| %>
+                            <% e.employee_forecast(t.project_id, four_month_array(date)).each do |plan| %>
                                 <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
                             <% end %>
                         </tr>
@@ -80,3 +94,10 @@
         </tr>
     </tfoot>
 </table>
+
+<script>
+//reset modal remote on close
+    $('#myModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+</script>

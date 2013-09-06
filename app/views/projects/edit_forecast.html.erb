@@ -1,11 +1,9 @@
+<div class="header-span">
+    <h3><%= @project.name %></h3>
+</div>
+
 <%= form_for @project do |f| %>
 <% date = Date.today %>
-	<h2>4-Month Forecast</h2>
-
-	<% if @project.employee_teams.length == 0 %>
-		<p class="description">This project's team has not been set up yet. Click the 'setup' tab in the bar above to add team members.</p>
-	<% else %>
-		<p class="description">Enter weekly projected hours for each team member in the table below.</p>
 
 		<table class="table forecast">
 			<thead>
@@ -51,7 +49,5 @@
 		<div class="save-row">
 			<%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
 		</div>
-
-	<% end %>
 
 <% end %>

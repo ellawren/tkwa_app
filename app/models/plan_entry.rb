@@ -1,7 +1,7 @@
 class PlanEntry < ActiveRecord::Base
 	belongs_to :employee
   	belongs_to :project
-
+	delegate :contact, :to => :employee, :allow_nil => true
 end
 # == Schema Information
 #
