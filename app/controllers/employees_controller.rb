@@ -15,7 +15,6 @@ class EmployeesController < ApplicationController
 
   def edit_employee_forecast
     @employee = Employee.find(params[:id])
-    @contact = Contact.find(@employee.contact_id)
     render :layout => 'modal' 
   end
 

@@ -71,7 +71,7 @@
 class Project < ActiveRecord::Base
     default_scope order('name')
 
-    has_many :contacts, :through => :employee_teams
+    has_many :employees, :through => :employee_teams
     has_many :employee_teams, :dependent => :destroy
 
     has_many :consultants, :through => :consultant_teams
@@ -99,8 +99,8 @@ class Project < ActiveRecord::Base
 
     # allows project page to add employees + consultants via team join model. must allow destroy.
     accepts_nested_attributes_for :consultant_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? }
-    accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:contact_id].blank? }
-
+    # accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:employee_id].blank? }
+    accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
     # allows project page to add items via checkboxes
     accepts_nested_attributes_for :services
@@ -346,9 +346,8 @@ class Project < ActiveRecord::Base
 
 
     # sum of actual hours entered for project, by employee
-    def employee_actual(contact_id, phase)
+    def employee_actual(employee_id, phase)
         if phase == "Total"
-            employee_id = Employee.find_by_contact_id(contact_id).id
             time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
             array = []
             sum = 0
@@ -360,7 +359,6 @@ class Project < ActiveRecord::Base
             array.map{|x| sum += x}
             sum
         else
-            employee_id = Employee.find_by_contact_id(contact_id).id
             time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
             array = []
             sum = 0
@@ -375,8 +373,7 @@ class Project < ActiveRecord::Base
 
     # calculate actual billing for each employee by phase
     # this function is used to calculate actual_billing_total (also in this file)
-    def actual_billing(contact_id, phase)
-        employee_id = Employee.find_by_contact_id(contact_id).id
+    def actual_billing(employee_id, phase)
 
         if phase == "Total"
             time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
@@ -429,7 +426,7 @@ class Project < ActiveRecord::Base
         sum = 0
         employee_array.each do |e|
             employee = Employee.find_by_id(e)
-            number = self.actual_billing(employee.contact_id, phase)
+            number = self.actual_billing(employee.id, phase)
             total_array.push( number )
         end
 
@@ -448,7 +445,7 @@ class Project < ActiveRecord::Base
             sum = 0
             teams.each do |t| 
                 est_hours = t.est_total
-                employee_id = Employee.find_by_contact_id(t.contact_id).id
+                employee_id = t.employee_id
                 data = DataRecord.find_or_create_by_year_and_employee_id(Time.now.year, employee_id)
                 
                 unless est_hours.nil?
@@ -466,7 +463,7 @@ class Project < ActiveRecord::Base
             sum = 0
             teams.each do |t| 
                 est_hours = eval("t.#{p.shorthand}_hours")
-                employee_id = Employee.find_by_contact_id(t.contact_id).id
+                employee_id = t.employee_id
                 data = DataRecord.find_or_create_by_year_and_employee_id(Time.now.year, employee_id)
                 
                 unless est_hours.nil?

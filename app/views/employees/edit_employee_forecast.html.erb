@@ -27,7 +27,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @contact.employee_teams.current.each do |t| %>
+			<% @employee.employee_teams.current.each do |t| %>
 				<tr>
 					<td><%= t.project_name %></td>
 					<%= f.fields_for :plan_entries, @employee.employee_forecast(t.project_id, four_month_array(Date.today)) do |plan| %>

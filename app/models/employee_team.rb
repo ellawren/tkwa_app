@@ -20,15 +20,16 @@
 #
 
 class EmployeeTeam < ActiveRecord::Base
-	attr_accessible :project_id, :contact_id, :role, :pd_hours, :sd_hours, :dd_hours, 
+	attr_accessible :project_id, :employee_id, :role, :pd_hours, :sd_hours, :dd_hours, 
     :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
   default_scope :order => 'role DESC'
 
 	belongs_to :project
-	belongs_to :contact
+	#belongs_to :contact
+  belongs_to :employee
 
 	validates :project_id, :presence => true
-  validates :contact_id, :presence => true
+  validates :employee_id, :presence => true
 
   def est_total
     array = []
@@ -40,12 +41,8 @@ class EmployeeTeam < ActiveRecord::Base
     sum.to_f
   end
 
-  def employee_id
-    Employee.find_by_contact_id(self.contact_id).id
-  end
-
   def employee_name
-    Employee.find_by_contact_id(self.contact_id).name
+    Employee.find(self.employee_id).name
   end
 
   def project_name

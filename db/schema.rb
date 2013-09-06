@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130819195738) do
+ActiveRecord::Schema.define(:version => 20130906185707) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -143,21 +143,23 @@ ActiveRecord::Schema.define(:version => 20130819195738) do
   create_table "employee_teams", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "project_id"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "role"
-    t.decimal  "pd_hours",   :precision => 6, :scale => 2
-    t.decimal  "sd_hours",   :precision => 6, :scale => 2
-    t.decimal  "dd_hours",   :precision => 6, :scale => 2
-    t.decimal  "cd_hours",   :precision => 6, :scale => 2
-    t.decimal  "bid_hours",  :precision => 6, :scale => 2
-    t.decimal  "cca_hours",  :precision => 6, :scale => 2
-    t.decimal  "int_hours",  :precision => 6, :scale => 2
-    t.decimal  "his_hours",  :precision => 6, :scale => 2
-    t.decimal  "add_hours",  :precision => 6, :scale => 2
+    t.decimal  "pd_hours",    :precision => 6, :scale => 2
+    t.decimal  "sd_hours",    :precision => 6, :scale => 2
+    t.decimal  "dd_hours",    :precision => 6, :scale => 2
+    t.decimal  "cd_hours",    :precision => 6, :scale => 2
+    t.decimal  "bid_hours",   :precision => 6, :scale => 2
+    t.decimal  "cca_hours",   :precision => 6, :scale => 2
+    t.decimal  "int_hours",   :precision => 6, :scale => 2
+    t.decimal  "his_hours",   :precision => 6, :scale => 2
+    t.decimal  "add_hours",   :precision => 6, :scale => 2
+    t.integer  "employee_id"
   end
 
   add_index "employee_teams", ["contact_id"], :name => "index_employee_teams_on_contact_id"
+  add_index "employee_teams", ["employee_id"], :name => "index_employee_teams_on_employee_id", :unique => true
   add_index "employee_teams", ["project_id", "contact_id"], :name => "index_employee_teams_on_project_id_and_contact_id", :unique => true
   add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
 

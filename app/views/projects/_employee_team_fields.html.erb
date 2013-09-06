@@ -1,7 +1,7 @@
 <div class="row">
 	
-	<%= f.collection_select(:contact_id, Contact.employee_list.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
-	
+	<%= f.collection_select(:employee_id, Employee.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+
     <%= f.hidden_field :_destroy %>
     
 	<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "custom-select" } ) %>

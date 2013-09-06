@@ -1,5 +1,5 @@
 <tr>
-	<td class="tname"><%= employee_name(f.contact_id) %><br />
+	<td class="tname"><%= Employee.find(f.employee_id).name %><br />
 		<a href="<%= edit_project_employee_team_path(f.project_id, f.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets">edit targets</a>
 		</div>
 	</td>
@@ -12,7 +12,7 @@
 			<% if @project.employee_actual(f.contact_id, 'Total') == 0 %>
 				<div class="input-spacer span1 act"></div>
 			<% else %>
-				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= strip(@project.employee_actual(f.contact_id, 'Total')) %></div>
+				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= strip(@project.employee_actual(f.employee_id, 'Total')) %></div>
 			<% end %>
 			<% if f.est_total == 0 %>
 				<div class="input-spacer span1 est"></div>
@@ -22,6 +22,6 @@
 		</td>
 
 		<td class="border-left Remaining">
-			<%= remaining(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>
+			<%= remaining(f.est_total, @project.employee_actual(f.employee_id, 'Total')) %>
 		</td>
 </tr>

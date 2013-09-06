@@ -64,7 +64,7 @@
             <% end %>
         <% else %>
             <% Employee.current.each do |e| %>
-                <% if Contact.find(e.contact_id).employee_teams.current.count > 0 %>
+                <% if e.employee_teams.current.count > 0 %>
                     <tr class="head">
                         <td>
                             <a href="<%= edit_employee_forecast_employee_path(e.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= e.name %></a>
@@ -73,7 +73,7 @@
                             <td class="<%= month_shading(w, y) %>"></td>
                         <% end %>
                     </tr>
-                    <% Contact.find(e.contact_id).employee_teams.current.each do |t| %>
+                    <% e.employee_teams.current.each do |t| %>
                         <tr class="subhead">
                             <td><%= t.project_name %></td>
                             <% e.employee_forecast(t.project_id, four_month_array(date)).each do |plan| %>

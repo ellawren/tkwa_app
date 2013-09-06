@@ -273,7 +273,7 @@ label.checkbox { width:100%; margin-left:0px; float:left; color:#ced5da; }
 
 /* tracking table */
 table.tracking-table { font-size:10pt; margin-top:30px; margin-bottom:40px; border-collapse:collapse; float:left; }
-table.tracking-table th { width:5%;  text-align:left; font-size: 10pt; padding-top:20px; padding-bottom:4px; border-bottom:1px solid #666; font-weight:700; }
+table.tracking-table th { width:5%;  text-align:left; font-size: 10pt; padding-top:20px; padding-bottom:4px; border-bottom:2px solid #34495e; font-weight:700; }
 table.tracking-table th.table-cell { font-size:14pt; font-weight:900; border-left:1px solid #bbb; text-align:center; min-width:70px; padding:0px 4px; }
 table.tracking-table th .blanch { font-size: 8pt; font-weight:500; text-transform:uppercase;  }
 table.tracking-table th.table-cell.TotalToDate { font-size: 10pt; padding-top:20px; border-left:1px solid #666; }
@@ -281,7 +281,7 @@ table.tracking-table th.table-cell.Remaining { font-size: 10pt; padding-top:20px
 
 table.tracking-table th:first-child { padding-left:0px; }
 
-table.tracking-table tbody tr { border-bottom:1px solid #bbb;  }
+table.tracking-table tbody tr { border-bottom:1px solid #bbb; }
 table.tracking-table tbody td { padding:6px 0; }
 table.tracking-table tbody td.phase-cell { border-left:1px solid #bbb; }
 table.tracking-table tbody td.total { border-left:1px solid #666; padding-top:4px; }
@@ -317,8 +317,9 @@ td.total .input.est, td.total .input-spacer.est  { border-radius:0 4px 4px 0; }
 span.plus { font-size:13pt; }
 
 td.Remaining .sum { text-align:center; }
-table.tracking-table tbody tr.lower td { border-top: 1px solid #666;  background-color:#f3f6f9; }
-table.tracking-table tbody tr.lower {  border-bottom:0px; position:relative; }
+table.tracking-table tbody tr.lower td { border-top:2px solid #34495e; background-color:#f3f6f9; }
+table.tracking-table tbody tr.lower {  border-bottom:0px; position:relative; 
+}
 .num { height:26px; }
 
 td.Remaining .sum { margin-left:10%; margin-right:0px; }
@@ -329,11 +330,11 @@ td.Remaining .sum { margin-left:10%; margin-right:0px; }
 .Remaining .act.sum.over { background-color:#e64c3c; }
 
 
-table.tracking-table tbody tr.billing { border-bottom:1px solid #666; border-top:1px solid #666; background-color:#f3f6f9; }
+table.tracking-table tbody tr.billing { border-top:1px solid #666; background-color:#f3f6f9; }
 table.tracking-table tbody tr.billing th { width:5%; } 
 
 table.tracking-table tbody td.smalltext, table.tracking-table th.smalltext { border-right:1px solid #666; }
-table.tracking-table tbody tr:last-child td { border-bottom:1px solid #666; }
+table.tracking-table tbody tr:last-child td { border-bottom:1px solid #ccc; }
 
 table.tracking-table tbody tr.blank, table.tracking-table tbody tr.blank:last-child td { border:none; }
 table.tracking-table tbody tr.blank td { height:40px; }
@@ -908,7 +909,7 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 	.table.forecast.index td a:hover { color:#1abc9c;}
 .table.forecast.index tfoot td { color:#344953; }
 .table.forecast.index tr { display:block; width:940px; }
-.table.forecast.index tbody { height:493px; width:960px; overflow-y:auto; overflow-x:visible; display:block; }
+.table.forecast.index tbody { width:960px; overflow-y:auto; overflow-x:visible; display:block; }
 .table.forecast th.buttons { text-align:left; }
 .table.forecast th.buttons .btn { padding:2px 12px; font-size:13px; margin:-15px 0 5px; background-color:#ced5da; }
 .table.forecast th.buttons .btn:hover { opacity:.7;}
