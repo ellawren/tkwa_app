@@ -1,0 +1,29 @@
+All
+
+<ul>
+		<% @companies.each do |param| %>
+  			<li>
+  					<%= link_to param.name, company_path(param) %>
+  					<% if signed_in? %>
+  						<% if current_user.admin? %>
+    						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+  						<% end %>
+  					<% end %>
+  			</li>
+		<% end %>
+</ul>
+
+Consultants
+
+<ul>
+    <% Company.consultant_list.each do |param| %>
+        <li>
+            <%= link_to param.name, company_path(param) %>
+            <% if signed_in? %>
+              <% if current_user.admin? %>
+                | <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+              <% end %>
+            <% end %>
+        </li>
+    <% end %>
+</ul>

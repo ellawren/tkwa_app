@@ -1,5 +1,6 @@
 TkwaApp::Application.routes.draw do
 
+ 
   resources :users do
     member do
       get :following, :followers, :profile
@@ -39,9 +40,15 @@ resources :consultant_teams do
 end
 resources :bills
 
+match '/contacts/new_company',   to: 'companies#new'
+resources :companies do
+  collection do
+    match 'search' => 'companies#search', via: [:get, :post], as: :search
+  end
+end
 resources :contacts do
     member do
-      get 'data'
+      get 'data', 'employee_data', 'consultant_data', 'client_data'
     end
  #   get :autocomplete_contact_work_company, :on => :collection
 end

@@ -38,15 +38,20 @@
 #  cat05           :string(255)
 #  cat06           :string(255)
 #  view_options    :string(255)     default("---\n- name\n- work\n- personal\n")
+#  company_id      :integer
 #
 
 class Contact < ActiveRecord::Base
   default_scope order('name')
 	has_and_belongs_to_many :categories
 
+  belongs_to :company
   has_one :employee
   has_one :user, :through => :employee
   accepts_nested_attributes_for :employee
+
+  has_one :consultant
+  accepts_nested_attributes_for :consultant
 
   # allows project page to add items via checkboxes
   accepts_nested_attributes_for :categories
@@ -69,7 +74,6 @@ class Contact < ActiveRecord::Base
         self.category = self.category_list
   end
 
-
   scope :non_employees, where("id NOT IN (SELECT contact_id FROM employees)")
 
   scope :employee_list, {
@@ -78,12 +82,6 @@ class Contact < ActiveRecord::Base
   		:conditions => ["status = ?", 'Current' ]
 	}
 
-
-	scope :consultant_list, {
-  		:select => "contacts.*",
-  		:joins => "INNER JOIN categories_contacts ON categories_contacts.contact_id = contacts.id", 
-  		:conditions =>"category_id = 3"
-  }
 
   scope :by_category, (lambda do |id| 
         { :select => "contacts.*",
@@ -94,6 +92,10 @@ class Contact < ActiveRecord::Base
   end)
 
   VIEW_OPTIONS =       [ "name", "work", "personal" ]
+
+  def self.consultant_list
+    Contact.all.select { |r| r.category_array.include?("Consultant") }
+  end
 
   def project_list
     arr = []
@@ -153,8 +155,5 @@ def category_array
     list.join.html_safe
 
   end
-
-
-
 
 end

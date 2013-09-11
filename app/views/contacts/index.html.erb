@@ -66,19 +66,22 @@
 
 <% end %>
 
-
-
 <div class="row icons three">
 
     <div class="tile-box">
         <%= link_to image_tag("contacts.png", :alt => "new-contact", :class => "round-icon"), new_contact_path %>
-        <%= link_to "Add A New Contact", new_contact_path, :class => "tile-label" %>
+        <%= link_to "Add A Person", new_contact_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
+        <%= link_to image_tag("contacts.png", :alt => "new-contact", :class => "round-icon"), companies_path %>
+        <%= link_to "Companies", companies_path, :class => "tile-label" %>
+    </div>
+
+    <!--<div class="tile-box">
         <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
         <%= link_to "View Consultants", consultants_path, :class => "tile-label" %>
-    </div>
+    </div>-->
 
     <div class="tile-box disabled">
         <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
@@ -86,4 +89,5 @@
     </div>
 
   </div> <!-- end tiles -->
+
 

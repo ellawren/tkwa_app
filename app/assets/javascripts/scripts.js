@@ -33,7 +33,6 @@ $(document).ready(function() {
 
 });
 
-
   //scope
 $(".phases .checkbox .icons").html("10");
 

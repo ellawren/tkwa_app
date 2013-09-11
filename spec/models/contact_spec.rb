@@ -38,6 +38,7 @@
 #  cat05           :string(255)
 #  cat06           :string(255)
 #  view_options    :string(255)     default("---\n- name\n- work\n- personal\n")
+#  company_id      :integer
 #
 
 require 'spec_helper'

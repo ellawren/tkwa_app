@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906185707) do
+ActiveRecord::Schema.define(:version => 20130911151421) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(:version => 20130906185707) do
   end
 
   add_index "categories_contacts", ["category_id", "contact_id"], :name => "index_categories_contacts_on_category_id_and_contact_id", :unique => true
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "category"
+  end
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -110,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20130906185707) do
     t.string   "cat05"
     t.string   "cat06"
     t.string   "view_options",    :default => "---\n- name\n- work\n- personal\n"
+    t.integer  "company_id"
   end
 
   create_table "data_records", :force => true do |t|
@@ -141,7 +153,6 @@ ActiveRecord::Schema.define(:version => 20130906185707) do
   add_index "data_records_employees", ["data_record_id", "employee_id"], :name => "index_data_records_employees_on_data_record_id_and_employee_id", :unique => true
 
   create_table "employee_teams", :force => true do |t|
-    t.integer  "contact_id"
     t.integer  "project_id"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
@@ -158,9 +169,6 @@ ActiveRecord::Schema.define(:version => 20130906185707) do
     t.integer  "employee_id"
   end
 
-  add_index "employee_teams", ["contact_id"], :name => "index_employee_teams_on_contact_id"
-  add_index "employee_teams", ["employee_id"], :name => "index_employee_teams_on_employee_id", :unique => true
-  add_index "employee_teams", ["project_id", "contact_id"], :name => "index_employee_teams_on_project_id_and_contact_id", :unique => true
   add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
 
   create_table "employees", :force => true do |t|

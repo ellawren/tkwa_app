@@ -2,21 +2,21 @@
 #
 # Table name: employee_teams
 #
-#  id         :integer         not null, primary key
-#  contact_id :integer
-#  project_id :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  role       :string(255)
-#  pd_hours   :decimal(6, 2)
-#  sd_hours   :decimal(6, 2)
-#  dd_hours   :decimal(6, 2)
-#  cd_hours   :decimal(6, 2)
-#  bid_hours  :decimal(6, 2)
-#  cca_hours  :decimal(6, 2)
-#  int_hours  :decimal(6, 2)
-#  his_hours  :decimal(6, 2)
-#  add_hours  :decimal(6, 2)
+#  id          :integer         not null, primary key
+#  project_id  :integer
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  role        :string(255)
+#  pd_hours    :decimal(6, 2)
+#  sd_hours    :decimal(6, 2)
+#  dd_hours    :decimal(6, 2)
+#  cd_hours    :decimal(6, 2)
+#  bid_hours   :decimal(6, 2)
+#  cca_hours   :decimal(6, 2)
+#  int_hours   :decimal(6, 2)
+#  his_hours   :decimal(6, 2)
+#  add_hours   :decimal(6, 2)
+#  employee_id :integer
 #
 
 class EmployeeTeam < ActiveRecord::Base
@@ -25,7 +25,6 @@ class EmployeeTeam < ActiveRecord::Base
   default_scope :order => 'role DESC'
 
 	belongs_to :project
-	#belongs_to :contact
   belongs_to :employee
 
 	validates :project_id, :presence => true
@@ -48,7 +47,6 @@ class EmployeeTeam < ActiveRecord::Base
   def project_name
     Project.find(self.project_id).name
   end
-
 
 	scope :current, {
   		:select => "employee_teams.*",

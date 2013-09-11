@@ -1,0 +1,69 @@
+<%= form_for @contact do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.fields_for :employee do |e| %>
+
+        <div class="wide">
+            <% if has_current_projects?(@employee) %>
+                <h2>Current Projects</h2>
+                <ul class="project-list">
+                    <% @employee.employee_teams.current.each do |team| %>
+                        <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong>, 
+                            <%= team.role %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+            <% if has_completed_projects?(@employee) %>
+                <h2>Completed Projects</h2>
+                <ul class="project-list">
+                    <% @employee.employee_teams.completed.each do |team| %>
+                        <li><strong><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></strong>, 
+                            <%= team.role %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </div> 
+
+        <div class="narrow">
+            <h2>Employee Data</h2>  
+            <div class="input-row">
+                <%= e.label :number, class: "input-label" %>
+                <%= e.text_field :number %>
+            </div>
+            <div class="input-row">
+                <%= f.label :birthday, class: "input-label" %>
+                <%= f.text_field :birthday, class: "datepicker" %>
+            </div>
+            <div class="input-row">
+                <%= e.label :hire_date, class: "input-label" %>
+                <%= e.text_field :hire_date, class: "datepicker" %>
+            </div>
+            <div class="input-row">
+                <%= e.label :leave_date, class: "input-label" %>
+                <%= e.text_field :leave_date, class: "datepicker" %>
+            </div>
+        
+            <div class="input-row">
+                <%= e.label :status, class: "input-label" %>
+                <div class="radio-group">
+                    <label class="radio"><%= e.radio_button :status, "Current", data_toggle: "radio" %>Current
+                    </label>
+                    <label class="radio"><%= e.radio_button :status, "Former", data_toggle: "radio" %>Former
+                    </label>
+                </div>
+            </div>
+        </div> 
+
+    <% end %>   
+
+    <div class="save-row">
+        <%= f.submit "Update", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>
+
+
+
+  

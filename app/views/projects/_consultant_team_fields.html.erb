@@ -1,6 +1,6 @@
 <div class="row">
 	
-	<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select" } ) %>
+	<%= f.collection_select(:consultant_id, Company.consultant_list, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
 	
     <%= f.hidden_field :_destroy %>
     
@@ -9,20 +9,3 @@
     <%= link_to_remove_fields_2 "  ", f %>
 
 </div>
-
-
-
-<!-- <div class="table-row">
-	<div class="input-div">
-		<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "span3-5" } ) %>
-	</div>
-
-    <%= f.hidden_field :_destroy %>
-
-    <div class="input-div">
-	    <%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "span3-5" } ) %>
-    </div>
-
-    <%= link_to_remove_fields "  ", f %>
-
-</div> -->

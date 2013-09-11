@@ -188,6 +188,9 @@ module ApplicationHelper
     # execption for /employees
     elsif params[:controller] == "employees"
         "class='active'" if c_name.include?('contacts')
+    # execption for /companies
+    elsif params[:controller] == "companies"
+        "class='active'" if c_name.include?('contacts')
     # all other pages
     else
         "class='active'" if c_name.include?(params[:controller])

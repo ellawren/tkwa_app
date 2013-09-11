@@ -21,12 +21,36 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
   end
 
+  def employee_data
+    @contact = Contact.find(params[:id])
+    @employee = Employee.find_by_contact_id(@contact.id)
+  end
+
+  def consultant_data
+    @contact = Contact.find(params[:id])
+  end
+
+  def client_data
+    @contact = Contact.find(params[:id])
+  end
+
   def show
       @contact = Contact.find(params[:id])
+      @q = Company.search(params[:q])
+      @companies = @q.result(:distinct => true)
+      @company = Company.new
   end
 
   def new
     @contact = Contact.new
+    @q = Company.search(params[:q])
+    @companies = @q.result(:distinct => true)
+    @company = Company.new
+    render :layout => 'contacts_static' 
+  end
+
+  def new_company
+    @company = Company.new
     render :layout => 'contacts_static' 
   end
 
@@ -39,7 +63,6 @@ class ContactsController < ApplicationController
       render 'new'
     end
   end
-
 
   def edit
     if signed_in?

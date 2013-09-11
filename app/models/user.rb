@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_one :employee, :dependent => :destroy
+  has_one :employee
   has_one :contact, :through => :employee
   accepts_nested_attributes_for :employee
 

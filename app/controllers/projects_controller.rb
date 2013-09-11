@@ -122,7 +122,7 @@ class ProjectsController < ApplicationController
     @q = Project.all_projects.search(params[:q])
     @projects = @q.result(:distinct => true)
     @contact = Contact.find(current_user.employee.contact_id)
-
+    @employee = current_user.employee
     if @projects.count == 1 
       redirect_to info_project_path(@projects.first(params[:id]))
     else
