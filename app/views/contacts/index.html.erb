@@ -26,7 +26,6 @@
 		</div>
 
 		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>    
-		<%= f.text_field :work_company_cont, class: "search-name contact company", placeholder: "Company Name" %>   
 		<%= f.submit "Search", class: "btn btn-primary search-btn contact" %>
 			     
 	<% end %>
@@ -70,18 +69,13 @@
 
     <div class="tile-box">
         <%= link_to image_tag("contacts.png", :alt => "new-contact", :class => "round-icon"), new_contact_path %>
-        <%= link_to "Add A Person", new_contact_path, :class => "tile-label" %>
+        <%= link_to "Add A Contact", new_contact_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("contacts.png", :alt => "new-contact", :class => "round-icon"), companies_path %>
-        <%= link_to "Companies", companies_path, :class => "tile-label" %>
+        <%= link_to image_tag("company.png", :alt => "new-contact", :class => "round-icon"), companies_path %>
+        <%= link_to "View Companies", companies_path, :class => "tile-label" %>
     </div>
-
-    <!--<div class="tile-box">
-        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
-        <%= link_to "View Consultants", consultants_path, :class => "tile-label" %>
-    </div>-->
 
     <div class="tile-box disabled">
         <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>

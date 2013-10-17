@@ -210,8 +210,7 @@ button.input-button { margin:1px 0 0 10px; width:68px; height:35px; font-size:11
 			input[type="radio"]:checked+label:after { content:" "; position:absolute; left:130px; top:0px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 5px solid #ced5da; } 
 
 input.search-name { width:350px; padding:0px 10px; margin-top:12px; margin-right:4px; }
-	input.search-name.contact { width:360px;  margin-top:19px; margin-right:0px; margin-left:20px; }
-	input.search-name.contact.company { float:left; margin-top:-4px; }
+	input.search-name.contact { float:left; width:360px;  margin-top:40px; margin-right:0px; margin-left:40px; }
 	input.search-name.patterns { width:200px; float:left; }
 
 select.pattern-name { width:350px; margin-top:12px; margin-right:4px; height:44px; float:left; color:#bcc6cc; }
@@ -219,14 +218,16 @@ select.pattern-name.active, select.pattern-name.default-green{ color:#16a085; }
 
 input.search-number { width:120px; padding:0px 10px; margin-top:12px; }
 .description { float:left; font-size:14px; line-height:1.4em; width:100%; display:block; margin:-15px 0 30px 0; }
+.description a { color:#1abc9c; }
+.description a:hover { opacity:.6;}
 
 .btn.btn-primary.search-btn { width:180px; font-size:16px; margin-top:4px; margin-left:10px; border-radius:8px; }
-.btn.btn-primary.search-btn.contact { float:left; margin-top:-50px; margin-left:10px; height:38px; }
+.btn.btn-primary.search-btn.contact { float:left; margin-top:40px; margin-left:10px; height:38px; }
 .btn.btn-primary.search-btn.patterns { float:left; margin-top:13px; }
 
 
 div.search-results { width:100%; float:left; margin-top:0px; color:#000; font-size:11pt; text-align:center; }
-table.search-results { width:650px; font-size:10pt; border-collapse:collapse; margin-left:170px; }
+table.search-results { width:650px; font-size:10pt; border-collapse:collapse; margin-left:150px; }
 table.search-results tr { -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out;}
 table.search-results td { border:0px; padding:4px 8px; }
 	table.search-results td:first-child { border-radius:5px 0 0 5px; }
@@ -384,6 +385,7 @@ table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold {
 .text-field.bold { font-weight:900; }
 .text-field.med { width:80px; }
 .text-field.lg { width:96px;  }
+.text-field.lg2 { width:200px; text-align:left; padding-left:0px; }
 
 .sum-line { border-top:2px solid #000; float:left; margin:6px 0 6px 0; width:400px; }
 
@@ -399,7 +401,7 @@ table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold {
 .text-input { width:100px; }
 
 th.align-right { text-align:right; }
-
+th.percent { padding-left:28px; }
 tr.footer td { text-align:right; font-weight:900; border-top:2px solid #344953;  }
 
 .text-input.contract-amount { width:120px; }
@@ -679,9 +681,10 @@ label[for="pattern_delete_diagram"].checked, label[for="pattern_delete_diagram"]
 
 /* potential projects */
 
-a.header-label { float:left; display:block;  background-color:#1abc9c; color:#fff; margin-top:04px; margin-bottom:-10px; text-transform:uppercase; font-size:10px; width:110px; padding:2px 8px; }
+a.header-label { float:left; display:block; background-color:#1abc9c; color:#fff; margin-top:04px; margin-bottom:-10px; text-transform:uppercase; font-size:11px; width:120px; padding:4px 8px; }
+a.header-label.company { width:65px; }
 a.header-label:hover { opacity:.8; }
-.potential.page-header h1 { color:#34495e;  }
+.potential.page-header h1 { color:#34495e; }
 
 .fee-calc tr .input { margin-top:15px; font-size:13px; }
 .fee-calc tr.billing .input, .fee-calc tr.lower .input  { margin-top:10px; }
@@ -703,14 +706,17 @@ table.potential tbody tr:hover { background-color:#f6f8fa; }
 table.potential tbody td { color:#16a085; }
 table.potential tbody td a { font-weight:900; color:#16a085; }
 
-
 /* pattern browser */
 
 ul#pattern-tiles { float:left; width:100%; list-style:none; margin:20px 0 0 0; }
 ul#pattern-tiles li { float:left; width:92%; padding:24px 4%; height:auto; border:2px solid #e1e6eb; border-radius:8px; margin:0 33px 10px 0; }
+ul#pattern-tiles li .header { display:block; float:left; margin-bottom:10px; }	
+	ul#pattern-tiles li .project { float:left; width:auto; background-color:#f3f6f9; height:20px; padding:1px 8px; margin:0 0 6px 0; font-weight:300; font-size:10px; text-transform:uppercase; }
+	ul#pattern-tiles li .detail { float:left; font-size:12px; font-style:italic; margin:2px 0 0 8px; color:#bcc6cc; font-weight:300; }
 ul#pattern-tiles li img { width:294px; height:auto; }
-ul#pattern-tiles li .number { width:auto; float:left; font-size:22px; font-weight:100; margin:10px 8px 10px 0; }
-ul#pattern-tiles li .title { width:700px; height:auto; margin:10px 0; font-weight:900; font-size:22px; }
+ul#pattern-tiles li .number { clear:left; width:auto; float:left; font-size:22px; font-weight:100; margin:10px 8px 10px 0; }
+ul#pattern-tiles li .title a { color:#344953; float:left; width:700px; height:auto; margin:10px 0; font-weight:900; font-size:22px; }
+ul#pattern-tiles li .title a:hover { color:#1abc9c; }
 
 ul#pattern-tiles li .issue, ul#pattern-tiles li .solution { float:left; width:260px; margin-right:40px;  }
 ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before, ul#pattern-tiles li .diagram:before  { content:""; float:left; display:block; border-bottom:1px solid #1abc9c; width:260px; margin:10px 0; font-weight:900; font-size:9px; height:18px; text-transform:uppercase; }
@@ -719,6 +725,8 @@ ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before, ul#patt
 	ul#pattern-tiles li .diagram:before { content:"diagram"; color:#0ba0d4; border-color:#0ba0d4; margin-bottom:30px; }
 
 ul#pattern-tiles li .diagram { float:left; clear:all; width:260px; }
+
+h1 input { border:none; }
 
 /* messages */
 
@@ -745,7 +753,7 @@ ul#messages li .byline { float:left; width:545px; color:#ced5da; margin-top:5px;
 #add-message, #my-messages, #cancel-message { cursor:pointer; margin-left:10px; font-weight:400; font-size:13px; }
 #cancel-message { margin-left:220px; font-size:14px; }
 
-#new-message { float:left; width:630px; height:200px; display:none; margin-left:20px; }
+#new-message { float:left; width:630px; height:200px; display:none; margin-left:00px; }
 #message_expiration { width:100px; }
 textarea.message-content-home { height:60px; width:600px; padding:15px; }
 
@@ -878,7 +886,7 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 
 /* notice bar */
 
-#notice { height:28px; background-color:#0ba0d4; color:#fff; }
+#notice { height:28px; background-color:#0ba0d4; color:#fff; position:fixed; width:100%; z-index:9999;}
 	#notice.success { background-color:#86cc71; }
 	#notice.error { background-color:#e64c3c; }
 #notice div { margin:0 auto; height:20px; padding:4px 0; width:940px; }
@@ -937,7 +945,7 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 #companies { margin-bottom:30px; }
 #companies ul { margin-top:15px; }
 
-.company-modal .modal-body, .add-company-modal .modal-body { margin-top:0px; height:auto; min-height:120px; }
+.company-modal .modal-body, .add-company-modal .modal-body { margin-top:0px; height:auto; min-height:120px; padding-left:55px; }
 	.company-modal .input-row { width:340px; }
 		.company-modal .input-label { width:120px; margin-bottom:10px; }
 		.company-modal #q_name_cont { float:left; margin:0px; width:290px; margin-bottom:20px; }
@@ -947,10 +955,13 @@ input[type="submit"].message-submit { float:right; width:220px;  }
 #new-company { display:none; }
 .input-row.company { margin-bottom:10px; }
 
-.add-company-modal .modal-body { margin-top:20px; min-height:250px; }
+.add-company-modal .modal-body { margin-top:20px; min-height:250px;  }
 .add-company-modal .modal-body .wide { width:400px; }
 .add-company-modal .input-label { width:100px; }
 .add-company-modal .wide input, .add-company-modal .wide textarea { width:250px; }
+.add-company-modal .save-row { margin:10px 0; }
+.modal.add-company-modal input.btn-primary { width:300px; margin-left:220px; font-size:16px; }
+.add-company-modal .narrow.contact-phone input[type="text"] { width: 188px; }
 
 a.use-this { cursor:pointer; color:#1abc9c; }
 .company-info { margin-top:12px; margin-bottom:12px; float:left; }

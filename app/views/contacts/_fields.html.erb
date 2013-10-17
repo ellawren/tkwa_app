@@ -50,7 +50,6 @@
                             <div class="c-name"><a href="<%= company_path(c.id) %>"><%= c.name %></a></div>
                             <div class="c-address"><%= c.address.gsub(/\n/, '<br/>').html_safe %></div>
                             <div class="c-url"><a href="<%= c.url %>" target="_blank"><%= c.url %></a></div>
-                            <button class="btn input-button" onclick="showMap('contact_work_address'); return false;">Google maps</button>
                         </div>
                     </div>
                 </div>

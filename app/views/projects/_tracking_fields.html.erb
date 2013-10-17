@@ -9,10 +9,10 @@
 		<% end %>
 
 		<td class="total TotalToDate gray border-left">
-			<% if @project.employee_actual(f.contact_id, 'Total') == 0 %>
+			<% if @project.employee_actual(f.employee_id, 'Total') == 0 %>
 				<div class="input-spacer span1 act"></div>
 			<% else %>
-				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.contact_id, 'Total')) %>"><%= strip(@project.employee_actual(f.employee_id, 'Total')) %></div>
+				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.employee_id, 'Total')) %>"><%= strip(@project.employee_actual(f.employee_id, 'Total')) %></div>
 			<% end %>
 			<% if f.est_total == 0 %>
 				<div class="input-spacer span1 est"></div>

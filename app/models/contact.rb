@@ -65,10 +65,8 @@ class Contact < ActiveRecord::Base
                     :length   => { :maximum => 50 }
 
   before_save do
-        self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')
         self.work_cell = self.work_cell.to_s.gsub(/\D/, '')  
-        self.work_fax = self.work_fax.to_s.gsub(/\D/, '')  
         self.home_cell = self.home_cell.to_s.gsub(/\D/, '') 
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.category = self.category_list

@@ -59,10 +59,11 @@
 }
 
 .fn-gantt .leftPanel .name .fn-label { width:70px; padding-left:6px; } 
-.fn-gantt .leftPanel .desc .fn-label { width:230px; line-height:16px; height:35px; margin-left:15px; } 
-.fn-gantt .leftPanel .desc .fn-label.bold { margin-left:5px; }
+.fn-gantt .leftPanel .desc .fn-label { width:230px; line-height:35px; height:35px; margin-left:15px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap; } 
+.fn-gantt .leftPanel .desc .fn-label.bold { margin-left:5px; margin-top:5px; }
 
-.fn-gantt .bar.phase .fn-label { cursor:default; text-transform:uppercase; opacity:.5;}
+.fn-gantt .bar.phase { background:none;}
+.fn-gantt .bar.phase .fn-label { cursor:default; color: #2c3445; text-align:left; margin-top:6px; font-weight:900; }
 
 .fn-gantt .leftPanel .row0 {
     

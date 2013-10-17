@@ -10,7 +10,7 @@
 
 <br />
 	<ul id="messages">
-		<% Message.all_messages(Contact.find(Employee.find_by_user_id(current_user.id).contact_id).project_ids).each do |param| %>
+		<% Message.all_messages(Employee.find_by_user_id(current_user.id).project_ids).each do |param| %>
   			<li>
                 
                 <% if User.find(param.user_id).photo.url %>

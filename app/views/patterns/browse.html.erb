@@ -15,8 +15,12 @@
 <ul id="pattern-tiles" >
 	<% @patterns.each do |p| %>
 		<li>
+			<div class="header">
+				<div class="project"><%= Project.find(p.project_id).name %></div>
+				<div class="detail">Written on <%= p.created_at.strftime("%B %-d, %Y") %> by <%= p.author %></div>
+			</div>
 			<div class="number"><%= p.number %> /</div>
-			<div class="title"><%= p.name %></div>
+			<div class="title"><%= link_to p.name, edit_pattern_path(p) %></div>
 			<div class="issue"><%= p.issue %></div>
 			<div class="solution"><%= p.solution %></div>
 			<div class="diagram"></div>

@@ -37,6 +37,22 @@ class Employee < ActiveRecord::Base
     	Contact.find(self.contact_id).name
     end
 
+    def project_list
+        arr = []
+        self.employee_teams.current.each do |team|
+          arr.push(Project.find(team.project_id))
+        end
+        arr.sort { |a,b| a.name <=> b.name }
+    end
+
+    def project_ids
+        arr = []
+        self.project_list.each do |team|
+          arr.push(team.id)
+        end
+        arr
+    end
+
     scope :current, {
         :select => "employees.*",
         :conditions => ["leave_date = ?", '' ]

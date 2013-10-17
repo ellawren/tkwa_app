@@ -1,98 +1,16 @@
-<% provide :title, "New Contact" %>
-<div class="page-header">
-	<h1>Add a New Contact</h1>
-</div>
+<% content_for :page_header do %>
+	<% provide :title, "Contacts" %>
+    <div class="page-header">
+		<h1>Add a New Contact</h1>
+	</div>
+<% end %>
 
 <!-- modal for search company -->
-<div class="modal hide fade company-modal" id="searchCompany" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Search Company Name</h3>
-    </div>
-    <div class="modal-body">
-		<%= search_form_for @q, url: search_companies_path, :html => { method: :post } do |s| %>
-			<div class="input-row">
-				<%= s.label(:name_cont, "Company Name", class: "input-label") %>
-				<%= s.text_field :name_cont, class: "search-name contact", placeholder: "" %> 
-			</div>
-		<% end %>
-
-		<% if @companies.count > 0 %>
-			<div id="companies"></div>
-		<% end %>
-
-		<script>
-		$("#company_search input").keyup(function() {
-		    $.get($("#company_search").attr("action"), $("#company_search").serialize(), null, "script");
-		    return false;
-		  });
-		</script>
-    </div>
-</div>
+	<%= render 'search_company_modal' %>
 <!-- end modal -->
 
 <!-- modal for add company -->
-<%= form_for @company do |f| %>
-	<div class="modal hide fade add-company-modal" id="addCompany" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	        <h3 id="myModalLabel">Add Company</h3>
-	    </div>
-	    <div class="modal-body">
-	    	<div class="wide">
-	            <div class="input-row">
-	                <%= f.label(:name, "Company", class: "input-label") %>
-	                <%= f.text_field :name %>
-	            </div>
-	            
-	            <div class="input-row">
-	                <%= f.label(:address, "Work Address", class: "input-label") %>
-	                <%= f.text_area :address, class: "", rows: "2" %>
-	            </div>   
-	            <div class="input-row">
-	                <%= f.label(:url, "Website", class: "input-label") %>
-	                <%= f.text_field :url, class: "" %>
-	            </div>   
-	        </div>
-
-	        <div class="narrow contact-phone">
-	            <div class="input-row">
-	                <%= f.label :phone, "Main Phone", class: "input-label" %>
-	                <%= f.text_field :phone, value: number_to_phone(@company.phone, :area_code => true), class: "phone input-adjust" %>
-	            </div>
-	            <div class="input-row">
-	                <%= f.label(:fax, "Fax Number", class: "input-label") %>
-	                <%= f.text_field :fax, value: number_to_phone(@company.fax, :area_code => true), class: "phone input-adjust" %>
-	            </div>
-	        </div>
-			
-			<div class="save-row">
-	            <%= f.submit "Add Company", class: "btn btn-primary save-btn" %>
-	        </div>
-	        <script>
-			
-		    $('#new_company').submit(function() {  
-		        var valuesToSubmit = $(this).serialize();
-		        $.ajax({
-		            type: 'POST',
-		            url: $(this).attr('action'), 
-		            data: valuesToSubmit,
-		            dataType: "JSON"
-		        }).success(function(data){
-		        	$('#contact_company_id').val(data.id);
-		        	string = "<div class=\"c-name\">" + data.name + "</div><div class=\"c-address\">" + data.address  + "<div class=\"c-url\"><a href=\"" + data.url + "\" target = \"_blank\">" + data.url + "</a></div>";
-		        	phone = "<div class=\"input-row\"><label class=\"input-label\">Main Phone</label><div class=\"text-field\">" + data.phone + "</div></div><div class=\"input-row\"><label class=\"input-label\">Fax</label><div class=\"text-field\">" + data.fax + "</div></div>";
-		        	$('#company-data').html(string);
-		        	$('#company-phone').html(phone);
-		        });
-		        $('#addCompany').modal('hide');
-		        return false; // prevents normal behaviour
-		    });
-		
-			</script>
-	    </div>
-	</div>
-<% end %>
+	<%= render 'new_company_modal' %>
 <!-- end modal -->
 
 <%= form_for @contact do |f| %>

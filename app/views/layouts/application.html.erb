@@ -7,25 +7,23 @@
 	</head>
 	
 	<body>
-     <% flash.each do |key, value| %>
-          <div id="notice" class="<%= key %>" >
-               <%= content_tag(:div, value, class: "flash #{key}") %>
-          </div>
-    <% end %>
-    <%= render 'layouts/navbar' %>
+        <% flash.each do |key, value| %>
+            <div id="notice" class="<%= key %>" >
+                <%= content_tag(:div, value, class: "flash #{key}") %>
+            </div>
+        <% end %>
+        <%= render 'layouts/navbar' %>
     
         <!-- main content -->
         <div class="container">
             
-            		<%= yield :page_header %>
-            		<%= yield :tabnav %>
+            <%= yield :page_header %>
+            <%= yield :tabnav %>
             		
-                	<div class="box">
-          				<%= content_for?(:content) ? yield(:content) : yield %>
-          			</div> <!-- end box -->
+          	<%= content_for?(:content) ? yield(:content) : yield %>
 
-        			<%= render 'layouts/footer' %>	
-        			<%= debug(params) if Rails.env.development? %>
+        	<%= render 'layouts/footer' %>	
+        	<%= debug(params) if Rails.env.development? %>
                     
     	</div> <!-- end container -->
 

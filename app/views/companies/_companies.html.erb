@@ -28,13 +28,13 @@ $(".use-this").click(function() {
 	if ( phone.length == 10 ) {
 		phoneNum = "(" + phone.substr(0, 3) + ") " + phone.substr(3, 3) + "-" + phone.substr(6, 4);
 	} else {
-		phoneNum = "";
+		phoneNum = phone;
 	}
 
 	if ( fax.length == 10 ) {
 		faxNum = "(" + fax.substr(0, 3) + ") " + fax.substr(3, 3) + "-" + fax.substr(6, 4);
 	} else {
-		faxNum = "";
+		faxNum = fax;
 	}
 	
 	companyStr = "<div class=\"c-name\">" + name + "</div><div class=\"c-address\">" + address  + "<div class=\"c-url\"><a href=\"" + url + "\" target = \"_blank\">" + url + "</a></div>";

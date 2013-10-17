@@ -72,6 +72,7 @@
 
 
 <h2>Consultant Billing</h2>
+<p class="description">To add or edit consultants, go to the <%= link_to "project setup page", setup_project_path %>.</p>
 <% if @project.consultant_teams.length == 0 %>
     <p class="description">This project's consultants have not been set up yet. Click the 'setup' tab in the bar above to add consultants.</p>
 <% else %>
@@ -92,9 +93,9 @@
                 <tr>
                     <th>Firm</th>
                     <th>Role</th>
-                    <th class="align-right">Contract Amount</th>
+                    <th class="">Contract Amount</th>
                     <th class="align-right">Billed to-date</th>
-                    <th class="align-right">Percent</th>
+                    <th class="percent">Percent</th>
                 </tr>
             </thead>
                 

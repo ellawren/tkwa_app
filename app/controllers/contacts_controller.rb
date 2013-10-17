@@ -10,7 +10,6 @@ class ContactsController < ApplicationController
     else
       render :layout => 'search' 
     end
-    
   end
 
   def notes
