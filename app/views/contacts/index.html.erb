@@ -25,13 +25,13 @@
 	        <div><%= f.radio_button(:category_cont, "Supplier") %><label class="radio">Supplier</label></div>
 		</div>
 
-		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>    
+		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>
+		<%= f.text_field :company_name_cont, class: "search-name contact company", placeholder: "Company Name" %> 
 		<%= f.submit "Search", class: "btn btn-primary search-btn contact" %>
 			     
 	<% end %>
 
 </div>
-
 
 <% if (params.has_key?(:q)) %>
 
@@ -57,8 +57,10 @@
 		        <% @contacts.each do |param| %>
 		            <%= render 'contact', :f => param %>
 		        <% end %>
+
 		    </tbody>
 		</table>
+		<%= will_paginate @contact %>
 		<div class="line"></div>
 
 	<% end %>
@@ -69,12 +71,12 @@
 
     <div class="tile-box">
         <%= link_to image_tag("contacts.png", :alt => "new-contact", :class => "round-icon"), new_contact_path %>
-        <%= link_to "Add A Contact", new_contact_path, :class => "tile-label" %>
+        <%= link_to "Add Contact", new_contact_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("company.png", :alt => "new-contact", :class => "round-icon"), companies_path %>
-        <%= link_to "View Companies", companies_path, :class => "tile-label" %>
+        <%= link_to image_tag("company.png", :alt => "new-contact", :class => "round-icon"), new_company_path %>
+        <%= link_to "Add Company", new_company_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box disabled">

@@ -55,18 +55,44 @@
 		        </div>
 
 		        <h2>Work Information</h2>
+		        
 		        <div id="selected-company">
-		        	<div class="wide">
-		        		<%= f.hidden_field :company_id %>
-						<div class="input-row company">
-			                <%= f.label(:work_company, "Company", class: "input-label") %>
-			                <div id="company-data" class="text-field">
-				                <a id="search-company" data-target="#searchCompany" data-toggle="modal" class="btn">Search for Company</a>
-				                <a id="add-company" data-target="#addCompany" data-toggle="modal" class="btn">Add New Company</a>
+		        	<% if params[:id] != nil %>
+		        		<% f.object.company_id = params[:id] %>
+		                <% c = Company.find(f.object.company_id) %>
+		                <div class="wide">
+		                    <div class="input-row company">
+		                        <label class="input-label">Company <a class="edit-company" data-target="#searchCompany" data-toggle="modal" class="btn">(change)</a> <a class="edit-company" data-target="#addCompany" data-toggle="modal" class="btn">(add)</a></label>
+		                        <div id="company-data" class="text-field">
+		                            <div class="c-name"><a href="<%= company_path(c.id) %>"><%= c.name %></a></div>
+		                            <div class="c-address"><%= c.address.gsub(/\n/, '<br/>').html_safe %></div>
+		                            <div class="c-url"><a href="<%= c.url %>" target="_blank"><%= c.url %></a></div>
+		                        </div>
+		                    </div>
+		                </div>
+		                <div id="company-phone" class="narrow contact-phone">
+		                    <div class="input-row">
+		                        <%= f.label :phone, "Main Phone", class: "input-label" %>
+		                        <div class="text-field"><%= number_to_phone(c.phone, :area_code => true) %></div>
+		                    </div>
+		                    <div class="input-row">
+		                        <%= f.label(:fax, "Fax Number", class: "input-label") %>
+		                        <div class="text-field"><%= number_to_phone(c.fax, :area_code => true) %></div>
+		                    </div>
+		                </div>
+		            <% else %>
+			        	<div class="wide">
+			        		<%= f.hidden_field :company_id %>
+							<div class="input-row company">
+				                <%= f.label(:work_company, "Company", class: "input-label") %>
+				                <div id="company-data" class="text-field">
+					                <a id="search-company" data-target="#searchCompany" data-toggle="modal" class="btn">Search for Company</a>
+					                <a id="add-company" data-target="#addCompany" data-toggle="modal" class="btn">Add New Company</a>
+					            </div>
 				            </div>
-			            </div>
-		        	</div>
-	                <div id="company-phone" class="narrow contact-phone"></div>
+			        	</div>
+		                <div id="company-phone" class="narrow contact-phone"></div>
+		            <% end %>
 		        </div>
 
 		        <div class="wide">

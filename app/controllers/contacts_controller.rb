@@ -4,7 +4,7 @@ class ContactsController < ApplicationController
   def index
     @q = Contact.search(params[:q])
     @categories = Category.all
-    @contacts = @q.result(:distinct => true)
+    @contacts = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30)
     if @contacts.count == 1 
       redirect_to contact_path(@contacts.first(params[:id]))
     else

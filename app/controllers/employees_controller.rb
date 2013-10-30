@@ -18,6 +18,10 @@ class EmployeesController < ApplicationController
     render :layout => 'modal' 
   end
 
+  def forecast
+    @employee = Employee.find(params[:id])
+  end
+
   def update
     @employee = Employee.find(params[:id])
     if @employee.update_attributes(params[:employee])

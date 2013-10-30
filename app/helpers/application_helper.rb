@@ -185,6 +185,9 @@ module ApplicationHelper
     # execption for /phases
     elsif params[:controller] == "phases"
         "class='active'" if c_name.include?('projects')
+    # execption for /employees/:id/forecast
+    elsif params[:controller] == "employees" && params[:action] == "forecast"
+        "class='active'" if c_name.include?('timesheets')
     # execption for /employees
     elsif params[:controller] == "employees"
         "class='active'" if c_name.include?('contacts')

@@ -9,7 +9,7 @@
 
    <div class="content">
 
-		<h2>Company Information</h2>
+		<h2 class="first">Company Information</h2>
         <div class="wide">
             <div class="input-row">
                 <%= f.label(:name, "Company Name", class: "input-label") %>
@@ -52,31 +52,29 @@
 <% end %>
 
 
-<% if @company.contacts.count > 0 %>
+<div class="content">
 
-	<div class="content">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Staff Name</th>
-                    <th>Title</th>
-                    <th>Direct Phone</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-            <% @company.contacts.each do |c| %>
-                <tr>
-                    <td class="bold"><%= link_to c.name, contact_path(c.id) %></td>
-                    <td><%= c.work_title %></td>
-                    <td><%= number_to_phone(c.work_direct, :area_code => true) %></td>
-                    <td><%= c.work_email %></td>
-                </tr>
-            <% end %>
-            </tbody>
-        </table>
-	</div>
-<% end %>
+    <h2 class="first">Staff</h2>
+
+    <% if @company.contacts.count > 0 %>
+        <% @company.contacts.each do |c| %>
+            <div class="well">
+                <%= link_to "view", contact_path(c.id), class: "view" %>
+                <div class="row name"><%= c.name %><%= unless c.work_title.blank? ; ", #{c.work_title}" ; end %></div>
+                <div class="row"><%= @company.name %></div>
+                <div class="row"><%= @company.address.gsub(/\n/, '<br />').html_safe %></div>
+
+                <div class="phone"><%= number_to_phone(c.work_direct, :area_code => true) %></div>
+                <div class="email"><a onclick="mailTo('<%= c.work_email %>');" ><%= c.work_email %></a></div>
+            </div>
+        <% end %>
+
+    <% end %>
+    <%= link_to "Add Staff Member", new_contact_path(:id => @company.id), class: "btn btn-primary fit-well" %>
+
+</div>
+
+
 
 <% if @teams.count > 0 %>
 

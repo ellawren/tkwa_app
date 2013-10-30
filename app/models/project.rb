@@ -597,6 +597,8 @@ class Project < ActiveRecord::Base
         end
         x
     end
+
+
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
     					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",

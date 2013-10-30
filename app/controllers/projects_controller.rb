@@ -120,7 +120,7 @@ class ProjectsController < ApplicationController
   
   def index
     @q = Project.all_projects.search(params[:q])
-    @projects = @q.result(:distinct => true)
+    @projects = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30)
     @contact = Contact.find(current_user.employee.contact_id)
     @employee = current_user.employee
     if @projects.count == 1 

@@ -26,6 +26,7 @@ TkwaApp::Application.routes.draw do
     resources :timesheets
     member do
       get 'edit_employee_forecast'
+      get 'forecast'
     end
   end
 

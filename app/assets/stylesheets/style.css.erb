@@ -9,7 +9,7 @@ a:active, a:focus { color:#1abc9c; outline:none; }
 	ul#nav { list-style:none; margin:0px; }
 		ul#nav li { float:left; height:84px; width:120px; position:relative; }
 			ul#nav li a { display:block; text-align:center; padding-top:58px; width:100%; height:26px; text-decoration:none; font-size:10pt; color:#6b8299; text-transform:uppercase; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
-				ul#nav li.active a { background-color:#34495e;}
+				ul#nav li.active a { background-color:#34495e; }
 					ul#nav li.active a:hover { background-color: #3e5369; }
 				    ul#nav li.active a { color: #fff; }
 				ul#nav li.active a:after { content:" "; border-left: 60px solid transparent; border-right: 60px solid transparent; border-top: 15px solid #34495e; position:absolute; top:84px; left:0px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
@@ -30,6 +30,21 @@ ul.nav li.home { margin-left:15px; }
 /* stuff */
 
 .line { width:100%; height:1px; border-bottom: 1px solid #e1e6eb; }
+
+.well { background-color:#f4f6f9; float:left; width:260px; position:relative; margin-right:12px; height:140px; line-height:20px; }
+.well .row { width:100%; margin-left:0px; }
+.well .row.name { width:215px; font-weight:900; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; background-color:#e1e6eb; padding:3px 10px 3px 20px; margin-left:-20px; margin-bottom:6px; }
+.well .row a { color:#34495e; font-weight:900; }
+.well .phone { margin-top:8px;  }
+.well .phone:before { content:" "; width:16px; height:16px; display:block; float:left; margin-right:4px; background-image:url(/assets/glyphicons-halflings.png); background-repeat:no-repeat; background-position:-47px -140px; }
+.well .phone, .well .email { width:200px; height:20px; }
+.well .email:before { content:" "; width:16px; height:16px; display:block; float:left; margin-right:4px; background-image:url(/assets/glyphicons-halflings.png); background-repeat:no-repeat; background-position:0px -70px; }
+.well a.view { position:absolute; right:16px; top:16px; font-size:13px; color:#1abc9c; margin-top:5px; }
+.well a.view:hover { color:#16a085; }
+.well .email a { cursor:pointer; color:#0ba0d4; text-decoration:underline; }
+.well .email a:hover { color:#2984b6; }
+.btn.btn-primary.fit-well { width:276px; background-color:#0ba0d4; }
+.btn.btn-primary.fit-well:hover { opacity:.8; }
 
 /* page structure */
 .container { margin-top:60px; }
@@ -210,7 +225,9 @@ button.input-button { margin:1px 0 0 10px; width:68px; height:35px; font-size:11
 			input[type="radio"]:checked+label:after { content:" "; position:absolute; left:130px; top:0px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 5px solid #ced5da; } 
 
 input.search-name { width:350px; padding:0px 10px; margin-top:12px; margin-right:4px; }
-	input.search-name.contact { float:left; width:360px;  margin-top:40px; margin-right:0px; margin-left:40px; }
+	input.search-name.contact { float:left; width:360px; margin:20px 0 0 40px; }
+	input.search-name.contact.company { margin-top:3px; }
+
 	input.search-name.patterns { width:200px; float:left; }
 
 select.pattern-name { width:350px; margin-top:12px; margin-right:4px; height:44px; float:left; color:#bcc6cc; }
@@ -221,8 +238,10 @@ input.search-number { width:120px; padding:0px 10px; margin-top:12px; }
 .description a { color:#1abc9c; }
 .description a:hover { opacity:.6;}
 
-.btn.btn-primary.search-btn { width:180px; font-size:16px; margin-top:4px; margin-left:10px; border-radius:8px; }
-.btn.btn-primary.search-btn.contact { float:left; margin-top:40px; margin-left:10px; height:38px; }
+.btn.btn-primary.search-btn { width:180px; font-size:16px; margin-top:4px; margin-left:10px; border-radius:8px;  -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+.btn.btn-primary.search-btn.contact { float:left; margin-top:-37px; margin-left:20px; height:38px; }
+.btn.btn-primary.search-btn.company { float:left; margin-top:3px; margin-left:20px; height:38px; }
+
 .btn.btn-primary.search-btn.patterns { float:left; margin-top:13px; }
 
 
@@ -268,6 +287,17 @@ a.tile-label { display:block; width:180px; padding-top:10px; margin-left:5px; te
 .tile-box.disabled:hover img.round-icon { border-color:#e1e6eb; background-color:#fff; }
 .tile-box.disabled a.tile-label { opacity:.3; color:#bcc6cc; }
 .tile-box.disabled:hover a.tile-label { opacity:.3; color:#bcc6cc; }
+
+/* pagination */
+
+.pagination { float:right; }
+.pagination a { color:#ddd; display:inline-block; border:1px solid #ddd; font-weight:900; font-style:normal; width:30px; height:18px; padding:6px 0; border-radius:15px; text-align:center; margin:-10px 0 0 1px; }
+.pagination a.next_page, .pagination a.previous_page { border:none; height:auto; width:auto; font-weight:400; padding:0px; }
+.pagination .next_page, .pagination .previous_page { margin:0 6px; }
+
+.pagination a:hover  { color:#16a085; border-color:#16a085; }
+.pagination .disabled { display:none; }
+.pagination .current { display:inline-block; border:1px solid #34495e; font-weight:900; font-style:normal; width:30px; height:18px; padding:6px 0; border-radius:15px; text-align:center; margin:-10px 0 0 1px; }
 
 /* scope */
 .column-header{ float:left; display:block; width:100%; margin:0 0 18px 0; border-bottom:1px solid #e1e6eb; }

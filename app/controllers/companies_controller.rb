@@ -5,6 +5,10 @@ class CompaniesController < ApplicationController
         @teams = ConsultantTeam.find_all_by_consultant_id(@company.id)
     end
 
+    def new
+        @company = Company.new
+    end
+
     def index
       	@companies = Company.all
     end
@@ -18,7 +22,11 @@ class CompaniesController < ApplicationController
     def create
         @company = Company.new(params[:company])
         if @company.save
-            render json: @company, :layout => false # used for ajax create via contact page
+            if URI(request.referer).path == "/companies/new"
+                redirect_to @company
+            else
+                render json: @company, :layout => false # used for ajax create via contact page
+            end
         else
             render 'new'
         end

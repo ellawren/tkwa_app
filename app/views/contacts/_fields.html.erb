@@ -40,6 +40,7 @@
 
         <h2>Work Information</h2>
         <%= f.hidden_field :company_id %>
+        <%= params[:id] %>
         <div id="selected-company">
             <% if f.object.company_id %>
                 <% c = Company.find(f.object.company_id) %>

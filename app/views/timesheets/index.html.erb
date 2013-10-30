@@ -1,7 +1,7 @@
 <% content_for :page_header do %>
 	<% provide :title, "Timesheets" %>
 	<div class="page-header">
-		<h1><%= current_user.name.split[0] %>'s Timesheets</h1>
+		<h1><%= current_user.name %></h1>
 	</div>
 <% end %>
 
@@ -13,8 +13,8 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), projects_forecast_index_path %>
-        <%= link_to "Forecast", projects_forecast_index_path, :class => "tile-label" %>
+        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), forecast_employee_path(@employee) %>
+        <%= link_to "Forecast", forecast_employee_path(@employee), :class => "tile-label" %>
     </div>
 
     <div class="tile-box disabled">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="tile-box disabled">
-        <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
+        <%= link_to image_tag("target.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
         <%= link_to "Targets", "#", :class => "tile-label" %>
     </div>
 

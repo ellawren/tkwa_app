@@ -1,0 +1,78 @@
+<% content_for :page_header do %>
+	<% provide :title, "6-Month Forecast" %>
+    <div class="page-header">
+        <h1><%= current_user.name.split[0] %>'s 4-Month Forecast</h1>
+    </div>
+<% end %>
+<% date = Date.today %>
+
+<!-- modal for forecast edit edit -->
+<div class="modal hide fade forecast-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"> </h3>
+    </div>
+    <div class="modal-body"></div>
+</div>
+<!-- end modal -->
+
+<table class="table forecast index">
+    <thead>
+        <tr>
+            <th></th>
+            <% four_month_year_array(date).each do |w| %>
+                <th><%= w %></th>
+            <% end %>
+        </tr>
+        <tr>
+            <th class="buttons">
+               
+            </th>
+            <% four_month_monthname_array(date).each do |w| %>
+                <th><%= w %></th>
+            <% end %>
+        </tr>
+        <tr class="week">
+            <th></th>
+            <% four_month_weeknum_array(date).each do |w| %>
+                <th <%= "class='current'" if w == this_week %>><%= w %></th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody>
+        <% if @employee.employee_teams.current.count > 0 %>
+                <tr class="head">
+                    <td>
+                        <a href="<%= edit_employee_forecast_employee_path(@employee.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= @employee.name %></a>
+                    </td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"></td>
+                    <% end %>
+                </tr>
+                <% @employee.employee_teams.current.each do |t| %>
+                    <tr class="subhead">
+                        <td><%= t.project_name %></td>
+                        <% @employee.employee_forecast(t.project_id, four_month_array(date)).each do |plan| %>
+                            <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <% forecast_employee_week_total(@employee.id, four_month_array(date)).each do |w| %>
+                        <td><%= w %></td>
+                    <% end %>
+                </tr>
+            </tfoot>
+        <% end %>
+    
+</table>
+
+<script>
+//reset modal remote on close
+    $('#myModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+</script>

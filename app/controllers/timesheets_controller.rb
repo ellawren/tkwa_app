@@ -9,7 +9,7 @@ class TimesheetsController < ApplicationController
 
   def index
    @timesheets = Timesheet.all
-   #@employee= Employee.find(params[:employee_id])
+   @employee = current_user.employee
    #@contact = Contact.find(@employee.contact_id)
    #@timesheets = Timesheet.find(:all, :conditions => ['employee_id = ?', params[:employee_id]])
    #@timesheet = Timesheet.find_by_employee_id(params[:employee_id])

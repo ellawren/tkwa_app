@@ -91,6 +91,12 @@ class Contact < ActiveRecord::Base
 
   VIEW_OPTIONS =       [ "name", "work", "personal" ]
 
+  def company_name
+    unless self.company_id.blank?
+      Company.find(self.company_id).name
+    end
+  end
+
   def self.consultant_list
     Contact.all.select { |r| r.category_array.include?("Consultant") }
   end
