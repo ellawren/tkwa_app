@@ -44,12 +44,12 @@
             <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
         </div>
         <div class="input-row">
-            <%= f.label(:work_cell, "Work Cell", class: "input-label") %>
-            <%= f.text_field :work_cell,value: number_to_phone(@contact.work_cell, :area_code => true), class: "phone" %>
-        </div>
-        <div class="input-row">
             <%= f.label(:work_fax, "Work Fax", class: "input-label") %>
             <%= f.text_field :work_fax,value: number_to_phone(@contact.work_fax, :area_code => true), class: "phone" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:work_cell, "Work Cell", class: "input-label") %>
+            <%= f.text_field :work_cell,value: number_to_phone(@contact.work_cell, :area_code => true), class: "phone" %>
         </div>
     </div>
 
