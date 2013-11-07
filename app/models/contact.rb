@@ -45,7 +45,6 @@ class Contact < ActiveRecord::Base
   default_scope order('name')
 	has_and_belongs_to_many :categories
 
-  belongs_to :company
   has_one :employee
   has_one :user, :through => :employee
   accepts_nested_attributes_for :employee
@@ -90,12 +89,6 @@ class Contact < ActiveRecord::Base
   end)
 
   VIEW_OPTIONS =       [ "name", "work", "personal" ]
-
-  def company_name
-    unless self.company_id.blank?
-      Company.find(self.company_id).name
-    end
-  end
 
   def self.consultant_list
     Contact.all.select { |r| r.category_array.include?("Consultant") }

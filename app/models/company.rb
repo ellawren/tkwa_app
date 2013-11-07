@@ -1,8 +1,6 @@
 class Company < ActiveRecord::Base
 	default_scope order('name')
 	
-	has_many :contacts
-
 	scope :consultant_list, {
   		:select => "companies.*",
   		:conditions => ["category = ?", '3' ]

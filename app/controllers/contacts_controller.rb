@@ -35,16 +35,10 @@ class ContactsController < ApplicationController
 
   def show
       @contact = Contact.find(params[:id])
-      @q = Company.search(params[:q])
-      @companies = @q.result(:distinct => true)
-      @company = Company.new
   end
 
   def new
     @contact = Contact.new
-    @q = Company.search(params[:q])
-    @companies = @q.result(:distinct => true)
-    @company = Company.new
     render :layout => 'contacts_static' 
   end
 
