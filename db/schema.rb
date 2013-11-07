@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130912163914) do
+ActiveRecord::Schema.define(:version => 20131106172054) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -117,6 +117,11 @@ ActiveRecord::Schema.define(:version => 20130912163914) do
     t.string   "cat06"
     t.string   "view_options",    :default => "---\n- name\n- work\n- personal\n"
     t.integer  "company_id"
+    t.string   "work_company"
+    t.string   "work_address"
+    t.string   "work_phone"
+    t.string   "work_url"
+    t.string   "work_fax"
   end
 
   create_table "data_records", :force => true do |t|

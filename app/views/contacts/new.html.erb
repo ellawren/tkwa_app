@@ -5,142 +5,12 @@
 	</div>
 <% end %>
 
-<!-- modal for search company -->
-	<%= render 'search_company_modal' %>
-<!-- end modal -->
-
-<!-- modal for add company -->
-	<%= render 'new_company_modal' %>
-<!-- end modal -->
-
 <%= form_for @contact do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
    <div class="content">
    	
-		        <h2>Name</h2>
-		        <div class="wide">
-		            <div class="input-row">
-		                <%= f.label(:name, "Full Name", class: "input-label") %>
-		                <%= f.text_field :name %>
-		            </div>
-		            <div class="input-row">
-		                <%= f.label(:work_title, "Title", class: "input-label") %>
-		                <%= f.text_field :work_title %>
-		            </div>
-		        </div>
-		        <div class="narrow contact">
-		            <div class="input-row">
-		                <%= f.label(:post_nominals, "Suffix", class: "input-label" ) %>
-		                <%= f.text_field :post_nominals, placeholder: "ex: AIA, LEED AP, etc." %>
-		            </div>
-		            
-		            <div class="input-row">
-		                <%= f.label(:cat01, "Category", class: "input-label" ) %>
-		                <%= f.collection_select(:cat01, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
-		            </div>
-		            <!--    <%= is_set?(@contact.cat02, "cat02", f.label(" ", " ", class: "input-label" ), f.collection_select(:cat02, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) ) %>
-		                
-		                <%= is_set?(@contact.cat03, "cat03", f.label(" ", " ", class: "input-label" ), f.collection_select(:cat03, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) ) %>
-
-		                <%= is_set?(@contact.cat04, "cat04", f.label(" ", " ", class: "input-label" ), f.collection_select(:cat04, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) ) %>
-
-		                <%= is_set?(@contact.cat05, "cat05", f.label(" ", " ", class: "input-label" ), f.collection_select(:cat05, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) ) %>
-		            
-		                <%= is_set?(@contact.cat06, "cat06", f.label(" ", " ", class: "input-label" ), f.collection_select(:cat06, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) ) %>
-		                <% if @contact.cat06.blank? %>
-		                    <%= link_to_add_category("", f, "cat02", "add fui-plus category") %>
-		                <% end %>
-		            -->
-		        </div>
-
-		        <h2>Work Information</h2>
-		        
-		        <div id="selected-company">
-		        	<% if params[:id] != nil %>
-		        		<% f.object.company_id = params[:id] %>
-		                <% c = Company.find(f.object.company_id) %>
-		                <div class="wide">
-		                    <div class="input-row company">
-		                        <label class="input-label">Company <a class="edit-company" data-target="#searchCompany" data-toggle="modal" class="btn">(change)</a> <a class="edit-company" data-target="#addCompany" data-toggle="modal" class="btn">(add)</a></label>
-		                        <div id="company-data" class="text-field">
-		                            <div class="c-name"><a href="<%= company_path(c.id) %>"><%= c.name %></a></div>
-		                            <div class="c-address"><%= c.address.gsub(/\n/, '<br/>').html_safe %></div>
-		                            <div class="c-url"><a href="<%= c.url %>" target="_blank"><%= c.url %></a></div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div id="company-phone" class="narrow contact-phone">
-		                    <div class="input-row">
-		                        <%= f.label :phone, "Main Phone", class: "input-label" %>
-		                        <div class="text-field"><%= number_to_phone(c.phone, :area_code => true) %></div>
-		                    </div>
-		                    <div class="input-row">
-		                        <%= f.label(:fax, "Fax Number", class: "input-label") %>
-		                        <div class="text-field"><%= number_to_phone(c.fax, :area_code => true) %></div>
-		                    </div>
-		                </div>
-		            <% else %>
-			        	<div class="wide">
-			        		<%= f.hidden_field :company_id %>
-							<div class="input-row company">
-				                <%= f.label(:work_company, "Company", class: "input-label") %>
-				                <div id="company-data" class="text-field">
-					                <a id="search-company" data-target="#searchCompany" data-toggle="modal" class="btn">Search for Company</a>
-					                <a id="add-company" data-target="#addCompany" data-toggle="modal" class="btn">Add New Company</a>
-					            </div>
-				            </div>
-			        	</div>
-		                <div id="company-phone" class="narrow contact-phone"></div>
-		            <% end %>
-		        </div>
-
-		        <div class="wide">
-		        	<div class="input-row">
-		                <%= f.label(:work_department, "Department", class: "input-label") %>
-		                <%= f.text_field :work_department %>
-		            </div>   
-		            <div class="input-row">
-		                <%= f.label(:work_email, "Work Email", class: "input-label") %>
-		                <%= f.text_field :work_email %>
-		            </div>  
-		        </div>
-
-		        <div class="narrow contact-phone">
-		        	<div class="input-row">
-		                <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
-		                <%= f.text_field :work_direct, value: number_to_phone(@contact.work_direct, :area_code => true), class: "phone" %>
-		                <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
-		            </div>
-		            <div class="input-row">
-		                <%= f.label(:work_cell, "Work Cell", class: "input-label") %>
-		                <%= f.text_field :work_cell,value: number_to_phone(@contact.work_cell, :area_code => true), class: "phone" %>
-		            </div>
-		        </div>
-
-		        <h2>Personal Information</h2>
-
-		        <div class="wide">
-		            <div class="input-row">
-		                <%= f.label(:home_address, "Home Address", class: "input-label") %>
-		                <%= f.text_area :home_address, class: "", rows: "2" %>
-		            </div>    
-		            <div class="input-row">
-		                <%= f.label(:home_email, "Personal Email", class: "input-label") %>
-		                <%= f.text_field :home_email %>
-		            </div>  
-		        </div>
-
-		        <div class="narrow contact-phone">
-		            <div class="input-row">
-		                <%= f.label :home_phone, "Home Phone", class: "input-label" %>
-		                <%= f.text_field :home_phone, value: number_to_phone(@contact.home_phone, :area_code => true), class: "phone" %>
-		            </div>
-		            <div class="input-row">
-		                <%= f.label(:home_cell, "Personal Cell", class: "input-label") %>
-		                <%= f.text_field :home_cell,value: number_to_phone(@contact.home_cell, :area_code => true), class: "phone" %>
-		            </div>
-		        </div>
+        <%= render 'fields', :f => f %>
 
         <div class="save-row">
             <%= f.submit "Add Contact", class: "btn btn-primary save-btn" %>
@@ -150,3 +20,11 @@
 
 <% end %>
 
+
+<!-- modal for search company -->
+	<%= render 'search_company_modal' %>
+<!-- end modal -->
+
+<!-- modal for add company -->
+	<%= render 'new_company_modal' %>
+<!-- end modal -->

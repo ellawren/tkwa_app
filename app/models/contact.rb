@@ -5,16 +5,11 @@
 #  id              :integer         not null, primary key
 #  name            :string(255)
 #  work_title      :string(255)
-#  work_company    :string(255)
 #  work_department :string(255)
-#  work_address    :string(255)
-#  work_phone      :string(255)
 #  work_ext        :string(255)
 #  work_assistant  :string(255)
 #  work_direct     :string(255)
-#  work_fax        :string(255)
 #  work_email      :string(255)
-#  work_url        :string(255)
 #  home_address    :string(255)
 #  home_phone      :string(255)
 #  home_cell       :string(255)
@@ -39,6 +34,11 @@
 #  cat06           :string(255)
 #  view_options    :string(255)     default("---\n- name\n- work\n- personal\n")
 #  company_id      :integer
+#  work_company    :string(255)
+#  work_address    :string(255)
+#  work_phone      :string(255)
+#  work_url        :string(255)
+#  work_fax        :string(255)
 #
 
 class Contact < ActiveRecord::Base
