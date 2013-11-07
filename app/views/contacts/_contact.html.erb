@@ -1,5 +1,5 @@
 					<tr class="results-row">
 		                <td class="bold"><%= link_to "#{f.name} #{f.post_nominals}", contact_path(f) %></td>
 		                <td><%= link_to "#{f.category_list}", contact_path(f) %></td>
-		                <td><% if f.company_id %><%= link_to "#{ Company.find(f.company_id).name }", contact_path(f) %><% end %></td>
+		                <td><%= f.work_company %></td>
 		            </tr>
