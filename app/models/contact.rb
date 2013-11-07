@@ -60,9 +60,6 @@ class Contact < ActiveRecord::Base
   # allows project page to add employees via team join model. must allow destroy.
   accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
-	validates :name,  :presence => true,
-                    :length   => { :maximum => 50 }
-
   before_save do
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')
         self.work_cell = self.work_cell.to_s.gsub(/\D/, '')  
@@ -79,7 +76,6 @@ class Contact < ActiveRecord::Base
   		:conditions => ["status = ?", 'Current' ]
 	}
 
-
   scope :by_category, (lambda do |id| 
         { :select => "contacts.*",
         :joins => "INNER JOIN categories_contacts ON categories_contacts.contact_id = contacts.id", 
@@ -87,8 +83,6 @@ class Contact < ActiveRecord::Base
 
       } unless id.empty?
   end)
-
-  VIEW_OPTIONS =       [ "name", "work", "personal" ]
 
   def self.consultant_list
     Contact.all.select { |r| r.category_array.include?("Consultant") }
