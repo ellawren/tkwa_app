@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106172054) do
+ActiveRecord::Schema.define(:version => 20131108171346) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -35,17 +35,6 @@ ActiveRecord::Schema.define(:version => 20131106172054) do
   end
 
   add_index "categories_contacts", ["category_id", "contact_id"], :name => "index_categories_contacts_on_category_id_and_contact_id", :unique => true
-
-  create_table "companies", :force => true do |t|
-    t.string   "name"
-    t.string   "address"
-    t.string   "phone"
-    t.string   "fax"
-    t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "category"
-  end
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"

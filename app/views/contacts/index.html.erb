@@ -9,11 +9,18 @@
 	</div>
 <% end %>
 
+<% if params[:q] && params[:q].has_key?("work_address_or_home_address_cont") && params[:q].has_key?("work_email_or_home_email_cont") && params[:q].has_key?("home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont")
+	if params[:q]["work_address_or_home_address_cont"].length > 0 || params[:q]["work_email_or_home_email_cont"].length > 0 || params[:q]["home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont"].length > 0 
+		@var = "open"
+	end 
+
+end %>
+
 <h2 class="first">Search Contacts</h2>
 
-<div class="description">Enter all or part of the contact name and/or company. Choose an option from the menu at left to narrow your search. To show all contacts within a category, just leave the name field blank.</div>
+<div class="description">Enter all or part of the contact name and/or company. Choose an option from the category menu to narrow your search. To show all contacts within a category, just leave the search fields blank.</div>
 
-<div class="gray-box contacts">
+<div class="gray-box contacts <%= @var %>">
 
 	<%= search_form_for @q do |f| %>
 
@@ -27,7 +34,17 @@
 
 		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>
 		<%= f.text_field :work_company_cont, class: "search-name contact company", placeholder: "Company Name" %> 
+
 		<%= f.submit "Search", class: "btn btn-primary search-btn contact" %>
+		<a class="more-options">show more options</a>
+		<a class="less-options">hide options</a>
+
+		<div id="more-options">
+			<p class="note">The following fields will search contacts' work and home info.</p>
+			<%= f.text_field :work_address_or_home_address_cont, class: "search-address contact", placeholder: "Address" %>
+			<%= f.text_field :work_email_or_home_email_cont, class: "search-address contact", placeholder: "Email" %>
+			<%= f.text_field :home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont, class: "search-address contact", placeholder: "Phone (no spaces or punctuation)" %>
+		</div>
 			     
 	<% end %>
 
@@ -43,7 +60,7 @@
 		</div>
 	<% else %>
 
-	<h2>Search Results</h2>
+	<h2>Search Results <a class="reset" href="/contacts">reset search</a></h2>
 
 		<table class="table search-results">
 			<thead>
@@ -74,9 +91,9 @@
         <%= link_to "Add Contact", new_contact_path, :class => "tile-label" %>
     </div>
 
-    <div class="tile-box">
-        <%= link_to image_tag("company.png", :alt => "new-contact", :class => "round-icon"), new_company_path %>
-        <%= link_to "Add Company", new_company_path, :class => "tile-label" %>
+    <div class="tile-box disabled">
+        <%= link_to image_tag("company.png", :alt => "new-contact", :class => "round-icon"), "#" %>
+        <%= link_to "Add Company", "#", :class => "tile-label" %>
     </div>
 
     <div class="tile-box disabled">

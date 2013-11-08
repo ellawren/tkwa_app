@@ -239,7 +239,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 /* index pages / search forms */
 
 .gray-box { float:left; width:90%; height:80px; padding:20px 47px; border-radius:8px; background-color:#ecf0f5; }
-	.gray-box.contacts { height:130px; }
+	.gray-box.contacts { height:auto; }
 .content { float:left; width:100%; }
 
 .status-options { float:left; width:120px; margin:0px 36px 0 -47px; overflow:hidden; }
@@ -268,6 +268,16 @@ select.pattern-name { float:left; width:350px; height:44px; margin-top:12px; mar
 	.btn.btn-primary.search-btn.company { float:left; height:38px; margin-top:3px; margin-left:20px; }
 	.btn.btn-primary.search-btn.patterns { float:left; margin-top:13px; }
 
+a.more-options, a.less-options { float:left; width:160px; padding:6px 10px; margin:5px 0 0 20px; color:#9ba6ac; text-align:center; cursor:pointer; }
+	a.more-options:hover, a.less-options:hover { color:#1abc9c; }
+a.less-options { display:none; }
+
+#more-options { float:left; display:none; clear:left; margin:0 0 0 150px; }
+	input.search-address { width:360px; }
+	p.note { color:#7f8b93; }
+.gray-box.open #more-options, .gray-box.open a.less-options { display:block; }
+.gray-box.open a.more-options { display:none; }
+
 div.search-results { float:left; width:100%; margin-top:0px; color:#000; font-size:11pt; text-align:center; }
 	table.search-results { width:650px; margin-left:150px; border-collapse:collapse; font-size:10pt; }
 			table.search-results tr:hover { background-color:#ecf0f5; cursor:pointer; }
@@ -278,6 +288,7 @@ div.search-results { float:left; width:100%; margin-top:0px; color:#000; font-si
 		table.search-results a { color:#34495e; text-decoration:none; }
 		table.search-results th { padding:0px 8px; color:#bcc6cc; font-size:11px; font-weight:400; text-transform:uppercase; }
 table.search-results thead tr:hover { background-color:#fff; cursor:default; }
+a.reset { display:inline-block;margin-left:10px; font-size:13px; font-weight:400; }
 
 ul.my-projects { float:left; width:100%; margin-bottom:60px; margin-left:-5px; list-style:none; }
 	ul.my-projects li { float:left; }
@@ -1026,7 +1037,17 @@ table.table td.bold a:hover { color:#1abc9c; opacity:.8; }
 
 /* print */
 
-.print .container { margin:50px; width:auto; }
+@media print {
+
+	#navbar, .page-header ul.controls, .save-row, .debug_dump, footer, button.input-button, ul.tabnav
+		{ display:none; }
+	body > .container { margin-top:10px; }
+	body { margin:0 40px; }
+	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }
+
+}
+
+
 
 
 /* SELECTORS:

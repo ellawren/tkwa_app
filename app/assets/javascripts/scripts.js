@@ -31,6 +31,21 @@ $(document).ready(function() {
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
   });
 
+  $('a.more-options').click( function() {
+    $('#more-options').slideDown();
+    $(this).hide();
+    $('a.less-options').show();
+  });
+
+  $('a.less-options').click( function() {
+    $('#more-options').slideUp();
+    $(this).hide();
+    $('a.more-options').show();
+    $('#q_work_address_or_home_address_cont').val("");
+    $('#q_work_email_or_home_email_cont').val("");
+    $('#q_home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont').val("");    
+  });
+
 });
 
   //scope
