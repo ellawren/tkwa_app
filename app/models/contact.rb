@@ -56,9 +56,6 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :categories
 
   has_many :projects, :through => :employee_teams
-  has_many :employee_teams, :dependent => :destroy
-  # allows project page to add employees via team join model. must allow destroy.
-  accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
   before_save do
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')
@@ -69,7 +66,7 @@ class Contact < ActiveRecord::Base
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '') 
         self.category = self.category_list
   end
-
+              
   scope :non_employees, where("id NOT IN (SELECT contact_id FROM employees)")
 
   scope :employee_list, {

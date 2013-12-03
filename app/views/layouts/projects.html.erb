@@ -24,8 +24,10 @@
 <% end %>
 
 <% content_for :content do %>
-  		<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
+  	<%= content_for?(:projects_content) ? yield(:projects_content) : yield %>
 <% end %>
+
+<%= render :template => 'layouts/application' %>
 
 <!-- modal for view options -->
 <div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
@@ -56,4 +58,3 @@
 </div>
 <!-- end modal -->
 
-<%= render :template => 'layouts/application' %>

@@ -3,7 +3,7 @@
 				<footer>
 					<div class="row">
 						<div class="footer span15">
-							<span class="default">©</span> 2013, The Kubala Washatko Architects, Inc. &nbsp; | &nbsp; <%= link_to "Home", root_path %>
+							<span class="default">©</span> <%= Date.today.year %>, The Kubala Washatko Architects, Inc.
 						</div>
 					</div>
 				</footer>
@@ -12,9 +12,9 @@
 
 	<% if on_page?("timesheets", "show") || on_page?("projects", "tracking") %>
 
-	    <script type="text/javascript"
+	  <!--  <script type="text/javascript"
 	  src='https://www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1","packages":["corechart","piechart"]}]}'>
-	    </script>
+	    </script> -->
 
 	<% end %>
 

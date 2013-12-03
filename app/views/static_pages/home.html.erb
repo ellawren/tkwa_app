@@ -9,7 +9,8 @@
                 <div class="demo-headline">
                     <h1 class="demo-logo">
                         <%= greeting %>
-                        <small>Welcome to the TKWA Database. Where would you like to go?</small>
+                        <small>Welcome to the TKWA Database. Where would you like to go?<br><%= Time.now %></small>
+                    
                     </h1>
                 </div> <!-- /demo-headline -->
 
@@ -135,10 +136,6 @@
                             <% end %>
                         </div>
                     </div> <!-- end nav menu -->
-                </div>
-
-                <div class="container">
-                    <%= link_to "Not a member? Sign up!", signup_path, class: "signup-link" %>
                 </div>
 
             </div> <!-- end container main -->

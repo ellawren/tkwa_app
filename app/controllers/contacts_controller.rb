@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-    autocomplete :contact, :work_company, :full => true, :extra_data => [:work_address, :work_phone, :work_fax, :work_url]
+    autocomplete :contact, :work_company, :full => true, :extra_data => [:work_address, :work_phone, :work_url, :work_fax, :name]
 
   def index
     @q = Contact.search(params[:q])

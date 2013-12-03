@@ -32,7 +32,6 @@ class Employee < ActiveRecord::Base
     # allows project page to add employees via team join model. must allow destroy.
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
-
     def name
     	Contact.find(self.contact_id).name
     end
