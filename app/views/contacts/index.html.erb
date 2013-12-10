@@ -40,7 +40,7 @@ end %>
 		<a class="less-options">hide options</a>
 
 		<div id="more-options">
-			<p class="note">The following fields will search contacts' work and home info.</p>
+			<p class="note">The following fields will search in both work and home data:</p>
 			<%= f.text_field :work_address_or_home_address_cont, class: "search-address contact", placeholder: "Address" %>
 			<%= f.text_field :work_email_or_home_email_cont, class: "search-address contact", placeholder: "Email" %>
 			<%= f.text_field :home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont, class: "search-address contact", placeholder: "Phone (no spaces or punctuation)" %>

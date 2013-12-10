@@ -40,24 +40,11 @@
     			<%= render 'time_entry_fields', :f => builder %>
     		<% end %>
     		<!-- this is commented out because new lines are automatically added to the view -->
-    		<!--<% if @timesheet.open? %>
+    		<% if @timesheet.open? %>
         		<%= link_to_add_fields "", f, :time_entries, "add fui-plus timesheets" %>
-        	<% end %>-->
+        	<% end %>
    			<!-- end team form -->
    		</div>	
-
-   		<!--<div class="table-footer">
-			<div class="span">
-				<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(sum_nonzero(:day1)) %></div>
-				<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(sum_nonzero(:day2)) %></div>
-				<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(sum_nonzero(:day3)) %></div>
-				<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(sum_nonzero(:day4)) %></div>
-				<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(sum_nonzero(:day5)) %></div>
-				<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(sum_nonzero(:day6)) %></div>
-				<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(sum_nonzero(:day7)) %></div>
-				<div class="total"><%= precise(nonzero?(@timesheet.total_hours)) %></div>
-			</div>
-		</div>-->
            					
     </div> <!-- end billable timesheets table -->
 
@@ -66,14 +53,7 @@
 			
 			<div class="cell category"><div class="timesheet-tab">Non-Billable Time</div></div>
 			<div class="cell nb-description">Description (optional)</div>
-			<!--<div class="cell date <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
-			<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
-			<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
-			<div class="cell date <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
-			<div class="cell date <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
-			<div class="cell date <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
-			<div class="cell date <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
-			<div class="total"></div>-->
+			
 		</div>
 
   		<div class="table-body">
@@ -82,29 +62,12 @@
     			<%= render 'non_billable_entry_fields', :f => builder %>
     		<% end %>
     		<!-- this is commented out because new lines are automatically added to the view -->
-    		<!--<% if @timesheet.open? %>
+    		<% if @timesheet.open? %>
         		<%= link_to_add_fields "", f, :non_billable_entries, "add fui-plus timesheets" %>
-        	<% end %>-->
+        	<% end %>
    			<!-- end team form -->
    		</div>	
 
-   		<!--<div class="table-footer">
-			<div class="span">
-				<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(sum_nonzero(:day1)) %></div>
-				<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(sum_nb_nonzero(:day2)) %></div>
-				<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(sum_nb_nonzero(:day3)) %></div>
-				<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(sum_nb_nonzero(:day4)) %></div>
-				<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(sum_nb_nonzero(:day5)) %></div>
-				<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(sum_nb_nonzero(:day6)) %></div>
-				<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(sum_nb_nonzero(:day7)) %></div>
-				<div class="total"><%= precise(nonzero?(@timesheet.nb_total_hours)) %></div>
-			</div>
-		</div>-->
-
-		<!--<div class="total ytd nb-shift-fields"><%= precise(nonzero?(@timesheet.total_hours)) %></div>
-		<div class="total ytd"><%= precise(nonzero?(@timesheet.total_hours)) %></div>
-		<div class="cell total ytd diff"><%= precise(nonzero?(@timesheet.total_hours)) %></div>-->
-           					
     </div> <!-- end non-billable timesheets table -->
 	
 	<div class="summary">
@@ -130,205 +93,6 @@
 	</div>
 
 </div>  <!-- end box-->
-
-<!--<div class="box">
-
-	<h2>summary</h2>
-	<div class="green-shaded">
-
-	<div class="table-main timesheets summary">
-
-		<div class="table-head">
-				<div class="cell category"><br />category</div>
-				<div class="cell total ytd">YTD<br />Total</div>
-				<div class="cell total ytd">YTD<br />Target</div>
-				<div class="cell total ytd diff">over/<br/>remaining</div>
-				<div class="cell date <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
-				<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
-				<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
-				<div class="cell date <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
-				<div class="cell date <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
-				<div class="cell date <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
-				<div class="cell date <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
-				<div class="cell total">week<br />Total</div>
-				
-		</div>
-
-		<div class="table-body">
-			
-			<div class="table-row">
-				<div class="input category">Billable Hours</div>
-				<div class="total ytd"><%= precise(nonzero?(@timesheet.all_hours("billable", "completed"))) %></div>
-          		<div class="total ytd"><%= precise(@timesheet.all_hours("billable", "target")) %></div>
-          		<div class="total ytd diff"><%= precise(@timesheet.all_hours("billable", "remaining")) %></div>
-
-				<div class="billable time-entries">  
-				    <div class="entry <%= is_today?(1, @timesheet) %>"><%= precise(sum_nonzero(:day1)) %></div>
-				    <div class="entry <%= is_today?(2, @timesheet) %>"><%= precise(sum_nonzero(:day2)) %></div>
-				    <div class="entry <%= is_today?(3, @timesheet) %>"><%= precise(sum_nonzero(:day3)) %></div>
-				    <div class="entry <%= is_today?(4, @timesheet) %>"><%= precise(sum_nonzero(:day4)) %></div>
-				    <div class="entry <%= is_today?(5, @timesheet) %>"><%= precise(sum_nonzero(:day5)) %></div>
-				    <div class="entry <%= is_today?(6, @timesheet) %>"><%= precise(sum_nonzero(:day6)) %></div>
-				    <div class="entry <%= is_today?(7, @timesheet) %>"><%= precise(sum_nonzero(:day7)) %></div>
-					<div class="total"><%= precise(nonzero?(@timesheet.total_hours)) %></div>
-					
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="input category">
-					Non-Billable Hours
-				</div>
-				<div class="total ytd"><%= precise(nonzero?(@timesheet.all_hours("non_billable", "completed"))) %></div>
-					<div class="total ytd"><%= precise(@timesheet.all_hours("non_billable", "target")) %></div>
-					<div class="total ytd diff"><%= precise(@timesheet.all_hours("non_billable", "remaining")) %></div>
-				<div class="billable time-entries">  
-				    <div class="entry <%= is_today?(1, @timesheet) %>"><%= precise(sum_nb_nonzero(:day1)) %></div>
-				    <div class="entry <%= is_today?(2, @timesheet) %>"><%= precise(sum_nb_nonzero(:day2)) %></div>
-				    <div class="entry <%= is_today?(3, @timesheet) %>"><%= precise(sum_nb_nonzero(:day3)) %></div>
-				    <div class="entry <%= is_today?(4, @timesheet) %>"><%= precise(sum_nb_nonzero(:day4)) %></div>
-				    <div class="entry <%= is_today?(5, @timesheet) %>"><%= precise(sum_nb_nonzero(:day5)) %></div>
-				    <div class="entry <%= is_today?(6, @timesheet) %>"><%= precise(sum_nb_nonzero(:day6)) %></div>
-				    <div class="entry <%= is_today?(7, @timesheet) %>"><%= precise(sum_nb_nonzero(:day7)) %></div>
-					<div class="total"><%= precise(nonzero?(@timesheet.nb_total_hours)) %></div>
-					
-				</div>
-			</div>
-			
-			
-		</div>
-
-		<div class="table-footer">
-			<div class="span">
-				<div class="total ytd nb-shift-fields"><%= decimal(@timesheet.all_hours("total", "completed")) %></div>
-					<div class="total ytd"><%= precise(@timesheet.all_hours("total", "target")) %></div>
-					<div class="cell total ytd diff"><%= precise(@timesheet.all_hours("total", "over-under")) %></div>
-					<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(timesheet_sum(:day1)) %></div>
-					<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(timesheet_sum(:day2)) %></div>
-					<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(timesheet_sum(:day3)) %></div>
-					<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(timesheet_sum(:day4)) %></div>
-					<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(timesheet_sum(:day5)) %></div>
-					<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(timesheet_sum(:day6)) %></div>
-					<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(timesheet_sum(:day7)) %></div>
-					<div class="total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
-					
-			</div>
-		</div>
-
-	</div>	<!-- end summary table -->
-
-		
-
-<!--</div>
-<div class="table-notes right">Year-to-date targets are based on a <span class="bold"><%= @timesheet.week_goal %></span> hour week and can be refined on the <a href="http://localhost:3000/employees">Employee Targets</a> page. Over-target hours are shown in <span class="red">red</span> and remaining hours are in <span class="green">(green)</span>. 
-		</div>-->
-  <!--	<h2>Summary</h2>
-
-	<div class="table-main timesheets weekly-totals">
-
-		<div class="table-head">
-			<div class="row">
-				<div class="input span7"><br /></div>
-				<div class="table-cell <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
-				<div class="table-cell <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
-				<div class="table-cell <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
-				<div class="table-cell <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
-				<div class="table-cell <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
-				<div class="table-cell <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
-				<div class="table-cell <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
-				<div class="table-cell span1-5 total-header">actual<br />Total</div>
-				<div class="table-cell span1-5 goal-header"><br />goal</div>
-				<div class="table-cell span1-5 over-under">over/<br/>under*</div>
-			</div>
-		</div>
-
-		<div class="table-body">
-			
-			<div class="table-row">
-				<div class="input span7">
-					Current Week (<%= parse_date_full(@timesheet.week, @timesheet.year) %>)
-				</div>
-				<div class="time-entries">  
-				    <div class="entry <%= is_today?(1, @timesheet) %>"><%= precise(timesheet_sum(:day1)) %></div>
-				    <div class="entry <%= is_today?(2, @timesheet) %>"><%= precise(timesheet_sum(:day2)) %></div>
-				    <div class="entry <%= is_today?(3, @timesheet) %>"><%= precise(timesheet_sum(:day3)) %></div>
-				    <div class="entry <%= is_today?(4, @timesheet) %>"><%= precise(timesheet_sum(:day4)) %></div>
-				    <div class="entry <%= is_today?(5, @timesheet) %>"><%= precise(timesheet_sum(:day5)) %></div>
-				    <div class="entry <%= is_today?(6, @timesheet) %>"><%= precise(timesheet_sum(:day6)) %></div>
-				    <div class="entry <%= is_today?(7, @timesheet) %>"><%= precise(timesheet_sum(:day7)) %></div>
-					<div class="span1-5 total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
-					<div class="span1-5 goal"><%= precise(@data_record.week) || 40.00 %></div>
-					<div class="table-cell span1-5 over-under <%= over_s?(over_under(@timesheet.week_goal , @timesheet.timesheet_total)) %>"><%= over_under(@timesheet.week_goal , @timesheet.timesheet_total) %></div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="input span7">
-					Year-to-date (<%= year_begin(@timesheet.week, @timesheet.year).strftime("%B %d") %> - <%= get_date(7, @timesheet).strftime("%B %d, %Y") %>)
-				</div>
-				<div class="time-entries">  
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-					<div class="span1-5 total"><%= precise(@timesheet.all_hours("total", "completed")) %></div>
-					<div class="span1-5 goal"><%= precise(nonzero?(@timesheet.ytd_goal(@timesheet.week))) %></div>
-					<div class="table-cell span1-5 over-under <%= over_s?(@timesheet.all_hours("total", "over-under")) %>"><%= precise(@timesheet.all_hours("total", "over-under")) %></div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="input span7">
-					Vacation
-				</div>
-				<div class="time-entries">  
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-				    <div class="entry"></div>
-					<div class="span1-5 total"></div>
-					<div class="span1-5 goal"></div>
-					<div class="table-cell span1-5 over-under <%= over_s?(@timesheet.all_hours("total", "over-under")) %>"></div>
-				</div>
-			</div>
-		</div>
-
-	</div>	
-
-		<div class="table-notes right">*Remaining hours are shown in <span class="green">(green)</span> and over target hours are shown in <span class="red">red</span>. Based on a <span class="bold"><%= @timesheet.week_goal %></span> hour week.</div>
-	
--->
-
-<!--
-	<div class="cutout">
-	    <%= f.hidden_field :complete %>
-		<% if @timesheet.open? %>
-			<%= f.submit "submit", id:"submit", class: "btn btn-large btn-primary save-button" %>
-		<% else %>
-			<%= f.submit "re-open", id:"unsubmit", class: "btn gray-button" %>
-		<% end %>
-	</div>
-
-
-</div>  <!-- end box-->
-
-	<!--<div class="row">
-			<div class="span13-25">
-				<div class="actions right">
-					<%= f.hidden_field :complete %>
-					<% if @timesheet.open? %>
-						<%= f.submit "Submit Timesheet", id:"submit", class: "btn btn-large #{"btn-primary" if @timesheet.open?} span3" %>
-					<% else %>
-						<%= f.submit "Re-open Timesheet", id:"unsubmit", class: "btn btn-large span3" %>
-					<% end %>
-
-	    			
-				</div>
-			</div>-->
-
 
 
 <% end %> <!-- end form -->

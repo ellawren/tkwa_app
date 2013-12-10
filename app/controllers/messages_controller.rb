@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.all
+    @messages = Message.all_messages(Employee.find_by_user_id(current_user.id).project_ids)
   end
 
   def show

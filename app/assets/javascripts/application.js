@@ -28,6 +28,5 @@
 //= require application-flat-ui
 //= require jquery.ui.autocomplete
 //= require scripts
-//= require new
 
 /* note that js files are called individually for testing - be sure to replace with 'require tree .' and remove unused parts before final production */

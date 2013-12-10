@@ -1,0 +1,20 @@
+<li>
+    <% if User.find(message.user_id).photo.url %>
+        <%= image_tag User.find(message.user_id).photo.url(:thumb), class: "avatar" %>
+    <% end %>
+    <div class="project-name">
+        <% unless message.project_id.blank? %><%= link_to Project.find(message.project_id).name, Project.find(message.project_id) %><% end %>
+    </div>
+    <div class="content">
+		        <%= message.content %>
+    </div>
+    <div class="byline">
+			<%= User.find(message.user_id).name %>
+        <% if User.find(message.user_id) == current_user || current_user.admin? %>
+            | audience: <%= message.category %>
+            | expires: <%= message.expiration %>
+            | <%= link_to "edit", edit_message_path(message) %>
+            | <%= link_to "delete", message, method: :delete, confirm: "You sure?" %>
+        <% end %>
+    </div>
+</li>

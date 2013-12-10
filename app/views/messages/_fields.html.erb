@@ -11,23 +11,22 @@
         </div>
 
         <div class="input-row radio-select">
-                <%= f.label(:category, "Category", class: "input-label") %>
+                <%= f.label(:category, "Audience", class: "input-label") %>
                     <div class="radio-group">
                         <label class="radio">
                             <%= f.radio_button :category, "studio", data_toggle: "radio" %>
-                            <div class="label-text">Studio</div>
+                            <div class="label-text">All Studio</div>
                         </label>
                         <label class="radio">
                             <%= f.radio_button :category, "project", data_toggle: "radio" %>
-                            <div class="label-text">Project</div>
+                            <div class="label-text">Project Team <em>(select project)</em></div>
                             <div class="project-select">
                                 <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
                             </div>
                         </label>
-
                         <label class="radio">
                             <%= f.radio_button :category, "potential", data_toggle: "radio" %>
-                            <div class="label-text">Potential Project</div>
+                            <div class="label-text">Marketing Team</div>
                         </label>
                     </div>
             </div>

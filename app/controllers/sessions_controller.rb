@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :signed_in_user, :only => [:create]
-
-  def new
-  end
+  skip_before_filter :signed_in_user, only: [:new, :create, :index]
 
   def create
     user = User.find_by_email(params[:session][:email])

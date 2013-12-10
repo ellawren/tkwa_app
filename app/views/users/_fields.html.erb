@@ -2,12 +2,10 @@
      
     <div class="wide">
                 
-        <% if @current_action == 'new' %>
         <div class="input-row">
             <%= f.label(:name, class: "input-label") %>
             <%= f.text_field :name, class: "span5" %>
         </div>
-        <% end %>
 
         <div class="input-row">
             <%= f.label :email, "Login email", class: "input-label" %>
@@ -16,7 +14,7 @@
 
         <div class="input-row">
             <%= f.label :photo, "Photo", class: "input-label" %>
-            <div class="image-box">
+            <div class="image-box small">
                 <% if f.object.photo_file_name %>
                     <div class="image-placeholder" id="photo-placeholder">
                         <%= image_tag @user.photo.url(:medium), class: "diagram" %>
@@ -51,7 +49,7 @@
 
         <div class="input-row">
             <%= f.label :password, class: "input-label" %>
-             <%= f.password_field :password %>
+            <%= f.password_field :password %>
         </div>
         <div class="input-row">
             <%= f.label(:password_confirmation, "Confirm Password", class: "input-label") %>

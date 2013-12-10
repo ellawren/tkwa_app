@@ -7,9 +7,11 @@
 
             <div class="container main">
                 <div class="demo-headline">
+                    <div class="timestamp"><%= Time.now.strftime("%B %d, %Y // %l:%M %p") %></div>
                     <h1 class="demo-logo">
+
                         <%= greeting %>
-                        <small>Welcome to the TKWA Database. Where would you like to go?<br><%= Time.now %></small>
+                        <small>Welcome to the TKWA Database. Where would you like to go?</small>
                     
                     </h1>
                 </div> <!-- /demo-headline -->
@@ -65,26 +67,7 @@
 
                 <ul id="messages">
                     <h3>Studio Messages <a id="add-message">add message</a> <a id="my-messages" href="/messages">my messages</a></h3>
-                    <% if Message.studio_messages %>
-                        <% Message.studio_messages.each do |param| %>
-                            <li>
-                                <% if User.find(param.user_id).photo.url %>
-                                    <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
-                                <% end %>
-                                <div class="project-name">
-                                    <% unless param.project_id.blank? %><%= link_to Project.find(param.project_id).name, Project.find(param.project_id) %><% end %>
-                                </div>
-                                <div class="content">
-                                    <%= param.content %>
-                                </div>
-                                <div class="byline">
-                                    <%= User.find(param.user_id).name %> |
-                                    <% unless param.project_id.blank? %><%= Project.find(param.project_id).name %><% end %>
-                                    <%= link_to "edit", edit_message_path(param) %>
-                                </div>
-                            </li>
-                        <% end %>
-                    <% end %>
+                    <%= render @messages %>
                     <div id="new-message">
                         <%= form_for(@message) do |f| %>
                             <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
@@ -111,6 +94,7 @@
             <div class="container main">
 
                 <div class="demo-headline">
+                    <div class="timestamp"><%= Time.now.strftime("%B %d, %Y // %l:%M %p") %></div>
                     <h1 class="demo-logo">
                         <%= greeting %>
                         <small>Please sign in.</small>
@@ -129,8 +113,9 @@
                                     <%= f.text_field :email %>
                                 </div>
                                 <div>
+                                    
                                     <%= f.label :password, "Password" %>
-                                    <%= f.text_field :password %>
+                                    <%= f.password_field :password %>
                                 </div>
                                 <%= f.submit "Sign in", class: "btn" %>
                             <% end %>

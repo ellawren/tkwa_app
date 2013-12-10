@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
       private
       before_filter :instantiate_controller_and_action_names
 
+      def authorize_admin
+    	redirect_to "/error" if current_user.admin != true
+    	#redirects to error page
+	  end
+
       def instantiate_controller_and_action_names
           @current_action = action_name
           @current_controller = controller_name

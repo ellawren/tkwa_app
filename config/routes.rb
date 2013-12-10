@@ -82,6 +82,7 @@ end
   match '/about',   to: 'static_pages#about'
   match '/messages',to: 'static_pages#messages'
   match '/admin',   to: 'static_pages#admin'
+  match '/error',   to: 'static_pages#error'
   match '/potential_projects',   to: 'static_pages#potential_projects'
 
   root :to => 'static_pages#home'

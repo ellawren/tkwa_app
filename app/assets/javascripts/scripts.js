@@ -1,5 +1,10 @@
 $(document).ready(function() {
  
+ // main nav hover controls
+    $("ul#nav li.active").hover(function () {
+      $(this).children(".control-icons").stop().fadeToggle("slow");
+    });
+    
   // hover function on search results - projects/contacts index
   $('tr.results-row').click( function() {
       window.location = $(this).find('a').attr('href');

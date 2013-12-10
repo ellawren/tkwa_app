@@ -227,7 +227,8 @@ ul.ui-autocomplete { margin-top:10px; float:left; padding:5px 10px; background-c
 
 /* home page */
 
-.demo-headline { padding: 50px 0 50px; margin-top:60px; color:#fff; }
+.demo-headline { padding: 20px 0 50px; margin-top:60px; color:#fff; }
+.timestamp { margin-bottom:30px; }
 .demo-logo small { margin-top:10px; color:rgba(255,255,255,.3); font-size:20px; font-weight:200; }
 
 .home { position:relative; }
@@ -300,10 +301,12 @@ div.search-results { float:left; width:100%; margin-top:0px; color:#000; font-si
 table.search-results thead tr:hover { background-color:#fff; cursor:default; }
 a.reset { display:inline-block;margin-left:10px; font-size:13px; font-weight:400; }
 
-ul.my-projects { float:left; width:100%; margin-bottom:60px; margin-left:-5px; list-style:none; }
-	ul.my-projects li { float:left; }
-		ul.my-projects li a { display:block; width:114px; height:114px; padding:15px; margin-left:5px; border-radius:8px; background-color: #ecf0f5; color:#34495e; }
-			ul.my-projects li a:hover { background-color:#1abc9c; color:#fff; }
+ul.tile-list { float:left; width:100%; margin-bottom:60px; margin-left:-5px; list-style:none; }
+ul.tile-list.small-tiles { float:left; width:100%; margin-bottom:10px; margin-left:-5px; list-style:none; }
+	ul.tile-list li { float:left; }
+		ul.tile-list li a { display:block; width:114px; height:114px; padding:15px; margin-left:5px; border-radius:8px; background-color: #ecf0f5; color:#34495e; }
+		ul.tile-list.small-tiles li a { display:block; width:114px; height:20px; padding:15px; margin-left:5px; border-radius:8px; background-color: #ecf0f5; color:#34495e; text-align:center; }
+			ul.tile-list li a:hover { background-color:#1abc9c; color:#fff; }
 
 
 /* project index/contact index - icons */
@@ -711,15 +714,19 @@ a.control-link { float:right; }
 .project-link { float:left; margin-left:10px;  }
 
 .image-box { float:left; position:relative; width:350px; }
-
+.image-box .small { width:400px; }
 .add-image { float:right; position:relative; width:118px; height:27px; margin-right:55px; border-radius:8px; background-color:#bcc6cc; font-size:12px; overflow:hidden; }
+	.image-box.small .add-image { float:left; margin:10px 0 0 10px; width:100px;  }
 .add-image.no-x { margin-right:28px; }
 .add-image:hover { background-color:#e1e6eb; }
 .add-image input { position:absolute; top:-30px; height:60px; cursor:pointer; }
 .add-image .text { width:96px; margin:-4px 0 0 12px; text-align:center; }
+	.image-box.small .add-image .text { width:96px; margin:-4px 0 0 3px; text-align:center; }
 .image-name { float:left; width:150px; padding-top:5px; margin-right:15px; font-size:12px; }
-
+	.image-box.small .image-name { width:90px; margin-left:10px; }
 .image-placeholder { float:left; width:300px; height:300px; padding:10px; margin-bottom:10px; border:2px solid #e1e6eb; border-radius:8px; }
+	.image-box.small .image-placeholder { float:left; width:210px; height:210px;  }
+
 label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"], label[for="user_delete_photo"] { position:absolute; top:335px; right:27px; width:20px; height:20px; color:#ced5da; font-size:20px; overflow:hidden; }
 label[for="pattern_delete_diagram"].checked, label[for="pattern_delete_diagram"]:hover, label[for="pattern_delete_photo"].checked, label[for="pattern_delete_photo"]:hover, label[for="user_delete_photo"].checked, label[for="user_delete_photo"]:hover { color:#c0392b; }
 

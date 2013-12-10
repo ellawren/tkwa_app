@@ -86,7 +86,7 @@
 
 <% if has_current_projects?(@employee) %>
   <h2>My Current Projects</h2>
-  	<ul class="my-projects">
+  	<ul class="tile-list">
         <% @employee.employee_teams.current.each do |team| %>
         <li><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></li>
         <% end %>

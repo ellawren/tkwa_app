@@ -15,37 +15,19 @@
                 <ul class="nav">
                     <li><a class="disabled">Signed in as </a></li>
                     <li>
-                        <%= link_to current_user.name, edit_contact_path(current_user.employee.contact_id) %>
+                        <%= link_to current_user.link_name, edit_user_path(current_user.employee.user_id) %>
                         <ul>
                             <li><%= link_to "Settings", edit_user_path(current_user.employee.user_id) %></li>
-                            <li><%= link_to "My Messages", messages_path %></li>
-                            <% if current_user.admin? %><li><%= link_to "Admin", admin_path %></li> <% end %>
+                            <li><%= link_to "Contact Info", edit_contact_path(current_user.employee.contact_id) %></li>
+                            <li><%= link_to "Messages", messages_path %></li>
+                            <% if current_user.admin? %><li><%= link_to "Admin Panel", admin_path %></li> <% end %>
                             <li><%= link_to "Log Out", signout_path %></li>
                         </ul> <!-- end sub menu -->
                     </li>
                     <li class="home"><%= link_to "Home", root_path %></li>
                 </ul>
             </div> <!-- end nav menu -->
-                
-        <% else %> 
-            <!--<%= link_to "Sign up", signup_path %>-->
-            <div class="navbar navbar-inverse">
-                <div class="login-box">
-                    <%= form_for(:session, url: sessions_path) do |f| %>
-                        <div>
-                            <%= f.label :email, "Email" %>
-                            <%= f.text_field :email %>
-                        </div>
-                        <div>
-                            <%= f.label :password, "Password" %>
-                            <%= f.text_field :password %>
-                        </div>
-                        <%= f.submit "Sign in", class: "btn" %>
-                        <%= link_to "Sign up", signup_path %>
-                    <% end %>
-                </div>
-            </div> <!-- end nav menu -->
-                
+                                            
         <% end %>     
     </div>
 

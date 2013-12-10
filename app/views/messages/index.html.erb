@@ -1,39 +1,11 @@
 <% content_for :page_header do %>
-	<% provide :title, "Messages" %>
-	<div class="page-header">
-		<h1>Messages</h1>
-	</div>
+    <% provide :title, "Messages" %>
+    <div class="page-header">
+        <h1>Messages</h1>
+    </div>
 <% end %>
 <%= link_to "Add Message", new_message_path, class: "btn" %>
 
-<h3>Messages</h3>
-
-<br />
-	<ul id="messages">
-		<% Message.all_messages(Employee.find_by_user_id(current_user.id).project_ids).each do |param| %>
-  			<li>
-                
-                <% if User.find(param.user_id).photo.url %>
-                    <%= image_tag User.find(param.user_id).photo.url(:thumb), class: "avatar" %>
-                <% end %>
-                <div class="project-name">
-                    <% unless param.project_id.blank? %><%= link_to Project.find(param.project_id).name, Project.find(param.project_id) %><% end %>
-                </div>
-                <div class="content">
-  				        <%= param.content %>
-                </div>
-                <div class="byline">
-  				    <%= User.find(param.user_id).name %>
-  				     | 
-  				    <%= link_to "edit", edit_message_path(param) %>
-  				    <% if signed_in? %>
-  					    <% if current_user.admin? %>
-    					       | <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-  					    <% end %>
-  				    <% end %>
-              | expires <%= param.expiration %>
-                </div>
-  			</li>
-		<% end %>
-	</ul>
-<br /><br />
+<ul id="messages">
+    <%= render @messages %>
+</ul>

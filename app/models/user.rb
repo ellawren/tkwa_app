@@ -59,13 +59,23 @@ class User < ActiveRecord::Base
                               :work_phone => "(262) 377-6039",
                               :work_fax => "(262) 377-2954",
                               :work_url => "www.tkwa.com",
-                              :work_email => email
+                              :work_email => email,
+                              :cat01 => 7
                             )
     # set the join id of the new contact object
     self.employee.contact_id = contact.id
     self.employee.status = "Current"
     self.employee.hire_date = Date.today
   end
+
+  def link_name
+    if admin?
+      name + " (Admin)"
+    else
+      name
+    end
+  end
+
 
   
   def feed

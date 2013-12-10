@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  before_filter :authorize_admin, only: :index
   
   def index
     @employees = Employee.all
