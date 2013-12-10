@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: [:index, :new, :destroy]
+  before_filter :correct_or_admin_user,   only: [:edit, :update]
+  before_filter :admin_user,     only: [:index, :new, :update, :destroy]
   
   def index
     @title = "All users"
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated."
-      sign_in @user
       redirect_to edit_user_path(@user)
     else
       render 'edit'
@@ -86,5 +85,11 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_path) unless current_user.admin?
     end
+
+    def correct_or_admin_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user) || current_user.admin?
+    end
+  
   
 end

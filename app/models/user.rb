@@ -18,24 +18,17 @@
 
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes, :photo, :delete_photo
-  has_attached_file :photo, :styles => { :medium => "210x210>", :thumb => "80x80>" }
+  has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#" }, :default_url => "generic_avatar_:style.png"
 
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }
 
   has_secure_password
 
-  has_one :employee
+  has_one :employee, dependent: :destroy
   has_one :contact, :through => :employee
   accepts_nested_attributes_for :employee
-
-  has_many :microposts, dependent: :destroy
-  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_users, through: :relationships, source: :followed
-  has_many :reverse_relationships, foreign_key: "followed_id",
-                                   class_name:  "Relationship",
-                                   dependent:   :destroy
-  has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :messages, dependent: :destroy
   
   before_save :create_remember_token
 

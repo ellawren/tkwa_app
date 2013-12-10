@@ -1,7 +1,7 @@
 <li>
-    <% if User.find(message.user_id).photo.url %>
-        <%= image_tag User.find(message.user_id).photo.url(:thumb), class: "avatar" %>
-    <% end %>
+
+    <%= image_tag User.find(message.user_id).photo.url(:thumb), class: "avatar" %>
+    
     <div class="project-name">
         <% unless message.project_id.blank? %><%= link_to Project.find(message.project_id).name, Project.find(message.project_id) %><% end %>
     </div>
