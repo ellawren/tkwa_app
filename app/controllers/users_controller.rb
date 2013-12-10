@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated."
-      sign_in @user
+      sign_in @user # this is a security feature - keep it even though it makes admin edits annoying
       redirect_to edit_user_path(@user)
     else
       render 'edit'

@@ -19,7 +19,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes, :photo, :delete_photo
   has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#" }, :default_url => "generic_avatar_:style.png"
-
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }
 
@@ -67,24 +66,6 @@ class User < ActiveRecord::Base
     else
       name
     end
-  end
-
-
-  
-  def feed
-    Micropost.from_users_followed_by(self)
-  end
-  
-  def following?(other_user)
-    relationships.find_by_followed_id(other_user.id)
-  end
-
-  def follow!(other_user)
-    relationships.create!(followed_id: other_user.id)
-  end
-  
-  def unfollow!(other_user)
-    relationships.find_by_followed_id(other_user.id).destroy
   end
   
   private

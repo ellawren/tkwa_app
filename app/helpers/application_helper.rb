@@ -279,8 +279,6 @@ module ApplicationHelper
     html
   end  
 
-  
-
 
   def add_breaks(s)
     s.gsub(/\n/, '<br>').html_safe
