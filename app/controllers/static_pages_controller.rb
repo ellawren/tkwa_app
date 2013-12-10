@@ -3,8 +3,10 @@ include SessionsHelper
 skip_before_filter :signed_in_user, :only => [:home]
 
   def home
-    @message = Message.new
-    @messages = Message.all_messages(Employee.find_by_user_id(current_user.id).project_ids)
+    if signed_in?
+    	@message = Message.new
+    	@messages = Message.all_messages(Employee.find_by_user_id(current_user.id).project_ids)
+    end
     render :layout => 'home_page' 
   end
 

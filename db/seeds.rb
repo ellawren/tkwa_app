@@ -81,7 +81,8 @@ Category.create([
         { name: 'Consultant' },
         { name: 'Architect' },
         { name: 'Contractor' },
-        { name: 'Supplier' }
+        { name: 'Supplier' },
+        { name: 'Employee' }
 ])
 
 User.delete_all
