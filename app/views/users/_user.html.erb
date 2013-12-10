@@ -1,5 +1,5 @@
 <li>
-  <%= link_to user.link_name, user_path(user) %>
+  <%= link_to user.link_name, edit_user_path(user) %>
   <% if current_user.admin? %>
     | <%= link_to "delete", user, method: :delete, confirm: "You sure?" %>
   <% end %>

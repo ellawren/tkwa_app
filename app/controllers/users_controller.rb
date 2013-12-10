@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :correct_or_admin_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: [:index, :new, :update, :destroy]
+  before_filter :correct_or_admin_user,   only: [:edit, :show, :update]
+  before_filter :admin_user,     only: [:index, :new, :destroy]
   
   def index
     @title = "All users"
@@ -23,8 +23,8 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = User.find(params[:id])
   end
-
 
   def update
     @user = User.find(params[:id])
@@ -48,32 +48,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
-  def following
-    if signed_in?
-        @title = "Following"
-    	@user = User.find(params[:id])
-    	@users = @user.followed_users.paginate(page: params[:page])
-    	render 'show_follow'
-    else
-      flash[:notice] = "Please sign in to view this page."
-    	redirect_to(signin_path)
-    end
-  end
-
-  def followers
-    if signed_in?
-    	@title = "Followers"
-    	@user = User.find(params[:id])
-    	@users = @user.followers.paginate(page: params[:page])
-    	render 'show_follow'
-    else
-        flash[:notice] = "Please sign in to view this page."
-    	redirect_to(signin_path)
-    end
-  end
   
   private
 
