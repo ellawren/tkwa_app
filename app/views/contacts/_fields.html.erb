@@ -3,7 +3,12 @@
     <div class="wide">
         <div class="input-row">
             <%= f.label(:name, "Full Name", class: "input-label") %>
-            <%= f.text_field(:name, value: params[:name]) %>
+            <% if params[:action] == "new" && params[:name].present? %> 
+                <% val = params[:name] %>
+            <% else %>
+                <% val = f.object.name %>
+            <% end %>
+            <%= f.text_field(:name, :value => val) %>
         </div>
         <div class="input-row">
             <%= f.label(:work_company, "Company", class: "input-label") %>
