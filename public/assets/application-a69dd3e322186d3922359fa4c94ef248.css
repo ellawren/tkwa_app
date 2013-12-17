@@ -6192,8 +6192,8 @@ a.badge:focus {
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,700italic,900,400italic,300");
 @font-face {
   font-family: 'Flat-UI-Icons';
-  src: url('/assets/Flat-UI-Icons.eot');
-  src: url('/assets/Flat-UI-Icons.eot?#iefix') format('embedded-opentype'), url('/assets/Flat-UI-Icons.woff') format('woff'), url('/assets/Flat-UI-Icons.ttf') format('truetype'), url('/assets/Flat-UI-Icons.svg#Flat-UI-Icons') format('svg');
+  src: url('/assets/Flat-UI-Icons-e1eab2822818c7c1e3791d20a92ce602.eot');
+  src: url('/assets/Flat-UI-Icons.eot?#iefix') format('embedded-opentype'), url('/assets/Flat-UI-Icons-1c09785d79d48930b2f3d32276d0d04d.woff') format('woff'), url('/assets/Flat-UI-Icons-c38f9418fddf53de20414da62adff92d.ttf') format('truetype'), url('/assets/Flat-UI-Icons.svg#Flat-UI-Icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
