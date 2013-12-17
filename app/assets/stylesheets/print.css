@@ -1,7 +1,0 @@
-.navbar, .spacer, .unsaved, .tabnav, .btn, .notes, footer
-			{ display:none; }
-body		{ margin:0px; }
-.sh			{ visibility: visible; }
-.page-break	{ page-break-before: always; }
-.offset1 	{ margin-left:75px; }
-.well 		{ border:1px solid #999;}

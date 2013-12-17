@@ -176,24 +176,29 @@ module ApplicationHelper
   end
 
   def is_current?(c_name)
-    # execption for projects/:id/patterns
+    # exception for projects/:id/patterns
     if params[:controller] == "projects" && params[:action] == "patterns"
         "class='active'" if c_name.include?(params[:action])
-    # execption for /potential_projects
+    # exception for /potential_projects
     elsif params[:controller] == "static_pages" && params[:action] == "potential_projects"
         "class='active'" if c_name.include?(params[:action])
-    # execption for /phases
+    # exception for /phases
     elsif params[:controller] == "phases"
         "class='active'" if c_name.include?('projects')
-    # execption for /employees/:id/forecast
+    # exception for /employees/:id/forecast
     elsif params[:controller] == "employees" && params[:action] == "forecast"
         "class='active'" if c_name.include?('timesheets')
-    # execption for /employees
-    elsif params[:controller] == "employees"
-        "class='active'" if c_name.include?('contacts')
-    # execption for /companies
+    # exception for /companies
     elsif params[:controller] == "companies"
         "class='active'" if c_name.include?('contacts')
+
+    # exceptions for /admin
+    elsif ( params[:controller] == "employees" ) ||
+          ( params[:controller] == "static_pages" && params[:action] == "admin" ) ||
+          ( params[:controller] == "users" && params[:action] == "index" ) ||
+          ( params[:controller] == "users" && params[:action] == "new" )
+        "class='active'" if c_name.include?('admin')
+
     # all other pages
     else
         "class='active'" if c_name.include?(params[:controller])

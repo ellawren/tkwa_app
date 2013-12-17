@@ -14,13 +14,16 @@
 #  photo_content_type :string(255)
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
+#  active             :boolean         default(TRUE)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes, :photo, :delete_photo
-  has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#" }, :default_url => "generic_avatar_:style.png"
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_attributes, :photo, :delete_photo, :active
+  has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }
+
+  default_scope order('name ASC')
 
   has_secure_password
 
@@ -42,6 +45,15 @@ class User < ActiveRecord::Base
   validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
   validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
 
+  scope :active_users, {
+        :select => "users.*",
+        :conditions => ["active = ?", true ]
+    }
+
+  scope :inactive_users, {
+        :select => "users.*",
+        :conditions => ["active = ?", false ]
+    }
 
   def create_associated_record
     # create the associated contact object

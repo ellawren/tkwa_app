@@ -9,6 +9,9 @@
                 <li <%= is_current?("contacts") %>><%= link_to "Contacts", contacts_path %></li>
                 <li <%= is_current?("employees") || is_current?("timesheets") %>><%= link_to "Timesheets", timesheets_path %></li>
                 <li <%= is_current?("patterns") %>><%= link_to "Patterns", patterns_path %></li>
+                <% if current_user.admin? %>
+                    <li <%= is_current?("admin") %>><%= link_to "Admin", admin_path %></li>
+                <% end %>
             </ul>
 
             <div class="navbar navbar-inverse">
@@ -20,7 +23,6 @@
                             <li><%= link_to "Settings", edit_user_path(current_user.employee.user_id) %></li>
                             <li><%= link_to "Contact Info", edit_contact_path(current_user.employee.contact_id) %></li>
                             <li><%= link_to "Messages", messages_path %></li>
-                            <% if current_user.admin? %><li><%= link_to "Admin Panel", admin_path %></li> <% end %>
                             <li><%= link_to "Log Out", signout_path %></li>
                         </ul> <!-- end sub menu -->
                     </li>

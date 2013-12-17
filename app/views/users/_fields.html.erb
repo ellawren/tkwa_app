@@ -15,7 +15,6 @@
         <div class="input-row">
             <%= f.label :photo, "Photo", class: "input-label" %>
             <div class="image-box small">
-                <% if f.object.photo_file_name %>
                     <div class="image-placeholder" id="photo-placeholder">
                         <%= image_tag @user.photo.url(:thumb), class: "diagram" %>
                     </div>
@@ -27,14 +26,7 @@
                     <label for="user_delete_photo" class="fui-cross">
                         <%= f.check_box(:delete_photo) %>
                     </label>
-                <% else %>
-                    <div class="image-placeholder" id="photo-placeholder"></div>
-                    <div class="image-name" id="photo-name"></div>
-                    <div class="add-image no-x" >
-                        <%= f.file_field :photo %>
-                        <div class="text">Select Photo</div>
-                    </div>
-                <% end %>
+
             </div>
         </div>
           
@@ -63,6 +55,15 @@
                     <label class="radio"><%= f.radio_button :admin, true, data_toggle: "radio" %>Yes
                     </label>
                     <label class="radio"><%= f.radio_button :admin, false, data_toggle: "radio" %>No
+                    </label>
+                </div>
+            </div>
+            <div class="input-row">
+                <%= f.label :active, class: "input-label" %>
+                <div class="radio-group">
+                    <label class="radio"><%= f.radio_button :active, true, data_toggle: "radio" %>Active
+                    </label>
+                    <label class="radio"><%= f.radio_button :active, false, data_toggle: "radio" %>Inactive
                     </label>
                 </div>
             </div>
