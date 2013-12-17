@@ -1,5 +1,5 @@
 <tr>
-    <td><div class="text-field lg2 bold"><%= Company.find(f.object.consultant_id).name %></div></td>
+    <td><%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select" } ) %></td>
     <%= f.hidden_field :_destroy %>
     <td><div class="text-field lg2 bold"><%= f.object.consultant_role %></div></td>
     <td><%= f.text_field :consultant_contract, class: "text-input contract-amount", value: number_to_currency(f.object.consultant_contract) %></td>

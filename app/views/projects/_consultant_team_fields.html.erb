@@ -1,6 +1,6 @@
 <div class="row">
 	
-	<%= f.collection_select(:consultant_id, Company.consultant_list, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+	<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select" } ) %>
 	
     <%= f.hidden_field :_destroy %>
     

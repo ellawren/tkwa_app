@@ -21,28 +21,7 @@
                   <%= f.text_field :mkt_cost, class: "" %>
             </div> 
         </div>
-        <div class="wide last">
-            <div class="input-row">
-                  <%= f.label(:mkt_reference, "Reference Name", class: "input-label") %>
-                  <%= f.autocomplete_field :mkt_reference, autocomplete_contact_name_projects_path, class: "ref-name" %>
-                  <%= link_to "view contact", contact_path(@mkt_reference), class: "btn right"%>
-            </div>
-            <div class="address">
-                <% if @project.mkt_reference %>
-                    <% if Contact.exists?(:name => @project.mkt_reference) %>
-                        <div class="text-area">
-                            <% @mkt_reference = Contact.find_by_name(@project.mkt_reference) %>
-                            <% if @mkt_reference.work_address %>
-                                <%= @mkt_reference.name %><br />
-                                <%= @mkt_reference.work_address.gsub(/\n/, '<br />').html_safe %><br />
-                            <% end %>
-                            <%= number_to_phone(@mkt_reference.work_phone, :area_code => true) %><br />
-                            <a href="mailto:<%= @mkt_reference.work_email %>"><%= @mkt_reference.work_email %></a>
-                        </div>
-                    <% end %>
-                <% end %>
-            </div>
-        </div>
+        
 
         <h2>Project Description</h2>
 

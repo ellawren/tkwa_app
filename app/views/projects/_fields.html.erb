@@ -104,17 +104,20 @@
                 
             <div class="input-row">
                 <%= f.label(:billing_name, "Name", class: "input-label") %>
-                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "#{'button-right' unless f.object.billing_name.blank? }" %>
                 <% unless f.object.billing_name.blank? %>
-                    <%= link_to "view contact", contact_path(Contact.find_by_name(f.object.billing_name)), class: "btn input-button" %>
+                    <% @billing = Contact.find_by_name(f.object.billing_name) %>
+                <% end %>
+                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "#{'button-right' if f.object.billing_name.present? }" %>
+                <% if @billing # if there is a billing name AND it matches an existing contact %>
+                    <%= link_to "view contact", contact_path(@billing), class: "btn input-button" %>
+                <% elsif f.object.billing_name.present? # if there is a billing name and it DOES NOT match an existing contact %>
+                    <%= link_to "add contact", new_contact_path(:name => f.object.billing_name), class: "btn input-button" %>
                 <% end %>
             </div>
-            <% unless f.object.billing_name.blank? %>
+            <% if @billing %>
                 <div class="contact-address">
-                    <% @billing = Contact.find_by_name(f.object.billing_name) %>
-                    <span class="bold"><%= @billing.name %></span><br>
-                    <%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br>
-                    <%= number_to_phone(@billing.work_phone, :area_code => true) %>
+                    <% unless @billing.work_address.blank? %><span class="bold"><%= @billing.name %></span><br><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
+                    <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><% end %>
                 </div>
             <% end %>
                 
@@ -124,17 +127,20 @@
                 
             <div class="input-row">
                 <%= f.label(:contact_name, "Name", class: "input-label") %>
-                <%= f.autocomplete_field :contact_name, autocomplete_contact_name_projects_path, class: "#{'button-right' unless f.object.contact_name.blank? }" %>
                 <% unless f.object.contact_name.blank? %>
-                    <%= link_to "view contact", contact_path(Contact.find_by_name(f.object.contact_name)), class: "btn input-button" %>
+                    <% @cont = Contact.find_by_name(f.object.contact_name) %>
+                <% end %>
+                <%= f.autocomplete_field :contact_name, autocomplete_contact_name_projects_path, class: "#{'button-right' if f.object.contact_name.present? }" %>
+                <% if @cont # if there is a contact name AND it matches an existing contact %>
+                    <%= link_to "view contact", contact_path(@cont), class: "btn input-button" %>
+                <% elsif f.object.contact_name.present? # if there is a contact name and it DOES NOT match an existing contact %>
+                    <%= link_to "add contact", new_contact_path(:name => f.object.contact_name), class: "btn input-button" %>
                 <% end %>
             </div>
-            <% unless f.object.contact_name.blank? %>
+            <% if @cont %>
                 <div class="contact-address">
-                    <% @cont = Contact.find_by_name(f.object.contact_name) %>
-                    <span class="bold"><%= @cont.name %></span><br>
-                    <%= @cont.work_address.gsub(/\n/, '<br />').html_safe unless @cont.work_address.blank? %><br>
-                    <%= number_to_phone(@cont.work_phone, :area_code => true) unless @cont.work_phone.blank? %>
+                    <% unless @cont.work_address.blank? %><span class="bold"><%= @cont.name %></span><br><%= @cont.work_address.gsub(/\n/, '<br />').html_safe unless @cont.work_address.blank? %><br><% end %>
+                    <% unless @cont.work_phone.blank? %><%= number_to_phone(@cont.work_phone, :area_code => true) unless @cont.work_phone.blank? %><% end %>
                 </div>
             <% end %>
                   
