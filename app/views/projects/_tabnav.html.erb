@@ -1,5 +1,5 @@
 <ul class="tabnav">
-	<li class="<%= is_active?("info")%>"><%= link_to "info", info_project_path(@project) %></li>
+	<li class="<%= is_active?("info")%>"><%= link_to "info", project_path(@project) %></li>
 	<li class="<%= is_active?("setup")%>"><%= link_to "setup", setup_project_path(@project) %></li>
 	<% if @project.view_options.include?('scope') %>
 		<li class="<%= is_active?("scope")%>"><%= link_to "scope", scope_project_path(@project) %></li>

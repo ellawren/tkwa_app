@@ -124,7 +124,7 @@ class ProjectsController < ApplicationController
     @contact = Contact.find(current_user.employee.contact_id)
     @employee = current_user.employee
     if @projects.count == 1 
-      redirect_to info_project_path(@projects.first(params[:id]))
+      redirect_to project_path(@projects.first(params[:id]))
     else
       render :layout => 'search' 
     end
@@ -135,7 +135,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       flash[:success] = "Project created successfully!"
-      redirect_to info_project_path(@project)
+      redirect_to project_path(@project)
     else
       flash[:error] = "Project could not be created."
       render 'new'
