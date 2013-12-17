@@ -5,12 +5,12 @@
     <div class="container">
         <% if signed_in? %>
             <ul id="nav">
-                <li <%= is_current?("projects consultants potential_projects") %>><%= link_to "Projects", projects_path %></li>
-                <li <%= is_current?("contacts") %>><%= link_to "Contacts", contacts_path %></li>
-                <li <%= is_current?("employees") || is_current?("timesheets") %>><%= link_to "Timesheets", timesheets_path %></li>
-                <li <%= is_current?("patterns") %>><%= link_to "Patterns", patterns_path %></li>
+                <li class="<%= is_current?("projects consultants potential_projects") %>"><%= link_to "Projects", projects_path %></li>
+                <li class="<%= is_current?("contacts") %>"><%= link_to "Contacts", contacts_path %></li>
+                <li class="<%= is_current?("employees") || is_current?("timesheets") %>"><%= link_to "Timesheets", timesheets_path %></li>
+                <li class="<%= is_current?("patterns") %>"><%= link_to "Patterns", patterns_path %></li>
                 <% if current_user.admin? %>
-                    <li <%= is_current?("admin") %>><%= link_to "Admin", admin_path %></li>
+                    <li class="<%= is_current?("admin") %>"><%= link_to "Admin", admin_path %></li>
                 <% end %>
             </ul>
 

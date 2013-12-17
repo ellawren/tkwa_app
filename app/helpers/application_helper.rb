@@ -178,19 +178,19 @@ module ApplicationHelper
   def is_current?(c_name)
     # exception for projects/:id/patterns
     if params[:controller] == "projects" && params[:action] == "patterns"
-        "class='active'" if c_name.include?(params[:action])
+        "active" if c_name.include?(params[:action])
     # exception for /potential_projects
     elsif params[:controller] == "static_pages" && params[:action] == "potential_projects"
-        "class='active'" if c_name.include?(params[:action])
+        "active" if c_name.include?(params[:action])
     # exception for /phases
     elsif params[:controller] == "phases"
-        "class='active'" if c_name.include?('projects')
+        "active" if c_name.include?('projects')
     # exception for /employees/:id/forecast
     elsif params[:controller] == "employees" && params[:action] == "forecast"
-        "class='active'" if c_name.include?('timesheets')
+        "active" if c_name.include?('timesheets')
     # exception for /companies
     elsif params[:controller] == "companies"
-        "class='active'" if c_name.include?('contacts')
+        "active" if c_name.include?('contacts')
 
     # exceptions for /admin
     elsif ( params[:controller] == "employees" ) ||
@@ -198,13 +198,14 @@ module ApplicationHelper
           ( params[:controller] == "users" && params[:action] == "index" ) ||
           ( params[:controller] == "users" && params[:action] == "new" ) ||
           ( params[:controller] == "holidays" )
-        "class='active'" if c_name.include?('admin')
+        "active" if c_name.include?('admin')
 
     # all other pages
     else
-        "class='active'" if c_name.include?(params[:controller])
+        "active" if c_name.include?(params[:controller])
     end
   end
+
 
   def over_under(g, a)
       goal = g.to_f
