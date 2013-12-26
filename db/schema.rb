@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226182631) do
+ActiveRecord::Schema.define(:version => 20131226190247) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(:version => 20131226182631) do
     t.datetime "updated_at", :null => false
     t.integer  "number"
   end
-
-  create_table "categories_contacts", :id => false, :force => true do |t|
-    t.integer  "category_id", :null => false
-    t.integer  "contact_id",  :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "categories_contacts", ["category_id", "contact_id"], :name => "index_categories_contacts_on_category_id_and_contact_id", :unique => true
 
   create_table "consultant_roles", :force => true do |t|
     t.string   "consultant_role_name"
@@ -80,7 +71,6 @@ ActiveRecord::Schema.define(:version => 20131226182631) do
     t.string   "work_title"
     t.string   "work_department"
     t.string   "work_ext"
-    t.string   "work_assistant"
     t.string   "work_direct"
     t.string   "work_email"
     t.string   "home_address"
@@ -90,22 +80,12 @@ ActiveRecord::Schema.define(:version => 20131226182631) do
     t.string   "staff_contact"
     t.text     "notes"
     t.boolean  "employee",        :default => false
-    t.string   "category"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "birthday"
     t.string   "direct_ext"
-    t.string   "assistant"
     t.string   "work_cell"
-    t.string   "post_nominals"
-    t.string   "prefix"
-    t.string   "cat01"
-    t.string   "cat02"
-    t.string   "cat03"
-    t.string   "cat04"
-    t.string   "cat05"
-    t.string   "cat06"
-    t.string   "view_options",    :default => "---\n- name\n- work\n- personal\n"
+    t.string   "cat_number"
     t.integer  "company_id"
     t.string   "work_company"
     t.string   "work_address"

@@ -69,7 +69,7 @@ class ContactsController < ApplicationController
                :notes => "#{row[19] + "\n" if row[19].present? && row[19].length > 1 }#{"ARCHITECT: " + row[21] + "\n" if row[21].present? && row[21].length > 1 }#{"CLIENT: " + row[22] + "\n"if row[22].present? && row[22].length > 1 }#{"CONSULTANT: " + row[23] + "\n"if row[23].present? && row[23].length > 1 }#{"CONTRACTOR: " + row[24] + "\n" if row[24].present? && row[24].length > 1 }#{"MARKETING: " + row[25] + "\n" if row[25].present? && row[25].length > 1 }#{"PERSONNEL: " + row[26] + "\n" if row[26].present? && row[26].length > 1 }#{"SUPPLIER: " + row[27] + "\n" if row[27].present? && row[27].length > 1 }",
                :staff_contact => row[20],
                :created_at => "#{DateTime.strptime(row[28], "%m/%d/%y") unless row[28].blank? }" || Time.now,
-               :cat01 => if row[23].present? && row[23].length > 1 then 3 
+               :cat_number => if row[23].present? && row[23].length > 1 then 3 
                           elsif row[24].present? && row[24].length > 1 then 3 
                           elsif row[22].present? && row[22].length > 1 then 1
                           elsif row[27].present? && row[27].length > 1 then 6

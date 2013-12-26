@@ -25,11 +25,11 @@ end %>
 	<%= search_form_for @q do |f| %>
 
 		<div class="status-options">
-			<div><%= f.radio_button(:category_cont, "") %><label class="radio">All</label></div>
-	        <div><%= f.radio_button(:category_cont, "Employee") %><label class="radio">Employee</label></div>
-	        <div><%= f.radio_button(:category_cont, "Client") %><label class="radio">Client</label></div>
-	        <div><%= f.radio_button(:category_cont, "Consultant") %><label class="radio">Consultant</label></div>
-	        <div><%= f.radio_button(:category_cont, "Supplier") %><label class="radio">Supplier</label></div>
+			<div><%= f.radio_button(:cat_number_eq, "") %><label class="radio">All</label></div>
+	        <div><%= f.radio_button(:cat_number_eq, "7") %><label class="radio">Employee</label></div>
+	        <div><%= f.radio_button(:cat_number_eq, "1") %><label class="radio">Client</label></div>
+	        <div><%= f.radio_button(:cat_number_eq, "3") %><label class="radio">Consultant</label></div>
+	        <div><%= f.radio_button(:cat_number_eq, "6") %><label class="radio">Supplier</label></div>
 		</div>
 
 		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>

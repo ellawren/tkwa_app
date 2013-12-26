@@ -7,7 +7,6 @@
 #  work_title      :string(255)
 #  work_department :string(255)
 #  work_ext        :string(255)
-#  work_assistant  :string(255)
 #  work_direct     :string(255)
 #  work_email      :string(255)
 #  home_address    :string(255)
@@ -17,29 +16,18 @@
 #  staff_contact   :string(255)
 #  notes           :text
 #  employee        :boolean         default(FALSE)
-#  category        :string(255)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
 #  birthday        :string(255)
 #  direct_ext      :string(255)
-#  assistant       :string(255)
 #  work_cell       :string(255)
-#  post_nominals   :string(255)
-#  prefix          :string(255)
-#  cat01           :string(255)
-#  cat02           :string(255)
-#  cat03           :string(255)
-#  cat04           :string(255)
-#  cat05           :string(255)
-#  cat06           :string(255)
-#  view_options    :string(255)     default("---\n- name\n- work\n- personal\n")
+#  cat_number      :string(255)
 #  company_id      :integer
 #  work_company    :string(255)
 #  work_address    :string(255)
 #  work_phone      :string(255)
 #  work_url        :string(255)
 #  work_fax        :string(255)
-#  import_category :text
 #
 
 class Contact < ActiveRecord::Base
@@ -76,19 +64,17 @@ class Contact < ActiveRecord::Base
   		:conditions => ["status = ?", 'Current' ]
 	}
 
-  scope :by_category, (lambda do |id| 
-        { :select => "contacts.*",
-        :joins => "INNER JOIN categories_contacts ON categories_contacts.contact_id = contacts.id", 
-        :conditions => ['category_id = ?', id]
-
-      } unless id.empty?
-  end)
-
   def display_name
     if name.present?
       name
     else
       work_company
+    end
+  end
+
+  def category
+    unless self.cat_number.blank?
+      Category.find_by_number(self.cat_number).name
     end
   end
 
@@ -105,10 +91,6 @@ class Contact < ActiveRecord::Base
     arr.sort { |a,b| a[0].name <=> b[0].name }
   end
 
-  def self.consultant_list
-    Contact.all.select { |r| r.category_array.include?("Consultant") }
-  end
-
   def project_list
     arr = []
     self.employee_teams.current.each do |team|
@@ -123,49 +105,6 @@ class Contact < ActiveRecord::Base
       arr.push(team.id)
     end
     arr
-  end
-
-  CONTACT_CATEGORIES =   [  "Client", "Consultant", "Contractor", "Supplier", "Architect",
-              "Marketing", "Employee"
-             ]
-
-def category_array
-      arr = []
-        unless self.cat01.blank?
-            arr.push(Category.find(self.cat01).name)
-        end
-        unless self.cat02.blank?
-            arr.push(Category.find(self.cat02).name)
-        end
-        unless self.cat03.blank?
-            arr.push(Category.find(self.cat03).name)
-        end
-        unless self.cat04.blank?
-            arr.push(Category.find(self.cat04).name)
-        end
-        unless self.cat05.blank?
-            arr.push(Category.find(self.cat05).name)
-        end
-        unless self.cat06.blank?
-            arr.push(Category.find(self.cat06).name)
-        end
-      arr
-  end
-
-  def category_list
-    unless self.category_array.count == 0
-      self.category_array.map { |t| t }.join(", ")
-    end
-  end
-
-  def category_page_links
-    list = []
-    id = self.id.to_s
-    self.category_array.each do |c|
-      list.push("<li><a href='/contacts/" + id + "/data?cat=" + c + "'>" + c + " data</a></li>")
-    end
-    list.join.html_safe
-
   end
 
 end

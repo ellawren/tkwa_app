@@ -2,12 +2,8 @@
 
     <% provide :title, @contact.display_name %>
 
-    <% content_for :category_tab do %>
-        <%= @contact.category_page_links %>
-    <% end %>
-
 	<div class="page-header">
-        <h1><%= @contact.display_name %> &nbsp; <span class="light small"><% unless @contact.category_list.blank? %><%= "(" + @contact.category_list + ")" %><% end %></span></h1>
+        <h1><%= @contact.display_name %> &nbsp; <span class="light small"><% unless @contact.category.blank? %><%= "(" + @contact.category + ")" %><% end %></span></h1>
         <ul class="controls">
             <li><%= link_to "add new", new_contact_path %></li>
             <li><% if current_user.admin? %>
