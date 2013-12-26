@@ -53,7 +53,6 @@ class Contact < ActiveRecord::Base
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '') 
-        self.category = self.category_list
   end
               
   scope :non_employees, where("id NOT IN (SELECT contact_id FROM employees)")
