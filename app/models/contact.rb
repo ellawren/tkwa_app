@@ -32,7 +32,6 @@
 
 class Contact < ActiveRecord::Base
   default_scope order('name')
-	has_and_belongs_to_many :categories
 
   has_one :employee
   has_one :user, :through => :employee
@@ -40,9 +39,6 @@ class Contact < ActiveRecord::Base
 
   has_one :consultant
   accepts_nested_attributes_for :consultant
-
-  # allows project page to add items via checkboxes
-  accepts_nested_attributes_for :categories
 
   has_many :projects, :through => :employee_teams
 
