@@ -76,13 +76,13 @@ ConsultantRole.create([
 
 Category.delete_all
 Category.create([
-        { name: 'Client' },
-        { name: 'Marketing' },
-        { name: 'Consultant' },
-        { name: 'Architect' },
-        { name: 'Contractor' },
-        { name: 'Supplier' },
-        { name: 'Employee' }
+        { number: 1, name: 'Client' },
+        { number: 2, name: 'Marketing' },
+        { number: 3, name: 'Consultant' },
+        { number: 4, name: 'Architect' },
+        { number: 5, name: 'Contractor' },
+        { number: 6, name: 'Supplier' },
+        { number: 7, name: 'Employee' }
 ])
 
 User.delete_all

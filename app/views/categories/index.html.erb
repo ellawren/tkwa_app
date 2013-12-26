@@ -6,7 +6,7 @@
 	<ul>
 		<% @categories.each do |param| %>
   			<li>
-  				<%= link_to param.name, param %>
+  				<%= link_to param.name, edit_category_path(param.id) %>
   				<% if signed_in? %>
 						<% if current_user.admin? %>
 						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>

@@ -114,7 +114,7 @@
     <div class="narrow contact-phone">
         <div class="input-row">
             <%= f.label(:cat01, "Category", class: "input-label" ) %>
-            <%= f.collection_select(:cat01, Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            <%= f.collection_select(:cat01, Category.all, :number, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
         </div>
         <div class="input-row">
             <%= f.label(:staff_contact, "Staff Contact", class: "input-label" ) %>
