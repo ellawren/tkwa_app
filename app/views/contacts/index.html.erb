@@ -60,14 +60,14 @@ end %>
 		</div>
 	<% else %>
 
-	<h2>Search Results <a class="reset" href="/contacts">reset search</a></h2>
+	<h2>Search Results (<%= @contacts.count %>) <a class="reset" href="/contacts">reset search</a></h2>
 
 		<table class="table search-results">
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>Category</th>
 					<th>Company</th>
+					<th>Category</th>
 				</tr>
 			</thead>
 		    <tbody>

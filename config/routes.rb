@@ -8,8 +8,10 @@ TkwaApp::Application.routes.draw do
   end
   
   post "/csv_import" => 'projects#csv_import'
+  post "/cont_csv_import" => 'contacts#cont_csv_import'
   match '/projects/current',  to: 'projects#current'
   match '/projects/import',   to: 'projects#import'
+  match '/contacts/import',   to: 'contacts#import'
   match '/projects/forecast_index',   to: 'projects#forecast_index'
 
   resources :projects do
@@ -47,6 +49,7 @@ resources :contacts do
       get 'data', 'employee_data', 'consultant_data', 'client_data'
     end
     get :autocomplete_contact_work_company, :on => :collection
+    get :autocomplete_contact_name, :on => :collection
 end
 
   resources :categories 

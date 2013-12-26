@@ -1,5 +1,6 @@
 					<tr class="results-row">
-		                <td class="bold"><%= link_to "#{f.name} #{f.post_nominals}", contact_path(f) %></td>
+		                <td class="bold"><%= link_to f.name, contact_path(f) %></td>
+		                <td class="<%= f.name.blank? ? "bold green" : "" -%>"><%= f.work_company %></td>
 		                <td><%= link_to "#{f.category_list}", contact_path(f) %></td>
-		                <td><%= f.work_company %></td>
+		                
 		            </tr>

@@ -323,10 +323,10 @@ video/volume-off-2x.png: video/volume-off-2x-bb7b37d2fe485818fd267959f5a0eaf9.pn
 video/volume-off-2x/index.png: video/volume-off-2x-bb7b37d2fe485818fd267959f5a0eaf9.png
 video/volume-off.png: video/volume-off-67f5c005be57571092f6ff5863186dd4.png
 video/volume-off/index.png: video/volume-off-67f5c005be57571092f6ff5863186dd4.png
-application.js: application-855acdb007c1ecd0e437e87b43b1ef04.js
-application/index.js: application-855acdb007c1ecd0e437e87b43b1ef04.js
-application.css: application-553e00dedf6fee8c3af5fc5ccd5d3625.css
-application/index.css: application-553e00dedf6fee8c3af5fc5ccd5d3625.css
+application.js: application-2c6f6a6e80a07815fffde0c5009310ef.js
+application/index.js: application-2c6f6a6e80a07815fffde0c5009310ef.js
+application.css: application-c170b9be5075a8ace3469bdbd9c39cf9.css
+application/index.css: application-c170b9be5075a8ace3469bdbd9c39cf9.css
 blueprint/plugins/buttons/icons/cross.png: blueprint/plugins/buttons/icons/cross-347854b76d491352f5429d86706e1f79.png
 blueprint/plugins/buttons/icons/cross/index.png: blueprint/plugins/buttons/icons/cross-347854b76d491352f5429d86706e1f79.png
 blueprint/plugins/buttons/icons/key.png: blueprint/plugins/buttons/icons/key-f95cffaa01ae4b233cb04e2899cee363.png

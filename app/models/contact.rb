@@ -39,6 +39,7 @@
 #  work_phone      :string(255)
 #  work_url        :string(255)
 #  work_fax        :string(255)
+#  import_category :text
 #
 
 class Contact < ActiveRecord::Base
@@ -82,6 +83,27 @@ class Contact < ActiveRecord::Base
 
       } unless id.empty?
   end)
+
+  def display_name
+    if name.present?
+      name
+    else
+      work_company
+    end
+  end
+
+  def associated_projects
+    arr = []
+    if name.present?
+      Project.find_all_by_contact_name(name).each do |p|
+        arr.push([p, "Client Contact"])
+      end
+      Project.find_all_by_billing_name(name).each do |p|
+        arr.push([p, "Billing Contact"])
+      end
+    end
+    arr.sort { |a,b| a[0].name <=> b[0].name }
+  end
 
   def self.consultant_list
     Contact.all.select { |r| r.category_array.include?("Consultant") }

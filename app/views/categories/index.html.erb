@@ -1,9 +1,18 @@
 <h1>Categories</h1>
 
+<%= link_to "Add Category", new_category_path, class: "btn" %>
+
 <br />
 	<ul>
 		<% @categories.each do |param| %>
-  			<li><%= link_to param.name, param %></li>
+  			<li>
+  				<%= link_to param.name, param %>
+  				<% if signed_in? %>
+						<% if current_user.admin? %>
+						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+						<% end %>
+  				<% end %>
+  			</li>
 		<% end %>
 	</ul>
 <br /><br />

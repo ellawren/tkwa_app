@@ -197,7 +197,8 @@ module ApplicationHelper
           ( params[:controller] == "static_pages" && params[:action] == "admin" ) ||
           ( params[:controller] == "users" && params[:action] == "index" ) ||
           ( params[:controller] == "users" && params[:action] == "new" ) ||
-          ( params[:controller] == "holidays" )
+          ( params[:controller] == "holidays" ) ||
+          ( params[:controller] == "categories" )
         "active" if c_name.include?('admin')
 
     # all other pages

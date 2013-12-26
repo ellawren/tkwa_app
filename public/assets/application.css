@@ -10287,6 +10287,13 @@ a { text-decoration:none; color:#ced5da; -webkit-transition: all 0.30s ease-in-o
 a:hover { color:#1abc9c; }
 a:active, a:focus { color:#1abc9c; outline:none; }
 
+a.green  { color:#1abc9c; }
+a.green:hover  { color:#16a085; }
+
+a#show, a#hide { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; }
+a#hide { display:none;}
+#personal-info.hidden { float:left; }
+#personal-info.hidden { display:none; }
 
 /* transitions */
 
@@ -10320,6 +10327,7 @@ label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, 
 		#selected-company .well #company-data { width:430px; }
 		#selected-company .well #company-phone { width:300px; }
 
+.detail { color:#bcc6cc; font-style:italic; }
 
 /* tabnav */
 
@@ -10364,6 +10372,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		a.input-button { width:45px; height:30px; padding:6px 12px 2px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
 .input-row.short .input-cell { padding:4px 10px; }
 .input-row.short .input-label { padding:4px 0px; }
+.input-row.space-below { margin-bottom:22px; }
 
 	.wide { float:left; width:580px; }
 		.wide input[type="text"], .wide textarea, .wide .uneditable-input { float:left; width:340px; }
@@ -10401,6 +10410,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.narrow.contact-phone input[type="text"] { float:left; width:130px; }
 		.narrow.contact-phone input[type="text"].input-adjust { width:155px; }
 		.narrow.contact-phone input[type="text"].full-width { width:220px; }
+		.narrow.contact-phone input[type="text"].match-select { width:165px; }
 			.narrow.contact-phone .label-sm { float:left; padding: 10px 6px 10px 8px; color:#c3cacf; cursor:default; }
 			.narrow.contact-phone input[type="text"].ext { float:left; width:35px; }
 			.narrow.contact-phone input[type="text"].ext.input-adjust { width:60px; }
@@ -10537,12 +10547,15 @@ a.less-options { display:none; }
 
 div.search-results { float:left; width:100%; margin-top:0px; color:#000; font-size:11pt; text-align:center; }
 	table.search-results { width:650px; margin-left:150px; border-collapse:collapse; font-size:10pt; }
+		table.search-results tr { border-bottom:1px solid #ecf0f5; }
 			table.search-results tr:hover { background-color:#ecf0f5; cursor:pointer; }
 			table.search-results tr:hover a { color:#1abc9c; }
 		table.search-results td { border:0px; padding:4px 8px; }
 			table.search-results td:first-child { border-radius:5px 0 0 5px; }
 			table.search-results td:last-child { border-radius:0 5px 5px 0; }
 		table.search-results a { color:#34495e; text-decoration:none; }
+		table.search-results td.bold.green { color:#16a085; }
+		table.search-results td.bold.green:hover { color:#1abc9c; }
 		table.search-results th { padding:0px 8px; color:#bcc6cc; font-size:11px; font-weight:400; text-transform:uppercase; }
 table.search-results thead tr:hover { background-color:#fff; cursor:default; }
 a.reset { display:inline-block;margin-left:10px; font-size:13px; font-weight:400; }
@@ -10650,10 +10663,15 @@ table.tracking-table tbody tr.lower { position:relative; border-bottom:0px; }
 
 td.Remaining .sum { margin-left:10%; margin-right:0px; }
 
-.Remaining .act.sum { width:70px; height:20px; padding:13px 0; margin-left:10px; border-radius:10px; background-color:#86cc71; color:#fff; font-weight:400; }
-	.Remaining .act.sum.caution1 { background-color:#f1c40f; }
-	.Remaining .act.sum.caution2 { background-color:#e67e22; }
-	.Remaining .act.sum.over { background-color:#e64c3c; }
+.Remaining .act.sum { width:70px; height:20px; padding:11px 0; margin-left:10px; border-radius:10px; border:2px solid #86cc71; color:#86cc71; font-weight:400; }
+	.Remaining .act.sum.caution1 {  border-color:#f1c40f; color:#f1c40f; }
+	.Remaining .act.sum.caution2 { border-color:#e67e22; color:#e67e22; }
+	.Remaining .act.sum.over { border-color:#e64c3c; color:#e64c3c; }
+
+.total-hours .Remaining .act.sum, .billing .Remaining .act.sum { background-color:#86cc71; color:#fff; }
+	.total-hours .Remaining .act.sum.caution1, .billing .Remaining .act.sum.caution1 { background-color:#f1c40f; }
+	.total-hours .Remaining .act.sum.caution2, .billing .Remaining .act.sum.caution2 { background-color:#e67e22; }
+	.total-hours .Remaining .act.sum.over, .billing .Remaining .act.sum.over { background-color:#e64c3c; }
 
 table.tracking-table tbody tr.billing { border-top:1px solid #666; background-color:#f3f6f9; }
 	table.tracking-table tbody tr.billing th { width:5%; } 

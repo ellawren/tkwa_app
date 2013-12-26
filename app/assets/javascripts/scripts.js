@@ -23,6 +23,19 @@ $(document).ready(function() {
     $(this).parent().parent('.pattern').children('.view-fields').show();
   });
 
+  // show personal info on contacts page
+  $('#show').click( function() {
+    $('#personal-info.hidden').slideDown("slow");
+    $('#show').hide();
+    $('#hide').show();
+  });
+
+  $('#hide').click( function() {
+    $('#personal-info.hidden').slideUp("slow");
+    $('#show').show();
+    $('#hide').hide();
+  });
+
   $( ".datepicker" ).datepicker();
 
   $('#add-message').click( function() {

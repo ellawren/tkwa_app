@@ -16,7 +16,7 @@
         </div>  
         <div class="input-row">
             <%= f.label(:work_address, "Address", class: "input-label") %>
-            <%= f.text_area :work_address, class: "button-right", rows: "3" %>
+            <%= f.text_area :work_address, class: "button-right", rows: "2" %>
             <button class="btn input-button" onclick="showMap('contact_work_address'); return false;">Google maps</button>
         </div>   
         <div class="input-row">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="narrow contact-phone">
-        <div class="input-row">
+        <div class="input-row space-below">
             <%= f.label(:work_title, "Title", class: "input-label") %>
             <%= f.text_field :work_title, class: "full-width" %>
         </div>
@@ -57,31 +57,51 @@
         </div>
     </div>
 
-    <h2>Personal Information</h2>
 
-    <div class="wide">
-        <div class="input-row">
-            <%= f.label(:home_address, "Home Address", class: "input-label") %>
-            <%= f.text_area :home_address, class: "button-right", rows: "2" %>
-            <button class="btn input-button" onclick="showMap('contact_home_address'); return false;">Google maps</button>
-        </div>    
-        <div class="input-row">
-            <%= f.label(:home_email, "Personal Email", class: "input-label") %>
-            <%= f.text_field :home_email, class: "button-right" %>
-            <button class="btn input-button" onclick="mailTo('<%= f.object.home_email %>'); return false;">send email</button>
-        </div>  
+    <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
+        <% @personal = "visible" %>
+    <% else %>
+        <% @personal = "hidden" %>
+    <% end %>
+
+    <h2>Personal Information <% if @personal == "hidden" %><a id="show">show fields</a><% end %><a id="hide">hide fields</a></h2>
+
+    <div id="personal-info" class="<%= @personal %>">
+        <div class="wide">
+            <div class="input-row">
+                <%= f.label(:home_address, "Home Address", class: "input-label") %>
+                <%= f.text_area :home_address, class: "button-right", rows: "2" %>
+                <button class="btn input-button" onclick="showMap('contact_home_address'); return false;">Google maps</button>
+            </div>    
+            <div class="input-row">
+                <%= f.label(:home_email, "Personal Email", class: "input-label") %>
+                <%= f.text_field :home_email, class: "button-right" %>
+                <button class="btn input-button" onclick="mailTo('<%= f.object.home_email %>'); return false;">send email</button>
+            </div>  
+        </div>
+
+        <div class="narrow contact-phone">
+            <div class="input-row">
+                <%= f.label :home_phone, "Home Phone", class: "input-label" %>
+                <%= f.text_field :home_phone, value: number_to_phone(@contact.home_phone, :area_code => true), class: "phone" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:home_cell, "Personal Cell", class: "input-label") %>
+                <%= f.text_field :home_cell,value: number_to_phone(@contact.home_cell, :area_code => true), class: "phone" %>
+            </div>
+        </div>
     </div>
 
-    <div class="narrow contact-phone">
-        <div class="input-row">
-            <%= f.label :home_phone, "Home Phone", class: "input-label" %>
-            <%= f.text_field :home_phone, value: number_to_phone(@contact.home_phone, :area_code => true), class: "phone" %>
+    <% if f.object.associated_projects.count > 0 %>
+        <h2>Projects</h2>
+        <div class="full">
+            <ul>
+            <% f.object.associated_projects.each do |p| %>
+                <li><%= link_to p[0].name, info_project_path(p[0].id), class: "green" %> <span class="detail">(<%= p[1] %>)</span></li>
+            <% end %>
+            </ul>
         </div>
-        <div class="input-row">
-            <%= f.label(:home_cell, "Personal Cell", class: "input-label") %>
-            <%= f.text_field :home_cell,value: number_to_phone(@contact.home_cell, :area_code => true), class: "phone" %>
-        </div>
-    </div>
+    <% end %>
 
     <h2>Notes</h2>
 
@@ -98,7 +118,7 @@
         </div>
         <div class="input-row">
             <%= f.label(:staff_contact, "Staff Contact", class: "input-label" ) %>
-            <%= f.collection_select(:staff_contact, Employee.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            <%= f.autocomplete_field :staff_contact, autocomplete_contact_name_contacts_path,  class: "match-select" %>
         </div>
 
         <% unless params[:action] == "new" %>
@@ -113,8 +133,4 @@
         <% end %>
 
     </div>
-
-
-
-
 

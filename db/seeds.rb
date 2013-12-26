@@ -98,7 +98,7 @@ User.create([
 	{ name: 'Joel Krueger', email:'jkrueger@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '105' } },
         { name: 'Rich Hepner', email:'rhepner@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '126' } },
         { name: 'Vicki Yurske', email:'vyurske@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '136' } },
-        { name: 'Paul Rushing', email:'prushing@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '138' } },
+        { name: 'Karen Hancock', email:'khancock@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '215' } },
         { name: 'Tim Hansmann', email:'thansmann@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '148' } },
         { name: 'Mark Lefebvre', email:'mlefebvre@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '159' } },
         { name: 'Leta Flom', email:'lflom@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '170' } },
@@ -108,8 +108,8 @@ User.create([
         { name: 'Justin Racinowski', email:'jracinowski@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '198' } },
         { name: 'Adam Voltz', email:'avoltz@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '205' } },
         { name: 'Ariel Steuer', email:'asteuer@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '208' } },
-        { name: 'Donna Weiss', email:'dweiss@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '177' } },
-        { name: 'Jim Read', email:'jread@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '106' } }
+        { name: 'Erik Hancock', email:'ehancock@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '211' } },
+        { name: 'Matt Frydach', email:'mfrydach@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '214' } }
 ])
 
 
