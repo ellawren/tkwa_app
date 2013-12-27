@@ -1,11 +1,6 @@
 TkwaApp::Application.routes.draw do
 
- 
-  resources :users do
-    member do
-      get :following, :followers, :profile
-    end
-  end
+  resources :users
   
   post "/csv_import" => 'projects#csv_import'
   post "/cont_csv_import" => 'contacts#cont_csv_import'
