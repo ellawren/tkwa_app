@@ -5,7 +5,7 @@
 
     <% if @timesheet.open? %>
         <div class="editable">
-            <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+            <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
             <% if f.object.project_id %>
                 <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
             <% else %>

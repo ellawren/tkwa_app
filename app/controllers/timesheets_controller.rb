@@ -43,7 +43,7 @@ class TimesheetsController < ApplicationController
 
         render :layout => 'search' 
     else
-      flash[:error] = "Invalid date."
+      flash[:error] = "Invalid date. Please try again."
       redirect_to timesheets_path
     end
   end
@@ -65,7 +65,7 @@ class TimesheetsController < ApplicationController
       flash[:success] = "Timesheet updated!"
       redirect_to(:back) 
     else
-      flash[:error] = "Something went wrong."
+      flash[:error] = "Timesheet could not be updated. Please try again."
       redirect_to(:back) 
     end
   end
