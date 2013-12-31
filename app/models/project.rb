@@ -71,7 +71,7 @@
 class Project < ActiveRecord::Base
     default_scope order('name')
 
-    has_many :employees, :through => :employee_teams
+    has_many :users, :through => :employee_teams
     has_many :employee_teams, :dependent => :destroy
 
     has_many :consultants, :through => :consultant_teams
@@ -119,6 +119,11 @@ class Project < ActiveRecord::Base
         if self.status == 'potential'
             self.number = "000000"
         end
+    end
+
+    before_create :phase_values
+    def phase_values
+        self.phase_ids = [1, 2, 3, 4, 5, 6]
     end
 
     scope :with_patterns, {

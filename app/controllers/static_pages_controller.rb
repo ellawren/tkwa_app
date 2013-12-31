@@ -5,7 +5,7 @@ skip_before_filter :signed_in_user, :only => [:home]
   def home
     if signed_in?
     	@message = Message.new
-    	@messages = Message.all_messages(Employee.find_by_user_id(current_user.id).project_ids)
+    	@messages = Message.all_messages(current_user.project_ids)
     end
     render :layout => 'home_page' 
   end

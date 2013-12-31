@@ -157,7 +157,6 @@ Phase.create([
         { name: 'Bidding', number:50, shorthand:'bid', full_name:"Bidding" },
         { name: 'CCA', number:60, shorthand:'cca', full_name:"Construction Contract Administration" },
         { name: 'Interior', number:65, shorthand:'int', full_name:"Interior Design" },
-        { name: 'Historic', number:68, shorthand:'his', full_name:"Historic Preservation" },
         { name: 'Additional', number:70, shorthand:'add', full_name:"Additional Services" }
 ])
 

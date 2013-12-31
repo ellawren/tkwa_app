@@ -1,6 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-  resources :users
   
   post "/csv_import" => 'projects#csv_import'
   post "/cont_csv_import" => 'contacts#cont_csv_import'
@@ -20,7 +19,7 @@ TkwaApp::Application.routes.draw do
     end
   end    
 
-  resources :employees do
+  resources :users do
     resources :timesheets
     member do
       get 'edit_employee_forecast'
@@ -28,8 +27,8 @@ TkwaApp::Application.routes.draw do
     end
   end
 
-  match '/employees/:id/timesheets/:year/:week',  to: 'timesheets#show'
-  match '/employees/:id/data_records/:year',      to: 'data_records#edit'
+  match '/users/:id/timesheets/:year/:week',  to: 'timesheets#show'
+  match '/users/:id/data_records/:year',      to: 'data_records#edit'
   match '/globals/:year',                         to: 'globals#edit'
   match '/consultant_teams/:consultant_team_id/bills',            to: 'bills#index'
 
@@ -50,7 +49,6 @@ end
   resources :categories 
   resources :consultants
   resources :data_records
-  resources :employees
   resources :employee_teams
   resources :globals, :only => [:index, :create, :update]
   resources :holidays

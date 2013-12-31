@@ -11,7 +11,6 @@
 #  rate           :decimal(6, 2)
 #  created_at     :datetime        not null
 #  updated_at     :datetime        not null
-#  employee_id    :integer
 #  admin_meeting  :decimal(6, 2)
 #  computer       :decimal(6, 2)
 #  education      :decimal(6, 2)
@@ -19,12 +18,13 @@
 #  staff_meeting  :decimal(6, 2)
 #  stdio_projects :decimal(6, 2)
 #  research       :decimal(6, 2)
+#  user_id        :integer         not null
 #
 
 class DataRecord < ActiveRecord::Base
-	belongs_to :employee
+	belongs_to :user
 
-	validates :employee_id, :presence => true
+	validates :user_id, :presence => true
 	validates :year, :presence => true
 
 	def billable_rate
@@ -45,8 +45,8 @@ class DataRecord < ActiveRecord::Base
 	    if self.year != nil
 	    	prev_year = (self.year - 1)
 
-	    	if DataRecord.find_all_by_employee_id_and_year(self.employee_id, prev_year).count == 1
-	    		prev = DataRecord.find_by_employee_id_and_year(self.employee_id, prev_year)
+	    	if DataRecord.find_all_by_user_id_and_year(self.user_id, prev_year).count == 1
+	    		prev = DataRecord.find_by_user_id_and_year(self.user_id, prev_year)
 		    	if prev.week != nil
 		    		self.week = prev.week
 		    	else

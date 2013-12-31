@@ -14,48 +14,7 @@
 #
 
 class Employee < ActiveRecord::Base
-	belongs_to :user
-    belongs_to :contact
-    default_scope joins(:contact).order('contacts.name ASC').readonly(false)
 
-    has_many :timesheets
-    has_many :data_records
-    accepts_nested_attributes_for :data_records
-
-    has_many :time_entries, :through => :timesheets
-    
-    has_many :plan_entries
-    accepts_nested_attributes_for :plan_entries, :allow_destroy => true
-
-    has_many :projects, :through => :employee_teams
-    has_many :employee_teams, :dependent => :destroy
-    # allows project page to add employees via team join model. must allow destroy.
-    accepts_nested_attributes_for :employee_teams, :allow_destroy => true
-
-    def name
-    	Contact.find(self.contact_id).name
-    end
-
-    def project_list
-        arr = []
-        self.employee_teams.current.each do |team|
-          arr.push(Project.find(team.project_id))
-        end
-        arr.sort { |a,b| a.name <=> b.name }
-    end
-
-    def project_ids
-        arr = []
-        self.project_list.each do |team|
-          arr.push(team.id)
-        end
-        arr
-    end
-
-    scope :current, {
-        :select => "employees.*",
-        :conditions => ["leave_date = ?", '' ]
-    }
 
     def employee_forecast(project_id, four_month_array)
         entries = []

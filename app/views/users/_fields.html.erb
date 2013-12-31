@@ -1,4 +1,4 @@
-    <h3>User Information</h3>  
+    <h2>User Information</h2>  
      
     <div class="wide">
                 
@@ -12,8 +12,9 @@
             <%= f.text_field :email %>
         </div>
 
+    </div>
+    <div class="narrow">
         <div class="input-row">
-            <%= f.label :photo, "Photo", class: "input-label" %>
             <div class="image-box small">
                     <div class="image-placeholder" id="photo-placeholder">
                         <%= image_tag @user.photo.url(:thumb), class: "diagram" %>
@@ -29,26 +30,32 @@
 
             </div>
         </div>
-          
-    </div> <!-- end row --> 
-    <div class="narrow">
-        <% if @user == current_user || current_user.admin? %>
-            <%= f.fields_for :employee do |e| %>
-                <div class="input-row">
-                    <%= e.label :number, "Employee Number", class: "input-label" %>
-                    <%= e.text_field :number  %>
-                </div>
-            <% end %>
+    </div>  
+    
+    <% if @user == current_user || current_user.admin? %>
+        <h2>Password</h2> 
+
+        <div class="wide">
             <div class="input-row">
                 <%= f.label :password, class: "input-label" %>
-                <%= f.password_field :password %>
+                <%= f.password_field :password, autocomplete: "off" %>
             </div>
             <div class="input-row">
                 <%= f.label(:password_confirmation, "Confirm Password", class: "input-label") %>
-                <%= f.password_field :password_confirmation %>
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
             </div>
-        <% end %>
-        <% if current_user.admin? %>
+        </div>
+    <% end %>
+
+    <% if current_user.admin? %>
+        <h2>Employee Info</h2> 
+
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label :employee_number, "Employee Number", class: "input-label" %>
+                <%= f.text_field :employee_number, autocomplete: "off"  %>
+            </div>
+
             <div class="input-row">
                 <%= f.label :admin, class: "input-label" %>
                 <div class="radio-group">
@@ -67,10 +74,9 @@
                     </label>
                 </div>
             </div>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
 
-    
 
 <script>
     $('#user_photo').live('change', function(){

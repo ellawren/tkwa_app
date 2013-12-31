@@ -2,33 +2,33 @@
 #
 # Table name: employee_teams
 #
-#  id          :integer         not null, primary key
-#  project_id  :integer
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  role        :string(255)
-#  pd_hours    :decimal(6, 2)
-#  sd_hours    :decimal(6, 2)
-#  dd_hours    :decimal(6, 2)
-#  cd_hours    :decimal(6, 2)
-#  bid_hours   :decimal(6, 2)
-#  cca_hours   :decimal(6, 2)
-#  int_hours   :decimal(6, 2)
-#  his_hours   :decimal(6, 2)
-#  add_hours   :decimal(6, 2)
-#  employee_id :integer
+#  id         :integer         not null, primary key
+#  project_id :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  role       :string(255)
+#  pd_hours   :decimal(6, 2)
+#  sd_hours   :decimal(6, 2)
+#  dd_hours   :decimal(6, 2)
+#  cd_hours   :decimal(6, 2)
+#  bid_hours  :decimal(6, 2)
+#  cca_hours  :decimal(6, 2)
+#  int_hours  :decimal(6, 2)
+#  his_hours  :decimal(6, 2)
+#  add_hours  :decimal(6, 2)
+#  user_id    :integer
 #
 
 class EmployeeTeam < ActiveRecord::Base
-	attr_accessible :project_id, :employee_id, :role, :pd_hours, :sd_hours, :dd_hours, 
+	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
     :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
   default_scope :order => 'role DESC'
 
 	belongs_to :project
-  belongs_to :employee
+  belongs_to :user
 
 	validates :project_id, :presence => true
-  validates :employee_id, :presence => true
+  validates :user_id, :presence => true
 
   def est_total
     array = []
@@ -41,7 +41,7 @@ class EmployeeTeam < ActiveRecord::Base
   end
 
   def employee_name
-    Employee.find(self.employee_id).name
+    User.find(self.user_id).name
   end
 
   def project_name

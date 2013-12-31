@@ -15,8 +15,8 @@
 #  day5         :decimal(4, 2)
 #  day6         :decimal(4, 2)
 #  day7         :decimal(4, 2)
-#  employee_id  :integer
 #  phase_number :integer
+#  user_id      :integer         not null
 #
 
 class TimeEntry < ActiveRecord::Base

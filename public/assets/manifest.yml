@@ -131,6 +131,10 @@ demo/logo-mask.png: demo/logo-mask-e5e4cdef5bda7fae74a865d81eb9e663.png
 demo/logo-mask/index.png: demo/logo-mask-e5e4cdef5bda7fae74a865d81eb9e663.png
 demo/video.jpg: demo/video-60c69c531d5db4417701603d897f957b.jpg
 demo/video/index.jpg: demo/video-60c69c531d5db4417701603d897f957b.jpg
+edit-gray.png: edit-gray-cd9c4cc3b913d27c31efe26d8620849e.png
+edit-gray/index.png: edit-gray-cd9c4cc3b913d27c31efe26d8620849e.png
+edit-green.png: edit-green-430bf0ce9fab3ae1b453aeafb483e73a.png
+edit-green/index.png: edit-green-430bf0ce9fab3ae1b453aeafb483e73a.png
 edit.jpg: edit-e88c8937ef8491c82e1f07ef8ff05d8f.jpg
 edit/index.jpg: edit-e88c8937ef8491c82e1f07ef8ff05d8f.jpg
 edit.png: edit-9ef2039420c37ac87f544511100b82ad.png
@@ -323,10 +327,10 @@ video/volume-off-2x.png: video/volume-off-2x-bb7b37d2fe485818fd267959f5a0eaf9.pn
 video/volume-off-2x/index.png: video/volume-off-2x-bb7b37d2fe485818fd267959f5a0eaf9.png
 video/volume-off.png: video/volume-off-67f5c005be57571092f6ff5863186dd4.png
 video/volume-off/index.png: video/volume-off-67f5c005be57571092f6ff5863186dd4.png
-application.js: application-2c6f6a6e80a07815fffde0c5009310ef.js
-application/index.js: application-2c6f6a6e80a07815fffde0c5009310ef.js
-application.css: application-c170b9be5075a8ace3469bdbd9c39cf9.css
-application/index.css: application-c170b9be5075a8ace3469bdbd9c39cf9.css
+application.js: application-4e87789c505b99aedeaf7c0edc21fad0.js
+application/index.js: application-4e87789c505b99aedeaf7c0edc21fad0.js
+application.css: application-8ec147ef3c848cdd55bc4f4ab84dc468.css
+application/index.css: application-8ec147ef3c848cdd55bc4f4ab84dc468.css
 blueprint/plugins/buttons/icons/cross.png: blueprint/plugins/buttons/icons/cross-347854b76d491352f5429d86706e1f79.png
 blueprint/plugins/buttons/icons/cross/index.png: blueprint/plugins/buttons/icons/cross-347854b76d491352f5429d86706e1f79.png
 blueprint/plugins/buttons/icons/key.png: blueprint/plugins/buttons/icons/key-f95cffaa01ae4b233cb04e2899cee363.png

@@ -16,16 +16,7 @@
 
             <div class="navbar navbar-inverse">
                 <ul class="nav">
-                    <li><a class="disabled">Signed in as </a></li>
-                    <li>
-                        <%= link_to current_user.link_name, edit_user_path(current_user.employee.user_id) %>
-                        <ul>
-                            <li><%= link_to "Settings", edit_user_path(current_user.employee.user_id) %></li>
-                            <li><%= link_to "Contact Info", edit_contact_path(current_user.employee.contact_id) %></li>
-                            <li><%= link_to "Messages", messages_path %></li>
-                            <li><%= link_to "Log Out", signout_path %></li>
-                        </ul> <!-- end sub menu -->
-                    </li>
+                    <%= render 'layouts/user_menu' %>
                     <li class="home"><%= link_to "Home", root_path %></li>
                 </ul>
             </div> <!-- end nav menu -->

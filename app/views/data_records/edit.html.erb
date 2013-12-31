@@ -3,13 +3,13 @@
     <div class="row">
           <div class="span10 offset05">
               <a class="close" data-dismiss="modal">×</a>
-              <h3><%= @data_record.employee.contact.name %> <span class="lightweight"><%= @data_record.year %></span></h3>
+              <h3><%= @user.name %> <span class="lightweight"><%= @data_record.year %></span></h3>
           </div>
     </div>
 </div>
 
 <div class="modal-body">
-	<%= form_for [@employee, @data_record] do |f| %>
+	<%= form_for @data_record do |f| %>
 
           <div class="row">
 

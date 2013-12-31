@@ -59,7 +59,8 @@ ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .save-r
 table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .input-sm.est, .input.est, .input-spacer.est,
 .input.act, .Remaining .act.sum, .billing-table .delete, .phases .checkbox .icons, .modal-table input, .modal input.btn-primary,
 .modal a.btn, .modal-table.cbilling-table input, .add-image, label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"],
-label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item  
+label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item, 
+.timesheets .table-body .project-cell, .edit-me  
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 
@@ -97,7 +98,7 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 			ul.tabnav li a:hover, ul.tabnav li.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
 
 		/* tabnav timesheets */
-		ul.tabnav.timesheets li a { padding:2px 3.5px 2px; font-size:11px; }
+		ul.tabnav.timesheets li a { padding:2px 3.35px 2px; font-size:11px; }
 		ul.tabnav.timesheets li:first-child a { padding-left:8px; border-radius:5px 0 0 5px; }
 		ul.tabnav.timesheets li:last-child a { padding-right:5px; border-radius:0 5px 5px 0; }
 		ul.tabnav.timesheets li a.sel { background-color:#ced5da; color:#758083; }
@@ -133,7 +134,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 .input-row.space-below { margin-bottom:22px; }
 
 	.wide { float:left; width:580px; }
-		.wide input[type="text"], .wide textarea, .wide .uneditable-input { float:left; width:340px; }
+		.wide input[type="text"], .wide textarea, .wide .uneditable-input, .wide input[type="password"] { float:left; width:340px; }
 			.wide input[type="text"].button-right, .wide textarea.button-right { width:260px; }
 			.wide input[type="text"].i-am-messed-up { height:34px; }
 		.wide .input-label { float:left; width:150px; padding:10px 0; }
@@ -506,11 +507,21 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 /* timesheets */
 
     .table-main.timesheets     { float:left; width:100%; margin:30px 0 0 0; }
-    .table-main.timesheets.non-billable     { margin:0 0 20px 0; }
+    .table-main.timesheets.non-billable     { margin:20px 0 20px 0; }
     .table-main.timesheets .table-head { border-bottom:2px solid #333; }
 
     .table-body     { float:left; width:100%;}
     .table-row      { float:left; width:100%; padding:4px 0 0 0; }
+
+    .table-row .editable { display:none; }
+    .table-row .non-editable { display:block; }
+    .table-row.edit .editable { display:block; }
+    .table-row.edit .non-editable { display:none; }
+
+    .edit-me { float:left; margin:10px 0; width:20px; height:20px; margin-left:6px; background:url(/assets/edit-gray.png); cursor:pointer; }
+	.edit-me:hover { background:url(/assets/edit-green.png); }
+	.done-editing { float:left; cursor:pointer; margin:0 -40px 0 8px; padding:10px 0; }
+	.table-row.edit.not-saved .delete, .table-row.edit.not-saved .done-editing { display:none; }
 
     .table-head { padding-left:0px; border-bottom:2px solid #333;  }
 	.chzn-select, .chzn-container { float:left; }
@@ -552,30 +563,36 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 
     .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:1px solid #555; font-size:13px; font-weight:900; }
 	.timesheets .table-head .cell 	{ float:left; padding-top:5px; margin:0px 2px 0px 2px; }
-	.timesheets .table-body .table-row { padding:0px 0px 0px 8px; }
+	.timesheets .table-body .table-row { padding:0px 0px 0px 8px; border-bottom:1px solid #e1e6eb;}
 	.timesheets .table-body .table-row:first-child { margin-top:4px; }
 	.timesheets .custom-select { padding:4px 3px; }
-	.timesheets .delete { margin:9px 0 0 6px; }
+	.timesheets .delete { margin:8px 0 8px 6px; }
 	.timesheets.non-billable .table-head     	{ float:left; }
 
  	/* project */
  	.timesheet-tab { width:130px; margin-top:16px; font-weight:900; }
- 	.timesheets .table-head .project-name { width:240px; margin:22px 4px 0 0; }
-	.timesheets .project-name.custom-select  { width:238px; margin:2px 4px 2px -8px; }
+ 	.timesheets .table-head .project-name { width:232px; margin:22px 4px 0 0; }
+	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; }
+	.timesheets .table-body .project-cell { width:226px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+		.timesheets .table-body .project-cell a { color:#1abc9c; }
+		.timesheets .table-body .project-cell a:hover { opacity:.8; }
 
  	/* phase */
  	.timesheets .table-head .phase { width:58px; margin-top:22px; }
 	.timesheets .table-body .phase.custom-select { width:60px; margin:2px 4px 2px 0; }
+		.timesheets .table-body .phase-cell { width:39px; float:left; padding:8px 0; margin:4px 25px 4px 0px; text-align:center; color:#1abc9c; }
 
 	/* task */
 	.timesheets .table-head .task { width:184px; margin-top:22px; }
 	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; }
+		.timesheets .table-body .task-cell { width:178px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
+
 
 	/* time entries */
 	.timesheets .table-head .date { float:left; width:41px; padding:4px 4px 0 4px; font-size:11px; font-weight:400; text-align:center; text-transform:uppercase; }
 	.timesheets .table-head .date.today { color:#f1c40f; }
 	.timesheets .table-head .date .blanch { width:40px; padding:4px 0 0 0; margin:0px; font-size:15px; font-weight:900; text-align:center; }
-	.timesheets .time-entries { float:left; }
+	.timesheets .time-entries { float:left; height:36px;}
  	.timesheets .time-entries .entry { float:left; }
  	.timesheets .time-entries .text-input { width:39px; height:32px; padding:0px 3px; margin:2px 4px 2px 0; text-align:center; }
  	.timesheets .time-entries .text-input.weekend { background-color:#f5f7f9; }
@@ -584,15 +601,17 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 
  	/* total */
  	.timesheets .table-head .total { float:left; width:48px; padding:0px 4px; margin:26px 0 0 0; text-align:center; }
-	.timesheets .table-body .total { float:left; width:40px; height:21px; padding:10px 0 8px 5px; margin:4px 4px 2px 0; font-size:13px; font-weight:900; text-align:center; }
+	.timesheets .table-body .total { float:left; width:40px; height:21px; padding:12px 0 6px 5px; margin:0px 4px 0px 0; font-size:13px; font-weight:900; text-align:center; }
 
 	/* nb - category */
 	.timesheets .table-head .category { width:198px; padding-left:0px; margin-top:0px; margin-left:0px; }
 	.timesheets .category.custom-select { width:208px; margin:2px 4px 2px -8px; }
+		.timesheets .table-body .category-cell { width:194px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
 
 	/* nb - description */
-	.timesheets .table-head .nb-description { float:left; width:276px; padding-left:12px; margin-top:17px; }
-	.text-input.nb-description { float:left; width:256px; height:32px; margin:2px 4px 2px 0; text-align:left; }
+	.timesheets .table-head .nb-description { float:left; width:270px; padding-left:12px; margin-top:17px; }
+	.text-input.nb-description { float:left; width:248px; height:32px; margin:2px 4px 2px 0; text-align:left; }
+		.timesheets .table-body .description-cell { width:264px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
 
 	/* add link */
   	.add-link       { float:left; display:block; padding:2px 0 0 26px; margin-top:3px; background:url(/assets/add-mini-tall.png); background-repeat:no-repeat; font-family:Argumentum-Medium; text-decoration:none; }

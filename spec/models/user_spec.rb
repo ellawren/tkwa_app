@@ -4,17 +4,22 @@
 #
 #  id                 :integer         not null, primary key
 #  name               :string(255)
-#  email              :string(255)
+#  email              :string(255)     default(""), not null
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
-#  password_digest    :string(255)
-#  remember_token     :string(255)
 #  admin              :boolean         default(FALSE)
 #  photo_file_name    :string(255)
 #  photo_content_type :string(255)
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
 #  active             :boolean         default(TRUE)
+#  remember_token     :string(255)
+#  password_digest    :string(255)
+#  employee_number    :integer
+#  contact_id         :integer
+#  status             :string(255)
+#  hire_date          :string(255)
+#  leave_date         :string(255)
 #
 
 require 'spec_helper'

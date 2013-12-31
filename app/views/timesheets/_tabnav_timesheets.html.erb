@@ -5,7 +5,7 @@
 		<ul class="tabnav timesheets">
 			<% week_array(this_year).each do |x| %>
 				<% date_string = parse_date(x, @timesheet.year) %>
-				<li><%= link_to "#{x}", "/employees/#{@timesheet.employee_id}/timesheets/#{this_year}/#{x}", class: is_week?("#{x}"), rel: "tooltip", title: "#{date_string}" %></li>
+				<li><%= link_to "#{x}", "/users/#{@timesheet.user_id}/timesheets/#{@curr_year}/#{x}", class: is_week?("#{x}"), rel: "tooltip", title: "#{date_string}" %></li>
 			<% end %>
 		</ul>
 	<% end %>

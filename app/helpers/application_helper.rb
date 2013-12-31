@@ -14,6 +14,15 @@ module ApplicationHelper
     Time.now.year
   end
 
+  def curr_year
+    if year_begin(1,Date.today.year + 1) <= Date.today # check if next year's start date is this week
+        # if yes, kick the timesheet link into next year
+        Date.today.year + 1
+    else
+         this_year
+    end
+  end
+
   def this_week
     wk_1 = Time.now.beginning_of_year().beginning_of_week(start_day = :sunday) 
     wk_now = Time.now.beginning_of_week(start_day = :sunday)
@@ -198,7 +207,8 @@ module ApplicationHelper
           ( params[:controller] == "users" && params[:action] == "index" ) ||
           ( params[:controller] == "users" && params[:action] == "new" ) ||
           ( params[:controller] == "holidays" ) ||
-          ( params[:controller] == "categories" )
+          ( params[:controller] == "categories" ) ||
+          ( params[:controller] == "data_records" )
         "active" if c_name.include?('admin')
 
     # all other pages

@@ -7,31 +7,33 @@
 	</head>
 	
 	<body>
-	
-		<%= render 'layouts/navbar' %>
-		
-		<!-- main content -->
-    	<div class="container">
+        <% flash.each do |key, value| %>
+            <div id="notice" class="<%= key %>" >
+                <%= content_tag(:div, value, class: "flash #{key}") %>
+            </div>
+        <% end %>
+        <%= render 'layouts/navbar' %>
+    
+        <!-- main content -->
+        <div class="container">
+            
+            <%= yield :page_header %>
+            <%= yield :tabnav %>
 
-
-
-		    		<% flash.each do |key, value| %>
-		          		<%= content_tag(:div, value, class: "flash #{key}") %>
-		        	<% end %>
-
-		    		<%= yield :page_header %>
-		    		<%= yield :tabnav %>
-		      	
-		  			<%= content_for?(:content) ? yield(:content) : yield %>
-
-					<%= render 'layouts/footer' %>	
-					<%= debug(params) if Rails.env.development? %>
-
-
-			
+            <div class="box">	
+          	    <%= content_for?(:content) ? yield(:content) : yield %>
+            </div>
+            
+        	<%= render 'layouts/footer' %>	
+        	<%= debug(params) if Rails.env.development? %>
+                    
     	</div> <!-- end container -->
-	
-        <script src="js/scripts.js"></script>  
+
+      <% if flash.count >= 1 %>
+            <script>
+                $( "#notice" ).delay( 1500 ).slideUp( 300 );
+            </script>
+      <% end %>
 
     </body>  
 </html>  

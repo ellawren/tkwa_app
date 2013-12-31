@@ -102,7 +102,7 @@ module TimesheetsHelper
     # if the last day of the year is a Saturday, then use that as the last week
     if ( (last_day.strftime("%w").to_i + 1) == 6 )
       get_week_number(last_day)
-    # for all other case, week 1 is whatever week Jan1 fall in, so subtract 1 to get the last week
+    # for all other case, week 1 is whatever week Jan1 falls in, so subtract 1 to get the last week
     else
       get_week_number(last_day) - 1
     end

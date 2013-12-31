@@ -1,7 +1,7 @@
 <% content_for :page_header do %>
 	<% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
 	<div class="page-header">
-        <h1><%= @contact.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+        <h1><%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
     </div>		
 <% end %>
 
@@ -73,9 +73,7 @@
 	<div class="summary">
 		<div class="summary-label">Week Totals</div>
 		<div class="span">
-			<!--<div class="total ytd nb-shift-fields"><%= decimal(@timesheet.all_hours("total", "completed")) %></div>
-			<div class="total ytd"><%= precise(@timesheet.all_hours("total", "target")) %></div>
-			<div class="cell total ytd diff"><%= precise(@timesheet.all_hours("total", "over-under")) %></div>-->
+
 			<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(timesheet_sum(:day1)) %></div>
 			<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(timesheet_sum(:day2)) %></div>
 			<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(timesheet_sum(:day3)) %></div>
@@ -89,7 +87,7 @@
 	<div class="timesheet-total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
 
 	<div class="save-row">
-        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        <%= f.submit "Save + Update Totals", class: "btn btn-primary save-btn" %>
 	</div>
 
 </div>  <!-- end box-->

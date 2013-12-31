@@ -84,10 +84,10 @@
 
   </div> <!-- end tiles -->
 
-<% if has_current_projects?(@employee) %>
+<% if has_current_projects?(@user) %>
   <h2>My Current Projects</h2>
   	<ul class="tile-list">
-        <% @employee.employee_teams.current.each do |team| %>
+        <% @user.employee_teams.current.each do |team| %>
         <li><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></li>
         <% end %>
      </ul>

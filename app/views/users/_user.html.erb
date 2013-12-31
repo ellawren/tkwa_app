@@ -4,7 +4,7 @@
   		<div class="name"><%= user.link_name %></div>
   		<ul>
   			<li><%= link_to "edit user info", edit_user_path(user) %></li>
-  			<li><%= link_to "edit employee data", employees_path %></li>
+  			<li><%= link_to "employee info", "/users/#{user.id}/data_records/#{curr_year}", datatoggle: "modal" %></li>
   			<li><%= link_to "delete", user, method: :delete, confirm: "You sure? This will also remove all associated employee information from the database. If this employee has left the firm, hit 'Cancel' below and change their status to 'Inactive' instead of deleting." %></li>
   		</ul>
   	</div>

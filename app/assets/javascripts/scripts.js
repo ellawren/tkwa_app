@@ -36,6 +36,17 @@ $(document).ready(function() {
     $('#hide').hide();
   });
 
+  // edit row on timesheets
+  $('.edit-me').click( function() {
+    id = $(this).parent().parent(".table-row").attr("id");
+    $("#" + id).addClass("edit");
+  });
+
+   $('.done-editing').click( function() {
+    id = $(this).parent().parent(".table-row").attr("id");
+    $("#" + id).removeClass("edit");
+  });
+
   $( ".datepicker" ).datepicker();
 
   $('#add-message').click( function() {
@@ -76,10 +87,14 @@ $(document).ready(function() {
 
 
 function remove_fields(link) {
-  $(link).prev("input[type=hidden]").val("1");
-  //$(link).closest(".input").hide();
-  $(link).closest(".table-row").hide();
+  if (confirm("Delete this entry?")) {
+    $(link).prev("input[type=hidden]").val("1");
+    //$(link).closest(".input").hide();
+    $(link).closest(".table-row").hide();
+  }
+  return false;
 }
+
 
 function remove_fields_2(link) {
   $(link).prev("input[type=hidden]").val("1");

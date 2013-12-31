@@ -121,10 +121,9 @@ class ProjectsController < ApplicationController
   def index
     @q = Project.all_projects.search(params[:q])
     @projects = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30)
-    @contact = Contact.find(current_user.employee.contact_id)
-    @employee = current_user.employee
-    if @projects.count == 1 
-      redirect_to project_path(@projects.first(params[:id]))
+    @user = current_user
+    if params.has_key?(:q) && @projects.count == 1 
+      redirect_to info_project_path(@projects.first(params[:id]))
     else
       render :layout => 'search' 
     end
@@ -135,7 +134,7 @@ class ProjectsController < ApplicationController
 
     if @project.save
       flash[:success] = "Project created successfully!"
-      redirect_to project_path(@project)
+      redirect_to info_project_path(@project)
     else
       flash[:error] = "Project could not be created."
       render 'new'

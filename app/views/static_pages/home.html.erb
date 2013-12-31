@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="tile-box">
-                        <%= link_to image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "round-icon resize"), "/employees/#{current_user.employee.id}/timesheets/#{this_year}/#{this_week}" %>
+                        <%= link_to image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "round-icon resize"), "#" %>
                         <%= link_to "Timesheets", timesheets_path, :class => "tile-label" %>
                         <p>Employee time tracking and targets.</p>
                     </div>
@@ -49,16 +49,8 @@
             <div class="container sub">
                 <div class="navbar navbar-inverse signin-box">
                     <ul class="nav">
-                        <li><a class="disabled">Signed in as </a></li>
-                        <li>
-                            <%= link_to current_user.name, edit_contact_path(current_user.employee.contact_id) %>
-                            <ul>
-                                <li><%= link_to "Settings", edit_user_path(current_user.employee.user_id) %></li>
-                                <li><%= link_to "My Messages", messages_path %></li>
-                                <% if current_user.admin? %><li><%= link_to "Admin", admin_path %></li> <% end %>
-                                <li><%= link_to "Log Out", signout_path %></li>
-                            </ul> <!-- end sub menu -->
-                        </li>
+                        
+                        <%= render 'layouts/user_menu' %>
                     </ul>
                 </div> <!-- end navbar -->
             </div> <!-- end container sub-->

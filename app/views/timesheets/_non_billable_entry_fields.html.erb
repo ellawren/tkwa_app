@@ -1,14 +1,26 @@
-<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %>">
+<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %> <% if nb_unsaved?(f.object) %>edit not-saved<% end %>" id="nb-entry-<%= f.object.id %>">
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
-    <%= f.hidden_field :employee_id, value: "#{@timesheet.employee_id}" %>
+    <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
    
-    <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true }, class: "category custom-select") %>
+    <div class="editable">
+        <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true }, class: "category custom-select") %>
 
-    <%= f.text_field :description, class: "text-input nb-description" %>
+        <%= f.text_field :description, class: "text-input nb-description" %>
+    </div>
+    <div class="non-editable">
+        <div class="category-cell">
+            <% if f.object.category %> 
+                <%= f.object.category %>
+            <% end %> 
+        </div>
+        <div class="description-cell">
+            <% if f.object.description %> 
+                <%= f.object.description %>
+            <% end %> 
+        </div>
 
-  <!--<div class="total ytd"><%= precise(@timesheet.ytd_nb_subtotal(f.object.category)) %></div>
-          <div class="total ytd"><% if f.object.category == "Vacation" %><%= precise(@data_record.vacation) %><% end %></div>
-          <div class="total ytd diff <%= over_s?(@timesheet.over_under_calc( @data_record.vacation, @timesheet.ytd_nb_subtotal(f.object.category) )) %>"><% if f.object.category == "Vacation" %><%= precise(@timesheet.over_under_calc( @data_record.vacation, @timesheet.ytd_nb_subtotal(f.object.category) )) %><% end %></div>-->
+    </div>
+
     <div class="time-entries">  
         <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend" %></div>
         <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input" %></div>
@@ -21,7 +33,13 @@
 
   <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
   
-  <%= link_to_remove_fields " ", f %>
+    <div class="non-editable">
+        <a class="edit-me"></a>
+    </div>
+    <div class="editable">
+        <%= link_to_remove_fields " ", f %>
+        <a class="done-editing">cancel</a>
+    </div>
 
 </div>
 

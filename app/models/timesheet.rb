@@ -5,18 +5,18 @@
 #  id            :integer         not null, primary key
 #  year          :integer         not null
 #  week          :integer         not null
-#  employee_id   :integer         not null
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #  selected_year :integer
-#  complete      :boolean         default(FALSE)
+#  complete      :boolean         default(TRUE)
+#  user_id       :integer         not null
 #
 
 
 class Timesheet < ActiveRecord::Base
   default_scope :order => "year DESC, week DESC"
   
-  belongs_to :employee
+  belongs_to :user
   has_many :time_entries, :dependent => :destroy
   accepts_nested_attributes_for :time_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:project_id].blank? }
 
@@ -53,7 +53,7 @@ class Timesheet < ActiveRecord::Base
   end
 
   def year_to_date
-      year_to_date = Timesheet.find(:all, :conditions => ['employee_id = ? AND year = ? AND week <= ?', employee.id, year, week ])
+      year_to_date = Timesheet.find(:all, :conditions => ['employee_id = ? AND year = ? AND week <= ?', user.id, year, week ])
   end
 
   def week_goal
@@ -65,8 +65,8 @@ class Timesheet < ActiveRecord::Base
   end
 
   def all_hours(line, column)
-        employee = Employee.find(employee_id)
-        data_record = DataRecord.find_by_employee_id_and_year(employee_id, year)
+        employee = User.find(user_id)
+        data_record = DataRecord.find_by_user_id_and_year(user_id, year)
         weeks = weeks_in_year(year)
         week_total = data_record.week || 40
         week_billable = data_record.billable || 40

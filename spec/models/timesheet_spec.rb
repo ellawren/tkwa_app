@@ -10,10 +10,10 @@ end
 #  id            :integer         not null, primary key
 #  year          :integer         not null
 #  week          :integer         not null
-#  employee_id   :integer         not null
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #  selected_year :integer
-#  complete      :boolean         default(FALSE)
+#  complete      :boolean         default(TRUE)
+#  user_id       :integer         not null
 #
 

@@ -4,7 +4,6 @@
 #
 #  id           :integer         not null, primary key
 #  timesheet_id :integer
-#  employee_id  :integer
 #  category     :string(255)
 #  description  :string(255)
 #  day1         :decimal(4, 2)
@@ -16,6 +15,7 @@
 #  day7         :decimal(4, 2)
 #  created_at   :datetime        not null
 #  updated_at   :datetime        not null
+#  user_id      :integer         not null
 #
 
 class NonBillableEntry < ActiveRecord::Base

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131226190247) do
+ActiveRecord::Schema.define(:version => 20131230174226) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -103,7 +103,6 @@ ActiveRecord::Schema.define(:version => 20131226190247) do
     t.decimal  "rate",           :precision => 6, :scale => 2
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
-    t.integer  "employee_id"
     t.decimal  "admin_meeting",  :precision => 6, :scale => 2
     t.decimal  "computer",       :precision => 6, :scale => 2
     t.decimal  "education",      :precision => 6, :scale => 2
@@ -111,32 +110,33 @@ ActiveRecord::Schema.define(:version => 20131226190247) do
     t.decimal  "staff_meeting",  :precision => 6, :scale => 2
     t.decimal  "stdio_projects", :precision => 6, :scale => 2
     t.decimal  "research",       :precision => 6, :scale => 2
+    t.integer  "user_id",                                      :null => false
   end
 
-  create_table "data_records_employees", :id => false, :force => true do |t|
+  create_table "data_records_users", :id => false, :force => true do |t|
     t.integer  "data_record_id", :null => false
-    t.integer  "employee_id",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "user_id",        :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
-  add_index "data_records_employees", ["data_record_id", "employee_id"], :name => "index_data_records_employees_on_data_record_id_and_employee_id", :unique => true
+  add_index "data_records_users", ["data_record_id", "user_id"], :name => "index_data_records_users_on_data_record_id_and_user_id", :unique => true
 
   create_table "employee_teams", :force => true do |t|
     t.integer  "project_id"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.string   "role"
-    t.decimal  "pd_hours",    :precision => 6, :scale => 2
-    t.decimal  "sd_hours",    :precision => 6, :scale => 2
-    t.decimal  "dd_hours",    :precision => 6, :scale => 2
-    t.decimal  "cd_hours",    :precision => 6, :scale => 2
-    t.decimal  "bid_hours",   :precision => 6, :scale => 2
-    t.decimal  "cca_hours",   :precision => 6, :scale => 2
-    t.decimal  "int_hours",   :precision => 6, :scale => 2
-    t.decimal  "his_hours",   :precision => 6, :scale => 2
-    t.decimal  "add_hours",   :precision => 6, :scale => 2
-    t.integer  "employee_id"
+    t.decimal  "pd_hours",   :precision => 6, :scale => 2
+    t.decimal  "sd_hours",   :precision => 6, :scale => 2
+    t.decimal  "dd_hours",   :precision => 6, :scale => 2
+    t.decimal  "cd_hours",   :precision => 6, :scale => 2
+    t.decimal  "bid_hours",  :precision => 6, :scale => 2
+    t.decimal  "cca_hours",  :precision => 6, :scale => 2
+    t.decimal  "int_hours",  :precision => 6, :scale => 2
+    t.decimal  "his_hours",  :precision => 6, :scale => 2
+    t.decimal  "add_hours",  :precision => 6, :scale => 2
+    t.integer  "user_id"
   end
 
   add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
@@ -184,7 +184,6 @@ ActiveRecord::Schema.define(:version => 20131226190247) do
 
   create_table "non_billable_entries", :force => true do |t|
     t.integer  "timesheet_id"
-    t.integer  "employee_id"
     t.string   "category"
     t.string   "description"
     t.decimal  "day1",         :precision => 4, :scale => 2
@@ -196,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20131226190247) do
     t.decimal  "day7",         :precision => 4, :scale => 2
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
+    t.integer  "user_id",                                    :null => false
   end
 
   create_table "patterns", :force => true do |t|
@@ -411,35 +411,38 @@ ActiveRecord::Schema.define(:version => 20131226190247) do
     t.decimal  "day5",         :precision => 4, :scale => 2
     t.decimal  "day6",         :precision => 4, :scale => 2
     t.decimal  "day7",         :precision => 4, :scale => 2
-    t.integer  "employee_id"
     t.integer  "phase_number"
+    t.integer  "user_id",                                    :null => false
   end
 
   create_table "timesheets", :force => true do |t|
     t.integer  "year",                            :null => false
     t.integer  "week",                            :null => false
-    t.integer  "employee_id",                     :null => false
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.integer  "selected_year"
     t.boolean  "complete",      :default => true
+    t.integer  "user_id",                         :null => false
   end
-
-  add_index "timesheets", ["employee_id", "year", "week"], :name => "index_timesheets_on_employee_id_and_year_and_week", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email"
+    t.string   "email",              :default => "",    :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
-    t.string   "password_digest"
-    t.string   "remember_token"
     t.boolean  "admin",              :default => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "active",             :default => true
+    t.string   "remember_token"
+    t.string   "password_digest"
+    t.integer  "employee_number"
+    t.integer  "contact_id"
+    t.string   "status"
+    t.string   "hire_date"
+    t.string   "leave_date"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
