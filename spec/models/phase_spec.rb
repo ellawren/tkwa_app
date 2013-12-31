@@ -7,12 +7,13 @@ end
 #
 # Table name: phases
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  number     :integer
-#  shorthand  :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  full_name  :string(255)
+#  id          :integer         not null, primary key
+#  name        :string(255)
+#  number      :integer
+#  shorthand   :string(255)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  full_name   :string(255)
+#  description :text
 #
 

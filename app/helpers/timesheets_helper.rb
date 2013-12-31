@@ -5,19 +5,19 @@ module TimesheetsHelper
 
   def get_date(day, param)
     # wk_1 finds the first day of the first week of the given year
-    wk_1 = Date.new( param.year, 1, 1).beginning_of_week(start_day = :sunday) 
+    wk_1 = Date.commercial(param.year, 1, 1).beginning_of_week(start_day = :sunday)  
 
     # day_1 finds the first day of the given week number
-    day_1 = (wk_1 + ((param.week-1) * 7)).to_date
+    day_1 = Date.commercial(param.year, param.week, 1).beginning_of_week(start_day = :sunday) 
     day_1 + (day-1)
   end
 
   def parse_date(week, year)
     # wk_1 finds the first day of the first week of the given year
-    wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
+    wk_1 = Date.commercial(year, 1, 1).beginning_of_week(start_day = :sunday)  
 
     # day_1 finds the first day of the given week number
-    day_1 = (wk_1 + ((week-1) * 7)).to_date
+    day_1 = Date.commercial(year, week, 1).beginning_of_week(start_day = :sunday) 
     day_7 = day_1 + 6
     if day_1.month == day_7.month
       str = day_1.strftime("%b %-d") + "-" + day_7.strftime("%-d")
@@ -28,15 +28,15 @@ module TimesheetsHelper
   end
 
   def year_begin(week, year)
-    wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
+    wk_1 = Date.commercial(year, 1, 1).beginning_of_week(start_day = :sunday) 
   end
 
   def parse_date_full(week, year)
     # wk_1 finds the first day of the first week of the given year
-    wk_1 = Date.new( year, 1, 1).beginning_of_week(start_day = :sunday) 
+    wk_1 = Date.commercial(year, 1, 1).beginning_of_week(start_day = :sunday)  
 
     # day_1 finds the first day of the given week number
-    day_1 = (wk_1 + ((week-1) * 7)).to_date
+    day_1 = Date.commercial(year, week, 1).beginning_of_week(start_day = :sunday) 
     day_7 = day_1 + 6
     if day_1.month == day_7.month
       str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%-d, %Y")
@@ -59,12 +59,12 @@ module TimesheetsHelper
     (1..wk).to_a 
   end
 
-  def is_week?(week)
-      if (params[:week] == week) && (get_week_number(Date.today).to_i == week.to_i)
+  def is_week?(week, year)
+      if (params[:week] == week) && (get_week_number(Date.today).to_i == week.to_i) && year == this_year
         "curr sel tip-bottom" 
       elsif params[:week] == week
         "sel tip-bottom" 
-      elsif get_week_number(Date.today).to_i == week.to_i
+      elsif get_week_number(Date.today).to_i == week.to_i && year == this_year
         "curr tip-bottom" 
       elsif get_week_number(Date.today + 7).to_i > week.to_i
         "past tip-bottom" 
@@ -98,13 +98,14 @@ module TimesheetsHelper
   end
 
   def weeks_in_year(year)
-    last_day = Date.new(year, 12, 31)
-    # if the last day of the year is a Saturday, then use that as the last week
-    if ( (last_day.strftime("%w").to_i + 1) == 6 )
-      get_week_number(last_day)
-    # for all other case, week 1 is whatever week Jan1 falls in, so subtract 1 to get the last week
-    else
-      get_week_number(last_day) - 1
+    Date.new(year, 12, 28).cweek
+  end
+
+  def weeks_class(year)
+    if weeks_in_year(year) == 53
+      "fifty-three"
+    elsif weeks_in_year(year) == 52
+      "fifty-two"
     end
   end
 

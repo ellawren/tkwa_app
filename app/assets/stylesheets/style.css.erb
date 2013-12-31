@@ -98,13 +98,14 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 			ul.tabnav li a:hover, ul.tabnav li.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
 
 		/* tabnav timesheets */
-		ul.tabnav.timesheets li a { padding:2px 3.35px 2px; font-size:11px; }
+		ul.tabnav.timesheets li a { padding:2px 3.5px 2px; font-size:11px; }
+			ul.tabnav.timesheets.fifty-three li a { padding-right:3.125px; }
 		ul.tabnav.timesheets li:first-child a { padding-left:8px; border-radius:5px 0 0 5px; }
 		ul.tabnav.timesheets li:last-child a { padding-right:5px; border-radius:0 5px 5px 0; }
 		ul.tabnav.timesheets li a.sel { background-color:#ced5da; color:#758083; }
 		ul.tabnav.timesheets li a:hover, ul.tabnav.timesheets li a.sel:hover { background-color:#e1e6eb; color:#1abc9c; }
-		ul.tabnav.timesheets li a.curr { color:#16a085; }
-
+		ul.tabnav.timesheets li a.curr { color:#16a085; font-weight:700;}
+		
 
 /* section headers */
 
@@ -113,6 +114,7 @@ h2 { float:left; display:block; width:100%; height:34px; margin:30px 0 20px; bor
 	h2 .note { margin-left:4px; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; font-weight:normal; }
 h3 { font-size:11pt; font-weight:900; }
 h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clear:all; font-size:11pt; font-weight:900; }
+.note { margin-left:4px; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; font-weight:normal; }
 
 /* buttons */
 
@@ -585,7 +587,7 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 	/* task */
 	.timesheets .table-head .task { width:184px; margin-top:22px; }
 	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; }
-		.timesheets .table-body .task-cell { width:178px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
+		.timesheets .table-body .task-cell { width:178px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 
 	/* time entries */
@@ -595,9 +597,14 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 	.timesheets .time-entries { float:left; height:36px;}
  	.timesheets .time-entries .entry { float:left; }
  	.timesheets .time-entries .text-input { width:39px; height:32px; padding:0px 3px; margin:2px 4px 2px 0; text-align:center; }
- 	.timesheets .time-entries .text-input.weekend { background-color:#f5f7f9; }
+ 	.timesheets .time-entries .text-input.weekend { background-color:#f4f6f9; }
 	.timesheets .time-entries .entry.today .text-input { border-color:#f1c40f; }
 	.timesheets .time-entries .entry.today .text-input:focus { border-color:#5bae60; }
+
+	/* uneditable time entries */
+	.timesheets .time-entries .entry .entry-spacer { width:39px; height:16px; padding:6px 3px 10px; margin:2px 4px 2px 0; text-align:center; border: 2px solid #f4f6f9; color: #16a085; font-size: 14px; text-indent: 0px; font-family: "Lato", sans-serif; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; display: inline-block; line-height: 20px; vertical-align: middle;}
+	.timesheets .time-entries .entry .entry-spacer.weekend { background-color:#f4f6f9; }
+	.timesheets .time-entries .entry.today .entry-spacer { border-color:#f1c40f; }
 
  	/* total */
  	.timesheets .table-head .total { float:left; width:48px; padding:0px 4px; margin:26px 0 0 0; text-align:center; }
@@ -606,7 +613,7 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 	/* nb - category */
 	.timesheets .table-head .category { width:198px; padding-left:0px; margin-top:0px; margin-left:0px; }
 	.timesheets .category.custom-select { width:208px; margin:2px 4px 2px -8px; }
-		.timesheets .table-body .category-cell { width:194px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
+		.timesheets .table-body .category-cell { width:204px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px -10px; color:#1abc9c; }
 
 	/* nb - description */
 	.timesheets .table-head .nb-description { float:left; width:270px; padding-left:12px; margin-top:17px; }
@@ -637,7 +644,7 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 	/* summary */
 
 	.summary { float:left; position:relative; width:100%; width:862px; padding:6px 4px 2px 4px; margin:5px 0; border-radius:6px 0 0 6px; background-color:#2c3445; color:#fff; }
-		.summary .summary-label { float:left; width:447px; height:24px; padding:12px 8px 7px 12px; }
+		.summary .summary-label { float:left; width:438px; height:24px; padding:12px 8px 7px 12px; }
 		.summary .span { float:left; width:371px; height:38px; margin-left:24px; }
 			.summary .span .sum { float:left; width:36px; height:20px; padding:9px 4px 4px 4px; margin:1px 3px 2px 2px; border:2px solid #344953; border-radius:6px; background-color:#344953; font-size:13px; font-weight:400; text-align:center; }
 			.summary .span .total { float:left; width:50px; height:20px; padding:10px 5px 6px 5px; margin:0 9 0 4px; font-size:13px; font-weight:900; text-align:center; }
@@ -653,6 +660,9 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 
 .inline-edit-link { margin-left:5px; }
 .complete .btn.btn-primary { display:none; }
+
+.reopen {display:none; }
+.complete .reopen { display:block; }
 
 /* scope - phases */
 
@@ -678,6 +688,14 @@ a.control-link { float:right; }
     .modal { left:38%; top:200px; width:860px; border-radius:15px; overflow:hidden; }
     .modal.consultant { min-height:260px; height:auto; }
     	.modal.consultant .modal-body { height:100%; }
+    .modal.phases { width:560px; left:50%; min-height:360px; }
+    	.modal.phases .modal-body { margin-top:20px;  }
+
+    	ul.phase-list { list-style:none; margin-left:0px; width:100%; }
+    	ul.phase-list li { margin-bottom:15px; float:left; width:100%; }
+    		.phase-number { float:left; width:30px; height:16px; padding:5px 0 9px; border-radius:15px; border:1px solid #1abc9c; text-align:center; color:#1abc9c; font-weight:900; }
+    		.phase-name { float:left; height:16px; width:80px; padding:5px 0 9px; margin-left:10px; color:#1abc9c; font-weight:900; }
+     		.phase-description { float:left; width:320px; margin:5px 0 0 10px;  }
 
     .modal-backdrop { min-height:1400px; }
     .modal-backdrop, .modal-backdrop.fade.in { opacity: 0.4; filter: alpha(opacity=40); }

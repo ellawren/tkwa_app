@@ -2,11 +2,29 @@
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
    
-    <div class="editable">
-        <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true }, class: "category custom-select") %>
+   <% if @timesheet.open? %>
+        <div class="editable">
+            <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true }, class: "category custom-select") %>
 
-        <%= f.text_field :description, class: "text-input nb-description" %>
-    </div>
+            <%= f.text_field :description, class: "text-input nb-description" %>
+
+            <div class="time-entries">  
+                <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend" %></div>
+                <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input" %></div>
+                <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input" %></div>
+                <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input" %></div>
+                <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input" %></div>
+                <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input" %></div>
+                <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend" %></div>
+                <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+            </div>
+
+            <%= link_to_remove_fields " ", f %>
+            <a class="done-editing">cancel</a>
+
+        </div>
+    <% end %>
+
     <% if nb_unsaved?(f.object) == false %>
         <div class="non-editable">
             <div class="category-cell">
@@ -20,28 +38,21 @@
                 <% end %> 
             </div>
 
+            <div class="time-entries">  
+                <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day1 %></div></div>
+                <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= f.object.day2 %></div></div>
+                <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= f.object.day3 %></div></div>
+                <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= f.object.day4 %></div></div>
+                <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= f.object.day5 %></div></div>
+                <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= f.object.day6 %></div></div>
+                <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day7 %></div></div>
+                <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+            </div>
+
+            <a class="edit-me"></a>
+
         </div>
     <% end %>
-
-    <div class="time-entries">  
-        <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend" %></div>
-        <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input" %></div>
-        <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input" %></div>
-        <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input" %></div>
-        <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input" %></div>
-        <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input" %></div>
-        <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend" %></div>
-    </div>
-
-  <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
-  
-    <div class="non-editable">
-        <a class="edit-me"></a>
-    </div>
-    <div class="editable">
-        <%= link_to_remove_fields " ", f %>
-        <a class="done-editing">cancel</a>
-    </div>
 
 </div>
 

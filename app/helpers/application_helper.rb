@@ -11,37 +11,23 @@ module ApplicationHelper
   end
 
   def this_year
-    Time.now.year
+    Date.today.cwyear
   end
 
   def curr_year
-    if year_begin(1,Date.today.year + 1) <= Date.today # check if next year's start date is this week
-        # if yes, kick the timesheet link into next year
-        Date.today.year + 1
-    else
-         this_year
-    end
+    Date.today.cwyear
   end
 
   def this_week
-    wk_1 = Time.now.beginning_of_year().beginning_of_week(start_day = :sunday) 
-    wk_now = Time.now.beginning_of_week(start_day = :sunday)
-    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
+    Date.today.cweek
   end
 
   def get_week_number(date)
-    # this prevents the first week of a year from being counted as the last week of the prev year
-    #if date.beginning_of_week(start_day = :sunday) == (date - 1.year).end_of_year.beginning_of_week(start_day = :sunday) ||
-    #  date.beginning_of_week(start_day = :sunday) == (date + 1.year).beginning_of_year.beginning_of_week(start_day = :sunday)
-    #  1
-    #else
-      wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
-      wk_now = date.beginning_of_week(start_day = :sunday)
-      ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
-    #end
+    date.cweek
   end
 
   def get_day(date)
+    # add 1 to weekday number because Sunday is 0 by default
     date.wday + 1
   end
 

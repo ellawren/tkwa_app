@@ -1,0 +1,18 @@
+<ul class="phase-list">
+	<% @phases.each do |param| %>
+		<li>
+			<div class="phase-number">
+				<%= param.number %>
+			</div>
+			<div class="phase-name">
+				<%= param.name %>
+			</div>
+			<div class="phase-description">
+				<%= param.description %>
+			</div>
+
+		</li>
+	<% end %>
+</ul>
+
+

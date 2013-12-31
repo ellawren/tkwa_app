@@ -46,6 +46,8 @@ resources :contacts do
     get :autocomplete_contact_name, :on => :collection
 end
 
+match '/phases/modal',   to: 'phases#modal', as: "modal_phases"
+
   resources :categories 
   resources :consultants
   resources :data_records

@@ -11,6 +11,11 @@ class PhasesController < ApplicationController
   	@phases = Phase.all
   end
 
+  def modal
+    @phases = Phase.all
+    render :layout => 'modal' 
+  end
+
   def create
     @phase = Phase.new(params[:phase])
     if @phase.save

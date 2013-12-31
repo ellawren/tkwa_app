@@ -326,9 +326,8 @@ class Project < ActiveRecord::Base
     end
 
 
-    def employee_hours(total_hours, contactid, phase)
-      employeeid = Employee.find_by_contact_id(contactid).id
-      total_hours.find_all_by_employee_id_and_phase_number(employeeid, phase)
+    def employee_hours(total_hours, user_id, phase)
+      total_hours.find_all_by_user_id_and_phase_number(user_id, phase)
     end
 
     # sum of estimated hours entered for project, by phase
@@ -351,9 +350,9 @@ class Project < ActiveRecord::Base
 
 
     # sum of actual hours entered for project, by employee
-    def employee_actual(employee_id, phase)
+    def employee_actual(user_id, phase)
         if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
+            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
             array = []
             sum = 0
             time_entries.each do |t| 
@@ -364,7 +363,7 @@ class Project < ActiveRecord::Base
             array.map{|x| sum += x}
             sum
         else
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
+            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.id, user_id, phase)
             array = []
             sum = 0
             time_entries.each do |t| 
@@ -378,12 +377,12 @@ class Project < ActiveRecord::Base
 
     # calculate actual billing for each employee by phase
     # this function is used to calculate actual_billing_total (also in this file)
-    def actual_billing(employee_id, phase)
+    def actual_billing(user_id, phase)
 
         if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
+            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
         else
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
+            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.id, user_id, phase)
         end
 
         year_array_full = []
@@ -404,7 +403,7 @@ class Project < ActiveRecord::Base
                 end
             end
             array.map{|x| sum += x}
-            data = DataRecord.find_or_create_by_year_and_employee_id(2012, employee_id)
+            data = DataRecord.find_or_create_by_year_and_user_id(2012, user_id)
             sum_array.push(sum * data.billable_rate)
         end
 
@@ -423,15 +422,15 @@ class Project < ActiveRecord::Base
 
         employee_array_full = []
         time_entries.each do |t| 
-            employee_array_full.push(t.employee_id)
+            employee_array_full.push(t.user_id)
         end
         employee_array = employee_array_full.uniq
 
         total_array = []
         sum = 0
         employee_array.each do |e|
-            employee = Employee.find_by_id(e)
-            number = self.actual_billing(employee.id, phase)
+            user = User.find_by_id(e)
+            number = self.actual_billing(user.id, phase)
             total_array.push( number )
         end
 
@@ -450,8 +449,8 @@ class Project < ActiveRecord::Base
             sum = 0
             teams.each do |t| 
                 est_hours = t.est_total
-                employee_id = t.employee_id
-                data = DataRecord.find_or_create_by_year_and_employee_id(Time.now.year, employee_id)
+                user_id = t.user_id
+                data = DataRecord.find_or_create_by_year_and_user_id(Time.now.year, user_id)
                 
                 unless est_hours.nil?
                     billing = est_hours * data.billable_rate
@@ -468,8 +467,8 @@ class Project < ActiveRecord::Base
             sum = 0
             teams.each do |t| 
                 est_hours = eval("t.#{p.shorthand}_hours")
-                employee_id = t.employee_id
-                data = DataRecord.find_or_create_by_year_and_employee_id(Time.now.year, employee_id)
+                user_id = t.user_id
+                data = DataRecord.find_or_create_by_year_and_user_id(Time.now.year, user_id)
                 
                 unless est_hours.nil?
                     billing = est_hours * data.billable_rate
@@ -507,9 +506,8 @@ class Project < ActiveRecord::Base
         sum.to_f
     end
 
-    def employee_records(contact_id, phase)
-        employee_id = Employee.find_by_contact_id(contact_id).id
-        TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
+    def employee_records(user_id, phase)
+        TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
     end
 
 
@@ -518,8 +516,8 @@ class Project < ActiveRecord::Base
         array = []
         sum = 0
         employee_teams.each do |team|
-            employee_id = Employee.find_by_contact_id(team.contact_id).id
-            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate || 110
+            user_id = team.user_id
+            rate = DataRecord.find_by_user_id_and_year(user_id, Time.now.year).billable_rate || 110
             array.push((team.est_total * rate).to_f)
         end
         array.map{|x| sum += x}
@@ -530,43 +528,40 @@ class Project < ActiveRecord::Base
         array = []
         sum = 0
         employee_teams.each do |team|
-            array.push(employee_act_costs(team.contact_id, "Total"))
+            array.push(employee_act_costs(team.user_id, "Total"))
         end
         array.map{|x| sum += x}
         sum
     end
 
-    def employee_est_costs(contact_id, phase)
+    def employee_est_costs(user_id, phase)
         if phase == "Total"
-            team = EmployeeTeam.find_by_contact_id_and_project_id(contact_id, id)
-            employee_id = Employee.find_by_contact_id(contact_id).id
-            rate = DataRecord.find_by_employee_id_and_year(employee_id, Time.now.year).billable_rate || 110
+            team = EmployeeTeam.find_by_user_id_and_project_id(user_id, id)
+            rate = DataRecord.find_by_user_id_and_year(user_id, Time.now.year).billable_rate || 110
             (team.est_total * rate).to_f
         end
     end
     
-    def employee_act_costs(contact_id, phase)
+    def employee_act_costs(user_id, phase)
         if phase == "Total"
-            employee_id = Employee.find_by_contact_id(contact_id).id
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id(self.id, employee_id)
+            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
 
             array = []
             sum = 0
             time_entries.each do |t| 
                 year = Timesheet.find(t.timesheet_id).year
-                rate = DataRecord.find_by_employee_id_and_year(employee_id, year).billable_rate || 110
+                rate = DataRecord.find_by_user_id_and_year(user_id, year).billable_rate || 110
                 array.push(t.entry_total * rate)
             end
             array.map{|x| sum += x}
             sum
         else
-            employee_id = Employee.find_by_contact_id(contact_id).id
-            time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(self.id, employee_id, phase)
+            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.id, user_id, phase)
             array = []
             sum = 0
             time_entries.each do |t| 
                 year = Timesheet.find(t.timesheet_id).year
-                rate = DataRecord.find_by_employee_id_and_year(employee_id, year).billable_rate
+                rate = DataRecord.find_by_user_id_and_year(user_id, year).billable_rate
                 array.push(t.entry_total * rate)
             end
             array.map{|x| sum += x}
@@ -574,10 +569,10 @@ class Project < ActiveRecord::Base
         end
     end
 
-    def employee_forecast(employee_id, four_month_array)
+    def employee_forecast(user_id, four_month_array)
         entries = []
         four_month_array.each do |w, y|
-            entries.push(PlanEntry.find_or_create_by_project_id_and_employee_id_and_year_and_week(self.id, employee_id, y, w))
+            entries.push(PlanEntry.find_or_create_by_project_id_and_user_id_and_year_and_week(self.id, user_id, y, w))
         end
         entries
     end

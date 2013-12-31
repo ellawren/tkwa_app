@@ -21,7 +21,7 @@ module ProjectsHelper
     end
       
     def tracking_td(f, phase)
-      actual_hours = @project.employee_actual(f.employee_id, phase.number)
+      actual_hours = @project.employee_actual(f.user_id, phase.number)
       est_hours = eval("f.#{phase.shorthand}_hours")
       if est_hours == nil
         est = "<div class='input-spacer est'></div>"
@@ -32,13 +32,13 @@ module ProjectsHelper
       if actual_hours == 0
         act = "<div class='input-spacer act'></div>"
       else
-        time_entries = TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number(f.project_id, f.employee_id, phase.number)
+        time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(f.project_id, f.user_id, phase.number)
 
         str = []
             task_array(time_entries).each do |task| 
                 array = []
                 sum = 0
-                TimeEntry.find_all_by_project_id_and_employee_id_and_phase_number_and_task(f.project_id, f.employee_id, phase.number, task).each do |t| 
+                TimeEntry.find_all_by_project_id_and_user_id_and_phase_number_and_task(f.project_id, f.user_id, phase.number, task).each do |t| 
                     array.push(t.entry_total)
                 end
                 array.map{|x| sum += x}
@@ -46,7 +46,7 @@ module ProjectsHelper
             end 
 
 
-        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'><a class='pop no-hover' rel='popover' data-original-title='#{Employee.find(f.employee_id).name} - #{phase.name}' data-content=\"
+        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'><a class='pop no-hover' rel='popover' data-original-title='#{User.find(f.user_id).name} - #{phase.name}' data-content=\"
                 <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th>Hours</th></tr></thead><tbody>#{str.join}</tbody>
                 </table>\">#{strip(actual_hours)}</a></div>"
       end
@@ -96,9 +96,9 @@ module ProjectsHelper
           ""
         else 
           r = goal - actual
-          if r >= 10
+          if r >= 1000
             "<div class=\"act sum\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
-          elsif r <= -10
+          elsif r <= -1000
             "<div class=\"act sum over\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
           else
             "<div class=\"act sum caution1\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
@@ -169,20 +169,11 @@ module ProjectsHelper
       end
 
 
-
-
-    #def employee_name(contactid)
-    #  employee = Contact.find(contactid)
-    #  employee.name
-    #end
-
-    def billable_rate(contactid)
-      employee = Employee.find_by_contact_id(contactid)
-      datarecord = DataRecord.find_by_employee_id(employee.id)
+    def billable_rate(user_id)
+      user = User.find(user_id)
+      datarecord = DataRecord.find_by_user_id(user_id)
       number_to_currency(datarecord.billable_rate)
     end
-
-  	
 
     def estimated_billing(project, phase)
 
@@ -210,10 +201,10 @@ module ProjectsHelper
         x
     end
 
-    def forecast_employee_week_total(employee_id, four_month_array)
+    def forecast_employee_week_total(user_id, four_month_array)
         x = []
         four_month_array.each do |w, y|
-            plan_entries = PlanEntry.find_all_by_employee_id_and_year_and_week(employee_id, y, w)
+            plan_entries = PlanEntry.find_all_by_user_id_and_year_and_week(user_id, y, w)
             array = []
             sum = 0
             plan_entries.each do |e|

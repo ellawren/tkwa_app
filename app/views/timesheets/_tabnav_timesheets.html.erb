@@ -1,11 +1,11 @@
+<%= form_for @timesheet do |f| %>
+	<!--<%= f.select(:selected_year, Timesheet::YEARS, { :selected => params[:year] }, :class => "date-select"  ) %>-->
+	<ul class="tabnav timesheets <%= weeks_class(@year) %>">
+		<% week_array(@year).each do |x| %>
+			<% date_string = parse_date(x, @year) %>
+			<li><%= link_to "#{x}", "/users/#{@timesheet.user_id}/timesheets/#{@year}/#{x}", class: is_week?("#{x}", @year), rel: "tooltip", title: "#{date_string}" %></li>
+		<% end %>
+	</ul>
+<% end %>
 
 
-	<%= form_for @timesheet do |f| %>
-		<!--<%= f.select(:selected_year, Timesheet::YEARS, { :selected => params[:year] }, :class => "date-select"  ) %>-->
-		<ul class="tabnav timesheets">
-			<% week_array(this_year).each do |x| %>
-				<% date_string = parse_date(x, @timesheet.year) %>
-				<li><%= link_to "#{x}", "/users/#{@timesheet.user_id}/timesheets/#{@curr_year}/#{x}", class: is_week?("#{x}"), rel: "tooltip", title: "#{date_string}" %></li>
-			<% end %>
-		</ul>
-	<% end %>

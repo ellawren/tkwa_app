@@ -28,24 +28,18 @@ class TimesheetsController < ApplicationController
 
 
   def show
-    if year_begin(1,Date.today.year + 1) <= Date.today # check if next year's start date is this week
-        # if yes, kick the timesheet tabnav links  into next year
-        @curr_year = Date.today.year + 1
-    else
-        # otherwise, use this year
-        @curr_year = this_year
-    end
-
     @year = params[:year].to_i
     @week = params[:week].to_i
 
-    if @week <= 53
+    if @week <= weeks_in_year(@year)
         @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(params[:id], params[:year], params[:week])
         @user= User.find(@timesheet.user_id)
         @data_record = DataRecord.find_or_create_by_user_id_and_year(@user.id, @timesheet.year)
 
-        1.times { @timesheet.time_entries.build }
-        1.times { @timesheet.non_billable_entries.build }
+        if @timesheet.open?
+          1.times { @timesheet.time_entries.build }
+          1.times { @timesheet.non_billable_entries.build }
+        end
 
         render :layout => 'search' 
     else
