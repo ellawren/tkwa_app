@@ -121,11 +121,19 @@ module TimesheetsHelper
   end
 
   def unsaved?(object)
-    true if object.project_id == nil
+    if object.project_id == nil
+        true 
+    else
+        false
+    end
   end
 
   def nb_unsaved?(object)
-    true if object.category == nil
+    if object.category == nil
+      true 
+    else
+      false
+    end
   end
 
   def color_array

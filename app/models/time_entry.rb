@@ -26,8 +26,6 @@ class TimeEntry < ActiveRecord::Base
   
   validates_presence_of :phase_number, :message => "must be selected"
 
-
-
   def entry_total
         d1 = day1.to_f
         d2 = day2.to_f

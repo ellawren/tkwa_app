@@ -7,19 +7,21 @@
 
         <%= f.text_field :description, class: "text-input nb-description" %>
     </div>
-    <div class="non-editable">
-        <div class="category-cell">
-            <% if f.object.category %> 
-                <%= f.object.category %>
-            <% end %> 
-        </div>
-        <div class="description-cell">
-            <% if f.object.description %> 
-                <%= f.object.description %>
-            <% end %> 
-        </div>
+    <% if nb_unsaved?(f.object) == false %>
+        <div class="non-editable">
+            <div class="category-cell">
+                <% if f.object.category %> 
+                    <%= f.object.category %>
+                <% end %> 
+            </div>
+            <div class="description-cell">
+                <% if f.object.description %> 
+                    <%= f.object.description %>
+                <% end %> 
+            </div>
 
-    </div>
+        </div>
+    <% end %>
 
     <div class="time-entries">  
         <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend" %></div>

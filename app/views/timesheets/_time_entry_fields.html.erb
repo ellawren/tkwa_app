@@ -3,35 +3,36 @@
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
-    <div class="editable">
-        <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
-        <% if f.object.project_id %>
-            <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :id, :number, { include_blank: true }, { :class => "phase custom-select" } %>
-        <% else %>
-            <%= f.collection_select :phase_number, Phase.order(:number), :id, :number, { include_blank: true }, { :class => "phase custom-select" } %>
-        <% end %>
-        <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
-    </div>
     
-    <div class="non-editable">
-        <% if f.object.project_id %>
-            <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
-        <% else %>
+        <div class="editable">
             <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
-        <% end %> 
-        <div class="phase-cell">
-            <% if f.object.phase_number %> 
-                <%= Phase.find(f.object.phase_number).number %>
-            <% end %> 
+            <% if f.object.project_id %>
+                <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :id, :number, { include_blank: true }, { :class => "phase custom-select" } %>
+            <% else %>
+                <%= f.collection_select :phase_number, Phase.order(:number), :id, :number, { include_blank: true }, { :class => "phase custom-select" } %>
+            <% end %>
+            <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
         </div>
-        <div class="task-cell">
-            <% if f.object.task %> 
-                <%= f.object.task %>
-            <% end %> 
-        </div>
-    </div>
-    
-    
+        
+        <% if unsaved?(f.object) == false %>
+            <div class="non-editable">
+                <% if f.object.project_id %>
+                    <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
+                <% else %>
+                    <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+                <% end %> 
+                <div class="phase-cell">
+                    <% if f.object.phase_number %> 
+                        <%= Phase.find(f.object.phase_number).number %>
+                    <% end %> 
+                </div>
+                <div class="task-cell">
+                    <% if f.object.task %> 
+                        <%= f.object.task %>
+                    <% end %> 
+                </div>
+            </div>
+        <% end %>
 
             <!-- script to update the phase list based on selected project - must be here, not on main page or in scripts file -->
             <script>
