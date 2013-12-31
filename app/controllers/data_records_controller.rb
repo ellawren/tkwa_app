@@ -5,9 +5,14 @@ class DataRecordsController < ApplicationController
   end
 
   def edit
-    @data_record = DataRecord.find_or_create_by_user_id_and_year(params[:id], params[:year])
-    @user = User.find(@data_record.user_id)
-    render :layout => 'modal' 
+    if User.where(id: params[:id]).present?
+      @data_record = DataRecord.find_or_create_by_user_id_and_year(params[:id], params[:year])
+      @user = User.find(params[:id])
+      render :layout => 'modal' 
+    else
+      redirect_to data_records_path
+      flash[:error] = "Not a valid user id."
+    end
   end
 
   def update

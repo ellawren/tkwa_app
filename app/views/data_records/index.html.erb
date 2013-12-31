@@ -26,11 +26,11 @@
 
 			<% @users.each do |param| %>
 				<tr>
-					<td class="left-align bold"><%= link_to param.name, "/users/#{param.id}/data_records/#{this_year}", datatoggle: "modal" %></td>
+					<td class="left-align bold"><%= link_to param.name, "/users/#{param.id}/data_records/#{curr_year}", datatoggle: "modal" %></td>
 					<td><%= param.id %></td>
 					<td><%= param.employee_number %></td>
   					
-					<% data = DataRecord.find_or_create_by_year_and_user_id(this_year, param.id) %>
+					<% data = DataRecord.find_or_create_by_year_and_user_id(curr_year, param.id) %>
 	  					<td><%= data.week %></td>
 	  					<td><%= data.billable %></td>
 	  					<td><%= data.holiday %></td>
