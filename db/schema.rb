@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131231193428) do
+ActiveRecord::Schema.define(:version => 20140102173228) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -96,21 +96,25 @@ ActiveRecord::Schema.define(:version => 20131231193428) do
 
   create_table "data_records", :force => true do |t|
     t.integer  "year"
-    t.decimal  "week",           :precision => 4, :scale => 2
-    t.decimal  "vacation",       :precision => 6, :scale => 2
-    t.decimal  "holiday",        :precision => 4, :scale => 2
-    t.decimal  "billable",       :precision => 6, :scale => 2
-    t.decimal  "rate",           :precision => 6, :scale => 2
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.decimal  "admin_meeting",  :precision => 6, :scale => 2
-    t.decimal  "computer",       :precision => 6, :scale => 2
-    t.decimal  "education",      :precision => 6, :scale => 2
-    t.decimal  "marketing",      :precision => 6, :scale => 2
-    t.decimal  "staff_meeting",  :precision => 6, :scale => 2
-    t.decimal  "stdio_projects", :precision => 6, :scale => 2
-    t.decimal  "research",       :precision => 6, :scale => 2
-    t.integer  "user_id",                                      :null => false
+    t.decimal  "vacation",          :precision => 6, :scale => 2
+    t.decimal  "holiday",           :precision => 4, :scale => 2
+    t.decimal  "billable",          :precision => 6, :scale => 2
+    t.decimal  "rate",              :precision => 6, :scale => 2
+    t.datetime "created_at",                                                            :null => false
+    t.datetime "updated_at",                                                            :null => false
+    t.decimal  "admin_meeting",     :precision => 6, :scale => 2
+    t.decimal  "computer",          :precision => 6, :scale => 2
+    t.decimal  "education",         :precision => 6, :scale => 2
+    t.decimal  "marketing",         :precision => 6, :scale => 2
+    t.decimal  "staff_meeting",     :precision => 6, :scale => 2
+    t.decimal  "stdio_projects",    :precision => 6, :scale => 2
+    t.decimal  "research",          :precision => 6, :scale => 2
+    t.integer  "user_id",                                                               :null => false
+    t.string   "pay_type",                                        :default => "Salary"
+    t.decimal  "vacation_rollover", :precision => 5, :scale => 2
+    t.integer  "start_week"
+    t.integer  "end_week"
+    t.decimal  "hours_in_week",     :precision => 4, :scale => 2
   end
 
   create_table "data_records_users", :id => false, :force => true do |t|
@@ -165,10 +169,14 @@ ActiveRecord::Schema.define(:version => 20131231193428) do
   end
 
   create_table "holidays", :force => true do |t|
-    t.date     "date"
+    t.string   "date"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.date     "date_object"
+    t.integer  "year"
+    t.integer  "week"
+    t.integer  "day"
   end
 
   create_table "messages", :force => true do |t|

@@ -1,49 +1,43 @@
-<div class="modal-header">
-    
-    <div class="row">
-          <div class="span10 offset05">
-              <a class="close" data-dismiss="modal">×</a>
-              <h3><%= @user.name %> <span class="lightweight"><%= @data_record.year %></span></h3>
-          </div>
-    </div>
+<div class="header-span">
+    <h3><%= @user.name %></h3>
 </div>
 
-<div class="modal-body">
+<div class="body-span">
+
 	<%= form_for @data_record do |f| %>
 
-          <div class="row">
+        <table class="modal-table">
+            <tr>
+                <td>Year</td>
+                <td>Start Week</td>
+                <td>End Week</td>
+                <td>Pay Type</td>
+                <td>Total Hours<br />Per Week</td>
+                <td>Billable Hours<br />Per Week</td>
+                <td>Comp Hours<br />Per Holiday</td>
+                <td>Vacation Hours<br />Per Year</td>
+                <td>Vacation Rollover</td>
+                <td>Hourly Rate</td>
+            </tr>
+            <tr>
+                <td><%= f.text_field :year %></td>
+                <td><%= f.text_field :start_week %></td>
+                <td><%= f.text_field :end_week %></td>
+                <td><%= f.select(:pay_type, [['Salary', 'Salary'], ['Hourly', 'Hourly']], { :class => "custom-select" } ) %></td>
+                <td><%= f.text_field :hours_in_week %></td>
+                <td><%= f.text_field :billable %></td>
+                <td><%= f.text_field :holiday %></td>
+                <td><%= f.text_field :vacation %></td>
+                <td><%= f.text_field :vacation_rollover %></td>
+                <td><%= f.text_field :rate %></td>
+            </tr>
+        </table>
 
-            <div class="span9 offset05">
+        <div class="actions">
+            <%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
+            <a class="btn btn-large" data-dismiss="modal">Cancel</a>
+        </div>
 
-
-                <br />
-
-                <table class="modal-table">
-                  <tr>
-                        <td>Total Hours<br />Per Week</td>
-                        <td>Billable Hours<br />Per Week</td>
-                        <td>Comp Hours<br />Per Holiday</td>
-                        <td>Vacation Hours<br />Per Year</td>
-                        <td>Hourly Rate</td>
-                  </tr>
-                  <tr>
-                        <td><%= f.text_field :week %></td>
-                        <td><%= f.text_field :billable %></td>
-                        <td><%= f.text_field :holiday %></td>
-                        <td><%= f.text_field :vacation %></td>
-                        <td><%= f.text_field :rate %></td>
-                  </tr>
-              </table>
-              <br />
-
-              <div class="actions">
-                  <%= f.submit "Save Changes", class: "btn-large btn-primary span3" %>
-                  <a class="btn btn-large" data-dismiss="modal">Cancel</a>
-              </div>
-
-          </div> <!-- end span9 -->
-
-        </div> <!-- end row -->
-        <br />
     <% end %>
+
 </div>

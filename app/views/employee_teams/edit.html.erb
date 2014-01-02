@@ -1,7 +1,7 @@
 
 
 <div class="header-span">
-    <h3><%= @employee.name %><% if @employee_team.role? %>, <%= @employee_team.role %><% end %></h3>
+    <h3><%= @user.name %><% if @employee_team.role? %>, <%= @employee_team.role %><% end %></h3>
 </div>
 
 <div class="body-span">
@@ -23,7 +23,6 @@
           </tr>
       </table>
               
-      
       <div class="actions">
           <%= f.submit "Save Changes", class: "btn" %>
       </div>

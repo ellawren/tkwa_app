@@ -5,18 +5,32 @@
 	</div>
 <% end %>
 
+<!-- modal for employee target edit -->
+	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="myModalLabel"> </h3>
+	  	</div>
+	  	<div class="modal-body"></div>
+	</div>
+<!-- end modal -->
+
 <h4><%= curr_year %> Employee Data</h4><br />
 	<table class="table right-align">
 		<thead>
 			<tr>
 				<th class="left-align">Name</th>
-				<th>ID</th>
-				<th>TKWA #</th>
 				
+				<th>TKWA #</th>
+				<th>Year</th>
+				<th>Start Week</th>
+				<th>End Week</th>
+				<th>Pay Type</th>
 				<th>Total Hours<br />Per Week</th>
 				<th>Billable Hours<br />Per Week</th>
 				<th>Comp Hours<br />Per Holiday</th>
 				<th>Vacation Hours<br />Per Year</th>
+				<th>Vacation Rollover</th>
 				<th>Hourly Rate</th>
 				<th>Billable Rate</th>
 				<th></th>
@@ -26,15 +40,22 @@
 
 			<% @users.each do |param| %>
 				<tr>
-					<td class="left-align bold"><%= link_to param.name, "/users/#{param.id}/data_records/#{curr_year}", datatoggle: "modal" %></td>
-					<td><%= param.id %></td>
+					<td class="left-align bold">
+						<a href=<%= "/users/#{param.id}/data_records/#{curr_year}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= param.name %></a>
+					</td>
+					
 					<td><%= param.employee_number %></td>
   					
 					<% data = DataRecord.find_or_create_by_year_and_user_id(curr_year, param.id) %>
-	  					<td><%= data.week %></td>
+						<td><%= data.year %></td>
+						<td><%= data.start_week %></td>
+						<td><%= data.end_week %></td>
+						<td><%= data.pay_type %></td>
+	  					<td><%= data.hours_in_week %></td>
 	  					<td><%= data.billable %></td>
 	  					<td><%= data.holiday %></td>
 	  					<td><%= data.vacation %></td>
+	  					<td><%= data.vacation_rollover %></td>
 	  					<td><%= number_to_currency(data.rate) %></td>
 	  					<td><%= number_to_currency(data.billable_rate) %></td>
 	  					<td></td>

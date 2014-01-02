@@ -12,18 +12,6 @@ class TimesheetsController < ApplicationController
   def index
    @timesheets = Timesheet.all
    @user = current_user
-    if year_begin(1,Date.today.year + 1) <= Date.today # check if next year's start date is this week
-        # if yes, kick the timesheet link into next year
-        @curr_year = Date.today.year + 1
-        @curr_week = 1
-    else
-        # otherwise, use this year
-        @curr_year = this_year
-        @curr_week = this_week
-    end
-   #@contact = Contact.find(@employee.contact_id)
-   #@timesheets = Timesheet.find(:all, :conditions => ['employee_id = ?', params[:employee_id]])
-   #@timesheet = Timesheet.find_by_employee_id(params[:employee_id])
   end
 
 
@@ -39,8 +27,7 @@ class TimesheetsController < ApplicationController
         if @timesheet.open?
           1.times { @timesheet.time_entries.build }
           1.times { @timesheet.non_billable_entries.build }
-        end
-
+        end        
         render :layout => 'search' 
     else
       flash[:error] = "Invalid date. Please try again."

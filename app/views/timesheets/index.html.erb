@@ -5,13 +5,10 @@
 	</div>
 <% end %>
 
-<%= @test %>
-
-
 <div class="row icons">
 
 	<div class="tile-box">
-        <%= link_to image_tag("data.png", :alt => "timesheets", :class => "round-icon"), "/users/#{current_user.id}/timesheets/#{@curr_year}/#{@curr_week}" %>
+        <%= link_to image_tag("data.png", :alt => "timesheets", :class => "round-icon"), "/users/#{current_user.id}/timesheets/#{this_year}/#{this_week}" %>
         <%= link_to "Timesheets", "/users/#{current_user.id}/timesheets/#{@curr_year}/#{@curr_week}", :class => "tile-label" %>
     </div>
 
@@ -32,13 +29,13 @@
 
 </div> <!-- end tiles -->
 
-<h2><%= Date.today.year %> Holidays</h2>
+<h2><%= this_year %> Holidays</h2>
 
 	<table class="table">
 		<% Holiday.all.each do |h| %>
 			<tr>
 				<td><%= h.name %></td>
-				<td><%= h.date.strftime("%a, %b %e, %Y") %></td>
+				<td><%= h.date_object.strftime("%B %-d (%a)") %></td>
 			</tr>
 		<% end %>
 	</table>

@@ -6,7 +6,9 @@
 <% end %>
 
 <strong><%= @holiday.name %></strong><br />
-<%= @holiday.date %><br />
-<br />
+<%= @holiday.date_object.strftime("%m/%d/%Y") %><br />
+Year: <%= @holiday.year %><br />
+Week: <%= @holiday.week %><br />
+Day: <%= @holiday.day %><br />
 <br />
 <%= link_to "Index", holidays_path, class: "btn" %>

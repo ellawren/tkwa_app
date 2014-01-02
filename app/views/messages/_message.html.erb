@@ -12,7 +12,7 @@
 			<%= User.find(message.user_id).name %>
         <% if User.find(message.user_id) == current_user || current_user.admin? %>
             | audience: <%= message.category %>
-            | expires: <%= message.expiration %>
+            | expires: <%= message.expiration %> exp: <%= message.exp_date %>
             | <%= link_to "edit", edit_message_path(message) %>
             | <%= link_to "delete", message, method: :delete, confirm: "You sure?" %>
         <% end %>

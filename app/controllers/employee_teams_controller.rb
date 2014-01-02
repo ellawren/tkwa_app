@@ -4,7 +4,7 @@ class EmployeeTeamsController < ApplicationController
   def edit
     @employee_team = EmployeeTeam.find(params[:id])
     #@contact = Contact.find(@employee_team.contact_id)
-    @employee = User.find(@employee_team.user_id)
+    @user = User.find(@employee_team.user_id)
     @project = Project.find(@employee_team.project_id)
     @phases = @project.available_phases
     render :layout => 'modal' 

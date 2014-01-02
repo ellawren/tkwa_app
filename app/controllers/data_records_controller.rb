@@ -19,7 +19,7 @@ class DataRecordsController < ApplicationController
     @data_record = DataRecord.find(params[:id])
     if @data_record.update_attributes(params[:data_record])
       flash[:success] = "Employee data updated successfully!"
-      redirect_to users_path
+      redirect_to(:back) 
     else
       redirect_to(:back) 
     end

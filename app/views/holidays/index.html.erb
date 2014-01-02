@@ -9,10 +9,9 @@
 
 <br /><br /><br />
 
-<% year_list.each do |year| %>
 	<div class="row">
 		<div class="span2">
-			<h4><%= year %> Holidays</h4>
+			<h4><%= this_year %> Holidays</h4>
 		</div>
 		<div class="span9">
 			<table class="table holiday-table">
@@ -22,26 +21,24 @@
 						<th>Name</th>
 						<th></th>
 						<th></th>
+						<th></th>
 				</thead>
 
 				<tbody>
 					<% Holiday.all.each do |param| %>
-						<% if param.date.year == year %>
 				  			<tr>
-				  				<td class="span2"><%= param.date.strftime("%B %d (%a)") %></td>
+				  				<td class="span2"><%= param.date_formatted %></td>
 				  				<td class="span3"><%= param.name %></td>
 				  				<td class="span1"><%= link_to "View", holiday_path(param) %></td>
-				  				<td class="span1"><%= link_to "Edit", edit_holiday_path(param) %></td>
+                                <td class="span1"><%= link_to "Edit", edit_holiday_path(param) %></td>
 				  				<td class="span1"><% if current_user.admin? %>
 			    						<%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
 			  						<% end %>
 			  					</td>
 				  			</tr>
-				  		<% end %>
 					<% end %>
 				</tbody>
 			</table>
 		</div>
 	</div>
 	<br /><br />
-<% end %>

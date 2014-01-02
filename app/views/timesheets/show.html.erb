@@ -67,6 +67,13 @@
 		</div>
 
   		<div class="table-body">
+
+  			<% if @timesheet.holidays.count > 0 %>
+  				<% @timesheet.holidays.each do |h| %>
+  					<%= render 'holiday_fields', :f => h  %>
+  				<% end %>
+  			<% end %>
+
 			<!-- nested form for team-->
     		<%= f.fields_for :non_billable_entries do |builder| %>
     			<%= render 'non_billable_entry_fields', :f => builder %>
@@ -84,13 +91,13 @@
 		<div class="summary-label">Week Totals</div>
 		<div class="span">
 
-			<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(timesheet_sum(:day1)) %></div>
-			<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(timesheet_sum(:day2)) %></div>
-			<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(timesheet_sum(:day3)) %></div>
-			<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(timesheet_sum(:day4)) %></div>
-			<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(timesheet_sum(:day5)) %></div>
-			<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(timesheet_sum(:day6)) %></div>
-			<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(timesheet_sum(:day7)) %></div>
+			<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day1))) %></div>
+			<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day2))) %></div>
+			<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day3))) %></div>
+			<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day4))) %></div>
+			<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day5))) %></div>
+			<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day6))) %></div>
+			<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day7))) %></div>
 		</div>
 	</div>
 

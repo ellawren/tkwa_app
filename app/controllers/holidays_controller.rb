@@ -19,15 +19,6 @@ class HolidaysController < ApplicationController
   def create
     @holiday = Holiday.new(params[:holiday])
     if @holiday.save
-
-          Employee.all.each do |e|
-              tm = Timesheet.find_or_create_by_employee_id_and_year_and_week(e.id, @holiday.date.year, view_context.get_week_number(@holiday.date))
-              nb = NonBillableEntry.find_or_create_by_employee_id_and_timesheet_id_and_category_and_description(e.id, tm.id, "Holiday", @holiday.name)
-              hh = DataRecord.find_by_employee_id_and_year(e.id, @holiday.date.year).holiday || 8
-              eval("nb.day#{@holiday.date.wday + 1} = #{hh.to_f}")
-              nb.save
-              tm.save
-          end
       flash[:success] = "Holiday added successfully!"
       redirect_to holidays_path
     else

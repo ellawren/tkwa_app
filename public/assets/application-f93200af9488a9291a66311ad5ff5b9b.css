@@ -10808,6 +10808,12 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
     .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:1px solid #555; font-size:13px; font-weight:900; }
 	.timesheets .table-head .cell 	{ float:left; padding-top:5px; margin:0px 2px 0px 2px; }
 	.timesheets .table-body .table-row { padding:0px 0px 0px 8px; border-bottom:1px solid #e1e6eb;}
+		.timesheets .table-body .table-row.holiday { background-color:#e1f0f3; width:932px; padding-top:2px; }
+		.timesheets .table-body .table-row:first-child.holiday { margin-top:0px; }
+		.timesheets .table-body .table-row.holiday .entry-spacer { background-color:#fff; border-color:#b3dbe4; }
+		.timesheets .table-body .table-row.holiday .category-cell, .timesheets .table-body .table-row.holiday .description-cell, 
+		.timesheets .table-body .table-row.holiday .entry-spacer
+				{ color:#0ba0d4; }
 	.timesheets .table-body .table-row:first-child { margin-top:4px; }
 	.timesheets .custom-select { padding:4px 3px; }
 	.timesheets .delete { margin:8px 0 8px 6px; }
@@ -10941,12 +10947,34 @@ a.control-link { float:right; }
 
     .modal-backdrop { min-height:1400px; }
     .modal-backdrop, .modal-backdrop.fade.in { opacity: 0.4; filter: alpha(opacity=40); }
+ 
+  	.modal .header-span, .modal .body-span { width:100%; margin-left:0px; color: #34495e; font-family: "Lato", sans-serif; }
+  	.modal .header-span h3 { width:100%; margin-bottom:30px; color:#34495e; font-size:16px; font-weight:900; }
+  	.modal th.table-cell { width:80px; padding-top:0px; color:#34495e; font-size:14pt; font-weight:900; text-align:center; }
+  	.modal a.btn { float:left; width:auto; padding:8px 16px; margin-top:15px; margin-bottom:30px; border-radius:8px; border:none; outline:none; font-size:13px; cursor:pointer; }
+
     .modal-header { position:relative; padding:30px 30px 10px 55px; border-top-right-radius:15px; border-top-left-radius:15px; background-color:#f5f5f5; }
-    .modal-header h3 { width:100%; height:30px; }
-    .modal-table { width:770px; }
-    .modal-table td { text-align:center; }
-    .modal-table label { color:#97a150; font-family: 'BlanchCapsLightRegular'; font-size:18pt; line-height:18pt; }
-    .modal-table input { width:62px; margin:3px; font-weight:bold; text-align:center; }
+    	.modal-header h3 { width:100%; height:30px; }
+		.modal-header button.close { margin-top:-2px; }
+ 
+    table.modal-table { width:770px; background-color:#f1f1f1; }
+    	.modal-table td { text-align:center; }
+    	.modal-table label { color:#97a150; font-family: 'BlanchCapsLightRegular'; font-size:18pt; line-height:18pt; }
+		.modal-table input { height:36px; width:36px; padding:0px 10px; margin-bottom:6px; border:2px solid #e1e6eb; border-radius:6px; color:#16a085; font-family: "Lato", sans-serif; font-size:14px; text-align:center; text-indent:0px; }
+  		.modal-table input:focus { border-color:#1abc9c; outline:none; }
+		.modal-table th .number { width:100%; height:24px; }
+  		.modal-table th .blanch { width:100%; font-size:8pt; font-weight:500; text-transform:uppercase; }
+  		.modal-table td { margin:8px 0; }
+  		.modal-table td.modal-total { width:80px; height:34px; padding-top:14px; color:#34495e; font-size:14px; font-weight:900; text-align:center; }
+ 
+ 		/* consultant billing table overrides */
+		.modal-table.cbilling-table { width:100%; color:#34495e; }
+		  	.modal-table.cbilling-table th { border-bottom:1px solid #7f8c8d; font-size:14px; font-weight:900; text-align:right; }
+		  	.modal-table.cbilling-table td { padding:5px 0; border-bottom:1px solid #e1e6eb; text-align:right; }
+		  	.modal-table.cbilling-table td:first-child, .modal-table.cbilling-table th:first-child { text-align:left; }
+		  	.modal-table.cbilling-table input { width:120px; height:34px; padding:8px; border:2px solid #e1e6eb; border-radius:8px; color:#1abc9c; font-family: "Lato", sans-serif; font-size:13px; text-align:right; }
+		  	.modal-table.cbilling-table input:focus { border-color:#1abc9c; outline:none; }
+ 
     .close { position:absolute; top:40px; right:50px; color:#000000; text-shadow: 0 1px 0 #ffffff; font-size: 30px; line-height: 18px; font-weight: bold; opacity: 0.2; filter: alpha(opacity=20); }
     .close:hover { color:#000000; text-decoration: none; cursor: pointer; opacity: 0.4; filter: alpha(opacity=40); }
     .modal-total { float:left; width:100%; margin:20px 0 20px 10px; font-family:Argumentum-Bold; }
@@ -10955,30 +10983,8 @@ a.control-link { float:right; }
     .btn-150 { width:150px; }
     .btn-cancel { width:80px; }
 
-    .modal-header button.close { margin-top:-2px; }
-
-  .modal .header-span, .modal .body-span { width:100%; margin-left:0px; color: #34495e; font-family: "Lato", sans-serif; }
-
-  .modal .header-span h3 { width:100%; margin-bottom:30px; color:#34495e; font-size:16px; font-weight:900; }
-  .modal-table input { width:75px; height:36px; padding:8px; border:2px solid #e1e6eb; border-radius:8px; color:#1abc9c; font-family: "Lato", sans-serif; font-size:13px; text-align:center; }
-  .modal-table input:focus { border-color:#1abc9c; outline:none; }
-  .modal th.table-cell { width:80px; padding-top:0px; color:#34495e; font-size:14pt; font-weight:900; text-align:center; }
-  .modal-table th .number { width:100%; height:24px; }
-  .modal-table th .blanch { width:100%; font-size:8pt; font-weight:500; text-transform:uppercase; }
-  .modal input.btn-primary { float:left; width:160px; height:38px; padding:8px 16px 20px 16px; margin-top:15px; margin-bottom:30px; border:none; border-radius:8px; background-color:#1abc9c; color:#fff; outline:none; font-size:13px; cursor:pointer; }
-  .modal a.btn { float:left; width:auto; padding:8px 16px; margin-top:15px; margin-bottom:30px; border-radius:8px; border:none; outline:none; font-size:13px; cursor:pointer; }
-
-  .modal input.btn-primary:hover { background-color:#16a085; }
-  .modal-table td { margin:8px 0; }
-  .modal-table td.modal-total { width:80px; height:34px; padding-top:14px; color:#34495e; font-size:14px; font-weight:900; text-align:center; }
-
-  .modal-table.cbilling-table { width:100%; color:#34495e; }
-  	.modal-table.cbilling-table th { border-bottom:1px solid #7f8c8d; font-size:14px; font-weight:900; text-align:right; }
-  	.modal-table.cbilling-table td { padding:5px 0; border-bottom:1px solid #e1e6eb; text-align:right; }
-  		.modal-table.cbilling-table td:first-child, .modal-table.cbilling-table th:first-child { text-align:left; }
-  	.modal-table.cbilling-table input { width:120px; height:34px; padding:8px; border:2px solid #e1e6eb; border-radius:8px; color:#1abc9c; font-family: "Lato", sans-serif; font-size:13px; text-align:right; }
-  		.modal-table.cbilling-table input:focus { border-color:#1abc9c; outline:none; }
-
+    .modal input.btn-primary { float:left; width:160px; height:38px; padding:8px 16px 20px 16px; margin-top:15px; margin-bottom:30px; border:none; border-radius:8px; background-color:#1abc9c; color:#fff; outline:none; font-size:13px; cursor:pointer; }
+  		.modal input.btn-primary:hover { background-color:#16a085; }
 
   	/* options modal */
   	#options { left:55%; width:450px; height:auto; }

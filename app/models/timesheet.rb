@@ -48,8 +48,23 @@ class Timesheet < ActiveRecord::Base
     non_billable_entries.sum(:day7) 
   end
 
+  def holiday_hours
+    DataRecord.find_by_user_id_and_year(self.user_id, self.year).holiday
+  end
+
+
+  def holiday_total_hours
+    arr = []
+    if self.holidays.count > 0
+        self.holidays.each do |h|
+            arr.push(self.holiday_hours)
+        end
+    end
+    arr.inject{|sum,x| sum + x }
+  end
+
   def timesheet_total
-    total_hours.to_f + nb_total_hours.to_f
+    total_hours.to_f + nb_total_hours.to_f + holiday_total_hours.to_f
   end
 
   def year_to_date
@@ -62,6 +77,10 @@ class Timesheet < ActiveRecord::Base
 
   def ytd_goal(week)
       week_goal * week
+  end
+
+  def holidays
+    Holiday.find_all_by_year_and_week(self.year, self.week)
   end
 
   def all_hours(line, column)

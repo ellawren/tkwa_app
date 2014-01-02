@@ -27,6 +27,10 @@ module TimesheetsHelper
     str
   end
 
+  def weeks_in_year(year)
+    Date.new(year, 12, 28).cweek
+  end
+
   def year_begin(week, year)
     wk_1 = Date.commercial(year, 1, 1).beginning_of_week(start_day = :sunday) 
   end
@@ -92,13 +96,18 @@ module TimesheetsHelper
   end
 
   def timesheet_sum(day)
-    if @timesheet.time_entries.sum(day) + @timesheet.non_billable_entries.sum(day) > 0
-      @timesheet.time_entries.sum(day) + @timesheet.non_billable_entries.sum(day)
+    arr = []
+    day_num = day.to_s.gsub(/[^0-9]/, '').to_i
+    if @timesheet.holidays.count > 0
+        @timesheet.holidays.each do |h|
+            if day_num == h.day
+                arr.push(@timesheet.holiday_hours)
+            end
+        end
     end
-  end
-
-  def weeks_in_year(year)
-    Date.new(year, 12, 28).cweek
+    arr.push(@timesheet.time_entries.sum(day))
+    arr.push(@timesheet.non_billable_entries.sum(day))
+    arr.inject{|sum,x| sum + x }
   end
 
   def weeks_class(year)
