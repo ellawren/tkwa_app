@@ -1,0 +1,92 @@
+<% content_for :page_header do %>
+	<% provide :title, "Employee Data" %>
+	<div class="page-header">
+		<h1>Employee Data: <%= @user.name %> </h1>
+	</div>
+<% end %>
+
+<!-- modal for employee target edit -->
+	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="myModalLabel"> </h3>
+	  	</div>
+	  	<div class="modal-body"></div>
+	</div>
+<!-- end modal -->
+
+<!-- modal for employee target edit -->
+	<div class="modal hide fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="myModalLabel"> </h3>
+	  	</div>
+	  	<div class="modal-body"></div>
+	</div>
+<!-- end modal -->
+
+<a href=<%= "/data_records/new" %> data-target="#newModal" data-toggle="modal" class="modal-btn edit-targets">Add New Record</a>
+
+<h4><%= curr_year %> Employee Data</h4><br />
+	<table class="table right-align">
+		<thead>
+			<tr>
+				<th class="left-align">Name</th>
+				
+				<th>TKWA #</th>
+				<th>Year</th>
+				<th>Weeks</th>
+				<th>Pay Type</th>
+				<th>Total Hours<br />Per Week</th>
+				<th>Billable Hours<br />Per Week</th>
+				<th>Comp Hours<br />Per Holiday</th>
+				<th>Vacation Hours<br />Per Year</th>
+				<th>Vacation Rollover</th>
+				<th>Hourly Rate</th>
+				<th>Billable Rate</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+
+				<% data_array = [] %>
+				<% DataRecord.find_all_by_year_and_user_id(this_year, @user.id).each do |d| %>
+					<% data_array.push(d) %>
+				<% end %>
+				<% if data_array.size == 0 %>
+					<% data_array.push(DataRecord.find_or_create_by_year_and_user_id(this_year, @user.id)) %>
+				<% end %>
+
+				<% data_array.each do |d| %>
+					<tr>
+						<td class="left-align bold">
+							<a href=<%= "/users/#{@user.id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= @user.name %></a>
+						</td>
+						
+						<td><%= @user.employee_number %></td>
+	  					
+							<td><%= d.year %></td>
+							<td><%= "#{d.start_week} - #{d.end_week}" %></td>
+							<td><%= d.pay_type %></td>
+		  					<td><%= d.hours_in_week %></td>
+		  					<td><%= d.billable %></td>
+		  					<td><%= d.holiday %></td>
+		  					<td><%= d.vacation %></td>
+		  					<td><%= d.vacation_rollover %></td>
+		  					<td><%= number_to_currency(d.rate) %></td>
+		  					<td><%= number_to_currency(d.billable_rate) %></td>
+		  					<td></td>
+	  				</tr>
+  				<% end %>
+		</tbody>
+	</table>
+
+<script>
+//reset modal remote on close
+    $('#myModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+    $('#newModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+</script>

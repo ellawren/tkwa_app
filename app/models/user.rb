@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
 
   # employee_stuff -----------------------------------------------------------------
     has_many :timesheets
-    has_many :data_records
+    has_many :data_records, :dependent => :destroy
     accepts_nested_attributes_for :data_records
 
     has_many :time_entries, :through => :timesheets

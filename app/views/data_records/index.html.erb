@@ -15,52 +15,76 @@
 	</div>
 <!-- end modal -->
 
-<h4><%= curr_year %> Employee Data</h4><br />
-	<table class="table right-align">
-		<thead>
-			<tr>
-				<th class="left-align">Name</th>
-				
-				<th>TKWA #</th>
-				<th>Year</th>
-				<th>Start Week</th>
-				<th>End Week</th>
-				<th>Pay Type</th>
-				<th>Total Hours<br />Per Week</th>
-				<th>Billable Hours<br />Per Week</th>
-				<th>Comp Hours<br />Per Holiday</th>
-				<th>Vacation Hours<br />Per Year</th>
-				<th>Vacation Rollover</th>
-				<th>Hourly Rate</th>
-				<th>Billable Rate</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
+<!-- modal for employee target edit -->
+	<div class="modal hide fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  	<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    	<h3 id="myModalLabel"> </h3>
+	  	</div>
+	  	<div class="modal-body"></div>
+	</div>
+<!-- end modal -->
 
-			<% @users.each do |param| %>
+<a href=<%= "/data_records/new" %> data-target="#newModal" data-toggle="modal" class="btn btn-primary btn-right">Add New Record</a>
+
+	<% year_array(@data_records).each do |y| %>
+		<h4><%= y %></h4><br />
+		<table class="table right-align data-records">
+			<thead>
 				<tr>
-					<td class="left-align bold">
-						<a href=<%= "/users/#{param.id}/data_records/#{curr_year}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= param.name %></a>
-					</td>
-					
-					<td><%= param.employee_number %></td>
-  					
-					<% data = DataRecord.find_or_create_by_year_and_user_id(curr_year, param.id) %>
-						<td><%= data.year %></td>
-						<td><%= data.start_week %></td>
-						<td><%= data.end_week %></td>
-						<td><%= data.pay_type %></td>
-	  					<td><%= data.hours_in_week %></td>
-	  					<td><%= data.billable %></td>
-	  					<td><%= data.holiday %></td>
-	  					<td><%= data.vacation %></td>
-	  					<td><%= data.vacation_rollover %></td>
-	  					<td><%= number_to_currency(data.rate) %></td>
-	  					<td><%= number_to_currency(data.billable_rate) %></td>
-	  					<td></td>
-  				</tr>
-  				
-			<% end %>
-		</tbody>
-	</table>
+					<th class="left-align">Name</th>
+									<th>Year</th>
+					<th>Weeks</th>
+					<th>Pay Type</th>
+					<th>Hrs/Wk</th>
+					<th>Billable/Wk</th>
+					<th>Holiday/Day</th>
+					<th>Vacation<br>This Period</th>
+					<th>Vacation<br>Rollover</th>
+					<th>Hourly Rate</th>
+					<th>Billable Rate</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% data = DataRecord.find_all_by_year(y).sort {|a,b| a.user_name <=> b.user_name} %>
+				<% data.each do |d| %>
+					<tr>
+						<td>
+							<div class="user-name">
+								<a href=<%= "/users/#{d.user_id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= d.user_name %></a>
+							</div>
+							<div class="employee-number">
+								<%= User.find(d.user_id).employee_number %>
+							</div>
+						</td>
+						<td><%= d.year %></td>
+						<td><%= "#{d.start_week} - #{d.end_week}" %></td>
+						<td><%= d.pay_type %></td>
+		  				<td><%= d.hours_in_week %></td>
+		  				<td><%= d.billable %></td>
+		  				<td><%= d.holiday %></td>
+		  				<td><%= d.vacation %></td>
+		  				<td><%= d.vacation_rollover %></td>
+		  				<td><%= number_to_currency(d.rate) %></td>
+		  				<td><%= number_to_currency(d.billable_rate) %></td>
+		  				<td>
+		  					<% if current_user.admin? %>
+		  						<%= link_to "delete", d, method: :delete, confirm: "You sure?" %>
+								<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>		
+	<% end %>
+
+<script>
+//reset modal remote on close
+    $('#myModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+    $('#newModal').on('hidden', function () {
+        $(this).removeData('modal');
+    })
+</script>

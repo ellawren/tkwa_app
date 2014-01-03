@@ -26,6 +26,7 @@
 #
 
 class DataRecord < ActiveRecord::Base
+	default_scope order('year, start_week')
 	belongs_to :user
 
 	validates :user_id, :presence => true
@@ -41,61 +42,28 @@ class DataRecord < ActiveRecord::Base
 			rate * (multiplier + 1)
 		end
 	end
-	before_create :set_defaults
+
+	def self.week_array
+    	(self.start_week..self.end_week).to_a 
+  	end
+
+  	def user_name
+  		User.find(self.user_id).name
+  	end
+
+	after_initialize :set_defaults
 
 	def set_defaults
-	    
-	    if self.year != nil
-	    	prev_year = (self.year - 1)
-
-	    	if DataRecord.find_all_by_user_id_and_year(self.user_id, prev_year).count == 1
-	    		prev = DataRecord.find_by_user_id_and_year(self.user_id, prev_year)
-		    	if prev.hours_in_week != nil
-		    		self.hours_in_week = prev.hours_in_week
-		    	else
-		    		self.hours_in_week = 40
-		    	end
-		    	if prev.vacation != nil
-		    		self.vacation = prev.vacation
-		    	else
-		    		self.vacation = 80
-		    	end
-		    	if prev.holiday != nil
-		    		self.holiday = prev.holiday
-		    	else
-		    		self.holiday = 8
-		    	end
-		    	if prev.billable != nil
-		    		self.billable = prev.billable
-		    	else
-		    		self.billable = 39.5
-		    	end
-		    	if prev.rate != nil
-		    		self.rate = prev.rate
-		    	else
-		    		self.rate = 24
-		    	end
-		    else
-		    	self.hours_in_week = 40
-		    	self.vacation = 80
-		    	self.holiday = 8
-		    	self.billable = 39.5
-		    	self.rate = 24
-	    	end
-
-	    else
-	    	self.year = this_year
-	    	self.hours_in_week = 40
-	    	self.vacation = 80
-	    	self.holiday = 8
-	    	self.billable = 39.5
-	    	self.rate = 24
-	    end
-
+	    self.year ||= Date.today.cwyear
 	    self.start_week ||= 1
-        self.end_week ||= Date.new(self.year, 12, 28).cweek #calc for number of weeks in current year
-
-  end
+        self.end_week ||= Date.new(Date.today.cwyear, 12, 28).cweek #calc for number of weeks in current year
+	    self.hours_in_week ||= 40
+	    self.vacation ||= 80
+	    self.vacation_rollover ||= 0
+	    self.holiday ||= 8
+	    self.billable ||= 39.5
+	    self.rate ||= 24
+  	end
 
 
 end

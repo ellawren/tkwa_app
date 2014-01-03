@@ -14,6 +14,10 @@ module ApplicationHelper
     Date.today.cwyear
   end
 
+  def prev_year
+    this_year - 1
+  end
+
   def curr_year
     Date.today.cwyear
   end
