@@ -17,6 +17,7 @@
 //= require autocomplete-rails
 //= require bootstrap
 //= require bootstrap-select
+//= require bootstrap-tooltip
 //= require bootstrap-pop
 //= require bootstrap-switch
 //= require bootstrap-datepicker

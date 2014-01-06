@@ -25,8 +25,7 @@ String.prototype.repeat = function(num) {
     // Custom Select
     $("select[name='herolist']").selectpicker({style: 'btn-primary', menuStyle: 'dropdown-inverse'});
 
-    // Tooltips
-    $("[data_toggle=tooltip]").tooltip("show");
+ 
 
     // Tags Input
     $(".tagsinput").tagsInput();

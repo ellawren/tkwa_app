@@ -4,22 +4,21 @@
 #
 #  id                  :integer         not null, primary key
 #  project_id          :integer
-#  consultant_id       :integer
 #  created_at          :datetime        not null
 #  updated_at          :datetime        not null
 #  consultant_role     :string(255)
 #  consultant_contract :decimal(12, 2)
+#  consultant_name     :string(255)
 #
 
 class ConsultantTeam < ActiveRecord::Base
 
 	belongs_to :project
-	belongs_to :consultant
   has_many :bills, :dependent => :destroy
   accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_team_id].blank? }
 
 	validates :project_id, :presence => true
-  validates :consultant_id, :presence => true
+  validates :consultant_name, :presence => true
 
    	def consultant_contract=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)

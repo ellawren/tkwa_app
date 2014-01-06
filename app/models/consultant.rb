@@ -15,7 +15,5 @@
 class Consultant < ActiveRecord::Base
 	validates :company, presence: true, length: { maximum: 50 }
 
-	has_many :projects, :through => :consultant_teams
-    has_many :consultant_teams, :dependent => :destroy
     has_many :shop_drawings
 end

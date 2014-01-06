@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   require 'csv'
   autocomplete :contact, :name, :full => true, :extra_data => [:work_address, :work_phone, :work_ext, :work_email]
+  autocomplete :contact, :work_company, :full => true, :scopes => [:consultant_list]
 
   def new
   	@project = Project.new
@@ -29,6 +30,13 @@ class ProjectsController < ApplicationController
 
   def setup
     @project = Project.find(params[:id])
+
+    if @project.consultant_teams.count == 0 
+        1.times { @project.consultant_teams.build }
+    end
+    if @project.employee_teams.count == 0
+        1.times { @project.employee_teams.build }
+    end
   end
   
   def scope

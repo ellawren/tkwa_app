@@ -17,12 +17,10 @@
         <div class="half">
 
 	        <h2>Design Team</h2>
-	        <% if @project.employee_teams.count != 0 %>
-		        <div class="header-row">
-		            <div>Name</div>
-		            <div>Role</div>
-		        </div>
-		    <% end %>
+	        <div class="header-row">
+	            <div>Name</div>
+	            <div>Role</div>
+	        </div>
 
 	        <!-- nested form for team-->
 		    	<%= f.fields_for :employee_teams do |builder| %>
@@ -35,14 +33,12 @@
 
 		<div class="half last">
 
-			<h2>Consultant Team <%= link_to "", consultants_path, :class => "control-link fui-new" %></h2>
+			<h2>Consultant Team <!--<%= link_to "add/edit consultant list", consultants_path, :class => "control-link-text" %>--></h2>
 
-	        <% if @project.consultant_teams.count != 0 %>
-		        <div class="header-row">
-		            <div>Company</div>
-		            <div>Role</div>
-		        </div>
-		    <% end %>
+	        <div class="header-row">
+	            <div>Company</div>
+	            <div>Role</div>
+	        </div>
 
 	        <!-- nested form for team-->
 	    		<%= f.fields_for :consultant_teams do |builder| %>

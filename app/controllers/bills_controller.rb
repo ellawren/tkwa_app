@@ -5,7 +5,6 @@ class BillsController < ApplicationController
     @bills = Bill.find_all_by_consultant_team_id(@team_id)
     @consultant_team = ConsultantTeam.find(@team_id)
     @project = Project.find(@consultant_team.project_id)
-    @consultant = Consultant.find(@consultant_team.consultant_id)
     render :layout => 'modal' 
   end
 

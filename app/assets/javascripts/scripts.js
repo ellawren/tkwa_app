@@ -1,5 +1,9 @@
 $(document).ready(function() {
- 
+
+  $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
+  $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
+  $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+
  // main nav hover controls
     $("ul#nav li.active").hover(function () {
       $(this).children(".control-icons").stop().fadeToggle("slow");
@@ -95,6 +99,15 @@ function remove_fields(link) {
   return false;
 }
 
+function remove_consultant_fields(link) {
+  if (confirm("Delete this entry?")) {
+    $(link).prev("input[type=hidden]").val("1");
+    //$(link).closest(".input").hide();
+    $(link).closest("tr").hide();
+  }
+  return false;
+}
+
 
 function remove_fields_2(link) {
   $(link).prev("input[type=hidden]").val("1");
@@ -127,7 +140,6 @@ function add_category_fields(link, cat, content) {
 
 $(document).ready(function() {
     $("a.pop").popover({ placement: 'right', animation:true });
-		$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
 		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
 });
 

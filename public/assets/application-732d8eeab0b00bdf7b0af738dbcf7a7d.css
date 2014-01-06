@@ -8511,7 +8511,7 @@ textarea[class*="span"] {
   line-height: 17.99px;
   padding: 12px 12px;
   text-align: center;
-  width: 183px;
+  width: auto;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -10261,6 +10261,8 @@ body.vjs-full-window {
 			.navbar-inverse .nav > li > a  { font-size: 14px; font-weight:normal; border-bottom:none; padding:0px; margin-top:56px; }
 		ul.nav a.disabled, ul.nav a.disabled:hover { color:#6b8299; margin-right:3px; }
 
+ul#nav li.disabled a { opacity:.5; }
+ul#nav li.disabled a:hover { color:#6b8299; }
 
 /* page structure */
 
@@ -10294,6 +10296,8 @@ a#show, a#hide { cursor:pointer; font-weight:400; font-size:13px; display:inline
 a#hide { display:none;}
 #personal-info.hidden { float:left; }
 #personal-info.hidden { display:none; }
+
+.btn { padding:7px 12px; }
 
 /* transitions */
 
@@ -10355,6 +10359,7 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 h2 { float:left; display:block; width:100%; height:34px; margin:30px 0 20px; border-bottom:1px solid #e1e6eb; clear:all; font-weight:900; font-size:11pt; }
 	h2.first { margin-top:10px; }
 	h2 .note { margin-left:4px; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; font-weight:normal; }
+	.half h2 { margin-bottom:10px; }
 h3 { font-size:11pt; font-weight:900; }
 h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clear:all; font-size:11pt; font-weight:900; }
 .note { margin-left:4px; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; font-weight:normal; }
@@ -10370,7 +10375,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 	.input-label { color:#c3cacf; cursor:default; margin-bottom:0px; }
 	.input-cell { float:left; height:20px; padding:10px; border-radius:6px; color:#16a085; font-size:14px; }
 		input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
-			{ height:36px; padding:0px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; text-indent:0px; }
+			{ height:32px; padding:0px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; text-indent:0px; }
 		textarea { padding:5px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; resize:vertical; }
 		button.input-button { width:68px; height:37px; padding:3px 12px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
 		a.input-button { width:45px; height:30px; padding:6px 12px 2px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
@@ -10444,13 +10449,8 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.half input[type="text"], .half textarea { float:left; width:310px; }
 			.half input[type="text"].i-am-messed-up, .half textarea.i-am-messed-up { float:left; width:276px; height:34px; }
 			.half.billing input[type="text"] { width:200px; text-align:right; }
+			.half input[type="text"].consultant-name { width:170px; margin-right:6px; }
 		.half .input-label { float:left; width:100px; padding:10px 0; }
-		.half .custom-select.billing { width:300px; }
-
-		.half.billing input[type="text"] { float:left; width:200px; text-align:right; }
-			.half.billing input[type="text"].margin-left { float:left; width:130px; }
-		.half.billing .input-label { float:left; width:240px; padding:10px 0; }
-
 		.half input[type="text"].button-right, .half textarea.button-right { width:230px; }
 
 	.full { float:left; width:100%; clear:all;}
@@ -10466,9 +10466,9 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 .delete { float:left; display:block; margin:6px 0 0 12px; color:#ced5da; font-size:20px; cursor:pointer; }
 	.delete:hover { color:#e64c3c; }
 
-.add { margin-top:20px; cursor:pointer; }
-	.add:after { content:"select team member"; margin-left:6px; color:#86cc71; font-family: "Lato", sans-serif; font-size:14px; font-weight:700; }
-	.add.consultant:after { content:"select consultant"; }
+.add { margin-top:10px; cursor:pointer; }
+	.add:after { content:"add team member"; margin-left:6px; color:#86cc71; font-family: "Lato", sans-serif; font-size:14px; font-weight:700; }
+	.add.consultant:after { content:"add consultant"; }
 	.add.category:after { content:"select another category"; }
 	.add.pattern:after { content:"add pattern"; }
 	.add.schedule:after { content:"new line"; }
@@ -10629,6 +10629,13 @@ ul.tile-list.small-tiles { float:left; width:100%; margin-bottom:10px; margin-le
 
 label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 
+/* table general */
+
+.inline-label { float:left; display:inline-block; cursor:default; }
+th.align-right { text-align:right; }
+th.percent { padding-left:28px; }
+tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; }
+
 
 /* tracking table */
 
@@ -10706,58 +10713,51 @@ table.tracking-table tbody tr.lower td.total, table.tracking-table tbody tr.bill
 table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold { padding-top:8px; padding-left:6px; font-size:12px; }
 
 
-/* billing table */
+/* PROJECT - billing */
 
-.billing-table { float:left; width:100%; margin-top:0px; margin-bottom:0px; border-collapse:collapse; font-size:10pt; }
-	.billing-table .col-head { text-align:left; padding-bottom:4px; border-bottom:1px solid #666; font-family:"Oswald", "Arial Narrow", sans-serif; font-size: 10pt; font-weight:400; }
-	.billing-table .td-select { width:24%; height:18px; margin-right:4px; }
-	.billing-table .styled-select { width:98%; margin-top:3px; }
-	.billing-table .td-input { width:13%; padding:0 4px; }
-	.billing-table input, .billing-table .text-field { text-align:right; }
-	.billing-table .td-percent { float:left; width:5%; padding:0 4px; }
-	.billing-table .td-percent div { padding:16px 0 8px; font-family:"Oswald", "Arial Narrow", sans-serif; text-align:right; }
-	.billing-table .td-addbtn { float:left; width:12%; height:15px; padding:0 2px; }
-	.billing-table a.btn-small { width:60px; margin:0px 3px; text-decoration:none; }
+	/* contract + fees */
+	.third.billing { width:325px; margin-right:50px; }
+	.third.billing .input-label { float:left; width:130px; padding:10px 0; }
+		.third.billing .text-only .input-label { padding-top:4px; }
+		.third.billing .input-label label { display:inline-block; }
+		.third.billing .input-label a { display:inline-block; margin:0 0 0 3px; }
+	.third.billing input[type="text"] { float:right; width:165px; text-align:right; color:#86cc71; }
+		.third.billing input[type="text"]:focus { border-color:#86cc71; }
+	.third.billing .custom-select { float:right; width:190px; color:#86cc71; }
+	.third.billing .text-field { float:right; width:144px; padding:12px 12px 4px 16px; height:16px; margin-top:3px; text-align:right;  }
+		.third.billing .text-only .text-field { padding-top:3px; }
 
-.text-input { width:100px; padding:8px 12%; margin-right:8px; font-family:"Oswald", "Arial Narrow", sans-serif; text-align:right; }
+	.third.billing.gray-box { height:auto; width:325px; padding:18px 15px; }
+		.third.billing.gray-box .input-label { width:160px; color:#bcc6cc; }
+		.third.billing.gray-box input[type="text"] { float:right; width:135px; text-align:right; }
+		
+	.third.billing.last { margin-right:0px; width:160px; }
+		.billed-to-date { float:left; padding:40px 10px; color:#86cc71; width:140px; height:80px; border:2px dotted #86cc71; border-radius:80px; text-align:center; }
+			.billed-to-date .percentage { font-size:50px; }
 
-.billing-table .delete { float:right; margin:12px 4px 0 8px; }
-.col-row div { float:left; }
-.col-foot { margin-top:-22px; border-top:1px solid #666; }
-.billing-table a.add-link { margin-top:10px; }
+	.btn-primary.green { background-color:#86cc71; }
+	.btn-primary.green:hover { background-color:#86cc71; opacity:.85; }
 
-.plus, .minus { float:left; width:26px; padding:0px 3px 0 0; font-size:24pt; text-align:center; }
-.minus { margin-top:-3px; }
+	/* consultant billing */
+	.billing-table { float:left; width:100%; margin-top:0px; margin-bottom:0px; border-collapse:collapse; font-size:10pt; }
+		.billing-table td, .billing-table th { padding:8px 8px 0px 0px; }
+		.billing-table input, .billing-table .text-field { text-align:right; }
+		.billing-table a.btn-small { width:60px; margin:0px 3px 0 15px; text-decoration:none; }
+		.billing-table .consultant-name { text-align:left; }
+		.billing-table .delete { float:right; margin:9px 4px 0 8px; }
+		.billing-table .text-field { padding:8px 4px 8px 16px; }
+		.billing-table tr.footer td  { padding:0px 8px 0px 0px; }
+		.billing-table tbody { border-top:2px solid #344953; }
+		.billing-table th.contract-amt { width:120px; padding-right:25px; }
+		.billing-table th.percent { width:70px; text-align:right; padding-right:10px; }
+		.billing-table .text-input.contract-amount { width:120px; margin-right:0px; }
+		.billing-table .text-field.contract-amount { width:120px; margin-right:16px; }
 
-.text-field { float:left; width:144px; padding:11px 4px 11px 16px; text-align:right; }
-	.text-field.margin-left { width:114px;  }
-	.text-field.total-fee { margin-top:4px; margin-bottom:9px; font-weight:900; }
-	.text-field.no-border { border-color:#fff; background-color:#fff; font-weight:600; }
-	.text-field.small { width:30px; margin-right:15px; margin-left:15px; }
-	.text-field.bold { font-weight:900; }
-	.text-field.med { width:80px; }
-	.text-field.lg { width:96px; }
-	.text-field.lg2 { width:200px; padding-left:0px; text-align:left; }
+	/* consultant billing modal */
 
-.sum-line { float:left; width:400px; margin:6px 0 6px 0; border-top:2px solid #000; }
-
-.half input[type="text"].oop { width:50px; padding: 8px 10px 8px 5px; margin:0 5px; text-align:center; }
-.text { float:left; padding:10px 0; }
-
-.edit-link { float:left; margin-top:4px; margin-left:8px; font-size:12px; }
-
-.inline-label { float:left; display:inline-block; cursor:default; }
-
-.billing-table td, .billing-table th { padding:8px 8px 0 0; }
-
-th.align-right { text-align:right; }
-th.percent { padding-left:28px; }
-tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; }
-
-.text-input.contract-amount { width:120px; }
-.table.billing-table tbody { border-top:2px solid #344953; }
 
 /* footer */
+
 footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:40px; background-color: #fff; font-size:13px; }
 
 
@@ -10942,6 +10942,7 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 p.top-margin { float:left; margin-top:30px; }
 
 a.control-link { float:right; }
+a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
 
 .third .checkbox { margin-bottom:9px; }
 

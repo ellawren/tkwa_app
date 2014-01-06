@@ -2,81 +2,66 @@
 
     <h2>Contract + Fees</h2>
 
-        <div class="half billing">
+        <div class="third billing">
             <div class="input-row">
-                <%= f.label(:contract_amount, "Total Contract Amount", class: "input-label") %>
+                <%= f.label(:billing_type, "Billing Type", class: "input-label") %>
+                <%= f.select(:billing_type, Project::BILLING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:contract_amount, "Total Contract", class: "input-label") %>
                 <%= f.text_field :contract_amount, value: number_to_currency(@project.contract_amount), class: ""  %>
             </div>
             <div class="input-row">
-                <%= f.label(:extra_services, "Extra Services", class: "input-label") %>
-                <div class="plus">+</div><%= f.text_field :extra_services, value: number_to_currency(@project.extra_services), class: "margin-left" %>
-            </div>
-            <div class="input-row">
-                <label class="input-label">Total Consultant Contracts<br>(entered below)</label>
-                <div class="minus">-</div><div class="text-field margin-left bold"><%= number_to_currency(@project.consultant_contract_total) %></div>
-            </div>
-            <div class="sum-line"></div>
-            <div class="input-row">
-                <label class="input-label">Total Fee</label>
-                <div class="text-field total-fee"><%= number_to_currency(@project.tkwa_fee) %></div>
+                <div class="input-label">
+                    <label>TKWA Fee</label>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="(Total Contract) + (Extra Services To Date) - (Total Consultant Billing)"></a>
+                 </div>
+                <div class="text-field bold"><%= number_to_currency(@project.tkwa_fee) %></div>
             </div>  
-            <div class="input-row">
-                <%= f.label(:payroll, "Payroll Costs To Date", class: "input-label") %>
-                <%= f.text_field :payroll, value: number_to_currency(@project.payroll), class: "" %>
-            </div>
-            <div class="input-row">
-                <label class="input-label">Current Profit/Loss</label>
-                <div class="text-field bold"><%= over_under_currency(@project.payroll, @project.tkwa_fee) %></div>
+            <div class="input-row text-only">
+                <div class="input-label">
+                    <label>Profit/Loss</label>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="(TKWA Fee) - (Payroll To Date)"></a>
+                </div>
+                <div class="text-field"><%= over_under_currency(@project.payroll, @project.tkwa_fee) %></div>
             </div>  
+
         </div>
-        <div class="half last">
+        <div class="third billing gray-box">
 
                 <div class="input-row">
-                    <div class="input-label">
-                        <%= f.label(:billing_type, "Billing Type", class: "inline-label") %>
-                        <a class="edit-link fui-new" href="#"></a>
-                    </div>
-                    <%= f.select(:billing_type, Project::BILLING_TYPES, {:prompt => ' '}, {:class => 'custom-select billing'}) %>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-label">
-                        <%= f.label(:billing_travel, "Travel Billing", class: "inline-label") %>
-                        <a class="edit-link fui-new" href="#"></a>
-                    </div>
-                    <%= f.select(:billing_travel, Project::BILLING_TRAVEL_TYPES, {:prompt => ' '}, {:class => 'custom-select billing'}) %>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-label">
-                        <%= f.label(:billing_consultant, "Consultant Billing", class: "inline-label") %>
-                        <a class="edit-link fui-new" href="#"></a>
-                    </div>
-                    <%= f.select(:billing_consultant, Project::BILLING_CONSULTANT_TYPES, {:prompt => ' '}, {:class => 'custom-select billing'}) %>
+                    <%= f.label(:billed_to_date, "Billed To Date", class: "input-label") %>
+                    <%= f.text_field :billed_to_date, value: number_to_currency(@project.billed_to_date) %>
                 </div>
                 <div class="input-row">
-                    <%= f.label(:billing_outofpocket, "Out-of-pocket", class: "input-label") %>
-                    <div class="text">Expenses +</div>
-                    <%= f.text_field :billing_outofpocket, class: "oop" %>
-                    <div class="text">% markup</div>
+                    <%= f.label(:extra_services, "Extra Services To Date", class: "input-label") %>
+                    <%= f.text_field :extra_services, value: number_to_currency(@project.extra_services) %>
                 </div>
-                        
-            </div> <!-- end half -->
+                <div class="input-row">
+                    <%= f.label(:payroll, "Payroll To Date", class: "input-label") %>
+                    <%= f.text_field :payroll, value: number_to_currency(@project.payroll) %>
+                </div>
+        </div>
+        <div class="third billing last">       
+            <div class="billed-to-date">
+                <div class="percentage"><%= number_to_percentage(f.object.percent_billed_to_date, :precision => 0) %></div>
+                billed to date
+            </div>
+        </div> 
 
         <div class="save-row">
-            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+            <%= f.submit "Save Changes", class: "btn btn-primary save-btn green" %>
         </div>
-
 
 <% end %>
 
+<%= form_for @project do |f| %>
 
-<h2>Consultant Billing</h2>
-<p class="description">To add or edit consultants, go to the <%= link_to "project setup page", setup_project_path %>.</p>
-<% if @project.consultant_teams.length == 0 %>
-    <p class="description">This project's consultants have not been set up yet. Click the 'setup' tab in the bar above to add consultants.</p>
-<% else %>
-    <%= form_for @project do |f| %>
+    <h2>Consultant Billing</h2>
+    <% if @project.consultant_teams.length == 0 %>
+        <p class="description">This project's consultants have not been set up yet. Click the 'setup' tab in the bar above to add consultants.</p>
+    <% else %>
+
         <!-- modal for consultant billing edit -->
             <div class="modal hide fade consultant" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
@@ -93,9 +78,9 @@
                 <tr>
                     <th>Firm</th>
                     <th>Role</th>
-                    <th class="">Contract Amount</th>
+                    <th class="align-right contract-amt">Contract Amount</th>
                     <th class="align-right">Billed to-date</th>
-                    <th class="percent">Percent</th>
+                    <th class="percent">% Billed</th>
                 </tr>
             </thead>
                 
@@ -106,9 +91,10 @@
                 <tr class="footer">
                     <td></td>
                     <td></td>
-                    <td><div class="text-field lg bold"><%= number_to_currency(@project.consultant_contract_total) %></div></td>
+                    <td><div class="text-field lg bold contract-amount"><%= number_to_currency(@project.consultant_contract_total) %></div></td>
                     <td><div class="text-field med bold"><%= number_to_currency(@project.project_bills_total) %></div></td>
                     <td><div class="text-field small bold"><% if f.object.consultant_percent_billed > 0 %><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %><% end %></div></td>
+                    <td></td>
                     <td></td>
                 </tr>
             </tbody>

@@ -37,9 +37,6 @@ class Contact < ActiveRecord::Base
   has_one :user, :through => :employee
   accepts_nested_attributes_for :employee
 
-  has_one :consultant
-  accepts_nested_attributes_for :consultant
-
   has_many :projects, :through => :employee_teams
 
   before_save do
@@ -58,6 +55,11 @@ class Contact < ActiveRecord::Base
   		:joins => "INNER JOIN employees ON employees.contact_id = contacts.id", 
   		:conditions => ["status = ?", 'Current' ]
 	}
+
+  scope :consultant_list, {
+      :select => "contacts.*",
+      :conditions => ["cat_number = ?", "3" ],
+  }
 
   def display_name
     if name.present?

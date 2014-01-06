@@ -3,7 +3,7 @@
 </style>
 
 <div class="header-span">
-    <h3>Consultant Billing: <%= @consultant.company %></h3>
+    <h3>Consultant Billing: <%= @consultant_team.consultant_name %></h3>
 </div>
 
 <div class="body-span">
@@ -23,14 +23,14 @@
 			<tbody>
 				<% @bills.each do |param| %>
 					<tr>
-						<td><%= @consultant.company %></td>
+						<td><%= @consultant_team.consultant_name %></td>
 						<td><%= param.date %></td>
 						<td><%= number_to_currency(param.amount) %></td>
 						<td><%= link_to "delete", param, method: :delete %></td>
 					</tr>
 				<% end %>
 				<tr>
-						<td><%= @consultant.company %></td>
+						<td><%= @consultant_team.consultant_name %></td>
 						<td><%= f.text_field :date, class: "input span3 right datepicker" %></td>
 						<td><%= f.text_field :amount, class: "input span3 right", id:"txtDate" %></td>
 						<td></td>

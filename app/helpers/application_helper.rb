@@ -292,7 +292,7 @@ module ApplicationHelper
     s.gsub(/\n/, '<br>').html_safe
   end
 
-    def link_to_remove_fields(name, f)
+  def link_to_remove_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)", class: "delete fui-cross")
   end
 
@@ -302,6 +302,10 @@ module ApplicationHelper
 
   def link_to_remove_fields_3(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_3(this)", class: "delete fui-cross")
+  end
+
+  def link_to_remove_consultant_fields(name, f)
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_consultant_fields(this)", class: "delete fui-cross")
   end
 
   def link_to_add_category_fields(name, f, cat, html_class)
