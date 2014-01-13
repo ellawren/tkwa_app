@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.ui.touch-punch.min
+
+//= require scripts
+
 //= require autocomplete-rails
 //= require bootstrap
 //= require bootstrap-select
@@ -27,6 +30,6 @@
 //= require jquery.placeholder
 //= require jquery.stacktable
 //= require jquery.ui.autocomplete
-//= require scripts
+
 
 /* note that js files are called individually for testing - be sure to replace with 'require tree .' and remove unused parts before final production */
