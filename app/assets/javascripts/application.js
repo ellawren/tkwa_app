@@ -18,7 +18,6 @@
 
 //= require scripts
 
-//= require bootstrap
 //= require bootstrap-select
 //= require bootstrap-tooltip
 //= require bootstrap-pop
