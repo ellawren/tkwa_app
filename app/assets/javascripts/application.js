@@ -11,11 +11,14 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-1.8.3.min
-//= require jquery_ujs
+//= require jquery-ujs
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.ui.touch-punch.min
 //= require autocomplete-rails
 //= require bootstrap
+
+//= require scripts
+
 //= require bootstrap-select
 //= require bootstrap-tooltip
 //= require bootstrap-pop
@@ -26,8 +29,7 @@
 //= require jquery.tagsinput
 //= require jquery.placeholder
 //= require jquery.stacktable
-//= require application-flat-ui
 //= require jquery.ui.autocomplete
-//= require scripts
+
 
 /* note that js files are called individually for testing - be sure to replace with 'require tree .' and remove unused parts before final production */
