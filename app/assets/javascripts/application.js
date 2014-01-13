@@ -11,13 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-1.8.3.min
-//= require jquery_ujs
+//= require jquery-ujs
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.ui.touch-punch.min
+//= require autocomplete-rails
 
 //= require scripts
 
-//= require autocomplete-rails
 //= require bootstrap
 //= require bootstrap-select
 //= require bootstrap-tooltip
