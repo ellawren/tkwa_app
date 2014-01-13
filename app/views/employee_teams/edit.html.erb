@@ -1,41 +1,36 @@
+<% content_for :modal_header do %>
+  <%= @user.name %><% if @employee_team.role? %>, <%= @employee_team.role %><% end %>
+<% end %>
 
-
-<div class="header-span">
-    <h3><%= @user.name %><% if @employee_team.role? %>, <%= @employee_team.role %><% end %></h3>
-</div>
-
-<div class="body-span">
-
-    <%= form_for(@employee_team, html: { class: "form-inline" }) do |f| %>
-
-        <table class="modal-table">
-          <tr>
-              <% @project.available_phases.each do |phase| %>
-                <th class="table-cell"><div class="number"><%= phase.number %></div><div class="blanch"><%= phase.name %></div></th>
-              <% end %>
-              <th class="table-cell"><div class="number"></div><div class="blanch">Total Hours</div></th>
-          </tr>
-          <tr>
-              <% @project.available_phases.each do |phase| %>
-                <td><%= f.text_field eval(":#{phase.shorthand}_hours"), { :onchange => "getEstHours();"} %></td>
-              <% end %>
-              <td class="modal-total"><%= @employee_team.est_total %></td>
-          </tr>
-      </table>
+<%= form_for(@employee_team, html: { class: "form-inline" }) do |f| %>
+    <div class="modal-body team-edit">
+        <div class="phases">
+            <% @project.available_phases.each do |phase| %>
+                <div class="phase">
+                    <div class="number"><%= phase.number %></div>
+                    <div class="name"><%= phase.name %></div>
+                </div>
+            <% end %>
+            <div class="phase">
+                <div class="total">Total</div>
+            </div>
+        </div>
+        <div class="phases">
+            <% @project.available_phases.each do |phase| %>
+                <div class="phase">
+                    <%= f.text_field eval(":#{phase.shorthand}_hours"), { :onchange => "getEstHours();"} %>
+                </div>
+            <% end %>
+            <div class="phase">
+                <div class="total-hours"><%= @employee_team.est_total %></div>
+            </div>
+        </div>
+    </div>
               
-      <div class="actions">
-          <%= f.submit "Save Changes", class: "btn" %>
-      </div>
-
-  <% end %>
-
-</div>
-
-
-<script>
-function my_function() {
-    $("#externalSite").dialog('destroy').remove();
-}
-</script>
-
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    </div>
+          
+<% end %>
 

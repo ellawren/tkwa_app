@@ -2,13 +2,8 @@
 <%= render 'shared/error_messages', :object => f.object %> 
 
 	<!-- modal for employee target edit -->
-	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  	<div class="modal-header">
-	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    	<h3 id="myModalLabel"> </h3>
-	  	</div>
-	  	<div class="modal-body"></div>
-	</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		</div><!-- /.modal -->
 	<!-- end modal -->
 
 	<h2>Fee Tracking</h2>
@@ -129,16 +124,8 @@
 <% end %>
 
 <script>
-$(document).ready(function() {
-    $("a.pop").popover({ placement: 'right', animation:true });
-		$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
-		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
-});
-
-
 //reset modal remote on close
-    $('#myModal').on('hidden', function () {
-        $(this).removeData('modal');
-    })
-
+$('#myModal').on('hide.bs.modal', function (e) {
+    $(this).data('bs.modal', null);
+});
 </script>

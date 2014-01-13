@@ -63,13 +63,8 @@
     <% else %>
 
         <!-- modal for consultant billing edit -->
-            <div class="modal hide fade consultant" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel"> </h3>
-                </div>
-                <div class="modal-body"></div>
-            </div>
+            <div class="consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div><!-- /.modal -->
         <!-- end modal -->
 
         <table class="table billing-table">
@@ -108,3 +103,9 @@
 
 <% end %>
 
+<script>
+//reset modal remote on close
+$('#myModal').on('hide.bs.modal', function (e) {
+    $(this).data('bs.modal', null);
+});
+</script>

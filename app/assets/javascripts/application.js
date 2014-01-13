@@ -15,9 +15,8 @@
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.ui.touch-punch.min
 //= require autocomplete-rails
-
 //= require scripts
-
+//= require bootstrap-modal
 //= require bootstrap-select
 //= require bootstrap-tooltip
 //= require bootstrap-pop

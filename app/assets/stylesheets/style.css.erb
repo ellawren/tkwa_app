@@ -704,31 +704,75 @@ a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:
 
 .third .checkbox { margin-bottom:9px; }
 
-/* modal */
+/* MODALS */
+
+	/* main modal */
     .modal { left:38%; top:200px; width:860px; border-radius:15px; overflow:hidden; }
     .modal.consultant { min-height:260px; height:auto; }
     	.modal.consultant .modal-body { height:100%; }
-    .modal.phases { width:560px; left:50%; min-height:360px; }
-    	.modal.phases .modal-body { margin-top:20px;  }
 
-    	ul.phase-list { list-style:none; margin-left:0px; width:100%; }
-    	ul.phase-list li { margin-bottom:15px; float:left; width:100%; }
-    		ul.phase-list li .phase-number { float:left; width:30px; height:16px; padding:5px 0 9px; border-radius:15px; border:1px solid #1abc9c; text-align:center; color:#1abc9c; font-weight:900; }
-    		ul.phase-list li .phase-name { float:left; height:16px; width:80px; padding:5px 0 9px; margin-left:10px; color:#1abc9c; font-weight:900; }
-     		ul.phase-list li .phase-description { float:left; width:320px; margin:5px 0 0 10px;  }
+  	.modal form { margin-bottom:0px; }
+    .modal-header { height:60px; }
+    .modal-body { display:block; padding:20px; overflow:visible; }
+    .modal-footer { padding-right:40px; }
+    .modal-footer .btn-primary { background-color:#1abc9c; color:#fff; width:200px; }
+  		.modal-footer .btn-primary:hover { background-color:#16a085; }
 
-    .modal-backdrop { min-height:1400px; }
+  	.modal-backdrop { min-height:1400px; }
     .modal-backdrop, .modal-backdrop.fade.in { opacity: 0.4; filter: alpha(opacity=40); }
+    /*---*/
+
+    /* projects - tracking - employee team edit modal */
+    .modal-body.team-edit { height:100px; }
+ 	.team-edit .phases { width:770px; float:left; padding-left:20px; }
+		.team-edit .phases .phase { float:left; width:85px; text-align:center; }
+			.team-edit .phases .phase .number { font-size:16px; font-weight:900; }
+			.team-edit .phases .phase .name { font-size:11px; text-transform:uppercase; margin-top:6px; }
+			.team-edit .phases .phase .total { font-size:13px; font-weight:900; padding-top:22px; }
+			.team-edit .phases .phase input { width:58px; margin:8px 2px 0px; text-align:center; }
+			.team-edit .phases .total-hours { float:left; width:100%; padding:17px 0; font-weight:900; }
  
   	.modal .header-span, .modal .body-span { width:100%; margin-left:0px; color: #34495e; font-family: "Lato", sans-serif; }
   	.modal .header-span h3 { width:100%; margin-bottom:30px; color:#34495e; font-size:16px; font-weight:900; }
   	.modal th.table-cell { width:80px; padding-top:0px; color:#34495e; font-size:14pt; font-weight:900; text-align:center; }
   	.modal a.btn { float:left; width:auto; padding:8px 16px; margin-top:15px; margin-bottom:30px; border-radius:8px; border:none; outline:none; font-size:13px; cursor:pointer; }
+  	/*---*/
 
-    .modal-header { position:relative; padding:30px 30px 10px 55px; border-top-right-radius:15px; border-top-left-radius:15px; background-color:#f5f5f5; }
-    	.modal-header h3 { width:100%; height:30px; }
-		.modal-header button.close { margin-top:-2px; }
- 
+  	/* view options modal */
+  	#options { left:55%; width:450px; height:auto; }
+    #options .modal-body { float:left; z-index:99; width:auto; height:auto; padding:20px 55px; margin-top:0px; overflow:visible; }
+	#options .modal-footer { float:left; width:420px; height:auto; }
+	#options .modal-footer .btn { width:120px; margin:8px 30px 8px 0; border-radius:8px; }
+	#options .modal-footer .btn-primary { width:230px; height:40px; margin:8px 0 8px 30px; }
+	/*---*/
+
+	/* timesheets - view phases modal */
+	.modal.phases { width:560px; left:50%; min-height:360px; }
+	.modal.phases .modal-header h4 { margin-left:20px; }
+		.modal.phases .modal-body{ margin-left:10px; }
+	    ul.phase-list { list-style:none; margin-left:0px; width:100%; }
+		ul.phase-list li { margin-bottom:15px; float:left; width:100%; }
+			ul.phase-list li .phase-number { float:left; width:30px; height:16px; padding:5px 0 9px; border-radius:15px; border:1px solid #1abc9c; text-align:center; color:#1abc9c; font-weight:900; }
+			ul.phase-list li .phase-name { float:left; height:16px; width:80px; padding:5px 0 9px; margin-left:10px; color:#1abc9c; font-weight:900; }
+	 		ul.phase-list li .phase-description { float:left; width:320px; margin:5px 0 0 10px;  }
+ 	/*---*/
+
+ 	/* consultant billing - add bill modal */
+ 	.modal.consultant { width:560px; left:50%;  }
+	.modal.consultant .modal-body { padding:10px 40px; height:auto; min-height:100px; }
+
+	.modal-table.cbilling-table { width:100%; color:#34495e; }
+	  	.modal-table.cbilling-table th { border-bottom:2px solid #344953; font-size:14px; font-weight:900; text-align:right; }
+	  	.modal-table.cbilling-table td { padding:5px 0; border-bottom:1px solid #e1e6eb; text-align:right; }
+	  	.modal-table.cbilling-table td:first-child, .modal-table.cbilling-table th:first-child { text-align:left; }
+	  	.modal-table.cbilling-table input { width:160px; text-align:right; margin:0px; }
+	  	.modal-table.cbilling-table input:focus { border-color:#1abc9c; outline:none; }
+	  	.modal-table.cbilling-table tfoot td { border-bottom:none; border-top:2px solid #344953; }
+	  	.modal-table.cbilling-table .delete { margin:0 0 0 20px;  }
+ 	/*---*/
+
+  	/* check the rest of the modal stuff for deletion */
+
     table.modal-table { width:770px; }
     	.modal-table td { text-align:center; }
     	.modal-table label { color:#97a150; font-family: 'BlanchCapsLightRegular'; font-size:18pt; line-height:18pt; }
@@ -738,14 +782,7 @@ a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:
   		.modal-table th .blanch { width:100%; font-size:8pt; font-weight:500; text-transform:uppercase; }
   		.modal-table td { margin:8px 0; }
   		.modal-table td.modal-total { width:80px; height:34px; padding-top:14px; color:#34495e; font-size:14px; font-weight:900; text-align:center; }
- 
- 		/* consultant billing table overrides */
-		.modal-table.cbilling-table { width:100%; color:#34495e; }
-		  	.modal-table.cbilling-table th { border-bottom:1px solid #7f8c8d; font-size:14px; font-weight:900; text-align:right; }
-		  	.modal-table.cbilling-table td { padding:5px 0; border-bottom:1px solid #e1e6eb; text-align:right; }
-		  	.modal-table.cbilling-table td:first-child, .modal-table.cbilling-table th:first-child { text-align:left; }
-		  	.modal-table.cbilling-table input { width:120px; height:34px; padding:8px; border:2px solid #e1e6eb; border-radius:8px; color:#1abc9c; font-family: "Lato", sans-serif; font-size:13px; text-align:right; }
-		  	.modal-table.cbilling-table input:focus { border-color:#1abc9c; outline:none; }
+		
  
  		/* data record table overrides */
  		.modal-table.data-table { width:760px; margin:15px 0; float:left; }
@@ -758,19 +795,12 @@ a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:
     .close:hover { color:#000000; text-decoration: none; cursor: pointer; opacity: 0.4; filter: alpha(opacity=40); }
     .modal-total { float:left; width:100%; margin:20px 0 20px 10px; font-family:Argumentum-Bold; }
     .modal .btn { float:right; margin:5px; }
-    .modal-body { position:relative; z-index:99; width:750px; height:240px; padding:0 0 0 40px; margin-top:-40px; overflow:visible; }
+    
     .btn-150 { width:150px; }
     .btn-cancel { width:80px; }
 
-    .modal input.btn-primary { float:left; width:160px; height:38px; padding:8px 16px 20px 16px; margin-top:15px; margin-bottom:30px; border:none; border-radius:8px; background-color:#1abc9c; color:#fff; outline:none; font-size:13px; cursor:pointer; }
-  		.modal input.btn-primary:hover { background-color:#16a085; }
 
-  	/* options modal */
-  	#options { left:55%; width:450px; height:auto; }
-    #options .modal-body { float:left; z-index:99; width:auto; height:auto; padding:20px 55px; margin-top:0px; overflow:visible; }
-	#options .modal-footer { float:left; width:420px; height:auto; }
-	#options .modal-footer .btn { width:120px; margin:8px 30px 8px 0; border-radius:8px; }
-	#options .modal-footer .btn-primary { width:230px; height:40px; margin:8px 0 8px 30px; }
+
 
 
 /* data records table */

@@ -10,13 +10,8 @@
 <% end %>
 
 <!-- modal for phases -->
-	<div class="modal hide fade phases" id="phaseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  	<div class="modal-header">
-	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    	<h3 id="myModalLabel">Phases</h3>
-	  	</div>
-	  	<div class="modal-body"></div>
-	</div>
+	<div class="phases modal fade" id="phaseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	</div><!-- /.modal -->
 <!-- end modal -->
 
 <%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>

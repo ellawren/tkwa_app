@@ -1,5 +1,13 @@
 $(document).ready(function() {
-  // show personal info on contacts page
+
+    $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
+    $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
+    $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+    $(".phases .checkbox .icons").html("10");
+
+
+
+      // show personal info on contacts page
       $('#show').click( function() {
         $('#personal-info.hidden').slideDown("slow");
         $('#show').hide();
@@ -11,13 +19,7 @@ $(document).ready(function() {
         $('#show').show();
         $('#hide').hide();
       });
-
-    $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
-    $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
-    $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
-    $(".phases .checkbox .icons").html("10");
-
-      
+      //---
 
       // edit row on timesheets
       $('.edit-me').click( function() {
@@ -29,6 +31,7 @@ $(document).ready(function() {
         id = $(this).parent().parent(".table-row").attr("id");
         $("#" + id).removeClass("edit");
       });
+       //---
 
       $( ".datepicker" ).datepicker();
 
