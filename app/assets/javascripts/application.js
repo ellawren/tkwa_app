@@ -16,6 +16,7 @@
 //= require jquery.ui.touch-punch.min
 //= require autocomplete-rails
 //= require bootstrap
+//= require bootstrap-select
 //= require bootstrap-tooltip
 //= require bootstrap-pop
 //= require bootstrap-switch
@@ -25,7 +26,6 @@
 //= require jquery.tagsinput
 //= require jquery.placeholder
 //= require jquery.stacktable
-//= require application-flat-ui
 //= require jquery.ui.autocomplete
 //= require scripts
 
