@@ -29,5 +29,4 @@
 //= require jquery.stacktable
 //= require jquery.ui.autocomplete
 
-
 /* note that js files are called individually for testing - be sure to replace with 'require tree .' and remove unused parts before final production */

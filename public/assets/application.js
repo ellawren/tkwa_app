@@ -433,78 +433,85 @@
 (function(e){var t=null;e.fn.railsAutocomplete=function(){var t=function(){this.railsAutoCompleter||(this.railsAutoCompleter=new e.railsAutocomplete(this))};return e.fn.on!==undefined?$(document).on("focus",this.selector,t):this.live("focus",t)},e.railsAutocomplete=function(e){_e=e,this.init(_e)},e.railsAutocomplete.fn=e.railsAutocomplete.prototype={railsAutocomplete:"0.0.1"},e.railsAutocomplete.fn.extend=e.railsAutocomplete.extend=e.extend,e.railsAutocomplete.fn.extend({init:function(t){function n(e){return e.split(t.delimiter)}function r(e){return n(e).pop().replace(/^\s+/,"")}t.delimiter=e(t).attr("data-delimiter")||null,e(t).autocomplete({source:function(n,i){e.getJSON(e(t).attr("data-autocomplete"),{term:r(n.term)},function(){arguments[0].length==0&&(arguments[0]=[],arguments[0][0]={id:"",label:"no existing match"}),e(arguments[0]).each(function(n,r){var i={};i[r.id]=r,e(t).data(i)}),i.apply(null,arguments)})},change:function(t,n){if(e(e(this).attr("data-id-element")).val()=="")return;e(e(this).attr("data-id-element")).val(n.item?n.item.id:"");var r=e.parseJSON(e(this).attr("data-update-elements")),i=n.item?e(this).data(n.item.id.toString()):{};if(r&&e(r["id"]).val()=="")return;for(var s in r)e(r[s]).val(n.item?i[s]:"")},search:function(){var e=r(this.value);if(e.length<2)return!1},focus:function(){return!1},select:function(r,i){var s=n(this.value);s.pop(),s.push(i.item.value);if(t.delimiter!=null)s.push(""),this.value=s.join(t.delimiter);else{this.value=s.join(""),e(this).attr("data-id-element")&&e(e(this).attr("data-id-element")).val(i.item.id);if(e(this).attr("data-update-elements")){var o=e(this).data(i.item.id.toString()),u=e.parseJSON(e(this).attr("data-update-elements"));for(var a in u)e(u[a]).val(o[a])}}var f=this.value;return e(this).bind("keyup.clearId",function(){e(this).val().trim()!=f.trim()&&(e(e(this).attr("data-id-element")).val(""),e(this).unbind("keyup.clearId"))}),e(t).trigger("railsAutocomplete.select",i),!1}})}}),e(document).ready(function(){e("input[data-autocomplete]").railsAutocomplete()})})(jQuery);
 $(document).ready(function() {
 
+    // tooptips
     $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
     $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
     $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+
+    // checkboxes on project setup page
     $(".phases .checkbox .icons").html("10");
 
+    // switch for timesheets open/closed
+    $("[data_toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
 
 
-      // show personal info on contacts page
-      $('#show').click( function() {
+    // show personal info on contacts page
+    $('#show').click( function() {
         $('#personal-info.hidden').slideDown("slow");
         $('#show').hide();
         $('#hide').show();
-      });
+     });
 
-      $('#hide').click( function() {
+    $('#hide').click( function() {
         $('#personal-info.hidden').slideUp("slow");
         $('#show').show();
         $('#hide').hide();
-      });
-      //---
+    });
+    //---
 
-      // edit row on timesheets
-      $('.edit-me').click( function() {
+    // edit row on timesheets
+    $('.edit-me').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");
         $("#" + id).addClass("edit");
-      });
+    });
 
-       $('.done-editing').click( function() {
+    $('.done-editing').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");
         $("#" + id).removeClass("edit");
-      });
-       //---
+    });
+    //---
 
-      $( ".datepicker" ).datepicker();
+    // initialize datepicker
+    $( ".datepicker" ).datepicker();
 
-      $('#add-message').click( function() {
+    // messages on home page
+    $('#add-message').click( function() {
         $('#new-message').show();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         $('#message-content').focus();
-      });
+    });
 
-      $('#cancel-message').click( function() {
+    $('#cancel-message').click( function() {
         $('#new-message').slideUp();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
-      });
+    });
 
-      $('a.more-options').click( function() {
+    // more/less options on project index (search)
+    $('a.more-options').click( function() {
         $('#more-options').slideDown();
         $(this).hide();
         $('a.less-options').show();
-      });
+    });
 
-      $('a.less-options').click( function() {
+    $('a.less-options').click( function() {
         $('#more-options').slideUp();
         $(this).hide();
         $('a.more-options').show();
         $('#q_work_address_or_home_address_cont').val("");
         $('#q_work_email_or_home_email_cont').val("");
         $('#q_home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont').val("");    
-      });
+    });
 
-      // edit button on pattern projects page
-      $('.edit-pattern').click( function() {
+    // edit button on pattern projects page
+    $('.edit-pattern').click( function() {
         $(this).parent('.view-fields').hide();
         $(this).parent().parent('.pattern').children('.edit-fields').show();
-      });
+    });
 
-      $('.text-button').click( function() {
+    $('.text-button').click( function() {
         $(this).parent('.edit-fields').hide();
         $(this).parent().parent('.pattern').children('.view-fields').show();
-      });
-
+    });
 
 });
 
@@ -6044,7 +6051,6 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-
 
 
 

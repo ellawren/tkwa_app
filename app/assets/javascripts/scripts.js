@@ -1,77 +1,84 @@
 $(document).ready(function() {
 
+    // tooptips
     $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
     $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
     $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+
+    // checkboxes on project setup page
     $(".phases .checkbox .icons").html("10");
 
+    // switch for timesheets open/closed
+    $("[data_toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
 
 
-      // show personal info on contacts page
-      $('#show').click( function() {
+    // show personal info on contacts page
+    $('#show').click( function() {
         $('#personal-info.hidden').slideDown("slow");
         $('#show').hide();
         $('#hide').show();
-      });
+     });
 
-      $('#hide').click( function() {
+    $('#hide').click( function() {
         $('#personal-info.hidden').slideUp("slow");
         $('#show').show();
         $('#hide').hide();
-      });
-      //---
+    });
+    //---
 
-      // edit row on timesheets
-      $('.edit-me').click( function() {
+    // edit row on timesheets
+    $('.edit-me').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");
         $("#" + id).addClass("edit");
-      });
+    });
 
-       $('.done-editing').click( function() {
+    $('.done-editing').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");
         $("#" + id).removeClass("edit");
-      });
-       //---
+    });
+    //---
 
-      $( ".datepicker" ).datepicker();
+    // initialize datepicker
+    $( ".datepicker" ).datepicker();
 
-      $('#add-message').click( function() {
+    // messages on home page
+    $('#add-message').click( function() {
         $('#new-message').show();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         $('#message-content').focus();
-      });
+    });
 
-      $('#cancel-message').click( function() {
+    $('#cancel-message').click( function() {
         $('#new-message').slideUp();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
-      });
+    });
 
-      $('a.more-options').click( function() {
+    // more/less options on project index (search)
+    $('a.more-options').click( function() {
         $('#more-options').slideDown();
         $(this).hide();
         $('a.less-options').show();
-      });
+    });
 
-      $('a.less-options').click( function() {
+    $('a.less-options').click( function() {
         $('#more-options').slideUp();
         $(this).hide();
         $('a.more-options').show();
         $('#q_work_address_or_home_address_cont').val("");
         $('#q_work_email_or_home_email_cont').val("");
         $('#q_home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont').val("");    
-      });
+    });
 
-      // edit button on pattern projects page
-      $('.edit-pattern').click( function() {
+    // edit button on pattern projects page
+    $('.edit-pattern').click( function() {
         $(this).parent('.view-fields').hide();
         $(this).parent().parent('.pattern').children('.edit-fields').show();
-      });
+    });
 
-      $('.text-button').click( function() {
+    $('.text-button').click( function() {
         $(this).parent('.edit-fields').hide();
         $(this).parent().parent('.pattern').children('.view-fields').show();
-      });
-
+    });
 
 });
 
