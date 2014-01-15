@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
-    // tooptips
+    // tooltips
     $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
     $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
     $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+    $("a.pop").popover({ placement: 'right', animation:true });
 
     // checkboxes on project setup page
     $(".phases .checkbox .icons").html("10");
@@ -11,6 +12,23 @@ $(document).ready(function() {
     // switch for timesheets open/closed
     $("[data_toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
 
+    // initialize datepicker
+    $( ".datepicker" ).datepicker();
+
+    // change contact on project info page
+    $('#change-contact').click( function() {
+        $('.contact-address').hide();
+        billing_name = $('#project_billing_name').val();
+        $('#project_billing_name').val("");
+        $('.new-contact').show();
+    });
+
+    $('#cancel-change').click( function() {
+        $('.contact-address').show();
+        $('#project_billing_name').val(billing_name);
+        $('.new-contact').hide();
+    });
+    //---
 
     // show personal info on contacts page
     $('#show').click( function() {
@@ -38,9 +56,6 @@ $(document).ready(function() {
     });
     //---
 
-    // initialize datepicker
-    $( ".datepicker" ).datepicker();
-
     // messages on home page
     $('#add-message').click( function() {
         $('#new-message').show();
@@ -52,6 +67,7 @@ $(document).ready(function() {
         $('#new-message').slideUp();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     });
+    //---
 
     // more/less options on project index (search)
     $('a.more-options').click( function() {
@@ -68,6 +84,7 @@ $(document).ready(function() {
         $('#q_work_email_or_home_email_cont').val("");
         $('#q_home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont').val("");    
     });
+    //---
 
     // edit button on pattern projects page
     $('.edit-pattern').click( function() {
@@ -81,12 +98,6 @@ $(document).ready(function() {
     });
 
 });
-
-
-$(document).ready(function() {
-  $(".chzn-select").chosen();
-  });
-
 
 function remove_fields(link) {
   if (confirm("Delete this entry?")) {
@@ -105,7 +116,6 @@ function remove_consultant_fields(link) {
   }
   return false;
 }
-
 
 function remove_fields_2(link) {
   $(link).prev("input[type=hidden]").val("1");
@@ -135,12 +145,6 @@ function add_category_fields(link, cat, content) {
   $(link).hide();
   return false;
 }
-
-$(document).ready(function() {
-    $("a.pop").popover({ placement: 'right', animation:true });
-		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
-});
-
 
 function copyContact() {
 	document.getElementById("project_billing_name").value = document.getElementById("project_contact_name").value;
@@ -284,6 +288,7 @@ function getEstHours() {
 
 //});
 
+// the following are used on the project and contact pages
 
 // open map
 function openMap(id) {
@@ -323,6 +328,4 @@ function openURL(id) {
   }
   window.open(queryString);
 }
-
-// modal window
 

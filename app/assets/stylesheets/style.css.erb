@@ -135,8 +135,9 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 			{ height:32px; padding:0px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; text-indent:0px; }
 		textarea { padding:5px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; resize:vertical; }
-		button.input-button { width:68px; height:37px; padding:3px 12px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
-		a.input-button { width:45px; height:26px; padding:6px 12px 2px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
+		button.input-button { width:68px; height:36px; padding:3px 12px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
+		a.input-button { float:left; width:45px; height:26px; padding:6px 12px 2px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
+
 .input-row.short .input-cell { padding:4px 10px; }
 .input-row.short .input-label { padding:4px 0px; }
 .input-row.space-below { margin-bottom:22px; }
@@ -204,7 +205,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.half .custom-select { width:198px; }
 		.half .custom-select:first-child, .half .header-row div:first-child { margin-right:5px; }
 		.half.last { margin-left:70px; }
-		.half input[type="text"], .half textarea { float:left; width:310px; }
+		.half input[type="text"], .half textarea { float:left; width:260px; }
 			.half input[type="text"].i-am-messed-up, .half textarea.i-am-messed-up { float:left; width:276px; height:34px; }
 			.half.billing input[type="text"] { width:200px; text-align:right; }
 			.half input[type="text"].consultant-name { width:170px; margin-right:6px; }
@@ -253,7 +254,7 @@ ul.ui-autocomplete { margin-top:10px; float:left; padding:5px 10px; background-c
 		ul.ui-autocomplete li.ui-menu-item a { color:#fff; font-family: "Lato", sans-serif; font-size:14px; font-weight:300; cursor:pointer; }
 .ui-helper-hidden-accessible { display:none; }
 
-.contact-address { float:left; margin-left:110px; }
+.contact-address { float:left; margin-top:10px; width:285px; }
 
 /* home page */
 
@@ -377,7 +378,14 @@ ul.tile-list.small-tiles { float:left; width:100%; margin-bottom:10px; margin-le
 	.pagination .current { display:inline-block; width:30px; height:18px; padding:6px 0; margin:-10px 0 0 1px; border:1px solid #34495e; border-radius:15px; font-weight:900; font-style:normal; text-align:center; }
 
 
-/* scope */
+/* PROJECTS - info */
+
+	.contact-address a.input-button { float:left; display:block; width:auto; height:22px; padding:10px 12px 0px; margin:10px 6px 0 0; font-size:13px; line-height:12px; }
+	.contact-address button.input-button { width:auto; height:32px; padding:0px 10px; margin:10px 0 0 0; font-size:13px; }
+	.new-contact { display:none; }
+	#cancel-change { float:left; padding:6px 16px; cursor:pointer; }
+
+/* PROJECTS - scope */
 
 .column-header{ float:left; display:block; width:100%; margin:0 0 18px 0; border-bottom:1px solid #e1e6eb; }
 	.column-header h3 { display:inline-block; width:auto; height:32px; margin:0px; }
@@ -720,6 +728,9 @@ a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:
 
   	.modal-backdrop { min-height:1400px; }
     .modal-backdrop, .modal-backdrop.fade.in { opacity: 0.4; filter: alpha(opacity=40); }
+
+    .modal[aria-hidden="true"] { top:-1050px; }
+
     /*---*/
 
     /* projects - tracking - employee team edit modal */
@@ -798,9 +809,6 @@ a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:
     
     .btn-150 { width:150px; }
     .btn-cancel { width:80px; }
-
-
-
 
 
 /* data records table */

@@ -16,6 +16,7 @@
 //= require jquery.ui.touch-punch.min
 //= require autocomplete-rails
 //= require scripts
+//= require bootstrap-transition
 //= require bootstrap-modal
 //= require bootstrap-select
 //= require bootstrap-tooltip

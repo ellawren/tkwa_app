@@ -6,10 +6,10 @@
 <% end %>
 
 <%= form_for @phase do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= render 'fields', f: f %>
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
 
-  <div class="actions">
-    <%= f.submit "Create Phase", class: "btn btn-large" %>
-  </div>
+  	<div class="save-row">
+	    <%= f.submit "Create Phase", class: "btn btn-primary save-btn" %>
+	</div>
 <% end %>

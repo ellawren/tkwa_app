@@ -433,10 +433,11 @@
 (function(e){var t=null;e.fn.railsAutocomplete=function(){var t=function(){this.railsAutoCompleter||(this.railsAutoCompleter=new e.railsAutocomplete(this))};return e.fn.on!==undefined?$(document).on("focus",this.selector,t):this.live("focus",t)},e.railsAutocomplete=function(e){_e=e,this.init(_e)},e.railsAutocomplete.fn=e.railsAutocomplete.prototype={railsAutocomplete:"0.0.1"},e.railsAutocomplete.fn.extend=e.railsAutocomplete.extend=e.extend,e.railsAutocomplete.fn.extend({init:function(t){function n(e){return e.split(t.delimiter)}function r(e){return n(e).pop().replace(/^\s+/,"")}t.delimiter=e(t).attr("data-delimiter")||null,e(t).autocomplete({source:function(n,i){e.getJSON(e(t).attr("data-autocomplete"),{term:r(n.term)},function(){arguments[0].length==0&&(arguments[0]=[],arguments[0][0]={id:"",label:"no existing match"}),e(arguments[0]).each(function(n,r){var i={};i[r.id]=r,e(t).data(i)}),i.apply(null,arguments)})},change:function(t,n){if(e(e(this).attr("data-id-element")).val()=="")return;e(e(this).attr("data-id-element")).val(n.item?n.item.id:"");var r=e.parseJSON(e(this).attr("data-update-elements")),i=n.item?e(this).data(n.item.id.toString()):{};if(r&&e(r["id"]).val()=="")return;for(var s in r)e(r[s]).val(n.item?i[s]:"")},search:function(){var e=r(this.value);if(e.length<2)return!1},focus:function(){return!1},select:function(r,i){var s=n(this.value);s.pop(),s.push(i.item.value);if(t.delimiter!=null)s.push(""),this.value=s.join(t.delimiter);else{this.value=s.join(""),e(this).attr("data-id-element")&&e(e(this).attr("data-id-element")).val(i.item.id);if(e(this).attr("data-update-elements")){var o=e(this).data(i.item.id.toString()),u=e.parseJSON(e(this).attr("data-update-elements"));for(var a in u)e(u[a]).val(o[a])}}var f=this.value;return e(this).bind("keyup.clearId",function(){e(this).val().trim()!=f.trim()&&(e(e(this).attr("data-id-element")).val(""),e(this).unbind("keyup.clearId"))}),e(t).trigger("railsAutocomplete.select",i),!1}})}}),e(document).ready(function(){e("input[data-autocomplete]").railsAutocomplete()})})(jQuery);
 $(document).ready(function() {
 
-    // tooptips
+    // tooltips
     $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
     $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
     $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
+    $("a.pop").popover({ placement: 'right', animation:true });
 
     // checkboxes on project setup page
     $(".phases .checkbox .icons").html("10");
@@ -444,6 +445,23 @@ $(document).ready(function() {
     // switch for timesheets open/closed
     $("[data_toggle='switch']").wrap('<div class="switch" />').parent().bootstrapSwitch();
 
+    // initialize datepicker
+    $( ".datepicker" ).datepicker();
+
+    // change contact on project info page
+    $('#change-contact').click( function() {
+        $('.contact-address').hide();
+        billing_name = $('#project_billing_name').val();
+        $('#project_billing_name').val("");
+        $('.new-contact').show();
+    });
+
+    $('#cancel-change').click( function() {
+        $('.contact-address').show();
+        $('#project_billing_name').val(billing_name);
+        $('.new-contact').hide();
+    });
+    //---
 
     // show personal info on contacts page
     $('#show').click( function() {
@@ -471,9 +489,6 @@ $(document).ready(function() {
     });
     //---
 
-    // initialize datepicker
-    $( ".datepicker" ).datepicker();
-
     // messages on home page
     $('#add-message').click( function() {
         $('#new-message').show();
@@ -485,6 +500,7 @@ $(document).ready(function() {
         $('#new-message').slideUp();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     });
+    //---
 
     // more/less options on project index (search)
     $('a.more-options').click( function() {
@@ -501,6 +517,7 @@ $(document).ready(function() {
         $('#q_work_email_or_home_email_cont').val("");
         $('#q_home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont').val("");    
     });
+    //---
 
     // edit button on pattern projects page
     $('.edit-pattern').click( function() {
@@ -514,12 +531,6 @@ $(document).ready(function() {
     });
 
 });
-
-
-$(document).ready(function() {
-  $(".chzn-select").chosen();
-  });
-
 
 function remove_fields(link) {
   if (confirm("Delete this entry?")) {
@@ -538,7 +549,6 @@ function remove_consultant_fields(link) {
   }
   return false;
 }
-
 
 function remove_fields_2(link) {
   $(link).prev("input[type=hidden]").val("1");
@@ -568,12 +578,6 @@ function add_category_fields(link, cat, content) {
   $(link).hide();
   return false;
 }
-
-$(document).ready(function() {
-    $("a.pop").popover({ placement: 'right', animation:true });
-		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
-});
-
 
 function copyContact() {
 	document.getElementById("project_billing_name").value = document.getElementById("project_contact_name").value;
@@ -717,6 +721,7 @@ function getEstHours() {
 
 //});
 
+// the following are used on the project and contact pages
 
 // open map
 function openMap(id) {
@@ -757,9 +762,64 @@ function openURL(id) {
   window.open(queryString);
 }
 
-// modal window
-
 ;
+/* ========================================================================
+ * Bootstrap: transition.js v3.0.3
+ * http://getbootstrap.com/javascript/#transitions
+ * ========================================================================
+ * Copyright 2013 Twitter, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * ======================================================================== */
+
+
+
++function ($) { "use strict";
+
+  // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
+  // ============================================================
+
+  function transitionEnd() {
+    var el = document.createElement('bootstrap')
+
+    var transEndEventNames = {
+      'WebkitTransition' : 'webkitTransitionEnd'
+    , 'MozTransition'    : 'transitionend'
+    , 'OTransition'      : 'oTransitionEnd otransitionend'
+    , 'transition'       : 'transitionend'
+    }
+
+    for (var name in transEndEventNames) {
+      if (el.style[name] !== undefined) {
+        return { end: transEndEventNames[name] }
+      }
+    }
+  }
+
+  // http://blog.alexmaccaw.com/css-transitions
+  $.fn.emulateTransitionEnd = function (duration) {
+    var called = false, $el = this
+    $(this).one($.support.transition.end, function () { called = true })
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    setTimeout(callback, duration)
+    return this
+  }
+
+  $(function () {
+    $.support.transition = transitionEnd()
+  })
+
+}(jQuery);
 /* ========================================================================
  * Bootstrap: modal.js v3.0.3
  * http://getbootstrap.com/javascript/#modals
@@ -6051,6 +6111,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+
 
 
 

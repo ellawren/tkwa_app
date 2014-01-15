@@ -1,43 +1,32 @@
-<fieldset>
+<div class="half">
 
-        <div class="row"> <div class="field">
+    <div class="input-row">
+        <%= f.label(:name, class: "input-label") %>
+        <%= f.text_field :name%>
+    </div>
 
-                <div class="control-group">
-                    <%= f.label(:name, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :name, class: "span5" %>
-                    </div>
-                </div>
+    <div class="input-row">
+        <%= f.label(:number, class: "input-label") %>
+        <%= f.text_field :number %>
+    </div>
 
-                <div class="control-group">
-                    <%= f.label(:number, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :number, class: "span1" %>
-                    </div>
-                </div>
+    <div class="input-row">
+        <%= f.label(:shorthand, class: "input-label") %>
+        <%= f.text_field :shorthand %>
+    </div>
 
-                <div class="control-group">
-                    <%= f.label(:shorthand, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :shorthand, class: "span5" %>
-                    </div>
-                </div>
+    <div class="input-row">
+        <%= f.label(:full_name, class: "input-label") %>
+        <%= f.text_field :full_name %>
+    </div>
+</div>
 
-                <div class="control-group">
-                    <%= f.label(:full_name, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :full_name, class: "span5" %>
-                    </div>
-                </div>
+<div class="half last">
 
-                <div class="control-group">
-                    <%= f.label(:description, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_area :description, class: "span5", rows: "3" %>
-                    </div>
-                </div>
+    <div class="input-row">
+        <%= f.label(:description, class: "input-label") %>
+        <%= f.text_area :description, rows: "6" %>
+    </div>
 
-   
-  		</div>
+</div>
 
-</fieldset>

@@ -107,12 +107,19 @@ class Project < ActiveRecord::Base
     validates :number, uniqueness: { :message => "Project must be assigned a number." }, if: lambda { |p| p.try(:status) != 'potential' }
     validates :status, presence: true
 
+    # default to 'current' status if not set, and fill in a number for a potential project so it doesn't throw an error
     before_save :default_values
     def default_values
         self.status ||= 'current'
         if self.status == 'potential'
             self.number = "000000"
         end
+    end
+
+    # set default phase values
+    before_create :phase_values
+    def phase_values
+        self.phase_ids = [1, 2, 3, 4, 5, 6]
     end
 
     scope :with_patterns, {
