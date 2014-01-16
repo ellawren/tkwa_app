@@ -350,30 +350,7 @@ class Project < ActiveRecord::Base
 
 
 
-    # sum of actual hours entered for project, by employee
-    def employee_actual(user_id, phase)
-        if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                if available_phases.map{|a| a.number}.include? t.phase_number
-                    array.push(t.entry_total)
-                end
-            end
-            array.map{|x| sum += x}
-            sum
-        else
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.id, user_id, phase)
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                array.push(t.entry_total)
-            end
-            array.map{|x| sum += x}
-            sum
-        end
-    end
+    
 
 
     # calculate actual billing for each employee by phase

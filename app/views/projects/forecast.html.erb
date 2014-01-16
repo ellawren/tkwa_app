@@ -32,7 +32,7 @@
 				<% @project.employee_teams.each do |e| %>
 				<tr>
 					<td><%= e.employee_name %></td>
-					<%= f.fields_for :plan_entries, @project.employee_forecast(e.employee_id, four_month_array(date)) do |plan| %>
+					<%= f.fields_for :plan_entries, @project.employee_forecast(e.user_id, four_month_array(date)) do |plan| %>
 						<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
 						</td>
 					<% end %>

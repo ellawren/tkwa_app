@@ -17,8 +17,8 @@
         <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
     </div>
     <div class="input-row">
-        <%= f.label(:employee_id, class: "input-label") %>
-        <%= f.collection_select(:employee_id, Employee.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+        <%= f.label(:user_id, class: "input-label") %>
+        <%= f.collection_select(:user_id, User.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
     </div>
  
 </div>

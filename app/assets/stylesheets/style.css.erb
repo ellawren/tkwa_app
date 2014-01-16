@@ -61,7 +61,7 @@ a#hide { display:none;}
 
 ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .save-row .btn, .btn.btn-primary.search-btn,
 table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .input-sm.est, .input.est, .input-spacer.est,
-.input.act, .Remaining .act.sum, .billing-table .delete, .phases .checkbox .icons, .modal-table input, .modal input.btn-primary,
+.input.act, .remaining .act.sum, .billing-table .delete, .phases .checkbox .icons, .modal-table input, .modal input.btn-primary,
 .modal a.btn, .modal-table.cbilling-table input, .add-image, label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"],
 label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item, 
 .timesheets .table-body .project-cell, .edit-me  
@@ -97,7 +97,7 @@ label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, 
 
 ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0px; border-radius:5px; list-style:none; }
 	ul.tabnav li { float:left; }
-		ul.tabnav li a { float:left; display:block; height:100%; height:22px; padding:2px 20px; margin:0px; color:#b2bec5; text-transform:lowercase; }
+		ul.tabnav li a { float:left; display:block; height:100%; height:22px; padding:2px 20px; margin:0px; color:#b2bec5; text-transform:lowercase; font-weight:700; }
 		ul.tabnav li:first-child a { border-radius:5px 0 0 5px; }
 		ul.tabnav li.sel a { background-color:#ced5da; color:#758083; }
 			ul.tabnav li a:hover, ul.tabnav li.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
@@ -402,84 +402,61 @@ th.align-right { text-align:right; }
 th.percent { padding-left:28px; }
 tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; }
 
-
-/* tracking table */
-
-table.tracking-table { float:left; margin-top:30px; margin-bottom:40px; border-collapse:collapse; font-size:10pt; }
-	table.tracking-table th { width:5%; padding-top:20px; padding-bottom:4px; border-bottom:2px solid #34495e; font-size: 10pt; font-weight:700; text-align:left; }
-		table.tracking-table th.table-cell { min-width:70px; padding:0px 4px; border-left:1px solid #bbb; font-size:14pt; font-weight:900; text-align:center; }
-		table.tracking-table th.table-cell.TotalToDate { padding-top:20px; border-left:1px solid #666; font-size: 10pt; }
-		table.tracking-table th.table-cell.Remaining { padding-top:20px; border-left:none; font-size: 10pt; }
-		table.tracking-table th:first-child { padding-left:0px; }
-			table.tracking-table th .blanch { font-size: 8pt; font-weight:500; text-transform:uppercase;  }
-	table.tracking-table tbody tr { border-bottom:1px solid #bbb; }
-	table.tracking-table tbody td { padding:6px 0; }
-		table.tracking-table tbody td.phase-cell { border-left:1px solid #bbb; }
-		table.tracking-table tbody td.total { padding-top:4px; border-left:1px solid #666; }
-
+.input, .input-spacer { width:80%; height:20px; padding:0 10%; margin:2px 0 2px 0; font-size:9pt; font-weight:700; text-align:center; }
+.input-sm { padding-left:9px; padding-right:6px; margin:2px 0 2px 0; }
 .bold, table.tracking-table th.bold { font-weight:900; }
 
-.tname { width:10%; padding-top:15px; color:#344953; font-size: 10pt; font-weight:900; text-align:left; }
-	.tname a.edit-targets { display:block; margin-top:3px; font-size:9pt; font-weight:400; }
-	.tname a.edit-targets:active, .tname a.edit-targets:focus { color: #ced5da; text-decoration:none; outline:none; }
-	table.tracking-table tbody td.smalltext { max-width:60px; padding:6px 0 0 0; margin:0px; font-size:8pt; }
-
-td.smalltext .input-sm.est { border-radius:4px 0 0 4px; }
-td.total .input.est, td.total .input-spacer.est  { border-radius:0 4px 4px 0; }
-
-.input, .input-spacer { width:80%; height:20px; padding:0 10%; margin:2px 0 2px 0; font-size:9pt; font-weight:700; text-align:center; }
-
-.input-sm { padding-left:9px; margin:2px 0 2px 0; }
-.input-sm.est, .input.est, .input-spacer.est { background-color:#f3f6f9; }
-	.input.est:hover { background-color:#e1e6eb; cursor:pointer; }
-	.input.act:hover { cursor:pointer; }
-
-/* green */
-.input a, .input.act { color: #86cc71; font-weight:700; }
-.input a:hover, .input.act:hover a, .input.act:hover { color: #409745; }
-.input.act:hover { background-color:#e1e6eb; }
-
-/* red */
-.input.act.over, .input.act.over a, .over { color:#e64c3c; }
-.input.act.over:hover, .input.act.over:hover a { color:#c0392b; }
-
-span.plus { font-size:13pt; }
-
-td.Remaining .sum { text-align:center; }
-table.tracking-table tbody tr.lower td { border-top:2px solid #34495e; background-color:#f3f6f9; }
-table.tracking-table tbody tr.lower { position:relative; border-bottom:0px; }
-.num { height:26px; }
-
-td.Remaining .sum { margin-left:10%; margin-right:0px; }
-
-.Remaining .act.sum { width:70px; height:20px; padding:11px 0; margin-left:10px; border-radius:10px; border:2px solid #86cc71; color:#86cc71; font-weight:400; }
-	.Remaining .act.sum.caution1 {  border-color:#f1c40f; color:#f1c40f; }
-	.Remaining .act.sum.caution2 { border-color:#e67e22; color:#e67e22; }
-	.Remaining .act.sum.over { border-color:#e64c3c; color:#e64c3c; }
-
-.total-hours .Remaining .act.sum, .billing .Remaining .act.sum { background-color:#86cc71; color:#fff; }
-	.total-hours .Remaining .act.sum.caution1, .billing .Remaining .act.sum.caution1 { background-color:#f1c40f; }
-	.total-hours .Remaining .act.sum.caution2, .billing .Remaining .act.sum.caution2 { background-color:#e67e22; }
-	.total-hours .Remaining .act.sum.over, .billing .Remaining .act.sum.over { background-color:#e64c3c; }
-
-table.tracking-table tbody tr.billing { border-top:1px solid #666; background-color:#f3f6f9; }
-	table.tracking-table tbody tr.billing th { width:5%; } 
-
-table.tracking-table tbody td.smalltext, table.tracking-table th.smalltext { border-right:1px solid #666; }
-table.tracking-table tbody tr:last-child td { border-bottom:1px solid #ccc; }
-
-table.tracking-table tbody tr.blank, table.tracking-table tbody tr.blank:last-child td { border:none; }
-table.tracking-table tbody tr.blank td { height:40px; }
-
-tr.billing .input-sm.est, tr.billing .input.est, tr.billing .input-spacer.est, tr.lower .input-sm.est, tr.lower .input.est, tr.lower .input-spacer.est { background-color:#e1e6eb; }
-tr.billing .input.est:hover, tr.lower .input.est:hover { background-color:#ced5da; }
-
-table.tracking-table tbody tr.lower td.total, table.tracking-table tbody tr.billing td.total { padding-top:6px; }
-
-table.tracking-table tr.lower td.bold, table.tracking-table tr.billing td.bold { padding-top:8px; padding-left:6px; font-size:12px; }
 
 
-/* PROJECT - billing */
+/* PROJECTS - tracking */
+
+	.tracking-table { float:left; margin-top:30px; margin-bottom:40px; border-collapse:collapse; font-size:10pt; }
+	.tracking-table td.tname { width:10%; min-width:90px; padding-top:8px; padding-left:0px; color:#344953; font-size: 10pt; font-weight:900; text-align:left; }
+
+	/* head */
+	.tracking-table th { width:5%; padding-top:20px; padding-bottom:4px; border-bottom:2px solid #34495e; font-size: 10pt; font-weight:700; text-align:left; }
+			.tracking-table th.table-cell { min-width:70px; padding:0px 4px; border-left:1px solid #666; font-size:14pt; font-weight:900; text-align:center; }
+			.tracking-table th:first-child { padding-left:0px; }
+			.tracking-table th .name { font-size: 8pt; font-weight:500; text-transform:uppercase; }
+			.tracking-table th.total-hours { padding:20px 8px 2px 8px; text-align:center; border-left:1px solid #666; font-size: 10pt; }
+			.tracking-table th.remaining { padding:20px 8px 2px 8px; text-align:center; font-size: 10pt; }
+
+	/* body */
+	.tracking-table tbody tr { border-bottom:1px solid #bbb; }
+	.tracking-table tbody td { padding:4px 0 0 0; }
+		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
+		.tracking-table tbody td.tname { color:#1abc9c; }
+	.tracking-table td.labels { padding-top:4px; padding-right:0px; }
+		.labels div { font-size:12px; margin-top:0px; padding:5px 6px 5px 0; text-align:right; color:#bcc6cc; font-family:"Asap"; font-style:italic; }
+			.labels div:last-child { margin-top:2px; }
+
+	.tracking-table input { float:none; width:45px; height:26px; margin:0 auto; text-align:center; }
+	.tracking-table .actual-hours, .tracking-table .target-hours  { width:60px; height:16px; margin:6px auto; text-align:center; font-weight:700; }
+		.tracking-table .actual-hours.over, .over { color:#e64c3c; }
+
+	.tracking-table td.total-hours { padding-top:4px; border-left:1px solid #666; }
+		.tracking-table td.total-hours div { width:auto; min-width:60px; height:16px; margin:6px auto; text-align:center; font-weight:700; }
+			.tracking-table td.total-hours .target-total, .tracking-table .target-hours { color:#1abc9c; }
+			.tracking-table td.total-hours .actual-total { margin-top:12px; }
+
+	/* remaining */
+	.tracking-table td.remaining { padding-left:0px; text-align: center; }
+	.remaining .act.sum { width:70px; height:20px; padding:2px 0; text-align:center; margin:30px auto 0px; border-radius:6px; background-color:#86cc71; color:#fff; font-weight:700; }
+		.remaining .act.sum.over { background-color:#e64c3c; }
+
+	/* foot */
+	.tracking-table tfoot .est-hours td, .tracking-table tfoot .est-fees td { border-top:2px solid #344953; background-color:#1abc9c; color:#fff; padding-bottom:2px; text-align:center; font-weight:700; }
+	.tracking-table tfoot .est-fees td { border-top:2px solid #344953; border-bottom:2px solid #344953; background-color:#86cc71; }
+		.tracking-table tfoot .est-hours td:first-child, .tracking-table tfoot .est-fees td:first-child { text-align:left; }
+		.tracking-table tfoot .est-hours td.phase-cell, .tracking-table tfoot .est-fees td.phase-cell { border-left: 1px solid #666; } 
+	.tracking-table tfoot .actual-hours { margin-top:4px; }
+	.tracking-table tfoot td.total-hours .actual-total { margin-top:4px; }
+	.tracking-table tfoot td { padding-bottom:0px; padding-top:4px; }
+	.tracking-table tfoot td.remaining .act.sum { margin-top:0px; }
+
+
+
+/* PROJECTS - billing */
 
 	/* contract + fees */
 	.third.billing { width:325px; margin-right:50px; }
@@ -702,7 +679,7 @@ footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:4
 		.phases .checkbox .icons .first-icon, .phases .checkbox .icons .second-icon { display:none; }
 		.phases .checkbox .overlay { position:absolute; top:0px; left:0px; z-index:100; width:108px; height:80px; padding:20px 0 0 0; color:#bcc6cc; }
 			.phases .checkbox.checked .overlay { color:#fff; }
-		.phases .checkbox .number { margin-top:10px; font-size:40px; font-weight:100; }
+		.phases .checkbox .number { margin-top:10px; font-size:40px; font-weight:300; }
 		.phases .checkbox .phase-name { margin-top:14px; font-size:14px; font-weight:500; }
 
 p.top-margin { float:left; margin-top:30px; }
@@ -1098,7 +1075,7 @@ input[type="submit"].message-submit { float:right; width:220px; }
 .table.forecast tr.week th { background-color:#344953; color:#fff; font-weight:400; }
 .table.forecast td { padding:4px 2px; }
 .table.forecast tr td:first-child { font-size:13px; font-weight:900; vertical-align:middle; }
-.forecast input.small { width:42px; padding:4px 2px; margin-bottom:0px; font-size:13px; text-align:center; }
+.forecast input.small { width:34px; height:24px; padding:4px 2px; margin-bottom:0px; font-size:13px; text-align:center; }
 .forecast input.current { border-color:#f1c40f; }
 .table.forecast td.gray { background-color:#ecf0f5; }
 .table.forecast tbody tr:last-child td { border-bottom:2px solid #344953; }

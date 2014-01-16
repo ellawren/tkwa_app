@@ -1,131 +1,110 @@
 <%= form_for @project do |f| %>
-<%= render 'shared/error_messages', :object => f.object %> 
+<% date = Date.today %>
 
-	<!-- modal for employee target edit -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		</div><!-- /.modal -->
-	<!-- end modal -->
-
-	<h2>Fee Tracking</h2>
+	<h2>Time Tracking (by phase)</h2>
 	<% if @project.employee_teams.length == 0 || @project.phases.length == 0 %>
 		<p class="description">This project's team and phases have not been set up yet. Click the 'setup' tab in the bar above to add team members and select phases.</p>
 	<% else %>
-		<p class="description">The table below compares <span class="bold">actual hours</span> as entered on timesheets with <span class="bold">target hours</span> as determined by our fee. Staying as close as possible to the target will keep a project profitable, while going over (shown in <span class="bold over">red</span>) represents a net loss. Hover over actual hours for a breakdown by task.</div>
+		<p class="description">The table below compares <span class="bold">actual hours</span> as entered on timesheets with <span class="bold">target hours</span> as determined by our fee. Staying under the target will keep a project profitable, while going over (shown in <span class="bold over">red</span>) represents a net loss.</div>
 
-			
-					
 		<table class="table tracking-table">
-		
 			<thead>
                 <tr>
                     <th class="bold">Team Member</th>
                     <th class="smalltext"></th>
                     <% @project.available_phases.each do |phase| %>
-                    	<th class="table-cell"><%= phase.number %><br /><span class="blanch"><%= phase.name %></span></th>
+                    	<th class="table-cell"><%= phase.number %><br /><span class="name"><%= phase.name %></span></th>
                     <% end %>
-                    <th class="table-cell bold TotalToDate">Total</th>
-                    <th class="table-cell bold Remaining">Remaining</th>
+                    <th class="total-hours">Total</th>
+                    <th class="remaining">Remaining</th>
                 </tr>
             </thead>
-			
 			<tbody>
-
-				<!-- employee data rows -->
-				<% @project.employee_teams.each do |team| %>
-					<%= render 'tracking_fields', :f => team %>
-				<% end %>
-			
-				<tr class="lower total-hours">
-
-					<td class="bold">TOTAL HOURS</td>
-				<td class="smalltext"><div class="input-sm act">actual</div><div class="input-sm est">target</div></td>
-
-					<% @project.available_phases.each do |phase| %>
-						<td class="phase-cell <%= phase.name.gsub(/[ ]*/, '') %> <% if @phases.include?(phase) %><% else %>deactivated<% end %>">
-							<% if @project.phase_actual("#{phase.number}") == 0 %>
-								<div class="input-spacer act"></div>
-							<% else %>
-								<div class="input act <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>"><%= strip(@project.phase_actual("#{phase.number}")) %></div>
-							<% end %>
-							<% if @project.phase_est(phase.shorthand) == 0 %>
-								<div class="input-spacer est"></div>
-							<% else %>
-								<div class="input est">
-									<%= strip(@project.phase_est(phase.shorthand)) %>
-								</div>
-							<% end %>
+				<%= f.fields_for :employee_teams do |team| %>
+		    		<tr>
+		    			<%= team.hidden_field :user_id %>
+		    			<td class="tname"><%= team.object.employee_name %></td>
+		    			<td class="labels">
+							<div class="target">target</div>
+							<div class="actual">actual</div>
 						</td>
+
+						<% @project.available_phases.each do |phase| %>
+			                <td class="phase-cell">
+			                    <%= team.text_field eval(":#{phase.shorthand}_hours") %>
+			                    <div class="actual-hours <%= is_over?(eval("team.object.#{phase.shorthand}_hours"), team.object.employee_actual(phase.number)  ) %>">
+			                    	<%= nonzero?(team.object.employee_actual(phase.number)) %>
+			                    </div>
+			                </td>
+			            <% end %>
+
+			            <td class="total-hours">
+			            	<div class="target-total">
+								<%= nonzero?(team.object.est_total) %>
+							</div>
+							<div class="actual-total <%= is_over?(team.object.est_total, team.object.employee_actual('Total')) %>">
+								<%= nonzero?(team.object.employee_actual('Total')) %>
+							</div>
+						</td>
+						<td class="remaining">
+							<%= remaining(team.object.est_total, team.object.employee_actual('Total')) %>
+						</td>
+		    		</tr>
+		    	<% end %>
+			</tbody>
+			<tfoot>
+				<tr class="est-hours">
+					<td>Target Hours</td>
+					<td></td>
+					<% @project.available_phases.each do |phase| %>
+						<td class="phase-cell"><% unless @project.phase_est(phase.shorthand) == 0 %><%= number_with_precision(@project.phase_est(phase.shorthand), :precision => 2) %><% end %></td>
 					<% end %>
-					
-					<td class="total TotalToDate gray border-left">
-						<% if @project.sum_actual == 0 %>
-								<div class="input-spacer act"></div>
-						<% else %>
-							<div class="input act <%= is_over?(@project.sum_est, @project.sum_actual) %>"><%= strip(@project.sum_actual) %></div>
-						<% end %>
-						<% if @project.sum_est == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class="input est"><%= strip(@project.sum_est) %></div>
-						<% end %>
-					</td>
-
-					<td class="border-left Remaining"><%= remaining(@project.sum_est, @project.sum_actual) %></td>
-
+					<td class="total-hours"><%= number_with_precision(@project.sum_est, :precision => 2) %></td>
+					<td></td>
 				</tr>
-
-				<tr class="billing">
-
-					<td class="bold">TOTAL BILLING</td>
-					<td class="smalltext">
-						<div class="input-sm act">actual</div>
-						<div class="input-sm est">target</div>
+				<tr class="est-fees">
+					<td>Target Fees</td>
+					<td></td>
+					<% @project.available_phases.each do |phase| %>
+						<td class="phase-cell"><% unless @project.target_billing_total(phase.number) == 0 %><%= number_to_currency(@project.target_billing_total(phase.number), :precision => 0) %><% end %></td>
+					<% end %>
+					<td class="total-hours"><%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="tname">Total Hours</td>
+					<td class="labels">
+						<div class="actual">actual</div>
 					</td>
 
 					<% @project.available_phases.each do |phase| %>
 						<td class="phase-cell">
-							<% if @project.actual_billing_total(phase.number) == 0 %>
-								<div class="input-spacer act"></div>
-							<% else %>
-								<div class='input act'><%= number_to_currency(@project.actual_billing_total(phase.number), :precision => 0) %></div>
-							<% end %>
-							<% if @project.target_billing_total(phase.number) == 0 %>
-								<div class="input-spacer est"></div>
-							<% else %>
-								<div class='input est'><%= number_to_currency(@project.target_billing_total(phase.number), :precision => 0) %></div>
-							<% end %>
+							<div class="actual-hours <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>">
+								<%= nonzero?(@project.phase_actual("#{phase.number}")) %>
+							</div>
 						</td>
 					<% end %>
-				
-					<td class="total">
-						<% if @project.actual_billing_total('Total') == 0 %>
-							<div class="input-spacer act"></div>
-						<% else %>
-							<div class='input act'><%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %></div>
-						<% end %>
-						<% if @project.target_billing_total('Total') == 0 %>
-							<div class="input-spacer est"></div>
-						<% else %>
-							<div class='input est'><%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %></div>
-						<% end %>
-					</td>
-					<td class="border-left Remaining">
-						<%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>
+					
+					<td class="total-hours">
+						<div class="actual-total <%= is_over?(@project.sum_est, @project.sum_actual) %>">
+							<%= nonzero?(@project.sum_actual) %>
+						</div>
 					</td>
 
+					<td class="remaining">
+						<%= remaining(@project.sum_est, @project.sum_actual) %>
+					</td>
 				</tr>
-
-			</tbody>
-
+			</tfoot>
 		</table>
+
+		Projected Fee: <%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %><br> 
+		Fee Used To Date: <%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %><br>
+		Remainder: <%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>
+		<div class="save-row">
+			<%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+		</div>
 
 	<% end %>
 
 <% end %>
-
-<script>
-//reset modal remote on close
-$('#myModal').on('hide.bs.modal', function (e) {
-    $(this).data('bs.modal', null);
-});
-</script>

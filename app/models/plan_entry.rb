@@ -1,19 +1,19 @@
 class PlanEntry < ActiveRecord::Base
-	belongs_to :employee
+	belongs_to :user
   	belongs_to :project
-	delegate :contact, :to => :employee, :allow_nil => true
+	# delegate :contact, :to => :employee, :allow_nil => true
 end
 # == Schema Information
 #
 # Table name: plan_entries
 #
-#  id          :integer         not null, primary key
-#  employee_id :integer         not null
-#  project_id  :integer         not null
-#  hours       :integer(3)
-#  year        :integer         not null
-#  week        :integer         not null
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
+#  id         :integer         not null, primary key
+#  project_id :integer         not null
+#  hours      :integer(3)
+#  year       :integer         not null
+#  week       :integer         not null
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  user_id    :integer
 #
 

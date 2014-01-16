@@ -28,10 +28,10 @@
 			<% p.employee_teams.each do |e| %>
 			<tr>
 				<td><%= e.employee_name %></td>
-				<td><%= p.employee_forecast(e.employee_id, 2013, 30).hours %></td>
-				<td><%= p.employee_forecast(e.employee_id, 2013, 31).hours %></td>
-				<td><%= p.employee_forecast(e.employee_id, 2013, 32).hours %></td>
-				<td><%= p.employee_forecast(e.employee_id, 2013, 33).hours %></td>
+				<td><%= p.employee_forecast(e.user_id, four_month_array(Date.today)).hours %></td>
+				<td><%= p.employee_forecast(e.user_id, 2013, 31).hours %></td>
+				<td><%= p.employee_forecast(e.user_id, 2013, 32).hours %></td>
+				<td><%= p.employee_forecast(e.user_id, 2013, 33).hours %></td>
 			</tr>
 			<% end %>
 		</tbody>

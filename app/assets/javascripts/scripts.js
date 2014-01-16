@@ -4,7 +4,6 @@ $(document).ready(function() {
     $("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
     $("a.tip-right").tooltip({ animation: true, placement: 'right', trigger:'hover' });
     $("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
-    $("a.pop").popover({ placement: 'right', animation:true });
 
     // checkboxes on project setup page
     $(".phases .checkbox .icons").html("10");

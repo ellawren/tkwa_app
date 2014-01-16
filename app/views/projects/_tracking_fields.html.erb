@@ -3,22 +3,61 @@
 		<a href="<%= edit_project_employee_team_path(f.project_id, f.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets">edit targets</a>
 		</div>
 	</td>
-	<td class="smalltext"><div class="input-sm act">actual</div><div class="input-sm est">target</div></td>
+	<td class="smalltext">
+		<div class="input-sm est">target</div>
+		<div class="input-sm act">actual</div>
+	</td>
+
 		<% @project.available_phases.each do |phase| %>
-			<%= tracking_td(f, phase) %>
+			<td class="phase-cell #{phase.name.gsub(/[ ]*/, '')}">
+				<% actual_hours = @project.employee_actual(f.user_id, phase.number) %>
+			    <% est_hours = eval("f.#{phase.shorthand}_hours") %>
+			    <% if est_hours == nil %>
+			        <div class='input-spacer est'></div>
+			    <% else %>
+			        <div class='input est' ><%= strip(est_hours) %></div>
+			    <% end %>
+
+			      <%
+			      if actual_hours == 0
+			        act = "<div class='input-spacer act'></div>"
+			      else
+			        time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(f.project_id, f.user_id, phase.number)
+
+			        str = []
+			            task_array(time_entries).each do |task| 
+			                array = []
+			                sum = 0
+			                TimeEntry.find_all_by_project_id_and_user_id_and_phase_number_and_task(f.project_id, f.user_id, phase.number, task).each do |t| 
+			                    array.push(t.entry_total)
+			                end
+			                array.map{|x| sum += x}
+			                str.push("<tr><td>#{task}</td><td>#{sum.to_f}</td></tr>")
+			            end 
+
+
+			        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'><a class='pop no-hover' rel='popover' data-original-title='#{User.find(f.user_id).name} - #{phase.name}' data-content=\"
+			                <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th>Hours</th></tr></thead><tbody>#{str.join}</tbody>
+			                </table>\">#{strip(actual_hours)}</a></div>"
+			      end  %>
+
+	      		<%= "#{act}".html_safe %>
+
+ 			</td>
 		<% end %>
 
 		<td class="total TotalToDate gray border-left">
-			<% if @project.employee_actual(f.user_id, 'Total') == 0 %>
-				<div class="input-spacer span1 act"></div>
-			<% else %>
-				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.user_id, 'Total')) %>"><%= strip(@project.employee_actual(f.user_id, 'Total')) %></div>
-			<% end %>
 			<% if f.est_total == 0 %>
 				<div class="input-spacer span1 est"></div>
 			<% else %>
 				<div class="input span1 est bold"><%= strip(f.est_total) %></div>
 			<% end %>
+			<% if @project.employee_actual(f.user_id, 'Total') == 0 %>
+				<div class="input-spacer span1 act"></div>
+			<% else %>
+				<div class="input span1 act bold <%= is_over?(f.est_total, @project.employee_actual(f.user_id, 'Total')) %>"><%= strip(@project.employee_actual(f.user_id, 'Total')) %></div>
+			<% end %>
+			
 		</td>
 
 		<td class="border-left Remaining">

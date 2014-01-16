@@ -35,6 +35,12 @@ module ApplicationHelper
     date.wday + 1
   end
 
+  def nonzero?(value)
+    if value > 0
+      value
+    end
+  end
+
 
   def month_shading(week, year)
     # jan / mar / may / jul / sep / nov

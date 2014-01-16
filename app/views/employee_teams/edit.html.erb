@@ -2,7 +2,7 @@
   <%= @user.name %><% if @employee_team.role? %>, <%= @employee_team.role %><% end %>
 <% end %>
 
-<%= form_for(@employee_team, html: { class: "form-inline" }) do |f| %>
+<%= form_for @employee_team do |f| %>
     <div class="modal-body team-edit">
         <div class="phases">
             <% @project.available_phases.each do |phase| %>
@@ -18,7 +18,7 @@
         <div class="phases">
             <% @project.available_phases.each do |phase| %>
                 <div class="phase">
-                    <%= f.text_field eval(":#{phase.shorthand}_hours"), { :onchange => "getEstHours();"} %>
+                    <%= f.text_field eval(":#{phase.shorthand}_hours") %>
                 </div>
             <% end %>
             <div class="phase">

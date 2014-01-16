@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140106203200) do
+ActiveRecord::Schema.define(:version => 20140116155619) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -249,13 +249,13 @@ ActiveRecord::Schema.define(:version => 20140106203200) do
   add_index "phases_projects", ["project_id", "phase_id"], :name => "index_phases_projects_on_project_id_and_phase_id", :unique => true
 
   create_table "plan_entries", :force => true do |t|
-    t.integer  "employee_id",                               :null => false
-    t.integer  "project_id",                                :null => false
-    t.decimal  "hours",       :precision => 3, :scale => 0
-    t.integer  "year",                                      :null => false
-    t.integer  "week",                                      :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.integer  "project_id",                               :null => false
+    t.decimal  "hours",      :precision => 3, :scale => 0
+    t.integer  "year",                                     :null => false
+    t.integer  "week",                                     :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "user_id",                                  :null => false
   end
 
   create_table "projects", :force => true do |t|

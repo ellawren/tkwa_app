@@ -78,12 +78,10 @@ module ProjectsHelper
          ""
         else 
           r = goal - actual
-          if r >= 10
+          if goal > actual
             "<div class=\"act sum\"><div class=\"num\">#{r}</div></div>".html_safe
-          elsif r <= -10
+          elsif goal <= actual
             "<div class=\"act sum over\"><div class=\"num\">#{r}</div></div>".html_safe
-          else
-            "<div class=\"act sum caution1\"><div class=\"num\">#{r}</div></div>".html_safe
           end
         end
     end
@@ -96,13 +94,7 @@ module ProjectsHelper
           ""
         else 
           r = goal - actual
-          if r >= 1000
-            "<div class=\"act sum\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
-          elsif r <= -1000
-            "<div class=\"act sum over\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
-          else
-            "<div class=\"act sum caution1\"><div class=\"num\">#{number_to_currency(r, :precision => 0)}</div></div>".html_safe
-          end
+          number_to_currency(r, :precision => 0)
         end
     end
     

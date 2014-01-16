@@ -105,9 +105,6 @@ class ProjectsController < ApplicationController
   
   def tracking
     @project = Project.find(params[:id])
-    @team_members = EmployeeTeam.find_all_by_project_id(@project.id)
-    @all_entries = TimeEntry.find_all_by_project_id(@project.id)
-    @phases = @project.available_phases
   end
 
   def fee_calc
