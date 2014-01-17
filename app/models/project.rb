@@ -103,7 +103,7 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :phases
     accepts_nested_attributes_for :tasks
 
-	validates :name, presence: true, length: { maximum: 50 }
+	validates :name, presence: true
     validates :number, uniqueness: { :message => "Project must be assigned a number." }, if: lambda { |p| p.try(:status) != 'potential' }
     validates :status, presence: true
 
