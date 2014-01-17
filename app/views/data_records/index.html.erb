@@ -5,25 +5,15 @@
 	</div>
 <% end %>
 
-<!-- modal for employee target edit -->
-	<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  	<div class="modal-header">
-	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    	<h3 id="myModalLabel"> </h3>
-	  	</div>
-	  	<div class="modal-body"></div>
-	</div>
-<!-- end modal -->
+	<!-- modal for employee target edit -->
+            <div class="modal fade data-record" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div><!-- /.modal -->
+    <!-- end modal -->
 
-<!-- modal for employee target edit -->
-	<div class="modal hide fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  	<div class="modal-header">
-	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    	<h3 id="myModalLabel"> </h3>
-	  	</div>
-	  	<div class="modal-body"></div>
-	</div>
-<!-- end modal -->
+    <!-- modal for new record -->
+            <div class="modal fade data-record" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div><!-- /.modal -->
+    <!-- end modal -->
 
 <a href=<%= "/data_records/new" %> data-target="#newModal" data-toggle="modal" class="btn btn-primary btn-right">Add New Record</a>
 
@@ -59,8 +49,8 @@
 							</div>
 						</td>
 						<td><%= d.year %></td>
-						<td><%= "#{d.start_week} - #{d.end_week}" %></td>
-						<td><%= d.pay_type %></td>
+						<td class="centered"><%= "#{d.start_week} - #{d.end_week}" %></td>
+						<td class="centered"><%= d.pay_type %></td>
 		  				<td><%= d.hours_in_week %></td>
 		  				<td><%= d.billable %></td>
 		  				<td><%= d.holiday %></td>

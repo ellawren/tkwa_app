@@ -1,10 +1,10 @@
-<div class="header-span">
-    <h3><%= @user.name %></h3>
-</div>
+<% content_for :modal_header do %>
+    <%= @user.name %>
+<% end %>
 
-<div class="body-span">
+<%= form_for @data_record do |f| %>
 
-    <%= form_for @data_record do |f| %>
+    <div class="modal-body">
 
         <div class="narrow data_record">
             <div class="input-row">
@@ -36,8 +36,6 @@
 
         <div class="line with_spacer"></div>
 
-
-
         <table class="modal-table data-table">
             <tr>
                 <th>Pay Type</th>
@@ -59,11 +57,11 @@
             </tr>
         </table>
 
-        <div class="actions">
-            <%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
-            <a class="btn btn-large" data-dismiss="modal">Cancel</a>
-        </div>
+    </div>
 
-    <% end %>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    </div>
 
-</div>
+<% end %>
