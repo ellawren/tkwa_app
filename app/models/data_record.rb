@@ -6,7 +6,6 @@
 #  year              :integer
 #  vacation          :decimal(6, 2)
 #  holiday           :decimal(4, 2)
-#  billable          :decimal(6, 2)
 #  rate              :decimal(6, 2)
 #  created_at        :datetime        not null
 #  updated_at        :datetime        not null
@@ -23,6 +22,8 @@
 #  start_week        :integer
 #  end_week          :integer
 #  hours_in_week     :decimal(4, 2)
+#  overage_from_prev :decimal(6, 2)
+#  billable_rate     :decimal(5, 2)
 #
 
 class DataRecord < ActiveRecord::Base
@@ -31,17 +32,6 @@ class DataRecord < ActiveRecord::Base
 
 	validates :user_id, :presence => true
 	validates :year, :presence => true
-
-	def billable_rate
-		if rate?
-			if Global.find_by_year(year)
-				multiplier = Global.find_by_year(year).multiplier || 2.8
-			else
-				multiplier = 2.8
-			end
-			rate * (multiplier + 1)
-		end
-	end
 
 	def self.week_array
     	(self.start_week..self.end_week).to_a 
@@ -59,10 +49,8 @@ class DataRecord < ActiveRecord::Base
         self.end_week ||= Date.new(Date.today.cwyear, 12, 28).cweek #calc for number of weeks in current year
 	    self.hours_in_week ||= 40
 	    self.vacation ||= 80
-	    self.vacation_rollover ||= 0
 	    self.holiday ||= 8
-	    self.billable ||= 39.5
-	    self.rate ||= 24
+	    self.billable_rate ||= 90
   	end
 
 

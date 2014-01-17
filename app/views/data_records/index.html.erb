@@ -23,15 +23,13 @@
 			<thead>
 				<tr>
 					<th class="left-align">Name</th>
-									<th>Year</th>
 					<th>Weeks</th>
 					<th>Pay Type</th>
 					<th>Hrs/Wk</th>
-					<th>Billable/Wk</th>
 					<th>Holiday/Day</th>
 					<th>Vacation<br>This Period</th>
 					<th>Vacation<br>Rollover</th>
-					<th>Hourly Rate</th>
+					<th>Overage<br>From Prev</th>
 					<th>Billable Rate</th>
 					<th></th>
 				</tr>
@@ -48,19 +46,17 @@
 								<%= User.find(d.user_id).employee_number %>
 							</div>
 						</td>
-						<td><%= d.year %></td>
 						<td class="centered"><%= "#{d.start_week} - #{d.end_week}" %></td>
 						<td class="centered"><%= d.pay_type %></td>
 		  				<td><%= d.hours_in_week %></td>
-		  				<td><%= d.billable %></td>
 		  				<td><%= d.holiday %></td>
 		  				<td><%= d.vacation %></td>
 		  				<td><%= d.vacation_rollover %></td>
-		  				<td><%= number_to_currency(d.rate) %></td>
+		  				<td><%= d.overage_from_prev %></td>
 		  				<td><%= number_to_currency(d.billable_rate) %></td>
 		  				<td>
 		  					<% if current_user.admin? %>
-		  						<%= link_to "delete", d, method: :delete, confirm: "You sure?" %>
+		  						<%= link_to "", d, class: "delete fui-cross", method: :delete, confirm: "You sure?" %>
 								<% end %>
 						</td>
 					</tr>

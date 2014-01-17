@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140117172339) do
+ActiveRecord::Schema.define(:version => 20140117210609) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -96,7 +96,6 @@ ActiveRecord::Schema.define(:version => 20140117172339) do
     t.integer  "year"
     t.decimal  "vacation",          :precision => 6, :scale => 2
     t.decimal  "holiday",           :precision => 4, :scale => 2
-    t.decimal  "billable",          :precision => 6, :scale => 2
     t.decimal  "rate",              :precision => 6, :scale => 2
     t.datetime "created_at",                                                            :null => false
     t.datetime "updated_at",                                                            :null => false
@@ -113,6 +112,8 @@ ActiveRecord::Schema.define(:version => 20140117172339) do
     t.integer  "start_week"
     t.integer  "end_week"
     t.decimal  "hours_in_week",     :precision => 4, :scale => 2
+    t.decimal  "overage_from_prev", :precision => 6, :scale => 2
+    t.decimal  "billable_rate",     :precision => 5, :scale => 2
   end
 
   create_table "data_records_users", :id => false, :force => true do |t|
