@@ -7,10 +7,12 @@
 	</head>
 	
 	<body>
-        <% flash.each do |key, value| %>
-            <div id="notice" class="<%= key %>" >
-                <%= content_tag(:div, value, class: "flash #{key}") %>
-            </div>
+        <% unless params[:controller] == "projects" && params[:action] == "new" # this is so that error message shows up if number validation fails %> 
+            <% flash.each do |key, value| %>
+                <div id="notice" class="<%= key %>" >
+                    <%= content_tag(:div, value, class: "flash #{key}") %>
+                </div>
+            <% end %>
         <% end %>
         <%= render 'layouts/navbar' %>
     

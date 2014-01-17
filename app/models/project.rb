@@ -104,7 +104,7 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :tasks
 
 	validates :name, presence: true
-    validates :number, uniqueness: { :message => "Project must be assigned a number." }, if: lambda { |p| p.try(:status) != 'potential' }
+    validates :number, :uniqueness => true, :presence => true, if: lambda { |p| p.try(:status) != 'potential' }
     validates :status, presence: true
 
     # default to 'current' status if not set, and fill in a number for a potential project so it doesn't throw an error

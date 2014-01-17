@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   autocomplete :contact, :work_company, :full => true, :scopes => [:consultant_list]
 
   def new
-  	@project = Project.new
+    @project = (flash[:project]) ? flash[:project] : Project.new # this is so that error message shows up if number validation fails
     render :layout => 'projects_static' 
   end
 
@@ -141,8 +141,8 @@ class ProjectsController < ApplicationController
       flash[:success] = "Project created successfully!"
       redirect_to info_project_path(@project)
     else
-      flash[:error] = "Project could not be created."
-      render 'new'
+      flash[:project] = @project # this is so that error message shows up if number validation fails
+      redirect_to new_project_path
     end
   end
   
@@ -160,7 +160,7 @@ class ProjectsController < ApplicationController
   def destroy
     Project.find(params[:id]).destroy
     flash[:success] = "Project deleted."
-    redirect_to(:back) 
+    redirect_to projects_path
   end
   
 end

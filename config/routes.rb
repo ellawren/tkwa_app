@@ -19,7 +19,7 @@ TkwaApp::Application.routes.draw do
       get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'setup', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns', 'forecast', 'edit_forecast'
     end
   end    
-
+resources :projects
   resources :users do
     resources :timesheets
     member do
