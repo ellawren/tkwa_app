@@ -15,7 +15,7 @@ TkwaApp::Application.configure do
   config.assets.compress = false
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -71,9 +71,11 @@ TkwaApp::Application.configure do
   # AWS settings for Paperclip assets
   config.paperclip_defaults = {
   :storage => :s3,
-  :s3_credentials => {
-    :bucket => ENV['Kubala_Washatko_Architects'],
-    :access_key_id => ENV['AKIAIQOJJZYTNAZ4GCCQ'],
-    :secret_access_key => ENV['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']
+    :s3_credentials => {
+      :bucket => ENV['Kubala_Washatko_Architects'],
+      :access_key_id => ENV['AKIAIQOJJZYTNAZ4GCCQ'],
+      :secret_access_key => ENV['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']
+    }
   }
+  
 end
