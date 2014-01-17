@@ -25,17 +25,17 @@
 					<th class="left-align">Name</th>
 					<th>Weeks</th>
 					<th>Pay Type</th>
-					<th>Hrs/Wk</th>
-					<th>Holiday/Day</th>
+					<th>Hours Per Week</th>
+					<th>Comp Hours<br>Per Holiday</th>
 					<th>Vacation<br>This Period</th>
 					<th>Vacation<br>Rollover</th>
-					<th>Overage<br>From Prev</th>
+					<th>Overage From<br>Prev Period</th>
 					<th>Billable Rate</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				<% data = DataRecord.find_all_by_year(y).sort {|a,b| a.user_name <=> b.user_name} %>
+				<% data = DataRecord.active_users.find_all_by_year(y).sort {|a,b| a.user_name <=> b.user_name} %>
 				<% data.each do |d| %>
 					<tr>
 						<td>
@@ -46,8 +46,8 @@
 								<%= User.find(d.user_id).employee_number %>
 							</div>
 						</td>
-						<td class="centered"><%= "#{d.start_week} - #{d.end_week}" %></td>
-						<td class="centered"><%= d.pay_type %></td>
+						<td><%= "#{d.start_week} - #{d.end_week}" %></td>
+						<td><%= d.pay_type %></td>
 		  				<td><%= d.hours_in_week %></td>
 		  				<td><%= d.holiday %></td>
 		  				<td><%= d.vacation %></td>

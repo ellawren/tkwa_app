@@ -48,14 +48,6 @@ class Contact < ActiveRecord::Base
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '') 
   end
               
-  scope :non_employees, where("id NOT IN (SELECT contact_id FROM employees)")
-
-  scope :employee_list, {
-  		:select => "contacts.*",
-  		:joins => "INNER JOIN employees ON employees.contact_id = contacts.id", 
-  		:conditions => ["status = ?", 'Current' ]
-	}
-
   scope :consultant_list, {
       :select => "contacts.*",
       :conditions => ["cat_number = ?", "3" ],

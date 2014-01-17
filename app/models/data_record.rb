@@ -6,16 +6,8 @@
 #  year              :integer
 #  vacation          :decimal(6, 2)
 #  holiday           :decimal(4, 2)
-#  rate              :decimal(6, 2)
 #  created_at        :datetime        not null
 #  updated_at        :datetime        not null
-#  admin_meeting     :decimal(6, 2)
-#  computer          :decimal(6, 2)
-#  education         :decimal(6, 2)
-#  marketing         :decimal(6, 2)
-#  staff_meeting     :decimal(6, 2)
-#  stdio_projects    :decimal(6, 2)
-#  research          :decimal(6, 2)
 #  user_id           :integer         not null
 #  pay_type          :string(255)     default("Salary")
 #  vacation_rollover :decimal(5, 2)
@@ -32,6 +24,12 @@ class DataRecord < ActiveRecord::Base
 
 	validates :user_id, :presence => true
 	validates :year, :presence => true
+
+	scope :active_users, {
+        :select => "data_records.*",
+        :joins => "INNER JOIN users ON users.id = data_records.user_id", 
+        :conditions => ["active = ?", true ]
+    }
 
 	def self.week_array
     	(self.start_week..self.end_week).to_a 
