@@ -6,7 +6,7 @@ TkwaApp::Application.routes.draw do
   match '/projects/current',  to: 'projects#current'
   match '/projects/import',   to: 'projects#import'
   match '/contacts/import',   to: 'contacts#import'
-  match '/projects/forecast_index',   to: 'projects#forecast_index'
+  match '/projects/forecast',   to: 'projects#forecast_index'
 
   resources :projects do
     resources :employee_teams
@@ -23,8 +23,7 @@ TkwaApp::Application.routes.draw do
   resources :users do
     resources :timesheets
     member do
-      get 'edit_employee_forecast'
-      get 'forecast'
+      get 'forecast', 'edit_forecast'
     end
   end
 

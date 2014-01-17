@@ -9,12 +9,12 @@
 
 	<div class="tile-box">
         <%= link_to image_tag("data.png", :alt => "timesheets", :class => "round-icon"), "/users/#{current_user.id}/timesheets/#{this_year}/#{this_week}" %>
-        <%= link_to "Timesheets", "/users/#{current_user.id}/timesheets/#{@curr_year}/#{@curr_week}", :class => "tile-label" %>
+        <%= link_to "My Timesheets", "/users/#{current_user.id}/timesheets/#{@curr_year}/#{@curr_week}", :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), "#{}" %>
-        <%= link_to "Forecast", "#{}", :class => "tile-label" %>
+        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), forecast_user_path(current_user) %>
+        <%= link_to "My Forecast", forecast_user_path(current_user), :class => "tile-label" %>
     </div>
 
     <div class="tile-box disabled">
@@ -29,13 +29,12 @@
 
 </div> <!-- end tiles -->
 
-<h2><%= this_year %> Holidays</h2>
+<div id="calendar">
+    <%= calendar @holidays, {:prev_text=>" ", :next_text=>" ", class: "simple-calendar"} do |event| %>
+      <%= event.name %>
+    <% end %>
+</div>
 
-	<table class="table">
-		<% Holiday.all.each do |h| %>
-			<tr>
-				<td><%= h.name %></td>
-				<td><%= h.date_object.strftime("%B %-d (%a)") %></td>
-			</tr>
-		<% end %>
-	</table>
+<div id="vacation">
+    <h2><%= this_year %> Vacations</h2>
+</div>

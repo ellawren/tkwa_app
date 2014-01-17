@@ -14,6 +14,7 @@
 #
 
 class Holiday < ActiveRecord::Base
+    attr_accessible :name, :start_time
 	default_scope :order => "date_object ASC"
 
 	before_save :date_parse
@@ -27,6 +28,11 @@ class Holiday < ActiveRecord::Base
 	def date_formatted
 		date_object.strftime("%B %-d (%a)")
 	end
+
+    # this is used for the calendar on timesheets index --> https://github.com/excid3/simple_calendar
+    def start_time
+        date_object.to_datetime
+    end
 
 end
 

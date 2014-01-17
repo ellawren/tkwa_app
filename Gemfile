@@ -9,6 +9,7 @@ gem 'rails3-jquery-autocomplete'
 gem 'ransack'
 gem 'jquery-rails'
 gem 'paperclip', '~> 3.0' # upload images for patterns
+gem 'simple_calendar', '~> 0.1.9'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'

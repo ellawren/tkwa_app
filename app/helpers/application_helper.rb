@@ -191,15 +191,14 @@ module ApplicationHelper
     elsif params[:controller] == "phases"
         "active" if c_name.include?('projects')
     # exception for /employees/:id/forecast
-    elsif params[:controller] == "employees" && params[:action] == "forecast"
+    elsif params[:controller] == "users" && params[:action] == "forecast"
         "active" if c_name.include?('timesheets')
     # exception for /companies
     elsif params[:controller] == "companies"
         "active" if c_name.include?('contacts')
 
     # exceptions for /admin
-    elsif ( params[:controller] == "employees" ) ||
-          ( params[:controller] == "static_pages" && params[:action] == "admin" ) ||
+    elsif ( params[:controller] == "static_pages" && params[:action] == "admin" ) ||
           ( params[:controller] == "users" && params[:action] == "index" ) ||
           ( params[:controller] == "users" && params[:action] == "new" ) ||
           ( params[:controller] == "holidays" ) ||

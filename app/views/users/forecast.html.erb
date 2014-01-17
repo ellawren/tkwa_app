@@ -1,0 +1,57 @@
+<% content_for :page_header do %>
+	<% provide :title, "6-Month Forecast" %>
+    <div class="page-header">
+        <h1><%= current_user.name.split[0] %>'s Forecast</h1>
+    </div>
+<% end %>
+
+<%= form_for @user do |f| %>
+<% date = Date.today %>
+        <table class="table forecast">
+            <thead>
+                <tr>
+                    <th></th>
+                    <% four_month_year_array(date).each do |w| %>
+                        <th><%= w %></th>
+                    <% end %>
+                </tr>
+                <tr>
+                    <th></th>
+                    <% four_month_monthname_array(date).each do |w| %>
+                        <th><%= w %></th>
+                    <% end %>
+                </tr>
+                <tr class="week">
+                    <th></th>
+                    <% four_month_weeknum_array(date).each do |w| %>
+                        <th <%= "class='current'" if w == this_week %>><%= w %></th>
+                    <% end %>
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.employee_teams.current.each do |t| %>
+                    <tr>
+                        <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
+                        <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(Date.today)) do |plan| %>
+                            <td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
+                            </td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <% @user.forecast_week_total(four_month_array(date)).each do |w| %>
+                        <td><%= w %></td>
+                    <% end %>
+                </tr>
+            </tfoot>
+
+        </table>
+
+        <div class="save-row">
+            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        </div>
+
+<% end %>

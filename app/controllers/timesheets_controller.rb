@@ -12,6 +12,7 @@ class TimesheetsController < ApplicationController
   def index
    @timesheets = Timesheet.all
    @user = current_user
+   @holidays = Holiday.all
   end
 
 

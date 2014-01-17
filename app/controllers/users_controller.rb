@@ -27,9 +27,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated."
+      flash[:success] = "User updated successfully!"
       sign_in @user # this is a security feature - keep it even though it makes admin edits annoying
-      redirect_to edit_user_path(@user)
+      redirect_to(:back) 
     else
       render 'edit'
     end
@@ -47,6 +47,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def forecast
+    @user = User.find(params[:id])
+  end
+
+  def edit_forecast
+    @user = User.find(params[:id])
+    render :layout => 'modal' 
   end
   
   

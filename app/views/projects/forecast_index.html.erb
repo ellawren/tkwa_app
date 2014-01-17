@@ -26,8 +26,8 @@
         </tr>
         <tr>
             <th class="buttons">
-                <%= link_to "by project", projects_forecast_index_path(:view => 'project'), :class => "btn #{'active' if params[:view] != 'employee'}" %>
-                <%= link_to "by employee", projects_forecast_index_path(:view => 'employee'), :class => "btn #{'active' if params[:view] == 'employee'}" %>
+                <%= link_to "by project", projects_forecast_path(:view => 'project'), :class => "btn #{'active' if params[:view] != 'employee'}" %>
+                <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] == 'employee'}" %>
             </th>
             <% four_month_monthname_array(date).each do |w| %>
                 <th><%= w %></th>
@@ -55,7 +55,7 @@
                     <% p.employee_teams.each do |e| %>
                     <tr class="subhead">
                         <td><%= e.employee_name %></td>
-                        <% p.employee_forecast(e.employee_id, four_month_array(date)).each do |plan| %>
+                        <% p.employee_forecast(e.user_id, four_month_array(date)).each do |plan| %>
                             <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
                         <% end %>
                     </tr>
@@ -63,11 +63,11 @@
                 <% end %>
             <% end %>
         <% else %>
-            <% Employee.current.each do |e| %>
-                <% if e.employee_teams.current.count > 0 %>
+            <% User.active_users.each do |e| %>
+                <% if e.employee_teams.count > 0 %>
                     <tr class="head">
                         <td>
-                            <a href="<%= edit_employee_forecast_employee_path(e.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= e.name %></a>
+                            <a href="<%= edit_forecast_user_path(e.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= e.name %></a>
                         </td>
                         <% four_month_array(date).each do |w, y| %>
                             <td class="<%= month_shading(w, y) %>"></td>

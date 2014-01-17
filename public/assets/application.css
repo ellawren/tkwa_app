@@ -10339,7 +10339,7 @@ label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, 
 
 ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0px; border-radius:5px; list-style:none; }
 	ul.tabnav li { float:left; }
-		ul.tabnav li a { float:left; display:block; height:100%; height:22px; padding:2px 20px; margin:0px; color:#b2bec5; text-transform:lowercase; font-weight:700; }
+		ul.tabnav li a { float:left; display:block; height:100%; height:22px; padding:2px 20px; margin:0px; color:#b2bec5; text-transform:lowercase; }
 		ul.tabnav li:first-child a { border-radius:5px 0 0 5px; }
 		ul.tabnav li.sel a { background-color:#ced5da; color:#758083; }
 			ul.tabnav li a:hover, ul.tabnav li.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
@@ -10609,6 +10609,29 @@ ul.tile-list.small-tiles { float:left; width:100%; margin-bottom:10px; margin-le
 .home .tile-box img.round-icon.resize { width:140px; height:140px; padding:20px; }
 
 
+/* TIMESHEETS index */
+
+	/* calendar */
+	#calendar { float:left; width:660px; margin-top:20px; }
+	#calendar h2 { width:660px; text-align:center; font-size:14px; font-weight:900; padding-bottom:3px; }
+	#calendar h2 .previous-month, #calendar h2 .next-month { float:left; width:30px; height:30px; border:1px solid #ddd; border-radius:30px; background-image:url(/assets/select-arrow.png); background-position:0px 2px; background-repeat:no-repeat; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); }
+	#calendar h2 .next-month { float:right; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(-90deg); }
+	#calendar h2 .previous-month:hover, #calendar h2 .next-month:hover { border-color:#1abc9c; background-image:url(/assets/select-arrow-green.png);}
+
+	.simple-calendar { width:auto; float:left; }
+	.simple-calendar .day { height:80px; width:90px; border:1px solid #ced5da; text-align:center; }
+	.simple-calendar .day div { font-size:11px; }
+	.simple-calendar .day.not-current-month { background-color:#ecf0f5; color:#bcc6cc; } 
+	.simple-calendar div.day_number { font-size:30px; font-weight:100; }
+	.simple-calendar .day.today { background-color:#1abc9c; color:#fff; border:4px solid #f1c40f; height:74px; width:84px; }
+	.simple-calendar .day.events { background-color:#f1c40f; color:#34495e; }
+	.simple-calendar .day.past { background-image:url(/assets/calendar.png); background-repeat:no-repeat; }
+	.simple-calendar .day.past.events { background-image:url(/assets/calendar-dark.png); }
+
+	#vacation { float:left; margin:50px 0 0 50px; width:220px; height:500px; }
+	#vacation h2 { margin-top:0px; padding-bottom:5px; }
+
+
 /* pagination */
 
 .pagination { float:right; }
@@ -10652,7 +10675,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 /* PROJECTS - tracking */
 
-	.tracking-table { float:left; margin-top:30px; margin-bottom:40px; border-collapse:collapse; font-size:10pt; }
+	.tracking-table { float:left; margin-top:10px; margin-bottom:40px; border-collapse:collapse; font-size:10pt; }
 	.tracking-table td.tname { width:10%; min-width:90px; padding-top:8px; padding-left:0px; color:#344953; font-size: 10pt; font-weight:900; text-align:left; }
 
 	/* head */
@@ -10695,8 +10718,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.tracking-table tfoot td.total-hours .actual-total { margin-top:4px; }
 	.tracking-table tfoot td { padding-bottom:0px; padding-top:4px; }
 	.tracking-table tfoot td.remaining .act.sum { margin-top:0px; }
-
-
+	.tracking-table tfoot .labels .actual { padding-top:3px; }
+	.tracking-table tfoot td.remaining { padding:4px 0 0 0; }
 
 /* PROJECTS - billing */
 
@@ -11000,6 +11023,15 @@ a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:
 	  	.modal-table.cbilling-table tfoot td { border-bottom:none; border-top:2px solid #344953; }
 	  	.modal-table.cbilling-table .delete { margin:0 0 0 20px;  }
  	/*---*/
+
+ 	/* forecast modal */
+
+	.forecast-modal { left:35%; width:1000px; }
+		.forecast-modal .table.forecast { width:900px; margin-left:20px; }
+	.forecast-modal .forecast input.small { width:32px; height:24px; }
+	.forecast-modal .table.forecast tr td:first-child { min-width:110px; }
+	.forecast-modal form { width:100%; margin:0px; }
+	/*---*/
 
   	/* check the rest of the modal stuff for deletion */
 
@@ -11323,15 +11355,10 @@ input[type="submit"].message-submit { float:right; width:220px; }
 .table.forecast tbody tr:last-child td { border-bottom:2px solid #344953; }
 .table.forecast tfoot td { color:#1abc9c; font-size:13px; font-weight:900; text-align:center; }
 .table.forecast td { border-top:1px solid #f1f1f1; }
+.table.forecast a { color:#1abc9c; }
+.table.forecast a:hover { color:#16a085; }
 
-
-/* forecast modal */
-
-.forecast-modal { left:35%; width:1000px; }
-.forecast-modal .forecast input.small { width:32px; height:24px; }
-.forecast-modal .table.forecast tr td:first-child { min-width:110px; }
-.forecast-modal form { width:100%; margin:0px; }
-
+.table.forecast a.btn { color:#fff; }
 
 /* forecast index */
 

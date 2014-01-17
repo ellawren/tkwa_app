@@ -23,7 +23,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes
   has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }

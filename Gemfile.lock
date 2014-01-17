@@ -141,6 +141,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
+    simple_calendar (0.1.9)
+      rails (>= 3.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -179,5 +181,6 @@ DEPENDENCIES
   rails3-jquery-autocomplete
   ransack
   rspec-rails (= 2.8.1)
+  simple_calendar (~> 0.1.9)
   uglifier (= 1.2.3)
   will_paginate (= 3.0.3)
