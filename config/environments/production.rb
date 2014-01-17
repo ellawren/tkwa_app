@@ -67,4 +67,13 @@ TkwaApp::Application.configure do
   
   # Precompile Blueprint CSS
   config.assets.precompile += [ "bootstrap/*.css" ]
+
+  # AWS settings for Paperclip assets
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['Kubala_Washatko_Architects'],
+    :access_key_id => ENV['AKIAIQOJJZYTNAZ4GCCQ'],
+    :secret_access_key => ENV['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']
+  }
 end
