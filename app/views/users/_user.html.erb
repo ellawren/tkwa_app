@@ -3,9 +3,10 @@
 	<div class="info">
   		<div class="name"><%= user.link_name %></div>
   		<ul>
-  			<li><%= link_to "edit user info", edit_user_path(user) %></li>
+  			<li><%= link_to "user info", edit_user_path(user) %></li>
+  			<% if user.contact_id %><li><%= link_to "contact info", contact_path(Contact.find(user.contact_id)) %></li><% end %>
   			<li><%= link_to "employee info", "/users/#{user.id}/data_records", datatoggle: "modal" %></li>
-  			<li><%= link_to "delete", user, method: :delete, confirm: "You sure? This will also remove all associated employee information from the database. If this employee has left the firm, hit 'Cancel' below and change their status to 'Inactive' instead of deleting." %></li>
+  			<%= link_to "", user, method: :delete, class: "delete fui-cross", confirm: "You sure? This will also remove all associated employee information from the database. If this employee has left the firm, hit 'Cancel' below and change their status to 'Inactive' instead of deleting." %>
   		</ul>
   	</div>
   

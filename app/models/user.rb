@@ -23,7 +23,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id
   has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }
@@ -120,15 +120,14 @@ class User < ActiveRecord::Base
 
   def create_associated_record
     # create the associated contact object
-    contact = Contact.create( :name => name, 
-                              :work_company => "The Kubala Washatko Architects, Inc.",
-                              :work_address => "W61 N617 Mequon Avenue\nCedarburg, WI 53012",
-                              :work_phone => "(262) 377-6039",
-                              :work_fax => "(262) 377-2954",
-                              :work_url => "www.tkwa.com",
-                              :work_email => email,
-                              :cat_number => 7
-                            )
+    contact = Contact.find_or_create_by_name(name)
+        contact.work_company = "The Kubala Washatko Architects, Inc."
+        contact.work_address = "W61 N617 Mequon Avenue\nCedarburg, WI 53012"
+        contact.work_phone = "(262) 377-6039"
+        contact.work_fax = "(262) 377-2954"
+        contact.work_url = "www.tkwa.com"
+        contact.work_email = email
+        contact.cat_number = 7
     # set the join id of the new contact object
     self.contact_id = contact.id
     self.status = "Current"

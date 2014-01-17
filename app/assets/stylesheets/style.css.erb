@@ -1191,13 +1191,15 @@ table.table td.bold a:hover { color:#1abc9c; opacity:.8; }
 /* users index */
 
 ul.users-menu { float:left; margin:0px -30px 0 0; }
-ul.users-menu li.user { float:left; width:273px; margin:0 30px 12px 0; padding:8px; background-color:rgba(247,248,250,1); border:2px solid #ecf0f5; border-radius:6px; list-style:none; }
+ul.users-menu li.user { float:left; position:relative; width:273px; margin:0 30px 12px 0; padding:8px; background-color:#f4f6f9; border:2px solid #ecf0f5; border-radius:6px; list-style:none; }
 ul.users-menu li.user img.avatar { float:left; border-radius:40px; margin-left:-26px; border:1px solid #ced5da; }
 ul.users-menu li.user .info { float:left; margin:6px 5px 10px 10px; width:190px; height:70px; }
-ul.users-menu li.user .info a { color:#bcc6cc; }
+ul.users-menu li.user .info a { color:#9ba6ac; }
 ul.users-menu li.user .info a:hover { color:#1abc9c; }
 ul.users-menu li.user .name  { color:#2c3445; font-weight:700; }
 
+ul.users-menu li.user .info a.delete { position:absolute; top:7px; right:10px; }
+ul.users-menu li.user .info a.delete:hover { color:#e64c3c; }
 
 /* errors */
 
