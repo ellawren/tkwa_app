@@ -21,7 +21,7 @@
     <div class="third">
         <div class="column-header">
     	   <h3>Reimbursables</h3>
-            <a class="control-link fui-new" href="#"></a>
+            <%= link_to "", reimbursables_path, class: "control-link fui-new" %>
         </div>
 		<%= hidden_field_tag "project[reimbursable_ids][]", nil %>
 		<% Reimbursable.all.each do |reimbursable| %>
@@ -35,7 +35,7 @@
 	<div class="third last">
         <div class="column-header">
     	   <h3>Consultant Roles</h3>
-            <a class="control-link fui-new" href="#"></a>
+    	   	<%= link_to "", consultant_roles_path, class: "control-link fui-new" %>
         </div>
 		<%= hidden_field_tag "project[consultant_role_ids][]", nil %>
 		<% ConsultantRole.all.each do |consultant_role| %>

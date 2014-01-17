@@ -188,7 +188,7 @@ module ApplicationHelper
     elsif params[:controller] == "static_pages" && params[:action] == "potential_projects"
         "active" if c_name.include?(params[:action])
     # exception for /phases
-    elsif params[:controller] == "phases"
+    elsif params[:controller] == "phases" || params[:controller] == "consultant_roles"
         "active" if c_name.include?('projects')
     # exception for /employees/:id/forecast
     elsif params[:controller] == "users" && params[:action] == "forecast"

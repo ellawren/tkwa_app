@@ -51,6 +51,7 @@ match '/phases/modal',   to: 'phases#modal', as: "modal_phases"
 
   resources :categories 
   resources :consultants
+  resources :consultant_roles
   resources :data_records
   resources :employee_teams
   resources :globals, :only => [:index, :create, :update]
@@ -59,6 +60,7 @@ match '/phases/modal',   to: 'phases#modal', as: "modal_phases"
   resources :messages
   resources :phases
   resources :plan_entries
+  resources :reimbursables
   resources :relationships, only: [:create, :destroy]
   resources :schedule_items
   resources :services

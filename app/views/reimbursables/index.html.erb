@@ -1,0 +1,23 @@
+<% content_for :page_header do %>
+	<% provide :title, "Reimbursables" %>
+	<div class="page-header">
+		<h1>Reimbursables</h1>
+	</div>
+<% end %>
+
+<%= link_to "Add Reimbursable", new_reimbursable_path, class: "btn" %>
+
+<br />
+	<ul>
+		<% @reimbursables.each do |param| %>
+  			<li>
+  				<%= link_to param.reimbursable_name, edit_reimbursable_path(param.id) %>
+  				<% if signed_in? %>
+						<% if current_user.admin? %>
+						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+						<% end %>
+  				<% end %>
+  			</li>
+		<% end %>
+	</ul>
+<br /><br />
