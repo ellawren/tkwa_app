@@ -35,9 +35,15 @@ module ApplicationHelper
     date.wday + 1
   end
 
-  def nonzero?(value)
+  def nonzero(value)
     if value > 0
-      value
+      number_with_precision(value, :precision => 2)
+    end
+  end
+
+   def nonzero_currency(value)
+    if value > 0
+      number_to_currency(value, :precision => 0)
     end
   end
 
@@ -227,7 +233,7 @@ module ApplicationHelper
       goal = g.to_f
       actual = a.to_f
       if goal >= actual
-        "(#{goal - actual})"
+        "- #{number_to_currency(goal - actual)}"
       elsif goal < actual
         "+#{ number_to_currency(actual - goal)}"
       end

@@ -43,23 +43,21 @@
     <tbody>
         <% if params[:view] != 'employee' %>
             <% Project.current.each do |p| %>
-                <% if p.employee_teams.current.count > 0 %>
-                    <tr class="head">
-                        <td>
-                            <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
-                        </td>
-                        <% four_month_array(date).each do |w, y| %>
-                            <td class="<%= month_shading(w, y) %>"></td>
-                        <% end %>
-                    </tr>
-                    <% p.employee_teams.each do |e| %>
-                    <tr class="subhead">
-                        <td><%= e.employee_name %></td>
-                        <% p.employee_forecast(e.user_id, four_month_array(date)).each do |plan| %>
-                            <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
-                        <% end %>
-                    </tr>
+                <tr class="head">
+                    <td>
+                        <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
+                    </td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"></td>
                     <% end %>
+                </tr>
+                <% p.employee_teams.each do |e| %>
+                <tr class="subhead">
+                    <td><%= e.employee_name %></td>
+                    <% p.employee_forecast(e.user_id, four_month_array(date)).each do |plan| %>
+                        <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
+                    <% end %>
+                </tr>
                 <% end %>
             <% end %>
         <% else %>
@@ -97,7 +95,7 @@
 
 <script>
 //reset modal remote on close
-    $('#myModal').on('hidden', function () {
-        $(this).removeData('modal');
-    })
+$('#myModal').on('hide.bs.modal', function (e) {
+    $(this).data('bs.modal', null);
+});
 </script>

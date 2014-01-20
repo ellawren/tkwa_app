@@ -16,14 +16,18 @@
                     	<th class="table-cell"><%= phase.number %><br /><span class="name"><%= phase.name %></span></th>
                     <% end %>
                     <th class="total-hours">Total</th>
-                    <th class="remaining">Remaining</th>
+                    <th class="remaining">% Used</th>
                 </tr>
             </thead>
 			<tbody>
 				<%= f.fields_for :employee_teams do |team| %>
 		    		<tr>
 		    			<%= team.hidden_field :user_id %>
-		    			<td class="tname"><%= team.object.employee_name %></td>
+		    			<td class="tname"><%= team.object.employee_name %>
+		    				<div class="role">
+		    					<%= team.object.role %>
+		    				</div>
+		    			</td>
 		    			<td class="labels">
 							<div class="target">target</div>
 							<div class="actual">actual</div>
@@ -33,21 +37,25 @@
 			                <td class="phase-cell">
 			                    <%= team.text_field eval(":#{phase.shorthand}_hours") %>
 			                    <div class="actual-hours <%= is_over?(eval("team.object.#{phase.shorthand}_hours"), team.object.employee_actual(phase.number)  ) %>">
-			                    	<%= nonzero?(team.object.employee_actual(phase.number)) %>
+			                    	<%= nonzero(team.object.employee_actual(phase.number)) %>
 			                    </div>
 			                </td>
 			            <% end %>
 
 			            <td class="total-hours">
 			            	<div class="target-total">
-								<%= nonzero?(team.object.est_total) %>
+								<%= nonzero(team.object.est_total) %>
 							</div>
 							<div class="actual-total <%= is_over?(team.object.est_total, team.object.employee_actual('Total')) %>">
-								<%= nonzero?(team.object.employee_actual('Total')) %>
+								<%= nonzero(team.object.employee_actual('Total')) %>
 							</div>
 						</td>
 						<td class="remaining">
-							<%= remaining(team.object.est_total, team.object.employee_actual('Total')) %>
+							<% unless team.object.est_total == 0 %>
+								<div class="percent-used <%= is_over?(team.object.est_total, team.object.employee_actual('Total')) %>">
+								<%= number_to_percentage(team.object.percent_used, :precision => 0) %>
+								</div>
+							<% end %>
 						</td>
 		    		</tr>
 		    	<% end %>
@@ -57,43 +65,50 @@
 					<td>Target Hours</td>
 					<td></td>
 					<% @project.available_phases.each do |phase| %>
-						<td class="phase-cell"><% unless @project.phase_est(phase.shorthand) == 0 %><%= number_with_precision(@project.phase_est(phase.shorthand), :precision => 2) %><% end %></td>
+						<td class="phase-cell"><%= nonzero(@project.phase_est(phase.shorthand)) %></td>
 					<% end %>
-					<td class="total-hours"><%= number_with_precision(@project.sum_est, :precision => 2) %></td>
+					<td class="total-hours"><%= nonzero(@project.sum_est) %></td>
 					<td></td>
 				</tr>
 				<tr class="est-fees">
 					<td>Target Fees</td>
 					<td></td>
 					<% @project.available_phases.each do |phase| %>
-						<td class="phase-cell"><% unless @project.target_billing_total(phase.number) == 0 %><%= number_to_currency(@project.target_billing_total(phase.number), :precision => 0) %><% end %></td>
+						<td class="phase-cell"><%= nonzero_currency(@project.target_billing_total(phase.number)) %></td>
 					<% end %>
-					<td class="total-hours"><%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %></td>
+					<td class="total-hours"><%= nonzero_currency(@project.target_billing_total('Total')) %></td>
 					<td></td>
 				</tr>
-				<tr>
-					<td class="tname">Total Hours</td>
+				<tr class="actual">
+					<td class="tname">Actual Hours<br>Actual Fee Used</td>
 					<td class="labels">
-						<div class="actual">actual</div>
 					</td>
 
 					<% @project.available_phases.each do |phase| %>
 						<td class="phase-cell">
 							<div class="actual-hours <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>">
-								<%= nonzero?(@project.phase_actual("#{phase.number}")) %>
+								<%= nonzero(@project.phase_actual("#{phase.number}")) %>
+								<br>
+								<%= nonzero_currency(@project.actual_billing_total(phase.number)) %>
 							</div>
 						</td>
 					<% end %>
 					
 					<td class="total-hours">
 						<div class="actual-total <%= is_over?(@project.sum_est, @project.sum_actual) %>">
-							<%= nonzero?(@project.sum_actual) %>
+							<%= nonzero(@project.sum_actual) %><br>
+							<%= nonzero_currency(@project.actual_billing_total('Total')) %>
 						</div>
 					</td>
 
 					<td class="remaining">
-						<%= remaining(@project.sum_est, @project.sum_actual) %>
+						<% unless @project.sum_est == 0 %>
+							<div class="percent-used <%= is_over?(@project.sum_est, @project.sum_actual) %>">
+								<%= number_to_percentage(@project.percent_used, :precision => 0) %>
+							</div>
+						<% end %>
 					</td>
+					
 				</tr>
 			</tfoot>
 		</table>

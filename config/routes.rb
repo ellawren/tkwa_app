@@ -7,6 +7,7 @@ TkwaApp::Application.routes.draw do
   match '/projects/import',   to: 'projects#import'
   match '/contacts/import',   to: 'contacts#import'
   match '/projects/forecast',   to: 'projects#forecast_index'
+    match '/projects/:id',   to: 'projects#info'
 
   resources :projects do
     resources :employee_teams

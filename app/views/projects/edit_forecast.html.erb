@@ -4,54 +4,64 @@
 
 <%= form_for @project do |f| %>
 <% date = Date.today %>
-	<div class="modal-body">
-		<table class="table forecast">
-			<thead>
-				<tr>
-					<th></th>
-					<% four_month_year_array(date).each do |w| %>
-						<th><%= w %></th>
-					<% end %>
-				</tr>
-				<tr>
-					<th></th>
-					<% four_month_monthname_array(date).each do |w| %>
-						<th><%= w %></th>
-					<% end %>
-				</tr>
-				<tr class="week">
-					<th></th>
-					<% four_month_weeknum_array(date).each do |w| %>
-						<th <%= "class='current'" if w == this_week %>><%= w %></th>
-					<% end %>
-				</tr>
-			</thead>
-			<tbody>
-				<% @project.employee_teams.each do |e| %>
-				<tr>
-					<td><%= e.employee_name %></td>
-					<%= f.fields_for :plan_entries, @project.employee_forecast(e.user_id, four_month_array(date)) do |plan| %>
-						<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
-						</td>
-					<% end %>
-				</tr>
-				<% end %>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<% @project.forecast_week_total(four_month_array(date)).each do |w| %>
-						<td><%= w %></td>
-					<% end %>
-				</tr>
-			</tfoot>
-		</table>
 
-	</div>
+	<% if @project.employee_teams.length == 0 %>
+		<div class="modal-body">
+			<p class="description">This project's team has not been set up yet. Go to the <%= link_to "project setup page", setup_project_path(@project) %> to add team members.</p>
+		</div>
+	<% else %>
 
-	<div class="modal-footer">
-    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    	<%= f.submit "Save Changes", class: "btn btn-primary" %>
-	</div>
+		<div class="modal-body">
+
+			<table class="table forecast">
+				<thead>
+					<tr>
+						<th></th>
+						<% four_month_year_array(date).each do |w| %>
+							<th><%= w %></th>
+						<% end %>
+					</tr>
+					<tr>
+						<th></th>
+						<% four_month_monthname_array(date).each do |w| %>
+							<th><%= w %></th>
+						<% end %>
+					</tr>
+					<tr class="week">
+						<th></th>
+						<% four_month_weeknum_array(date).each do |w| %>
+							<th <%= "class='current'" if w == this_week %>><%= w %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% @project.employee_teams.each do |e| %>
+					<tr>
+						<td><%= e.employee_name %></td>
+						<%= f.fields_for :plan_entries, @project.employee_forecast(e.user_id, four_month_array(date)) do |plan| %>
+							<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
+							</td>
+						<% end %>
+					</tr>
+					<% end %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<% @project.forecast_week_total(four_month_array(date)).each do |w| %>
+							<td><%= w %></td>
+						<% end %>
+					</tr>
+				</tfoot>
+			</table>
+
+		</div>
+
+		<div class="modal-footer">
+	    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	    	<%= f.submit "Save Changes", class: "btn btn-primary" %>
+		</div>
+
+	<% end %>
 
 <% end %>

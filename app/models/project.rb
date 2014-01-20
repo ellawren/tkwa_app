@@ -84,7 +84,7 @@ class Project < ActiveRecord::Base
     has_many :schedule_items
     accepts_nested_attributes_for :schedule_items, :allow_destroy => true
 
-    has_many :plan_entries
+    has_many :plan_entries, :dependent => :destroy
     accepts_nested_attributes_for :plan_entries, :allow_destroy => true
 
     has_many :shop_drawings
@@ -190,8 +190,8 @@ class Project < ActiveRecord::Base
     end
 
     def percent_billed_to_date
-        if billed_to_date && tkwa_fee
-            ( billed_to_date/tkwa_fee.to_f ) * 100
+        if billed_to_date && contract_amount
+            ( billed_to_date/contract_amount ) * 100
         end
     end
 
@@ -576,6 +576,9 @@ class Project < ActiveRecord::Base
         x
     end
 
+    def percent_used
+        (sum_actual / sum_est) * 100
+    end
 
     
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 

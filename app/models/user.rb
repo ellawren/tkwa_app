@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
 
     has_many :time_entries, :through => :timesheets
     
-    has_many :plan_entries
+    has_many :plan_entries, :dependent => :destroy
     accepts_nested_attributes_for :plan_entries, :allow_destroy => true
 
     has_many :projects, :through => :employee_teams

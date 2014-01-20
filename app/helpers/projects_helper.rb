@@ -175,7 +175,7 @@ module ProjectsHelper
     def forecast_week_total_all(four_month_array)
         x = []
         four_month_array.each do |w, y|
-            plan_entries = PlanEntry.find_all_by_year_and_week(y, w)
+            plan_entries = PlanEntry.current.find_all_by_year_and_week(y, w)
             array = []
             sum = 0
             plan_entries.each do |e|

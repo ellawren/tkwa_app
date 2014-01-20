@@ -1,7 +1,12 @@
 class PlanEntry < ActiveRecord::Base
 	belongs_to :user
   	belongs_to :project
-	# delegate :contact, :to => :employee, :allow_nil => true
+
+	scope :current, {
+        :select => "plan_entries.*",
+        :joins => "INNER JOIN projects ON projects.id = plan_entries.project_id", 
+        :conditions => ["status = ?", "current" ]
+    }
 end
 # == Schema Information
 #

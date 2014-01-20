@@ -69,6 +69,10 @@
                 <%= f.select(:building_type, Project::BUILDING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
             </div>
             <div class="input-row">
+                <%= f.label(:billing_type, "Billing Type", class: "input-label") %>
+                <%= f.select(:billing_type, Project::BILLING_TYPES, {:prompt => ' '}, {:class => 'custom-select'}) %>
+            </div>
+            <div class="input-row">
                 <%= f.label(:status, "Status", class: "input-label") %>
                     <%= hidden_field_tag "project[status]", nil %>
                     <div class="radio-group">
