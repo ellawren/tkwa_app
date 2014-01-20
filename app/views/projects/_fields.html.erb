@@ -53,10 +53,30 @@
                 <%= f.text_field :client, class: "#{'i-am-messed-up' if params[:action] == 'new' }" %>
             </div>
             <div class="input-row">
-                <%= f.label(:client_url, "Client Website", class: "input-label") %>
-                <%= f.text_field :client_url, class: "button-right" %>
-                    <button class="btn input-button" onclick="openURL('project_client_url'); return false;">open website</button>
-            </div>
+                    <%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
+                    <% if f.object.billing_name.blank? %>
+                        <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "#{'button-right' if f.object.billing_name.present? }" %>
+                    <% else %>
+                        <% @billing = Contact.find_by_name(f.object.billing_name) %>
+                        <% if @billing # if there is a billing name AND it matches an existing contact %>
+                            <div class="contact-address">
+                                <% unless @billing.work_address.blank? %><span class="bold"><%= @billing.name %></span><br><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
+                                <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
+                                <%= link_to "go to contact record", contact_path(@billing), class: "btn input-button contact" %>
+                                <a class="btn input-button contact" id="change-contact">change contact</a>
+                            </div>
+                            <div class="new-contact">
+                                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right" %>
+                                <a class="text-btn" id="cancel-change">cancel</a>
+                            </div>
+                            
+                        <% elsif f.object.billing_name.present? # if there is a billing name and it DOES NOT match an existing contact %>
+                            <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right" %>
+                            <%= link_to "add contact", new_contact_path(:name => f.object.billing_name), class: "btn input-button" %>
+                        <% end %>
+                    <% end %>
+                </div>
+
         </div>
 
         <div class="narrow">
@@ -102,37 +122,4 @@
                     </div>
             </div>
         </div>
-
-        <div class="full">
-            <h2>Contact Information</h2>
-
-            <div class="wide">
-                
-                <div class="input-row">
-                    <%= f.label(:billing_name, "Billing Contact", class: "input-label") %>
-                    <% if f.object.billing_name.blank? %>
-                        <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "#{'button-right' if f.object.billing_name.present? }" %>
-                    <% else %>
-                        <% @billing = Contact.find_by_name(f.object.billing_name) %>
-                        <% if @billing # if there is a billing name AND it matches an existing contact %>
-                            <div class="contact-address">
-                                <% unless @billing.work_address.blank? %><span class="bold"><%= @billing.name %></span><br><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
-                                <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
-                                <%= link_to "go to contact record", contact_path(@billing), class: "btn input-button contact" %>
-                                <a class="btn input-button contact" id="change-contact">change contact</a>
-                            </div>
-                            <div class="new-contact">
-                                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right" %>
-                                <a class="text-btn" id="cancel-change">cancel</a>
-                            </div>
-                            
-                        <% elsif f.object.billing_name.present? # if there is a billing name and it DOES NOT match an existing contact %>
-                            <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right" %>
-                            <%= link_to "add contact", new_contact_path(:name => f.object.billing_name), class: "btn input-button" %>
-                        <% end %>
-                    <% end %>
-                </div>
-
-            </div> <!-- end wide -->
             
-        </div><!-- end full -->

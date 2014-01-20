@@ -82,6 +82,14 @@ class User < ActiveRecord::Base
         arr
     end
 
+    # this is used for the calendar on timesheets index --> https://github.com/excid3/simple_calendar
+    def start_time
+        # current birthday
+
+            DateTime.new(Date.today.cwyear, self.birth_month, self.birth_day)
+
+    end
+
     def employee_forecast(project_id, four_month_array)
         entries = []
         four_month_array.each do |w, y|

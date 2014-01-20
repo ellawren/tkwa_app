@@ -190,7 +190,9 @@ class Project < ActiveRecord::Base
     end
 
     def percent_billed_to_date
-        if billed_to_date && contract_amount
+        if billed_to_date == 0 || contract_amount == 0
+            0
+        else
             ( billed_to_date/contract_amount ) * 100
         end
     end

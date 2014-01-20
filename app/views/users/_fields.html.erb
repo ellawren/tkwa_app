@@ -75,7 +75,7 @@
         <div class="narrow">
             <div class="input-row">
                 <%= f.label :birth_month, "Birthday", class: "input-label" %>
-                <%= f.select(:birth_month, Date::ABBR_MONTHNAMES.compact.each_with_index.collect{|m, i| [m, i]}, {:prompt => ' '}, {:class => 'custom-select birth-month'}) %>
+                <%= f.select(:birth_month, Date::ABBR_MONTHNAMES.compact.each_with_index.collect{|m, i| [m, i+1]}, {:prompt => ' '}, {:class => 'custom-select birth-month'}) %>
                 <%= f.select(:birth_day, (1..31), {:prompt => ' '}, {:class => 'custom-select birth-day'}) %>
             </div>
             <div class="input-row">
@@ -97,7 +97,6 @@
             </div>
         </div>
     <% end %>
-
 
 <script>
     $('#user_photo').live('change', function(){
