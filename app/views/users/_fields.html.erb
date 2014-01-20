@@ -6,6 +6,10 @@
             <%= f.label(:name, class: "input-label") %>
             <%= f.text_field :name, class: "span5" %>
         </div>
+        <div class="input-row">
+            <%= f.label :title, "Title", class: "input-label" %>
+            <%= f.text_field :title %>
+        </div>
 
         <div class="input-row">
             <%= f.label :email, "Login Email", class: "input-label" %>
@@ -13,22 +17,19 @@
         </div>
 
     </div>
-    <div class="narrow">
+    <div class="narrow photo">
         <div class="input-row">
-            <div class="image-box small">
-                    <div class="image-placeholder" id="photo-placeholder">
-                        <%= image_tag @user.photo.url(:thumb), class: "diagram" %>
-                    </div>
-                    <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
+            <label class="input-label">Profile Photo</label>
+            <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
                     <div class="add-image" >
                         <%= f.file_field :photo %>
                         <div class="text">Change Photo</div>
                     </div>
-                    <label for="user_delete_photo" class="fui-cross">
+                    <label for="user_delete_photo" class="delete-photo">
+                        Delete Photo
                         <%= f.check_box(:delete_photo) %>
                     </label>
 
-            </div>
         </div>
     </div>  
     
@@ -50,7 +51,7 @@
     <% if current_user.admin? %>
         <h2>Employee Info</h2> 
 
-        <div class="narrow">
+        <div class="third">
             <div class="input-row">
                 <%= f.label :employee_number, "Employee Number", class: "input-label" %>
                 <%= f.text_field :employee_number, autocomplete: "off"  %>
@@ -68,6 +69,22 @@
                     <label class="radio"><%= f.radio_button :admin, false, data_toggle: "radio" %>No
                     </label>
                 </div>
+            </div>
+            
+        </div>
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label :birth_month, "Birthday", class: "input-label" %>
+                <%= f.select(:birth_month, Date::ABBR_MONTHNAMES.compact.each_with_index.collect{|m, i| [m, i]}, {:prompt => ' '}, {:class => 'custom-select birth-month'}) %>
+                <%= f.select(:birth_day, (1..31), {:prompt => ' '}, {:class => 'custom-select birth-day'}) %>
+            </div>
+            <div class="input-row">
+                <%= f.label :hire_date, "Hire Date", class: "input-label" %>
+                <%= f.text_field :hire_date, class: "datepicker"  %>
+            </div>
+            <div class="input-row">
+                <%= f.label :leave_date, "Leave Date", class: "input-label" %>
+                <%= f.text_field :leave_date, class: "datepicker"  %>
             </div>
             <div class="input-row">
                 <%= f.label :active, class: "input-label" %>

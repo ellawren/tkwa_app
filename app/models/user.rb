@@ -20,10 +20,13 @@
 #  status             :string(255)
 #  hire_date          :string(255)
 #  leave_date         :string(255)
+#  birth_month        :integer
+#  birth_day          :integer
+#  title              :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id, :hire_date, :leave_date, :birth_month, :birth_day, :title
   has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }

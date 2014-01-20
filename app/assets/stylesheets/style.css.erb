@@ -217,6 +217,10 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.full textarea { width:620px; }
 		.full.contact textarea { width:668px; }
 
+	.third { float:left; width:300px; }
+		.third input[type="text"] { float:left; width:80px; }
+		.third .input-label { float:left; width:140px; padding:10px 0; }
+
 .radio-group { float:left; margin-top:10px; }
 
 .custom-select { float:left; height:36px; padding: 4px 5px; border: 2px solid #e1e6eb; background-image:url(/assets/select-arrow.png); background-repeat:no-repeat; background-position:right; color: #16a085; font-family: "Lato", sans-serif; font-size: 14px; line-height:26px; text-indent: 6px; -webkit-appearance: none; -moz-appearance: none; text-indent: 5px; text-overflow: ''; /* text-indent and text-overflow are fixes to remove the default dropdown arrow in FF */ -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; }
@@ -341,7 +345,7 @@ a.reset { display:inline-block;margin-left:10px; font-size:13px; font-weight:400
 ul.tile-list { float:left; width:100%; margin-bottom:60px; margin-left:-5px; list-style:none; }
 ul.tile-list.small-tiles { float:left; width:100%; margin-bottom:10px; margin-left:-5px; list-style:none; }
 	ul.tile-list li { float:left; }
-		ul.tile-list li a { display:block; width:114px; height:114px; padding:15px; margin-left:5px; border-radius:8px; background-color: #ecf0f5; color:#34495e; }
+		ul.tile-list li a { display:block; width:121px; height:114px; padding:15px; margin:5px 5px 0 0; border-radius:8px; background-color: #ecf0f5; color:#34495e; }
 		ul.tile-list.small-tiles li a { display:block; width:114px; height:20px; padding:15px; margin-left:5px; border-radius:8px; background-color: #ecf0f5; color:#34495e; text-align:center; }
 			ul.tile-list li a:hover { background-color:#1abc9c; color:#fff; }
 
@@ -471,7 +475,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.remaining .act.sum { width:70px; height:20px; padding:2px 0; text-align:center; margin:30px auto 0px; border-radius:6px; background-color:#86cc71; color:#fff; font-weight:700; }
 		.remaining .act.sum.over { background-color:#e64c3c; }
 
-	.remaining .percent-used { background-color:#86cc71; font-size:20px; margin-top:3px; padding:16px 0; color:#fff; border-radius:6px; }
+	.remaining .percent-used { background-color:#86cc71; min-width:50px; font-size:16px; margin-top:3px; padding:16px 0; color:#fff; border-radius:6px; }
 	.remaining .percent-used.over { background-color:#e64c3c; }
 
 	/* foot */
@@ -898,6 +902,19 @@ label[for="pattern_delete_diagram"].checked, label[for="pattern_delete_diagram"]
 .pattern input.save-btn { float:right; width:250px; }
 .pattern .text-button { float:right; width:auto; padding:6px; margin:6px 10px 0 0; cursor:pointer; }
 
+/* user page */
+
+.user-round { border-radius:40px; border:2px solid #bcc6cc; margin:-6px 10px 20px 0; }
+
+.custom-select.birth-month { width:104px; }
+.custom-select.birth-day{ width:80px; margin-left:4px; }
+
+.photo .image-name { float:left; width:100px; margin-top:10px;  }
+.photo .add-image { float:left; margin-top:10px; }
+.photo .add-image input { position: absolute; top: -30px; left:-5px;  height: 60px; cursor: pointer; }
+.photo .add-image .text { line-height:34px; }
+.photo label[for="user_delete_photo"] { position:static; color: #34495e; text-align:center; float:left; background-color: #bcc6cc; font-size: 12px; overflow: hidden; width: 118px; height: 24px; padding-top:3px; border-radius:8px; margin:4px 0 0 160px; }
+.photo .delete-photo input[type="checkbox"] { position:absolute; top:-20px; }
 
 /* potential projects */
 
