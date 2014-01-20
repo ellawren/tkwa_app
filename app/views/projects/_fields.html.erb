@@ -60,7 +60,8 @@
                         <% @billing = Contact.find_by_name(f.object.billing_name) %>
                         <% if @billing # if there is a billing name AND it matches an existing contact %>
                             <div class="contact-address">
-                                <% unless @billing.work_address.blank? %><span class="bold"><%= @billing.name %></span><br><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
+                                <span class="bold"><%= @billing.name %></span><br>
+                                <% unless @billing.work_address.blank? %><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
                                 <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
                                 <%= link_to "go to contact record", contact_path(@billing), class: "btn input-button contact" %>
                                 <a class="btn input-button contact" id="change-contact">change contact</a>
