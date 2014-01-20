@@ -1,6 +1,10 @@
 TkwaApp::Application.routes.draw do
 
   
+  get "errors/error_404"
+
+  get "errors/error_500"
+
   post "/csv_import" => 'projects#csv_import'
   post "/cont_csv_import" => 'contacts#cont_csv_import'
   match '/projects/current',  to: 'projects#current'

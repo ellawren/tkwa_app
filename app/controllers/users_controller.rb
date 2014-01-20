@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :correct_or_admin_user,   only: [:edit, :update, :show]
-  before_filter :admin_user,     only: [:index, :new, :destroy]
+  before_filter :admin_user,     only: [:index, :create, :new, :destroy]
   
   def index
     @title = "All users"
@@ -28,7 +27,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "User updated successfully!"
-      sign_in @user # this is a security feature - keep it even though it makes admin edits annoying
+      # technically all user updates should trigger a sign-in, but this means users cannot edit others' info
+      # so only current users are signed in (they need to be or it will kick back to home on edit)
+      if @user == current_user
+        sign_in @user 
+      end
       redirect_to(:back) 
     else
       render 'edit'
