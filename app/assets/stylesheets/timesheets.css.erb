@@ -1,0 +1,212 @@
+/* TIMESHEETS index */
+
+	/* calendar */
+	#calendar { float:left; width:660px; margin-top:20px; }
+	#calendar h2 { width:660px; text-align:center; font-size:14px; font-weight:900; padding-bottom:3px; }
+	#calendar h2 .previous-month, #calendar h2 .next-month { float:left; width:30px; height:30px; border:1px solid #ddd; border-radius:30px; background-image:url(/assets/select-arrow.png); background-position:0px 2px; background-repeat:no-repeat; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); }
+	#calendar h2 .next-month { float:right; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(-90deg); }
+	#calendar h2 .previous-month:hover, #calendar h2 .next-month:hover { border-color:#1abc9c; background-image:url(/assets/select-arrow-green.png);}
+
+	.simple-calendar { width:auto; float:left; }
+	.simple-calendar .day { height:80px; width:90px; border:1px solid #ced5da; text-align:center; }
+	.simple-calendar .day div { font-size:11px; width:72px; margin:0 6px 0 10px; padding:0px; }
+	.simple-calendar .day.not-current-month { background-color:#ecf0f5; color:#bcc6cc; } 
+	.simple-calendar div.day_number { font-size:30px; font-weight:100; margin:0 auto;}
+	.simple-calendar .day.today { background-color:#1abc9c; color:#fff; border:4px solid #f1c40f; height:74px; width:84px; }
+	.simple-calendar .day.events { background-color:#f1c40f; color:#34495e; }
+	.simple-calendar .day.past { background-image:url(/assets/calendar.png); background-repeat:no-repeat; }
+	.simple-calendar .day.past.events { background-image:url(/assets/calendar-dark.png); }
+
+	#vacation { float:left; margin:50px 0 0 50px; width:220px; height:500px; }
+	#vacation h2 { margin-top:0px; padding-bottom:5px; }
+
+
+/* TIMESHEETS show */
+
+    .table-main.timesheets     { float:left; width:100%; margin:30px 0 0 0; }
+    .table-main.timesheets.non-billable     { margin:20px 0 20px 0; }
+    .table-main.timesheets .table-head { border-bottom:2px solid #333; }
+
+    .table-body     { float:left; width:100%;}
+    .table-row      { float:left; width:100%; padding:4px 0 0 0; }
+
+    .table-row .editable { display:none; }
+    .table-row .non-editable { display:block; }
+    .table-row.edit .editable { display:block; }
+    .table-row.edit .non-editable { display:none; }
+
+    .edit-me { float:left; margin:10px 0; width:20px; height:20px; margin-left:6px; background:url(/assets/edit-gray.png); cursor:pointer; }
+	.edit-me:hover { background:url(/assets/edit-green.png); }
+	.done-editing { float:left; cursor:pointer; margin:0 -40px 0 8px; padding:10px 0; }
+	.table-row.edit.not-saved .delete, .table-row.edit.not-saved .done-editing { display:none; }
+
+    .table-head { padding-left:0px; border-bottom:2px solid #333;  }
+	.chzn-select, .chzn-container { float:left; }
+
+/*	this stuff is not used at the moment - summary tables and such
+
+	.table-main.timesheets .table-head  .cell.total { margin:0px 3px 0px 16px; padding:16px 5px 5px 5px; width:54px; height:30px; border-top:1px solid #555; border-right:1px solid #555; border-right:1px solid #555; border-left:1px solid #555; border-left:1px solid #555; background-color: #efefef; text-align:center; font-size:9pt; font-family:Argumentum-Bold; line-height:16px; text-align:center; -webkit-border-top-right-radius: 8px; -moz-border-top-right-radius: 8px; -webkit-border-top-left-radius: 8px; -moz-border-top-left-radius: 8px; border-radius-top-left: 8px; border-radius-top-right: 8px; }
+	.table-main.timesheets .table-head  .cell.total.ytd { margin-left:3px; background:none;  }
+	.table-main.timesheets .table-head  .cell.total.ytd.diff { margin-left:5px; width:62px; margin-right:13px; }
+	.table-main.timesheets .table-body .table-row .total.ytd { margin:0px 3px 0px 3px; background:none; }
+	.table-main.timesheets .table-body .table-row .total.ytd.diff { margin-left:5px; width:68px; background:none; margin-right:15px; }
+	.table-main.timesheets .table-body .table-row .input.text-only { padding:6px 16px 3px 0px; }
+	.table-main.timesheets .table-body .table-row .input.phase { width:95px; }
+	.table-main.timesheets .table-body .table-row .input.category { margin-right:-2px; width:245px; }
+	.table-main.timesheets .table-body .table-row .input.category-select { margin-right:14px; width:245px; }
+	.table-body .table-row select.input.category { margin-right:20px; }
+	.table-body .table-row.holiday    { background-color:#d0eae7; }
+	.table-body .table-row.holiday .delete  { display:none; }	
+	.table-footer .total.ytd { margin:0px 3px 0px 3px; background:none; }
+	.table-footer .total.ytd.diff { margin-left:5px; width:62px; margin-right:11px; }
+	.table-footer .total.ytd.nb-shift-fields { margin-left:92px; }
+	.table-main.timesheets .add-link { width:97.5%; border-top:2px solid #333; }
+	.table-main.timesheets.summary .table-head  .cell.category { width:224px; padding-left:8px;}
+	.table-main.timesheets.summary .table-body .table-row .input.category { margin-right:-2px; width:220px; }
+  	.table-main.timesheets.summary .table-footer     { margin:0px 0 0 155px; }
+  	.timesheets .table-footer { margin-top:-30px; }
+	.add-link { width:97%; }
+	.caps { padding-right:8px; padding-left:8px; text-transform:uppercase; font-size:9pt; font-family:Argumentum-Bold; }
+	.table-body .span5, .timesheets.weekly-totals .table-body .span7 { margin-right:4px; }
+	.table-head .goal-header  { padding:18px 0 5px 0; height:28px; line-height:16px; }
+	.table-body .over-under { float:left; margin-right:10px; padding-top:14px; height:21px; text-align:center; }
+	.table-head .over-under { margin:12px 0 0 8px; line-height:16px; }
+	.green-shaded { float:left; margin-bottom:5px; padding:40px 20px; border:1px solid #dee4d1; background-color:#eff0f0; }
+	.table-notes { float:left; margin-bottom:30px; width:100%; color:#999; font-size:9pt; }
+	.submit-cutout { position:absolute; right:185px; bottom:-10px; width:80px; height:68px; background:url(/assets/cutout-sm.jpg); }
+	input.btn.gray-button { min-width:50px; width:73px; height:73px; padding:15px 10px 15px 10px; font-size:12pt; line-height:15px; border-radius:40px; vertical-align:middle; text-align:center; float:left; margin:4px 0 0 4px; color:#000; font-family:Argumentum-Light; }
+    #ui-datepicker-div { z-index:9999; }
+    #ui-datepicker-div { z-index:9999 !important; display:block; visibility:visible; } */
+
+    .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:1px solid #555; font-size:13px; font-weight:900; }
+	.timesheets .table-head .cell 	{ float:left; padding-top:5px; margin:0px 2px 0px 2px; }
+	.timesheets .table-body .table-row { padding:0px 0px 0px 8px; border-bottom:1px solid #e1e6eb;}
+		.timesheets .table-body .table-row.holiday { background-color:#e1f0f3; width:932px; padding-top:2px; }
+		.timesheets .table-body .table-row:first-child.holiday { margin-top:0px; }
+		.timesheets .table-body .table-row.holiday .entry-spacer { background-color:#fff; border-color:#b3dbe4; }
+		.timesheets .table-body .table-row.holiday .category-cell, .timesheets .table-body .table-row.holiday .description-cell, 
+		.timesheets .table-body .table-row.holiday .entry-spacer
+				{ color:#0ba0d4; }
+	.timesheets .table-body .table-row:first-child { margin-top:4px; }
+	.timesheets .custom-select { padding:4px 3px; }
+	.timesheets .delete { margin:8px 0 8px 6px; }
+	.timesheets.non-billable .table-head     	{ float:left; }
+
+ 	/* project */
+ 	.timesheet-tab { width:130px; margin-top:16px; font-weight:900; }
+ 	.timesheets .table-head .project-name { width:232px; margin:22px 4px 0 0; }
+	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; }
+	.timesheets .table-body .project-cell { width:226px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+		.timesheets .table-body .project-cell a { color:#1abc9c; }
+		.timesheets .table-body .project-cell a:hover { color:#16a085; }
+
+ 	/* phase */
+ 	.timesheets .table-head .phase { width:58px; margin-top:22px; }
+	.timesheets .table-body .phase.custom-select { width:60px; margin:2px 4px 2px 0; }
+		.timesheets .table-body .phase-cell { width:39px; float:left; padding:8px 0; margin:4px 25px 4px 0px; text-align:center; color:#1abc9c; }
+
+	/* task */
+	.timesheets .table-head .task { width:184px; margin-top:22px; }
+	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; }
+		.timesheets .table-body .task-cell { width:178px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+
+	/* time entries */
+	.timesheets .table-head .date { float:left; width:41px; padding:4px 4px 0 4px; font-size:11px; font-weight:400; text-align:center; text-transform:uppercase; }
+	.timesheets .table-head .date.today { color:#f1c40f; }
+	.timesheets .table-head .date .blanch { width:40px; padding:4px 0 0 0; margin:0px; font-size:15px; font-weight:900; text-align:center; }
+	.timesheets .time-entries { float:left; height:36px;}
+ 	.timesheets .time-entries .entry { float:left; }
+ 	.timesheets .time-entries .text-input { width:39px; height:32px; padding:0px 3px; margin:2px 4px 2px 0; text-align:center; }
+ 	.timesheets .time-entries .text-input.weekend { background-color:#f4f6f9; }
+	.timesheets .time-entries .entry.today .text-input { border-color:#f1c40f; }
+	.timesheets .time-entries .entry.today .text-input:focus { border-color:#5bae60; }
+
+	/* uneditable time entries */
+	.timesheets .time-entries .entry .entry-spacer { width:39px; height:16px; padding:6px 3px 10px; margin:2px 4px 2px 0; text-align:center; border: 2px solid #f4f6f9; color: #16a085; font-size: 14px; text-indent: 0px; font-family: "Lato", sans-serif; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; display: inline-block; line-height: 20px; vertical-align: middle;}
+	.timesheets .time-entries .entry .entry-spacer.weekend { background-color:#f4f6f9; }
+	.timesheets .time-entries .entry.today .entry-spacer { border-color:#f1c40f; }
+
+ 	/* total */
+ 	.timesheets .table-head .total { float:left; width:48px; padding:0px 4px; margin:26px 0 0 0; text-align:center; }
+	.timesheets .table-body .total { float:left; width:40px; height:21px; padding:12px 0 6px 5px; margin:0px 4px 0px 0; font-size:13px; font-weight:900; text-align:center; }
+
+	/* nb - category */
+	.timesheets .table-head .category { width:198px; padding-left:0px; margin-top:0px; margin-left:0px; }
+	.timesheets .category.custom-select { width:208px; margin:2px 4px 2px -8px; }
+		.timesheets .table-body .category-cell { width:204px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px -10px; color:#1abc9c; }
+
+	/* nb - description */
+	.timesheets .table-head .nb-description { float:left; width:270px; padding-left:12px; margin-top:17px; }
+	.text-input.nb-description { float:left; width:248px; height:32px; margin:2px 4px 2px 0; text-align:left; }
+		.timesheets .table-body .description-cell { width:264px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
+
+	/* add link */
+  	.add-link       { float:left; display:block; padding:2px 0 0 26px; margin-top:3px; background:url(/assets/add-mini-tall.png); background-repeat:no-repeat; font-family:Argumentum-Medium; text-decoration:none; }
+  	.add-link-sm    { float:left; display:block; height:25px; padding:3px 0 0 26px; margin-top:3px; background:url(/assets/add-mini.png); background-repeat:no-repeat; font-family:Argumentum-Medium; text-decoration:none; }
+  	.table-main .add-link   { width:93%; height:20px; padding-top:10px; padding-left:32px; margin-top:-1px; border-top:1px solid #555; background-position:8px 5px; }
+
+  	/* footer */
+    .table-footer     { float:left; width:101%; margin:0px; border-top:2px solid #000; }
+    	.table-footer .span { width:453px; margin-left:492px; }
+    		.table-footer .sum { float:left; width:30px; height:22px; padding:7px 9px 4px 9px; margin:2px 3px 2px 2px; font-size:13px; font-weight:400; text-align:right; }
+			.table-footer .total { float:left; width:45px; height:20px; padding:10px 5px 6px 5px; margin:0 3px 0 4px; font-size:13px; font-weight:900; text-align:center; }
+
+    /* unsaved */
+    .table-body .table-row.unsaved { width:932px; padding-top:4px; margin-top:2px; margin-bottom:1px; border-radius:4px; background-color:#ecf0f5; }
+	.table-body .table-row.unsaved .delete { display:none; }
+	.timesheets .unsaved .project-name.custom-select  { width:230px; margin:2px 4px 4px 0px; }
+	.timesheets .unsaved .category.custom-select { width:200px; margin:2px 4px 4px 0px; }
+
+	/* add a row */
+	.add.timesheets { width:150px; margin:10px 0 0 0px; }
+	.add.timesheets:after { content:"add a line"; }
+
+	/* summary */
+
+	.summary { float:left; position:relative; width:100%; width:862px; padding:6px 4px 2px 4px; margin:5px 0; border-radius:6px 0 0 6px; background-color:#2c3445; color:#fff; }
+		.summary .summary-label { float:left; width:438px; height:24px; padding:12px 8px 7px 12px; }
+		.summary .span { float:left; width:371px; height:38px; margin-left:24px; }
+			.summary .span .sum { float:left; width:36px; height:20px; padding:9px 4px 4px 4px; margin:1px 3px 2px 2px; border:2px solid #344953; border-radius:6px; background-color:#344953; font-size:13px; font-weight:400; text-align:center; }
+			.summary .span .total { float:left; width:50px; height:20px; padding:10px 5px 6px 5px; margin:0 9 0 4px; font-size:13px; font-weight:900; text-align:center; }
+				.summary .span .sum.today { border-color:#f1c40f; }
+	.table-main.timesheets .table-head.summary-header { border-bottom:none; }
+
+	/* these are for the round total bubble */
+	/*.summary:after { content:" "; position:absolute; right:-10px; top:0px; border-top:28px solid transparent; border-bottom:28px solid transparent; border-left:10px solid #2c3445; }*/
+	/*.timesheet-total { width:78px; height:28px; padding:36px 6px 34px 14px; text-align:center; float:left; margin:-18px -27px 0 -10px; border-radius:50px; font-size:22px; font-weight:700; border:3px solid #e1e6eb; color:#344953; }*/
+	.timesheet-total { float:left; width:50px; height:16px; padding:17px 10px 18px 10px; margin-top:5px; border-radius:0 6px 6px 0; background-color:#2c3445; color:#fff; font-size:14px; }
+
+.switch-box { float:right; margin-top:-65px; }
+
+.inline-edit-link { margin-left:5px; }
+.complete .btn.btn-primary { display:none; }
+
+.reopen {display:none; }
+.complete .reopen { display:block; }
+
+.timesheets.gray-box { height:auto; }
+	.timesheets.gray-box .input-label { color:#2c3445; font-weight:900; font-size:13px; margin-bottom:6px; }
+
+.timesheets.gray-box #notes { float:left; width:290px; margin-right:50px; }
+	.timesheets.gray-box #notes .input-label { float:left; width:100% }
+	.timesheets.gray-box #notes textarea { float:left; width:270px; }
+
+.timesheets.gray-box #summary { float:left; width:310px; height:160px; }
+	.timesheets.gray-box #summary .input-label { float:left; width:300px; }
+	.timesheets.gray-box #summary .content { float:left; width:100%; }
+	.timesheets.gray-box #summary .token { float:left; width:84px; }
+	.timesheets.gray-box #summary .minus { float:left; width:16px; margin:40px 5px 60px; border-bottom:4px solid #bcc6cc; }
+	.timesheets.gray-box #summary .equals { float:left; width:16px; height:5px; margin:36px 5px 60px; border-bottom:4px solid #bcc6cc; border-top:4px solid #bcc6cc;}
+	.timesheets.gray-box #summary .circle { width:80px; height:44px; padding:18px 0; font-size:20px; font-weight:400; text-align:center; border:2px solid #bcc6cc; color:#fff; border-radius:40px; }
+		.timesheets.gray-box #summary .circle.target { background-color:#0ba0d4; border-color:#2984b6; }
+		.timesheets.gray-box #summary .circle.actual { background-color:#1abc9c; border-color:#16a085; }
+		.timesheets.gray-box #summary .circle.over { background-color:#f1c40f; border-color:#f39c12; }
+		.timesheets.gray-box #summary .circle.under { background-color:#e64c3c; border-color:#c0392b; }
+		.timesheets.gray-box #summary .circle .title { font-size:11px; height:14px; text-transform:uppercase; margin-bottom:3px; }
+	.timesheets.gray-box #summary .detail { font-style:normal; text-align:center; color:#bcc6cc; font-size:12px; margin-top:6px; }
+
+.timesheets.gray-box #vacation { float:left; width:190px; height:160px; margin:0px; }
+.timesheets.gray-box #vacation .vacation-number { float:left; font-size:56px; margin:10px 0 11px; font-weight:200; }
+.timesheets.gray-box #vacation .detail { float:left; font-style:normal; color:#bcc6cc; font-size:12px; }
+

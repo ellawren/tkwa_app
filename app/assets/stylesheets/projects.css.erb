@@ -1,0 +1,287 @@
+/* PROJECTS - info */
+
+	.contact-address a.input-button { float:left; display:block; width:auto; height:22px; padding:10px 12px 0px; margin:10px 6px 0 0; font-size:13px; line-height:12px; }
+	.contact-address button.input-button { width:auto; height:32px; padding:0px 10px; margin:10px 0 0 0; font-size:13px; }
+	.new-contact { display:none; }
+	#cancel-change { float:left; padding:6px 16px; cursor:pointer; }
+
+/* PROJECTS - scope */
+
+.column-header{ float:left; display:block; width:100%; margin:0 0 18px 0; border-bottom:1px solid #e1e6eb; }
+	.column-header h3 { display:inline-block; width:auto; height:32px; margin:0px; }
+	.column-header a.control-link { float:right; margin-top:14px; font-size:12px; }
+.third { float:left; width:250px; margin-right:95px; }
+	.third.last {margin-right:0px; }
+
+label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
+
+	/* phases */
+
+	.phases label.checkbox { position:relative; z-index:99; width:108px; height:100px; padding-left:0px; margin-right:10px; text-align:center; }
+	.phases label.checkbox:last-child { margin-right:0px; }
+	.phases .checkbox .icons { position:relative; z-index:90; width:108px; height:100px; border-radius:8px; background-color:#ecf0f5; color:#85a5a6; }
+	.phases .checkbox:hover .icons { background-color:#e1e6eb; color:#bcc6cc; }
+	.phases .checkbox.checked .icons { width:108px; height:100px; background-color:#86cc71; color:#fff; }
+	.phases .checkbox.checked:hover .icons { background-color:#5bae60; }
+		.phases .checkbox .icons .first-icon, .phases .checkbox .icons .second-icon { display:none; }
+		.phases .checkbox .overlay { position:absolute; top:0px; left:0px; z-index:100; width:108px; height:80px; padding:20px 0 0 0; color:#bcc6cc; }
+			.phases .checkbox.checked .overlay { color:#fff; }
+		.phases .checkbox .number { margin-top:10px; font-size:40px; font-weight:300; }
+		.phases .checkbox .phase-name { margin-top:14px; font-size:14px; font-weight:500; }
+
+	p.top-margin { float:left; margin-top:30px; }
+
+	a.control-link { float:right; }
+	a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
+
+	.third .checkbox { margin-bottom:9px; }
+
+
+/* PROJECTS - tracking */
+
+	.tracking-table { float:left; margin-top:10px; margin-bottom:40px; border-collapse:collapse; font-size:10pt; }
+	.tracking-table td.tname { width:10%; min-width:90px; padding-top:8px; padding-left:0px; color:#344953; font-size: 10pt; font-weight:900; text-align:left; }
+
+	/* head */
+	.tracking-table th { width:5%; padding-top:20px; padding-bottom:4px; border-bottom:2px solid #34495e; font-size: 10pt; font-weight:700; text-align:left; }
+			.tracking-table th.table-cell { min-width:70px; padding:0px 4px; border-left:1px solid #666; font-size:14pt; font-weight:900; text-align:center; }
+			.tracking-table th:first-child { padding-left:0px; }
+			.tracking-table th .name { font-size: 8pt; font-weight:500; text-transform:uppercase; }
+			.tracking-table th.total-hours { padding:20px 8px 2px 8px; text-align:center; border-left:1px solid #666; font-size: 10pt; }
+			.tracking-table th.remaining { padding:20px 8px 2px 8px; text-align:center; font-size: 10pt; }
+
+	/* body */
+	.tracking-table tbody tr { border-bottom:1px solid #bbb; }
+	.tracking-table tbody td { padding:4px 0 0 0; }
+		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
+		.tracking-table tbody td.tname { color:#1abc9c; }
+		.tracking-table tbody td.tname .role { color:#bcc6cc; font-family:"Asap"; font-style:italic; font-weight:400; }
+	.tracking-table td.labels { padding-top:4px; padding-right:0px; }
+		.labels div { font-size:12px; margin-top:0px; padding:5px 6px 5px 0; text-align:right; color:#bcc6cc; font-family:"Asap"; font-style:italic; }
+			.labels div:last-child { margin-top:2px; }
+
+	.tracking-table input { float:none; width:45px; height:26px; margin:0 auto; text-align:center; }
+	.tracking-table .actual-hours, .tracking-table .target-hours  { width:60px; height:16px; margin:6px auto; text-align:center; font-weight:700; }
+		.tracking-table .actual-hours.over, .over { color:#e64c3c; }
+
+	.tracking-table td.total-hours { padding-top:4px; border-left:1px solid #666; }
+		.tracking-table td.total-hours div { width:auto; min-width:60px; height:16px; margin:6px auto; text-align:center; font-weight:700; }
+			.tracking-table td.total-hours .target-total, .tracking-table .target-hours { color:#1abc9c; }
+			.tracking-table td.total-hours .actual-total { margin-top:12px; }
+
+	/* remaining */
+	.tracking-table td.remaining { padding-left:0px; text-align: center; }
+	.remaining .act.sum { width:70px; height:20px; padding:2px 0; text-align:center; margin:30px auto 0px; border-radius:6px; background-color:#86cc71; color:#fff; font-weight:700; }
+		.remaining .act.sum.over { background-color:#e64c3c; }
+
+	.remaining .percent-used { background-color:#86cc71; min-width:50px; font-size:16px; margin-top:3px; padding:16px 0; color:#fff; border-radius:6px; }
+	.remaining .percent-used.over { background-color:#e64c3c; }
+
+	/* foot */
+	.tracking-table tfoot .est-hours td, .tracking-table tfoot .est-fees td { border-top:2px solid #344953; background-color:#1abc9c; color:#fff; padding-bottom:2px; text-align:center; font-weight:700; }
+	.tracking-table tfoot .est-fees td { border-top:2px solid #344953; border-bottom:2px solid #344953; background-color:#86cc71; }
+		.tracking-table tfoot .est-hours td:first-child, .tracking-table tfoot .est-fees td:first-child { text-align:left; }
+		.tracking-table tfoot .est-hours td.phase-cell, .tracking-table tfoot .est-fees td.phase-cell { border-left: 1px solid #666; } 
+	.tracking-table tfoot .actual-hours { margin-top:4px; }
+	.tracking-table tfoot td.total-hours .actual-total { margin-top:4px; }
+	.tracking-table tfoot td { padding-bottom:0px; padding-top:4px; }
+	.tracking-table tfoot td.remaining .act.sum { margin-top:0px; }
+	.tracking-table tfoot .labels .actual { padding-top:3px; }
+	.tracking-table tfoot td.remaining { padding:4px 0 0 0; }
+	.tracking-table tfoot .actual td { line-height:26px; }
+
+/* PROJECTS - billing */
+
+	/* contract + fees */
+	.third.billing { width:325px; margin-right:50px; }
+	.third.billing .input-label { float:left; width:130px; padding:10px 0; }
+		.third.billing .text-only .input-label { padding-top:4px; }
+		.third.billing .input-label label { display:inline-block; }
+		.third.billing .input-label a { display:inline-block; margin:0 0 0 3px; }
+	.third.billing input[type="text"] { float:right; width:165px; text-align:right; color:#86cc71; }
+		.third.billing input[type="text"]:focus { border-color:#86cc71; }
+	.third.billing .custom-select { float:right; width:190px; color:#86cc71; }
+	.third.billing .text-field { float:right; width:144px; padding:12px 12px 4px 16px; height:16px; margin-top:3px; text-align:right;  }
+		.third.billing .text-only .text-field { padding-top:3px; }
+		.third.billing .input-row.text-only { margin-top:6px; }
+
+	.third.billing .input-row.fee { border:2px dotted #86cc71; border-radius:6px; }
+		.third.billing .input-row.fee .input-label { margin-left:10px; margin-top:2px; }
+
+	.third.billing.gray-box { height:145px; width:305px; padding:18px 15px; }
+		.third.billing.gray-box .input-label { width:140px; color:#bcc6cc; }
+		.third.billing.gray-box input[type="text"] { float:right; width:135px; text-align:right; }
+		.third.billing.gray-box .text-field { width:134px; }
+		.third.billing.gray-box	.input-row.text-only { margin-top:6px; }
+		
+	.third.billing.last { margin-right:0px; width:160px; }
+		.billed-to-date { float:left; padding:45px 10px; color:#86cc71; width:160px; height:90px; border:2px dotted #86cc71; border-radius:100px; text-align:center; }
+			.billed-to-date .percentage { font-size:60px; }
+
+	.btn-primary.green { background-color:#86cc71; }
+	.btn-primary.green:hover { background-color:#86cc71; opacity:.85; }
+
+	/* consultant billing */
+	.billing-table { float:left; width:100%; margin-top:0px; margin-bottom:0px; border-collapse:collapse; font-size:10pt; }
+		.billing-table td, .billing-table th { padding:8px 8px 0px 0px; }
+		.billing-table input, .billing-table .text-field { text-align:right; }
+		.billing-table a.btn-small { width:60px; margin:0px 3px 0 15px; text-decoration:none; }
+		.billing-table .consultant-name { text-align:left; }
+		.billing-table .delete { float:right; margin:9px 4px 0 8px; }
+		.billing-table .text-field { padding:8px 4px 8px 16px; }
+		.billing-table tr.footer td  { padding:0px 8px 0px 0px; }
+		.billing-table tbody { border-top:2px solid #344953; }
+		.billing-table th.contract-amt { width:120px; padding-right:25px; }
+		.billing-table th.percent { width:70px; text-align:right; padding-right:10px; }
+		.billing-table .text-input.contract-amount { width:120px; margin-right:0px; }
+		.billing-table .text-field.contract-amount { width:120px; margin-right:16px; }
+
+
+
+/* schedule */
+
+.container.schedule { margin-bottom:60px; }
+.contain { float:left; width:100%; clear:all; }
+.contain.full { width:auto; padding-right:50px; }
+.gantt.full { width:auto; padding-left:250px; }
+.gantt.full .fn-gantt, .gantt.full .fn-gantt .fn-content { width:auto; overflow:visible; }
+.gantt.full .fn-gantt .leftPanel { margin-left:-250px; }
+.gantt.full .fn-gantt .bottom { display:none; }
+
+#schedule-list { float:left; display:block; }
+	#schedule-list .header { float:left; width:100%; height:30px; font-size:12px; font-weight:900; }
+	#schedule-list .header div { float:left; padding:6px 0; margin-right:10px; }
+	#schedule-list .header .phase { width:180px; }
+	#schedule-list .header .desc { width:220px; }
+	#schedule-list .header .start, #schedule-list .header .end, #schedule-list .header .duration { width:120px; }
+	#schedule-list .header .duration { padding-left:10px; }
+	#schedule-list select.phase, #schedule-list input.desc { float:left; margin-right:10px; }
+	#schedule-list .duration { float:left; width:120px; height:40px; margin-right:10px; border:none; }
+	#schedule-list .datepicker { float:left; width:100px; margin-right:10px; }
+.schedule-item { float:left; width:100%; }
+.schedule-item .phase { width:180px; }
+.input-block { float:left; margin-right:10px; }
+
+.modal-body #schedule-list { float:left; display:block; width:780px; margin-top:40px; margin-left:4px; }
+	.modal-body #schedule-list .header .phase { width:125px; }
+	.modal-body #schedule-list select.phase { width:125px; }
+	.modal-body .save-row.schedule { margin-top:10px; margin-bottom:10px; }
+	.modal .save-row.schedule input.btn-primary { width:200px; }
+	#myModal .modal-header { padding-left:45px; }
+
+.test-box { float:left; width:100%; height:100px; }
+
+.add-schedule-item { float:left; padding:10px 20px; border-radius:8px; background-color:#86cc71; color:#fff; }
+.add-schedule-item:hover, .add-schedule-item:focus{ background-color:#5bae60; color:#fff; text-decoration:none; }
+
+.pop-label { display:inline-block; width:55px; background:#344953; color:#fff; font-size:11px; }
+	.pop-label.gantt-pd { background-color: #86cc71; }
+	.pop-label.gantt-sd { background-color: #5bae60; }
+	.pop-label.gantt-dd { background-color: #16a085; }
+	.pop-label.gantt-cd { background-color: #0b9eaf; }
+	.pop-label.gantt-bid { background-color: #2984b6; }
+	.pop-label.gantt-cca { background-color: #5b54a4; }
+	.pop-label.gantt-int { background-color: #814470; }
+	.pop-label.gantt-add { background-color: #983545; }
+	.pop-label.meeting { background-color: #2c3445; }
+	.pop-label.deadline { background-color: #c0392b; }
+
+.pop-title { font-weight:900; }
+	.pop-title.gantt-pd { color: #86cc71; }
+	.pop-title.gantt-sd { color: #5bae60; }
+	.pop-title.gantt-dd { color: #16a085; }
+	.pop-title.gantt-cd { color: #0b9eaf; }
+	.pop-title.gantt-bid { color: #2984b6; }
+	.pop-title.gantt-cca { color: #5b54a4; }
+	.pop-title.gantt-int { color: #814470; }
+	.pop-title.gantt-add { color: #983545; }
+	.pop-title.meeting { color: #2c3445; }
+	.pop-title.deadline { color: #c0392b; }
+
+.datepicker.dropdown-menu { z-index:1080; }
+
+.save-row.schedule div { float:left; }
+
+.text-link { float:left; padding:8px 20px; }
+
+
+/* shop drawings */
+
+#shop-drawings { float:left; display:block; }
+	#shop-drawings .header { float:left; width:100%; height:24px; border-bottom:1px solid #e1e6eb; font-size:12px; font-weight:900; }
+	#shop-drawings .header div { float:left; padding:6px 0; margin-right:7px; }
+	#shop-drawings .index { width:20px; }
+	#shop-drawings .received { width:100px; }
+	#shop-drawings .spec { width:80px; }
+	#shop-drawings select.consultant, #shop-drawings .consultant { width:180px; }
+	#shop-drawings .header .desc { width:235px; }
+	#shop-drawings .desc { width:220px; }
+	#shop-drawings .header .status, #shop-drawings .header .final-action { width:135px; }
+	#shop-drawings .modal-body .header .status, #shop-drawings .modal-body .header .final-action { width:183px; }
+	#shop-drawings .review-status { width:180px; }
+	#shop-drawings .final-action { width:180px; }
+	#shop-drawings .letter { float:left; width:15px; height:19px; padding:11px 0 10px 5px; }
+
+	#shop-drawings .sent { width:100px; }
+	#shop-drawings .returned { width:100px; }
+	#shop-drawings .final-date { width:100px; }
+
+	#shop-drawings .datepicker { float:left; margin-top:0px; margin-right:5px; }
+
+.shop-drawing { float:left; width:100%; padding:5px 0; border-bottom:1px solid #e1e6eb; }
+.modal-fields { float:left; width:100%; }
+
+	.shop-drawing input, .shop-drawing .input-cell-blank, .shop-drawing .custom-select { float:left; margin-bottom:0px; margin-right:5px; }
+	.modal-fields input, .modal-fields .input-cell-blank, .modal-fields .custom-select { float:left; margin-bottom:0px; margin-right:5px; }
+
+.shop-drawing .status { float:left; height:20px; margin-top:2px; margin-left:10px; color:#344953; font-size:13px; }
+
+.modal-body.dwg-modal { height:100px; margin-top:30px; margin-left:16px; }
+#shop-drawings .modal-body .header { border-bottom:none; }
+#shop-drawings .modal-footer .btn { float:left; margin-top:-2px; margin-left:40px; }
+#shop-drawings .modal-footer .btn-primary { float:left; margin-top:6px; margin-bottom:10px; margin-left:40px; }
+
+	#shop-drawings .custom-select.review-status, #shop-drawings .custom-select.final-action { float:left; width:184px; }
+
+#shop-drawings label { float:left; width:110px; height:26px; padding:9px 6px 1px; margin:0 8px 5px -4px; border-radius:6px; color:#344953; font-size:12px; text-align:center; }
+#shop-drawings label.plaintext { height:32px; padding:1px 3px 3px 9px; line-height:18px; text-align:left; }
+#shop-drawings label.plaintext.add-action { height:30px; padding:1px 6px 3px 6px; color:#fff; line-height:30px; text-align:center; }
+	#shop-drawings .status:hover label.plaintext.add-action { color:#bcc6cc; }
+
+	#shop-drawings .status:hover label { background-color:#ecf0f5; }
+#shop-drawings label.approved { background-color:#86cc71; color:#fff; }
+	#shop-drawings .status:hover label.approved { background-color:#5bae60; }
+#shop-drawings label.as-noted { background-color:#1abc9c; color:#fff; }
+	#shop-drawings .status:hover label.as-noted { background-color:#16a085; }
+#shop-drawings label.revise { background-color:#0ba0d4; color:#fff; }
+	#shop-drawings .status:hover label.revise { background-color:#2984b6; }
+#shop-drawings label.not-approved { background-color:#e64c3c; color:#fff; }
+	#shop-drawings .status:hover label.not-approved { background-color:#c0392b; }
+
+.shop-modal { left:55%; width:520px; }
+
+
+/* potential projects */
+
+a.header-label { float:left; display:block; width:120px; padding:4px 8px; margin-top:04px; margin-bottom:-10px; background-color:#1abc9c; color:#fff; font-size:11px; text-transform:uppercase; }
+a.header-label.company { width:65px; }
+a.header-label:hover { opacity:.8; }
+.potential.page-header h1 { color:#34495e; }
+
+.fee-calc tr .input { margin-top:15px; font-size:13px; }
+.fee-calc tr.billing .input, .fee-calc tr.lower .input  { margin-top:10px; }
+
+.fee-calc tr td { text-align:center; }
+.fee-calc tr input { width:70px; margin:2px auto; text-align:center; }
+.fee-calc td.tname { min-width:140px; padding-top:7px; text-align:left; }
+.fee-calc td.total  { min-width:100px; }
+.rate { font-size:12px; font-weight:400; font-style:italic; opacity:.5; }
+
+table.tracking-table.fee-calc tr.lower td.bold, table.tracking-table.fee-calc tr.billing td.bold { padding-top:15px; text-align:left; }
+.radio-hint { position:absolute; top:0px; left:100px; display:none; color:#e64c3c; font-style:italic; }
+.radio-note { position:absolute; top:0px; left:100px; color:#bcc6cc; font-style:italic; }
+
+table.potential thead th { padding-bottom:2px; color:#344953; font-size:13px; }
+table.potential tbody tr:hover { background-color:#f6f8fa; }
+table.potential tbody td { color:#16a085; }
+table.potential tbody td a { color:#16a085; font-weight:900; }

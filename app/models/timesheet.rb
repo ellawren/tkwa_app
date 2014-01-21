@@ -10,6 +10,7 @@
 #  selected_year :integer
 #  complete      :boolean         default(TRUE)
 #  user_id       :integer         not null
+#  notes         :text
 #
 
 
@@ -68,7 +69,7 @@ class Timesheet < ActiveRecord::Base
   end
 
   def year_to_date
-      year_to_date = Timesheet.find(:all, :conditions => ['employee_id = ? AND year = ? AND week <= ?', user.id, year, week ])
+      year_to_date = Timesheet.find(:all, :conditions => ['user_id = ? AND year = ? AND week <= ?', user.id, year, week ])
   end
 
   def week_goal
@@ -109,9 +110,9 @@ class Timesheet < ActiveRecord::Base
       goal = g.to_f
       actual = a.to_f
       if goal >= actual
-        "(#{goal - actual})"
+        "<div class=\"title\">under</div>- #{goal - actual}".html_safe
       elsif goal < actual
-        "+ #{actual - goal}"
+        "<div class=\"title\">over</div>+ #{actual - goal}".html_safe
       end
   end
 
@@ -130,9 +131,7 @@ class Timesheet < ActiveRecord::Base
   end
 
   def get_week_number(date)
-    wk_1 = date.beginning_of_year().beginning_of_week(start_day = :sunday) 
-    wk_now = date.beginning_of_week(start_day = :sunday)
-    ((wk_now.to_date - wk_1.to_date).to_i / 7 ) + 1
+    date.cweek
   end
 
   def weeks_in_year(year)
