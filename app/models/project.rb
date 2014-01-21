@@ -584,7 +584,7 @@ class Project < ActiveRecord::Base
         (sum_actual / sum_est) * 100
     end
 
-    
+    # do not change the order on these - it will affect all previous records
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
     					"Hospitality", "Industrial", "Library", "Maintenance", "Manufacturing",
     					"Medical Elderly", "Medical Clinic", "Medical Hospital", "Mixed Use", 
@@ -592,15 +592,9 @@ class Project < ActiveRecord::Base
     					"Recreation", "Religious", "Residential Single", "Residential Multi",
     					"Retail", "Sustainable Design", "Teaching", "Urban Design"
     				 ]
-    				 
-    CLIENT_TYPES =   [	"Commercial", "Contractor", "Design Professional", "Developer", "Government",
-    					"Industrial", "Institutional", "Owner"
-    				 ]
     
-    BILLING_TYPES =  			[ "% of Const. Cost", "Lump Sum", "Lump Sum With Extras", "Hourly - No Maximum", "Hourly - NTE", "Hourly With Extras" ]
-    BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
-    BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
-    
+    BILLING_TYPES =  [ "% of Const. Cost", "Lump Sum", "Lump Sum With Extras", "Hourly - No Maximum", "Hourly - NTE", "Hourly With Extras" ]
+
     VIEW_OPTIONS =  [ 'scope', 'setup', 'tracking', 'forecast', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
 
 end

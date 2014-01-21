@@ -22,7 +22,7 @@
             <div class="input-row fee">
                 <div class="input-label">
                     <label>TKWA Fee</label>
-                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Total Contract + Extra Services To Date - Consultant Billing"></a>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Total Contract + Extra Services - Total Consultant Contracts"></a>
                  </div>
                 <div class="text-field bold"><%= number_to_currency(@project.tkwa_fee) %></div>
             </div>  
@@ -39,9 +39,9 @@
             <div class="input-row text-only">
                 <div class="input-label">
                     <label>Profit/Loss</label>
-                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Billed To Date - Payroll To Date"></a>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Billed To Date - (Payroll To Date + Consultants Billed-To-Date)"></a>
                 </div>
-                <div class="text-field bold"><%= over_under_currency(@project.payroll, @project.billed_to_date) %></div>
+                <div class="text-field bold"><%= over_under_currency(@project.payroll.to_f + @project.project_bills_total.to_f, @project.billed_to_date) %></div>
             </div>  
         </div>
         <div class="third billing last">       
