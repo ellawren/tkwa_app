@@ -597,7 +597,7 @@ class Project < ActiveRecord::Base
     					"Industrial", "Institutional", "Owner"
     				 ]
     
-    BILLING_TYPES =  			[ "Lump sum", "% of Construction Cost", "Hourly" ]
+    BILLING_TYPES =  			[ "% of Const. Cost", "Lump Sum", "Lump Sum With Extras", "Hourly - No Maximum", "Hourly - NTE", "Hourly With Extras" ]
     BILLING_TRAVEL_TYPES =  	[ "Bill travel time (Phase 70)", "DO NOT BILL (included in fee)", ]
     BILLING_CONSULTANT_TYPES =  [ "Bill fees + 10% markup", "Bill fees with NO markup", "DO NOT BILL (included in fee)" ]
     
