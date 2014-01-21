@@ -67,8 +67,7 @@
 #
 
 class Project < ActiveRecord::Base
-    default_scope order('name')
-
+    
     has_many :users, :through => :employee_teams
     has_many :employee_teams, :dependent => :destroy
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:user_id].blank? }

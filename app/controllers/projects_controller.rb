@@ -125,7 +125,7 @@ class ProjectsController < ApplicationController
   
   def index
     @q = Project.all_projects.search(params[:q])
-    @projects = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30)
+    @projects = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('number ASC')
     @user = current_user
     if params.has_key?(:q) && @projects.count == 1 
       redirect_to info_project_path(@projects.first(params[:id]))

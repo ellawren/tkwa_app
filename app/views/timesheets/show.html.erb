@@ -144,16 +144,16 @@
 						<% goal = @timesheet.ytd_goal(@timesheet.week).to_f %>
 						<% actual = @timesheet.ytd('total').to_f %>
 							<% if goal == actual %>
-								<div class="circle over">
+								<div class="circle">
 	        						<div class="title">even</div>
 	        						<%= number_with_precision(goal - actual, strip_insignificant_zeros: true) %>
 	        					</div>
 	        					<div class="detail">nice!</div>
 							<% elsif goal > actual %>
 								<% if -(@data_record.overage_from_prev.to_f) < (actual - goal) %>
-									<div class="circle over">
+									<div class="circle">
 								<% else %>
-        							<div class="circle under">
+        							<div class="circle <%= "under" if @data_record.pay_type == "Salary" %>">
         						<% end %>
 	        						<div class="title">under</div>
 	        						<%= number_with_precision(actual - goal, strip_insignificant_zeros: true) %>
@@ -168,7 +168,7 @@
 	        						<% end %>
 	        					</div>
 	        				<% elsif goal < actual %>
-	        					<div class="circle over">
+	        					<div class="circle">
 	        						<div class="title">over</div>
 	        						+<%= number_with_precision(actual - goal, strip_insignificant_zeros: true) %>
 	        					</div>
@@ -190,7 +190,7 @@
 	        					<% end %>
 	        				<% end %>
 	        			<% elsif @data_record.pay_type == "Hourly" %>
-	        				You are paid <span class="bold">hourly</span>, so your target hours are just a guidline.
+	        				You are paid <span class="bold">hourly</span>, so your target hours are just a guideline.
 	        			<% end %>
 					</div>
 				<% end %>
