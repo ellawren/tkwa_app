@@ -104,20 +104,24 @@
 	</div>
 
 	<div class="gray-box timesheets">
-		<div id="notes">
-		    <%= f.label(:notes, "Notes", class: "input-label") %>
-		    <%= f.text_area :notes, class: "", rows: "4" %>
+		<div class="stats utilization">
+			<label class="input-label">Utilization Rate</label>
+			<div class="number">
+				<%= number_to_percentage((@timesheet.ytd('billable') / @timesheet.ytd('total') * 100), precision: 0) %>
+			</div>
+			<div class="detail">percent billable hours
+			</div>
 		</div>
-		<div id="vacation">
+		<div class="stats">
 			<label class="input-label">Remaining Vacation</label>
-			<div class="vacation-number">
+			<div class="number">
 				<%= @data_record.vacation.to_f + @data_record.vacation_rollover.to_f - @timesheet.ytd_nb_subtotal('Vacation').to_f  %>
 			</div>
 			<div class="detail">used <%= number_with_precision(@timesheet.ytd_nb_subtotal('Vacation').to_f, strip_insignificant_zeros: true) %> of <%= number_with_precision((@data_record.vacation.to_f + @data_record.vacation_rollover.to_f), strip_insignificant_zeros: true) %> hours for <%= this_year %>
 			</div>
 		</div>
 		<div id="summary">
-			<label class="input-label">Year-To-Date Summary</label>
+			<label class="input-label">Target Hours</label>
 			<div class="content">
 				<div class="token">
 					<div class="circle target">
@@ -137,7 +141,6 @@
 					</div>
 					<div class="equals"></div>
 					<div class="token">
-						
 						<% goal = @timesheet.ytd_goal(@timesheet.week).to_f %>
 						<% actual = @timesheet.ytd('total').to_f %>
 							<% if goal == actual %>
@@ -147,15 +150,21 @@
 	        					</div>
 	        					<div class="detail">nice!</div>
 							<% elsif goal > actual %>
-								<div class="circle under">
+								<% if -(@data_record.overage_from_prev.to_f) < (actual - goal) %>
+									<div class="circle over">
+								<% else %>
+        							<div class="circle under">
+        						<% end %>
 	        						<div class="title">under</div>
-	        						-<%= number_with_precision(goal - actual, strip_insignificant_zeros: true) %>
+	        						<%= number_with_precision(actual - goal, strip_insignificant_zeros: true) %>
 	        					</div>
 	        					<div class="detail">
 	        						<% if @data_record.pay_type == "Salary" %>
-	        							uh oh
-	        						<% elsif @data_record.pay_type == "Hourly" %>
-	        							don't worry, you're hourly
+										<% if -(@data_record.overage_from_prev.to_f) < (actual - goal) %>
+											ok
+										<% else %>
+	        								uh oh
+	        							<% end %>
 	        						<% end %>
 	        					</div>
 	        				<% elsif goal < actual %>
@@ -165,7 +174,24 @@
 	        					</div>
 	        					<div class="detail">slow down!</div>
 	        				<% end %>
-						
+					</div>
+					<div class="arrow-left"></div>
+					<div class="arrow-body">
+						<% if @data_record.pay_type == "Salary" %>
+	        				<% if @data_record.overage_from_prev.to_f > 0 %>
+	        					You can be under by <span class="bold"><%= @data_record.overage_from_prev.to_f %></span> hours due to overage from last year.
+	        				<% else %>
+	        					<% if goal == actual %>
+	        						<br>You are right on target!
+	        					<% elsif goal > actual %>
+	        						You are currently below your target hours for <%= this_year %>.
+	        					<% elsif goal < actual %>
+	        						You are currently above your target hours for <%= this_year %>.
+	        					<% end %>
+	        				<% end %>
+	        			<% elsif @data_record.pay_type == "Hourly" %>
+	        				You are paid <span class="bold">hourly</span>, so your target hours are just a guidline.
+	        			<% end %>
 					</div>
 				<% end %>
 			</div>
