@@ -194,7 +194,7 @@ class Project < ActiveRecord::Base
             if billed_to_date == 0 || contract_amount == 0
                 0
             else
-                ( billed_to_date/contract_amount ) * 100
+                ( billed_to_date / (contract_amount + extra_services) ) * 100
             end
         end
     end
