@@ -39,6 +39,10 @@ class DataRecord < ActiveRecord::Base
   		User.find(self.user_id).name
   	end
 
+  	def duration 
+  		self.start_week - self.end_week + 1
+  	end
+
 	after_initialize :set_defaults
 
 	def set_defaults

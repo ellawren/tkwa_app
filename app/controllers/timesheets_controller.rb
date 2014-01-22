@@ -29,32 +29,29 @@ class TimesheetsController < ApplicationController
         DataRecord.find_all_by_user_id_and_year(@user.id, @timesheet.year).each do |d|
             data_array.push(d)
         end
-        # if none have been created, make one and use that (with default values)
-        if data_array.size == 0 
-            @data_record = DataRecord.create( :user_id => @user.id, :year => @year, :start_week => 1, :end_week => Date.new(@year, 12, 28).cweek ) 
-        # if there is at least one, check to see if it covers this week
-        else
+        # find the one for this time period
+        if data_array.size > 0 
             data_array.each do |d|
                 if @week >= d.start_week && @week <= d.end_week 
                     @data_record = d
                 end
-            end
-            #if all are checked and there are no matches, then throw an error and return to the index
-            if @data_record.nil?
-                flash[:error] = "Employee data is not set up for this week. Please see admin."
-                redirect_to timesheets_path and return
-            end
+            end     
         end
+        # if a matching record is found, load timesheet data
+        if @data_record
+            @goal = (@timesheet.ytd_goal(@week - @data_record.start_week + 1).to_f)
+            @goal_with_overage = (@timesheet.ytd_goal(@week - @data_record.start_week + 1).to_f) + -(@data_record.overage_from_prev.to_f)
+            @actual = @timesheet.ytd('total').to_f
 
-        # -----------------------------
-
-        if @timesheet.open?
-          1.times { @timesheet.time_entries.build }
-          1.times { @timesheet.non_billable_entries.build }
-        end        
+            if @timesheet.open?
+              1.times { @timesheet.time_entries.build }
+              1.times { @timesheet.non_billable_entries.build }
+            end   
+        end
+        # if no data records are found, go to page anyway - conditional will catch and show error message
         render :layout => 'search' 
     else
-      flash[:error] = "Invalid date. Please try again."
+      flash[:error] = "Invalid date"
       redirect_to timesheets_path
     end
   end

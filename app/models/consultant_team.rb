@@ -12,7 +12,7 @@
 #
 
 class ConsultantTeam < ActiveRecord::Base
-
+  default_scope order('consultant_name ASC, consultant_role ASC')
 	belongs_to :project
   has_many :bills, :dependent => :destroy
   accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_team_id].blank? }
