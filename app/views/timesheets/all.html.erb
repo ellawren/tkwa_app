@@ -32,7 +32,7 @@
 						<td><%= (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f) %></td>
 						<td>
 							<% if (t.year == this_year && t.week < this_week) || t.year < this_year %>
-								<%= number_with_precision(t.timesheet_total - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %>
+								<%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %>
 							<% end %>
 						</td>
 						<td><%= t.complete == true ? "open" : "closed" -%></td>
