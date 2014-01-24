@@ -25,7 +25,7 @@ class Timesheet < ActiveRecord::Base
 
   YEARS =   [	"2013", "2012", "2011" ]
 
-  NON_BILLABLE_CATEGORIES =   [ "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
+  NON_BILLABLE_CATEGORIES =   [ "Administrative", "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
                                 "Studio Projects", "Sustainable Research", "Vacation" ]
 
   
