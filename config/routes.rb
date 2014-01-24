@@ -29,7 +29,7 @@ TkwaApp::Application.routes.draw do
     end
 
     match '/users/:id/timesheets/:year/:week',  to: 'timesheets#show', as: 'user_timesheet'
-    match '/timesheets/:id',              to: 'timesheets#all', as: 'all_timesheets'
+    match '/users/:id/timesheets_index',              to: 'timesheets#all', as: 'all_timesheets'
     match '/users/:user_id/data_records',      to: 'data_records#user_index'
     match '/users/:user_id/data_records/:id',      to: 'data_records#edit', as: 'user_data_record'
     match '/globals/:year',                         to: 'globals#edit'
