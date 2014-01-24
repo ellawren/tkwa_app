@@ -1,9 +1,13 @@
 /* PROJECTS - info */
-
-	.contact-address a.input-button { float:left; display:block; width:auto; height:22px; padding:10px 12px 0px; margin:10px 6px 0 0; font-size:13px; line-height:12px; }
-	.contact-address button.input-button { width:auto; height:32px; padding:0px 10px; margin:10px 0 0 0; font-size:13px; }
+	.contact-address { float:left; margin-top:0px; width:365px; }
+		.contact-address .text { float:left; width:255px; background-color:#f4f6f9; padding:10px 15px; border-radius:6px; }
+		.contact-address .text a { color:#1abc9c; display:block; margin-bottom:3px; font-weight:700; }
+		.contact-address .text a:hover { color:#16a085; }
+	a.input-button.contact { float:left; }
+	a.input-button.change-contact { margin-top:4px; }
 	.new-contact { display:none; }
 	#cancel-change { float:left; padding:6px 16px; cursor:pointer; }
+
 
 /* PROJECTS - scope */
 
@@ -36,6 +40,16 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 
 	.third .checkbox { margin-bottom:9px; }
 
+
+
+/* PROJECTS - setup */
+
+	.full.phases .description { margin-bottom:10px; }
+
+	.team-row { width:412px; float:left; height:32px; background-color:#f4f6f9; padding:3px 12px; border-radius:6px; margin-bottom:3px; }
+	.team-row .name { float:left; width:193px; font-weight:700; height:20px; padding-top:8px; }
+	.team-row .role { float:left; width:198px; height:20px; padding-top:8px; }
+	.team-row .delete { margin:4px 0 0 0; }
 
 /* PROJECTS - tracking */
 
@@ -93,7 +107,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 /* PROJECTS - billing */
 
 	/* contract + fees */
-	.third.billing { width:325px; margin-right:50px; }
+	.third.billing { width:325px; margin-right:50px; margin-bottom:30px; }
 	.third.billing .input-label { float:left; width:130px; padding:10px 0; }
 		.third.billing .text-only .input-label { padding-top:4px; }
 		.third.billing .input-label label { display:inline-block; }
@@ -123,8 +137,9 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 
 	/* consultant billing */
 	.billing-table { float:left; width:100%; margin-top:0px; margin-bottom:0px; border-collapse:collapse; font-size:10pt; }
-		.billing-table td, .billing-table th { padding:8px 8px 0px 0px; }
-		.billing-table input, .billing-table .text-field { text-align:right; }
+		.billing-table td, .billing-table th { padding:4px 8px 0px 0px; margin-bottom:0px; height:30px; }
+		.billing-table input, .billing-table .text-field { text-align:right; margin-bottom:4px; }
+		.billing-table .custom-select { margin-bottom:0px; }
 		.billing-table a.btn-small { width:60px; margin:0px 3px 0 15px; text-decoration:none; }
 		.billing-table .consultant-name { text-align:left; }
 		.billing-table .delete { float:right; margin:9px 4px 0 8px; }
@@ -136,7 +151,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 		.billing-table .text-input.contract-amount { width:120px; margin-right:0px; }
 		.billing-table .text-field.contract-amount { width:120px; margin-right:16px; }
 
-
+	.add-billing { float:left; }
 
 /* schedule */
 

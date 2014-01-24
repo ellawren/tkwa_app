@@ -1,4 +1,5 @@
 class Bill < ActiveRecord::Base
+    default_scope order('created_at')
 	belongs_to :consultant_team
 
 	def bills_total(team_id)

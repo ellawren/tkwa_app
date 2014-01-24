@@ -60,14 +60,16 @@
                         <% @billing = Contact.find_by_name(f.object.billing_name) %>
                         <% if @billing # if there is a billing name AND it matches an existing contact %>
                             <div class="contact-address">
-                                <span class="bold"><%= @billing.name %></span><br>
-                                <% unless @billing.work_address.blank? %><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
-                                <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
-                                <%= link_to "go to contact record", contact_path(@billing), class: "btn input-button contact" %>
-                                <a class="btn input-button contact" id="change-contact">change contact</a>
+                                <div class="text">
+                                    <%= link_to @billing.name, contact_path(@billing) %>
+                                    <% unless @billing.work_address.blank? %><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
+                                    <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
+                                </div>
+                                <a class="btn input-button change-contact" id="change-contact">change contact</a>
                             </div>
+                            
                             <div class="new-contact">
-                                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right" %>
+                                <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right contact-name" %>
                                 <a class="text-btn" id="cancel-change">cancel</a>
                             </div>
                             

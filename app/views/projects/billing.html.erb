@@ -51,19 +51,9 @@
             </div>
         </div> 
 
-        <div class="save-row">
-            <%= f.submit "Save Changes", class: "btn btn-primary save-btn green" %>
-        </div>
-
-<% end %>
-
-<%= form_for @project do |f| %>
 
     <h2>Consultant Billing</h2>
-    <% if @project.consultant_teams.length == 0 %>
-        <p class="description">This project's consultants have not been set up yet. Click the 'setup' tab in the bar above to add consultants.</p>
-    <% else %>
-
+    
         <!-- modal for consultant billing edit -->
             <div class="consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         </div><!-- /.modal -->
@@ -85,8 +75,9 @@
                 <%= f.fields_for :consultant_teams do |builder| %>
                 		<%= render 'consultant_billing_fields', :f => builder %>
                 <% end %>
+
                 <tr class="footer">
-                    <td></td>
+                    <td><%= link_to_add_billing_fields "", f, :consultant_teams, "add fui-plus consultant add-billing" %></td>
                     <td></td>
                     <td><div class="text-field lg bold contract-amount"><%= number_to_currency(@project.consultant_contract_total) %></div></td>
                     <td><div class="text-field med bold"><%= number_to_currency(@project.project_bills_total) %></div></td>
@@ -100,8 +91,6 @@
         <div class="save-row">
             <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
         </div>
-
-    <% end %>
 
 <% end %>
 

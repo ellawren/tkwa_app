@@ -1,11 +1,25 @@
 <div class="row">
+	<% if f.object.consultant_name %>
+		<div class="team-row">
+			<%= f.hidden_field :consultant_name %>
+			<%= f.hidden_field :_destroy %>
+			<div class="name">
+				<%= f.object.consultant_name %>
+			</div>
+			<div class="role">
+				<%= f.object.consultant_role %>
+			</div>
+
+			<%= link_to_remove_fields_2 "  ", f %>
+		</div>
+	<% else %>
+		<%= f.autocomplete_field :consultant_name, autocomplete_contact_work_company_projects_path, class: "consultant-name" %>
 	
-	<%= f.autocomplete_field :consultant_name, autocomplete_contact_work_company_projects_path, class: "consultant-name" %>
-	
-    <%= f.hidden_field :_destroy %>
+    	<%= f.hidden_field :_destroy %>
     
-	<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "custom-select" } ) %>
+		<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "custom-select" } ) %>
     
-    <%= link_to_remove_fields_2 "  ", f %>
+    	<%= link_to_remove_fields_2 "  ", f %>
+    <% end %>
 
 </div>

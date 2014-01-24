@@ -45,6 +45,9 @@ class ProjectsController < ApplicationController
 
   def billing
     @project = Project.find(params[:id])
+    if @project.consultant_teams.count == 0 
+        1.times { @project.consultant_teams.build }
+    end
   end
 
   def drawing_log

@@ -2,6 +2,56 @@
 
         <%= render 'shared/error_messages', object: f.object %>
         <%= render 'fields', f: f %>
+
+        <div class="full phases">
+            <h2>Phases</h2>
+            <p class="description">Click phases to make them available for this project. Available phases are shown in green. Employees cannot add time to inactive phases.</p>
+            <%= hidden_field_tag "project[phase_ids][]", nil %>
+            <% Phase.find(:all, :order => 'number').each do |phase| %>
+                <label class="checkbox">
+                    <div class="overlay">
+                        <div class="number"><%= phase.number %></div>
+                        <div class="phase-name"><%= phase.name %></div>
+                    </div>
+                    <%= check_box_tag "project[phase_ids][]", phase.id, @project.phase_ids.include?(phase.id), id: dom_id(phase), data_toggle: "checkbox" %>
+                </label>
+            <% end %>
+        </div>
+
+        <div class="half">
+
+            <h2>Design Team</h2>
+            <div class="header-row">
+                <div>Name</div>
+                <div>Role</div>
+            </div>
+
+            <!-- nested form for team-->
+                <%= f.fields_for :employee_teams do |builder| %>
+                    <%= render 'employee_team_fields', :f => builder %>
+                <% end %>
+                <%= link_to_add_fields_2 "", f, :employee_teams, "add fui-plus" %>
+            <!-- end team form -->
+
+        </div>
+
+        <div class="half last">
+
+            <h2>Consultant Team <%= link_to "add/edit roles", consultant_roles_path, class: "control-link-text" %></h2>
+
+            <div class="header-row">
+                <div>Company</div>
+                <div>Role</div>
+            </div>
+
+            <!-- nested form for team-->
+                <%= f.fields_for :consultant_teams do |builder| %>
+                    <%= render 'consultant_team_fields', :f => builder %>
+                <% end %>
+                <%= link_to_add_fields "", f, :consultant_teams, "add fui-plus consultant" %>
+            <!-- end team form -->
+
+        </div>
   
         <div class="save-row">
 	        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>

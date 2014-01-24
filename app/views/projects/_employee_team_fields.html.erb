@@ -1,12 +1,24 @@
 <div class="row">
-	
-	<%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
 
-    <%= f.hidden_field :_destroy %>
-    
-	<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "custom-select" } ) %>
-    
-    <%= link_to_remove_fields_2 "  ", f %>
+	<% if f.object.user_id %>
+		<div class="team-row">
+			<%= f.hidden_field :user_id %>
+			<%= f.hidden_field :_destroy %>
+			<div class="name">
+				<%= f.object.employee_name %>
+			</div>
+			<div class="role">
+				<%= f.object.role %>
+			</div>
+
+			<%= link_to_remove_fields_2 "  ", f %>
+		</div>
+
+	<% else %>
+		<%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+
+		<%= f.select(:role, EmployeeTeam::EMPLOYEE_ROLES, { :include_blank => true }, { :class => "custom-select" } ) %>
+	<% end %>
 
 </div>
 
