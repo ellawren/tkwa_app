@@ -1,0 +1,23 @@
+<% content_for :page_header do %>
+	<% provide :title, "Employee Roles" %>
+	<div class="page-header">
+		<h1>Employee Roles</h1>
+	</div>
+<% end %>
+
+<%= link_to "Add Employee Role", new_employee_role_path, class: "btn" %>
+
+<br />
+	<ul>
+		<% @employee_roles.each do |param| %>
+  			<li>
+  				<%= link_to param.name, edit_employee_role_path(param.id) %>
+  				<% if signed_in? %>
+						<% if current_user.admin? %>
+						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+						<% end %>
+  				<% end %>
+  			</li>
+		<% end %>
+	</ul>
+<br /><br />

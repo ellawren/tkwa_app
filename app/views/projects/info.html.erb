@@ -20,7 +20,7 @@
 
         <div class="half">
 
-            <h2>Design Team</h2>
+            <h2>Design Team <%= link_to "add/edit employee roles", employee_roles_path, class: "control-link-text" %></h2>
             <div class="header-row">
                 <div>Name</div>
                 <div>Role</div>
@@ -37,7 +37,7 @@
 
         <div class="half last">
 
-            <h2>Consultant Team <%= link_to "add/edit roles", consultant_roles_path, class: "control-link-text" %></h2>
+            <h2>Consultant Team <%= link_to "add/edit consultant roles", consultant_roles_path, class: "control-link-text" %></h2>
 
             <div class="header-row">
                 <div>Company</div>

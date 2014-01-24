@@ -1,10 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-  
-  get "errors/error_404"
-
-  get "errors/error_500"
-
   post "/csv_import" => 'projects#csv_import'
   post "/cont_csv_import" => 'contacts#cont_csv_import'
   match '/projects/current',  to: 'projects#current'
@@ -57,6 +52,7 @@ match '/phases/modal',   to: 'phases#modal', as: "modal_phases"
   resources :consultants
   resources :consultant_roles
   resources :data_records
+  resources :employee_roles
   resources :employee_teams
   resources :globals, :only => [:index, :create, :update]
   resources :holidays

@@ -12,7 +12,7 @@
 #
 
 class ConsultantTeam < ActiveRecord::Base
-  default_scope order('consultant_name ASC, consultant_role ASC')
+  default_scope order('created_at')
 	belongs_to :project
   has_many :bills, :dependent => :destroy
   accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_team_id].blank? }
@@ -37,14 +37,9 @@ class ConsultantTeam < ActiveRecord::Base
     end
 
     def percent_billed
-      if consultant_bills_total && consultant_contract
-        ( consultant_bills_total.to_f/consultant_contract.to_f ) * 100
-      end
+        if consultant_bills_total && consultant_contract
+            ( consultant_bills_total.to_f/consultant_contract.to_f ) * 100
+        end
     end
-
-   	CONSULTANT_ROLES =   [	"HVAC", "MEP Engineering", "Landscape Design", "Fire Protection",
-   						"Structural Engineering", "Civil Engineering", "Acoustics", "A/V",
-   						"Plumbing"
-    				 ]
 
 end

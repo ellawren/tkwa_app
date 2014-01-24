@@ -26,6 +26,7 @@ class EmployeeTeam < ActiveRecord::Base
 
 	belongs_to :project
   belongs_to :user
+  has_one :employee_role
 
 	validates :project_id, :presence => true
   validates :user_id, :presence => true
