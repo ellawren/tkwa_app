@@ -15,7 +15,6 @@
 
 
 class Timesheet < ActiveRecord::Base
-  default_scope :order => "year DESC, week DESC"
   
   belongs_to :user
   has_many :time_entries, :dependent => :destroy
@@ -28,6 +27,18 @@ class Timesheet < ActiveRecord::Base
 
   NON_BILLABLE_CATEGORIES =   [ "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
                                 "Studio Projects", "Sustainable Research", "Vacation" ]
+
+  
+  def data_record
+    # find all data records for user/year
+        data_array = []
+        DataRecord.find_all_by_user_id_and_year(self.user_id, self.year).each do |d|
+            if self.week >= d.start_week && self.week <= d.end_week 
+                return d
+            end
+        end
+  end
+
 
   def total_hours
   	time_entries.sum(:day1) +  

@@ -1,0 +1,43 @@
+<% content_for :page_header do %>
+  <% provide :title, "Timesheets" %>
+  <div class="page-header">
+    <h1><%= @user.name %>'s Timesheets</h1>
+  </div>
+<% end %>
+
+<% year_array(@timesheets).each do |y| %>
+		<h4><%= y %></h4><br />
+		<table class="table right-align timesheets">
+			<thead>
+				<tr>
+					<th>Week</th>
+					<th>Dates</th>
+					<th>Pay Type</th>
+					<th>Total Hours</th>
+					<th>Goal</th>
+					<th>Over/Under</th>
+					<th>Status</th>			
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<% Timesheet.find_all_by_user_id_and_year(@user.id, y, :order => "week ASC").each do |t| %>
+					<tr>
+						<td><%= t.week %></td>
+						<td><%= parse_date_full(t.week, t.year) %></td>
+						<td><%= t.data_record.pay_type %></td>
+						<td class="bold"><%= precise(nonzero?(t.timesheet_total)) %></td>
+						<td><%= (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f) %></td>
+						<td>
+							<% if (t.year == this_year && t.week < this_week) || t.year < this_year %>
+								<%= number_with_precision(t.timesheet_total - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %>
+							<% end %>
+						</td>
+						<td><%= t.complete == true ? "open" : "closed" -%></td>
+		  				<td><%= link_to "go to timesheet", user_timesheet_path(t.user_id, t.year, t.week) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>		
+<% end %>

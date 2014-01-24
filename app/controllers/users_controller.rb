@@ -61,7 +61,6 @@ class UsersController < ApplicationController
     render :layout => 'modal' 
   end
   
-  
   private
 
     def correct_user

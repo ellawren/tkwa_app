@@ -15,30 +15,28 @@ class TimesheetsController < ApplicationController
    @holidays = Holiday.all
   end
 
+    def all
+        @user = User.find(params[:id])
+        @timesheets = Timesheet.find_all_by_user_id(params[:id])
+    end
+
 
   def show
     @year = params[:year].to_i
     @week = params[:week].to_i
 
     if @week <= weeks_in_year(@year)
-        @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(params[:id], params[:year], params[:week])
-        @user = User.find(@timesheet.user_id)
-        
         # find all data records for user/year
         data_array = []
-        DataRecord.find_all_by_user_id_and_year(@user.id, @timesheet.year).each do |d|
-            data_array.push(d)
-        end
-        # find the one for this time period
-        if data_array.size > 0 
-            data_array.each do |d|
-                if @week >= d.start_week && @week <= d.end_week 
-                    @data_record = d
-                end
-            end     
+        DataRecord.find_all_by_user_id_and_year(params[:id], params[:year]).each do |d|
+            if @week >= d.start_week && @week <= d.end_week 
+                @data_record = d
+            end
         end
         # if a matching record is found, load timesheet data
         if @data_record
+            @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(params[:id], params[:year], params[:week])
+            @user = User.find(@timesheet.user_id)
             @goal = (@timesheet.ytd_goal(@week - @data_record.start_week + 1).to_f)
             @goal_with_overage = (@timesheet.ytd_goal(@week - @data_record.start_week + 1).to_f) + -(@data_record.overage_from_prev.to_f)
             @actual = @timesheet.ytd('total').to_f
@@ -81,6 +79,6 @@ class TimesheetsController < ApplicationController
   def destroy
     Timesheet.find(params[:id]).destroy
     flash[:success] = "Timesheet destroyed."
-    redirect_to timesheets_path
+    redirect_to all_timesheets_path
   end
 end

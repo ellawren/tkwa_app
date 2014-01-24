@@ -7,30 +7,33 @@ TkwaApp::Application.routes.draw do
   match '/contacts/import',   to: 'contacts#import'
   match '/projects/forecast',   to: 'projects#forecast_index'
 
-  resources :projects do
-    resources :employee_teams
-    resources :schedule_items
-    resources :shop_drawings
-    get :autocomplete_contact_name, :on => :collection
-    get :autocomplete_billing_name, :on => :collection
-    get :autocomplete_contact_work_company, :on => :collection
-    member do
-      get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'setup', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'summary', 'current', 'patterns', 'forecast', 'edit_forecast'
-    end
-  end    
-resources :projects
-  resources :users do
-    resources :timesheets
-    member do
-      get 'forecast', 'edit_forecast'
-    end
-  end
+    resources :projects do
+        resources :employee_teams
+        resources :schedule_items
+        resources :shop_drawings
+        get :autocomplete_contact_name, :on => :collection
+        get :autocomplete_billing_name, :on => :collection
+        get :autocomplete_contact_work_company, :on => :collection
+        member do
+            get 'info', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'patterns', 'forecast', 'edit_forecast'
+        end
+    end    
 
-  match '/users/:id/timesheets/:year/:week',  to: 'timesheets#show'
-  match '/users/:user_id/data_records',      to: 'data_records#user_index'
-  match '/users/:user_id/data_records/:id',      to: 'data_records#edit'
-  match '/globals/:year',                         to: 'globals#edit'
-  match '/consultant_teams/:consultant_team_id/bills',            to: 'bills#index'
+    resources :projects
+
+    resources :users do
+        resources :timesheets
+        member do
+            get 'forecast', 'edit_forecast'
+        end
+    end
+
+    match '/users/:id/timesheets/:year/:week',  to: 'timesheets#show', as: 'user_timesheet'
+    match '/timesheets/:id',              to: 'timesheets#all', as: 'all_timesheets'
+    match '/users/:user_id/data_records',      to: 'data_records#user_index'
+    match '/users/:user_id/data_records/:id',      to: 'data_records#edit', as: 'user_data_record'
+    match '/globals/:year',                         to: 'globals#edit'
+    match '/consultant_teams/:consultant_team_id/bills',            to: 'bills#index'
 
 #need both of these for routing to work correctly on project billing page
 resources :consultant_teams do
