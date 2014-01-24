@@ -1,4 +1,4 @@
-<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %> <% if nb_unsaved?(f.object) %>edit not-saved<% end %>" id="nb-entry-<%= f.object.id %>">
+<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %> <% if nb_unsaved?(f.object) %>edit not-saved<% else %>saved<% end %>" id="nb-entry-<%= f.object.id %>">
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
    
@@ -49,7 +49,9 @@
                 <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
             </div>
 
-            <a class="edit-me"></a>
+            <% if @timesheet.open? %>
+                <a class="edit-me"></a>
+            <% end %>
 
         </div>
     <% end %>
