@@ -1,13 +1,9 @@
 				<tr>
 	            	<td><%= link_to strip(f.number), info_project_path(f) %></td>
 	                <td class="bold"><%= link_to f.name, info_project_path(f) %></td>
-	                <!--<td><%= f.building_type %></td>
-	                <td></td>
-	                <td><%= f.status %></td>-->
-	                <td><% if signed_in? %>
-					  	<% if current_user.admin? %>
-					    	<%= link_to "delete", f, method: :delete, confirm: "You sure?" %>
-					  	<% end %>
-					  <% end %>
-					</td>
+	                <td><%= link_to "info", info_project_path(f) %></td>
+					<td><%= link_to "billing", billing_project_path(f) %></td>
+					<td><%= link_to "scope", scope_project_path(f) %></td>
+					<td><%= link_to "tracking", tracking_project_path(f) %></td>
+					<td><%= link_to "forecast", forecast_project_path(f) %></td>
 	            </tr>

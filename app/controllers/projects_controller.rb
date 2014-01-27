@@ -85,6 +85,11 @@ class ProjectsController < ApplicationController
             render :layout => 'search' 
         end
     end
+
+    def current
+        @projects = Project.where(:status => "current").order('number ASC')
+        render :layout => 'projects_static' 
+    end
   
     def create
         @project = Project.new(params[:project])

@@ -20,6 +20,7 @@ TkwaApp::Application.routes.draw do
     end    
 
     resources :projects
+    match '/projects/current',  to: 'projects#current'
 
     resources :users do
         resources :timesheets

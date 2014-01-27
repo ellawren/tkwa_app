@@ -44,12 +44,16 @@
 
     <h2>Search Results (<%= @projects.count %>) <a class="reset" href="/projects">reset search</a></h2>
 
-		<table class="table search-results">
+		<table class="table search-results projects">
             <thead>
                 <tr>
                     <th>Number</th>
                     <th>Name</th>
-                    <th>Delete?</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
 		    <tbody>
@@ -65,7 +69,12 @@
 
 <% end %>
 
-<div class="row icons three">
+<div class="row icons four">
+
+    <div class="tile-box">
+        <%= link_to image_tag("browse.png", :alt => "current-projects", :class => "round-icon"), projects_current_path %>
+        <%= link_to "Current Projects", projects_current_path, :class => "tile-label" %>
+    </div>
 
     <div class="tile-box">
         <%= link_to image_tag("bell.png", :alt => "new-project", :class => "round-icon"), new_project_path(:status => 'current') %>
