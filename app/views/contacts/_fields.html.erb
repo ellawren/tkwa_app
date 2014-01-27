@@ -10,6 +10,10 @@
             <% end %>
             <%= f.text_field(:name, :value => val) %>
         </div>
+        <div class="input-row space-below">
+            <%= f.label(:work_title, "Title", class: "input-label") %>
+            <%= f.text_field :work_title, class: "full-width" %>
+        </div>
         <div class="input-row">
             <%= f.label(:work_company, "Company", class: "input-label") %>
             <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'} %>
@@ -33,10 +37,7 @@
     </div>
 
     <div class="narrow contact-phone">
-        <div class="input-row space-below">
-            <%= f.label(:work_title, "Title", class: "input-label") %>
-            <%= f.text_field :work_title, class: "full-width" %>
-        </div>
+        
         <div class="input-row">
             <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
             <%= f.text_field :work_phone, value: number_to_phone(@contact.work_phone, :area_code => true), class: "phone" %>
