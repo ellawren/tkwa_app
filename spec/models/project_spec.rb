@@ -4,7 +4,7 @@
 #
 #  id                    :integer         not null, primary key
 #  name                  :string(255)
-#  number                :decimal(8, 2)
+#  number                :string(255)
 #  location              :string(255)
 #  client                :string(255)
 #  building_type         :string(255)
