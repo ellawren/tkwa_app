@@ -46,9 +46,9 @@
             <div class="input-row text-only">
                 <div class="input-label">
                     <label>Profit/Loss</label>
-                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Contract Billed To Date + Hourly Billed To Date - Payroll To Date"></a>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="(Contract Billed To Date + Hourly Billed To Date) - (Payroll To Date + Consultants Billed To Date)"></a>
                 </div>
-                <div class="text-field bold"><%= over_under_currency(@project.payroll.to_f, @project.billed_to_date.to_f + @project.hourly_billed_to_date.to_f) %></div>
+                <div class="text-field bold"><%= over_under_currency(@project.payroll.to_f + @project.project_bills_total.to_f, @project.billed_to_date.to_f + @project.hourly_billed_to_date.to_f) %></div>
             </div>  
         </div>
         <div class="third billing last">       
