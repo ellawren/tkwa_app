@@ -172,7 +172,8 @@ module TimesheetsHelper
         week_array = (start_week..week).to_a 
         array = []
         week_array.each do |w|
-            array.push(Timesheet.find_by_user_id_and_year_and_week(user, year, w).timesheet_total)
+            timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(user, year, w)
+            array.push(timesheet.timesheet_total)
         end
         array.sum
     end

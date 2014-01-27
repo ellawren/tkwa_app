@@ -35,7 +35,7 @@ class TimesheetsController < ApplicationController
                 
                 @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)
                 @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f)
-                @actual = total_hours_for(params[:id], @year, @week, @data_record.start_week)
+                @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)
 
                 if @timesheet.open?
                     1.times { @timesheet.time_entries.build }
