@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140124182423) do
+ActiveRecord::Schema.define(:version => 20140127182134) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -244,12 +244,12 @@ ActiveRecord::Schema.define(:version => 20140124182423) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.decimal  "number",          :precision => 8,  :scale => 2
+    t.decimal  "number",                :precision => 8,  :scale => 2
     t.string   "location"
     t.string   "client"
     t.string   "building_type"
     t.string   "client_type"
-    t.string   "status",                                         :default => "current"
+    t.string   "status",                                               :default => "current"
     t.string   "contact_name"
     t.string   "contact_phone"
     t.string   "contact_email"
@@ -258,8 +258,8 @@ ActiveRecord::Schema.define(:version => 20140124182423) do
     t.string   "billing_phone"
     t.string   "billing_email"
     t.string   "billing_type"
-    t.datetime "created_at",                                                                                                               :null => false
-    t.datetime "updated_at",                                                                                                               :null => false
+    t.datetime "created_at",                                                                                                                     :null => false
+    t.datetime "updated_at",                                                                                                                     :null => false
     t.string   "billing_ext"
     t.string   "contact_ext"
     t.string   "start_date"
@@ -288,9 +288,8 @@ ActiveRecord::Schema.define(:version => 20140124182423) do
     t.integer  "int_percent"
     t.integer  "add_percent"
     t.string   "client_url"
-    t.decimal  "contract_amount", :precision => 12, :scale => 2
-    t.decimal  "extra_services",  :precision => 12, :scale => 2
-    t.decimal  "payroll",         :precision => 12, :scale => 2
+    t.decimal  "contract_amount",       :precision => 12, :scale => 2
+    t.decimal  "payroll",               :precision => 12, :scale => 2
     t.string   "alt_contact"
     t.string   "mkt_location"
     t.string   "mkt_size"
@@ -298,12 +297,13 @@ ActiveRecord::Schema.define(:version => 20140124182423) do
     t.text     "mkt_description"
     t.string   "mkt_reference"
     t.string   "mkt_status"
-    t.string   "view_options",                                   :default => "---\n- setup\n- scope\n- forecast\n- tracking\n- billing\n"
+    t.string   "view_options",                                         :default => "---\n- setup\n- scope\n- forecast\n- tracking\n- billing\n"
     t.string   "proposal_date"
     t.string   "interview_date"
-    t.string   "awarded",                                        :default => "pending"
+    t.string   "awarded",                                              :default => "pending"
     t.string   "contact_address"
-    t.decimal  "billed_to_date",  :precision => 12, :scale => 2
+    t.decimal  "billed_to_date",        :precision => 12, :scale => 2
+    t.decimal  "hourly_billed_to_date", :precision => 12, :scale => 2
   end
 
   create_table "projects_reimbursables", :id => false, :force => true do |t|

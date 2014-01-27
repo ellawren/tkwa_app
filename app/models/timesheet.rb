@@ -39,7 +39,6 @@ class Timesheet < ActiveRecord::Base
         end
   end
 
-
   def total_hours
   	time_entries.sum(:day1) +  
   	time_entries.sum(:day2) + 

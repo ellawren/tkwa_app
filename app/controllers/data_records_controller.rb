@@ -24,7 +24,7 @@ class DataRecordsController < ApplicationController
   def create
     @data_record = DataRecord.new(params[:data_record])
     if @data_record.save
-      redirect_to data_records_path
+      redirect_to(:back) 
     else
       render 'new'
     end
@@ -49,7 +49,7 @@ class DataRecordsController < ApplicationController
   def destroy
       DataRecord.find(params[:id]).destroy
       flash[:success] = "Data record destroyed."
-      redirect_to data_records_path
+      redirect_to(:back) 
   end
 
 end

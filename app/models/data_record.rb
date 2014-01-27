@@ -35,6 +35,10 @@ class DataRecord < ActiveRecord::Base
     	(self.start_week..self.end_week).to_a 
   	end
 
+  	def week_array
+    	(self.start_week..self.end_week).to_a 
+  	end
+
   	def user_name
   		User.find(self.user_id).name
   	end

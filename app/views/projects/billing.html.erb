@@ -5,16 +5,19 @@
         <div class="third billing">
             
             <div class="input-row">
-                <%= f.label(:contract_amount, "Total Contract", class: "input-label") %>
+                <%= f.label(:contract_amount, "Contract Total", class: "input-label") %>
                 <%= f.text_field :contract_amount, value: number_to_currency(@project.contract_amount), class: "", autocomplete: "off"  %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:extra_services, "Extra Services", class: "input-label") %>
-                <%= f.text_field :extra_services, value: number_to_currency(@project.extra_services), autocomplete: "off" %>
             </div>
             <div class="input-row text-only">
                 <div class="input-label">
-                    <label>Consultant Billing</label>
+                    <label>Hourly Total</label>
+                </div>
+                <div class="text-field"><%= number_to_currency(@project.hourly_billed_to_date.to_f) %>
+                </div>
+            </div>  
+            <div class="input-row text-only">
+                <div class="input-label">
+                    <label>Consultant Total</label>
                 </div>
                 <div class="text-field"><%= number_to_currency(@project.consultant_contract_total) %>
                 </div>
@@ -22,15 +25,19 @@
             <div class="input-row fee">
                 <div class="input-label">
                     <label>TKWA Fee</label>
-                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Total Contract + Extra Services - Total Consultant Contracts"></a>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Contract Total + Hourly Total - Consultant Total"></a>
                  </div>
                 <div class="text-field bold"><%= number_to_currency(@project.tkwa_fee) %></div>
             </div>  
         </div>
         <div class="third billing gray-box">
             <div class="input-row">
-                <%= f.label(:billed_to_date, "Billed To Date", class: "input-label") %>
+                <%= f.label(:billed_to_date, "Contract Billed To Date", class: "input-label") %>
                 <%= f.text_field :billed_to_date, value: number_to_currency(@project.billed_to_date), autocomplete: "off" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:hourly_billed_to_date, "Hourly Billed To Date", class: "input-label") %>
+                <%= f.text_field :hourly_billed_to_date, value: number_to_currency(@project.hourly_billed_to_date), autocomplete: "off" %>
             </div>
             <div class="input-row">
                 <%= f.label(:payroll, "Payroll To Date", class: "input-label") %>
@@ -39,15 +46,15 @@
             <div class="input-row text-only">
                 <div class="input-label">
                     <label>Profit/Loss</label>
-                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Billed To Date - (Payroll To Date + Consultants Billed-To-Date)"></a>
+                    <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Contract Billed To Date + Hourly Billed To Date - Payroll To Date"></a>
                 </div>
-                <div class="text-field bold"><%= over_under_currency(@project.payroll.to_f + @project.project_bills_total.to_f, @project.billed_to_date) %></div>
+                <div class="text-field bold"><%= over_under_currency(@project.payroll.to_f, @project.billed_to_date.to_f + @project.hourly_billed_to_date.to_f) %></div>
             </div>  
         </div>
         <div class="third billing last">       
             <div class="billed-to-date">
                 <div class="percentage"><%= number_to_percentage(f.object.percent_billed_to_date, :precision => 0) %></div>
-                billed to date <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Billed To Date / (Total Contract + Extra Services)"></a>
+                billed to date <a href="#" class="tip-right fui-eye" data-toggle="tooltip" title="" data-original-title="Contract Billed To Date / Contract Total"></a>
             </div>
         </div> 
 
