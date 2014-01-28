@@ -3,65 +3,25 @@
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
-    <% if @timesheet.open? %>
-        <div class="editable">
-            <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
-            <% if f.object.project_id %>
-                <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
-            <% else %>
-                <%= f.collection_select :phase_number, Phase.order(:number), :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
-            <% end %>
-            <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
-            <div class="time-entries">  
-                <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %></div>
-                <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
-            </div>
-
-            <%= link_to_remove_fields " ", f %>
-            <a class="done-editing">cancel</a>
-            
-        </div>
-    <% end %> 
-
-    <% if unsaved?(f.object) == false %>
-        <div class="non-editable">
-            <% if f.object.project_id %>
-                <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
-            <% else %>
-                <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
-            <% end %> 
-            <div class="phase-cell">
-                <% if f.object.phase_number %> 
-                    <%= f.object.phase_number %>
-                <% end %> 
-            </div>
-            <div class="task-cell">
-                <% if f.object.task %> 
-                    <%= f.object.task %>
-                <% end %> 
-            </div>
-            <div class="time-entries">  
-                <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day1 %></div></div>
-                <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= f.object.day2 %></div></div>
-                <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= f.object.day3 %></div></div>
-                <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= f.object.day4 %></div></div>
-                <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= f.object.day5 %></div></div>
-                <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= f.object.day6 %></div></div>
-                <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day7 %></div></div>
-                <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
-            </div>
-            <% if @timesheet.open? %>
-                <a class="edit-me"></a>
-            <% end %>
-
-        </div>
+    <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+    <% if f.object.project_id %>
+        <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
+    <% else %>
+        <%= f.collection_select :phase_number, Phase.order(:number), :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
     <% end %>
+    <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+    <div class="time-entries">  
+        <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %></div>
+        <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+    </div>
+
+    <%= link_to_remove_fields " ", f %>
 
     <!-- script to update the phase list based on selected project - must be here, not on main page or in scripts file -->
     <script>

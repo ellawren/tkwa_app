@@ -1,60 +1,23 @@
 <div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %> <% if nb_unsaved?(f.object) %>edit not-saved<% else %>saved<% end %>" id="nb-entry-<%= f.object.id %>">
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
-   
-   <% if @timesheet.open? %>
-        <div class="editable">
-            <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true }, class: "category custom-select") %>
 
-            <%= f.text_field :description, class: "text-input nb-description" %>
+    <%= f.select(:category, Timesheet::NON_BILLABLE_CATEGORIES, {:include_blank => true }, class: "category custom-select") %>
 
-            <div class="time-entries">  
-                <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input", autocomplete: "off" %></div>
-                <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %></div>
-                <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
-            </div>
+    <%= f.text_field :description, class: "text-input nb-description" %>
 
-            <%= link_to_remove_fields " ", f %>
-            <a class="done-editing">cancel</a>
+    <div class="time-entries">  
+        <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %></div>
+        <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+    </div>
 
-        </div>
-    <% end %>
-
-    <% if nb_unsaved?(f.object) == false %>
-        <div class="non-editable">
-            <div class="category-cell">
-                <% if f.object.category %> 
-                    <%= f.object.category %>
-                <% end %> 
-            </div>
-            <div class="description-cell">
-                <% if f.object.description %> 
-                    <%= f.object.description %>
-                <% end %> 
-            </div>
-
-            <div class="time-entries">  
-                <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day1 %></div></div>
-                <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= f.object.day2 %></div></div>
-                <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= f.object.day3 %></div></div>
-                <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= f.object.day4 %></div></div>
-                <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= f.object.day5 %></div></div>
-                <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= f.object.day6 %></div></div>
-                <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day7 %></div></div>
-                <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
-            </div>
-
-            <% if @timesheet.open? %>
-                <a class="edit-me"></a>
-            <% end %>
-
-        </div>
-    <% end %>
+    <%= link_to_remove_fields " ", f %>
 
 </div>
 
