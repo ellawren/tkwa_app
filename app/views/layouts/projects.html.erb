@@ -9,15 +9,18 @@
         <a class="header-label" href="/projects/current">Current Projects</a>
         <div class="page-header">
             <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+    <% else %>
+        <div class="page-header">
+            <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
     <% end %>
-        <ul class="controls">
-            <!--<% unless @project.status == "potential" %>
-                <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
-            <% end %>-->
-            <li><%= link_to "", @project, class: "delete fui-cross projects", method: :delete, confirm: "Delete this project and all its data?" %></li>
-        </ul>
+            <ul class="controls">
+                <!--<% unless @project.status == "potential" %>
+                    <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
+                <% end %>-->
+                <li><%= link_to "", @project, class: "delete fui-cross projects", method: :delete, confirm: "Delete this project and all its data?" %></li>
+            </ul>
 
-    </div>		
+        </div>		
 <% end %>
 
 <% content_for :tabnav do %>
