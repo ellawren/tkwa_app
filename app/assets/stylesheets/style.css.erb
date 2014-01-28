@@ -555,7 +555,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	/* main modal */
     .modal { left:38%; top:200px; width:860px; border-radius:15px; overflow:hidden; }
   	.modal form { margin-bottom:0px; }
-    .modal-header { height:60px; }
+    .modal-header { height:60px; padding-left:40px; }
     .modal-body { display:block; padding:20px; overflow:visible; }
     .modal-footer { padding-right:40px; }
     .modal-footer .btn-primary { background-color:#1abc9c; color:#fff; width:200px; }
@@ -615,6 +615,17 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			ul.phase-list li .phase-number { float:left; width:30px; height:16px; padding:5px 0 9px; border-radius:15px; border:1px solid #1abc9c; text-align:center; color:#1abc9c; font-weight:900; }
 			ul.phase-list li .phase-name { float:left; height:16px; width:80px; padding:5px 0 9px; margin-left:10px; color:#1abc9c; font-weight:900; }
 	 		ul.phase-list li .phase-description { float:left; width:320px; margin:5px 0 0 10px;  }
+ 	/*---*/
+
+ 	/* timesheets - add to projects modal */
+	.modal.employee-team { width:610px; left:50%; min-height:260px; height:auto; }
+	.modal.employee-team .modal-body { height:100%; padding:20px 40px 10px; height:80px; }
+
+	.modal.employee-team .modal-body .name-label { float:left; width:300px; margin-bottom:6px; }
+	.modal.employee-team .modal-body .role-label { float:left; width:230px; margin-bottom:6px; }
+	.modal.employee-team .modal-body .custom-select { margin-right:10px; }
+	.modal.employee-team .modal-body .custom-select.project-name { width:290px; }
+
  	/*---*/
 
  	/* consultant billing - add bill modal */

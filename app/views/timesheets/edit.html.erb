@@ -27,6 +27,11 @@
 		</div><!-- /.modal -->
 	<!-- end modal -->
 
+	<!-- modal for consultant billing edit -->
+        <div class="employee-team modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div><!-- /.modal -->
+    <!-- end modal -->
+
 	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
 
 	<div class="switch-box">
@@ -35,6 +40,8 @@
 		
 	<div class="box">
 		<%= render 'shared/error_messages', :object => f.object %>
+
+		<a href="/employee_teams/new?user_id=<%= @user.id %>" data-target="#myModal" data-toggle="modal" class="add-project-link">add project to my list</a>
 
 	    <div class="table-main timesheets">
 

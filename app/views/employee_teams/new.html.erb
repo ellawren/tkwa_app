@@ -1,0 +1,19 @@
+<% content_for :modal_header do %>
+  <%= @user.name %> - Add To Project Team
+<% end %>
+
+<%= form_for @employee_team do |f| %>
+    <div class="modal-body">
+        <%= f.hidden_field :user_id %>
+        <div class="name-label">Project Name</div>
+        <div class="role-label">Role</div>
+        <%= f.collection_select(:project_id, @projects, :id, :name, { :include_blank => true }, { :class => "custom-select project-name" } ) %>
+        
+        <%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>     
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Add To Team", class: "btn btn-primary" %>
+    </div>
+          
+<% end %>
