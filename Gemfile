@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'paperclip', '~> 3.0' # upload images for patterns
 gem 'aws-sdk' # amazon web services for storing uploaded images
 gem 'simple_calendar', '~> 0.1.9'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
