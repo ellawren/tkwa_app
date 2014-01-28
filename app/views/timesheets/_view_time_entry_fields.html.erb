@@ -1,0 +1,33 @@
+<div class="table-row <% if unsaved?(f.object) %>edit not-saved<% else %>saved<% end %>" id="entry-<%= f.object.id %>" >
+
+    <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
+    <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
+
+    <% if f.object.project_id %>
+        <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
+    <% else %>
+        <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+    <% end %> 
+    <div class="phase-cell">
+        <% if f.object.phase_number %> 
+            <%= f.object.phase_number %>
+        <% end %> 
+    </div>
+    <div class="task-cell">
+        <% if f.object.task %> 
+            <%= f.object.task %>
+        <% end %> 
+    </div>
+    <div class="time-entries">  
+        <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day1 %></div></div>
+        <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= f.object.day2 %></div></div>
+        <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= f.object.day3 %></div></div>
+        <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= f.object.day4 %></div></div>
+        <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= f.object.day5 %></div></div>
+        <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= f.object.day6 %></div></div>
+        <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day7 %></div></div>
+        <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+    </div>
+
+
+</div>

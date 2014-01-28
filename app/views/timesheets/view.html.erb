@@ -29,8 +29,9 @@
 
 	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
 
-	<div class="switch-box">
-		<%= f.check_box(:complete, { data_toggle: "switch"  } )  %> 
+	<div class="switch-box inactive">
+		<%= f.check_box(:complete, { data_toggle: "switch" } )  %> 
+		<div class="shield"></div>
 	</div>
 		
 	<div class="box">
@@ -41,7 +42,7 @@
 			<div class="table-head">
 				<div class="cell project-name"><div class="timesheet-tab">Billable Time</div></div>
 				<div class="cell phase"><br />Phase<a href="<%= modal_phases_path %>" data-target="#phaseModal" data-toggle="modal" class="inline-edit-link fui-eye"></a></div>
-				<div class="cell task"><br />Task<a href="/tasks" class="inline-edit-link fui-new"></a></div>
+				<div class="cell task"><br />Task</div>
 				<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
 				<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
 				<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
@@ -55,12 +56,8 @@
 	  		<div class="table-body">
 				<!-- nested form for team-->
 	    		<%= f.fields_for :time_entries do |builder| %>
-	    			<%= render 'time_entry_fields', :f => builder %>
+	    			<%= render 'view_time_entry_fields', :f => builder %>
 	    		<% end %>
-	    		<!-- this is commented out because new lines are automatically added to the view -->
-	    		<% if @timesheet.open? %>
-	        		<%= link_to_add_fields "", f, :time_entries, "add fui-plus timesheets" %>
-	        	<% end %>
 	   			<!-- end team form -->
 	   		</div>	
 	           					
@@ -84,12 +81,8 @@
 
 				<!-- nested form for team-->
 	    		<%= f.fields_for :non_billable_entries do |builder| %>
-	    			<%= render 'non_billable_entry_fields', :f => builder %>
+	    			<%= render 'view_non_billable_entry_fields', :f => builder %>
 	    		<% end %>
-	    		<!-- this is commented out because new lines are automatically added to the view -->
-	    		<% if @timesheet.open? %>
-	        		<%= link_to_add_fields "", f, :non_billable_entries, "add fui-plus timesheets" %>
-	        	<% end %>
 	   			<!-- end team form -->
 	   		</div>	
 
@@ -110,11 +103,6 @@
 		</div>
 
 		<div class="timesheet-total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
-
-		<div class="save-row">
-	        <%= f.submit "Save + Update Totals", class: "btn btn-primary save-btn" %>
-	        <%= f.submit "Reopen Timesheet", class: "btn reopen" %>
-		</div>
 
 		<div class="gray-box timesheets">
 			<div class="stats utilization">
@@ -234,10 +222,17 @@
 			
 		</div>
 
+		<%= f.submit "Reopen Timesheet", id: "reopen-timesheet" %>
+
+	<script>
+	    // reopen timesheet
+    	$('#reopen-timesheet').click( function() {
+	        $('#timesheet_complete').prop('checked', true);
+    	});
+    </script>
+
 	</div>  <!-- end box-->
-
-
 	<% end %> <!-- end form -->
-
+	
 <% end %><!-- end conditional -->
 			    
