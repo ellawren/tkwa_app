@@ -30,7 +30,7 @@
 					<tr class="week">
 						<th></th>
 						<% four_month_weeknum_array(date).each do |w| %>
-							<th <%= "class='current'" if w == this_week %>><%= w %></th>
+							<th class="<%= "current" if w == this_week %>"><%= w %></th>
 						<% end %>
 					</tr>
 				</thead>

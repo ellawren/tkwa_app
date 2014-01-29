@@ -1,5 +1,5 @@
 <% content_for :page_header do %>
-	<% provide :title, "6-Month Forecast" %>
+	<% provide :title, "Project Forecast" %>
     <div class="page-header">
         <h1>4-Month Forecast</h1>
     </div>
@@ -36,7 +36,7 @@
         <tr class="week">
             <th></th>
             <% four_month_weeknum_array(date).each do |w| %>
-                <th <%= "class='current'" if w == this_week %>><%= w %></th>
+                <th class="<%= "current" if w == this_week %>"><%= w %></th>
             <% end %>
         </tr>
     </thead>
@@ -48,17 +48,9 @@
                         <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
                     </td>
                     <% four_month_array(date).each do |w, y| %>
-                        <td class="<%= month_shading(w, y) %>"></td>
+                        <td class="<%= month_shading(w, y) %>"><%= p.forecast_total(w, y) %></td>
                     <% end %>
                 </tr>
-                <% p.employee_teams.each do |e| %>
-                <tr class="subhead">
-                    <td><%= e.employee_name %></td>
-                    <% p.employee_forecast(e.user_id, four_month_array(date)).each do |plan| %>
-                        <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
-                    <% end %>
-                </tr>
-                <% end %>
             <% end %>
         <% else %>
             <% User.active_users.each do |e| %>
@@ -68,17 +60,9 @@
                             <a href="<%= edit_forecast_user_path(e.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= e.name %></a>
                         </td>
                         <% four_month_array(date).each do |w, y| %>
-                            <td class="<%= month_shading(w, y) %>"></td>
+                            <td class="<%= month_shading(w, y) %>"><%= e.forecast_total(w, y) %></td>
                         <% end %>
                     </tr>
-                    <% e.employee_teams.current.each do |t| %>
-                        <tr class="subhead">
-                            <td><%= t.project_name %></td>
-                            <% e.employee_forecast(t.project_id, four_month_array(date)).each do |plan| %>
-                                <td class="<%= month_shading(plan.week, plan.year) %>"><%= plan.hours %></td>
-                            <% end %>
-                        </tr>
-                    <% end %>
                 <% end %>
             <% end %>
         <% end %>

@@ -24,7 +24,7 @@
 				<tr class="week">
 					<th></th>
 					<% four_month_weeknum_array(date).each do |w| %>
-						<th <%= "class='current'" if w == this_week %>><%= w %></th>
+						<th class="<%= "current" if w == this_week %>"><%= w %></th>
 					<% end %>
 				</tr>
 			</thead>
@@ -55,3 +55,6 @@
 	<% end %>
 
 <% end %>
+<%= four_month_test("1/1/2014".to_date) %>
+<br><br>
+<%= (Date.commercial(2014, 5, 1) - 1).strftime("%b") %>
