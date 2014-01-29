@@ -6,33 +6,17 @@
 <% end %>
 
 <%= form_for @user do |f| %>
-<% date = Date.today %>
+<% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
+
         <table class="table forecast">
             <thead>
-                <tr>
-                    <th></th>
-                    <% four_month_year_array(date).each do |w| %>
-                        <th><%= w %></th>
-                    <% end %>
-                </tr>
-                <tr>
-                    <th></th>
-                    <% four_month_monthname_array(date).each do |w| %>
-                        <th><%= w %></th>
-                    <% end %>
-                </tr>
-                <tr class="week">
-                    <th></th>
-                    <% four_month_weeknum_array(date).each do |w| %>
-                        <th <%= "class='current'" if w == this_week %>><%= w %></th>
-                    <% end %>
-                </tr>
+                <%= four_month_header_array(date) %>
             </thead>
             <tbody>
                 <% @user.employee_teams.current.each do |t| %>
                     <tr>
                         <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
-                        <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(Date.today)) do |plan| %>
+                        <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
                             <td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
                             </td>
                         <% end %>
@@ -42,8 +26,8 @@
             <tfoot>
                 <tr>
                     <td></td>
-                    <% @user.forecast_week_total(four_month_array(date)).each do |w| %>
-                        <td><%= w %></td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"><%= @user.forecast_total(w, y) %></td>
                     <% end %>
                 </tr>
             </tfoot>
