@@ -50,14 +50,36 @@ module ApplicationHelper
 
   def month_shading(week, year)
     # jan / mar / may / jul / sep / nov
+    string = ""
+
     if (Date.commercial(year, week, 3)).strftime("%b") == 'Jan' ||  # 3rd day = wed is in month
        (Date.commercial(year, week, 3)).strftime("%b") == 'Mar' ||
        (Date.commercial(year, week, 3)).strftime("%b") == 'May' ||
        (Date.commercial(year, week, 3)).strftime("%b") == 'Jul' ||
        (Date.commercial(year, week, 3)).strftime("%b") == 'Sep' ||
        (Date.commercial(year, week, 3)).strftime("%b") == 'Nov'
-      "gray"
+
+        string << "gray"
     end
+    month = (Date.commercial(year, week, 3)).strftime("%m").to_i
+    first_of_month = Date.new(year, month, 1)
+    last_of_month = first_of_month.end_of_month
+    week_start = Date.commercial(year, week, 1) - 4
+    week_end = Date.commercial(year, week, 7)
+
+    if week_start <= first_of_month && first_of_month <= week_end
+        string << " first"
+    end
+
+    if week == (Date.today.beginning_of_week(start_day = :sunday) - 1.week).cweek
+        string << " first"
+    end
+
+    if week_start + 2 <= last_of_month && last_of_month <= week_end + 2
+        string << " last"
+    end
+
+    string
   end
 
   def four_month_array(start)
@@ -77,7 +99,7 @@ module ApplicationHelper
     arr
   end
 
-  def four_month_year_array(start)
+  def four_month_header_array(start)
     start_date = start
     week_array = []
 
@@ -85,52 +107,69 @@ module ApplicationHelper
       week_array.push([start_date.cweek, start_date.year])
       start_date = start_date + 7
     end
-    arr = []
+    
+    # add years to array
+    year_arr = []
     week_array.each do |w, y|
-        if arr.include?(y)
-          arr.push("")
+        if year_arr.include?(y)
+          year_arr.push("")
         else
-          arr.push(y)
+          year_arr.push(y)
         end
     end
-    arr
-  end
 
-  def four_month_monthname_array(start)
-    start_date = start
-    week_array = []
-
-    (1..18).each do |i|
-      week_array.push([start_date.cweek, start_date.year])
-      start_date = start_date + 7
-    end
-    arr = []
+    # add months to array
+    month_arr = []
     week_array.each do |w, y|
-      month = (Date.commercial(y, w, 3)).strftime("%b") # 3rd day = wed is in month
-        if arr.include?(month)
-          arr.push("")
+        month = (Date.commercial(y, w, 3)).strftime("%b") # 3rd day = wed is in month
+        if month_arr.include?(month)
+          month_arr.push("")
         else
-          arr.push(month)
+          month_arr.push(month)
         end
     end
-    arr
-  end
 
-  def four_month_weeknum_array(start)
-    start_date = start
-    week_array = []
-
-    (1..18).each do |i|
-      week_array.push([start_date.cweek, start_date.year])
-      start_date = start_date + 7
-    end
-    arr = []
+    # add weeks to array
+    week_arr = []
     week_array.each do |w, y|
-        arr.push(w)
+        week_arr.push([w, y])
     end
-    arr
+
+    # create string
+    string = "<tr><th></th>"
+
+    # add years to string
+    year_arr.each do |a|
+        if a != ""
+            string << "<th class=\"first\">#{a}</th>"
+        else
+            string << "<th>#{a}</th>"
+        end
+    end
+    string << "</tr><tr><th></th>"
+    # add months to string
+    month_arr.each do |a|
+        if a != ""
+            string << "<th class=\"first\">#{a}</th>"
+        else
+            string << "<th>#{a}</th>"
+        end
+    end
+    string << "</tr><tr class=\"week\"><th></th>"
+    # add weeks to string
+    week_arr.each do |w, y|
+        if w == this_week
+            string << "<th class=\"current\"><a class=\"tip\" title=\"#{parse_date(w, y)}\">#{w}</a></th>"
+        else  
+             string << "<th><a class=\"tip\" title=\"#{parse_date(w, y)}\">#{w}</a></th>"
+        end
+    end
+    string << "</tr>"
+    string.html_safe
   end
 
+
+  
   def is_active?(page_name)
     	# exception for contact data pages
       if params[:controller] == "contacts" && params[:action] == "data"

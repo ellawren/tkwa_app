@@ -558,27 +558,6 @@ class Project < ActiveRecord::Base
         entries
     end
 
-    def forecast_week_total(four_month_array)
-        x = []
-        four_month_array.each do |w, y|
-            plan_entries = PlanEntry.find_all_by_project_id_and_year_and_week(self.id, y, w)
-            array = []
-            sum = 0
-            plan_entries.each do |e|
-                if e.hours?
-                    array.push(e.hours)
-                end
-            end
-            array.map{|x| sum += x}
-            if sum == 0
-                x.push("")
-            else
-                x.push(sum)
-            end
-        end
-        x
-    end
-
     def forecast_total(w, y)
         plan_entries = PlanEntry.find_all_by_project_id_and_year_and_week(self.id, y, w)
         array = []

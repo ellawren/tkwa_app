@@ -1,9 +1,10 @@
 <% content_for :modal_header do %>
-  	<%= @project.name %>
+  	<%= link_to @project.name, forecast_project_path(@project) %>
 <% end %>
 
 <%= form_for @project do |f| %>
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
+<script>$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });</script>
 
 	<% if @project.employee_teams.length == 0 %>
 		<div class="modal-body">
@@ -15,24 +16,7 @@
 
 			<table class="table forecast">
 				<thead>
-					<tr>
-						<th></th>
-						<% four_month_year_array(date).each do |w| %>
-							<th><%= w %></th>
-						<% end %>
-					</tr>
-					<tr>
-						<th></th>
-						<% four_month_monthname_array(date).each do |w| %>
-							<th><%= w %></th>
-						<% end %>
-					</tr>
-					<tr class="week">
-						<th></th>
-						<% four_month_weeknum_array(date).each do |w| %>
-							<th class="<%= "current" if w == this_week %>"><%= w %></th>
-						<% end %>
-					</tr>
+					<%= four_month_header_array(date) %>
 				</thead>
 				<tbody>
 					<% @project.employee_teams.each do |e| %>
@@ -48,9 +32,9 @@
 				<tfoot>
 					<tr>
 						<td></td>
-						<% @project.forecast_week_total(four_month_array(date)).each do |w| %>
-							<td><%= w %></td>
-						<% end %>
+						<% four_month_array(date).each do |w, y| %>
+                        	<td class="<%= month_shading(w, y) %>"><%= @project.forecast_total(w, y) %></td>
+                    	<% end %>	
 					</tr>
 				</tfoot>
 			</table>

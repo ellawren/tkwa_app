@@ -9,24 +9,7 @@
 
 		<table class="table forecast">
 			<thead>
-				<tr>
-					<th></th>
-					<% four_month_year_array(date).each do |w| %>
-						<th><%= w %></th>
-					<% end %>
-				</tr>
-				<tr>
-					<th></th>
-					<% four_month_monthname_array(date).each do |w| %>
-						<th><%= w %></th>
-					<% end %>
-				</tr>
-				<tr class="week">
-					<th></th>
-					<% four_month_weeknum_array(date).each do |w| %>
-						<th class="<%= "current" if w == this_week %>"><%= w %></th>
-					<% end %>
-				</tr>
+				<%= four_month_header_array(date) %>
 			</thead>
 			<tbody>
 				<% @project.employee_teams.each do |e| %>
@@ -42,9 +25,9 @@
 			<tfoot>
 				<tr>
 					<td></td>
-					<% @project.forecast_week_total(four_month_array(date)).each do |w| %>
-						<td><%= w %></td>
-					<% end %>
+					<% four_month_array(date).each do |w, y| %>
+                        <td class="field <%= month_shading(w, y) %>"><%= @project.forecast_total(w, y) %></td>
+                    <% end %>	
 				</tr>
 			</tfoot>
 		</table>
@@ -55,3 +38,7 @@
 	<% end %>
 
 <% end %>
+
+
+
+

@@ -503,24 +503,30 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 /* FORECAST */
 
 	.table.forecast th { max-width:46px; padding:1px 1px; border:none; font-size: 12px; text-align:center; overflow:visible; }
-	.table.forecast tr.week th.current { background-color:#f1c40f; color:#344953; font-weight:900; }
+		.table.forecast tr th.first { border-left:1px solid #bcc6cc; }
+	.table.forecast tr.week th.current { background-color:#f1c40f; color:#344953; }
 	.table.forecast tr.week th { background-color:#344953; color:#fff; font-weight:400; }
-	.table.forecast td { padding:4px 2px; }
-	.table.forecast tr td:first-child { font-size:13px; font-weight:900; vertical-align:middle; }
-	.forecast input.small { width:34px; height:24px; padding:4px 2px; margin-bottom:0px; font-size:13px; text-align:center; }
+	.table.forecast tr td:first-child { font-size:13px; line-height:16px; font-weight:900; vertical-align:middle; }
+	.forecast input.small { width:30px; height:24px; padding:4px 1px; margin:0px; font-size:13px; text-align:center; }
 	.forecast input.current, .table.forecast td.gray input.current { border-color:#f1c40f; }
 	.table.forecast td.gray input { border-color:#e1e6eb; background-color:#ecf0f5; }
+		.table.forecast td.gray input:focus { border-color:#1abc9c; }
+
 	.table.forecast tbody tr:last-child td { border-bottom:2px solid #344953; }
 	.table.forecast tfoot td { color:#1abc9c; font-size:13px; font-weight:900; text-align:center; }
-	.table.forecast td { border-top:1px solid #bcc6cc; }
+	.table.forecast td { padding:4px 0px; border-top:1px solid #bcc6cc; }
+		.table.forecast td.first { border-left:1px solid #bcc6cc; padding-left:6px; }
+		.table.forecast td.last { padding-right:6px; }
+		.table.forecast td:first-child { border-right:1px solid #bcc6cc; }
 	.table.forecast a { color:#1abc9c; }
+		.table.forecast tr th a, .table.forecast tr th a:hover { color:#fff; cursor:default; display:block; width:100%; height:100%;}
+
 	.table.forecast a:hover { color:#16a085; }
 
 	.table.forecast a.btn { color:#fff; }
 
 
 	/* forecast index */
-
 	.table.forecast tr.head td { border-top:1px solid #344953; }
 	.table.forecast tr.subhead td:first-child { padding-left:20px; font-weight:400; }
 	.table.forecast.index td.gray { background-color:#ecf0f5; }
@@ -529,10 +535,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.table.forecast.index tfoot td { color:#344953; }
 	.table.forecast.index tr { display:block; width:940px; }
 	.table.forecast.index tbody { display:block; width:960px; height:auto; max-height:650px; overflow-y:auto; overflow-x:visible; }
-	.table.forecast th.buttons { text-align:left; }
-	.table.forecast th.buttons .btn { padding:2px 12px; margin:-15px 0 5px; background-color:#ced5da; font-size:13px; }
-	.table.forecast th.buttons .btn:hover { opacity:.7; }
-	.table.forecast th.buttons .btn.active { background-color:#1abc9c; color:#fff; }
+
 	.table.forecast.index tr.head td:first-child { padding-right:20px; }
 	.table.forecast.index tbody tr:last-child td { border-bottom:none; }
 
@@ -540,14 +543,22 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.table.forecast.index tr td:first-child { width:200px; max-width:200px; min-width:200px; text-align:left; }
 
 	.table.forecast.index tr th { width:38px; max-width:38px; min-width:38px; }
+		.table.forecast.index tr th.first { border-left:1px solid #bcc6cc; }
+		.table.forecast.index tr th a { color:#fff; cursor:default; display:block; width:100%; height:100%;}
+
 	.table.forecast.index thead tr th:first-child  { width:220px; max-width:220px; min-width:220px; }
 
 	.table.forecast.index tfoot tr td  { width:35px; max-width:35px; min-width:35px; border-top:2px solid #344953; }
 	.table.forecast.index tfoot tr td:first-child { width:218px; max-width:218px; min-width:218px; }
 
+	div.forecast { float:left; position:relative; }
 
+	.buttons { position:absolute; top:25px; left:0px; text-align:left; margin-bottom:-50px; z-index:999;}
+	.buttons .btn { padding:2px 12px; margin:-15px 0 5px; background-color:#ced5da; font-size:13px; }
+	.buttons .btn:hover { opacity:.7; }
+	.buttons .btn.active { background-color:#1abc9c; color:#fff; }
 
-
+		.table.forecast.index td { padding:4px 2px;}
 
 
 
@@ -646,12 +657,19 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
  	/* forecast modal */
 
 	.forecast-modal { left:35%; width:1000px; height:auto; }
-	.forecast-modal .modal-body { max-height:none; }
+	.forecast-modal .modal-body { max-height:none; height:auto;}
 		.forecast-modal .table.forecast { width:900px; margin-left:20px; }
 	.forecast-modal .forecast input.small { width:30px; height:24px; }
 	.forecast-modal .table.forecast tr td:first-child { min-width:110px; }
 	.forecast-modal form { width:100%; margin:0px; }
 	.forecast-modal .table.forecast td { padding:4px 1px; }
+
+		.forecast-modal .table.forecast td.first { border-left:1px solid #bcc6cc; padding-left:6px; }
+		.forecast-modal .table.forecast td.last { padding-right:6px; }
+		.forecast-modal .table.forecast td:first-child { border-right:1px solid #bcc6cc; }
+
+	.forecast-modal h4 a { color:#1abc9c; }
+	.forecast-modal h4 a:hover { color:#16a085; }
 	/*---*/
 
 	/* data record modals */
