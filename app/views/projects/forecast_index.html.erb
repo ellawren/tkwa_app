@@ -26,8 +26,8 @@
         </tr>
         <tr>
             <th class="buttons">
-                <%= link_to "by project", projects_forecast_path(:view => 'project'), :class => "btn #{'active' if params[:view] != 'employee'}" %>
-                <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] == 'employee'}" %>
+                <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] != 'project'}" %>
+                <%= link_to "by project", projects_forecast_path(:view => 'project'), :class => "btn #{'active' if params[:view] == 'project'}" %>
             </th>
             <% four_month_monthname_array(date).each do |w| %>
                 <th><%= w %></th>
@@ -41,18 +41,7 @@
         </tr>
     </thead>
     <tbody>
-        <% if params[:view] != 'employee' %>
-            <% Project.current.order("name ASC").each do |p| %>
-                <tr class="head">
-                    <td>
-                        <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
-                    </td>
-                    <% four_month_array(date).each do |w, y| %>
-                        <td class="<%= month_shading(w, y) %>"><%= p.forecast_total(w, y) %></td>
-                    <% end %>
-                </tr>
-            <% end %>
-        <% else %>
+        <% if params[:view] != 'project' %>
             <% User.active_users.order("name ASC").each do |e| %>
                 <% if e.employee_teams.count > 0 %>
                     <tr class="head">
@@ -64,6 +53,18 @@
                         <% end %>
                     </tr>
                 <% end %>
+            <% end %>
+            
+        <% else %>
+            <% Project.current.order("name ASC").each do |p| %>
+                <tr class="head">
+                    <td>
+                        <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
+                    </td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"><%= p.forecast_total(w, y) %></td>
+                    <% end %>
+                </tr>
             <% end %>
         <% end %>
     </tbody>
