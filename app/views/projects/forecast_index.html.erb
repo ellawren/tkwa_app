@@ -42,7 +42,7 @@
     </thead>
     <tbody>
         <% if params[:view] != 'employee' %>
-            <% Project.current.each do |p| %>
+            <% Project.current.order("name ASC").each do |p| %>
                 <tr class="head">
                     <td>
                         <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
@@ -53,7 +53,7 @@
                 </tr>
             <% end %>
         <% else %>
-            <% User.active_users.each do |e| %>
+            <% User.active_users.order("name ASC").each do |e| %>
                 <% if e.employee_teams.count > 0 %>
                     <tr class="head">
                         <td>
