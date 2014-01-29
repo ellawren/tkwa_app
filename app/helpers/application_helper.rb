@@ -61,7 +61,7 @@ module ApplicationHelper
   end
 
   def four_month_array(start)
-    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    start_date = start
     end_date = start_date + 17.weeks
     arr = []
     (start_date..end_date).each do |date|
@@ -78,7 +78,7 @@ module ApplicationHelper
   end
 
   def four_month_year_array(start)
-    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    start_date = start
     week_array = []
 
     (1..18).each do |i|
@@ -97,7 +97,7 @@ module ApplicationHelper
   end
 
   def four_month_monthname_array(start)
-    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    start_date = start
     week_array = []
 
     (1..18).each do |i|
@@ -116,28 +116,8 @@ module ApplicationHelper
     arr
   end
 
-  def four_month_test(start)
-    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
-    week_array = []
-
-    (1..18).each do |i|
-      week_array.push([start_date.cweek, start_date.year])
-      start_date = start_date + 7
-    end
-    arr = []
-    week_array.each do |w, y|
-      month = (Date.commercial(y, w, 1) - 1).strftime("%b")
-        if arr.include?(month)
-          arr.push("")
-        else
-          arr.push(month)
-        end
-    end
-    arr
-  end
-
   def four_month_weeknum_array(start)
-    start_date = (start.beginning_of_month).beginning_of_week(start_day = :sunday)
+    start_date = start
     week_array = []
 
     (1..18).each do |i|

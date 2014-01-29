@@ -1,5 +1,5 @@
 <%= form_for @project do |f| %>
-<% date = Date.today %>
+<% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 	<h2>Time Forecast (by week)</h2>
 
 	<% if @project.employee_teams.length == 0 %>

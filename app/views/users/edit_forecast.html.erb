@@ -3,7 +3,8 @@
 <% end %>
 
 <%= form_for @user do |f| %>
-<% date = Date.today %>
+<% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
+
 	<div class="modal-body">
 		<table class="table forecast">
 			<thead>
@@ -30,7 +31,7 @@
 				<% @user.employee_teams.current.each do |t| %>
 					<tr>
 						<td><%= t.project_name %></td>
-						<%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(Date.today)) do |plan| %>
+						<%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
 							<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
 							</td>
 						<% end %>

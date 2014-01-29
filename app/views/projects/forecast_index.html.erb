@@ -4,7 +4,7 @@
         <h1>4-Month Forecast</h1>
     </div>
 <% end %>
-<% date = Date.today %>
+<% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 
 <!-- modal for forecast edit edit -->
 <div class="modal hide fade forecast-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

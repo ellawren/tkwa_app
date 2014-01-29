@@ -3,7 +3,7 @@
 <% end %>
 
 <%= form_for @project do |f| %>
-<% date = Date.today %>
+<% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 
 	<% if @project.employee_teams.length == 0 %>
 		<div class="modal-body">
