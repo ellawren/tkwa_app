@@ -113,9 +113,26 @@
 			</tfoot>
 		</table>
 
-		Projected Fee: <%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %><br> 
-		Fee Used To Date: <%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %><br>
-		Remainder: <%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>
+		<div class="full">
+			<div class="tracking-summary">
+				<div class="circle">
+					<div class="text">Projected Fee</div>
+					<div class="number"><%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %></div>
+				</div>
+				<div class="minus"></div>
+				<div class="circle">
+					<div class="text">Fee Used To Date</div>
+					<div class="number"><%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %></div>
+				</div>
+				<div class="equals"></div>
+				<div class="circle <%= is_over?(@project.sum_est, @project.sum_actual) %>">
+					<div class="text">Remainder</div>
+					<div class="number"><%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %></div>
+				</div>
+			</div>
+
+		</div>
+		 
 		<div class="save-row">
 			<%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
 		</div>
