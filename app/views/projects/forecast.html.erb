@@ -3,7 +3,7 @@
 	<h2>Time Forecast (by week)</h2>
 
 	<% if @project.employee_teams.length == 0 %>
-		<p class="description">This project's team has not been set up yet. Click the 'setup' tab in the bar above to add team members.</p>
+		<p class="description">This project's team has not been set up yet. Click the 'info' tab in the bar above to add team members.</p>
 	<% else %>
 		<p class="description">Enter weekly projected hours for each team member in the table below.</p>
 
@@ -14,7 +14,7 @@
 			<tbody>
 				<% @project.employee_teams.each do |e| %>
 				<tr>
-					<td><%= e.employee_name %></td>
+					<td><%= link_to e.employee_name, forecast_user_path(e.user_id) %></td>
 					<%= f.fields_for :plan_entries, @project.employee_forecast(e.user_id, four_month_array(date)) do |plan| %>
 						<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
 						</td>

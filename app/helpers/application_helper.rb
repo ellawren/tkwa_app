@@ -355,6 +355,10 @@ module ApplicationHelper
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_3(this)", class: "delete fui-cross")
   end
 
+  def link_to_remove_fields_4(name, f)
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_4(this)", class: "delete fui-cross")
+  end
+
   def link_to_remove_consultant_fields(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_consultant_fields(this)", class: "delete fui-cross")
   end
@@ -390,7 +394,15 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
   end
 
-    def link_to_add_fields_2(name, f, association, html_class, partial=association)
+  def link_to_add_fields_2(name, f, association, html_class, partial=association)
+    new_object = f.object.class.reflect_on_association(association).klass.new
+    fields = f.fields_for(association, [new_object], :child_index => "new_#{association}") do |builder|
+      render(partial.to_s.singularize + "_fields", :f => builder)
+    end
+    link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
+  end
+
+  def link_to_add_vacation_fields(name, f, association, html_class, partial=association)
     new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, [new_object], :child_index => "new_#{association}") do |builder|
       render(partial.to_s.singularize + "_fields", :f => builder)

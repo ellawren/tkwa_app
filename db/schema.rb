@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140127225514) do
+ActiveRecord::Schema.define(:version => 20140130175101) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -440,5 +440,15 @@ ActiveRecord::Schema.define(:version => 20140127225514) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "vacations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.integer  "hours"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "year"
+  end
 
 end

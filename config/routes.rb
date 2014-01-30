@@ -24,6 +24,7 @@ TkwaApp::Application.routes.draw do
 
     resources :users do
         resources :timesheets
+        resources :vacations
         member do
             get 'forecast', 'edit_forecast'
         end

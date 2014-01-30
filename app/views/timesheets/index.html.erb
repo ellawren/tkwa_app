@@ -36,5 +36,25 @@
 </div>
 
 <div id="vacation">
-    <h2><%= this_year %> Vacation Days</h2>
+    <h2><%= this_year %> Vacations</h2>
+    <%= form_for @user do |f| %>
+
+        <div class="vacation-list">
+            <div class="header-row">
+                <div class="header">Start Date</div>
+                <div class="header">End Date</div>
+                <div class="header hours">Hours</div>
+            </div>
+        <!-- nested form for vacation -->
+            <%= f.fields_for :vacations do |builder| %>
+                <%= render 'vacation_fields', :f => builder %>
+            <% end %>
+            <%= link_to_add_vacation_fields "", f, :vacations, "add add-vacation fui-plus" %>
+        <!-- end vacation form -->
+        </div>
+
+        <div class="save-row">
+            <%= f.submit "Update Vacations", class: "btn btn-primary save-btn" %>
+        </div>
+    <% end %>
 </div>

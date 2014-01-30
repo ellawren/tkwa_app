@@ -1,0 +1,15 @@
+<% content_for :page_header do %>
+  	<% provide :title, "Add New Vacation" %>
+  	<div class="page-header">
+    	<h1>Add New Vacation</h1>
+  	</div>
+<% end %>
+
+<%= form_for(@vacation) do |f| %>
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
+
+ 	<div class="save-row">
+        <%= f.submit "Add Vacation", class: "btn btn-primary save-btn" %>
+    </div>
+<% end %>

@@ -20,24 +20,25 @@
 #
 
 class EmployeeTeam < ActiveRecord::Base
+    include ApplicationHelper
 	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
-    :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
-  default_scope :order => 'role DESC'
+        :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
+    default_scope :order => 'role DESC'
 
 	belongs_to :project
-  belongs_to :user
-  has_one :employee_role
+    belongs_to :user
+    has_one :employee_role
 
 	validates :project_id, :presence => true
-  validates :user_id, :presence => true
+    validates :user_id, :presence => true
 
-  def employee_name
-    User.find(self.user_id).name
-  end
+    def employee_name
+        User.find(self.user_id).name
+    end
 
-  def project_name
-    Project.find(self.project_id).name
-  end
+    def project_name
+        Project.find(self.project_id).name
+    end
 
 	scope :current, {
   		:select => "employee_teams.*",
@@ -50,12 +51,36 @@ class EmployeeTeam < ActiveRecord::Base
   		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
   		:conditions => ["status = ?", 'completed' ]
 	}
-	
-   	EMPLOYEE_ROLES =   [	"Project Principal", "Project Manager", "Project Architect", 
-   						"Project Designer", "Interior Designer", "Programming", "Historic Preservation",
-   						"Graphic Designer", "Project Intern", "Administration"
-    				 ]
 
+    def plan_entries
+        PlanEntry.find_all_by_project_id_and_user_id(self.project_id, self.user_id)
+    end
+
+    def current_plan_entries
+        array = []
+        plan_entries = PlanEntry.find_all_by_project_id_and_user_id_and_week_and_year(self.project_id, self.user_id, this_week, this_year)
+        plan_entries.each do |p|
+            if p.hours
+                array.push(p)
+            end
+        end
+        array
+    end
+
+    def plan_entries_total
+        array = []
+        sum = 0
+        plan_entries = PlanEntry.find_all_by_project_id_and_user_id(self.project_id, self.user_id)
+
+        plan_entries.each do |p|
+            if p.hours
+                array.push(p.hours)
+            end
+        end
+        array.map{|x| sum += x}
+        sum
+    end
+	
 
     # sum of actual hours entered for project, by employee
     def employee_actual(phase)

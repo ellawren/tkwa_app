@@ -26,7 +26,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id, :hire_date, :leave_date, :birth_month, :birth_day, :title
+  attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id, :hire_date, :leave_date, :birth_month, :birth_day, :title, :vacations_attributes
   has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
   attr_accessor :delete_photo
   before_validation { photo.clear if delete_photo == '1' }
@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :messages, dependent: :destroy
+
+  has_many :vacations, dependent: :destroy, :conditions => { :year => Date.today.cwyear }
+  accepts_nested_attributes_for :vacations, :allow_destroy => true
   
   before_save :create_remember_token
 

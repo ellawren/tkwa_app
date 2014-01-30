@@ -1,25 +1,40 @@
 /* TIMESHEETS index */
 
 	/* calendar */
-	#calendar { float:left; width:660px; margin-top:20px; }
-	#calendar h2 { width:660px; text-align:center; font-size:14px; font-weight:900; padding-bottom:3px; }
+	#calendar { float:left; width:598px; margin-top:20px; }
+	#calendar h2 { width:595px; text-align:center; font-size:14px; font-weight:900; padding-bottom:3px; }
 	#calendar h2 .previous-month, #calendar h2 .next-month { float:left; width:30px; height:30px; border:1px solid #ddd; border-radius:30px; background-image:url(/assets/select-arrow.png); background-position:0px 2px; background-repeat:no-repeat; -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); -ms-transform: rotate(90deg); -o-transform: rotate(90deg); transform: rotate(90deg); }
 	#calendar h2 .next-month { float:right; -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -o-transform: rotate(-90deg); transform: rotate(-90deg); }
 	#calendar h2 .previous-month:hover, #calendar h2 .next-month:hover { border-color:#1abc9c; background-image:url(/assets/select-arrow-green.png);}
 
 	.simple-calendar { width:auto; float:left; }
-	.simple-calendar .day { height:80px; width:90px; border:1px solid #ced5da; text-align:center; }
-	.simple-calendar .day div { font-size:11px; width:72px; margin:0 6px 0 10px; padding:0px; }
+	.simple-calendar .day { height:80px; width:81px; border:1px solid #ced5da; text-align:center; }
+	.simple-calendar .day div { font-size:11px; width:62px; margin:0 6px 0 10px; padding:0px; }
 	.simple-calendar .day.not-current-month { background-color:#ecf0f5; color:#bcc6cc; } 
 	.simple-calendar div.day_number { font-size:30px; font-weight:100; margin:0 auto;}
-	.simple-calendar .day.today { background-color:#1abc9c; color:#fff; border:4px solid #f1c40f; height:74px; width:84px; }
+	.simple-calendar .day.today { background-color:#1abc9c; color:#fff; border:4px solid #f1c40f; height:72px; width:73px; }
 	.simple-calendar .day.events { background-color:#f1c40f; color:#34495e; }
 	.simple-calendar .day.past { background-image:url(/assets/calendar.png); background-repeat:no-repeat; }
 	.simple-calendar .day.past.events { background-image:url(/assets/calendar-dark.png); }
 
-	#vacation { float:left; margin:50px 0 0 50px; width:220px; height:500px; }
+	
+
+	/* vacations */
+
+	#vacation { float:left; margin:50px 0 0 50px; width:290px; height:500px; }
 	#vacation h2 { margin-top:0px; padding-bottom:5px; }
 
+	.vacation-list { float:left; width:290px; }
+	.vacation-list .vacation, .vacation-list .header-row  { float:left; width:100%; margin-bottom:0px; }
+	.vacation-list .vacation .input-row { float:left; width:auto; }
+	.vacation-list .vacation input { width:80px; margin-right:6px; margin-bottom:3px; }
+	.vacation-list .vacation input.hours, .vacation-list .header.hours { width:20px; margin-right:0px; }
+	.vacation-list .header { float:left; width:104px; margin-right:6px; }
+	.vacation-list .vacation .delete { margin:6px 0 0 6px; }
+
+	.vacation-list .header-row { padding-bottom:3px; border-bottom:2px solid #2c3445; margin-bottom:6px; }
+	#vacation .save-row { margin-top:20px; margin-bottom:0px; }
+	#vacation .save-row .btn { width:290px; padding:10px 14px; margin: 0px; }
 
 /* TIMESHEETS edit/view */
 
