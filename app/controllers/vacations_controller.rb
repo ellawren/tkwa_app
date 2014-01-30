@@ -7,6 +7,10 @@ class VacationsController < ApplicationController
   	@vacation = Vacation.find(params[:id])
   end
 
+  def all
+  	@vacations = Vacation.all
+  end
+
   def index
   	@user = User.find(params[:user_id])
   end

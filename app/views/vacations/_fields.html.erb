@@ -5,7 +5,9 @@
         <div class="input-row">
             <%= f.text_field :end_date, class: "datepicker" %>
         </div>
+        <%= f.hidden_field :_destroy %>
         <div class="input-row">
             <%= f.text_field :hours, class: "hours" %>
         </div> 
+        <%= link_to_remove_fields_4 "  ", f %>
     </div>

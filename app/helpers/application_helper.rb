@@ -239,6 +239,9 @@ module ApplicationHelper
     # exception for /employees/:id/forecast
     elsif params[:controller] == "users" && params[:action] == "forecast"
         "active" if c_name.include?('timesheets')
+    # exception for /employees/:id/forecast
+    elsif params[:controller] == "vacations"
+        "active" if c_name.include?('timesheets')
     # exception for /companies
     elsif params[:controller] == "companies"
         "active" if c_name.include?('contacts')
@@ -406,6 +409,14 @@ module ApplicationHelper
     new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, [new_object], :child_index => "new_#{association}") do |builder|
       render(partial.to_s.singularize + "_fields", :f => builder)
+    end
+    link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
+  end
+
+  def link_to_add_vacation_fields_2(name, f, association, html_class, partial=association)
+    new_object = f.object.class.reflect_on_association(association).klass.new
+    fields = f.fields_for(association, [new_object], :child_index => "new_#{association}") do |builder|
+      render("vacations/fields", :f => builder)
     end
     link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
   end

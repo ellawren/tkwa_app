@@ -8,6 +8,7 @@
   			<li><%= link_to "employee data", "/users/#{user.id}/data_records", datatoggle: "modal" %></li>
             <li><%= link_to "timesheets", all_timesheets_path(user.id) %></li>
             <li><%= link_to "forecast", forecast_user_path(user) %></li>
+            <li><%= link_to "vacations", user_vacations_path(user) %></li>
   			<%= link_to "", user, method: :delete, class: "delete fui-cross", confirm: "You sure? This will also remove all associated employee information from the database. If this employee has left the firm, hit 'Cancel' below and change their status to 'Inactive' instead of deleting." %>
   		</ul>
   	</div>

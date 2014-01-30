@@ -19,7 +19,6 @@ TkwaApp::Application.routes.draw do
         end
     end    
 
-    resources :projects
     match '/projects/current',  to: 'projects#current'
 
     resources :users do
@@ -29,6 +28,7 @@ TkwaApp::Application.routes.draw do
             get 'forecast', 'edit_forecast'
         end
     end
+    match '/vacations',  to: 'vacations#all', as: 'all_vacations'
 
     match '/users/:id/timesheets/:year/:week',  to: 'timesheets#edit', as: 'user_timesheet'
     match '/users/:id/timesheets/:year/:week/view',  to: 'timesheets#view', as: 'view_user_timesheet'

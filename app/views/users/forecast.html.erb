@@ -16,14 +16,7 @@
                 <div class="number"><%= number_with_precision(@user.forecast_total(this_week, this_year), :precision => 2) %></div>
             </div>
             <div class="stats project-list">
-                <div class="input-label">Project Breakdown</div>
-                <ul>
-                    <% @user.employee_teams.current.each do |t| %>
-                        <% t.current_plan_entries.each do |p| %>
-                            <li><%= t.project_name %>: <%= p.hours %> hours</li>
-                        <% end %>
-                    <% end %>
-                </ul>
+                
             </div>
 
         </div>
@@ -36,6 +29,7 @@
             </thead>
             <tbody>
                 <% @user.employee_teams.current.each do |t| %>
+                    
                         <tr>
                             <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
                             <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
@@ -43,6 +37,7 @@
                                 </td>
                             <% end %>
                         </tr>
+
                 <% end %>
             </tbody>
             <tfoot>

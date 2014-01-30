@@ -3,6 +3,11 @@ class Vacation < ActiveRecord::Base
   	attr_accessible :end_date, :hours, :start_date, :user_id
   	belongs_to :user
 
+    scope :current, {
+        :select => "vacations.*",
+        :conditions => ["year = ?", Date.today.cwyear ]
+    }
+
   	def date_object
       	Date.strptime(self.start_date, "%m/%d/%Y")
   	end

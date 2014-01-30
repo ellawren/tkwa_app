@@ -1,0 +1,38 @@
+<% content_for :page_header do %>
+	<% provide :title, "Vacations Index" %>
+	<div class="page-header">
+		<h1>Vacations Index</h1>
+	</div>
+<% end %>
+
+<br /><br /><br />
+
+	<div class="row">
+		<div class="span2">
+			<h4><%= this_year %> Vacations</h4>
+		</div>
+		<div class="span9">
+			<table class="table holiday-table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>Hours</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% Vacation.current.each do |param| %>
+			  			<tr>
+			  				<td><%= User.find(param.user_id).name %></td>
+			  				<td><%= param.start_date %></td>
+			  				<td><%= param.end_date %></td>
+                            <td><%= param.hours %></td>
+			  			</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br /><br />

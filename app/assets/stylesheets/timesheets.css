@@ -17,24 +17,6 @@
 	.simple-calendar .day.past { background-image:url(/assets/calendar.png); background-repeat:no-repeat; }
 	.simple-calendar .day.past.events { background-image:url(/assets/calendar-dark.png); }
 
-	
-
-	/* vacations */
-
-	#vacation { float:left; margin:50px 0 0 50px; width:290px; height:500px; }
-	#vacation h2 { margin-top:0px; padding-bottom:5px; }
-
-	.vacation-list { float:left; width:290px; }
-	.vacation-list .vacation, .vacation-list .header-row  { float:left; width:100%; margin-bottom:0px; }
-	.vacation-list .vacation .input-row { float:left; width:auto; }
-	.vacation-list .vacation input { width:80px; margin-right:6px; margin-bottom:3px; }
-	.vacation-list .vacation input.hours, .vacation-list .header.hours { width:20px; margin-right:0px; }
-	.vacation-list .header { float:left; width:104px; margin-right:6px; }
-	.vacation-list .vacation .delete { margin:6px 0 0 6px; }
-
-	.vacation-list .header-row { padding-bottom:3px; border-bottom:2px solid #2c3445; margin-bottom:6px; }
-	#vacation .save-row { margin-top:20px; margin-bottom:0px; }
-	#vacation .save-row .btn { width:290px; padding:10px 14px; margin: 0px; }
 
 /* TIMESHEETS edit/view */
 

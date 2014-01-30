@@ -693,9 +693,30 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.forecast.gray-box .stats .number { float:left; width:100%; font-size:56px; margin:0px; font-weight:200; }
 	.forecast.gray-box .stats .detail { float:left; font-style:normal; color:#bcc6cc; font-size:12px; }
 
-	.forecast.gray-box .stats.project-list { width:670px; }
-	.forecast.gray-box .stats.project-list ul { margin-left:16px; width:100%; height:85px; overflow:hidden; }
-	.forecast.gray-box .stats.project-list li { float:left; width:300px; clear:left; margin-right:20px; }
+	.forecast.gray-box .stats.project-list { width:600px; }
+	.forecast.gray-box .stats.project-list ul { width:100%; height:85px; overflow:hidden; margin-left:0px; }
+	.forecast.gray-box .stats.project-list li { line-height:1.5em; float:left; display:inline; width:50%; }
+
+/* holidays */
+
+	.span2 h4 { margin-top:6px; }
+
+/* vacations (keep in main because both timesheets and vacations need access) */
+
+	#vacation { float:left; margin:50px 0 0 50px; width:290px; height:500px; }
+	#vacation h2 { margin-top:0px; padding-bottom:5px; }
+
+	.vacation-list { float:left; width:290px; }
+	.vacation-list .vacation, .vacation-list .header-row  { float:left; width:100%; margin-bottom:0px; }
+	.vacation-list .vacation .input-row { float:left; width:auto; }
+	.vacation-list .vacation input { width:80px; margin-right:6px; margin-bottom:3px; }
+	.vacation-list .vacation input.hours, .vacation-list .header.hours { width:20px; margin-right:0px; }
+	.vacation-list .header { float:left; width:104px; margin-right:6px; }
+	.vacation-list .vacation .delete { margin:6px 0 0 6px; }
+
+	.vacation-list .header-row { padding-bottom:3px; border-bottom:2px solid #2c3445; margin-bottom:6px; }
+	#vacation .save-row { margin-top:20px; margin-bottom:0px; }
+	#vacation .save-row .btn { width:290px; padding:10px 14px; margin: 0px; }
 
 /* notice bar */
 
