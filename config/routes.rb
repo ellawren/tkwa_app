@@ -49,7 +49,7 @@ resources :contacts do
       get 'data', 'employee_data', 'consultant_data', 'client_data'
     end
     get :autocomplete_contact_work_company, :on => :collection
-    get :autocomplete_contact_name, :on => :collection
+    get :autocomplete_user_name, :on => :collection
 end
 
 match '/phases/modal',   to: 'phases#modal', as: "modal_phases"

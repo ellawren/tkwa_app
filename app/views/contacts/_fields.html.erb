@@ -10,7 +10,7 @@
             <% end %>
             <%= f.text_field(:name, :value => val) %>
         </div>
-        <div class="input-row space-below">
+        <div class="input-row">
             <%= f.label(:work_title, "Title", class: "input-label") %>
             <%= f.text_field :work_title, class: "full-width" %>
         </div>
@@ -119,7 +119,7 @@
         </div>
         <div class="input-row">
             <%= f.label(:staff_contact, "Staff Contact", class: "input-label" ) %>
-            <%= f.autocomplete_field :staff_contact, autocomplete_contact_name_contacts_path,  class: "match-select" %>
+            <%= f.autocomplete_field :staff_contact, autocomplete_user_name_contacts_path,  class: "match-select" %>
         </div>
 
         <% unless params[:action] == "new" %>

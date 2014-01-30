@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   require 'csv'
   autocomplete :contact, :work_company, :full => true, :extra_data => [:work_address, :work_phone, :work_url, :work_fax, :name]
-  autocomplete :contact, :name, :full => true, :scopes => [:employee_list]
+  autocomplete :user, :name, :full => true
 
   def index
     @q = Contact.search(params[:q])
