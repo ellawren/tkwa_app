@@ -5,21 +5,33 @@
     </div>
 <% end %>
 <br><br>
-<table class="table search-results projects current">
-            <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Name</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-		    <tbody>
-		        <% @projects.each do |param| %>
+<div class="forecast">
+    <div class="buttons">
+        <%= link_to "by number", projects_current_path(:view => 'number'), :class => "btn #{'active' if params[:view] != 'name'}" %>
+        <%= link_to "by name", projects_current_path(:view => 'name'), :class => "btn #{'active' if params[:view] == 'name'}" %>
+    </div>
+    <table class="table search-results projects current">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+	    <tbody>
+            <% if params[:view] != 'name' %>
+		        <% @projects.order('number ASC').each do |param| %>
 		            <%= render 'project', :f => param %>
 		        <% end %>
-		    </tbody>
-		</table>
+            <% else %>
+                <% @projects.order('name ASC').each do |param| %>
+                    <%= render 'project', :f => param %>
+                <% end %>
+            <% end %>
+	    </tbody>
+	</table>
+</div>

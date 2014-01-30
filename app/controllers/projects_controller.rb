@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
     end
 
     def current
-        @projects = Project.where(:status => "current").order('number ASC')
+        @projects = Project.where(:status => "current")
         render :layout => 'projects_static' 
     end
   

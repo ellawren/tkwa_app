@@ -143,7 +143,8 @@ class Project < ActiveRecord::Base
 
     scope :current, {
         :select => "projects.*",
-        :conditions => ["status = ?", 'current' ]
+        :conditions => ["status = ?", 'current' ],
+        :order => ["name ASC" ]
     }
 
 
