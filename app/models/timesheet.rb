@@ -85,7 +85,7 @@ class Timesheet < ActiveRecord::Base
             # this is to eliminate vacation for prev year from calculation
             if y.week == 1
                 first_day_of_year = Date.new(2014, 1, 1)
-                day_of_week = first_day_of_year.strftime("%w").to_i
+                day_of_week = first_day_of_year.strftime("%w").to_i + 1
                 included_days = []
 
                 while day_of_week <= 7 do
