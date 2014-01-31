@@ -16,71 +16,105 @@
 
 class Timesheet < ActiveRecord::Base
   
-  belongs_to :user
-  has_many :time_entries, :dependent => :destroy
-  accepts_nested_attributes_for :time_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:project_id].blank? }
+    belongs_to :user
+    has_many :time_entries, :dependent => :destroy
+    accepts_nested_attributes_for :time_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:project_id].blank? }
 
-  has_many :non_billable_entries, :dependent => :destroy
-  accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
+    has_many :non_billable_entries, :dependent => :destroy
+    accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
 
-  YEARS =   [	"2013", "2012", "2011" ]
+    NON_BILLABLE_CATEGORIES =   [ "Administrative", "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
+                                    "Studio Projects", "Sustainable Research", "Vacation" ]
 
-  NON_BILLABLE_CATEGORIES =   [ "Administrative", "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
-                                "Studio Projects", "Sustainable Research", "Vacation" ]
-
-  
-  def data_record
-    # find all data records for user/year
+      
+    def data_record
+        # find all data records for user/year
         data_array = []
         DataRecord.find_all_by_user_id_and_year(self.user_id, self.year).each do |d|
             if self.week >= d.start_week && self.week <= d.end_week 
                 return d
             end
         end
-  end
-
-  def total_hours
-  	time_entries.sum(:day1) +  
-  	time_entries.sum(:day2) + 
-  	time_entries.sum(:day3) + 
-  	time_entries.sum(:day4) + 
-  	time_entries.sum(:day5) + 
-  	time_entries.sum(:day6) + 
-  	time_entries.sum(:day7) 
-  end
-
-  def nb_total_hours
-    non_billable_entries.sum(:day1) +  
-    non_billable_entries.sum(:day2) + 
-    non_billable_entries.sum(:day3) + 
-    non_billable_entries.sum(:day4) + 
-    non_billable_entries.sum(:day5) + 
-    non_billable_entries.sum(:day6) + 
-    non_billable_entries.sum(:day7) 
-  end
-
-  def holiday_hours
-    DataRecord.find_by_user_id_and_year(self.user_id, self.year).holiday
-  end
-
-
-  def holiday_total_hours
-    arr = []
-    if self.holidays.count > 0
-        self.holidays.each do |h|
-            arr.push(self.holiday_hours)
-        end
     end
-    arr.inject{|sum,x| sum + x }
-  end
 
-  def timesheet_total
-    total_hours.to_f + nb_total_hours.to_f + holiday_total_hours.to_f
-  end
+    def total_hours
+      	time_entries.sum(:day1) +  
+      	time_entries.sum(:day2) + 
+      	time_entries.sum(:day3) + 
+      	time_entries.sum(:day4) + 
+      	time_entries.sum(:day5) + 
+      	time_entries.sum(:day6) + 
+      	time_entries.sum(:day7) 
+    end
 
-  def year_to_date
-      year_to_date = Timesheet.find(:all, :conditions => ['user_id = ? AND year = ? AND week <= ?', user.id, year, week ])
-  end
+    def nb_total_hours
+        non_billable_entries.sum(:day1) +  
+        non_billable_entries.sum(:day2) + 
+        non_billable_entries.sum(:day3) + 
+        non_billable_entries.sum(:day4) + 
+        non_billable_entries.sum(:day5) + 
+        non_billable_entries.sum(:day6) + 
+        non_billable_entries.sum(:day7) 
+    end
+
+    def holiday_hours
+        DataRecord.find_by_user_id_and_year(self.user_id, self.year).holiday
+    end
+
+    def holiday_total_hours
+        arr = []
+        if self.holidays.count > 0
+            self.holidays.each do |h|
+                arr.push(self.holiday_hours)
+            end
+        end
+        arr.inject{|sum,x| sum + x }
+    end
+
+    def timesheet_total
+        total_hours.to_f + nb_total_hours.to_f + holiday_total_hours.to_f
+    end
+
+    def year_to_date
+        year_to_date = Timesheet.find(:all, :conditions => ['user_id = ? AND year = ? AND week <= ?', user.id, year, week ])
+    end
+
+    def ytd_vacation
+        array = []
+        year_to_date.each do |y|
+            # this is to eliminate vacation for prev year from calculation
+            if y.week == 1
+                first_day_of_year = Date.new(2014, 1, 1)
+                day_of_week = first_day_of_year.strftime("%w").to_i
+                included_days = []
+
+                while day_of_week <= 7 do
+                    included_days << day_of_week
+                    day_of_week = day_of_week + 1
+                end
+
+                y.non_billable_entries.each do |entry|
+                    if entry.category == 'Vacation'
+                        array.push( entry.day1.to_f ) if included_days.include? 1
+                        array.push( entry.day2.to_f ) if included_days.include? 2
+                        array.push( entry.day3.to_f ) if included_days.include? 3
+                        array.push( entry.day4.to_f ) if included_days.include? 4
+                        array.push( entry.day5.to_f ) if included_days.include? 5
+                        array.push( entry.day6.to_f ) if included_days.include? 6
+                        array.push( entry.day7.to_f ) if included_days.include? 7
+                    end
+                end
+
+            else
+                y.non_billable_entries.each do |entry|
+                    if entry.category == 'Vacation'
+                        array.push(entry.entry_total)
+                    end
+                end
+            end
+        end
+        array.sum
+    end
 
   def week_goal
     @data_record || 40

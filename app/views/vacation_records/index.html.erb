@@ -54,3 +54,13 @@
 			</tbody>
 		</table>		
 	<% end %>
+
+<script>
+//reset modal remote on close
+    $('#myModal').on('hide.bs.modal', function (e) {
+    	$(this).data('bs.modal', null);
+	});
+    $('#newModal').on('hide.bs.modal', function (e) {
+    	$(this).data('bs.modal', null);
+	});
+</script>

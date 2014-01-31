@@ -27,8 +27,6 @@
 					<th>Pay Type</th>
 					<th>Hours Per Week</th>
 					<th>Comp Hours<br>Per Holiday</th>
-					<th>Vacation<br>This Period</th>
-					<th>Vacation<br>Rollover</th>
 					<th>Overage From<br>Prev Period</th>
 					<th>Billable Rate</th>
 					<th></th>
@@ -50,8 +48,6 @@
 						<td><%= d.pay_type %></td>
 		  				<td><%= d.hours_in_week %></td>
 		  				<td><%= d.holiday %></td>
-		  				<td><%= d.vacation %></td>
-		  				<td><%= d.vacation_rollover %></td>
 		  				<td><%= d.overage_from_prev %></td>
 		  				<td><%= number_to_currency(d.billable_rate) %></td>
 		  				<td>
@@ -67,10 +63,10 @@
 
 <script>
 //reset modal remote on close
-    $('#myModal').on('hidden', function () {
-        $(this).removeData('modal');
-    })
-    $('#newModal').on('hidden', function () {
-        $(this).removeData('modal');
-    })
+    $('#myModal').on('hide.bs.modal', function (e) {
+    	$(this).data('bs.modal', null);
+	});
+    $('#newModal').on('hide.bs.modal', function (e) {
+    	$(this).data('bs.modal', null);
+	});
 </script>

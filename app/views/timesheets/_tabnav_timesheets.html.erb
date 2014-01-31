@@ -1,6 +1,4 @@
-
 <%= form_for @timesheet do |f| %>
-	<!--<%= f.select(:selected_year, Timesheet::YEARS, { :selected => params[:year] }, :class => "date-select"  ) %>-->
 	<ul class="tabnav timesheets <%= weeks_class(@year) %>">
 		<% week_array(@year).each do |x| %>
 			<% date_string = parse_date(x, @year) %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131191143) do
+ActiveRecord::Schema.define(:version => 20140131214505) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -94,13 +94,11 @@ ActiveRecord::Schema.define(:version => 20140131191143) do
 
   create_table "data_records", :force => true do |t|
     t.integer  "year"
-    t.decimal  "vacation",          :precision => 6, :scale => 2
     t.decimal  "holiday",           :precision => 4, :scale => 2
     t.datetime "created_at",                                                            :null => false
     t.datetime "updated_at",                                                            :null => false
     t.integer  "user_id",                                                               :null => false
     t.string   "pay_type",                                        :default => "Salary"
-    t.decimal  "vacation_rollover", :precision => 5, :scale => 2
     t.integer  "start_week"
     t.integer  "end_week"
     t.decimal  "hours_in_week",     :precision => 4, :scale => 2

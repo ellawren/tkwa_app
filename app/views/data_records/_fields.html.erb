@@ -33,8 +33,6 @@
                 <th>Pay Type</th>
                 <th>Total Hours<br />Per Week</th>
                 <th>Holiday<br />Comp Hours</th>
-                <th>Vacation<br />This Period</th>
-                <th>Vacation Rollover</th>
                 <th>Overage From Prev</th>
                 <th>Billable<br />Rate</th>
             </tr>
@@ -42,8 +40,6 @@
                 <td><%= f.select(:pay_type, [['Salary', 'Salary'], ['Hourly', 'Hourly']], {}, { :class => "custom-select" } ) %></td>
                 <td class="number-input"><%= f.text_field :hours_in_week %></td>
                 <td class="number-input"><%= f.text_field :holiday %></td>
-                <td class="number-input"><%= f.text_field :vacation %></td>
-                <td class="number-input"><%= f.text_field :vacation_rollover %></td>
                 <td class="number-input"><%= f.text_field :overage_from_prev %></td>
                 <td class="number-input"><%= f.text_field :billable_rate %></td>
             </tr>

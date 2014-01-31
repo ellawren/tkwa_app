@@ -4,13 +4,11 @@
 #
 #  id                :integer         not null, primary key
 #  year              :integer
-#  vacation          :decimal(6, 2)
 #  holiday           :decimal(4, 2)
 #  created_at        :datetime        not null
 #  updated_at        :datetime        not null
 #  user_id           :integer         not null
 #  pay_type          :string(255)     default("Salary")
-#  vacation_rollover :decimal(5, 2)
 #  start_week        :integer
 #  end_week          :integer
 #  hours_in_week     :decimal(4, 2)
@@ -54,7 +52,6 @@ class DataRecord < ActiveRecord::Base
 	    self.start_week ||= 1
         self.end_week ||= Date.new(Date.today.cwyear, 12, 28).cweek #calc for number of weeks in current year
 	    self.hours_in_week ||= 40
-	    self.vacation ||= 80
 	    self.holiday ||= 8
 	    self.billable_rate ||= 90
   	end

@@ -138,9 +138,9 @@
 			<div class="stats">
 				<label class="input-label">Remaining Vacation</label>
 				<div class="number">
-					<%= @data_record.vacation.to_f + @data_record.vacation_rollover.to_f - @timesheet.ytd_nb_subtotal('Vacation').to_f  %>
+					<%= @vacation_record.hours.to_f + @vacation_record.rollover.to_f - @timesheet.ytd_vacation.to_f  %>
 				</div>
-				<div class="detail">used <%= number_with_precision(@timesheet.ytd_nb_subtotal('Vacation').to_f, strip_insignificant_zeros: true) %> of <%= number_with_precision((@data_record.vacation.to_f + @data_record.vacation_rollover.to_f), strip_insignificant_zeros: true) %> hours
+				<div class="detail">used <%= number_with_precision(@timesheet.ytd_vacation.to_f, strip_insignificant_zeros: true) %> of <%= number_with_precision((@vacation_record.hours.to_f + @vacation_record.rollover.to_f), strip_insignificant_zeros: true) %> hours in <%= this_year %> 
 				</div>
 			</div>
 			<div id="summary">
@@ -246,4 +246,9 @@
 	<% end %> <!-- end form -->
 
 <% end %><!-- end conditional -->
+
+
+
+
+
 			    

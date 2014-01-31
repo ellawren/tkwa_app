@@ -28,7 +28,8 @@ class TimesheetsController < ApplicationController
             if @data_array.count > 0
                 @data_record = @data_array[0]
                 @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-                
+                @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
+
                 if @timesheet.complete == false
                     redirect_to view_user_timesheet_path(@user.id, @year, @week)
                     return
