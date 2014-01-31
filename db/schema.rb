@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130175101) do
+ActiveRecord::Schema.define(:version => 20140131191143) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -141,6 +141,21 @@ ActiveRecord::Schema.define(:version => 20140130175101) do
   end
 
   add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
+
+  create_table "expense_reports", :force => true do |t|
+    t.integer  "user_id",                                                      :null => false
+    t.string   "date"
+    t.integer  "project_id"
+    t.string   "description"
+    t.integer  "miles"
+    t.decimal  "food",        :precision => 5, :scale => 2
+    t.decimal  "parking",     :precision => 5, :scale => 2
+    t.decimal  "misc",        :precision => 5, :scale => 2
+    t.boolean  "complete",                                  :default => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
+    t.integer  "year"
+  end
 
   create_table "globals", :force => true do |t|
     t.integer  "year"
@@ -440,6 +455,15 @@ ActiveRecord::Schema.define(:version => 20140130175101) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "vacation_records", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "year"
+    t.decimal  "hours",      :precision => 6, :scale => 2
+    t.decimal  "rollover",   :precision => 6, :scale => 2
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
 
   create_table "vacations", :force => true do |t|
     t.integer  "user_id"

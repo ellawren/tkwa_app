@@ -421,13 +421,20 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.data-records td { border-right: 1px solid #ecf0f5; text-align:right; }
 	.data-records td:first-child, .data-records th:first-child { text-align:left; }
 	.data-records td:last-child { border-right:none; }
-	.data-records .user-name { width:130px; float:left; }
+	.data-records .user-name { width:160px; float:left; }
 	.data-records .user-name a { color:#1abc9c; font-weight:700; }
 	.data-records .user-name a:hover { opacity:.6; }
 	.data-records .employee-number { display:inline-block; float:right; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; }
 	.data-records .delete { margin:0px; }
 
 
+
+
+
+
+/* VACATION DATA RECORDS */
+
+	.data-records.vacation { width:450px; }
 
 
 
@@ -444,6 +451,10 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	ul.users-menu li.user .name  { color:#2c3445; font-weight:700; }
 	ul.users-menu li.user .info a.delete { position:absolute; top:7px; right:10px; }
 	ul.users-menu li.user .info a.delete:hover { color:#e64c3c; }
+
+
+
+
 
 
 /* USERS - edit */
@@ -563,6 +574,11 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
 
+
+
+
+
+
 /* MODALS */
 
 	/* main modal */
@@ -656,7 +672,6 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
  	/*---*/
 
  	/* forecast modal */
-
 	.forecast-modal { left:35%; width:1000px; height:auto; }
 	.forecast-modal .modal-body { max-height:none; height:auto;}
 		.forecast-modal .table.forecast { width:900px; margin-left:20px; }
@@ -673,7 +688,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.forecast-modal h4 a:hover { color:#16a085; }
 	/*---*/
 
-	/* data record modals */
+	/* data records modal */
 		.modal.data-record .modal-body { height:180px; padding-left:40px; width:770px; }
 
  		.modal-table.data-table { width:760px; margin:15px 0; float:left; }
@@ -682,6 +697,14 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		.modal-table.data-table .custom-select { height:40px; margin-top:2px; }
 		.modal-table.data-table td.number-input { width:80px; text-align:left; padding-left:3px; }
 		.modal-table.data-table td.number-input input { width:46px; }
+	/*---*/
+
+	/* vacation records modal */
+		.modal.vacation-record { left:45%; width:650px; height:auto; }
+		.modal.vacation-record .modal-body { height:60px; padding-left:40px; width:770px; }
+
+		.modal.vacation-record .modal-body .input-row { width:auto; float:left; margin-right:10px; }
+		.modal.vacation-record .modal-body .input-row.small input { width:80px; }
 	/*---*/
 
 

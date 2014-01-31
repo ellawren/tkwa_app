@@ -236,11 +236,11 @@ module ApplicationHelper
     # exception for /phases
     elsif params[:controller] == "phases" || params[:controller] == "consultant_roles"
         "active" if c_name.include?('projects')
-    # exception for /employees/:id/forecast
+    # exception for /users/:id/forecast
     elsif params[:controller] == "users" && params[:action] == "forecast"
         "active" if c_name.include?('timesheets')
-    # exception for /employees/:id/forecast
-    elsif params[:controller] == "vacations"
+    # exception for vacations or expense reports
+    elsif params[:controller] == "vacations" || params[:controller] == "expense_reports"
         "active" if c_name.include?('timesheets')
     # exception for /companies
     elsif params[:controller] == "companies"

@@ -1,0 +1,16 @@
+<% content_for :modal_header do %>
+    <%= @user.name %>
+<% end %>
+
+<%= form_for @vacation_record do |f| %>
+
+    <div class="modal-body">
+        <%= render 'fields', f: f %>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    </div>
+
+<% end %>

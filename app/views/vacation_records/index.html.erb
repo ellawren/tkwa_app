@@ -1,0 +1,56 @@
+<% content_for :page_header do %>
+	<% provide :title, "Employees Index" %>
+	<div class="page-header">
+		<h1>Vacation Data</h1>
+	</div>
+<% end %>
+
+	<!-- modal for vacation record edit -->
+        <div class="modal fade vacation-record" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div><!-- /.modal -->
+    <!-- end modal -->
+
+    <!-- modal for new vacation record -->
+        <div class="modal fade vacation-record" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        </div><!-- /.modal -->
+    <!-- end modal -->
+
+<a href=<%= "/vacation_records/new" %> data-target="#newModal" data-toggle="modal" class="btn btn-primary btn-right">Add New Record</a>
+
+	<% year_array(@vacation_records).each do |y| %>
+		<h4><%= y %></h4><br />
+		<table class="table right-align data-records vacation">
+			<thead>
+				<tr>
+					<th class="left-align">Name</th>
+					<th>Vacation<br>This Year</th>
+					<th>Vacation<br>Rollover</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% vacation = VacationRecord.active_users.find_all_by_year(y).sort {|a,b| a.user_name <=> b.user_name} %>
+				<% vacation.each do |d| %>
+					<tr>
+						<td>
+							<div class="user-name">
+								<a href=<%= "/users/#{d.user_id}/vacation_records/#{d.id}/edit" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets">
+									<%= d.user_name %>
+								</a>
+							</div>
+							<div class="employee-number">
+								<%= User.find(d.user_id).employee_number %>
+							</div>
+						</td>
+		  				<td><%= d.hours %></td>
+		  				<td><%= d.rollover %></td>
+		  				<td>
+		  					<% if current_user.admin? %>
+		  						<%= link_to "", d, class: "delete fui-cross", method: :delete, confirm: "You sure?" %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>		
+	<% end %>

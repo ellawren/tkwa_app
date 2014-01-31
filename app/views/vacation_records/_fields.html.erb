@@ -1,0 +1,19 @@
+            <div class="input-row">
+                <%= f.label(:user_id, "Name", class: "input-label") %>
+                <%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            </div>
+
+            <div class="input-row small">
+                <%= f.label(:year, "Year", class: "input-label") %>
+                <%= f.text_field :year, class: "input-number" %>
+            </div>
+
+            <div class="input-row small">
+                <%= f.label(:hours, "Vacation Hours", class: "input-label") %>
+                <%= f.text_field :hours, class: "input-number" %>
+            </div>
+
+            <div class="input-row small">
+                <%= f.label(:rollover, "Rollover", class: "input-label") %>
+                <%= f.text_field :rollover, class: "input-number" %>
+            </div>

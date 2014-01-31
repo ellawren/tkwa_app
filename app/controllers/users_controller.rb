@@ -60,6 +60,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     render :layout => 'modal' 
   end
+
   
   private
 
