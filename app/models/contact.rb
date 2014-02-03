@@ -31,69 +31,70 @@
 #
 
 class Contact < ActiveRecord::Base
-  default_scope order('name')
 
-  has_one :employee
-  has_one :user, :through => :employee
-  accepts_nested_attributes_for :employee
+    default_scope order('name')
 
-  has_many :projects, :through => :employee_teams
+    has_one :employee
+    has_one :user, :through => :employee
+    accepts_nested_attributes_for :employee
 
-  before_save do
+    has_many :projects, :through => :employee_teams
+
+    before_save do
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')
         self.work_cell = self.work_cell.to_s.gsub(/\D/, '')  
         self.home_cell = self.home_cell.to_s.gsub(/\D/, '') 
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '') 
-  end
+    end
               
-  scope :consultant_list, {
-      :select => "contacts.*",
-      :conditions => ["cat_number = ?", "3" ],
-  }
+    scope :consultant_list, {
+        :select => "contacts.*",
+        :conditions => ["cat_number = ?", "3" ],
+    }
 
-  def display_name
-    if name.present?
-      name
-    else
-      work_company
+    def display_name
+        if name.present?
+            name
+        else
+            work_company
+        end
     end
-  end
 
-  def category
-    unless self.cat_number.blank?
-      Category.find_by_number(self.cat_number).name
+    def category
+        unless self.cat_number.blank?
+            Category.find_by_number(self.cat_number).name
+        end
     end
-  end
 
-  def associated_projects
-    arr = []
-    if name.present?
-      Project.find_all_by_contact_name(name).each do |p|
-        arr.push([p, "Client Contact"])
-      end
-      Project.find_all_by_billing_name(name).each do |p|
-        arr.push([p, "Billing Contact"])
-      end
+    def associated_projects
+        arr = []
+        if name.present?
+            Project.find_all_by_contact_name(name).each do |p|
+                arr.push([p, "Client Contact"])
+            end
+            Project.find_all_by_billing_name(name).each do |p|
+                arr.push([p, "Billing Contact"])
+            end
+        end
+        arr.sort { |a,b| a[0].name <=> b[0].name }
     end
-    arr.sort { |a,b| a[0].name <=> b[0].name }
-  end
 
-  def project_list
-    arr = []
-    self.employee_teams.current.each do |team|
-      arr.push(Project.find(team.project_id))
+    def project_list
+        arr = []
+        self.employee_teams.current.each do |team|
+            arr.push(Project.find(team.project_id))
+        end
+        arr.sort { |a,b| a.name <=> b.name }
     end
-    arr.sort { |a,b| a.name <=> b.name }
-  end
 
-  def project_ids
-    arr = []
-    self.project_list.each do |team|
-      arr.push(team.id)
+    def project_ids
+        arr = []
+        self.project_list.each do |team|
+            arr.push(team.id)
+        end
+        arr
     end
-    arr
-  end
 
 end

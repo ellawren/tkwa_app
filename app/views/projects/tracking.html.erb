@@ -1,7 +1,7 @@
 <%= form_for @project do |f| %>
 <% date = Date.today %>
 
-	<h2>Time Tracking (by phase)</h2>
+	<h2 class="first">Time Tracking (by phase)</h2>
 	<% if @project.employee_teams.length == 0 || @project.phases.length == 0 %>
 		<p class="description">This project's team and phases have not been set up yet. Click the 'setup' tab in the bar above to add team members and select phases.</p>
 	<% else %>

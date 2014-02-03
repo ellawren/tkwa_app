@@ -29,6 +29,7 @@ TkwaApp::Application.routes.draw do
     resources :users do
         resources :timesheets
         resources :vacations
+        resources :expense_reports
         resources :vacation_records
         member do
             get 'forecast', 'edit_forecast'
@@ -36,8 +37,7 @@ TkwaApp::Application.routes.draw do
         get :autocomplete_billing_name, :on => :collection
     end
 
-    match '/users/:user_id/expense_reports',      to: 'expense_reports#index', as: 'user_expense_reports'
-    match '/users/:user_id/expense_reports/new',      to: 'expense_reports#new', as: 'new_user_expense_report'
+    # EXPENSE REPORTS
     resources :expense_reports
 
     
@@ -55,9 +55,6 @@ TkwaApp::Application.routes.draw do
     post "/cont_csv_import" => 'contacts#cont_csv_import'
     match '/contacts/import',   to: 'contacts#import'
     resources :contacts do
-        member do
-          get 'data', 'employee_data', 'consultant_data', 'client_data'
-        end
         get :autocomplete_contact_work_company, :on => :collection
         get :autocomplete_user_name, :on => :collection
     end
@@ -79,14 +76,11 @@ TkwaApp::Application.routes.draw do
     # STATIC PAGES
     match '/help',    to: 'static_pages#help'
     match '/about',   to: 'static_pages#about'
-    match '/messages',to: 'static_pages#messages'
     match '/admin',   to: 'static_pages#admin'
     match '/error',   to: 'static_pages#error'
     match '/potential_projects',   to: 'static_pages#potential_projects'
 
-
     resources :categories 
-    resources :consultants
     resources :consultant_roles
     resources :data_records
     resources :employee_roles

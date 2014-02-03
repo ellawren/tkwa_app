@@ -14,9 +14,9 @@
 		<% if @project.view_options.include?('tracking') %>
 			<li class="<%= is_active?("tracking")%>"><%= link_to "tracking", tracking_project_path(@project) %></li>
 		<% end %>
-	<% end %>
-	<% if @project.view_options.include?('forecast') %>
-		<li class="<%= is_active?("forecast")%>"><%= link_to "forecast", forecast_project_path(@project) %></li>
+		<% if @project.view_options.include?('forecast') %>
+			<li class="<%= is_active?("forecast")%>"><%= link_to "forecast", forecast_project_path(@project) %></li>
+		<% end %>
 	<% end %>
 	<% if @project.view_options.include?('schedule') %>
 		<li class="<%= is_active?("schedule")%>"><%= link_to "schedule", schedule_project_path(@project) %></li>

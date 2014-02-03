@@ -1,27 +1,25 @@
-<fieldset>
+<div class="wide"> 
 
-        <div class="row"> <div class="field">
+	<div class="input-row">
+        <%= f.label(:year, class: "input-label") %>
+        <div class="controls">
+            <%= f.text_field :year %>
+        </div>
+    </div>
 
-    			<div class="control-group">
-                    <%= f.label(:year, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :year, class: "span1" %>
-                    </div>
-                </div>
+    <div class="input-row">
+        <%= f.label :multiplier, class: "input-label" %>
+        <div class="controls">
+            <%= f.text_field :multiplier %>
+        </div>
+    </div>
 
-                <div class="control-group">
-                    <%= f.label :multiplier, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :multiplier, class: "span1" %>
-                    </div>
-                </div>
+    <div class="input-row">
+        <%= f.label :mileage, class: "input-label" %>
+        <div class="controls">
+            <%= f.text_field :mileage %>
+        </div>
+    </div>
 
-                <div class="control-group">
-                    <%= f.label :mileage, class: "control-label" %>
-                    <div class="controls">
-                        <%= f.text_field :mileage, class: "span1" %>
-                    </div>
-                </div>
-  		</div>
+</div>
 
-</fieldset>

@@ -1,15 +1,3 @@
-class Pattern < ActiveRecord::Base
-	default_scope order('project_id DESC, number ASC')
-	belongs_to :project
-
-	has_attached_file :diagram, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-	has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-
-	attr_accessor :delete_diagram, :delete_photo
-	before_validation { diagram.clear if delete_diagram == '1' }
-	before_validation { photo.clear if delete_photo == '1' }
-
-end
 # == Schema Information
 #
 # Table name: patterns
@@ -39,3 +27,16 @@ end
 #  photo_updated_at     :datetime
 #
 
+class Pattern < ActiveRecord::Base
+	
+	default_scope order('project_id DESC, number ASC')
+	belongs_to :project
+
+	has_attached_file :diagram, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+	has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
+	attr_accessor :delete_diagram, :delete_photo
+	before_validation { diagram.clear if delete_diagram == '1' }
+	before_validation { photo.clear if delete_photo == '1' }
+
+end

@@ -1,5 +1,6 @@
 class TimesheetsController < ApplicationController
-  include TimesheetsHelper
+
+    include TimesheetsHelper
 
     def new
         @timesheet = Timesheet.new

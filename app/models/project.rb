@@ -199,7 +199,6 @@ class Project < ActiveRecord::Base
         end
     end
 
-
     def project_bills_total
         #initialize empty bill array and sum
         bill_array = []
@@ -351,11 +350,6 @@ class Project < ActiveRecord::Base
         array.map{|x| sum += x}
         sum
     end
-
-
-
-    
-
 
     # calculate actual billing for each employee by phase
     # this function is used to calculate actual_billing_total (also in this file)
@@ -595,4 +589,3 @@ class Project < ActiveRecord::Base
     VIEW_OPTIONS =  [ 'scope', 'setup', 'tracking', 'forecast', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
 
 end
-

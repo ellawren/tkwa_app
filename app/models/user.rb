@@ -26,6 +26,7 @@
 #
 
 class User < ActiveRecord::Base
+
     attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id, :hire_date, :leave_date, :birth_month, :birth_day, :title, :vacations_attributes
     has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
     attr_accessor :delete_photo
@@ -35,7 +36,6 @@ class User < ActiveRecord::Base
 
     before_create :create_associated_record
     before_save :create_remember_token
-
 
     # SCOPES
     default_scope order('name ASC')
@@ -50,7 +50,6 @@ class User < ActiveRecord::Base
         :conditions => ["active = ?", false ]
     }
     
-
     # VALIDATIONS
     validates :name, presence: true, length: { maximum: 50 }
     valid_email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -61,7 +60,6 @@ class User < ActiveRecord::Base
     validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
     validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
     validates :employee_number, :presence =>true
-
 
     # ASSOCIATIONS
     has_many :timesheets
@@ -87,7 +85,6 @@ class User < ActiveRecord::Base
     has_many :employee_teams, :dependent => :destroy
     has_many :projects, :through => :employee_teams
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true
-
 
     # METHODS
     def project_list

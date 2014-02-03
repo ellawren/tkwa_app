@@ -1,15 +1,18 @@
 <% content_for :page_header do %>
-  <% provide :title, "Edit Task" %>
-  <div class="page-header">
-    <h1><%= @task.name %></h1>
-  </div>
+  	<% provide :title, "Edit Task" %>
+  	<%= link_to "Tasks", tasks_path, class: "header-label" %>
+  	<div class="page-header">
+    	<h1><%= @task.name %></h1>
+  	</div>
 <% end %>
 
 <%= form_for(@task) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= render 'fields', f: f %>
 
-  <div class="actions">
-    <%= f.submit "Update", class: "btn btn-large" %>
-  </div>
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
+
+  	<div class="save-row">
+        <%= f.submit "Update Task", class: "btn btn-primary save-btn" %>
+    </div>
+
 <% end %>

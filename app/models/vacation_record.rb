@@ -1,22 +1,3 @@
-class VacationRecord < ActiveRecord::Base
-	
-  	attr_accessible :hours, :rollover, :user_id, :year
-  	belongs_to :user
-
-	validates :user_id, :presence => true
-	validates :year, :presence => true
-
-	scope :active_users, {
-        :select => "vacation_records.*",
-        :joins => "INNER JOIN users ON users.id = vacation_records.user_id", 
-        :conditions => ["active = ?", true ]
-    }
-
-    def user_name
-      User.find(self.user_id).name
-    end
-
-end
 # == Schema Information
 #
 # Table name: vacation_records
@@ -30,3 +11,22 @@ end
 #  updated_at :datetime        not null
 #
 
+class VacationRecord < ActiveRecord::Base
+    
+    attr_accessible :hours, :rollover, :user_id, :year
+    belongs_to :user
+
+    validates :user_id, :presence => true
+    validates :year, :presence => true
+
+    scope :active_users, {
+        :select => "vacation_records.*",
+        :joins => "INNER JOIN users ON users.id = vacation_records.user_id", 
+        :conditions => ["active = ?", true ]
+    }
+
+    def user_name
+      User.find(self.user_id).name
+    end
+
+end

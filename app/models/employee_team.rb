@@ -20,7 +20,9 @@
 #
 
 class EmployeeTeam < ActiveRecord::Base
+
     include ApplicationHelper
+
 	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
         :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
     default_scope :order => 'role DESC'
@@ -81,7 +83,6 @@ class EmployeeTeam < ActiveRecord::Base
         sum
     end
 	
-
     # sum of actual hours entered for project, by employee
     def employee_actual(phase)
         if phase == "Total"
@@ -121,6 +122,5 @@ class EmployeeTeam < ActiveRecord::Base
     def percent_used
         (self.employee_actual('Total') / self.est_total) * 100
     end
-
 
 end

@@ -17,6 +17,7 @@
 #
 
 class DataRecord < ActiveRecord::Base
+
 	default_scope order('year, start_week')
 	belongs_to :user
 
@@ -55,6 +56,5 @@ class DataRecord < ActiveRecord::Base
 	    self.holiday ||= 8
 	    self.billable_rate ||= 90
   	end
-
 
 end

@@ -1,4 +1,5 @@
 class EmployeeRolesController < ApplicationController
+	
 	def index
 	    @employee_roles = EmployeeRole.all
 	end

@@ -1,13 +1,3 @@
-class PlanEntry < ActiveRecord::Base
-	belongs_to :user
-  	belongs_to :project
-
-	scope :current, {
-        :select => "plan_entries.*",
-        :joins => "INNER JOIN projects ON projects.id = plan_entries.project_id", 
-        :conditions => ["status = ?", "current" ]
-    }
-end
 # == Schema Information
 #
 # Table name: plan_entries
@@ -22,3 +12,15 @@ end
 #  user_id    :integer
 #
 
+class PlanEntry < ActiveRecord::Base
+
+	belongs_to :user
+  	belongs_to :project
+
+	scope :current, {
+        :select => "plan_entries.*",
+        :joins => "INNER JOIN projects ON projects.id = plan_entries.project_id", 
+        :conditions => ["status = ?", "current" ]
+    }
+    
+end

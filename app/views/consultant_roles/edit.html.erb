@@ -1,16 +1,18 @@
 <% content_for :page_header do %>
   	<% provide :title, @consultant_role.consultant_role_name %>
-  	<%= link_to"Expense Reports", user_expense_reports_path(@user), class: "header-label" %>
+    <%= link_to "Consultant Roles", consultant_roles_path, class: "header-label" %>
   	<div class="page-header">
     	<h1><%= @consultant_role.consultant_role_name %></h1>
   	</div>
-<% end %>
+<% end %>   
 
 <%= form_for @consultant_role do |f| %>
+
   	<%= render 'shared/error_messages', object: f.object %>
   	<%= render 'fields', f: f %>
 
-  	<div class="actions">
-    	<%= f.submit "Update Consultant Role", class: "btn" %>
-  	</div>
+    <div class="save-row">
+        <%= f.submit "Update Consultant Role", class: "btn btn-primary save-btn" %>
+    </div>
+
 <% end %>

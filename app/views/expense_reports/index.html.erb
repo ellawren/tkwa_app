@@ -7,9 +7,35 @@
 
 <%= link_to "Add New Expense Report", new_user_expense_report_path(@user.id), class: "btn btn-primary btn-right" %>
 
-<% @expense_reports.each do |e| %>
-
-	<%= e.id %>
-	<%= e.date %>
-
-<% end %>
+<table class="table right-align expense-reports">
+	<thead>
+		<tr>
+			<th class="date">Date</th>
+			<th class="desc">Project/Description</th>
+			<th class="small miles">Miles</th>
+			<th class="small">Comp</th>
+			<th class="small">Food</th>
+			<th class="small">Parking</th>
+			<th class="small">Misc</th>
+			<th class="total">Total</th>
+			<th class="submit"></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @expense_reports.each do |e| %>
+			<tr>
+				<td class="date"><a href="/users/<%= @user.id %>/expense_reports/<%= e.id %>/edit"><%= e.date %></a></td>
+				<td class="desc"><% if e.project_id %><%= Project.find(e.project_id).name %></td><% end %> <%= e.description %>
+				<td class="small miles"><%= e.miles %></td>
+				<td class="small"><%= number_to_currency(e.mileage_comp) %></td>
+				<td class="small"><%= number_to_currency(e.food) %></td>
+				<td class="small"><%= number_to_currency(e.parking) %></td>
+				<td class="small"><%= number_to_currency(e.misc) %></td>
+				<td class="total"><%= number_to_currency(e.total) %></td>
+				<td class="submit"><a class="modal-btn btn btn-small">submit</a></td>
+				<td><%= link_to "", e, method: :delete, confirm: "You sure?", class: "delete fui-cross" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

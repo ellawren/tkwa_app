@@ -1,16 +1,15 @@
+<% content_for :page_header do %>
+    <% provide :title, @category.name %>
+    <%= link_to "Categories", categories_path, class: "header-label" %>
+    <div class="page-header">
+        <h1><%= @category.name %></h1>
+    </div>
+<% end %>
+
 <%= form_for @category do |f| %>
 
-	<h2>Edit Contact Category</h2>
-    <div class="wide">
-        <div class="input-row">
-            <%= f.label(:name, "Category Name", class: "input-label") %>
-            <%= f.text_field :name %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:number, "Category Number", class: "input-label") %>
-            <%= f.text_field :number %>
-        </div>
-    </div>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'fields', f: f %>
 
     <div class="save-row">
         <%= f.submit "Update Category", class: "btn btn-primary save-btn" %>

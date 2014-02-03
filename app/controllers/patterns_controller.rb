@@ -1,4 +1,5 @@
 class PatternsController < ApplicationController
+	
 	def index
 	    @q = Pattern.search(params[:q])
 	    @patterns = @q.result(:distinct => true)

@@ -20,13 +20,14 @@
 #
 
 class TimeEntry < ActiveRecord::Base
-  default_scope joins(:project).order('projects.name ASC, phase_number ASC, task ASC').readonly(false)
-  belongs_to :timesheet
-  belongs_to :project
-  
-  validates_presence_of :phase_number, :message => "must be selected"
 
-  def entry_total
+    default_scope joins(:project).order('projects.name ASC, phase_number ASC, task ASC').readonly(false)
+    belongs_to :timesheet
+    belongs_to :project
+  
+    validates_presence_of :phase_number, :message => "must be selected"
+
+    def entry_total
         d1 = day1.to_f
         d2 = day2.to_f
         d3 = day3.to_f

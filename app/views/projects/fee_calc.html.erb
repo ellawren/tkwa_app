@@ -1,105 +1,74 @@
 <%= form_for @project do |f| %>
-<%= render 'shared/error_messages', :object => f.object %> 
+<% date = Date.today %>
 
- 		<!-- modal for employee target edit -->
-		<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  	<div class="modal-header">
-		    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		    	<h3 id="myModalLabel"> </h3>
-		  	</div>
-		  	<div class="modal-body"></div>
-		</div>
-		<!-- end modal -->
+	<h2 class="first">Time Tracking (by phase)</h2>
+	<% if @project.employee_teams.length == 0 || @project.phases.length == 0 %>
+		<p class="description">This project's team and phases have not been set up yet. Click the 'setup' tab in the bar above to add team members and select phases.</p>
+	<% else %>
+		<p class="description">Enter target hours for each team member in the table below to help determine project fee.</div>
 
-		<h2>Fee Calculation</h2>
-		<p class="description">Enter target hours for each team member by phase to calculate the total architectural fee.</p>
-					
-		<table class="table tracking-table fee-calc">
-		
+		<table class="table tracking-table targets">
 			<thead>
                 <tr>
                     <th class="bold">Team Member</th>
+                    <th class="smalltext"></th>
                     <% @project.available_phases.each do |phase| %>
-                    	<th class="table-cell"><%= phase.number %><br /><span class="blanch"><%= phase.name %></span></th>
+                    	<th class="table-cell"><%= phase.number %><br /><span class="name"><%= phase.name %></span></th>
                     <% end %>
-                    <th class="table-cell bold TotalToDate">Total</th>
+                    <th class="total-hours">Total</th>
                 </tr>
             </thead>
-			
 			<tbody>
+				<%= f.fields_for :employee_teams do |team| %>
+		    		<tr>
+		    			<%= team.hidden_field :user_id %>
+		    			<td class="tname"><%= team.object.employee_name %>
+		    				<div class="role">
+		    					<%= team.object.role %>
+		    				</div>
+		    			</td>
+		    			<td class="labels">
+							<div class="target">target</div>
+						</td>
 
-				<!-- employee data rows -->
-				<%= f.fields_for :employee_teams do |builder| %>
-		    		<%= render 'fee_calc_fields', :f => builder %>
+						<% @project.available_phases.each do |phase| %>
+			                <td class="phase-cell">
+			                    <%= team.text_field eval(":#{phase.shorthand}_hours") %>
+			                </td>
+			            <% end %>
+
+			            <td class="total-hours">
+			            	<div class="target-total">
+								<%= nonzero(team.object.est_total) %>
+							</div>
+						</td>
+		    		</tr>
 		    	<% end %>
-			
-				<tr class="lower total-hours">
-
-					<td class="bold">TOTAL HOURS</td>
-				
-
-					<% @project.available_phases.each do |phase| %>
-						<td class="phase-cell <%= phase.name.gsub(/[ ]*/, '') %> <% if @phases.include?(phase) %><% else %>deactivated<% end %>">
-							
-							<% if @project.phase_est(phase.shorthand) == 0 %>
-								<div class="input-spacer"></div>
-							<% else %>
-								<div class="input">
-									<%= strip(@project.phase_est(phase.shorthand)) %>
-								</div>
-							<% end %>
-						</td>
-					<% end %>
-					
-					<td class="total TotalToDate gray border-left">
-						
-						<% if @project.sum_est == 0 %>
-							<div class="input-spacer"></div>
-						<% else %>
-							<div class="input"><%= strip(@project.sum_est) %></div>
-						<% end %>
-					</td>
-
-				</tr>
-
-				<tr class="billing">
-
-					<td class="bold">TOTAL BILLING</td>
-
-					<% @project.available_phases.each do |phase| %>
-						<td class="phase-cell">
-							<% if @project.target_billing_total(phase.number) == 0 %>
-								<div class="input-spacer"></div>
-							<% else %>
-								<div class='input'><%= number_to_currency(@project.target_billing_total(phase.number), :precision => 0) %></div>
-							<% end %>
-						</td>
-					<% end %>
-				
-					<td class="total">
-						<% if @project.target_billing_total('Total') == 0 %>
-							<div class="input-spacer"></div>
-						<% else %>
-							<div class='input'><%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %></div>
-						<% end %>
-					</td>
-
-				</tr>
-
 			</tbody>
-
+			<tfoot>
+				<tr class="est-hours">
+					<td>Target Hours</td>
+					<td></td>
+					<% @project.available_phases.each do |phase| %>
+						<td class="phase-cell"><%= nonzero(@project.phase_est(phase.shorthand)) %></td>
+					<% end %>
+					<td class="total-hours"><%= nonzero(@project.sum_est) %></td>
+				</tr>
+				<tr class="est-fees">
+					<td>Target Fees</td>
+					<td></td>
+					<% @project.available_phases.each do |phase| %>
+						<td class="phase-cell"><%= nonzero_currency(@project.target_billing_total(phase.number)) %></td>
+					<% end %>
+					<td class="total-hours"><%= nonzero_currency(@project.target_billing_total('Total')) %></td>
+				</tr>
+			</tfoot>
 		</table>
-
+		 
 		<div class="save-row">
-	        <%= f.submit "Update Totals", class: "btn btn-primary save-btn" %>
+			<%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
 		</div>
 
-<% end %>
+	<% end %>
 
-<script>
-$(document).ready(function() {
-    $("a.pop").popover({ placement: 'right', animation:true });
-		$("a.tip").tooltip({ animation: true, placement: 'top', trigger:'hover' });
-		$("a.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
-});
-</script>
+<% end %>

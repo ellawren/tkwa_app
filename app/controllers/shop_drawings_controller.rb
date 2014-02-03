@@ -1,5 +1,6 @@
 class ShopDrawingsController < ApplicationController
-  def show
+	
+  	def show
 	    @shop_drawings = ShopDrawing.find(params[:id])
 	end
 

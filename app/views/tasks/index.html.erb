@@ -2,23 +2,20 @@
 	<% provide :title, "Tasks Index" %>
 	<div class="page-header">
 		<h1>Tasks Index</h1>
+		<%= link_to "Add Task", new_task_path, class: "btn btn-primary btn-right" %>
 	</div>
 <% end %>
-<%= link_to "Add Task", new_task_path, class: "btn" %>
 
-<h3>Tasks</h3>
+<ul>
+	<% @tasks.each do |param| %>
+		<li>
+			<%= link_to param.name, edit_task_path(param) %>
+			<% if signed_in? %>
+				<% if current_user.admin? %>
+				| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+				<% end %>
+			<% end %>
+		</li>
+	<% end %>
+</ul>
 
-<br />
-	<ul>
-		<% @tasks.each do |param| %>
-  			<li>
-  					<%= link_to param.name, edit_task_path(param) %>
-  					<% if signed_in? %>
-  						<% if current_user.admin? %>
-    						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-  						<% end %>
-  					<% end %>
-  			</li>
-		<% end %>
-	</ul>
-<br /><br />

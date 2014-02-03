@@ -117,6 +117,13 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 		.tracking-summary .circle.over .text { color:#c0392b; }
 		.tracking-summary .circle.over .number { color:#e64c3c; }
 
+	/* tracking table - targets */
+
+	.tracking-table.targets input { margin:4px 0; }
+	.tracking-table.targets .labels div { margin-top:4px; }
+	.tracking-table.targets td.tname { padding:4px 0; }
+	.tracking-table.targets td.total-hours .target-total { margin-top:10px; }
+
 
 /* PROJECTS - billing */
 
@@ -291,10 +298,6 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 
 
 /* potential projects */
-
-a.header-label { float:left; display:block; width:auto; padding:4px 12px; margin-top:8px; margin-bottom:-10px; background-color:#1abc9c; color:#fff; font-size:10px; text-transform:uppercase; }
-a.header-label.company { width:65px; }
-a.header-label:hover { opacity:.8; }
 .potential.page-header h1 { color:#34495e; }
 
 .fee-calc tr .input { margin-top:15px; font-size:13px; }

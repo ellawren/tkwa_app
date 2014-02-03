@@ -2,16 +2,18 @@
 	<% provide :title, "Users Index" %>
 	<div class="page-header">
 		<h1>Users Index</h1>
+		<%= link_to "Add New User", new_user_path, class: "btn btn-primary btn-right" %>
 	</div>
 <% end %>
 
-<%= link_to "Add New User", new_user_path, class: "btn btn-primary btn-right" %>
 <h2>Active (<%= @users.active_users.count %>)</h2>
-<ul class="users-menu">
-	<%= render @users.active_users %>
-</ul>
+
+	<ul class="users-menu">
+		<%= render @users.active_users %>
+	</ul>
 
 <h2>Inactive (<%= @users.inactive_users.count %>)</h2>
-<ul class="users-menu">
-	<%= render @users.inactive_users %>
-</ul>
+
+	<ul class="users-menu">
+		<%= render @users.inactive_users %>
+	</ul>

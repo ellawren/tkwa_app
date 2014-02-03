@@ -2,6 +2,7 @@
 	<% provide :title, "Employees Index" %>
 	<div class="page-header">
 		<h1>Employee Data</h1>
+		<a href=<%= "/data_records/new" %> data-target="#newModal" data-toggle="modal" class="btn btn-primary btn-right">Add New Record</a>
 	</div>
 <% end %>
 
@@ -14,8 +15,6 @@
         <div class="modal fade data-record" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         </div><!-- /.modal -->
     <!-- end modal -->
-
-<a href=<%= "/data_records/new" %> data-target="#newModal" data-toggle="modal" class="btn btn-primary btn-right">Add New Record</a>
 
 	<% year_array(@data_records).each do |y| %>
 		<h4><%= y %></h4><br />

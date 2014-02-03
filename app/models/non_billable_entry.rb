@@ -19,10 +19,11 @@
 #
 
 class NonBillableEntry < ActiveRecord::Base
-  default_scope order('category ASC')
-  belongs_to :timesheet
+
+    default_scope order('category ASC')
+    belongs_to :timesheet
   
-  def entry_total
+    def entry_total
         d1 = day1.to_f
         d2 = day2.to_f
         d3 = day3.to_f
@@ -32,6 +33,5 @@ class NonBillableEntry < ActiveRecord::Base
         d7 = day7.to_f
         d1 + d2 + d3 + d4 + d5 + d6 + d7
     end   
+
 end
-
-

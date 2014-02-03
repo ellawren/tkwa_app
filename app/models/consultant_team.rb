@@ -12,13 +12,15 @@
 #
 
 class ConsultantTeam < ActiveRecord::Base
-  default_scope order('created_at')
-	belongs_to :project
-  has_many :bills, :dependent => :destroy
-  accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_team_id].blank? }
 
-	validates :project_id, :presence => true
-  validates :consultant_name, :presence => true
+    default_scope order('created_at')
+
+    validates :project_id, :presence => true
+    validates :consultant_name, :presence => true
+
+	belongs_to :project
+    has_many :bills, :dependent => :destroy
+    accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_team_id].blank? }
 
    	def consultant_contract=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)

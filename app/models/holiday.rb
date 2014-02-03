@@ -14,6 +14,7 @@
 #
 
 class Holiday < ActiveRecord::Base
+    
 	default_scope :order => "date_object ASC"
 
 	before_save :date_parse

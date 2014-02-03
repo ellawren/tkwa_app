@@ -10,8 +10,10 @@
 #
 
 class ProjectsTimesheets < ActiveRecord::Base
+
 	belongs_to :project
     belongs_to :timesheet
+    
 end
 
 

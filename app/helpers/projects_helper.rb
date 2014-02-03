@@ -1,4 +1,5 @@
 module ProjectsHelper
+
 	include ActionView::Helpers::TextHelper
 
   	def list_roles(consultant, project)
@@ -7,52 +8,19 @@ module ProjectsHelper
   		roles_all = ConsultantTeam.find(:all, :select => "consultant_role", :conditions => [ "consultant_id = #{consultant} AND project_id = #{project}" ] ).map{ |r| r.consultant_role }
   		if roles_count >= 3
 			   roles_all.join(', ')
-		  else roles_count == 2
+		else roles_count == 2
 			   roles_all.join(' + ')
-		  end	
+		end	
   	end
 
     def all_hours(id, phase)
-      array = Array.new(TimeEntry.find_all_by_project_id_and_phase_number(id, phase.number))
+        array = Array.new(TimeEntry.find_all_by_project_id_and_phase_number(id, phase.number))
     end
 
     def floor_to(x)
         (self * 10**x).floor.to_f / 10**x
     end
       
-    def tracking_td(f, phase)
-      actual_hours = @project.employee_actual(f.user_id, phase.number)
-      est_hours = eval("f.#{phase.shorthand}_hours")
-      if est_hours == nil
-        est = "<div class='input-spacer est'></div>"
-      else
-        est = "<div class='input est' >#{strip(est_hours)}</div>"
-      end
-
-      if actual_hours == 0
-        act = "<div class='input-spacer act'></div>"
-      else
-        time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(f.project_id, f.user_id, phase.number)
-
-        str = []
-            task_array(time_entries).each do |task| 
-                array = []
-                sum = 0
-                TimeEntry.find_all_by_project_id_and_user_id_and_phase_number_and_task(f.project_id, f.user_id, phase.number, task).each do |t| 
-                    array.push(t.entry_total)
-                end
-                array.map{|x| sum += x}
-                str.push("<tr><td>#{task}</td><td>#{sum.to_f}</td></tr>")
-            end 
-
-
-        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'><a class='pop no-hover' rel='popover' data-original-title='#{User.find(f.user_id).name} - #{phase.name}' data-content=\"
-                <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th>Hours</th></tr></thead><tbody>#{str.join}</tbody>
-                </table>\">#{strip(actual_hours)}</a></div>"
-      end
-
-      "<td class=\"phase-cell #{phase.name.gsub(/[ ]*/, '')}\"> #{act} #{est} </td>".html_safe
-    end
 
     def fee_calc_td(f, phase)
       est_hours = eval("f.#{phase.shorthand}_hours")

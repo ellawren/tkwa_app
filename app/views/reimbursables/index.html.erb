@@ -2,22 +2,20 @@
 	<% provide :title, "Reimbursables" %>
 	<div class="page-header">
 		<h1>Reimbursables</h1>
+		<%= link_to "Add Reimbursable", new_reimbursable_path, class: "btn btn-primary btn-right" %>
 	</div>
 <% end %>
 
-<%= link_to "Add Reimbursable", new_reimbursable_path, class: "btn" %>
+<ul>
+	<% @reimbursables.each do |param| %>
+			<li>
+				<%= link_to param.reimbursable_name, edit_reimbursable_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
 
-<br />
-	<ul>
-		<% @reimbursables.each do |param| %>
-  			<li>
-  				<%= link_to param.reimbursable_name, edit_reimbursable_path(param.id) %>
-  				<% if signed_in? %>
-						<% if current_user.admin? %>
-						| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-						<% end %>
-  				<% end %>
-  			</li>
-		<% end %>
-	</ul>
-<br /><br />

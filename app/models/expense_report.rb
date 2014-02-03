@@ -1,16 +1,3 @@
-class ExpenseReport < ActiveRecord::Base
-  	attr_accessible :complete, :date, :description, :food, :miles, :misc, :parking, :project_id, :user_id, :year
-  	belongs_to :user
-
-  	def date_object
-      	Date.strptime(self.date, "%m/%d/%Y")
-  	end
-
-  	before_save :year_parse
-    def year_parse
-    	self.year = date_object.year
-    end
-end
 # == Schema Information
 #
 # Table name: expense_reports
@@ -30,3 +17,33 @@ end
 #  year        :integer
 #
 
+class ExpenseReport < ActiveRecord::Base
+	
+	default_scope :order => "date ASC"
+
+  	attr_accessible :complete, :date, :description, :food, :miles, :misc, :parking, :project_id, :user_id, :year
+  	belongs_to :user
+
+  	def date_object
+      	Date.strptime(self.date, "%m/%d/%Y")
+  	end
+
+  	before_save :year_parse
+    def year_parse
+    	self.year = date_object.year
+    end
+
+    def mileage_comp
+    	if self.miles
+    		self.miles * Global.find_by_year(self.year).mileage
+    	end
+    end
+
+    def total
+    	self.mileage_comp.to_f +
+    	self.food.to_f +
+    	self.parking.to_f +
+    	self.misc.to_f
+    end
+
+end

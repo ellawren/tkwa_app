@@ -2,44 +2,41 @@
 	<% provide :title, "Holidays Index" %>
 	<div class="page-header">
 		<h1>Holidays Index</h1>
+		<%= link_to "Add holiday", new_holiday_path, class: "btn btn-primary btn-right" %>
 	</div>
 <% end %>
 
-<%= link_to "Add holiday", new_holiday_path, class: "btn" %>
-
-<br /><br /><br />
-
-	<div class="row">
-		<div class="span2">
-			<h4><%= this_year %> Holidays</h4>
-		</div>
-		<div class="span9">
-			<table class="table holiday-table">
-				<thead>
-					<tr>
-						<th>Date</th>
-						<th>Name</th>
-						<th></th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<% Holiday.all.each do |param| %>
-				  			<tr>
-				  				<td class="span2"><%= param.date_formatted %></td>
-				  				<td class="span3"><%= param.name %></td>
-				  				<td class="span1"><%= link_to "View", holiday_path(param) %></td>
-                                <td class="span1"><%= link_to "Edit", edit_holiday_path(param) %></td>
-				  				<td class="span1"><% if current_user.admin? %>
-			    						<%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-			  						<% end %>
-			  					</td>
-				  			</tr>
-					<% end %>
-				</tbody>
-			</table>
-		</div>
+<div class="row">
+	<div class="span2">
+		<h4><%= this_year %> Holidays</h4>
 	</div>
-	<br /><br />
+	<div class="span9">
+		<table class="table holiday-table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Name</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% Holiday.all.each do |param| %>
+			  			<tr>
+			  				<td class="span2"><%= param.date_formatted %></td>
+			  				<td class="span3"><%= param.name %></td>
+			  				<td class="span1"><%= link_to "View", holiday_path(param) %></td>
+                            <td class="span1"><%= link_to "Edit", edit_holiday_path(param) %></td>
+			  				<td class="span1"><% if current_user.admin? %>
+		    						<%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+		  						<% end %>
+		  					</td>
+			  			</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+

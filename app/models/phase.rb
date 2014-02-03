@@ -13,6 +13,7 @@
 #
 
 class Phase < ActiveRecord::Base
+	
 	default_scope order('number')
 
 	has_and_belongs_to_many :projects

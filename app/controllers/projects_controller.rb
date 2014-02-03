@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-    require 'csv'
+
     autocomplete :contact, :name, :full => true, :extra_data => [:work_address, :work_phone, :work_ext, :work_email]
     autocomplete :contact, :work_company, :full => true, :scopes => [:consultant_list]
 

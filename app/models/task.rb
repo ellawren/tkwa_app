@@ -11,9 +11,13 @@
 #
 
 class Task < ActiveRecord::Base
+
 	default_scope :order => 'name ASC'
+
 	validates :name,  :presence => true,
                     :length   => { :maximum => 30 }
+
     has_and_belongs_to_many :projects
+    
 end
 

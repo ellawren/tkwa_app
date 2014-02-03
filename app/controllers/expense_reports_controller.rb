@@ -24,7 +24,7 @@ class ExpenseReportsController < ApplicationController
         @expense_report = ExpenseReport.new(params[:expense_report])
         if @expense_report.save
             flash[:success] = "Expense Report added successfully!"
-            redirect_to @expense_report
+            redirect_to user_expense_reports_path(@expense_report.user_id)
         else
             redirect_to(:back) 
         end
@@ -34,7 +34,7 @@ class ExpenseReportsController < ApplicationController
         @expense_report = ExpenseReport.find(params[:id])
         if @expense_report.update_attributes(params[:expense_report])
             flash[:success] = "Expense Report updated successfully!"
-            redirect_to @expense_report
+            redirect_to edit_user_expense_report_path(@expense_report.user_id, @expense_report.id)
         else
             redirect_to(:back) 
         end

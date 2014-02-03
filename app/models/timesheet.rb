@@ -13,7 +13,6 @@
 #  notes         :text
 #
 
-
 class Timesheet < ActiveRecord::Base
   
     belongs_to :user
@@ -26,7 +25,6 @@ class Timesheet < ActiveRecord::Base
     NON_BILLABLE_CATEGORIES =   [ "Administrative", "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
                                     "Studio Projects", "Sustainable Research", "Vacation" ]
 
-      
     def data_record
         # find all data records for user/year
         data_array = []
@@ -116,19 +114,19 @@ class Timesheet < ActiveRecord::Base
         array.sum
     end
 
-  def week_goal
-    @data_record || 40
-  end
+    def week_goal
+        @data_record || 40
+    end
 
-  def ytd_goal(week)
-      week_goal * week
-  end
+    def ytd_goal(week)
+        week_goal * week
+    end
 
-  def holidays
-    Holiday.find_all_by_year_and_week(self.year, self.week)
-  end
+    def holidays
+        Holiday.find_all_by_year_and_week(self.year, self.week)
+    end
 
-  def all_hours(line, column)
+    def all_hours(line, column)
         employee = User.find(user_id)
         data_record = DataRecord.find_by_user_id_and_year(user_id, year)
         weeks = weeks_in_year(year)
@@ -148,134 +146,127 @@ class Timesheet < ActiveRecord::Base
         elsif column == "completed"
               ytd(line)
         end
-  end
+    end
 
-
-
-  def over_under_calc(g, a)
-      goal = g.to_f
-      actual = a.to_f
-      if goal >= actual
-        "<div class=\"title\">under</div>- #{goal - actual}".html_safe
-      elsif goal < actual
-        "<div class=\"title\">over</div>+ #{actual - goal}".html_safe
-      end
-  end
-
-  def ytd(var)
-    array = []
-    year_to_date.each do |y|
-        if var == "total"
-          array.push(y.timesheet_total.to_f)
-        elsif var == "billable"
-          array.push(y.total_hours.to_f)
-        elsif var == "non_billable"
-          array.push(y.nb_total_hours.to_f)
+    def over_under_calc(g, a)
+        goal = g.to_f
+        actual = a.to_f
+        if goal >= actual
+            "<div class=\"title\">under</div>- #{goal - actual}".html_safe
+        elsif goal < actual
+            "<div class=\"title\">over</div>+ #{actual - goal}".html_safe
         end
-      end
-    array.sum
-  end
-
-  def get_week_number(date)
-    date.cweek
-  end
-
-  def weeks_in_year(year)
-    last_day = Date.new(year, 12, 31)
-    # if the last day of the year is a Saturday, then use that as the last week
-    if ( (last_day.strftime("%w").to_i + 1) == 6 )
-      get_week_number(last_day)
-    # for all other case, week 1 is whatever week Jan1 fall in, so subtract 1 to get the last week
-    else
-      get_week_number(last_day) - 1
     end
-  end
 
-  def ytd_nb_categories
-    array = []
-    year_to_date.each do |y|
-      y.non_billable_entries.each do |entry|
-          array.push(entry.category)
-      end
+    def ytd(var)
+        array = []
+        year_to_date.each do |y|
+            if var == "total"
+              array.push(y.timesheet_total.to_f)
+            elsif var == "billable"
+              array.push(y.total_hours.to_f)
+            elsif var == "non_billable"
+              array.push(y.nb_total_hours.to_f)
+            end
+          end
+        array.sum
     end
-    array.push("Vacation")
-    unique_items(array).sort
-  end
 
-  def ytd_nb_categories_short
-    array = []
-    year_to_date.each do |y|
-      y.non_billable_entries.each do |entry|
-          array.push(entry.category)
-      end
+    def get_week_number(date)
+        date.cweek
     end
-    unique_items(array).sort
-  end
 
-  def ytd_nb_subtotal(category)
-    array = []
-    year_to_date.each do |y|
-      y.non_billable_entries.each do |entry|
-        if entry.category == category
-          array.push(entry.entry_total)
+    def weeks_in_year(year)
+        last_day = Date.new(year, 12, 31)
+        # if the last day of the year is a Saturday, then use that as the last week
+        if ( (last_day.strftime("%w").to_i + 1) == 6 )
+          get_week_number(last_day)
+        # for all other case, week 1 is whatever week Jan1 fall in, so subtract 1 to get the last week
+        else
+          get_week_number(last_day) - 1
         end
-      end
     end
-    array.sum
-  end
 
-  def ytd_projects
-    array = []
-    year_to_date.each do |y|
-      y.time_entries.each do |entry|
-          array.push(entry.project_id)
-      end
-    end
-    unique_items(array)
-  end
-
-  def ytd_project_hours(project)
-    array = []
-    year_to_date.each do |y|
-      y.time_entries.each do |entry|
-        if entry.project_id == project
-          array.push(entry.entry_total)
+    def ytd_nb_categories
+        array = []
+        year_to_date.each do |y|
+            y.non_billable_entries.each do |entry|
+                array.push(entry.category)
+            end
         end
-      end
+        array.push("Vacation")
+        unique_items(array).sort
     end
-    array.sum
-  end
 
-  def unique_items(array)
-      item_list = [] 
-      array.uniq.each do |i| 
-         item_list.push(i) 
-      end 
-      item_list
-  end
-
-  def generate_percentages
-    objects = year_to_date
-    total = ytd("total")
-    hash = {}
-    #add non-billable value-key pairs to main array
-    ytd_nb_categories_short.each do |category|
-        hash[category] = ytd_nb_subtotal(category)
-    end 
-    #create billable value-key pairs and add to array
-    ytd_projects.each do |project|
-        hash[ Project.find(project).name ] = ytd_project_hours(project)
+    def ytd_nb_categories_short
+        array = []
+        year_to_date.each do |y|
+            y.non_billable_entries.each do |entry|
+                array.push(entry.category)
+            end
+        end
+        unique_items(array).sort
     end
-    hash.sort_by { |k,v| -v }
-  end
 
-  def open?
-    true if complete == true
-  end
+    def ytd_nb_subtotal(category)
+        array = []
+        year_to_date.each do |y|
+            y.non_billable_entries.each do |entry|
+                if entry.category == category
+                    array.push(entry.entry_total)
+                end
+            end
+        end
+        array.sum
+    end
 
-  
-  
+    def ytd_projects
+        array = []
+        year_to_date.each do |y|
+            y.time_entries.each do |entry|
+                array.push(entry.project_id)
+            end
+        end
+        unique_items(array)
+    end
+
+    def ytd_project_hours(project)
+        array = []
+        year_to_date.each do |y|
+            y.time_entries.each do |entry|
+                if entry.project_id == project
+                    array.push(entry.entry_total)
+                end
+            end
+        end
+        array.sum
+    end
+
+    def unique_items(array)
+        item_list = [] 
+        array.uniq.each do |i| 
+            item_list.push(i) 
+        end 
+        item_list
+    end
+
+    def generate_percentages
+        objects = year_to_date
+        total = ytd("total")
+        hash = {}
+        #add non-billable value-key pairs to main array
+        ytd_nb_categories_short.each do |category|
+            hash[category] = ytd_nb_subtotal(category)
+        end 
+        #create billable value-key pairs and add to array
+        ytd_projects.each do |project|
+            hash[ Project.find(project).name ] = ytd_project_hours(project)
+        end
+        hash.sort_by { |k,v| -v }
+    end
+
+    def open?
+        true if complete == true
+    end
+
 end
-
-  
-

@@ -1,23 +1,3 @@
-class Vacation < ActiveRecord::Base
-	default_scope :order => "start_date ASC"
-  	attr_accessible :end_date, :hours, :start_date, :user_id
-  	belongs_to :user
-
-    scope :current, {
-        :select => "vacations.*",
-        :conditions => ["year = ?", Date.today.cwyear ]
-    }
-
-  	def date_object
-      	Date.strptime(self.start_date, "%m/%d/%Y")
-  	end
-
-  	before_save :year_parse
-    def year_parse
-    	self.year = date_object.year
-    end
-
-end
 # == Schema Information
 #
 # Table name: vacations
@@ -32,3 +12,24 @@ end
 #  year       :integer
 #
 
+class Vacation < ActiveRecord::Base
+    
+    default_scope :order => "start_date ASC"
+    attr_accessible :end_date, :hours, :start_date, :user_id
+    belongs_to :user
+
+    scope :current, {
+        :select => "vacations.*",
+        :conditions => ["year = ?", Date.today.cwyear ]
+    }
+
+    def date_object
+        Date.strptime(self.start_date, "%m/%d/%Y")
+    end
+
+    before_save :year_parse
+    def year_parse
+        self.year = date_object.year
+    end
+
+end

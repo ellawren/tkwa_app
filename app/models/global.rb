@@ -15,8 +15,8 @@ class Global < ActiveRecord::Base
 	before_save :set_defaults
 
 	def set_defaults
-		self.multiplier = 2.8
-		self.mileage = 0.51
+		self.multiplier ||= 2.8
+		self.mileage ||= 0.51
 	end
 
 end
