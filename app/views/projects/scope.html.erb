@@ -1,6 +1,21 @@
 <%= form_for @project do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
+	<div class="full phases">
+        <h2 class="first">Phases</h2>
+        <p class="description">Click phases to make them available for this project. Available phases are shown in green. Employees cannot add time to inactive phases.</p>
+        <%= hidden_field_tag "project[phase_ids][]", nil %>
+        <% Phase.find(:all, :order => 'number').each do |phase| %>
+            <label class="checkbox">
+                <div class="overlay">
+                    <div class="number"><%= phase.number %></div>
+                    <div class="phase-name"><%= phase.name %></div>
+                </div>
+                <%= check_box_tag "project[phase_ids][]", phase.id, @project.phase_ids.include?(phase.id), id: dom_id(phase), data_toggle: "checkbox" %>
+            </label>
+        <% end %>
+    </div>
+
 	<h2>Scope</h2>
     <p class="description">All items selected below are <span class="bold">included</span> in the project fee. Items that are not selected must be contracted separately as additional services.</p>
 

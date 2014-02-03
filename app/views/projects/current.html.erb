@@ -4,8 +4,8 @@
         <h1>Current Projects (<%= @projects.count %>)</h1>
     </div>
 <% end %>
-<br><br>
-<div class="forecast">
+
+
     <div class="buttons">
         <%= link_to "by number", projects_current_path(:view => 'number'), :class => "btn #{'active' if params[:view] != 'name'}" %>
         <%= link_to "by name", projects_current_path(:view => 'name'), :class => "btn #{'active' if params[:view] == 'name'}" %>
@@ -34,4 +34,3 @@
             <% end %>
 	    </tbody>
 	</table>
-</div>

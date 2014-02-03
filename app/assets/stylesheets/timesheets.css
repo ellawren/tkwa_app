@@ -25,10 +25,10 @@
 	input#reopen-timesheet { border:none; outline:none; background:none; float:right; display:block; margin-top:20px; font-style:italic; color:#ced5da; }
 	input#reopen-timesheet:hover { color:#1abc9c; }
 
-	.add-project-link { float:left; display:block; margin-top:20px; margin-bottom:-50px; background-color:#bcc6cc; color:#fff; padding:6px 12px; border-radius:6px; }
+	.add-project-link { float:left; display:block; margin-top:-30px; margin-bottom:-50px; background-color:#bcc6cc; color:#fff; padding:6px 12px; border-radius:6px; }
 	.add-project-link:hover { background-color:#1abc9c; color:#fff; }
 
-    .table-main.timesheets     { float:left; width:100%; margin:30px 0 0 0; }
+    .table-main.timesheets     { float:left; width:100%; margin:0px 0 0 0; }
     .table-main.timesheets.non-billable     { margin:20px 0 20px 0; }
     .table-main.timesheets .table-head { border-bottom:2px solid #333; }
 
@@ -47,41 +47,6 @@
 
     .table-head { padding-left:0px; border-bottom:2px solid #333;  }
 	.chzn-select, .chzn-container { float:left; }
-
-/*	this stuff is not used at the moment - summary tables and such
-
-	.table-main.timesheets .table-head  .cell.total { margin:0px 3px 0px 16px; padding:16px 5px 5px 5px; width:54px; height:30px; border-top:1px solid #555; border-right:1px solid #555; border-right:1px solid #555; border-left:1px solid #555; border-left:1px solid #555; background-color: #efefef; text-align:center; font-size:9pt; font-family:Argumentum-Bold; line-height:16px; text-align:center; -webkit-border-top-right-radius: 8px; -moz-border-top-right-radius: 8px; -webkit-border-top-left-radius: 8px; -moz-border-top-left-radius: 8px; border-radius-top-left: 8px; border-radius-top-right: 8px; }
-	.table-main.timesheets .table-head  .cell.total.ytd { margin-left:3px; background:none;  }
-	.table-main.timesheets .table-head  .cell.total.ytd.diff { margin-left:5px; width:62px; margin-right:13px; }
-	.table-main.timesheets .table-body .table-row .total.ytd { margin:0px 3px 0px 3px; background:none; }
-	.table-main.timesheets .table-body .table-row .total.ytd.diff { margin-left:5px; width:68px; background:none; margin-right:15px; }
-	.table-main.timesheets .table-body .table-row .input.text-only { padding:6px 16px 3px 0px; }
-	.table-main.timesheets .table-body .table-row .input.phase { width:95px; }
-	.table-main.timesheets .table-body .table-row .input.category { margin-right:-2px; width:245px; }
-	.table-main.timesheets .table-body .table-row .input.category-select { margin-right:14px; width:245px; }
-	.table-body .table-row select.input.category { margin-right:20px; }
-	.table-body .table-row.holiday    { background-color:#d0eae7; }
-	.table-body .table-row.holiday .delete  { display:none; }	
-	.table-footer .total.ytd { margin:0px 3px 0px 3px; background:none; }
-	.table-footer .total.ytd.diff { margin-left:5px; width:62px; margin-right:11px; }
-	.table-footer .total.ytd.nb-shift-fields { margin-left:92px; }
-	.table-main.timesheets .add-link { width:97.5%; border-top:2px solid #333; }
-	.table-main.timesheets.summary .table-head  .cell.category { width:224px; padding-left:8px;}
-	.table-main.timesheets.summary .table-body .table-row .input.category { margin-right:-2px; width:220px; }
-  	.table-main.timesheets.summary .table-footer     { margin:0px 0 0 155px; }
-  	.timesheets .table-footer { margin-top:-30px; }
-	.add-link { width:97%; }
-	.caps { padding-right:8px; padding-left:8px; text-transform:uppercase; font-size:9pt; font-family:Argumentum-Bold; }
-	.table-body .span5, .timesheets.weekly-totals .table-body .span7 { margin-right:4px; }
-	.table-head .goal-header  { padding:18px 0 5px 0; height:28px; line-height:16px; }
-	.table-body .over-under { float:left; margin-right:10px; padding-top:14px; height:21px; text-align:center; }
-	.table-head .over-under { margin:12px 0 0 8px; line-height:16px; }
-	.green-shaded { float:left; margin-bottom:5px; padding:40px 20px; border:1px solid #dee4d1; background-color:#eff0f0; }
-	.table-notes { float:left; margin-bottom:30px; width:100%; color:#999; font-size:9pt; }
-	.submit-cutout { position:absolute; right:185px; bottom:-10px; width:80px; height:68px; background:url(/assets/cutout-sm.jpg); }
-	input.btn.gray-button { min-width:50px; width:73px; height:73px; padding:15px 10px 15px 10px; font-size:12pt; line-height:15px; border-radius:40px; vertical-align:middle; text-align:center; float:left; margin:4px 0 0 4px; color:#000; font-family:Argumentum-Light; }
-    #ui-datepicker-div { z-index:9999; }
-    #ui-datepicker-div { z-index:9999 !important; display:block; visibility:visible; } */
 
     .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:1px solid #555; font-size:13px; font-weight:900; }
 	.timesheets .table-head .cell 	{ float:left; padding-top:5px; margin:0px 2px 0px 2px; }
@@ -178,13 +143,9 @@
 			.summary .span .total { float:left; width:50px; height:20px; padding:10px 5px 6px 5px; margin:0 9 0 4px; font-size:13px; font-weight:900; text-align:center; }
 				.summary .span .sum.today { border-color:#f1c40f; }
 	.table-main.timesheets .table-head.summary-header { border-bottom:none; }
-
-	/* these are for the round total bubble */
-	/*.summary:after { content:" "; position:absolute; right:-10px; top:0px; border-top:28px solid transparent; border-bottom:28px solid transparent; border-left:10px solid #2c3445; }*/
-	/*.timesheet-total { width:78px; height:28px; padding:36px 6px 34px 14px; text-align:center; float:left; margin:-18px -27px 0 -10px; border-radius:50px; font-size:22px; font-weight:700; border:3px solid #e1e6eb; color:#344953; }*/
 	.timesheet-total { float:left; width:50px; height:16px; padding:17px 10px 18px 10px; margin-top:5px; border-radius:0 6px 6px 0; background-color:#2c3445; color:#fff; font-size:14px; }
 
-.switch-box { float:right; margin-top:-65px; }
+.switch-box { float:right; margin-top:-85px; }
 
 .inline-edit-link { margin-left:5px; }
 .complete .btn.btn-primary { display:none; }

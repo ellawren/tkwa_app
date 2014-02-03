@@ -43,7 +43,7 @@ a.header-label:hover { opacity:.8; color:#fff; }
 			.page-header ul.controls li a { text-decoration:none; color:#ced5da; }
 				.page-header ul.controls li a:hover { color:#1abc9c; }
 
-.box { float:left; width:100%; margin-top:20px; }
+.box { float:left; width:100%; margin-top:20px; position:relative; }
 
 /* links */
 
@@ -372,7 +372,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	div.search-results { float:left; width:100%; margin-top:0px; color:#000; font-size:11pt; text-align:center; }
 		table.search-results { width:650px; margin-left:150px; border-collapse:collapse; font-size:10pt; }
 			table.search-results.projects { width:800px; margin-left:75px; }
-			table.search-results.projects.current { margin-top:60px;  }
+			table.search-results.projects.current { margin-top:40px;  }
 			table.search-results tr { border-bottom:1px solid #ecf0f5; }
 				table.search-results tr:hover { background-color:#ecf0f5; cursor:pointer; }
 				table.search-results tr:hover a { color:#1abc9c; }
@@ -403,6 +403,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			ul.project-list li a:hover { background-color:#1abc9c; color:#fff; }
 
 	.row.icons { float:left; margin:40px 0 20px 50px; }
+		.row.icons.timesheets { float:left; margin:20px 0 30px 50px; }
 		.row.icons.three { float:left; margin:40px 150px 20px; }
 
 	.tile-box { float:left; position:relative; width:200px; height:220px; margin:0 5px; }
@@ -548,6 +549,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
 	/* forecast index */
+	.table.forecast.index { margin-top:30px; }
 	.table.forecast tr.head td { border-top:1px solid #344953; }
 	.table.forecast tr.subhead td:first-child { padding-left:20px; font-weight:400; }
 	.table.forecast.index td.gray { background-color:#ecf0f5; }
@@ -570,11 +572,11 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.table.forecast.index thead tr th:first-child  { width:220px; max-width:220px; min-width:220px; }
 
 	.table.forecast.index tfoot tr td  { width:35px; max-width:35px; min-width:35px; border-top:2px solid #344953; }
-	.table.forecast.index tfoot tr td:first-child { width:218px; max-width:218px; min-width:218px; }
+	.table.forecast.index tfoot tr td:first-child { width:214px; max-width:214px; min-width:214px; }
 
 	div.forecast { float:left; position:relative; }
 
-	.buttons { position:absolute; top:25px; left:0px; text-align:left; margin-bottom:-50px; z-index:999;}
+	.buttons { position:absolute; top:0px; left:0px; text-align:left; margin-bottom:-50px; z-index:999;}
 	.buttons .btn { padding:2px 12px; margin:-15px 0 5px; background-color:#ced5da; font-size:13px; }
 	.buttons .btn:hover { opacity:.7; }
 	.buttons .btn.active { background-color:#1abc9c; color:#fff; }

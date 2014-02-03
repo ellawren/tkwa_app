@@ -13,7 +13,7 @@ TkwaApp::Application.routes.draw do
         get :autocomplete_billing_name, :on => :collection
         get :autocomplete_contact_work_company, :on => :collection
         member do
-            get 'info', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'patterns', 'forecast', 'edit_forecast'
+            get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'patterns', 'forecast', 'edit_forecast'
         end
     end    
     

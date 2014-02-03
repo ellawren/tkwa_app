@@ -15,18 +15,18 @@
     <div class="modal-body"></div>
 </div>
 <!-- end modal -->
-<div class="forecast">
+
     <div class="buttons">
-            <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] != 'project'}" %>
-            <%= link_to "by project", projects_forecast_path(:view => 'project'), :class => "btn #{'active' if params[:view] == 'project'}" %>
-        </div>
+        <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] != 'project'}" %>
+        <%= link_to "by project", projects_forecast_path(:view => 'project'), :class => "btn #{'active' if params[:view] == 'project'}" %>
+    </div>
+
     <table class="table forecast index">
         
         <thead>
-             
-                <%= four_month_header_array(date) %>
-
+            <%= four_month_header_array(date) %>
         </thead>
+
         <tbody>
             <% if params[:view] != 'project' %>
                 <% User.active_users.order("name ASC").each do |e| %>
@@ -55,6 +55,7 @@
                 <% end %>
             <% end %>
         </tbody>
+
         <tfoot>
             <tr>
                 <td></td>
@@ -63,8 +64,8 @@
                 <% end %>
             </tr>
         </tfoot>
+        
     </table>
-</div>
 
 <script>
 //reset modal remote on close

@@ -8,7 +8,7 @@
 <%= form_for @user do |f| %>
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 
-        <h2><%= parse_date_full(this_week, this_year) %></h2>
+        <h2 class="first"><%= parse_date_full(this_week, this_year) %></h2>
 
         <div class="gray-box forecast">
             <div class="stats">

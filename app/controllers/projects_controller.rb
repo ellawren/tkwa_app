@@ -18,6 +18,10 @@ class ProjectsController < ApplicationController
         end
     end
 
+    def team
+        @project = Project.find(params[:id])
+    end
+
     def billing
         @project = Project.find(params[:id])
         if @project.consultant_teams.count == 0 
