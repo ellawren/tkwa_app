@@ -25,7 +25,6 @@ class EmployeeTeam < ActiveRecord::Base
 
 	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
         :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
-    default_scope :order => 'role DESC'
 
 	belongs_to :project
     belongs_to :user
@@ -45,13 +44,15 @@ class EmployeeTeam < ActiveRecord::Base
 	scope :current, {
   		:select => "employee_teams.*",
   		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
-  		:conditions => ["status = ?", 'current' ]
+  		:conditions => ["status = ?", 'current' ],
+        :order => "projects.name"
 	}
 
 	scope :completed, {
   		:select => "employee_teams.*",
   		:joins => "INNER JOIN projects ON employee_teams.project_id = projects.id", 
-  		:conditions => ["status = ?", 'completed' ]
+  		:conditions => ["status = ?", 'completed' ],
+        :order => "projects.name"
 	}
 
     def plan_entries

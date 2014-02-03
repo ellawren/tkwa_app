@@ -398,8 +398,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			ul.tile-list li a:hover { background-color:#1abc9c; color:#fff; }
 
 	ul.project-list { float:left; width:102%; margin:0 -10px 60px 0; list-style:none; }
-	ul.project-list li { float:left; width:32%; height:70px; margin:0 1% 8px 0; }
-		ul.project-list li a { display:block; width:90%; height:40px; padding:15px 5%; border-radius:8px; background-color: #ecf0f5; color:#34495e; }
+	ul.project-list li { float:left; width:32.3%; height:40px; margin:0 5px 5px 0; }
+		ul.project-list li a { display:block; width:90%; height:20px; padding:10px 5%; border-radius:8px; background-color: #ecf0f5; color:#34495e; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 			ul.project-list li a:hover { background-color:#1abc9c; color:#fff; }
 
 	.row.icons { float:left; margin:40px 0 20px 50px; }
