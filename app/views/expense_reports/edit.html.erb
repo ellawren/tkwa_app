@@ -1,2 +1,15 @@
-<h1>ExpenseReports#edit</h1>
-<p>Find me in app/views/expense_reports/edit.html.erb</p>
+<% content_for :page_header do %>
+  	<% provide :title, "Edit Expense Report" %>
+  	<div class="page-header">
+    	<h1><%= "Edit Expense Report" %></h1>
+  	</div>
+<% end %>
+
+<%= form_for @expense_report do |f| %>
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
+
+  	<div class="actions">
+    	<%= f.submit "Update Expense Report", class: "btn" %>
+  	</div>
+<% end %>

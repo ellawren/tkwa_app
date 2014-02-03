@@ -4,3 +4,12 @@
 		<h1><%= @user.name.split[0] %>'s Expense Reports</h1>
 	</div>
 <% end %>
+
+<%= link_to "Add New Expense Report", new_user_expense_report_path(@user.id), class: "btn btn-primary btn-right" %>
+
+<% @expense_reports.each do |e| %>
+
+	<%= e.id %>
+	<%= e.date %>
+
+<% end %>

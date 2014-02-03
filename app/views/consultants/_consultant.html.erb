@@ -1,6 +1,0 @@
-<li>
-  <%= link_to consultant.company, edit_consultant_path(consultant) %>
-  <% if current_user.admin? %>
-    | <%= link_to "delete", consultant, method: :delete, confirm: "You sure?" %>
-  <% end %>
-</li>

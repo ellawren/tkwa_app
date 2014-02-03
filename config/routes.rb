@@ -23,11 +23,11 @@ TkwaApp::Application.routes.draw do
     match '/users/:id/timesheets/:year/:week/view',  to: 'timesheets#view', as: 'view_user_timesheet'
     match '/users/:id/timesheets_index',              to: 'timesheets#all', as: 'all_timesheets'
     match '/users/:user_id/data_records',      to: 'data_records#user_index'
+
     match '/users/:user_id/data_records/:id',      to: 'data_records#edit', as: 'user_data_record'
     match '/vacations',  to: 'vacations#all', as: 'all_vacations'
     resources :users do
         resources :timesheets
-        resources :expense_reports
         resources :vacations
         resources :vacation_records
         member do
@@ -35,6 +35,10 @@ TkwaApp::Application.routes.draw do
         end
         get :autocomplete_billing_name, :on => :collection
     end
+
+    match '/users/:user_id/expense_reports',      to: 'expense_reports#index', as: 'user_expense_reports'
+    match '/users/:user_id/expense_reports/new',      to: 'expense_reports#new', as: 'new_user_expense_report'
+    resources :expense_reports
 
     
     # CONSULTANT TEAMS / BILLS

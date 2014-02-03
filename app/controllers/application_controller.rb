@@ -1,20 +1,20 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  include SessionsHelper
+    protect_from_forgery
+    include SessionsHelper
 
-  before_filter :signed_in_user
+    before_filter :signed_in_user
 
-      private
-      before_filter :instantiate_controller_and_action_names
+        private
+        before_filter :instantiate_controller_and_action_names
 
-      def authorize_admin
-    	redirect_to "/error" if current_user.admin != true
-    	#redirects to error page
-	  end
+        def authorize_admin
+        	redirect_to "/error" if current_user.admin != true
+        	#redirects to error page
+	    end
 
-      def instantiate_controller_and_action_names
-          @current_action = action_name
-          @current_controller = controller_name
-      end
-
+        def instantiate_controller_and_action_names
+            @current_action = action_name
+            @current_controller = controller_name
+        end
+        
 end

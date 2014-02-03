@@ -1,0 +1,32 @@
+<%= f.hidden_field :user_id %>
+
+<div class="wide">
+    <div class="input-row">
+        <%= f.label :date, class: "input-label" %>
+        <%= f.text_field :date, class: "datepicker" %>
+    </div>     
+    <div class="input-row">
+        <%= f.label :project_id, class: "input-label" %>
+        <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+    </div>  
+    <div class="input-row">
+        <%= f.label :description, class: "input-label" %>
+        <%= f.text_field :description %>
+    </div>      
+    <div class="input-row">
+        <%= f.label :miles, class: "input-label" %>
+        <%= f.text_field :miles %>
+    </div>   
+    <div class="input-row">
+        <%= f.label :food, class: "input-label" %>
+        <%= f.text_field :food %>
+    </div>   
+    <div class="input-row">
+        <%= f.label :parking, class: "input-label" %>
+        <%= f.text_field :parking %>
+    </div>   
+    <div class="input-row">
+        <%= f.label :misc, class: "input-label" %>
+        <%= f.text_field :misc %>
+    </div>   
+</div>

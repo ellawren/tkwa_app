@@ -1,2 +1,16 @@
-<h1>ExpenseReports#new</h1>
-<p>Find me in app/views/expense_reports/new.html.erb</p>
+<% content_for :page_header do %>
+  	<% provide :title, "New Expense Report" %>
+  	<%= link_to"Expense Reports", user_expense_reports_path(@user), class: "header-label" %>
+  	<div class="page-header">
+    	<h1><%= "New Expense Report" %></h1>
+  	</div>
+<% end %>
+
+<%= form_for @expense_report do |f| %>
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
+
+  	<div class="actions">
+    	<%= f.submit "Create Expense Report", class: "btn" %>
+  	</div>
+<% end %>
