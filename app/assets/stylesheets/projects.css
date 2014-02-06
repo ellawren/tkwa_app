@@ -3,6 +3,8 @@
 	.contact-address { float:left; margin-top:0px; width:365px; }
 		.contact-address .text { float:left; width:265px; padding:7px 10px 0; margin-top:4px; border-radius:6px; }
 		.contact-address .text a { color:#1abc9c; display:block; margin-bottom:3px; font-weight:700; }
+			.contact-address .text a.email { color:#344953; display:block; font-weight:400; text-decoration:underline; }
+
 		.contact-address .text a:hover { color:#16a085; }
 	a.input-button.contact { float:left; }
 	a.input-button.change-contact { margin-top:4px; }

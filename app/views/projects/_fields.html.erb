@@ -64,6 +64,7 @@
                                     <%= link_to @billing.name, contact_path(@billing) %>
                                     <% unless @billing.work_address.blank? %><%= @billing.work_address.gsub(/\n/, '<br />').html_safe %><br><% end %>
                                     <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
+                                    <% unless @billing.work_email.blank? %><a href="mailto:<%= @billing.work_email %>" class="email"><%= @billing.work_email %></a><br><% end %>
                                 </div>
                                 <a class="btn input-button change-contact" id="change-contact">change contact</a>
                             </div>
