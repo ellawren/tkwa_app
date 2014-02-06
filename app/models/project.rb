@@ -147,6 +147,11 @@ class Project < ActiveRecord::Base
         :order => ["name ASC" ]
     }
 
+    scope :related_projects, lambda{|l|  where("number LIKE :l", l: "%#{l}%")}
+
+    def number_base
+        self.number.gsub(/[0-9.]{3}\z/, '')
+    end
 
     def contract_amount=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)

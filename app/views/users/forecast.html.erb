@@ -8,51 +8,38 @@
 <%= form_for @user do |f| %>
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 
-        <h2 class="first"><%= parse_date_full(this_week, this_year) %></h2>
+    <h2 class="first">4-month Forecast</h2>
 
-        <div class="gray-box forecast">
-            <div class="stats">
-                <div class="input-label">Forecast Hours</div>
-                <div class="number"><%= number_with_precision(@user.forecast_total(this_week, this_year), :precision => 2) %></div>
-            </div>
-            <div class="stats project-list">
+    <table class="table forecast">
+        <thead>
+            <%= four_month_header_array(date) %>
+        </thead>
+        <tbody>
+            <% @user.employee_teams.current.each do |t| %>
                 
-            </div>
+                    <tr>
+                        <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
+                        <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
+                            <td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
+                            </td>
+                        <% end %>
+                    </tr>
 
-        </div>
-
-        <h2>4-month Forecast</h2>
-
-        <table class="table forecast">
-            <thead>
-                <%= four_month_header_array(date) %>
-            </thead>
-            <tbody>
-                <% @user.employee_teams.current.each do |t| %>
-                    
-                        <tr>
-                            <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
-                            <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
-                                <td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
-                                </td>
-                            <% end %>
-                        </tr>
-
+            <% end %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <% four_month_array(date).each do |w, y| %>
+                    <td class="<%= month_shading(w, y) %>"><%= @user.forecast_total(w, y) %></td>
                 <% end %>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <% four_month_array(date).each do |w, y| %>
-                        <td class="<%= month_shading(w, y) %>"><%= @user.forecast_total(w, y) %></td>
-                    <% end %>
-                </tr>
-            </tfoot>
+            </tr>
+        </tfoot>
 
-        </table>
+    </table>
 
-        <div class="save-row">
-            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
-        </div>
+    <div class="save-row">
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+    </div>
 
 <% end %>

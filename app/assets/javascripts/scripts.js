@@ -95,6 +95,49 @@ $(document).ready(function() {
         $(this).parent('.edit-fields').hide();
         $(this).parent().parent('.pattern').children('.view-fields').show();
     });
+    //---
+
+    // project - info - potential projects radio button text
+    if ( $('#project_status_potential').attr('checked') == 'checked' ) {
+        $('#project_number').parent('.input-row').hide();
+    }
+
+    $('#project_status_potential').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#project_number').parent('.input-row').hide();
+        } else {
+            $('#project_number').parent('.input-row').show();
+        }
+    });
+
+    $('#project_awarded_yes').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#awarded').fadeIn("slow");
+            $('#note').fadeOut("slow");
+        } else {
+            $('#awarded').fadeOut("slow");
+        }
+    });
+
+    $('#project_awarded_no').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#not-awarded').fadeIn("slow");
+            $('#note').fadeOut("slow");
+        } else {
+            $('#not-awarded').fadeOut("slow");
+        }
+    });
+
+    $('#project_awarded_pending').change( function () {
+        if ( $(this).attr('checked') ) {
+            $('#not-awarded').fadeOut("slow");
+            $('#awarded').fadeOut("slow");
+            $('#note').fadeIn("slow");
+        } else {
+            $('#note').fadeOut("slow");
+        }
+    });
+    //---
 
 });
 

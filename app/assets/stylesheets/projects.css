@@ -1,6 +1,7 @@
 /* PROJECTS - info */
+
 	.contact-address { float:left; margin-top:0px; width:365px; }
-		.contact-address .text { float:left; width:255px; background-color:#f4f6f9; padding:7px 15px; margin-top:4px; border-radius:6px; }
+		.contact-address .text { float:left; width:265px; padding:7px 10px 0; margin-top:4px; border-radius:6px; }
 		.contact-address .text a { color:#1abc9c; display:block; margin-bottom:3px; font-weight:700; }
 		.contact-address .text a:hover { color:#16a085; }
 	a.input-button.contact { float:left; }
@@ -10,6 +11,8 @@
 
 	.row .custom-select { margin-bottom:5px; }
 
+	ul.related li a { color:#1abc9c; }
+	ul.related li a:hover { color:#16a085; }
 
 /* PROJECTS - scope */
 
@@ -296,24 +299,3 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 
 .shop-modal { left:55%; width:520px; }
 
-
-/* potential projects */
-.potential.page-header h1 { color:#34495e; }
-
-.fee-calc tr .input { margin-top:15px; font-size:13px; }
-.fee-calc tr.billing .input, .fee-calc tr.lower .input  { margin-top:10px; }
-
-.fee-calc tr td { text-align:center; }
-.fee-calc tr input { width:70px; margin:2px auto; text-align:center; }
-.fee-calc td.tname { min-width:140px; padding-top:7px; text-align:left; }
-.fee-calc td.total  { min-width:100px; }
-.rate { font-size:12px; font-weight:400; font-style:italic; opacity:.5; }
-
-table.tracking-table.fee-calc tr.lower td.bold, table.tracking-table.fee-calc tr.billing td.bold { padding-top:15px; text-align:left; }
-.radio-hint { position:absolute; top:0px; left:100px; display:none; color:#e64c3c; font-style:italic; }
-.radio-note { position:absolute; top:0px; left:100px; color:#bcc6cc; font-style:italic; }
-
-table.potential thead th { padding-bottom:2px; color:#344953; font-size:13px; }
-table.potential tbody tr:hover { background-color:#f6f8fa; }
-table.potential tbody td { color:#16a085; }
-table.potential tbody td a { color:#16a085; font-weight:900; }

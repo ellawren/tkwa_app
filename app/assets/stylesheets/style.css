@@ -155,7 +155,8 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.wide .input-label { float:left; width:150px; padding:10px 0; }
 			.wide .input-label.small-label { width:90px; }
 		.wide.last { width:520px; margin-left:80px; }
-			.wide.last .radio-group { position:relative; width:420px; }
+			.wide.last.potential { width:500px; margin-left:80px; margin-top:-6px; }
+			.wide.last.potential .radio-group { position:relative; width:400px; }
 		.wide .address { width:355px; margin-left:160px; }
 			.wide .address a { color:#34495e; }
 			.wide .address a:hover { color:#1abc9c; }
@@ -340,12 +341,14 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			.status-options div:hover { color:#1abc9c; }
 				input[type="radio"]:checked+label{ background-color:#ced5da; font-weight:900; } 
 				input[type="radio"]:checked+label:after { content:" "; position:absolute; top:0px; left:130px; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 5px solid #ced5da; } 
+	#contact_search .status-options { width:150px; }
+	#contact_search .status-options input[type="radio"]:checked+label:after { left:160px; } 
 
-	input.search-name { width:350px; padding:0px 10px; margin-top:12px; margin-right:4px; }
-		input.search-name.contact { float:left; width:360px; margin:20px 0 0 40px; }
+	input.search-name { width:350px; padding:2px 10px 1px; margin-top:11px; margin-right:0px; border-radius:8px; }
+		input.search-name.contact { float:left; width:360px; margin:21px 0 0 30px; padding:2px 10px 1px; }
 		input.search-name.contact.company { margin-top:3px; }
 		input.search-name.patterns { float:left; width:200px; }
-	input.search-number { width:120px; padding:0px 10px; margin-top:12px; }
+	input.search-number { width:120px; padding:2px 10px 1px; margin-top:11px; border-radius:8px; }
 
 	select.pattern-name { float:left; width:350px; height:44px; margin-top:12px; margin-right:4px; color:#bcc6cc; }
 		select.pattern-name.active, select.pattern-name.default-green{ color:#16a085; }
@@ -355,7 +358,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			.description a:hover { opacity:.6; }
 
 	.btn.btn-primary.search-btn { width:180px; margin-top:4px; margin-left:10px; border-radius:8px; font-size:16px; }
-		.btn.btn-primary.search-btn.contact { float:left; height:38px; margin-top:-37px; margin-left:20px; }
+		.btn.btn-primary.search-btn.contact { float:left; height:38px; margin-top:-38px; margin-left:20px; }
 		.btn.btn-primary.search-btn.company { float:left; height:38px; margin-top:3px; margin-left:20px; }
 		.btn.btn-primary.search-btn.patterns { float:left; margin-top:13px; }
 
@@ -363,9 +366,10 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		a.more-options:hover, a.less-options:hover { color:#1abc9c; }
 	a.less-options { display:none; }
 
-	#more-options { float:left; display:none; clear:left; margin:0 0 0 150px; }
+	#more-options { float:left; display:none; clear:left; margin:0 0 0 170px; padding-bottom:20px; }
 		input.search-address { width:360px; }
 		p.note { color:#7f8b93; }
+		#more-options input { border-radius:8px; padding:2px 10px 1px; margin-bottom:2px; }
 	.gray-box.open #more-options, .gray-box.open a.less-options { display:block; }
 	.gray-box.open a.more-options { display:none; }
 
@@ -469,16 +473,41 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 /* USERS - edit */
 
+	/* image edit stuff - used in patterns also */
+	.image-box { float:left; position:relative; width:350px; }
+		.add-image { float:right; position:relative; width:118px; height:27px; margin-right:55px; border-radius:8px; background-color:#bcc6cc; font-size:12px; overflow:hidden; }
+		.add-image.no-x { margin-right:28px; }
+		.add-image:hover { background-color:#e1e6eb; }
+		.add-image input { position:absolute; top:-30px; height:60px; cursor:pointer; }
+		.add-image .text { width:96px; margin:-4px 0 0 12px; text-align:center; }
+		.image-name { float:left; width:150px; padding-top:5px; margin-right:15px; font-size:12px; }
+		.image-placeholder { float:left; width:300px; height:300px; padding:10px; margin-bottom:10px; border:2px solid #e1e6eb; border-radius:8px; }
+
+	.image-box .small { width:400px; }
+		.image-box.small .add-image { float:left; margin:-100px 0 0 10px; width:100px; }
+		.image-box.small .add-image .text { width:96px; margin:6px 0 0 3px; text-align:center; }
+		.image-box.small .image-name { width:90px; margin-left:0px; clear:left; }
+		.image-box.small .image-placeholder { float:left; width:80px; height:80px; margin-bottom:0px; }
+		.image-box.small .add-image input { position:absolute; top:-25px; height:50px; width:100px; cursor:pointer; }
+		.image-box.small label[for="user_delete_photo"] { top:6px; right:100px; }
+
+	label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"], label[for="user_delete_photo"] { position:absolute; top:335px; right:27px; width:20px; height:20px; color:#ced5da; font-size:20px; overflow:hidden; }
+	label[for="pattern_delete_diagram"].checked, label[for="pattern_delete_diagram"]:hover, label[for="pattern_delete_photo"].checked, label[for="pattern_delete_photo"]:hover, label[for="user_delete_photo"].checked, label[for="user_delete_photo"]:hover { color:#c0392b; }
+
+	.image-box input[type="checkbox"] { position:absolute; left:-20px; width:100%; height:100%; }
+
+
 	.user-round { border-radius:40px; border:2px solid #bcc6cc; margin:-6px 10px 20px 0; }
 	.custom-select.birth-month { width:104px; }
 	.custom-select.birth-day{ width:80px; margin-left:4px; }
+	.photo { position:relative; overflow:hidden; }
 	.photo .image-name { float:left; width:100px; margin-top:10px;  }
 	.photo .add-image { float:left; margin-top:10px; }
 	.photo .add-image input { position: absolute; top: -30px; left:-5px;  height: 60px; cursor: pointer; }
 	.photo .add-image .text { line-height:34px; }
 	.photo label[for="user_delete_photo"] { position:static; color: #34495e; text-align:center; float:left; background-color: #bcc6cc; font-size: 12px; overflow: hidden; width: 118px; height: 24px; padding-top:3px; border-radius:8px; margin:4px 0 0 160px; }
 	.photo .delete-photo input[type="checkbox"] { position:absolute; top:-20px; }
-
+	.photo .delete-photo:hover { background-color:#e1e6eb; }
 
 
 
@@ -752,6 +781,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	#vacation .save-row { margin-top:20px; margin-bottom:0px; }
 	#vacation .save-row .btn { width:290px; padding:10px 14px; margin: 0px; }
 
+	#vacation .detail { float:left; margin-top:15px; text-align:center; }
 
 /* expense reports */
 
@@ -768,6 +798,29 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	table.expense-reports .miles { text-align:center; }
 	table.expense-reports .total { width:60px; font-weight:900; text-align:right; border-left:1px solid #bcc6cc; }
 	table.expense-reports .submit { width:60px; }
+
+
+/* potential projects (keep in main styles because page is in static_pages folder) */
+
+	.potential.page-header h1 { color:#34495e; }
+
+	.fee-calc tr .input { margin-top:15px; font-size:13px; }
+	.fee-calc tr.billing .input, .fee-calc tr.lower .input  { margin-top:10px; }
+
+	.fee-calc tr td { text-align:center; }
+	.fee-calc tr input { width:70px; margin:2px auto; text-align:center; }
+	.fee-calc td.tname { min-width:140px; padding-top:7px; text-align:left; }
+	.fee-calc td.total  { min-width:100px; }
+	.rate { font-size:12px; font-weight:400; font-style:italic; opacity:.5; }
+
+	table.tracking-table.fee-calc tr.lower td.bold, table.tracking-table.fee-calc tr.billing td.bold { padding-top:15px; text-align:left; }
+	.radio-hint { position:absolute; top:0px; left:100px; display:none; color:#e64c3c; font-style:italic; }
+	.radio-note { position:absolute; top:0px; left:100px; color:#bcc6cc; font-style:italic; }
+
+	table.potential thead th { padding-bottom:2px; color:#344953; font-size:13px; }
+	table.potential tbody tr:hover { background-color:#f6f8fa; }
+	table.potential tbody td { color:#16a085; }
+	table.potential tbody td a { color:#16a085; font-weight:900; }
 
 /* notice bar */
 
