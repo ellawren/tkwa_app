@@ -7,7 +7,7 @@
         <h2>Related Projects</h2>
         <div class="full">
             <ul class="related">
-                <% Project.related_projects(f.object.number_base).each do |p| %>
+                <% Project.related_projects(f.object.number_base).order('number ASC').each do |p| %>
                     <% unless p.number == f.object.number %>
                         <li><%= link_to "#{p.number} - #{p.name}", info_project_path(p) %></li>
                     <% end %>
