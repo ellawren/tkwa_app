@@ -168,6 +168,9 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 			.wide ul.project-list li a:hover { color:#1abc9c; opacity:.8; }
 		.wide textarea.wide-full { width:490px; }
 
+		.wide.contact-notes { width:580px; }
+		.wide.contact-notes textarea { width:540px; }
+
 	.narrow { float:left; width:360px; }
 		.narrow input[type="text"], input[type="password"] { float:left; width:165px; }
 		.narrow input[type="text"].input-narrow { width:166px; }
@@ -189,6 +192,9 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 			.narrow.contact-phone .label-sm { float:left; padding: 10px 6px 10px 8px; color:#c3cacf; cursor:default; }
 			.narrow.contact-phone input[type="text"].ext { float:left; width:45px; }
 			.narrow.contact-phone input[type="text"].ext.input-adjust { width:60px; }
+
+		.narrow.contact-details { width:300px; margin-left:60px; }
+		.narrow.contact-details .input-label {  width:110px; }
 
 		.narrow.company-phone .input-label { width:120px; }
 		.narrow.company-phone .custom-select { width:215px; }
@@ -244,6 +250,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 	.add.schedule:after { content:"new line"; }
 	.add.drawing:after { content:"add shop drawing"; }
 	.add.add-vacation:after { content:"add vacation"; }
+	.add.list-member:after { content:"add list member"; }
 
 .add.category { margin-left:82px; margin-top:10px; }
 .add.schedule{ float:left; display:block; }
@@ -612,6 +619,16 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 		.table.forecast.index td { padding:4px 2px;}
 
+
+
+
+
+
+
+/* CONTACTS */
+
+	.mailing-list { margin-right:-10px; }
+	.mailing-list .checkbox { width:16%; float:left; line-height:16px; }
 
 
 

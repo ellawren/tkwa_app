@@ -96,9 +96,9 @@ end %>
         <%= link_to "Add Company", "#", :class => "tile-label" %>
     </div>
 
-    <div class="tile-box disabled">
-        <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), "#" %>
-        <%= link_to "Create Mailing List", "#", :class => "tile-label" %>
+    <div class="tile-box">
+        <%= link_to image_tag("mail.png", :alt => "mailing_lists", :class => "round-icon"), mailing_lists_path %>
+        <%= link_to "Mailing Lists", mailing_lists_path, :class => "tile-label" %>
     </div>
 
   </div> <!-- end tiles -->

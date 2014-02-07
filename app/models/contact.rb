@@ -40,6 +40,9 @@ class Contact < ActiveRecord::Base
 
     has_many :projects, :through => :employee_teams
 
+    has_many :list_members, :dependent => :destroy
+    has_many :mailing_lists, :through => :list_members
+
     before_save do
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')
         self.work_cell = self.work_cell.to_s.gsub(/\D/, '')  

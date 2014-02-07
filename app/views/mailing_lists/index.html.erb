@@ -1,0 +1,20 @@
+<% content_for :page_header do %>
+	<% provide :title, "Mailing Lists" %>
+	<div class="page-header">
+		<h1>Mailing Lists</h1>
+		<%= link_to "Add Mailing List", new_mailing_list_path, class: "btn btn-primary btn-right" %>
+	</div>
+<% end %>
+
+<ul>
+	<% @mailing_lists.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_mailing_list_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>

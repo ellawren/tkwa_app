@@ -104,15 +104,27 @@
         </div>
     <% end %>
 
+    <h2>Mailing Lists</h2>
+
+    <div class="full mailing-list">
+        <%= hidden_field_tag "contact[mailing_list_ids][]", nil %>
+        <% MailingList.all.each do |list| %>
+            <label class="checkbox">
+                <%= check_box_tag "contact[mailing_list_ids][]", list.id, @contact.mailing_list_ids.include?(list.id), id: dom_id(list), data_toggle: "checkbox" %>
+                <%= list.name %>
+            </label>
+        <% end %>
+    </div>
+
     <h2>Notes</h2>
 
-    <div class="wide">
+    <div class="wide contact-notes">
         <div class="input-row">
-            <%= f.text_area :notes, class: "wide-full", rows: "6" %>
+            <%= f.text_area :notes, rows: "6" %>
         </div> 
     </div>
 
-    <div class="narrow contact-phone">
+    <div class="narrow contact-details">
         <div class="input-row">
             <%= f.label(:cat_number, "Category", class: "input-label" ) %>
             <%= f.collection_select(:cat_number, Category.all, :number, :name, { :include_blank => true }, { :class => "custom-select" } ) %>

@@ -248,8 +248,8 @@ module ApplicationHelper
         # exception for vacations or expense reports
         elsif params[:controller] == "vacations" || params[:controller] == "expense_reports"
             "active" if c_name.include?('timesheets')
-        # exception for /companies
-        elsif params[:controller] == "companies"
+        # exception for /mailing_lists
+        elsif params[:controller] == "mailing_lists"
             "active" if c_name.include?('contacts')
 
         # exceptions for /admin

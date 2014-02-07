@@ -1,0 +1,11 @@
+<div class="row">
+
+	
+	<%= f.autocomplete_field :name, autocomplete_contact_name_list_members_path, :update_elements => {:contact_id => '#contact_id'} %>
+	<%= f.hidden_field :contact_id %>
+	<%= f.hidden_field :_destroy %>
+
+	<%= link_to_remove_fields_2 "  ", f %>
+
+</div>
+

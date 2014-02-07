@@ -1,6 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
@@ -79,6 +78,12 @@ TkwaApp::Application.routes.draw do
     match '/admin',   to: 'static_pages#admin'
     match '/error',   to: 'static_pages#error'
     match '/potential_projects',   to: 'static_pages#potential_projects'
+
+    # MAILING LISTS
+    resources :mailing_lists
+    resources :list_members do
+        get :autocomplete_contact_name, :on => :collection
+    end
 
     resources :categories 
     resources :consultant_roles

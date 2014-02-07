@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203160021) do
+ActiveRecord::Schema.define(:version => 20140207162400) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -162,6 +162,24 @@ ActiveRecord::Schema.define(:version => 20140203160021) do
     t.integer  "year"
     t.integer  "week"
     t.integer  "day"
+  end
+
+  create_table "list_members", :force => true do |t|
+    t.integer  "contact_id"
+    t.integer  "mailing_list_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "name"
+  end
+
+  add_index "list_members", ["contact_id", "mailing_list_id"], :name => "index_list_members_on_contact_id_and_mailing_list_id", :unique => true
+  add_index "list_members", ["contact_id"], :name => "index_list_members_on_contact_id"
+  add_index "list_members", ["mailing_list_id"], :name => "index_list_members_on_mailing_list_id"
+
+  create_table "mailing_lists", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "messages", :force => true do |t|
