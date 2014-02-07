@@ -16,7 +16,6 @@
                         <li></li>
                     <% end %>
                 <% end %>
-                    <li><%= link_to "contact info", contact_path(Contact.find(user.contact_id)) %></li>
             <% end %>
   			<li><%= link_to "employee data", "/users/#{user.id}/data_records", datatoggle: "modal" %></li>
             <li><%= link_to "timesheets", all_timesheets_path(user.id) %></li>
