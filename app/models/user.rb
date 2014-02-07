@@ -34,6 +34,17 @@ class User < ActiveRecord::Base
 
     has_secure_password
 
+    after_initialize do
+        if self.contact_id
+            if Contact.where(:id => self.contact_id).present?
+                # do nothing
+            else
+                c = Contact.find_or_create_by_name(self.name)
+                self.contact_id = c.id
+            end
+        end
+    end
+
     before_create :create_associated_record
     before_save :create_remember_token
 
