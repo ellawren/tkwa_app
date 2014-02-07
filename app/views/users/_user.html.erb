@@ -4,7 +4,20 @@
   		<div class="name"><%= user.link_name %></div>
   		<ul>
   			<li><%= link_to "user info", edit_user_path(user) %></li>
-  			<% if user.contact_id %><li><%= link_to "contact info", contact_path(Contact.find(user.contact_id)) %></li><% end %>
+  			<% if user.contact_id %>
+                <% if Contact.find(user.contact_id) %>
+                    <li><%= link_to "contact info", contact_path(Contact.find(user.contact_id)) %></li>
+                <% else %>
+                    <% c = Contact.find_by_name(user.name) %>
+                    <% if c %>
+                        <% user.contact_id = c.id %>
+                        <li><%= link_to "contact info", contact_path(Contact.find(user.contact_id)) %></li>
+                    <% else %>
+                        <li></li>
+                    <% end %>
+                <% end %>
+                    <li><%= link_to "contact info", contact_path(Contact.find(user.contact_id)) %></li>
+            <% end %>
   			<li><%= link_to "employee data", "/users/#{user.id}/data_records", datatoggle: "modal" %></li>
             <li><%= link_to "timesheets", all_timesheets_path(user.id) %></li>
             <li><%= link_to "forecast", forecast_user_path(user) %></li>

@@ -58,12 +58,10 @@ a.green:hover  { color:#16a085; }
 
 a#show, a#hide, a#show-mailing, a#hide-mailing { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; }
 a#hide, a#hide-mailing { display:none;}
-#personal-info { margin-top:35px; }
-#personal-info.hidden { float:left; }
+#personal-info { margin-top:35px; float:left;}
 #personal-info.hidden { display:none; }
 
-#mailing-list { margin-top:35px; width:100%; }
-#mailing-list.hidden { float:left; }
+#mailing-list { margin-top:35px; width:100%; float:left; }
 #mailing-list.hidden { display:none; }
 
 .btn { padding:7px 12px; }
