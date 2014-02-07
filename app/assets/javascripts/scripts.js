@@ -43,6 +43,20 @@ $(document).ready(function() {
     });
     //---
 
+    // show mailing lists on contacts page
+    $('#show-mailing').click( function() {
+        $('#mailing-list.hidden').slideDown("slow");
+        $('#show-mailing').hide();
+        $('#hide-mailing').show();
+     });
+
+    $('#hide-mailing').click( function() {
+        $('#mailing-list.hidden').slideUp("slow");
+        $('#show-mailing').show();
+        $('#hide-mailing').hide();
+    });
+    //---
+
     // edit row on timesheets
     $('.edit-me').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");

@@ -65,7 +65,7 @@
         <% @personal = "hidden" %>
     <% end %>
 
-    <h2>Personal Information <% if @personal == "hidden" %><a id="show">show fields</a><% end %><a id="hide">hide fields</a></h2>
+    <h2 class="optional">Personal Information <% if @personal == "hidden" %><a id="show">show fields</a><% end %><a id="hide">hide fields</a></h2>
 
     <div id="personal-info" class="<%= @personal %>">
         <div class="wide">
@@ -104,16 +104,18 @@
         </div>
     <% end %>
 
-    <h2>Mailing Lists</h2>
+    <h2 class="optional">Mailing Lists <a id="show-mailing">show fields</a><a id="hide-mailing">hide fields</a></h2>
 
-    <div class="full mailing-list">
-        <%= hidden_field_tag "contact[mailing_list_ids][]", nil %>
-        <% MailingList.all.each do |list| %>
-            <label class="checkbox">
-                <%= check_box_tag "contact[mailing_list_ids][]", list.id, @contact.mailing_list_ids.include?(list.id), id: dom_id(list), data_toggle: "checkbox" %>
-                <%= list.name %>
-            </label>
-        <% end %>
+    <div id="mailing-list" class="hidden">
+        <div class="full mailing-list">
+            <%= hidden_field_tag "contact[mailing_list_ids][]", nil %>
+            <% MailingList.all.each do |list| %>
+                <label class="checkbox">
+                    <%= check_box_tag "contact[mailing_list_ids][]", list.id, @contact.mailing_list_ids.include?(list.id), id: dom_id(list), data_toggle: "checkbox" %>
+                    <%= list.name %>
+                </label>
+            <% end %>
+        </div>
     </div>
 
     <h2>Notes</h2>
