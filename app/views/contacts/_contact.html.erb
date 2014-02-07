@@ -1,5 +1,5 @@
 					<tr class="results-row">
-		                <td class="bold"><%= link_to f.name, contact_path(f) %></td>
-		                <td class="<%= f.name.blank? ? "bold green" : "" -%>"><%= link_to f.work_company, contact_path(f) %></td>
+		                <td class="bold"><% if f.name %><%= link_to f.name, contact_path(f) %><% else %><%= link_to "", contact_path(f) %><% end %></td>
+		                <td><%= link_to f.work_company, contact_path(f) %></td>
 		                <td><%= link_to "#{f.category}", contact_path(f) %></td>
 		            </tr>

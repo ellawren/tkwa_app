@@ -34,6 +34,8 @@ class Contact < ActiveRecord::Base
 
     default_scope order('name, work_company')
 
+    nilify_blanks :only => [:name]
+
     has_one :employee
     has_one :user, :through => :employee
     accepts_nested_attributes_for :employee
