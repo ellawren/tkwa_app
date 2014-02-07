@@ -149,3 +149,10 @@
 
     </div>
 
+
+<% Contact.all.each do |c| %>
+    <% if c.name.blank? %>
+        <% c.name == nil %>
+        <%= c.id %> <%= c.name %> <%= c.work_company %><br>
+    <% end %>
+<% end %>
