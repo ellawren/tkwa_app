@@ -6,6 +6,7 @@ class MailingListsController < ApplicationController
 
 	def show
 	    @mailing_list = MailingList.find(params[:id])
+	    @list_members = @mailing_list.list_members.ordered
 	end
 
 	def new
@@ -29,7 +30,7 @@ class MailingListsController < ApplicationController
 	    @mailing_list = MailingList.find(params[:id])
 	    if @mailing_list.update_attributes(params[:mailing_list])
 	      	flash[:success] = "Mailing list updated"
-	      	redirect_to edit_mailing_list_path(@mailing_list)
+	      	redirect_to mailing_list_path(@mailing_list)
 	    else
 	      	render 'edit'
 	    end

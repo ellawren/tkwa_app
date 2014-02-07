@@ -20,7 +20,6 @@
 #
 
 class EmployeeTeam < ActiveRecord::Base
-
     include ApplicationHelper
 
 	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
@@ -40,6 +39,12 @@ class EmployeeTeam < ActiveRecord::Base
     def project_name
         Project.find(self.project_id).name
     end
+
+    scope :ordered, {
+        :select => "employee_teams.*",
+        :joins => "INNER JOIN employee_roles ON employee_teams.role = employee_roles.name", 
+        :order => "employee_roles.id"
+    }
 
 	scope :current, {
   		:select => "employee_teams.*",

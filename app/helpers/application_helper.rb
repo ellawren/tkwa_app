@@ -366,6 +366,10 @@ module ApplicationHelper
         f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_4(this)", class: "delete fui-cross")
     end
 
+    def link_to_remove_fields_5(name, f)
+        f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_5(this)", class: "delete fui-cross")
+    end
+
     def link_to_remove_consultant_fields(name, f)
         f.hidden_field(:_destroy) + link_to_function(name, "remove_consultant_fields(this)", class: "delete fui-cross")
     end

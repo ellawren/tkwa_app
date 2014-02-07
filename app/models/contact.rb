@@ -32,7 +32,7 @@
 
 class Contact < ActiveRecord::Base
 
-    default_scope order('name')
+    default_scope order('name, work_company')
 
     has_one :employee
     has_one :user, :through => :employee
@@ -62,6 +62,14 @@ class Contact < ActiveRecord::Base
             name
         else
             work_company
+        end
+    end
+
+    def display_address
+        if work_address.present?
+            work_address.gsub(/\n/, '<br>').html_safe
+        elsif home_address.present?
+            home_address.gsub(/\n/, '<br>').html_safe
         end
     end
 

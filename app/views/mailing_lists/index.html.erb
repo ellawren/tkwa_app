@@ -8,13 +8,13 @@
 
 <ul>
 	<% @mailing_lists.each do |param| %>
-			<li>
-				<%= link_to param.name, edit_mailing_list_path(param.id) %>
-				<% if signed_in? %>
-					<% if current_user.admin? %>
-					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-					<% end %>
+		<li>
+			<%= link_to param.name, mailing_list_path(param.id) %>
+			<% if signed_in? %>
+				<% if current_user.admin? %>
+				| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
 				<% end %>
-			</li>
+			<% end %>
+		</li>
 	<% end %>
 </ul>

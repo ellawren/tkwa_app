@@ -9,7 +9,7 @@
             </div>
 
             <!-- nested form for team-->
-                <%= f.fields_for :employee_teams do |builder| %>
+                <%= f.fields_for :employee_teams, @employee_teams do |builder| %>
                     <%= render 'employee_team_fields', :f => builder %>
                 <% end %>
                 <%= link_to_add_fields_2 "", f, :employee_teams, "add fui-plus" %>

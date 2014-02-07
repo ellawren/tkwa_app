@@ -2,5 +2,4 @@
 		                <td class="bold"><%= link_to f.name, contact_path(f) %></td>
 		                <td class="<%= f.name.blank? ? "bold green" : "" -%>"><%= link_to f.work_company, contact_path(f) %></td>
 		                <td><%= link_to "#{f.category}", contact_path(f) %></td>
-		                
 		            </tr>

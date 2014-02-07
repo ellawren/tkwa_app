@@ -175,6 +175,11 @@ function remove_fields_4(link) {
   $(link).closest(".vacation").hide();
 }
 
+function remove_fields_5(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".list-item").hide();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")

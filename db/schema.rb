@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207162400) do
+ActiveRecord::Schema.define(:version => 20140207183509) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -169,7 +169,7 @@ ActiveRecord::Schema.define(:version => 20140207162400) do
     t.integer  "mailing_list_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.string   "name"
+    t.string   "contact_name"
   end
 
   add_index "list_members", ["contact_id", "mailing_list_id"], :name => "index_list_members_on_contact_id_and_mailing_list_id", :unique => true

@@ -1,11 +1,17 @@
-<div class="row">
+<div class="list-item">
 
-	
-	<%= f.autocomplete_field :name, autocomplete_contact_name_list_members_path, :update_elements => {:contact_id => '#contact_id'} %>
+	<% if f.object.contact_id %>
+		<div class="name"><%= link_to f.object.contact_name, contact_path(f.object.contact_id) %></div>
+		<div class="address"><%= Contact.find(f.object.contact_id).display_address %></div>
+		<%= f.hidden_field :contact_name %>
+	<% else %>
+		<%= f.autocomplete_field :contact_name, autocomplete_contact_name_list_members_path, :update_elements => {:contact_id => '#contact_id'} %>
+	<% end %>
+
 	<%= f.hidden_field :contact_id %>
 	<%= f.hidden_field :_destroy %>
 
-	<%= link_to_remove_fields_2 "  ", f %>
+	<%= link_to_remove_fields_5 "  ", f %>
 
 </div>
 

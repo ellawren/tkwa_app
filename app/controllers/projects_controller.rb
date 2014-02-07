@@ -20,6 +20,7 @@ class ProjectsController < ApplicationController
 
     def team
         @project = Project.find(params[:id])
+        @employee_teams = @project.employee_teams.ordered
     end
 
     def billing
