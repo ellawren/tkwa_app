@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
             if Contact.where(:id => self.contact_id).present?
                 # do nothing
             else
+                # just in case matching contact has been changed or deleted
                 c = Contact.find_or_create_by_name(self.name)
                 self.contact_id = c.id
             end
