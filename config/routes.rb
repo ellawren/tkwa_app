@@ -55,7 +55,7 @@ TkwaApp::Application.routes.draw do
     match '/contacts/import',   to: 'contacts#import'
     resources :contacts do
         get :autocomplete_contact_work_company, :on => :collection
-        get :autocomplete_user_name, :on => :collection
+        get :autocomplete_contact_name, :on => :collection
     end
     
 

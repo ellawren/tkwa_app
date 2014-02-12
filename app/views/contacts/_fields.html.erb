@@ -133,7 +133,7 @@
         </div>
         <div class="input-row">
             <%= f.label(:staff_contact, "Staff Contact", class: "input-label" ) %>
-            <%= f.autocomplete_field :staff_contact, autocomplete_user_name_contacts_path,  class: "match-select" %>
+            <%= f.autocomplete_field :staff_contact, autocomplete_contact_name_contacts_path,  class: "match-select" %>
         </div>
 
         <% unless params[:action] == "new" %>

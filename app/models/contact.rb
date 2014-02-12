@@ -59,6 +59,11 @@ class Contact < ActiveRecord::Base
         :conditions => ["cat_number = ?", "3" ],
     }
 
+    scope :employees, {
+        :select => "contacts.*",
+        :conditions => ["cat_number = ?", "7" ],
+    }
+
     def display_name
         if name.present?
             name
