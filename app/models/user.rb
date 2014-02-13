@@ -42,10 +42,12 @@ class User < ActiveRecord::Base
                 contact.work_url = "www.tkwa.com"
                 contact.work_email = email
                 contact.cat_number = 7
+            contact.save
             # create the employee join model
             employee = self.build_employee
                 employee.contact_id = contact.id
                 employee.user_id = self.id
+                employee.hire_date = Date.today
             employee.save        
         end
     end

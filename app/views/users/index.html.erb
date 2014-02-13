@@ -17,8 +17,3 @@
 	<ul class="users-menu">
 		<%= render @users.inactive_users %>
 	</ul>
-
-
-<% Employee.all.each do |e| %>
-	<li><%= e.id %> <%= Contact.find(e.contact_id).name %><%= e.contact_id %> <%= e.user_id %></li>
-<% end %>

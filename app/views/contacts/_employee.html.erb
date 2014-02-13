@@ -2,5 +2,5 @@
     <td class="bold"><%= link_to f.name, contact_path(f) %></td>
     <td><%= f.work_ext %></td>
     <td><%= number_to_phone(f.cell_phone, :area_code => true) %></td>
-    <td><a class="button" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></td>
+    <td><a class="button mail-link" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></td>
 </tr>

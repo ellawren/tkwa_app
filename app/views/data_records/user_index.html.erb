@@ -26,8 +26,6 @@
 				<th>Pay Type</th>
 				<th>Hours Per Week</th>
 				<th>Comp Hours<br />Per Holiday</th>
-				<th>Vacation<br />This Period</th>
-				<th>Vacation<br />Rollover</th>
 				<th>Overage From<br>Prev Period</th>
 				<th>Billable Rate</th>
 				<th></th>
@@ -41,15 +39,13 @@
 							<a href=<%= "/users/#{d.user_id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= d.user_name %></a>
 						</div>
 						<div class="employee-number">
-							<%= User.find(d.user_id).employee_number %>
+							<%= User.find(d.user_id).employee.employee_number %>
 						</div>
 					</td>
 					<td><%= "#{d.start_week} - #{d.end_week}" %></td>
 					<td><%= d.pay_type %></td>
   					<td><%= d.hours_in_week %></td>
   					<td><%= d.holiday %></td>
-  					<td><%= d.vacation %></td>
-  					<td><%= d.vacation_rollover %></td>
   					<td><%= d.overage_from_prev %></td>
   					<td><%= number_to_currency(d.billable_rate) %></td>
   					<td>

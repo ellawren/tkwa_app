@@ -66,6 +66,8 @@ a#hide, a#hide-mailing { display:none;}
 
 .btn { padding:7px 12px; }
 
+a.mail-link { cursor:pointer; }
+
 /* transitions */
 
 ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .save-row .btn, .btn.btn-primary.search-btn,
@@ -303,8 +305,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 .input-sm { padding-left:9px; padding-right:6px; margin:2px 0 2px 0; }
 .bold, table.tracking-table th.bold { font-weight:900; }
 
-
-
+.bold a { color:#1abc9c; }
+.bold a:hover { color:#16a085; }
 
 /* HOME */
 
