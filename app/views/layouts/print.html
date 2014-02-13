@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><%= yield(:title) %></title>
+		<%= render 'layouts/header' %>
+  		<%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+
+        <!-- main content -->
+        <div class="container">
+
+            <div class="box">	
+          	    <%= content_for?(:content) ? yield(:content) : yield %>
+            </div>
+                    
+    	</div> <!-- end container -->
+
+    </body>  
+</html>  

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-    before_filter :admin_user, only: [:index, :create, :new, :destroy]
   
     def index
         @title = "All users"
@@ -26,6 +25,7 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
+        
         if @user.update_attributes(params[:user])
             flash[:success] = "User updated successfully!"
             # technically all user updates should trigger a sign-in, but this means users cannot edit others' info

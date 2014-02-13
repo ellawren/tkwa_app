@@ -23,6 +23,7 @@
 #  birth_month        :integer
 #  birth_day          :integer
 #  title              :string(255)
+#  family             :text
 #
 
 require 'spec_helper'

@@ -1,3 +1,12 @@
+class Employee < ActiveRecord::Base
+
+    belongs_to :contact
+    belongs_to :user
+
+    validates :contact_id, presence: true
+    validates :user_id, presence: true
+
+end
 # == Schema Information
 #
 # Table name: employees
@@ -18,8 +27,3 @@
 #  active          :boolean         default(TRUE)
 #
 
-require 'spec_helper'
-
-describe Employee do
-  pending "add some examples to (or delete) #{__FILE__}"
-end

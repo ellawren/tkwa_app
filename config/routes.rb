@@ -53,9 +53,13 @@ TkwaApp::Application.routes.draw do
     post "/csv_import" => 'projects#csv_import'
     post "/cont_csv_import" => 'contacts#cont_csv_import'
     match '/contacts/import',   to: 'contacts#import'
+    match '/contacts/employees',   to: 'contacts#employees'
     resources :contacts do
         get :autocomplete_contact_work_company, :on => :collection
         get :autocomplete_contact_name, :on => :collection
+        member do
+            get 'transmittal', 'fax', 'envelope'
+        end
     end
     
 

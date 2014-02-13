@@ -5,17 +5,12 @@
 	</div>
 <% end %>
 
-<% content_for :tabnav do %>
-	<%= render "tabnav_contacts" %>
-<% end %>
-
 <br />
 
 	<table class="table">
 	    <thead>
 	        <tr>
 	            <th>Name</th>
-	            <th>Work Phone</th>
 	            <th>Extension</th>
 	            <th>Cell Phone</th>
 	            <th>Email</th>
@@ -23,7 +18,7 @@
 	        </tr>
 	    </thead>
 	    <tbody>
-	        <% Contact.employee_list.each do |param| %>
+	        <% @employees.each do |param| %>
 	            <%= render 'employee', :f => param %>
 	        <% end %>
 	    </tbody>

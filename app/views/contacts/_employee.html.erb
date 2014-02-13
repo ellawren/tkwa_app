@@ -1,13 +1,6 @@
-					<tr>
-		                <td class="bold"><%= link_to "#{f.name} #{f.post_nominals}", contact_path(f) %></td>
-		                <td><%= number_to_phone(f.work_phone, :area_code => true) %></td>
-		                <td><%= f.work_ext %></td>
-		                <td><%= number_to_phone(f.home_cell, :area_code => true) %></td>
-		                <td><a class="button" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></td>
-		                <td><% if signed_in? %>
-						  	<% if current_user.admin? %>
-						    	<%= link_to "delete", f, method: :delete, confirm: "You sure?" %>
-						  	<% end %>
-						  <% end %>
-						</td>
-		            </tr>
+<tr>
+    <td class="bold"><%= link_to f.name, contact_path(f) %></td>
+    <td><%= f.work_ext %></td>
+    <td><%= number_to_phone(f.cell_phone, :area_code => true) %></td>
+    <td><a class="button" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></td>
+</tr>

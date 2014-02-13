@@ -15,12 +15,32 @@ class ContactsController < ApplicationController
         end
     end
 
+    def employees
+        @employees = Contact.employees
+        render :layout => 'contacts_static' 
+    end
+
     def import
         render :layout => 'contacts_static' 
     end
 
     def show
         @contact = Contact.find(params[:id])
+    end
+
+    def envelope
+        @contact = Contact.find(params[:id])
+        render :layout => 'print' 
+    end
+
+    def fax
+        @contact = Contact.find(params[:id])
+        render :layout => 'print' 
+    end
+
+    def transmittal
+        @contact = Contact.find(params[:id])
+        render :layout => 'print' 
     end
 
     def new
@@ -35,15 +55,6 @@ class ContactsController < ApplicationController
             redirect_to @contact
         else
             render 'new'
-        end
-    end
-
-    def edit
-        if signed_in?
-            @contact = Contact.find(params[:id])
-        else
-            flash[:notice] = "Please sign in to view this page."
-            redirect_to(signin_path)
         end
     end
 
@@ -62,6 +73,8 @@ class ContactsController < ApplicationController
         flash[:success] = "Contact destroyed."
         redirect_to contacts_path
     end
+
+
 
     def cont_csv_import  
         file = params[:file]  

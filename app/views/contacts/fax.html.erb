@@ -1,0 +1,65 @@
+<% content_for :page_header do %>
+	<% provide :title, "Fax" %>
+<% end %>
+
+   	<div class="content transmittal">
+
+	   	<%= image_tag("/assets/TKWA-logo.jpg", class: "firm-logo") %>
+	   	<div class="firm-address">
+	   		<span class="bold">The Kubala Washatko Architects, Inc.</span><br>
+	   		W61 N617 Mequon Avenue<br>
+	   		Cedarburg, WI 53012-2017<br>
+	   		t: (262) 377-6039  |  f: (262) 377-2954
+	   	</div>
+
+	   	<h1>Fax Cover Sheet</h1>
+	   	<div class="line"></div>
+
+	   	<div class="info">
+	   		<div class="row">
+	   			<div class="display-label">Date:</div>
+	   			<div class="display-data">
+	   				<input class="display" type="text" value="<%= Date.today.strftime("%B %d, %Y") %>">
+	       		</div>
+	       	</div>
+	   		<div class="row">
+	   			<div class="display-label">To:</div>
+	   			<div class="display-data">
+	   				<textarea class="display" rows="4"><%= @contact.name %>&#013;&#010;<%= @contact.work_company %>&#013;&#010;fax #: <%= number_to_phone(@contact.work_fax, :area_code => true) %></textarea>
+	       		</div>
+	       	</div>
+	    </div>
+
+		<div class="info last">
+			<div class="row">
+	   			<div class="display-label">Re:</div>
+	   			<div class="display-data">
+	   				<textarea class="display" rows="2">Project Name&#013;&#010;Project #</textarea>
+	       		</div>
+	       	</div>
+	       	<div class="row">
+	   			<div class="display-label">From:</div>
+	   			<div class="display-data">
+	   				<input class="display" type="text" value="Sender Name">
+	       		</div>
+	       	</div>
+
+	       	<div class="row">
+	   			<div class="display-label">Pages:</div>
+	   			<div class="display-data">
+	   				<input class="display" type="text" value="1">
+	       		</div>
+	       	</div>
+	   	</div>
+
+	   	<div class="line"></div>
+
+	   	<div class="text">
+	   		
+   			<textarea class="display" rows="24"></textarea>
+       		
+	   	</div>
+		
+
+    </div> <!-- end content -->
+

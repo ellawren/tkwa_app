@@ -36,7 +36,7 @@ class Contact < ActiveRecord::Base
 
     nilify_blanks :only => [:name]
 
-    has_one :employee
+    has_one :employee, :dependent => :destroy
     has_one :user, :through => :employee
     accepts_nested_attributes_for :employee
 
@@ -61,7 +61,8 @@ class Contact < ActiveRecord::Base
 
     scope :employees, {
         :select => "contacts.*",
-        :conditions => ["cat_number = ?", "7" ],
+        :joins => "INNER JOIN users ON contacts.id = users.contact_id", 
+        :conditions => ["contacts.cat_number = ? AND users.active = ?", "7", true ],
     }
 
     def display_name
@@ -70,6 +71,18 @@ class Contact < ActiveRecord::Base
         else
             work_company
         end
+    end
+
+    def cell_phone
+        if work_cell.present?
+            work_cell
+        elsif home_cell.present?
+            home_cell
+        end
+    end
+
+    def is_employee?
+        true if cat_number == "7" && self.employee.present?
     end
 
     def display_address

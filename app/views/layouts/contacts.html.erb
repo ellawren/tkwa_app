@@ -1,7 +1,9 @@
 <% content_for :page_header do %>
 
     <% provide :title, @contact.display_name %>
-
+    <% if @contact.is_employee? %>
+        <%= link_to "Employees", contacts_employees_path, class: "header-label" %>
+    <% end %>
 	<div class="page-header">
         <h1><%= @contact.display_name %> &nbsp; <span class="light small"><% unless @contact.category.blank? %><%= "(" + @contact.category + ")" %><% end %></span></h1>
         <ul class="controls">

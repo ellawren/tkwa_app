@@ -1,11 +1,10 @@
-
 <%= form_for @contact do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
    <div class="content">
 
         <%= render 'fields', :f => f %>
-
+       
         <div class="save-row">
             <%= f.submit "Update", class: "btn btn-primary save-btn" %>
         </div> 
@@ -13,3 +12,4 @@
     </div> <!-- end content -->
 
 <% end %>
+
