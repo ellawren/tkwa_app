@@ -61,8 +61,7 @@ class Contact < ActiveRecord::Base
 
     scope :employees, {
         :select => "contacts.*",
-        :joins => "INNER JOIN users ON contacts.id = users.contact_id", 
-        :conditions => ["contacts.cat_number = ? AND users.active = ?", "7", true ],
+        :conditions => ["contacts.cat_number = ?", "7"],
     }
 
     def display_name

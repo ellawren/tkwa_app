@@ -15,20 +15,10 @@
 #  active             :boolean         default(TRUE)
 #  remember_token     :string(255)
 #  password_digest    :string(255)
-#  employee_number    :integer
-#  contact_id         :integer
-#  status             :string(255)
-#  hire_date          :string(255)
-#  leave_date         :string(255)
-#  birth_month        :integer
-#  birth_day          :integer
-#  title              :string(255)
-#  family             :text
 #
 
 class User < ActiveRecord::Base
 
-    attr_accessible :name, :email, :password, :password_confirmation, :admin, :employee_number, :photo, :delete_photo, :active, :plan_entries_attributes, :contact_id, :hire_date, :leave_date, :birth_month, :birth_day, :title, :vacations_attributes, :family
     has_attached_file :photo, :styles => { :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
     attr_accessor :delete_photo
     before_validation { photo.clear if delete_photo == '1' }
@@ -39,7 +29,6 @@ class User < ActiveRecord::Base
     has_one :contact, :through => :employee
     accepts_nested_attributes_for :contact
 
-    before_create :create_associated_record
     before_save :create_remember_token
 
     after_initialize do
@@ -57,7 +46,6 @@ class User < ActiveRecord::Base
             employee = self.build_employee
                 employee.contact_id = contact.id
                 employee.user_id = self.id
-                employee.status = "Current"
             employee.save        
         end
     end
@@ -84,7 +72,6 @@ class User < ActiveRecord::Base
 
     validates :password, :presence =>true, :confirmation => true, :length => { :within => 6..40 }, :on => :create
     validates :password, :confirmation => true, :length => { :within => 6..40 }, :on => :update, :unless => lambda{ |user| user.password.blank? } 
-    validates :employee_number, :presence =>true
 
     # ASSOCIATIONS
     has_many :timesheets
@@ -152,26 +139,6 @@ class User < ActiveRecord::Base
             x = sum
         end
         x
-    end
-
-    def create_associated_record
-        # create the associated contact model
-        contact = Contact.find_or_create_by_name(name)
-            contact.work_company = "The Kubala Washatko Architects, Inc."
-            contact.work_address = "W61 N617 Mequon Avenue\nCedarburg, WI 53012"
-            contact.work_phone = "(262) 377-6039"
-            contact.work_fax = "(262) 377-2954"
-            contact.work_url = "www.tkwa.com"
-            contact.work_email = email
-            contact.cat_number = 7
-        contact.save
-        # create the employee join model
-        employee = self.build_employee
-            employee.user_id = self.id
-            employee.contact_id = contact.id
-            employee.status = "Current"
-            employee.hire_date = Date.today
-        employee.save        
     end
 
     def link_name

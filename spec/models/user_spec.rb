@@ -15,15 +15,6 @@
 #  active             :boolean         default(TRUE)
 #  remember_token     :string(255)
 #  password_digest    :string(255)
-#  employee_number    :integer
-#  contact_id         :integer
-#  status             :string(255)
-#  hire_date          :string(255)
-#  leave_date         :string(255)
-#  birth_month        :integer
-#  birth_day          :integer
-#  title              :string(255)
-#  family             :text
 #
 
 require 'spec_helper'

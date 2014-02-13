@@ -136,14 +136,10 @@
 
     <% if @contact.is_employee? %>
 
-
         <h2>Employee Information</h2>
         <%= f.fields_for :employee do |u| %>
             <div class="narrow">
-                <% user = User.find(@contact.employee.user_id) %>
-                number: <%= user.employee_number %><br>
-                birthday: <%= user.birth_month %> / <%= user.birth_day %><br>
-                hire date: <%= user.hire_date %><br>
+
                 <div class="input-row">
                     <%= u.label :employee_number, "Employee Number", class: "input-label" %>
                     <%= u.text_field :employee_number, autocomplete: "off"  %>
@@ -158,25 +154,12 @@
                     <%= u.label :hire_date, "Hire Date", class: "input-label" %>
                     <%= u.text_field :hire_date, class: "datepicker"  %>
                 </div>
-                <div class="input-row">
-                    <%= u.label :leave_date, "Leave Date", class: "input-label" %>
-                    <%= u.text_field :leave_date, class: "datepicker"  %>
-                </div>
-                <div class="input-row">
-                    <%= u.label :active, class: "input-label" %>
-                    <div class="radio-group">
-                        <label class="radio"><%= u.radio_button :active, true, data_toggle: "radio" %>Active
-                        </label>
-                        <label class="radio"><%= u.radio_button :active, false, data_toggle: "radio" %>Inactive
-                        </label>
-                    </div>
-                </div>
-
+                
             </div>
             <div class="wide last">
                 <div class="input-row">
                     <%= u.label :family, "Family Info", class: "input-label" %>
-                    <%= u.text_area :family, rows: "3" %>
+                    <%= u.text_area :family, rows: "4" %>
                 </div> 
             </div> 
             

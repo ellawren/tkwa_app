@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140213192259) do
+ActiveRecord::Schema.define(:version => 20140213200507) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -134,16 +134,13 @@ ActiveRecord::Schema.define(:version => 20140213192259) do
     t.integer  "contact_id"
     t.integer  "user_id"
     t.integer  "employee_number"
-    t.string   "status"
     t.string   "hire_date"
     t.string   "leave_date"
     t.integer  "birth_month"
     t.integer  "birth_day"
-    t.string   "title"
     t.text     "family"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.boolean  "active",          :default => true
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "employees", ["contact_id", "user_id"], :name => "index_employees_on_contact_id_and_user_id", :unique => true
@@ -469,15 +466,6 @@ ActiveRecord::Schema.define(:version => 20140213192259) do
     t.boolean  "active",             :default => true
     t.string   "remember_token"
     t.string   "password_digest"
-    t.integer  "employee_number"
-    t.integer  "contact_id"
-    t.string   "status"
-    t.string   "hire_date"
-    t.string   "leave_date"
-    t.integer  "birth_month"
-    t.integer  "birth_day"
-    t.string   "title"
-    t.text     "family"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
