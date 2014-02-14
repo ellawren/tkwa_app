@@ -32,8 +32,6 @@
 
 class Contact < ActiveRecord::Base
 
-    default_scope order('name, work_company')
-
     nilify_blanks :only => [:name]
 
     has_one :employee, :dependent => :destroy
@@ -64,6 +62,17 @@ class Contact < ActiveRecord::Base
         :conditions => ["contacts.cat_number = ?", "7"],
     }
 
+    scope :next, lambda {|id| where("id > ?",id).order("id ASC") }
+    scope :previous, lambda {|id| where("id < ?",id).order("id DESC") }
+
+    def next
+        Contact.next(self.id).first
+    end
+
+    def previous
+        Contact.previous(self.id).first
+    end
+
     def display_name
         if name.present?
             name
@@ -81,7 +90,7 @@ class Contact < ActiveRecord::Base
     end
 
     def is_employee?
-        true if cat_number == "7" && self.employee.present?
+        true if cat_number == "7"
     end
 
     def display_address

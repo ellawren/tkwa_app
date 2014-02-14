@@ -1,46 +1,24 @@
-<div class="narrow data_record">
-            <div class="input-row">
-                <%= f.label(:user_id, "Name", class: "input-label") %>
-                <%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
-            </div>
-        </div>
-
-        <div class="narrow data_record_small">
-            <div class="input-row">
-                <%= f.label(:year, "Year", class: "input-label") %>
-                <%= f.text_field :year, class: "input-number" %>
-            </div>
-        </div>
-
-        <div class="narrow data_record_select">
-            <div class="input-row">
-                <%= f.label(:start_week, "Start Week", class: "input-label") %>
-                <%= f.select(:start_week, (1..53).to_a.map { |value| [ value, value ] }, { :include_blank => true }, { :class => "custom-select" } ) %>
-            </div>
-        </div>
-
-        <div class="narrow data_record_select">
-            <div class="input-row">
-                <%= f.label(:end_week, "End Week", class: "input-label") %>
-                <%= f.select(:end_week, (1..53).to_a.map { |value| [ value, value ] }, { :include_blank => true }, { :class => "custom-select" } ) %>
-            </div>
-        </div>
-
-        <div class="line with_spacer"></div>
-
-        <table class="modal-table data-table">
-            <tr>
-                <th>Pay Type</th>
-                <th>Total Hours<br />Per Week</th>
-                <th>Holiday<br />Comp Hours</th>
-                <th>Overage From Prev</th>
-                <th>Billable<br />Rate</th>
-            </tr>
-            <tr>
-                <td><%= f.select(:pay_type, [['Salary', 'Salary'], ['Hourly', 'Hourly']], {}, { :class => "custom-select" } ) %></td>
-                <td class="number-input"><%= f.text_field :hours_in_week %></td>
-                <td class="number-input"><%= f.text_field :holiday %></td>
-                <td class="number-input"><%= f.text_field :overage_from_prev %></td>
-                <td class="number-input"><%= f.text_field :billable_rate %></td>
-            </tr>
-        </table>
+<table class="modal-table data-table">
+    <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Start Wk</th>
+        <th>End Wk</th>
+        <th>Pay Type</th>
+        <th>Hours/Wk</th>
+        <th>Holiday/Day</th>
+        <th>Overage</th>
+        <th>Billable Rate</th>
+    </tr>
+    <tr>
+        <td><%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select name" } ) %></td>
+        <td><%= f.text_field :year, class: "input-number" %></td>
+        <td><%= f.select(:start_week, (1..53).to_a.map { |value| [ value, value ] }, { :include_blank => true }, { :class => "custom-select number" } ) %></td>
+        <td><%= f.select(:end_week, (1..53).to_a.map { |value| [ value, value ] }, { :include_blank => true }, { :class => "custom-select number" } ) %></td>
+        <td><%= f.select(:pay_type, [['Salary', 'Salary'], ['Hourly', 'Hourly']], {}, { :class => "custom-select pay-type" } ) %></td>
+        <td class="number-input"><%= f.text_field :hours_in_week %></td>
+        <td class="number-input"><%= f.text_field :holiday %></td>
+        <td class="number-input"><%= f.text_field :overage_from_prev %></td>
+        <td class="number-input"><%= f.text_field :billable_rate %></td>
+    </tr>
+</table>

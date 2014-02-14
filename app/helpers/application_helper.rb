@@ -258,7 +258,8 @@ module ApplicationHelper
               ( params[:controller] == "users" && params[:action] == "new" ) ||
               ( params[:controller] == "holidays" ) ||
               ( params[:controller] == "categories" ) ||
-              ( params[:controller] == "data_records" )
+              ( params[:controller] == "data_records" ) ||
+              ( params[:controller] == "globals" )
             "active" if c_name.include?('admin')
 
         # all other pages

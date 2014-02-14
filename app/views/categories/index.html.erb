@@ -1,5 +1,6 @@
 <% content_for :page_header do %>
 	<% provide :title, "Categories" %>
+	<%= link_to "Admin Panel", admin_path, class: "header-label" %>
 	<div class="page-header">
 		<h1>Categories</h1>
 		<%= link_to "Add Category", new_category_path, class: "btn btn-primary btn-right" %>

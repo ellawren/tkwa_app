@@ -13,7 +13,6 @@ gem 'aws-sdk' # amazon web services for storing uploaded images
 gem 'simple_calendar', '~> 0.1.9'
 gem 'newrelic_rpm'
 gem 'nilify_blanks' # to prevent blank contact names, which messes up search results ordering
-gem 'bootstrap-wysihtml5-rails', '~> 0.3.1.23' # text formatting for contact notes
 
 group :development, :test do
   gem 'rspec-rails', '2.8.1'

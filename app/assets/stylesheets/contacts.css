@@ -68,7 +68,7 @@
 /* EMPLOYEES */
 
 	.employee-list { float:left; width:100%; margin-left:0px; }
-	.employee-list li { float:left; padding:10px; width:875px; margin-left:45px; list-style:none; background-color:#f4f6f9; border-radius:8px; margin-bottom:6px; position:relative; }
+	.employee-list li { float:left; padding:12px 10px 8px; width:875px; margin-left:45px; list-style:none; background-color:#f4f6f9; border-radius:8px; margin-bottom:6px; position:relative; }
 		.employee-list li:hover { background-color:#ecf0f5; }
 		.employee-list li div { float:left; height:20px; }
 		.employee-list li .photo { width:40px; height:40px; position:absolute; border-radius:30px; top:0px; left:-10px; border:1px solid #bcc6cc; background-color:#ecf0f5; }
@@ -80,9 +80,11 @@
 		.employee-list li .cell { width:150px; }
 		.employee-list li .email { width:190px; }
 		.employee-list li .link { width:150px; }
-		.employee-list li .link a.btn { color:#fff; padding:2px 8px; margin-top:-2px; font-size:13px; background-color:#ced5da; }
+		.employee-list li .start { width:120px; }
+		.employee-list li .bday{ width:120px; }
+		.employee-list li .link a.btn { color:#fff; padding:2px 8px; margin-top:-7px; font-size:13px; background-color:#ced5da; }
 			.employee-list li .link a.btn:hover { background-color:#1abc9c; }
-		.employee-list li label.checkbox { float:left; margin:2px 0 0 -50px; }
+		.employee-list li label.checkbox { float:left; margin:0px 0 0 -50px; }
 		.employee-list li .check {  }
 
 	.employee-list a { color:#1abc9c; }

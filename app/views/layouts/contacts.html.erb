@@ -7,6 +7,12 @@
 	<div class="page-header">
         <h1><%= @contact.display_name %> &nbsp; <span class="light small"><% unless @contact.category.blank? %><%= "(" + @contact.category + ")" %><% end %></span></h1>
         <ul class="controls">
+            <% if @contact.previous.present? %> 
+                <li><%= link_to "prev", contact_path(@contact.previous) %></li>
+            <% end %>
+            <% if @contact.next.present? %> 
+                <li><%= link_to "next", contact_path(@contact.next) %></li>
+            <% end %>
             <li><%= link_to "add new", new_contact_path %></li>
             <li><% if current_user.admin? %>
                     <%= link_to "delete", @contact, method: :delete, confirm: "You sure?" %>

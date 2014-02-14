@@ -746,12 +746,15 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	/*---*/
 
 	/* data records modal */
-		.modal.data-record .modal-body { height:180px; padding-left:40px; width:770px; }
+		.modal.data-record .modal-body { height:90px; padding-left:40px; width:770px; }
 
  		.modal-table.data-table { width:760px; margin:15px 0; float:left; }
-		.modal-table.data-table th { text-align:center; font-size:13px; color: #c3cacf; }
+		.modal-table.data-table th { text-align:left; font-size:13px; color:#344953; padding-bottom:0px; font-size:11px; }
 		.modal-table.data-table th:first-child { text-align:left; }
 		.modal-table.data-table .custom-select { height:40px; margin-top:2px; }
+			.modal-table.data-table .custom-select.number { width:60px; }
+			.modal-table.data-table .custom-select.pay-type { width:100px; }
+			.modal-table.data-table .custom-select.name { width:190px; }
 		.modal-table.data-table td.number-input { width:80px; text-align:left; padding-left:3px; }
 		.modal-table.data-table td.number-input input { width:46px; }
 	/*---*/
