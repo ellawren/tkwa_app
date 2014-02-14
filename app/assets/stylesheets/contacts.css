@@ -1,0 +1,96 @@
+/* CONTACTS */
+
+	.mailing-list { margin-right:-10px; }
+	.mailing-list .checkbox { width:16%; float:left; line-height:16px; }
+
+	.list-names { float:left; }
+	.list-names input { float:left; width:220px; }
+	.list-names .list-item { float:left; width:275px; height:68px; overflow:hidden; padding:2px 10px 2px 0px; margin-bottom:10px; position:relative; padding:12px 15px 15px 15px; border:1px solid #e1e6eb; border-radius:8px; margin:0 5px 5px 0; }
+	.list-names .list-item .name, .list-names .list-item .address { width:205px; }
+	.list-names .list-item .name { margin-bottom:3px; }
+	.list-names .list-item .name a { color:#1abc9c; }
+	.list-names .list-item .name a:hover { color:#16a085; }
+
+	.list-names .list-item .delete { margin:0px; position:absolute; top:10px; right:12px; }
+
+	#documents { float:left; margin-top:10px; }
+	#documents a.circle { float:left; display:block; line-height:16px; color:#f1c40f; font-weight:400; width:90px; height:71px; padding:12px 0; text-align:center; border-radius:70px; border: 2px solid #f1c40f; margin-right:10px; }
+		#documents a.circle:hover { background-color:#f1c40f; border-color:#f39c12; color:#fff; }
+
+	#documents a.circle .glyphicon { display:block; text-align:center; color:#f1c40f; font-size:30px; width:20px; height:20px; margin:6px 0 0 30px; }
+		#documents a.circle:hover .glyphicon { color:#fff; }
+
+
+	/* transmittal / fax */
+	.transmittal { padding:30px; width:840px; }
+	.transmittal .firm-logo { float:left; height:82px; width:auto; }
+	.transmittal .firm-address { float:left; margin:14px 0 0 12px; font-size:12px; line-height:18px; color:#7f8b93; }
+	.transmittal h1 { float:right; width:auto; margin-top:50px; font-size:24px; }
+	.transmittal .info { float:left; width:420px; margin-top:30px; margin-bottom:30px; }
+		.transmittal .info.last { width:390px; margin-left:30px; }
+	.transmittal .info .row { float:left; margin-left:0px; margin-bottom:3px; }
+	.transmittal .info .row .display-label { float:left; width:75px; text-transform:uppercase; font-size:10px; margin-top:6px; }
+	.transmittal .info .row .display-data { float:left; }
+
+	.transmittal input.display { border:none; width:300px; height:auto; color:#344953; background-color:#f4f6f9; border-radius:0px; padding:3px 6px; }
+	.transmittal textarea.display { border:none; height:auto; width:300px; color:#344953; background-color:#f4f6f9; border-radius:0px; padding:3px 6px; resize:none; }
+
+	.transmittal-table { float:left; margin-top:30px; margin-bottom:30px; }
+	.transmittal-table thead th { text-transform:uppercase; font-size:10px; font-weight:400; padding-bottom:0px; }
+	.transmittal-table tbody td { border-top:none; padding:4px; }
+	.transmittal-table tbody td:first-child { padding-left:0px; }
+	.transmittal-table input { margin-bottom:0px; }
+	.transmittal-table .number input { width:55px; }
+	.transmittal-table .item input { width:260px; }
+	.transmittal-table .notes input { width:472px; }
+
+	.transmittal .text { width:100%; float:left; margin-top:30px; margin-bottom:30px; }
+	.transmittal .text textarea.display { width:826px; }
+
+	@media print {
+		.transmittal .info textarea.display, .transmittal .info input.display, .transmittal-table input.display 
+			{ background-color:#f4f6f9 !important; }
+		.transmittal .firm-address, .transmittal .firm-address .bold { color:#7f8b93 !important; }
+	}
+
+	/* envelope */
+	.envelope { padding:0px; width:900px; }
+	.envelope .firm-logo { float:left; height:82px; width:auto; }
+	.envelope .firm-address { float:left; margin:14px 0 0 12px; font-size:12px; line-height:18px; }
+
+	.envelope .address { float:left; clear:left; margin:80px 0 0 360px; }
+	.envelope textarea.display { border:none; height:auto; width:300px; color:#344953; background-color:#f4f6f9; border-radius:0px; padding:3px 6px; resize:none; }
+
+
+
+
+
+/* EMPLOYEES */
+
+	.employee-list { float:left; width:100%; margin-left:0px; }
+	.employee-list li { float:left; padding:10px; width:875px; margin-left:45px; list-style:none; background-color:#f4f6f9; border-radius:8px; margin-bottom:6px; position:relative; }
+		.employee-list li:hover { background-color:#ecf0f5; }
+		.employee-list li div { float:left; height:20px; }
+		.employee-list li .photo { width:40px; height:40px; position:absolute; border-radius:30px; top:0px; left:-10px; border:1px solid #bcc6cc; background-color:#ecf0f5; }
+			.employee-list li .photo img { width:100%; height:100%; }
+		.employee-list li .name { width:150px; font-weight:900; margin-left:30px; }
+			.employee-list li .name a { color:#344953; }
+				.employee-list li .name a:hover { color:#1abc9c; }
+		.employee-list li .ext { width:80px; }
+		.employee-list li .cell { width:150px; }
+		.employee-list li .email { width:190px; }
+		.employee-list li .link { width:150px; }
+		.employee-list li .link a.btn { color:#fff; padding:2px 8px; margin-top:-2px; font-size:13px; background-color:#ced5da; }
+			.employee-list li .link a.btn:hover { background-color:#1abc9c; }
+		.employee-list li label.checkbox { float:left; margin:2px 0 0 -50px; }
+		.employee-list li .check {  }
+
+	.employee-list a { color:#1abc9c; }
+	.employee-list a:hover { color:#16a085; }
+
+
+	.employee-list li.header { padding:0 10px; width:910px; background-color:transparent; margin-bottom:0px; font-size:10px; text-transform:uppercase; font-weight:700; }
+		.employee-list li.header .name { font-weight:700; }
+
+
+

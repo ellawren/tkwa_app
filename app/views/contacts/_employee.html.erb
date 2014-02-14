@@ -1,6 +1,14 @@
-<tr>
-    <td class="bold"><%= link_to f.name, contact_path(f) %></td>
-    <td><%= f.work_ext %></td>
-    <td><%= number_to_phone(f.cell_phone, :area_code => true) %></td>
-    <td><a class="button mail-link" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></td>
-</tr>
+<li>
+	
+    <label class="checkbox">
+    	<input type='checkbox' class='ck' value='<%= f.work_email %>'>
+    </label>
+	
+	<div class="photo"><%= image_tag User.find(f.employee.user_id).photo.url(:thumb) if f.employee %></div>
+    <div class="name"><%= link_to f.name, contact_path(f) %></div>
+    <div class="ext"><%= f.work_ext %></div>
+    <div class="cell"><%= number_to_phone(f.cell_phone, :area_code => true) %></div>
+    <div class="email"><a class="button mail-link" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></div>
+    <div class="link"><%= link_to "contact page", contact_path(f), class: "btn" %></div>
+
+</li>

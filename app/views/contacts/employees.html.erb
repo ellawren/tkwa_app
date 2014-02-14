@@ -2,24 +2,50 @@
 	<% provide :title, "Employees" %>
 	<div class="page-header">
 		<h1>Employees</h1>
+		<input type="button" id="selectall" class="btn btn-right" value="Select All">
 	</div>
 <% end %>
 
-<br />
+<ul class="employee-list">
+	<li class="header">
+		<div class="name">Name</div>
+		<div class="ext">Ext</div>
+		<div class="cell">Cell</div>
+		<div class="email">Email</div>
+	</li>
+	<% @employees.each do |param| %>
+	    <%= render 'employee', :f => param %>
+	<% end %>
+</ul>
 
-	<table class="table">
-	    <thead>
-	        <tr>
-	            <th>Name</th>
-	            <th>Extension</th>
-	            <th>Cell Phone</th>
-	            <th>Email</th>
-	            <th></th>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <% @employees.each do |param| %>
-	            <%= render 'employee', :f => param %>
-	        <% end %>
-	    </tbody>
-	</table>
+<div class="save-row">
+	<input type="button" id="getselected" class="btn btn-primary" value="Email All Selected">
+</div>
+
+<script>
+
+	$(function () {
+    $('#selectall').toggle(
+        function() {
+            $(':checkbox').prop('checked', true);
+            $('.checkbox').addClass('checked');
+            $(this).val('Deselect All');
+        },
+        function() {
+            $(':checkbox').prop('checked', false);
+            $('.checkbox').removeClass('checked');
+            $(this).val('Select All');
+        }
+    );
+
+    $( "#getselected" ).click(function() {
+    	var allVals = [];
+    	$(':checkbox').each(function() {
+    		if ( $(this).prop('checked') == true ) {
+       			allVals.push($(this).val());
+       		}
+     	});
+	  	window.location.href = "mailto:" + allVals.join(",");
+	});
+});
+</script>

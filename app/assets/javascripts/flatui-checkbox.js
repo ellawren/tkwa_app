@@ -109,4 +109,11 @@
 		});
 	});
 
+	$(window).on('load', function () {
+		$('.ck').each(function () {
+			var $checkbox = $(this);
+			$checkbox.checkbox();
+		});
+	});
+
 }(window.jQuery);
