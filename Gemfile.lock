@@ -35,8 +35,6 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
-    bootstrap-wysihtml5-rails (0.3.1.23)
-      railties (>= 3.0)
     builder (3.0.4)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -180,7 +178,6 @@ DEPENDENCIES
   annotate (~> 2.4.1.beta)
   aws-sdk
   bcrypt-ruby (~> 3.0.1)
-  bootstrap-wysihtml5-rails (~> 0.3.1.23)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   factory_girl_rails (= 1.4.0)
