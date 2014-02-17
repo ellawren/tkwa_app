@@ -26,6 +26,10 @@
   	transition: border .25s linear, color .25s linear;
   	-webkit-backface-visibility: hidden;
 }
+
+.jqte strong, .jqte b {
+	font-weight:900;
+}
 .jqte * {
 	color:#16a085;
 	font-family:font-family: "Lato", sans-serif !important;
@@ -354,7 +358,7 @@
 	resize:vertical
 }
 .jqte_editor div, .jqte_editor p {
-	margin:0 0 7px
+	margin:0 0 0px
 }
 .jqte_editor a:link, .jqte_editor a:link * {
 	color:#0066FF !important;
