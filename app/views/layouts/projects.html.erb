@@ -13,13 +13,13 @@
         <div class="page-header">
             <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
     <% end %>
-            <ul class="controls">
-                <!--<% unless @project.status == "potential" %>
-                    <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
-                <% end %>-->
-                <li><%= link_to "", @project, class: "delete fui-cross projects", method: :delete, confirm: "Delete this project and all its data?" %></li>
-            </ul>
-
+        <ul class="controls">
+            <% unless @project.status == "potential" %>
+                <li><a href="#options" class="glyphicon glyphicon-eye-open tip" role="button" data-toggle="modal" title="View Options"></a></li>
+            <% end %>
+            <li><%= link_to "", new_project_path, class: "glyphicon glyphicon-plus tip", title:"Add New Project" %></li>
+            <li class="delete"><%= link_to "", @project, method: :delete, confirm: "Delete this project and all its data?", class: "glyphicon glyphicon-remove tip", title:"Delete This Project" %>
+            </li>
         </div>		
 <% end %>
 
@@ -36,27 +36,35 @@
 <!-- modal for view options -->
 <div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
 
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">View Options</h3>
-    </div>
-
     <%= form_for @project do |f| %>
-        <div class="modal-body">
-            <p>Select sections to toggle on/off.</p>
-    
-            <% Project::VIEW_OPTIONS.each do |option| %>
-                <label class="checkbox">
-                    <%= check_box_tag "project[view_options][]", option, @project.view_options.include?(option), data_toggle: "checkbox" %>
-                    <%= option %>
-                </label>
-            <% end %>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        View Options
+                    </h4>
+                </div>
+                
+                <div class="modal-body">
+                    Select sections to toggle view on or off. The Info, Team, Scope, and Billing sections will always be visible by default.<br><br>
+            
+                    <% Project::VIEW_OPTIONS.each do |option| %>
+                        <label class="checkbox">
+                            <%= check_box_tag "project[view_options][]", option, @project.view_options.include?(option), data_toggle: "checkbox" %>
+                            <%= option %>
+                        </label>
+                    <% end %>
 
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <%= f.submit "Save Changes", class: "btn btn-primary" %>
-        </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= f.submit "Save Options", class: "btn btn-primary" %>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     <% end %>
   
 </div>

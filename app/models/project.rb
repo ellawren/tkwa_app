@@ -591,6 +591,6 @@ class Project < ActiveRecord::Base
     
     BILLING_TYPES =  [ "% of Const. Cost", "Lump Sum", "Lump Sum With Extras", "Hourly - No Maximum", "Hourly - NTE", "Hourly With Extras", "Hourly NTE With Extras" ]
 
-    VIEW_OPTIONS =  [ 'scope', 'setup', 'tracking', 'forecast', 'billing', 'schedule', 'shop_drawings', 'patterns', 'marketing' ]
+    VIEW_OPTIONS =  [ 'tracking', 'forecast', 'schedule', 'shop drawings', 'patterns', 'marketing' ]
 
 end
