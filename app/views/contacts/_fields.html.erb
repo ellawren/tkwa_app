@@ -176,6 +176,28 @@
         </div> 
     </div>
 
+    <script src="/assets/jquery-te-1.4.0.min.js" type="text/javascript"></script>
+    <link href="/assets/jquery-te-1.4.0" media="screen" rel="stylesheet" type="text/css" />
+    <script>
+            $("#contact_notes").jqte({
+                center: false,
+                fsize: false,
+                format: false,
+                indent: false,
+                link: false,
+                left: false,
+                outdent: false,
+                p: false,
+                remove: false,
+                right: false,
+                rule: false,
+                source: false,
+                sub: false,
+                sup: false,
+                unlink: false
+            });
+    </script>
+
     <div class="narrow contact-details">
         <div class="input-row">
             <%= f.label(:cat_number, "Category", class: "input-label" ) %>
@@ -198,3 +220,5 @@
         <% end %>
 
     </div>
+
+
