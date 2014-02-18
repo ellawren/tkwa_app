@@ -52,7 +52,7 @@ class Contact < ActiveRecord::Base
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '')
-        self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>') # get rid of extra line breaks
+        self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/^<br>/, '') # get rid of extra line breaks
     end
               
     scope :consultant_list, {
@@ -143,13 +143,17 @@ class Contact < ActiveRecord::Base
     private
         # this is for the notes section - prevent unauthorized html
         def sanitize_notes
-          self.notes = sanitize_tiny_mce(self.notes)
+          self.notes = sanitize_text_editor(self.notes)
         end
-        def sanitize_tiny_mce(field)
+        def sanitize_text_editor(field)
           # uses sanitize gem
           Sanitize.clean(field, 
-                :elements => ['b', 'i', 'br', 'span', 'strike', 'ol', 'ul', 'li'],
-                :attributes => { }
+                :elements => ['b', 'i', 'br', 'span', 'strike', 'ol', 'ul', 'li', 'span'],
+                # allow style -> color attribute only
+                :attributes => {'span' => ['style']},
+                :protocols => {
+                    'span'   => {'style' => ['color']}
+                    }
                 )
         end
 
