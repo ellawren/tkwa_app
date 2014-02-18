@@ -52,7 +52,7 @@ class Contact < ActiveRecord::Base
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '')
-        self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>') #this is to fix the extra line break that jquery te adds in the notes section
+        self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>') # get rid of extra line breaks
     end
               
     scope :consultant_list, {
@@ -63,6 +63,7 @@ class Contact < ActiveRecord::Base
     scope :employees, {
         :select => "contacts.*",
         :conditions => ["contacts.cat_number = ?", "7"],
+        :order => ["name"],
     }
 
     scope :next, lambda {|id| where("id > ?",id).order("id ASC") }
@@ -145,9 +146,12 @@ class Contact < ActiveRecord::Base
           self.notes = sanitize_tiny_mce(self.notes)
         end
         def sanitize_tiny_mce(field)
-          ActionController::Base.helpers.sanitize(field,
-            :tags => %w(b i strong em p br ul ol li span strike),
-            :attributes => %w(style) );
+          # uses sanitize gem
+          Sanitize.clean(field, 
+                :elements => ['b', 'i', 'br', 'span', 'strike', 'ol', 'ul', 'li'],
+                :attributes => { }
+                )
         end
 
 end
+
