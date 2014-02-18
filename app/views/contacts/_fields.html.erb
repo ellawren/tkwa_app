@@ -16,7 +16,12 @@
         </div>
         <div class="input-row">
             <%= f.label(:work_company, "Company", class: "input-label") %>
-            <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'} %>
+            <!-- only auto-fill company info for new records -->
+            <% if params[:action] == "new" %>
+                <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'} %>
+            <% else %>
+                <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path %>
+            <% end %>
         </div>  
         <div class="input-row">
             <%= f.label(:work_address, "Address", class: "input-label") %>
