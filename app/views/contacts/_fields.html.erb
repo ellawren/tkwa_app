@@ -170,14 +170,15 @@
 
     <h2>Notes</h2>
 
+    <script src="/assets/jquery-te-1.4.0.min.js" type="text/javascript"></script>
+    <link href="/assets/jquery-te-1.4.0" media="screen" rel="stylesheet" type="text/css" />
+
     <div class="wide contact-notes">
         <div class="input-row">
             <%= f.text_area :notes, rows: "6" %>
         </div> 
     </div>
 
-    <script src="/assets/jquery-te-1.4.0.min.js" type="text/javascript"></script>
-    <link href="/assets/jquery-te-1.4.0" media="screen" rel="stylesheet" type="text/css" />
     <script>
             $("#contact_notes").jqte({
                 center: false,
@@ -221,4 +222,8 @@
 
     </div>
 
-
+<script>
+    $('#contact_notes').val() = $('#contact_notes').val().replace(/(<br>){3}/, '<br><br>');
+    alert($('#contact_notes').val());
+    
+</script>

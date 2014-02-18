@@ -27,6 +27,10 @@
   	-webkit-backface-visibility: hidden;
 }
 
+.jqte ul, .jqte ol {
+	margin-bottom:0px;
+}
+
 .jqte strong, .jqte b {
 	font-weight:900;
 }

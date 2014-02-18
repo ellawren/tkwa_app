@@ -43,13 +43,16 @@ class Contact < ActiveRecord::Base
     has_many :list_members, :dependent => :destroy
     has_many :mailing_lists, :through => :list_members
 
+    before_validation :sanitize_notes
+
     before_save do
         self.home_phone = self.home_phone.to_s.gsub(/\D/, '')
         self.work_cell = self.work_cell.to_s.gsub(/\D/, '')  
         self.home_cell = self.home_cell.to_s.gsub(/\D/, '') 
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
-        self.work_fax = self.work_fax.to_s.gsub(/\D/, '') 
+        self.work_fax = self.work_fax.to_s.gsub(/\D/, '')
+        self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>') #this is to fix the extra line break that jquery te adds in the notes section
     end
               
     scope :consultant_list, {
@@ -135,5 +138,16 @@ class Contact < ActiveRecord::Base
         end
         arr
     end
+
+    private
+        # this is for the notes section - prevent unauthorized html
+        def sanitize_notes
+          self.notes = sanitize_tiny_mce(self.notes)
+        end
+        def sanitize_tiny_mce(field)
+          ActionController::Base.helpers.sanitize(field,
+            :tags => %w(b i strong em p br ul ol li span strike),
+            :attributes => %w(style) );
+        end
 
 end
