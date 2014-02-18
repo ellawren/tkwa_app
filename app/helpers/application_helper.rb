@@ -39,6 +39,20 @@ module ApplicationHelper
         date.wday + 1
     end
 
+    def phone(input)
+        if input.length > 0
+            if input.length == 7
+                number_to_phone(input)
+            elsif input.length > 7 && input.length <= 10
+                number_to_phone(input, :area_code => true)
+            elsif input.length > 10
+                input.unpack('A3A2A2A7').join('-')
+            else
+                input
+            end
+        end
+    end
+
     def nonzero(value)
         if value > 0
             number_with_precision(value, :precision => 2)
