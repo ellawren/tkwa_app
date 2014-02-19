@@ -25,7 +25,7 @@
         </div>  
         <div class="input-row">
             <%= f.label(:work_address, "Address", class: "input-label") %>
-            <%= f.text_area :work_address, class: "button-right", rows: "2" %>
+            <%= f.text_area :work_address, class: "button-right", rows: "3" %>
             <button class="btn input-button" onclick="showMap('contact_work_address'); return false;">Google maps</button>
         </div>   
         <div class="input-row">
@@ -180,8 +180,16 @@
 
     <div class="wide contact-notes">
         <div class="input-row">
-            <%= f.text_area :notes, rows: "6" %>
+            <%= f.text_area :notes, rows: "9" %>
         </div> 
+        <% unless params[:action] == "new" %>
+            <div class="input-row added">
+                Added <%= f.object.created_at.strftime("%-m/%d/%Y") %>
+                <% if f.object.updated_at %>
+                     // Updated <%= f.object.updated_at.strftime("%-m/%d/%Y") %>
+                <% end %>
+            </div>
+        <% end %>
     </div>
 
     <script>
@@ -212,17 +220,11 @@
             <%= f.label(:staff_contact, "Staff Contact", class: "input-label" ) %>
             <%= f.autocomplete_field :staff_contact, autocomplete_contact_name_contacts_path,  class: "match-select" %>
         </div>
-
-        <% unless params[:action] == "new" %>
-            <div class="input-row">
-                <div class="input-label">Added On</div>
-                <div class="input-cell"><%= f.object.created_at.strftime("%B %d, %Y") %></div>
-            </div>
-            <div class="input-row short">
-                <div class="input-label">Last Updated</div>
-                <div class="input-cell"><%= f.object.updated_at.strftime("%B %d, %Y") %></div>
-            </div>
-        <% end %>
-
+        <div class="formatted-address">
+            <%= "<span class=\"bold\">#{f.object.name}</span><br>".html_safe if f.object.name %>
+            <%= "#{f.object.work_company}<br>".html_safe if f.object.work_company %>
+            <%= "#{f.object.display_address}<br>".html_safe if f.object.display_address %>
+            <%= "t: #{phone(f.object.display_phone)}".html_safe if f.object.display_phone %>
+        </div>
     </div>
 

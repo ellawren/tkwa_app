@@ -105,6 +105,16 @@ class Contact < ActiveRecord::Base
         end
     end
 
+    def display_phone
+        if work_direct.present?
+            work_direct
+        elsif work_phone.present?
+            work_phone
+        elsif work_cell.present?
+            work_cell
+        end
+    end
+
     def category
         unless self.cat_number.blank?
             Category.find_by_number(self.cat_number).name
