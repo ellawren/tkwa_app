@@ -221,10 +221,14 @@
             <%= f.autocomplete_field :staff_contact, autocomplete_contact_name_contacts_path,  class: "match-select" %>
         </div>
         <div class="formatted-address">
-            <%= "<span class=\"bold\">#{f.object.name}</span><br>".html_safe if f.object.name %>
-            <%= "#{f.object.work_company}<br>".html_safe if f.object.work_company %>
-            <%= "#{f.object.display_address}<br>".html_safe if f.object.display_address %>
-            <%= "t: #{phone(f.object.display_phone)}".html_safe if f.object.display_phone %>
+            <% if f.object.name.present? %>
+                <span class="bold"><%= f.object.name %></span><br>
+                <%= "#{f.object.work_company}<br>".html_safe if f.object.work_company.present? %>
+            <% else %>
+                <span class="bold"><%= f.object.work_company %></span><br>
+            <% end %>
+            <%= "#{f.object.display_address}<br>".html_safe if f.object.display_address.present? %>
+            <%= "t: #{phone(f.object.display_phone)}".html_safe if f.object.display_phone.present? %>
         </div>
     </div>
 
