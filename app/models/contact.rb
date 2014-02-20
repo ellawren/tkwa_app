@@ -158,7 +158,7 @@ class Contact < ActiveRecord::Base
         def sanitize_text_editor(field)
           # uses sanitize gem
           Sanitize.clean(field, 
-                :elements => ['b', 'i', 'br', 'span', 'strike', 'ol', 'ul', 'li', 'span'],
+                :elements => ['b', 'i', 'br', 'span', 'strike', 'ol', 'ul', 'li'],
                 # allow style -> color attribute only
                 :attributes => {'span' => ['style']},
                 :protocols => {

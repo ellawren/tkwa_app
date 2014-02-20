@@ -149,7 +149,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 		.third.billing .input-row.fee .input-label { margin-left:10px; margin-top:2px; }
 
 	.third.billing.gray-box { height:145px; width:305px; padding:18px 15px; }
-		.third.billing.gray-box .input-label { width:160px; color:#bcc6cc; padding: 9px 0; }
+		.third.billing.gray-box .input-label { width:160px; color:#9ba6ac; padding: 9px 0; }
 		.third.billing.gray-box input[type="text"] { float:right; width:115px; text-align:right; margin-bottom:2px; }
 		.third.billing.gray-box .text-field { width:114px; margin-top:6px; }
 		.third.billing.gray-box	.input-row.text-only { margin-top:0px; }
