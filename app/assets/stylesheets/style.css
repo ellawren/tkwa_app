@@ -63,7 +63,7 @@ a:active, a:focus { color:#1abc9c; outline:none; }
 a.green  { color:#1abc9c; }
 a.green:hover  { color:#16a085; }
 
-a#show, a#hide, a#show-mailing, a#hide-mailing { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; }
+a#show, a#hide, a#show-mailing, a#hide-mailing { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
 a#show:hover, a#hide:hover, a#show-mailing:hover, a#hide-mailing:hover { color:#1abc9c; }
 a#hide, a#hide-mailing { display:none;}
 #personal-info { margin-top:35px; float:left;}

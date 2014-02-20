@@ -40,13 +40,13 @@ module ApplicationHelper
     end
 
     def phone(input)
-        if input.length > 0
+        if input && input.length > 0
             if input.length == 7
                 number_to_phone(input)
             elsif input.length > 7 && input.length <= 10
                 number_to_phone(input, :area_code => true)
             elsif input.length > 10
-                input.unpack('A3A2A2A7').join('-')
+                input.unpack('A3A3A4A4').join('-')
             else
                 input
             end
