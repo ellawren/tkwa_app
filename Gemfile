@@ -15,6 +15,10 @@ gem 'newrelic_rpm'
 gem 'nilify_blanks' # to prevent blank contact names, which messes up search results ordering
 gem 'sanitize' # used to sanitize notes fields on contacts page
 
+group :production do
+  gem 'rails_12factor' # prevent Heroku auto-injecting plugins, which causes deprecation error
+end
+
 group :development, :test do
   gem 'rspec-rails', '2.8.1'
 end
