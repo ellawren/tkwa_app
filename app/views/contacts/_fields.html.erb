@@ -8,7 +8,7 @@
             <% else %>
                 <% val = f.object.name %>
             <% end %>
-            <%= f.text_field(:name, :value => val) %>
+            <%= f.text_field(:name, :value => val, class: "bold")  %>
         </div>
         <div class="input-row">
             <%= f.label(:work_title, "Title", class: "input-label") %>
@@ -18,9 +18,9 @@
             <%= f.label(:work_company, "Company", class: "input-label") %>
             <!-- only auto-fill company info for new records -->
             <% if params[:action] == "new" %>
-                <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'} %>
+                <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'}, class: "bold" %>
             <% else %>
-                <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path %>
+                <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, class: "bold" %>
             <% end %>
         </div>  
         <div class="input-row">
