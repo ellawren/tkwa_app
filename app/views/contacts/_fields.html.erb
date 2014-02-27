@@ -95,39 +95,43 @@
         <% end %>
     </div>
 
-    <div class="full">
-        <% if f.object.associated_projects.count > 0 %>
-            <% if Contact.at_same_company(f.object.work_company).count == 1 %>
-                <div class="full">
-            <% else %>
-                <div class="half first">
-            <% end %>
-                <h2 class="no-margin">Projects <a id="show-projects">show</a><a id="hide-projects">hide</a></h2>
-                <ul class="contacts-ul" id="projects">
-                <% f.object.associated_projects.each do |p| %>
-                    <li><%= link_to p.name, info_project_path(p.id), class: "green" %></li>
-                <% end %>
-                </ul>
-            </div>
-        <% end %>
+    <% unless params[:action] == "new" %> 
 
-        <% if Contact.at_same_company(f.object.work_company).count > 1 %>
-            <% if f.object.associated_projects.count == 0 %>
-                <div class="full">
-            <% else %>
-                <div class="half">
-            <% end %>
-                <h2 class="no-margin">Others At This Company <a id="show-others">show</a><a id="hide-others">hide</a></h2>
-                <ul class="contacts-ul" id="others">
-                    <% Contact.at_same_company(f.object.work_company).each do |c| %>
-                        <% unless c.id == f.object.id %>
-                            <li><%= link_to "#{c.name} <span class='detail'>#{c.work_title}</span>".html_safe, contact_path(c) %></li>
-                        <% end %>
+        <div class="full">
+            <% if f.object.associated_projects.count > 0 %>
+                <% if Contact.at_same_company(f.object.work_company).count == 1 %>
+                    <div class="full">
+                <% else %>
+                    <div class="half first">
+                <% end %>
+                    <h2 class="no-margin">Projects <a id="show-projects">show</a><a id="hide-projects">hide</a></h2>
+                    <ul class="contacts-ul" id="projects">
+                    <% f.object.associated_projects.each do |p| %>
+                        <li><%= link_to p.name, info_project_path(p.id), class: "green" %></li>
                     <% end %>
-                </ul>
-            </div>
-        <% end %>
-    </div>
+                    </ul>
+                </div>
+            <% end %>
+
+            <% if Contact.at_same_company(f.object.work_company).count > 1 %>
+                <% if f.object.associated_projects.count == 0 %>
+                    <div class="full">
+                <% else %>
+                    <div class="half">
+                <% end %>
+                    <h2 class="no-margin">Others At This Company <a id="show-others">show</a><a id="hide-others">hide</a></h2>
+                    <ul class="contacts-ul" id="others">
+                        <% Contact.at_same_company(f.object.work_company).each do |c| %>
+                            <% unless c.id == f.object.id %>
+                                <li><%= link_to "#{c.name} <span class='detail'>#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+        </div>
+
+    <% end %>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
         <% @personal = "visible" %>

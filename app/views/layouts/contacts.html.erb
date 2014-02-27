@@ -7,12 +7,12 @@
 	<div class="page-header">
         <h1><%= @contact.display_name %> &nbsp;<span class="light small"><% unless @contact.category.blank? %><%= "(" + @contact.category + ")" %><% end %></span></h1>
         <ul class="controls">
-            <% if @contact.previous.present? %> 
+            <!--<% if @contact.previous.present? %> 
                 <li><%= link_to "", contact_path(@contact.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
             <% end %>
             <% if @contact.next.present? %> 
                 <li><%= link_to "", contact_path(@contact.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
-            <% end %>
+            <% end %>-->
             <li><%= link_to "", new_contact_path, class: "glyphicon glyphicon-plus tip", title:"Add New Contact" %></li>
             <li class="delete">
                 <%= link_to "", @contact, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Contact" %>

@@ -68,6 +68,7 @@ class Contact < ActiveRecord::Base
 
     scope :at_same_company, lambda{|l|  where("work_company LIKE :l", l: "#{l}")}
 
+    # next/prev stuff is currently hidden
     scope :next, lambda {|id| where("id > ?",id).order("id ASC") }
     scope :previous, lambda {|id| where("id < ?",id).order("id DESC") }
 
@@ -78,6 +79,7 @@ class Contact < ActiveRecord::Base
     def previous
         Contact.previous(self.id).first
     end
+    #------------------------------------
 
     def display_name
         if name.present?
