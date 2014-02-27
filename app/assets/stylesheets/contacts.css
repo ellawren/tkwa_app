@@ -81,11 +81,11 @@
 			.employee-list li .name a { color:#344953; }
 				.employee-list li .name a:hover { color:#1abc9c; }
 		.employee-list li .ext { width:80px; }
-		.employee-list li .cell { width:150px; }
-		.employee-list li .email { width:190px; }
-		.employee-list li .link { width:150px; }
+		.employee-list li .cell { width:145px; }
+		.employee-list li .email { width:185px; }
+		.employee-list li .link { width:80px; }
 		.employee-list li .start { width:120px; }
-		.employee-list li .bday{ width:120px; }
+		.employee-list li .bday{ width:80px; }
 		.employee-list li .link a.btn { color:#fff; padding:2px 8px; margin-top:-7px; font-size:13px; background-color:#ced5da; }
 			.employee-list li .link a.btn:hover { background-color:#1abc9c; }
 		.employee-list li label.checkbox { float:left; margin:0px 0 0 -50px; }

@@ -14,5 +14,6 @@
     <div class="email"><a class="button mail-link" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></div>
     <div class="start"><%= employee.hired if f.employee %></div>
 	<div class="bday"><%= employee.birthday if f.employee %></div>
+    <div class="link"><% if f.employee %><%= link_to "timesheets", all_timesheets_path(user.id), class: "btn" %><% end %></div>
 
 </li>

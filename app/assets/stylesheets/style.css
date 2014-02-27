@@ -78,7 +78,7 @@ a.mail-link { cursor:pointer; }
 
 /* transitions */
 
-ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .save-row .btn, .btn.btn-primary.search-btn,
+ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .btn,
 table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .input-sm.est, .input.est, .input-spacer.est,
 .input.act, .remaining .act.sum, .billing-table .delete, .phases .checkbox .icons, .modal-table input, .modal input.btn-primary,
 .modal a.btn, .modal-table.cbilling-table input, .add-image, label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"],
@@ -533,6 +533,24 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.photo label[for="user_delete_photo"] { position:static; color: #34495e; text-align:center; float:left; background-color: #bcc6cc; font-size: 12px; overflow: hidden; width: 118px; height: 24px; padding-top:3px; border-radius:8px; margin:4px 0 0 160px; }
 	.photo .delete-photo input[type="checkbox"] { position:absolute; top:-20px; }
 	.photo .delete-photo:hover { background-color:#e1e6eb; }
+
+
+
+
+
+
+
+
+/* USERS - timesheets_index (all) */
+
+	.timesheets.table th { font-size:11px; text-transform:uppercase; font-weight:900; padding-bottom:0px; }
+	.timesheets.table td, .timesheets.table th { text-align:right; }
+	.timesheets.table td.left, .timesheets.table th.left { text-align:left; }
+	.timesheets.table a.btn { color:#fff; padding:2px 8px; margin-top:-2px; font-size:13px; background-color:#ced5da; }
+	.timesheets.table a.btn:hover { background-color:#1abc9c; }
+
+
+
 
 
 
