@@ -66,7 +66,7 @@ class Contact < ActiveRecord::Base
         :order => ["name"],
     }
 
-    scope :at_same_company, lambda{|l|  where("work_company LIKE :l", l: "#{l}").
+    scope :at_same_company, lambda{|l|  where("work_company = :l", l: "#{l}").
                                         order(:name)}
 
     # next/prev stuff is currently hidden
