@@ -7,8 +7,8 @@
 
 
     <div class="buttons">
-        <%= link_to "by number", projects_current_path(:view => 'number'), :class => "btn #{'active' if params[:view] != 'name'}" %>
-        <%= link_to "by name", projects_current_path(:view => 'name'), :class => "btn #{'active' if params[:view] == 'name'}" %>
+        <%= link_to "by name", projects_current_path(:view => 'name'), :class => "btn #{'active' if params[:view] != 'number'}" %>
+        <%= link_to "by number", projects_current_path(:view => 'number'), :class => "btn #{'active' if params[:view] == 'number'}" %>
     </div>
     <table class="table search-results projects current">
         <thead>
@@ -23,12 +23,12 @@
             </tr>
         </thead>
 	    <tbody>
-            <% if params[:view] != 'name' %>
-		        <% @projects.order('number ASC').each do |param| %>
-		            <%= render 'project', :f => param %>
-		        <% end %>
+            <% if params[:view] != 'number' %>
+		        <% @projects.order('name ASC').each do |param| %>
+                    <%= render 'project', :f => param %>
+                <% end %>
             <% else %>
-                <% @projects.order('name ASC').each do |param| %>
+            <% @projects.order('number ASC').each do |param| %>
                     <%= render 'project', :f => param %>
                 <% end %>
             <% end %>
