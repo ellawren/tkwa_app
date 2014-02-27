@@ -95,6 +95,10 @@
         <% end %>
     </div>
 
+    <h2>Others At This Company</h2>
+    <div class="full">
+    </div>
+
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
         <% @personal = "visible" %>
     <% else %>

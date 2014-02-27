@@ -6,6 +6,7 @@
     <% if Project.related_projects(f.object.number_base).count > 1 %>
         <h2>Related Projects</h2>
         <div class="full">
+
             <ul class="related">
                 <% Project.related_projects(f.object.number_base).order('number ASC').each do |p| %>
                     <% unless p.number == f.object.number %>

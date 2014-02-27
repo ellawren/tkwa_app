@@ -56,7 +56,7 @@ a.header-label:hover { opacity:.8; color:#fff; }
 
 /* links */
 
-a { text-decoration:none; color:#bcc6cc; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+a { text-decoration:none; color:#bcc6cc; font-weight:700; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 a:hover { color:#1abc9c; }
 a:active, a:focus { color:#1abc9c; outline:none; }
 
@@ -72,7 +72,7 @@ a#hide, a#hide-mailing { display:none;}
 #mailing-list { margin-top:35px; width:100%; float:left; }
 #mailing-list.hidden { display:none; }
 
-.btn { padding:7px 12px; }
+.btn { padding:7px 12px; font-weight:700; }
 
 a.mail-link { cursor:pointer; }
 
