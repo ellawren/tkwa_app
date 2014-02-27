@@ -1,6 +1,6 @@
     <h2 class="first">Work Information</h2>
 
-    <div class="wide">
+    <div class="wide margin-bottom">
         <div class="input-row">
             <%= f.label(:name, "Full Name", class: "input-label") %>
             <% if params[:action] == "new" && params[:name].present? %> 
@@ -57,7 +57,7 @@
 
     </div>
 
-    <div class="narrow contact-phone">
+    <div class="narrow contact-phone margin-bottom">
         
         <div class="input-row">
             <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
@@ -95,8 +95,34 @@
         <% end %>
     </div>
 
-    <h2>Others At This Company</h2>
     <div class="full">
+        <% if f.object.associated_projects.count > 0 %>
+            <div class="half first">
+                <h2 class="no-margin">Projects <a id="show-projects">show</a><a id="hide-projects">hide</a></h2>
+                <ul class="contacts-ul" id="projects">
+                <% f.object.associated_projects.each do |p| %>
+                    <li><%= link_to p.name, info_project_path(p.id), class: "green" %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <% if Contact.at_same_company(f.object.work_company).count > 1 %>
+            <% if f.object.associated_projects.count == 0 %>
+                <div class="full">
+            <% else %>
+                <div class="half">
+            <% end %>
+                <h2 class="no-margin">Others At This Company <a id="show-others">show</a><a id="hide-others">hide</a></h2>
+                <ul class="contacts-ul" id="others">
+                    <% Contact.at_same_company(f.object.work_company).each do |c| %>
+                        <% unless c.id == f.object.id %>
+                            <li><%= link_to "#{c.name} <span class='detail'>#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
     </div>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
@@ -105,7 +131,7 @@
         <% @personal = "hidden" %>
     <% end %>
 
-    <h2 class="optional">Personal Information <% if @personal == "hidden" %><a id="show">show fields</a><% end %><a id="hide">hide fields</a></h2>
+    <h2 class="no-margin">Personal Information <% if @personal == "hidden" %><a id="show">show</a><% end %><a id="hide">hide</a></h2>
 
     <div id="personal-info" class="<%= @personal %>">
         <div class="wide">
@@ -133,16 +159,7 @@
         </div>
     </div>
 
-    <% if f.object.associated_projects.count > 0 %>
-        <h2>Projects</h2>
-        <div class="full">
-            <ul>
-            <% f.object.associated_projects.each do |p| %>
-                <li><%= link_to p[0].name, info_project_path(p[0].id), class: "green" %> <span class="detail">(<%= p[1] %>)</span></li>
-            <% end %>
-            </ul>
-        </div>
-    <% end %>
+   
 
 <!--    
     <h2 class="optional">Mailing Lists <a id="show-mailing">show fields</a><a id="hide-mailing">hide fields</a></h2>
@@ -162,7 +179,7 @@
 
     <% if @contact.is_employee? %>
 
-        <h2>Employee Information</h2>
+        <h2 class="no-margin">Employee Information</h2>
         <%= f.fields_for :employee do |u| %>
             <div class="narrow">
 
@@ -193,7 +210,7 @@
 
     <% end %>
 
-    <h2>Notes</h2>
+    <h2 class="no-margin">Notes</h2>
 
     <script src="/assets/jquery-te-1.4.0.min.js" type="text/javascript"></script>
     <link href="/assets/jquery-te-1.4.0" media="screen" rel="stylesheet" type="text/css" />

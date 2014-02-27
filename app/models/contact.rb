@@ -66,6 +66,8 @@ class Contact < ActiveRecord::Base
         :order => ["name"],
     }
 
+    scope :at_same_company, lambda{|l|  where("work_company LIKE :l", l: "#{l}")}
+
     scope :next, lambda {|id| where("id > ?",id).order("id ASC") }
     scope :previous, lambda {|id| where("id < ?",id).order("id DESC") }
 
@@ -124,14 +126,11 @@ class Contact < ActiveRecord::Base
     def associated_projects
         arr = []
         if name.present?
-            Project.find_all_by_contact_name(name).each do |p|
-                arr.push([p, "Client Contact"])
-            end
             Project.find_all_by_billing_name(name).each do |p|
-                arr.push([p, "Billing Contact"])
+                arr.push(p)
             end
         end
-        arr.sort { |a,b| a[0].name <=> b[0].name }
+        arr
     end
 
     def project_list

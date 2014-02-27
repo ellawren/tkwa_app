@@ -25,6 +25,25 @@
 	.input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }
 
 
+	/* show/hide stuff on cantact page */
+	a#show, a#hide, a#show-mailing, a#hide-mailing, a#show-others, a#hide-others, a#show-projects, a#hide-projects { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
+	a#show:hover, a#hide:hover, a#show-mailing:hover, a#hide-mailing:hover, a#show-others:hover, a#hide-others:hover, a#show-projects:hover, a#hide-projects:hover { color:#1abc9c; }
+	a#hide, a#hide-mailing, a#show-others, a#show-projects { display:none;}
+
+	#personal-info { margin-bottom:30px; float:left;}
+	#personal-info.hidden { display:none; }
+
+	#mailing-list { margin-top:35px; width:100%; float:left; }
+	#mailing-list.hidden { display:none; }
+
+	#others, #projects { float:left; margin-bottom:30px; }
+	.contacts-ul li { float:left; width:100%; margin-bottom:2px; }
+	.contacts-ul a { color:#16a085; }
+	.contacts-ul li a:hover, .contacts-ul li a:hover .detail { color:#1abc9c; }
+	.contacts-ul li a .detail { font-weight:300; font-style:italic; color:#16a085; }
+
+	
+
 	/* transmittal / fax */
 	.transmittal { padding:30px; width:840px; }
 	.transmittal .firm-logo { float:left; height:82px; width:auto; }

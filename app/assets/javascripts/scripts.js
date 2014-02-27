@@ -57,6 +57,34 @@ $(document).ready(function() {
     });
     //---
 
+    // show others at company on contacts page
+    $('#show-others').click( function() {
+        $('#others').slideDown("slow");
+        $('#show-others').hide();
+        $('#hide-others').show();
+     });
+
+    $('#hide-others').click( function() {
+        $('#others').slideUp("slow");
+        $('#show-others').show();
+        $('#hide-others').hide();
+    });
+    //---
+
+    // show projects on contacts page
+    $('#show-projects').click( function() {
+        $('#projects').slideDown("slow");
+        $('#show-projects').hide();
+        $('#hide-projects').show();
+     });
+
+    $('#hide-projects').click( function() {
+        $('#projects').slideUp("slow");
+        $('#show-projects').show();
+        $('#hide-projects').hide();
+    });
+    //---
+
     // edit row on timesheets
     $('.edit-me').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");
