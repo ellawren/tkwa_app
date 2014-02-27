@@ -113,7 +113,7 @@
                 </div>
             <% end %>
 
-            <% if Contact.at_same_company(f.object.work_company).count > 1 %>
+            <% if f.object.work_company.present? && Contact.at_same_company(f.object.work_company).count > 1 %>
                 <% if f.object.associated_projects.count == 0 %>
                     <div class="full">
                 <% else %>
