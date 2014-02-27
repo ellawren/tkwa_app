@@ -28,7 +28,8 @@
 	/* show/hide stuff on cantact page */
 	a#show, a#hide, a#show-mailing, a#hide-mailing, a#show-others, a#hide-others, a#show-projects, a#hide-projects { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
 	a#show:hover, a#hide:hover, a#show-mailing:hover, a#hide-mailing:hover, a#show-others:hover, a#hide-others:hover, a#show-projects:hover, a#hide-projects:hover { color:#1abc9c; }
-	a#hide, a#hide-mailing, a#hide-others, a#show-projects { display:none;}
+	a#hide, a#show.hidden { display:inline-block; }
+	a#hide.hidden, a#show, a#hide-mailing, a#hide-others, a#show-projects { display:none; }
 
 	#personal-info { margin-bottom:30px; float:left;}
 	#personal-info.hidden, #others { display:none; }

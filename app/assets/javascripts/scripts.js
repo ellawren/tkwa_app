@@ -31,13 +31,13 @@ $(document).ready(function() {
 
     // show personal info on contacts page
     $('#show').click( function() {
-        $('#personal-info.hidden').slideDown("slow");
+        $('#personal-info').slideDown("slow");
         $('#show').hide();
         $('#hide').show();
      });
 
     $('#hide').click( function() {
-        $('#personal-info.hidden').slideUp("slow");
+        $('#personal-info').slideUp("slow");
         $('#show').show();
         $('#hide').hide();
     });

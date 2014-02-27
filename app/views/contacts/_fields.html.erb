@@ -131,7 +131,7 @@
         <% @personal = "hidden" %>
     <% end %>
 
-    <h2 class="no-margin">Personal Information <% if @personal == "hidden" %><a id="show">show</a><% end %><a id="hide">hide</a></h2>
+    <h2 class="no-margin">Personal Information <a id="show" class="<%= @personal %>">show</a><a id="hide" class="<%= @personal %>">hide</a></h2>
 
     <div id="personal-info" class="<%= @personal %>">
         <div class="wide">
