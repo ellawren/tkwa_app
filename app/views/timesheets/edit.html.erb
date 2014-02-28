@@ -13,7 +13,11 @@
 <% content_for :page_header do %>
 	<% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
 	<div class="page-header">
-        <h1><%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+        <ul class="controls">
+            <li><%= link_to "", print_timesheet_path(@timesheet.user_id, @timesheet.year, @timesheet.week), class: "glyphicon glyphicon-print tip", title:"Print Timesheet" %></li>
+            <li><a class="glyphicon glyphicon-eye-open tip open" title="Open"></a></li>
+        </ul>
     </div>		
 <% end %>
 
@@ -33,15 +37,8 @@
     <!-- end modal -->
 
 	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
-
-	<div class="switch-box">
-		<%= f.check_box(:complete, { data_toggle: "switch"  } )  %> 
-	</div>
 		
 	<div class="box">
-		<%= render 'shared/error_messages', :object => f.object %>
-
-		<a href="/employee_teams/new?user_id=<%= @user.id %>" data-target="#myModal" data-toggle="modal" class="add-project-link">add project to my list</a>
 
 	    <div class="table-main timesheets">
 
@@ -67,6 +64,7 @@
 	    		<!-- this is commented out because new lines are automatically added to the view -->
 	    		<% if @timesheet.open? %>
 	        		<%= link_to_add_fields "", f, :time_entries, "add fui-plus timesheets" %>
+	        		<a href="/employee_teams/new?user_id=<%= @user.id %>" data-target="#myModal" data-toggle="modal" class="add fui-plus add-project"></a>
 	        	<% end %>
 	   			<!-- end team form -->
 	   		</div>	
@@ -119,8 +117,17 @@
 		<div class="timesheet-total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
 
 		<div class="save-row">
-	        <%= f.submit "Save + Update Totals", class: "btn btn-primary save-btn" %>
+			<%= f.check_box :complete, class: "hidden"  %> 
+	        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
+	        <%= f.submit "Submit Timesheet", id: "close-timesheet" %>
 		</div>
+
+		<script>
+		    // close timesheet
+	    	$('#close-timesheet').click( function() {
+		        $('#timesheet_complete').prop('checked', false);
+	    	});
+	    </script>
 
 		<div class="gray-box timesheets">
 			<div class="stats utilization">
@@ -241,8 +248,7 @@
 		</div>
 
 	</div>  <!-- end box-->
-
-
+	
 	<% end %> <!-- end form -->
 
 <% end %><!-- end conditional -->

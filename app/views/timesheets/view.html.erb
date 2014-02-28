@@ -13,7 +13,11 @@
 <% content_for :page_header do %>
 	<% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
 	<div class="page-header">
-        <h1><%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+        <ul class="controls">
+            <li><%= link_to "", print_timesheet_path(@timesheet.user_id, @timesheet.year, @timesheet.week), class: "glyphicon glyphicon-print tip", title:"Print Timesheet" %></li>
+            <li><a class="glyphicon glyphicon-eye-close tip closed" title="Closed"></a></li>
+        </ul>
     </div>		
 <% end %>
 
@@ -21,21 +25,14 @@
 	<%= render "tabnav_timesheets" %>
 <% end %>
 
-
 	<!-- modal for phases -->
 		<div class="phases modal fade" id="phaseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		</div><!-- /.modal -->
 	<!-- end modal -->
 
 	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
-
-	<div class="switch-box inactive">
-		<%= f.check_box(:complete, { data_toggle: "switch" } )  %> 
-		<div class="shield"></div>
-	</div>
 		
 	<div class="box">
-		<%= render 'shared/error_messages', :object => f.object %>
 
 	    <div class="table-main timesheets">
 
@@ -221,7 +218,7 @@
 			</div>
 			
 		</div>
-
+		<%= f.check_box :complete, class: "hidden"  %> 
 		<%= f.submit "Reopen Timesheet", id: "reopen-timesheet" %>
 
 	<script>

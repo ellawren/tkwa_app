@@ -20,12 +20,14 @@
 
 /* TIMESHEETS edit/view */
 
+	.page-header ul.controls li .glyphicon.closed { color:#e64c3c; }
+	.page-header ul.controls li .glyphicon.open { color:#86cc71; }
+
+	/* not used */
 	.switch-box { position:relative; }
 	.switch-box .shield { position:absolute; width:100%; height:100%; top:0px; }
-	input#reopen-timesheet { border:none; outline:none; background:none; float:right; display:block; margin-top:20px; font-style:italic; color:#ced5da; }
-	input#reopen-timesheet:hover { color:#1abc9c; }
 
-	.add-project-link { float:left; display:block; margin-top:-30px; margin-bottom:-50px; background-color:#bcc6cc; color:#fff; padding:6px 12px; border-radius:6px; }
+	.add-project-link { float:left; display:block; margin-top:-5px; margin-bottom:-50px; background-color:#bcc6cc; color:#fff; padding:6px 12px; border-radius:6px; }
 	.add-project-link:hover { background-color:#1abc9c; color:#fff; }
 
     .table-main.timesheets     { float:left; width:100%; margin:0px 0 0 0; }
@@ -33,17 +35,7 @@
     .table-main.timesheets .table-head { border-bottom:2px solid #333; }
 
     .table-body     { float:left; width:100%;}
-    .table-row      { float:left; width:100%; padding:4px 0 0 0; }
-
-    .table-row .editable { display:none; }
-    .table-row .non-editable { display:block; }
-    .table-row.edit .editable { display:block; }
-    .table-row.edit .non-editable { display:none; }
-
-    .edit-me { float:left; margin:10px 0; width:20px; height:20px; margin-left:6px; background:url(/assets/edit-gray.png); cursor:pointer; }
-	.edit-me:hover { background:url(/assets/edit-green.png); }
-	.done-editing { float:left; cursor:pointer; margin:0 -40px 0 8px; padding:10px 0; }
-	.table-row.edit.not-saved .delete, .table-row.edit.not-saved .done-editing { display:none; }
+    .table-row      { float:left; width:935px; padding:4px 0 0 0; }
 
     .table-head { padding-left:0px; border-bottom:2px solid #333;  }
 	.chzn-select, .chzn-container { float:left; }
@@ -65,7 +57,8 @@
  	/* project */
  	.timesheet-tab { width:130px; margin-top:16px; font-weight:900; }
  	.timesheets .table-head .project-name { width:232px; margin:22px 4px 0 0; }
-	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; }
+	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; padding: 4px 30px 4px 5px;  /* extra padding at right is to prevent longer project names from overflowing over the down arrow */ }
+
 	.timesheets .table-body .project-cell { width:226px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.timesheets .table-body .project-cell a { color:#1abc9c; }
 		.timesheets .table-body .project-cell a:hover { color:#16a085; }
@@ -77,7 +70,7 @@
 
 	/* task */
 	.timesheets .table-head .task { width:184px; margin-top:22px; }
-	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; }
+	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; padding: 4px 30px 4px 5px; }
 		.timesheets .table-body .task-cell { width:178px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 
@@ -131,8 +124,13 @@
 	.timesheets .unsaved .category.custom-select { width:200px; margin:2px 4px 4px 0px; }
 
 	/* add a row */
-	.add.timesheets { width:150px; margin:10px 0 0 0px; }
+	.add.timesheets { width:120px; margin:10px 0 0 0; }
 	.add.timesheets:after { content:"add a line"; }
+	.add.add-project { width:200px; margin:10px 0 0 0; }
+	.add.fui-plus.add-project:before { background-color:#0ba0d4; }
+	.add.add-project:after { content:"add a project to my list"; color:#0ba0d4; }
+		.add.fui-plus.add-project:hover:before { background-color:#2984b6; }
+		.add.add-project:hover:after { color:#2984b6; }
 
 	/* summary */
 
@@ -145,7 +143,8 @@
 	.table-main.timesheets .table-head.summary-header { border-bottom:none; }
 	.timesheet-total { float:left; width:50px; height:16px; padding:17px 10px 18px 10px; margin-top:5px; border-radius:0 6px 6px 0; background-color:#2c3445; color:#fff; font-size:14px; }
 
-.switch-box { float:right; margin-top:-85px; }
+.switch-box { float:right; margin-top:-85px; font-size:16px; background-color:#f1c40f; color:#fff; text-align:center; border-radius:8px; width:80px; height:26px; padding:4px 0 0 0; }
+.switch-box.closed { background-color:#bcc6cc; }
 
 .inline-edit-link { margin-left:5px; }
 .complete .btn.btn-primary { display:none; }
@@ -182,3 +181,42 @@
 .timesheets.gray-box .stats .detail { float:left; font-style:normal; color:#bcc6cc; font-size:12px; }
 
 .error-message { float:left; display:block; margin-top:30px; }
+
+
+/* save row */
+
+#timesheet_complete.hidden { display:none; }
+input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px;  border:none; outline:none; background:none;  font-style:italic; color:#16a085; }
+input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
+
+
+/* print */
+
+.page-header.print { margin-top:60px; }
+.print .timesheets { width:915px; }
+
+.print .timesheets .table-body .project-cell, .print .timesheets .table-body .phase-cell, .print .timesheets .table-body .task-cell,
+.print .timesheets .table-body .category-cell, .print .timesheets .table-body .description-cell  
+	{ padding-top:6px; padding-bottom:5px; margin-top:0px; }
+.print .timesheets .time-entries { height:30px; }
+
+.print .timesheets .time-entries .entry .entry-spacer { padding-top:3px; padding-bottom:7px; border:none; width:43px; margin-top:3px; }
+.print .timesheets .time-entries .entry .entry-spacer.weekend { background:none; }
+.print .timesheets .table-body .total { padding-top:8px; padding-bottom:3px; }
+
+.print .timesheets .table-body .table-row.holiday { background:none; }
+.print .timesheets .table-body .table-row { border-bottom: 1px solid #ced5da; width:907px; }
+
+.print .timesheets.total .table-body { border:2px solid #34495e; margin-top:20px; color:#34495e; font-weight:700; margin-bottom:10px; }
+.print .timesheets.total .table-body .table-row:first-child { margin-top:0px; }
+.print .timesheets.total .table-body .table-row { border-bottom:none; }
+.print .timesheets.total .table-body .category-cell { padding-left:10px; color:#34495e; width:198px; margin-top:2px; margin-bottom:2px; }
+.print .timesheets.total .time-entries .entry .entry-spacer { color:#34495e; }
+
+/* all */
+
+.user-row { width:100%; margin-bottom:6px; }
+
+
+
+

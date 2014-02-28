@@ -1,47 +1,48 @@
 <% content_for :page_header do %>
-  <% provide :title, "Timesheets" %>
+  <% provide :title, "All Timesheets" %>
   <div class="page-header">
-    <h1><%= @user.name %>'s Timesheets</h1>
+    <h1>All Timesheets</h1>
   </div>
 <% end %>
 
-<h4><%= this_year %></h4><br />
-<table class="table right-align timesheets">
-	<thead>
-		<tr>
-			<th class="left">Week</th>
-			<th class="left">Dates</th>
-			<th>Total Hours</th>
-			<th class="line-left line-top">Cumulative<br>Hours</th>
-			<th class="line-top">Goal</th>
-			<th class="line-right line-top">Over/Under</th>
-			<th>Status</th>
-			<th>Printed?</th>				
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% (1..this_week).each do |w| %>
-			<% t = Timesheet.find_or_create_by_user_id_and_week_and_year(@user.id, w, this_year) %>
+<h2 class="first dark">Week <%= this_week %> <span class="light"><%= parse_date_full(this_week, this_year) %></span></h2>
+
+<div class="timesheet-panel" id="yr-<%= this_year %> wk-<%= this_week %>">
+
+	<table class="table right-align timesheets">
+		<thead>
 			<tr>
-				<td class="left"><%= t.week %></td>
-				<td class="left"><%= parse_date(t.week, t.year) %></td>
-				<td class="bold"><%= precise(nonzero?(t.timesheet_total)) %></td>
-				<td class="line-left line-bottom"><%= total_hours_for(@user.id, t.year, t.week, t.data_record.start_week) %></td>
-				<td class="line-bottom"><%= (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f) %></td>
-				<td class="line-right line-bottom">
-					<%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %>
-				</td>
-				<td><%= t.complete == true ? "open" : "closed" -%></td>
-				<td></td>
-  				<td class="link"><%= link_to "go to timesheet", user_timesheet_path(t.user_id, t.year, t.week), class: "btn" %></td>
-  				<td class="link">
-					<% if t.complete == false %>
-						<%= link_to "print timesheet", print_timesheet_path(t.user_id, t.year, t.week), target: "_blank", class: "btn" %>
-					<% end %>
-  				</td>
+				<th class="left">Name</th>
+				<th>Total Hours</th>
+				<th class="line-left line-top">Cumulative<br>Hours</th>
+				<th class="line-top">Goal</th>
+				<th class="line-right line-top">Over/Under</th>
+				<th>Status</th>
+				<th></th>
+				<th></th>
 			</tr>
-		<% end %>
-	</tbody>
-</table>		
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<% t = Timesheet.find_or_create_by_user_id_and_week_and_year(user.id, this_week, this_year) %>
+				<tr>
+					<td class="left"><%= user.name %></td>
+					<td class="bold"><%= precise(nonzero?(t.timesheet_total)) %></td>
+					<td class="line-left line-bottom">
+						<%= total_hours_for(user.id, t.year, t.week, t.data_record.start_week) %>
+					</td>
+					<td class="line-bottom"><%= (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f) %></td>
+					<td class="line-right line-bottom"><%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %></td>
+					<td><%= t.complete == true ? "open" : "closed" -%></td>
+	  				<td class="link"><%= link_to "view timesheet", user_timesheet_path(t.user_id, t.year, t.week), class: "btn" %></td>
+	  				<td class="link">
+						<% if t.complete == false %>
+							<%= link_to "print timesheet", print_timesheet_path(t.user_id, t.year, t.week), target: "_blank", class: "btn" %>
+						<% end %>
+	  				</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>		
+
+</div>

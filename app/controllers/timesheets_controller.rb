@@ -13,6 +13,11 @@ class TimesheetsController < ApplicationController
     end
 
     def all
+       @timesheets = Timesheet.all
+       @users = User.active_users
+    end
+
+    def all_user
         @user = User.find(params[:id])
         @timesheets = Timesheet.find_all_by_user_id(params[:id])
     end
@@ -100,20 +105,10 @@ class TimesheetsController < ApplicationController
                 @data_record = @data_array[0]
                 @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
                 @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
-                
-                if @timesheet.complete == true
-                    redirect_to user_timesheet_path(@user.id, @year, @week)
-                    return
-                end
 
                 @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)
                 @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f)
                 @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)
-
-                if @timesheet.open?
-                    1.times { @timesheet.time_entries.build }
-                    1.times { @timesheet.non_billable_entries.build }
-                end   
             end
             # if no data records are found, go to page anyway - conditional will catch and show error message
             render :layout => 'print_timesheet' 

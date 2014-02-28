@@ -21,8 +21,10 @@ TkwaApp::Application.routes.draw do
     match '/users/:id/timesheets/:year/:week',  to: 'timesheets#edit', as: 'user_timesheet'
     match '/users/:id/timesheets/:year/:week/view',  to: 'timesheets#view', as: 'view_user_timesheet'
     match '/users/:id/timesheets/:year/:week/print',  to: 'timesheets#print', as: 'print_timesheet'
-    match '/users/:id/timesheets_index',              to: 'timesheets#all', as: 'all_timesheets'
+    match '/users/:id/timesheets_index',              to: 'timesheets#all_user', as: 'all_user_timesheets'
     match '/users/:user_id/data_records',      to: 'data_records#user_index'
+
+    match '/timesheets/all/:year/:week',  to: 'timesheets#all', as: 'all_timesheets'
 
     match '/users/:user_id/data_records/:id',      to: 'data_records#edit', as: 'user_data_record'
     match '/vacations',  to: 'vacations#all', as: 'all_vacations'

@@ -75,7 +75,7 @@ table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .i
 .modal a.btn, .modal-table.cbilling-table input, .add-image, label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"],
 label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item, 
 .timesheets .table-body .project-cell, .edit-me, input#reopen-timesheet, #documents a.circle .glyphicon, .employee-list li,
-.employee-list li .link a.btn, .jqte_tool
+.employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 
@@ -129,7 +129,10 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 
 h2 { float:left; display:block; width:100%; height:34px; margin:30px 0 20px; border-bottom:1px solid #e1e6eb; clear:all; font-weight:900; font-size:11pt; }
 	h2.first { margin-top:0px; }
+	h2.dark { border-bottom:1px solid #344953; }
 	h2 .note { margin-left:4px; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; font-weight:normal; }
+	h2 .light { font-style:italic; font-weight:300; }
+
 	.half h2 { margin-bottom:10px; }
 	h2.optional { margin-bottom:-15px; }
 	h2.no-margin { margin-top:0px; margin-bottom:10px; }
@@ -247,7 +250,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 
 .radio-group { float:left; margin-top:10px; }
 
-.custom-select { float:left; height:36px; padding: 4px 5px; border: 2px solid #e1e6eb; background-image:url(/assets/select-arrow.png); background-repeat:no-repeat; background-position:right; color: #16a085; font-family: "Lato", sans-serif; font-size: 14px; line-height:26px; text-indent: 6px; -webkit-appearance: none; -moz-appearance: none; text-indent: 5px; text-overflow: ''; /* text-indent and text-overflow are fixes to remove the default dropdown arrow in FF */ -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; }
+.custom-select { float:left; height:36px; padding: 4px 5px ; border: 2px solid #e1e6eb; background-image:url(/assets/select-arrow.png); background-repeat:no-repeat; background-position:right; color: #16a085; font-family: "Lato", sans-serif; font-size: 14px; line-height:26px; text-indent: 6px; -webkit-appearance: none; -moz-appearance: none; text-indent: 5px; text-overflow: ''; /* text-indent and text-overflow are fixes to remove the default dropdown arrow in FF */ -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; }
 	.custom-select:focus { outline:none; }
 
 .delete { float:left; display:block; margin:6px 0 0 12px; color:#ced5da; font-size:20px; cursor:pointer; }

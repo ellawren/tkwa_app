@@ -29,9 +29,11 @@ class EmployeeTeamsController < ApplicationController
     def create
         @employee_team = EmployeeTeam.new(params[:employee_team])
         if @employee_team.save
+            flash[:success] = "Employee successfully added to team!"
             redirect_to(:back) 
         else
-            render 'new'
+            flash[:error] = "Employee could not be added to team. Please try again."
+            redirect_to(:back)
         end
     end
   

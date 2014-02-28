@@ -31,6 +31,7 @@ class EmployeeTeam < ActiveRecord::Base
 
 	validates :project_id, :presence => true
     validates :user_id, :presence => true
+    validates :role, :presence => true
 
     def employee_name
         User.find(self.user_id).name

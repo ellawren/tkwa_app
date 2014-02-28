@@ -17,17 +17,8 @@
             <div class="box">	
           	    <%= content_for?(:content) ? yield(:content) : yield %>
             </div>
-            
-        	<%= render 'layouts/footer' %>	
-        	<%= debug(params) if Rails.env.development? %>
-                    
+                                
     	</div> <!-- end container -->
-
-      <% if flash.count >= 1 %>
-            <script>
-                $( "#notice" ).delay( 1500 ).slideUp( 300 );
-            </script>
-      <% end %>
 
     </body>  
 </html>  
