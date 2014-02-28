@@ -69,7 +69,7 @@ a.mail-link { cursor:pointer; }
 
 /* transitions */
 
-ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .btn,
+ul#nav li a, ul#nav li.active a:after, .add:after, .add.fui-plus:before, .btn, .timesheets.table a.btn,
 table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .input-sm.est, .input.est, .input-spacer.est,
 .input.act, .remaining .act.sum, .billing-table .delete, .phases .checkbox .icons, .modal-table input, .modal input.btn-primary,
 .modal a.btn, .modal-table.cbilling-table input, .add-image, label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"],
@@ -537,10 +537,15 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 /* USERS - timesheets_index (all) */
 
-	.timesheets.table th { font-size:11px; text-transform:uppercase; font-weight:900; padding-bottom:0px; }
-	.timesheets.table td, .timesheets.table th { text-align:right; }
+	.timesheets.table th { font-size:11px; text-transform:uppercase; font-weight:900; padding-bottom:4px; line-height:14px; }
+		.timesheets.table th.line-left, .timesheets.table td.line-left { border-left:1px solid #bcc6cc; }
+		.timesheets.table thead:first-child tr:first-child th.line-top { border-top:1px solid #bcc6cc; }
+		.timesheets.table th.line-right, .timesheets.table td.line-right { border-right:1px solid #bcc6cc; }
+		.timesheets.table tr:last-child td.line-bottom{ border-bottom:1px solid #bcc6cc; }
+	.timesheets.table td, .timesheets.table th { text-align:center; }
 	.timesheets.table td.left, .timesheets.table th.left { text-align:left; }
-	.timesheets.table a.btn { color:#fff; padding:2px 8px; margin-top:-2px; font-size:13px; background-color:#ced5da; }
+	.timesheets.table td.link { padding-left:0px; padding-right:0px; width:110px; }
+	.timesheets.table a.btn { color:#fff; padding:2px 8px; margin-top:-2px; font-size:13px; font-weight:400; }
 	.timesheets.table a.btn:hover { background-color:#1abc9c; }
 
 

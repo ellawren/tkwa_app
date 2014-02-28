@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><%= full_title(yield(:title)) %></title>
+		<%= render 'layouts/header' %>
+  		<%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+    
+        <!-- main content -->
+        <div class="container">
+            
+            <%= yield :page_header %>
+            <%= yield :tabnav %>
+
+            <div class="box">	
+          	    <%= content_for?(:content) ? yield(:content) : yield %>
+            </div>
+            
+        	<%= render 'layouts/footer' %>	
+        	<%= debug(params) if Rails.env.development? %>
+                    
+    	</div> <!-- end container -->
+
+      <% if flash.count >= 1 %>
+            <script>
+                $( "#notice" ).delay( 1500 ).slideUp( 300 );
+            </script>
+      <% end %>
+
+    </body>  
+</html>  

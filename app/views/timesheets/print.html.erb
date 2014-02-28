@@ -1,0 +1,236 @@
+<% if @data_record.nil? %>
+	<% content_for :page_header do %>
+		<% provide :title, "Timesheet Not Available" %>
+		<div class="page-header">
+	        <h1>Error</span></h1>
+	    </div>		
+	<% end %>
+	<div class="error-message">
+		Employee data has not been set up for this week. Please see admin.
+	</div>
+<% else %>
+
+<% content_for :page_header do %>
+	<% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
+	<div class="page-header">
+        <h1><%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+    </div>		
+<% end %>
+
+<% content_for :tabnav do %>
+	<%= render "tabnav_timesheets" %>
+<% end %>
+
+
+	<!-- modal for phases -->
+		<div class="phases modal fade" id="phaseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		</div><!-- /.modal -->
+	<!-- end modal -->
+
+	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
+
+	<div class="switch-box inactive">
+		<%= f.check_box(:complete, { data_toggle: "switch" } )  %> 
+		<div class="shield"></div>
+	</div>
+		
+	<div class="box">
+		<%= render 'shared/error_messages', :object => f.object %>
+
+	    <div class="table-main timesheets">
+
+			<div class="table-head">
+				<div class="cell project-name"><div class="timesheet-tab">Billable Time</div></div>
+				<div class="cell phase"><br />Phase<a href="<%= modal_phases_path %>" data-target="#phaseModal" data-toggle="modal" class="inline-edit-link fui-eye"></a></div>
+				<div class="cell task"><br />Task</div>
+				<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
+				<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
+				<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
+				<div class="cell date <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
+				<div class="cell date <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
+				<div class="cell date <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
+				<div class="cell date weekend <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
+				<div class="total"><br />Total</div>
+			</div>
+
+	  		<div class="table-body">
+				<!-- nested form for team-->
+	    		<%= f.fields_for :time_entries do |builder| %>
+	    			<%= render 'view_time_entry_fields', :f => builder %>
+	    		<% end %>
+	   			<!-- end team form -->
+	   		</div>	
+	           					
+	    </div> <!-- end billable timesheets table -->
+
+	    <div class="table-main timesheets non-billable">
+			<div class="table-head">
+				
+				<div class="cell category"><div class="timesheet-tab">Non-Billable Time</div></div>
+				<div class="cell nb-description">Description <span class="note">(optional)</span></div>
+				
+			</div>
+
+	  		<div class="table-body">
+
+	  			<% if @timesheet.holidays.count > 0 %>
+	  				<% @timesheet.holidays.each do |h| %>
+	  					<%= render 'holiday_fields', :f => h  %>
+	  				<% end %>
+	  			<% end %>
+
+				<!-- nested form for team-->
+	    		<%= f.fields_for :non_billable_entries do |builder| %>
+	    			<%= render 'view_non_billable_entry_fields', :f => builder %>
+	    		<% end %>
+	   			<!-- end team form -->
+	   		</div>	
+
+	    </div> <!-- end non-billable timesheets table -->
+		
+		<div class="summary">
+			<div class="summary-label">Week Totals</div>
+			<div class="span">
+
+				<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day1))) %></div>
+				<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day2))) %></div>
+				<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day3))) %></div>
+				<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day4))) %></div>
+				<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day5))) %></div>
+				<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day6))) %></div>
+				<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day7))) %></div>
+			</div>
+		</div>
+
+		<div class="timesheet-total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
+
+		<div class="gray-box timesheets">
+			<div class="stats utilization">
+				<label class="input-label">Utilization Rate</label>
+				<div class="number">
+					<% if @timesheet.ytd('total') > 0 %>
+						<%= number_to_percentage((@timesheet.ytd('billable') / @timesheet.ytd('total') * 100), precision: 0) %>
+					<% else %>
+						0%
+					<% end %>
+				</div>
+				<div class="detail">percent billable hours
+				</div>
+			</div>
+			<div class="stats">
+				<label class="input-label">Remaining Vacation</label>
+				<div class="number">
+					<%= @vacation_record.hours.to_f + @vacation_record.rollover.to_f - @timesheet.ytd_vacation.to_f  %>
+				</div>
+				<div class="detail">used <%= number_with_precision(@timesheet.ytd_vacation.to_f, strip_insignificant_zeros: true) %> of <%= number_with_precision((@vacation_record.hours.to_f + @vacation_record.rollover.to_f), strip_insignificant_zeros: true) %> hours in <%= this_year %> 
+				</div>
+			</div>
+			<div id="summary">
+				<label class="input-label">Target Hours (Weeks <%= @data_record.start_week %> - <%= @data_record.end_week %>)</label>
+				<div class="content">
+					<div class="token">
+						<div class="circle target">
+							<div class="title">Target</div>
+							<%= @goal %>
+						</div>
+						<div class="detail"><%= number_with_precision(@data_record.hours_in_week, strip_insignificant_zeros: true) %> hrs x <%= @week - @data_record.start_week + 1 %> <%= @week - @data_record.start_week + 1 == 1 ? "wk" : "wks" -%></div>
+					</div>
+					<% if @year <= this_year && @week <= this_week %>
+						<div class="minus"></div>
+						<div class="token">
+							<div class="circle actual">
+								<div class="title">Actual</div>
+								<%= number_with_precision(@actual, strip_insignificant_zeros: true) %>
+							</div>
+							<div class="detail"><%= @week == 1 ? "week 1" : "weeks 1-#{@week}" -%></div>
+						</div>
+						<div class="equals"></div>
+						<div class="token">
+							<!-- determines color of circle -->
+							<% if @data_record.pay_type == "Salary" && @goal_with_overage > @actual %>
+								<div class="circle under">
+							<% else %>
+								<div class="circle">
+							<% end %>
+								<!-- determines over/under/even text and prints number -->
+								<% if @goal == @actual %>
+		        						<div class="title">even</div>
+		        						<%= number_with_precision(@goal - @actual, strip_insignificant_zeros: true) %>
+								<% elsif @goal > @actual %>
+		        						<div class="title">under</div>
+		        						<%= number_with_precision(@actual - @goal, strip_insignificant_zeros: true) %>
+		        				<% elsif @goal < @actual %>
+		        						<div class="title">over</div>
+		        						+<%= number_with_precision(@actual - @goal, strip_insignificant_zeros: true) %>
+		        				<% end %>
+		        			</div>
+
+		        			<!-- determines note under circle -->
+		        			<div class="detail">
+								<% if @data_record.pay_type == "Hourly" %>
+									<% if @goal == @actual %>
+										nice!
+									<% end %>
+								<% elsif @data_record.pay_type == "Salary" %>
+									<% if @goal_with_overage == @actual %>
+										nice!
+									<% else %>
+										<!-- if under from last period -->
+										<% if @goal_with_overage > @goal %>
+											<% if @actual > @goal_with_overage %>
+												slow down!
+											<% elsif @goal_with_overage > @actual && @actual >= @goal %>
+												almost there!
+											<% elsif @actual < @goal %>
+												uh oh
+											<% end %>
+										<!-- if over or even last period -->
+										<% elsif @goal_with_overage <= @goal %>
+											<% if @actual > @goal_with_overage %>
+												slow down!
+											<% elsif @actual < @goal_with_overage %>
+												uh oh
+											<% end %>
+										<% end %>
+									<% end %>
+			        			<% end %>
+							</div>
+						</div>
+						<div class="arrow-left"></div>
+						<div class="arrow-body">
+							<% if @data_record.pay_type == "Salary" %>
+		        				<% if @data_record.overage_from_prev.to_f > 0 %>
+		        					You can be under by <span class="bold"><%= @data_record.overage_from_prev.to_f %></span> hours due to overage from last year.
+		        				<% elsif @data_record.overage_from_prev.to_f < 0 %>
+		        					You need to be over by <span class="bold"><%= @data_record.overage_from_prev.to_f * -1 %></span> hours to make up for a shortfall last year.
+		        				<% else %>
+		        					<% if @goal == @actual %>
+		        						<br>You are right on target!
+		        					<% elsif @goal > @actual %>
+		        						You are currently below your target hours for <%= this_year %>.
+		        					<% elsif @goal < @actual %>
+		        						You are currently above your target hours for <%= this_year %>.
+		        					<% end %>
+		        				<% end %>
+		        			<% elsif @data_record.pay_type == "Hourly" %>
+		        				You are paid <span class="bold">hourly</span>, so your target hours are just a guideline.
+		        			<% end %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+			
+		</div>
+
+	<script>
+	    // reopen timesheet
+    	$('#reopen-timesheet').click( function() {
+	        $('#timesheet_complete').prop('checked', true);
+    	});
+    </script>
+
+	</div>  <!-- end box-->
+	<% end %> <!-- end form -->
+	
+<% end %><!-- end conditional -->
+			    
