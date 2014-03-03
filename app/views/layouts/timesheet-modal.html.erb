@@ -2,12 +2,6 @@
 <%= stylesheet_link_tag params[:controller], media: 'all' %>
 <div class="modal-dialog">
 	<div class="modal-content">
-		<div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		    <h4 class="modal-title" id="myModalLabel">
-		    	<%= yield :modal_header %>
-		    </h4>
-		</div>
   		
   		<%= content_for?(:content) ? yield(:content) : yield %>
 

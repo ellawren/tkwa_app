@@ -101,13 +101,12 @@
 
 				</div>  <!-- end box-->
 				<div class="detail">printed <%= Date.today.strftime("%B %d, %Y") %></div>
-				
+
 			</div>	
 		
-				<%= f.check_box :printed %> 
-		
+				<%= f.check_box :printed, class: "hidden" %> 
 				<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
-
+				<a class="text-link" data-dismiss="modal" aria-hidden="true">close</a>
 			<% end %> <!-- end form -->
 		
 	<% end %><!-- end conditional -->
