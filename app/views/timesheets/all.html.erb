@@ -35,7 +35,7 @@
 				<% t = Timesheet.find_by_user_id_and_week_and_year(user.id, @week, @year) %>
 				<% if t.present? && t.data_record.present? %>
 					<tr>
-						<td class="left"><%= link_to user.name, user_index_timesheets_path(user.id), class: "green" %></td>
+						<td class="left"><%= link_to user.name, user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
 						<td class="bold"><%= precise(nonzero?(t.timesheet_total)) %></td>
 						<td class="line-left line-bottom">
 							<%= total_hours_for(user.id, t.year, t.week, t.data_record.start_week) %>
