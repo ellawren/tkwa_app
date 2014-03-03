@@ -12,11 +12,12 @@
 
 <% content_for :page_header do %>
 	<% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
+	<%= link_to "index", user_index_timesheets_path(@timesheet.user_id), class: "header-label" %>
 	<div class="page-header">
+
         <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
         <ul class="controls">
-            <li><%= link_to "", print_timesheet_path(@timesheet.user_id, @timesheet.year, @timesheet.week), class: "glyphicon glyphicon-print tip", title:"Print Timesheet" %></li>
-            <li><a class="glyphicon glyphicon-eye-open tip open" title="Open"></a></li>
+            <li><div class="status open">open</div></li>
         </ul>
     </div>		
 <% end %>

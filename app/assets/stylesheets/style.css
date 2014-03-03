@@ -75,7 +75,7 @@ table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .i
 .modal a.btn, .modal-table.cbilling-table input, .add-image, label[for="pattern_delete_diagram"], label[for="pattern_delete_photo"],
 label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item, 
 .timesheets .table-body .project-cell, .edit-me, input#reopen-timesheet, #documents a.circle .glyphicon, .employee-list li,
-.employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet
+.employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet, .timesheets.table tr:hover td
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 
@@ -536,20 +536,6 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
 
-
-
-/* USERS - timesheets_index (all) */
-
-	.timesheets.table th { font-size:11px; text-transform:uppercase; font-weight:900; padding-bottom:4px; line-height:14px; }
-		.timesheets.table th.line-left, .timesheets.table td.line-left { border-left:1px solid #bcc6cc; }
-		.timesheets.table thead:first-child tr:first-child th.line-top { border-top:1px solid #bcc6cc; }
-		.timesheets.table th.line-right, .timesheets.table td.line-right { border-right:1px solid #bcc6cc; }
-		.timesheets.table tr:last-child td.line-bottom{ border-bottom:1px solid #bcc6cc; }
-	.timesheets.table td, .timesheets.table th { text-align:center; }
-	.timesheets.table td.left, .timesheets.table th.left { text-align:left; }
-	.timesheets.table td.link { padding-left:0px; padding-right:0px; width:110px; }
-	.timesheets.table a.btn { color:#fff; padding:2px 8px; margin-top:-2px; font-size:13px; font-weight:400; }
-	.timesheets.table a.btn:hover { background-color:#1abc9c; }
 
 
 

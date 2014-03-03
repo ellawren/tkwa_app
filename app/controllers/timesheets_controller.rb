@@ -1,5 +1,4 @@
 class TimesheetsController < ApplicationController
-
     include TimesheetsHelper
 
     def new
@@ -13,13 +12,23 @@ class TimesheetsController < ApplicationController
     end
 
     def all
-       @timesheets = Timesheet.all
-       @users = User.active_users
+        @users = User.active_users
+        @week = params[:week].to_i
+        @year = params[:year].to_i 
     end
 
-    def all_user
+    def user_index
         @user = User.find(params[:id])
-        @timesheets = Timesheet.find_all_by_user_id(params[:id])
+        @year = params[:year].to_i 
+        @timesheets = Timesheet.find_all_by_user_id_and_year(@user.id, @year)
+        if @year == Date.today.cwyear
+            @week = Date.today.cweek
+        elsif @year < Date.today.cwyear
+            @week = weeks_in_year(@year)
+        else
+            flash[:error] = "Invalid date"
+            redirect_to timesheets_path
+        end
     end
 
 
@@ -134,11 +143,7 @@ class TimesheetsController < ApplicationController
 
         if @timesheet.update_attributes(params[:timesheet])
             flash[:success] = "Timesheet updated!"
-            if @timesheet.complete == false
-                redirect_to view_user_timesheet_path(@timesheet.user_id, @timesheet.year, @timesheet.week)
-            else
-                redirect_to(:back) 
-            end
+            redirect_to(:back) 
         else
             flash[:error] = "Timesheet could not be updated. Please try again."
             redirect_to(:back) 

@@ -16,5 +16,6 @@ end
 #  complete      :boolean         default(TRUE)
 #  user_id       :integer         not null
 #  notes         :text
+#  printed       :boolean         default(FALSE)
 #
 

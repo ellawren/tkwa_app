@@ -1,0 +1,6 @@
+	<ul class="tabnav timesheets <%= weeks_class(@year) %>">
+		<% week_array(@year).each do |x| %>
+			<% date_string = parse_date(x, @year) %>
+			<li><%= link_to "#{x}", all_timesheets_path(@year, x), class: is_week?("#{x}", @year), title: "#{date_string}" %></li>
+		<% end %>
+	</ul>
