@@ -120,7 +120,7 @@ class TimesheetsController < ApplicationController
                 @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)
             end
             # if no data records are found, go to page anyway - conditional will catch and show error message
-            render :layout => 'print_timesheet' 
+            render :layout => 'modal' 
         else
             flash[:error] = "Invalid date"
             redirect_to timesheets_path

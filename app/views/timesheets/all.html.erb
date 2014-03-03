@@ -9,6 +9,14 @@
 	<%= render "tabnav_all_timesheets" %>
 <% end %>
 
+
+<!-- modal for timesheet print -->
+		<div class="print-timesheet modal fade" id="timesheetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+		</div><!-- /.modal -->
+<!-- end modal -->
+
+
 <div class="timesheet-panel" id="yr-<%= this_year %> wk-<%= this_week %>">
 
 	<table class="table right-align timesheets">
@@ -19,8 +27,7 @@
 				<th class="line-left line-top">Cumulative<br>Hours</th>
 				<th class="line-top">Cumulative<br>Goal</th>
 				<th class="line-right line-top">Over/Under</th>
-				<th>Status</th>
-				<th>Printed?</th>
+				<th class="left">Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -35,27 +42,28 @@
 						</td>
 						<td class="line-bottom"><%= (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f) %></td>
 						<td class="line-right line-bottom"><%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %></td>
-			  			<td class="link"><%= link_to t.complete == true ? "open" : "closed", user_timesheet_path(t.user_id, t.year, t.week), class: "btn #{t.complete == true ? "open" : "closed"}" %></td>
+			  			
 		  				<td class="link">
-							<%= form_for(t) do |f| %>
+						<%= form_for(t) do |f| %>
+
+							<%= f.check_box :complete, class: "hidden"  %> 
+							<% if f.object.complete == true %>
+								<%= f.submit "open", class: "open close-timesheet btn" %>
+		  					<% else %>
+		  						<%= f.submit "closed", class: "closed open-timesheet btn" %>
+		  					<% end %>
+
 		  					<%= f.check_box :printed, class: "hidden" %> 
-		  				
-							<% if t.complete == false %>
-								<% if t.printed == false %>
-									<%= f.submit "Print Timesheet", class: "print-timesheet btn" %>
+							<% if f.object.complete == false %>
+								<% if f.object.printed == false %>
+									<a href="/users/<%= f.object.user_id %>/timesheets/<%= f.object.year %>/<%= f.object.week %>/print" data-target="#timesheetModal" data-toggle="modal" class="print-timesheet btn">Print Timesheet</a>
 								<% else %>
-									printed
+									<%= f.submit "Printed", class: "unprint-timesheet btn" %>
 								<% end %>
 							<% end %>
-							<script>
-							    // print timesheet
-						    	$('.print-timesheet').click( function() {
-							        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', true);
-							        window.open('/users/<%= t.user_id %>/timesheets/<%= t.year %>/<%= t.week %>/print');
-						    	});
-						    </script>
-						<% end %>
-		  				</td>
+
+						<% end %>	
+					</td>
 					</tr>
 				<% end %>
 			<% end %>
@@ -63,3 +71,29 @@
 	</table>		
 
 </div>
+
+<script>
+	// close timesheet
+	$('.close-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
+        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
+	});
+	// reopen timesheet
+	$('.open-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', true);
+        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
+	});
+    // print timesheet
+	//$('.print-timesheet').click( function() {
+    //    $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', true);
+	//});
+	// unprint timesheet
+	$('.unprint-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
+	});
+	//reset modal remote on close
+	$('#timesheetModal').on('hide.bs.modal', function (e) {
+	    $(this).data('bs.modal', null);
+	    location.reload(true);
+	});
+</script>

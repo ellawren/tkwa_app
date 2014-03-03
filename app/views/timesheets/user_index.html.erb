@@ -16,7 +16,6 @@
 			<th class="line-top">Cumulative<br>Goal</th>
 			<th class="line-right line-top">Over/Under</th>
 			<th>Status</th>
-			<th>Printed?</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -32,27 +31,30 @@
 					<td class="line-right line-bottom">
 						<%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %>
 					</td>
-	  				<td class="link"><%= link_to t.complete == true ? "open" : "closed", user_timesheet_path(t.user_id, t.year, t.week), class: "btn #{t.complete == true ? "open" : "closed"}" %></td>
-	  				<td class="link">
-	  					<%= form_for(t) do |f| %>
+
+					
+					<td class="link">
+						<%= form_for(t) do |f| %>
+
+							<%= f.check_box :complete, class: "hidden"  %> 
+							<% if f.object.complete == true %>
+								<%= f.submit "open", class: "open close-timesheet btn" %>
+		  					<% else %>
+		  						<%= f.submit "closed", class: "closed open-timesheet btn" %>
+		  					<% end %>
+
 		  					<%= f.check_box :printed, class: "hidden" %> 
-		  				
-							<% if t.complete == false %>
-								<% if t.printed == false %>
+							<% if f.object.complete == false %>
+								<% if f.object.printed == false %>
 									<%= f.submit "Print Timesheet", class: "print-timesheet btn" %>
 								<% else %>
-									printed
+									<%= f.submit "Printed", class: "unprint-timesheet btn" %>
 								<% end %>
 							<% end %>
-							<script>
-							    // print timesheet
-						    	$('.print-timesheet').click( function() {
-							        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', true);
-							        window.open('/users/<%= t.user_id %>/timesheets/<%= t.year %>/<%= t.week %>/print');
-						    	});
-						    </script>
-						<% end %>
-	  				</td>
+
+						<% end %>	
+					</td>
+					
 				</tr>
 			<% end %>
 		<% end %>
@@ -60,5 +62,25 @@
 </table>		
 <%= link_to "#{@user.name.split[0]}'s Data Records", "/users/#{@user.id}/data_records" %>
 
+<script>
+	// close timesheet
+	$('.close-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
+	});
+	// reopen timesheet
+	$('.open-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', true);
+	});
+    // print timesheet
+	$('.print-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', true);
+	});
+	// print timesheet
+	$('.unprint-timesheet').click( function() {
+        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
+	});
 
+	
+
+</script>
 

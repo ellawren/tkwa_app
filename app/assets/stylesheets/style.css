@@ -726,6 +726,16 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
  	/*---*/
 
+
+ 	/* print-timesheet modal */
+
+	.print-timesheet.modal { width:1000px; height:auto; left:35%; padding-bottom:60px;  }
+	.print-timesheet.modal .modal-body { height:auto; margin-left:10px; }
+
+	.print-timesheet.modal #print_button.btn { float:left; margin-top:-10px; width:100px;  }
+
+
+
  	/* consultant billing - add bill modal */
  	.modal.consultant { width:560px; left:50%; min-height:260px; height:auto; }
 	.modal.consultant .modal-body { height:100%; padding:10px 40px; height:auto; min-height:100px; max-height:450px; overflow-y:scroll; }
@@ -954,3 +964,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	alizarin:			#e64c3c
 	pomegranate:		#c0392b
 */
+
+
+
+

@@ -1,103 +1,124 @@
-<% if @data_record.nil? %>
-	<% content_for :page_header do %>
-		<% provide :title, "Timesheet Not Available" %>
+<% content_for :modal_header do %>
+  	
+<% end %>
+
+<div class="modal-body">
+	
+	<% if @data_record.nil? %>
+		
 		<div class="page-header">
 	        <h1>Error</span></h1>
 	    </div>		
-	<% end %>
-	<div class="error-message">
-		Employee data has not been set up for this week. Please see admin.
-	</div>
-<% else %>
-
-<% content_for :page_header do %>
-	<% provide :title, "#{@timesheet.week} / #{@user.name}" %>
-	<div class="page-header print">
-        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
-    </div>		
-<% end %>
-
-	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
 		
-	<div class="box print">
-		<%= render 'shared/error_messages', :object => f.object %>
-
-	    <div class="table-main timesheets">
-
-			<div class="table-head">
-				<div class="cell project-name"><div class="timesheet-tab">Billable Time</div></div>
-				<div class="cell phase"><br />Phase</div>
-				<div class="cell task"><br />Task</div>
-				<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
-				<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
-				<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
-				<div class="cell date <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
-				<div class="cell date <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
-				<div class="cell date <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
-				<div class="cell date weekend <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
-				<div class="total"><br />Total</div>
-			</div>
-
-	  		<div class="table-body">
-				<!-- nested form for team-->
-	    		<%= f.fields_for :time_entries do |builder| %>
-	    			<%= render 'view_time_entry_fields', :f => builder %>
-	    		<% end %>
-	   			<!-- end team form -->
-	   		</div>	
-	           					
-	    </div> <!-- end billable timesheets table -->
-
-	    <div class="table-main timesheets non-billable">
-			<div class="table-head">
-				
-				<div class="cell category"><div class="timesheet-tab">Non-Billable Time</div></div>
-				<div class="cell nb-description">Description</div>
-				
-			</div>
-
-	  		<div class="table-body">
-
-	  			<% if @timesheet.holidays.count > 0 %>
-	  				<% @timesheet.holidays.each do |h| %>
-	  					<%= render 'holiday_fields', :f => h  %>
-	  				<% end %>
-	  			<% end %>
-
-				<!-- nested form for team-->
-	    		<%= f.fields_for :non_billable_entries do |builder| %>
-	    			<%= render 'view_non_billable_entry_fields', :f => builder %>
-	    		<% end %>
-	   			<!-- end team form -->
-	   		</div>	
-
-	    </div> <!-- end non-billable timesheets table -->
+		<div class="error-message">
+			Employee data has not been set up for this week. Please see admin.
 		
-		<div class="table-main timesheets total">
-			<div class="table-body">
-				<div class="table-row">
-					<div class="category-cell">
-						Week <%= f.object.week %> Total
-				    </div>
-				    <div class="description-cell">
-				    </div>
+	<% else %>
+		<div class="PrintArea">
+			<div class="page-header print">
+		        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+		    </div>		
+		
 
-				    <div class="time-entries">  
-				        <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= precise(nonzero?(timesheet_sum(:day1))) %></div></div>
-				        <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day2))) %></div></div>
-				        <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day3))) %></div></div>
-				        <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day4))) %></div></div>
-				        <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day5))) %></div></div>
-				        <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day6))) %></div></div>
-				        <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= precise(nonzero?(timesheet_sum(:day7))) %></div></div>
-				        <div class="total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
-				    </div>
-				</div>
-			</div>
-		</div>
+			<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
+				
+				<div class="box print">
+					<%= render 'shared/error_messages', :object => f.object %>
 
-	</div>  <!-- end box-->
-	<% end %> <!-- end form -->
+				    <div class="table-main timesheets">
+
+						<div class="table-head">
+							<div class="cell project-name"><div class="timesheet-tab">Billable Time</div></div>
+							<div class="cell phase"><br />Phase</div>
+							<div class="cell task"><br />Task</div>
+							<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
+							<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
+							<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
+							<div class="cell date <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
+							<div class="cell date <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
+							<div class="cell date <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
+							<div class="cell date weekend <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
+							<div class="total"><br />Total</div>
+						</div>
+
+				  		<div class="table-body">
+							<!-- nested form for team-->
+				    		<%= f.fields_for :time_entries do |builder| %>
+				    			<%= render 'view_time_entry_fields', :f => builder %>
+				    		<% end %>
+				   			<!-- end team form -->
+				   		</div>	
+				           					
+				    </div> <!-- end billable timesheets table -->
+
+				    <div class="table-main timesheets non-billable">
+						<div class="table-head">
+							
+							<div class="cell category"><div class="timesheet-tab">Non-Billable Time</div></div>
+							<div class="cell nb-description">Description</div>
+							
+						</div>
+
+				  		<div class="table-body">
+
+				  			<% if @timesheet.holidays.count > 0 %>
+				  				<% @timesheet.holidays.each do |h| %>
+				  					<%= render 'holiday_fields', :f => h  %>
+				  				<% end %>
+				  			<% end %>
+
+							<!-- nested form for team-->
+				    		<%= f.fields_for :non_billable_entries do |builder| %>
+				    			<%= render 'view_non_billable_entry_fields', :f => builder %>
+				    		<% end %>
+				   			<!-- end team form -->
+				   		</div>	
+
+				    </div> <!-- end non-billable timesheets table -->
+					
+					<div class="table-main timesheets total">
+						<div class="table-body">
+							<div class="table-row">
+								<div class="category-cell">
+									Week <%= f.object.week %> Total
+							    </div>
+							    <div class="description-cell">
+							    </div>
+
+							    <div class="time-entries">  
+							        <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= precise(nonzero?(timesheet_sum(:day1))) %></div></div>
+							        <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day2))) %></div></div>
+							        <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day3))) %></div></div>
+							        <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day4))) %></div></div>
+							        <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day5))) %></div></div>
+							        <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= precise(nonzero?(timesheet_sum(:day6))) %></div></div>
+							        <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= precise(nonzero?(timesheet_sum(:day7))) %></div></div>
+							        <div class="total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
+							    </div>
+							</div>
+						</div>
+					</div>
+
+				</div>  <!-- end box-->
+				<div class="detail">printed <%= Date.today.strftime("%B %d, %Y") %></div>
+				
+			</div>	
+		
+				<%= f.check_box :printed %> 
+		
+				<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
+
+			<% end %> <!-- end form -->
+		
+	<% end %><!-- end conditional -->
 	
-<% end %><!-- end conditional -->
-<div class="detail">printed <%= Date.today.strftime("%B %d, %Y") %></div>
+</div>
+
+<script>
+$("#print_button").click(function(){
+	$("div.PrintArea").printArea();
+	$("#timesheet_printed").prop('checked', true);
+    
+});
+
+</script>
