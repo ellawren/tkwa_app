@@ -31,11 +31,8 @@
 					<td class="line-right line-bottom">
 						<%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %>
 					</td>
-
-					
 					<td class="link">
 						<%= form_for(t) do |f| %>
-
 							<%= f.check_box :complete, class: "hidden"  %> 
 							<% if f.object.complete == true %>
 								<%= f.submit "open", class: "open close-timesheet btn" %>
@@ -51,15 +48,14 @@
 									<%= f.submit "Printed", class: "unprint-timesheet btn" %>
 								<% end %>
 							<% end %>
-
 						<% end %>	
 					</td>
-					
 				</tr>
 			<% end %>
 		<% end %>
 	</tbody>
 </table>		
+
 <%= link_to "#{@user.name.split[0]}'s Data Records", "/users/#{@user.id}/data_records" %>
 
 <script>
@@ -79,8 +75,6 @@
 	$('.unprint-timesheet').click( function() {
         $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
 	});
-
-
 
 </script>
 

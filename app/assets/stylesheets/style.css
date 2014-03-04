@@ -113,17 +113,22 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 		ul.tabnav li.sel a { background-color:#ced5da; color:#758083; }
 			ul.tabnav li a:hover, ul.tabnav li.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
 
-		/* tabnav timesheets */
-		ul.tabnav.timesheets li a { padding:2px 3.5px 2px; font-size:11px; }
-			ul.tabnav.timesheets.fifty-three li a { padding-right:3.125px; }
-		ul.tabnav.timesheets li:first-child a { padding-left:8px; border-radius:5px 0 0 5px; }
-		ul.tabnav.timesheets li:last-child a { padding-right:5px; border-radius:0 5px 5px 0; }
-		ul.tabnav.timesheets li a.sel { background-color:#1abc9c; color:#fff; }
-		ul.tabnav.timesheets li a:hover { background-color:#ced5da; color:#1abc9c; }
-		ul.tabnav.timesheets li a.sel:hover { background-color:#1abc9c; color:#fff; opacity:.6; }
+/* tabnav timesheets table */
+	table.tabnav.timesheets { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0px; border-radius:5px; list-style:none; }
+	table.tabnav.timesheets tr { width:100%; }
+	table.tabnav.timesheets td { padding:0px;  }
+		table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 2px; min-width:10px; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
+		table.tabnav.timesheets td:first-child a { border-radius:5px 0 0 5px; padding-left:8px; }
+			table.tabnav.timesheets td:last-child a { padding-right:6px; border-radius:0 5px 5px 0; width:14px; margin-right:-4px; }
+		table.tabnav.timesheets td.sel a { background-color:#ced5da; color:#758083; }
+		table.tabnav.timesheets td a:hover, table.tabnav.timesheets td.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
 
-		ul.tabnav.timesheets li a.curr { color:#16a085; font-weight:700;}
-		ul.tabnav.timesheets li a.curr.sel { color:#fff; }
+		table.tabnav.timesheets td a.sel { background-color:#1abc9c; color:#fff; }
+		table.tabnav.timesheets td a:hover { background-color:#ced5da; color:#1abc9c; }
+		table.tabnav.timesheets td a.sel:hover { background-color:#1abc9c; color:#fff; opacity:.6; }
+
+		table.tabnav.timesheets td a.curr { color:#16a085; font-weight:700;}
+		table.tabnav.timesheets td a.curr.sel { color:#fff; } 
 
 /* section headers */
 

@@ -26,8 +26,7 @@ class TimesheetsController < ApplicationController
         elsif @year < Date.today.cwyear
             @week = weeks_in_year(@year)
         else
-            flash[:error] = "Invalid date"
-            redirect_to timesheets_path
+            @week = 1
         end
     end
 
