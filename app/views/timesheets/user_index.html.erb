@@ -66,6 +66,7 @@
 	// reopen timesheet
 	$('.open-timesheet').click( function() {
         $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
+        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
 	});
 	// print timesheet
 	$('.unprint-timesheet').click( function() {
