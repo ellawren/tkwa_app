@@ -45,7 +45,7 @@
 				  		<div class="table-body">
 							<!-- nested form for team-->
 				    		<%= f.fields_for :time_entries do |builder| %>
-				    			<%= render 'view_time_entry_fields', :f => builder %>
+				    			<%= render 'print_time_entry_fields', :f => builder %>
 				    		<% end %>
 				   			<!-- end team form -->
 				   		</div>	
