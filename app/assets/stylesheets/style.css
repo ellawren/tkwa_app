@@ -898,7 +898,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	#navbar, .page-header ul.controls, .save-row, .debug_dump, footer, button.input-button, ul.tabnav
 		{ display:none; }
 	body > .container { margin-top:10px; }
-	body { margin:0 40px; }
+	body { width:960px; margin:0 40px; }
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }
 
 }
