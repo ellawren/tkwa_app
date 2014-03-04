@@ -19,37 +19,32 @@
 	<thead>
 		<tr>
 			<th class="left">Name</th>
-			<th>Total Hours</th>
-			<th class="line-left line-top">Cumulative<br>Hours</th>
-			<th class="line-top">Cumulative<br>Goal</th>
-			<th class="line-right line-top">Over/Under</th>
+			<th>Week</th>
+			<th class="left dates">Dates</th>
+			<th class="line-left line-top line-right">Total Hours</th>
 			<th class="left link">Status</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @users.each do |user| %>
 			<% t = Timesheet.find_or_create_by_user_id_and_week_and_year(user.id, @week, @year) %>
-			<% if t.data_record.present? %>
 				<tr>
-					<td class="left"><%= link_to user.name, user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
-					<td class="bold"><%= precise(nonzero?(t.timesheet_total)) %></td>
-					<td class="line-left line-bottom">
-						<%= total_hours_for(user.id, t.year, t.week, t.data_record.start_week) %>
-					</td>
-					<td class="line-bottom"><%= (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f) %></td>
-					<td class="line-right line-bottom"><%= number_with_precision(t.ytd('total').to_f - (t.ytd_goal(t.week - t.data_record.start_week + 1).to_f), strip_insignificant_zeros: true) %></td>
+					<td class="left"><%= link_to user.name, user_index_timesheets_path(t.user_id), class: "green" %></td>
+					<td><%= link_to t.week, user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
+					<td class="left dates"><%= link_to parse_date_full(t.week, t.year), user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
+					<td class="bold line-left line-right line-bottom"><%= precise(nonzero?(t.timesheet_total)) %></td>
 	  				<td class="link">
 						<%= form_for(t) do |f| %>
 							<%= f.check_box :complete, class: "hidden"  %> 
-							<% if f.object.complete == true %>
-								<%= f.submit "open", class: "open close-timesheet btn" %>
+							<% if f.object.complete == false %>
+								<%= f.submit "Open", class: "open close-timesheet btn" %>
 		  					<% else %>
-		  						<%= f.submit "closed", class: "closed open-timesheet btn" %>
+		  						<%= f.submit "Closed", class: "closed open-timesheet btn" %>
 		  					<% end %>
 		  					<%= f.check_box :printed, class: "hidden" %> 
-							<% if f.object.complete == false %>
+							<% if f.object.complete == true %>
 								<% if f.object.printed == false %>
-									<a href="/users/<%= f.object.user_id %>/timesheets/<%= f.object.year %>/<%= f.object.week %>/print" data-target="#timesheetModal" data-toggle="modal" class="print-timesheet btn">Print Timesheet</a>
+									<a href="/users/<%= f.object.user_id %>/timesheets/<%= f.object.year %>/<%= f.object.week %>/print" data-target="#timesheetModal" data-toggle="modal" class="print-timesheet btn">Print</a>
 								<% else %>
 									<%= f.submit "Printed", class: "unprint-timesheet btn" %>
 								<% end %>
@@ -57,7 +52,7 @@
 						<% end %>	
 					</td>
 				</tr>
-			<% end %>
+			
 		<% end %>
 	</tbody>
 </table>		
@@ -65,12 +60,12 @@
 <script>
 	// close timesheet
 	$('.close-timesheet').click( function() {
-        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
+        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', true);
         $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
 	});
 	// reopen timesheet
 	$('.open-timesheet').click( function() {
-        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', true);
+        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
         $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
 	});
 	// unprint timesheet

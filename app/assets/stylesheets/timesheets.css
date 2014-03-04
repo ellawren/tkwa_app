@@ -129,10 +129,10 @@
 	.add.timesheets { width:120px; margin:10px 0 0 0; }
 	.add.timesheets:after { content:"add a line"; }
 	.add.add-project { width:200px; margin:10px 0 0 0; }
-	.add.fui-plus.add-project:before { background-color:#0ba0d4; }
-	.add.add-project:after { content:"add a project to my list"; color:#0ba0d4; }
-		.add.fui-plus.add-project:hover:before { background-color:#2984b6; }
-		.add.add-project:hover:after { color:#2984b6; }
+	.add.fui-plus.add-project:before { background-color:#86cc71; }
+	.add.add-project:after { content:"add a project to my list"; color:#86cc71; }
+		.add.fui-plus.add-project:hover:before { background-color:#5bae60; }
+		.add.add-project:hover:after { color:#5bae60; }
 
 	/* summary */
 
@@ -149,7 +149,6 @@
 .switch-box.closed { background-color:#bcc6cc; }
 
 .inline-edit-link { margin-left:5px; }
-.complete .btn.btn-primary { display:none; }
 
 .reopen {display:none; }
 .complete .reopen { display:block; }
@@ -229,9 +228,11 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 		.timesheets.table thead:first-child tr:first-child th.line-top { border-top:1px solid #bcc6cc; }
 		.timesheets.table th.line-right, .timesheets.table td.line-right { border-right:1px solid #bcc6cc; }
 		.timesheets.table tr:last-child td.line-bottom{ border-bottom:1px solid #bcc6cc; }
-	.timesheets.table td, .timesheets.table th { text-align:center; }
+		.timesheets.table td.spacer, .timesheets.table th.spacer { width:4px; padding-left:0px; padding-right:0px; }
+		.timesheets.table td.dates, .timesheets.table th.dates { padding-right:15px; }
+	.timesheets.table td, .timesheets.table th { text-align:center; padding:6px 8px 2px; }
 	.timesheets.table td.left, .timesheets.table th.left { text-align:left; }
-	.timesheets.table td.link, .timesheets.table th.link { padding-left:25px; padding-right:0px; width:275px; }
+	.timesheets.table td.link, .timesheets.table th.link { padding:4px 0 4px 25px; width:275px; }
 	.timesheets.table .btn, .timesheets.table a.btn { color:#fff; float:left; padding:2px 8px; width:114px; font-size:13px; margin-right:6px; font-weight:400; }
 	.timesheets.table input.btn  { width:130px; }
 	.timesheets.table .btn:hover { background-color:#f39c12; }

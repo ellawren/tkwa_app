@@ -30,74 +30,30 @@ class TimesheetsController < ApplicationController
         end
     end
 
-
     def edit
         @year = params[:year].to_i
         @week = params[:week].to_i
         @user = User.find(params[:id])
 
         if @week <= weeks_in_year(@year)
-            # find matching data record
+            @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
+            @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
             @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
             if @data_array.count > 0
                 @data_record = @data_array[0]
-                @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-                @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
-
-                if @timesheet.complete == false
-                    redirect_to view_user_timesheet_path(@user.id, @year, @week)
-                    return
-                end
-
-                @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)
-                @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f)
-                @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)
-
-                if @timesheet.open?
-                    1.times { @timesheet.time_entries.build }
-                    1.times { @timesheet.non_billable_entries.build }
-                end   
+                @timesheet.data_record_id = @data_record.id
+                @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1) 
+                @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f) 
+                @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week) 
             end
-            # if no data records are found, go to page anyway - conditional will catch and show error message
+            if @timesheet.complete == false
+                1.times { @timesheet.time_entries.build }
+                1.times { @timesheet.non_billable_entries.build }
+            end   
             render :layout => 'search' 
         else
             flash[:error] = "Invalid date"
-            redirect_to timesheets_path
-        end
-    end
-
-    def view
-        @year = params[:year].to_i
-        @week = params[:week].to_i
-        @user = User.find(params[:id])
-
-        if @week <= weeks_in_year(@year)
-            # find matching data record
-            @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
-            if @data_array.count > 0
-                @data_record = @data_array[0]
-                @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-                @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
-                
-                if @timesheet.complete == true
-                    redirect_to user_timesheet_path(@user.id, @year, @week)
-                    return
-                end
-
-                @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)
-                @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f)
-                @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)
-
-                if @timesheet.open?
-                    1.times { @timesheet.time_entries.build }
-                    1.times { @timesheet.non_billable_entries.build }
-                end   
-            end
-            # if no data records are found, go to page anyway - conditional will catch and show error message
-            render :layout => 'search' 
-        else
-            flash[:error] = "Invalid date"
-            redirect_to timesheets_path
+            redirect_to(:back) 
         end
     end
 

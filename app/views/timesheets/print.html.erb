@@ -12,6 +12,7 @@
 		
 		<div class="error-message">
 			Employee data has not been set up for this week. Please see admin.
+		</div>
 		
 	<% else %>
 		<div class="PrintArea">
@@ -103,10 +104,11 @@
 				<div class="detail">printed <%= Date.today.strftime("%B %d, %Y") %></div>
 
 			</div>	
-		
+			<div class="controls">
 				<%= f.check_box :printed, class: "hidden" %> 
 				<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
 				<a class="text-link" data-dismiss="modal" aria-hidden="true">close</a>
+			</div>
 			<% end %> <!-- end form -->
 		
 	<% end %><!-- end conditional -->
@@ -115,9 +117,10 @@
 
 <script>
 $("#print_button").click(function(){
-	$("div.PrintArea").printArea();
+	$(".controls").hide();
 	$("#timesheet_printed").prop('checked', true);
-    
+	$("div.PrintArea").printArea();
+	
 });
 
 </script>

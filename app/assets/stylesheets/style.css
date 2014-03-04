@@ -115,7 +115,7 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 
 /* tabnav timesheets table */
 	table.tabnav.timesheets { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0px; border-radius:5px; list-style:none; }
-	table.tabnav.timesheets tr { width:100%; }
+	table.tabnav.timesheets tr { width:960px; }
 	table.tabnav.timesheets td { padding:0px;  }
 		table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 2px; min-width:10px; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
 		table.tabnav.timesheets td:first-child a { border-radius:5px 0 0 5px; padding-left:8px; }
@@ -132,6 +132,8 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 
 /* section headers */
 
+h1 a { color:#16a085; }
+	h1 a:hover { color:#1abc9c; }
 h2 { float:left; display:block; width:100%; height:34px; margin:30px 0 20px; border-bottom:1px solid #e1e6eb; clear:all; font-weight:900; font-size:11pt; }
 	h2.first { margin-top:0px; }
 	h2.dark { border-bottom:1px solid #344953; }
@@ -262,7 +264,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 	.delete:hover { color:#e64c3c; }
 
 .add { margin-top:10px; cursor:pointer; }
-	.add:after { content:"add team member"; margin-left:6px; color:#86cc71; font-family: "Lato", sans-serif; font-size:14px; font-weight:700; }
+	.add:after { content:"add team member"; margin-left:6px; color:#f1c40f; font-family: "Lato", sans-serif; font-size:14px; font-weight:700; }
 	.add.consultant:after { content:"add consultant"; }
 	.add.category:after { content:"select another category"; }
 	.add.pattern:after { content:"add pattern"; }
@@ -275,9 +277,9 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 .add.schedule{ float:left; display:block; }
 .add.list-member { float:left; display:block; clear:left; }
 
-.add.fui-plus:before { content: "\e009"; padding:6px; border-radius:15px; background-color:#86cc71; color:#fff; }
-	.add.fui-plus:hover:before  { background-color:#5bae60; }
-	.add:hover:after { color:#5bae60; }
+.add.fui-plus:before { content: "\e009"; padding:6px; border-radius:15px; background-color:#f1c40f; color:#fff; }
+	.add.fui-plus:hover:before  { background-color:#f39c12; }
+	.add:hover:after { color:#f39c12; }
 
 .cat03, .cat04, .cat05, .cat06 { display:none; }
 .show { display:block; }
