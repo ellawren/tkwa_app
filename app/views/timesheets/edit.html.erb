@@ -216,7 +216,7 @@
 												<% end %>
 											<!-- if over or even last period -->
 											<% elsif @goal_with_overage <= @goal %>
-												<% if @actual > @goal_with_overage %>
+												<% if @actual > @goal %>
 													slow down!
 												<% elsif @actual < @goal_with_overage %>
 													uh oh

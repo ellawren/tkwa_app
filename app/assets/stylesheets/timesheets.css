@@ -51,7 +51,7 @@
 		.timesheets .table-body .table-row.holiday .category-cell, .timesheets .table-body .table-row.holiday .description-cell, 
 		.timesheets .table-body .table-row.holiday .entry-spacer
 				{ color:#0ba0d4; }
-	.timesheets .table-body .table-row:first-child { margin-top:4px; }
+	.timesheets .table-body .table-row:first-child { margin-top:2px; }
 	.timesheets .custom-select { padding:4px 3px; }
 	.timesheets .delete { margin:8px 0 8px 6px; }
 	.timesheets.non-billable .table-head     	{ float:left; }
@@ -62,18 +62,20 @@
 	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; padding: 4px 30px 4px 5px;  /* extra padding at right is to prevent longer project names from overflowing over the down arrow */ }
 
 	.timesheets .table-body .project-cell { width:226px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-		.timesheets .table-body .project-cell a { color:#1abc9c; }
-		.timesheets .table-body .project-cell a:hover { color:#16a085; }
+		.timesheets .table-body .view .project-cell { padding:4px 0 4px 6px; }
+
+		.timesheets .table-body .project-cell a { color:#16a085; }
+		.timesheets .table-body .project-cell a:hover { color:#1abc9c; }
 
  	/* phase */
  	.timesheets .table-head .phase { width:58px; margin-top:22px; }
 	.timesheets .table-body .phase.custom-select { width:60px; margin:2px 4px 2px 0; }
-		.timesheets .table-body .phase-cell { width:39px; float:left; padding:8px 0; margin:4px 25px 4px 0px; text-align:center; color:#1abc9c; }
+		.timesheets .table-body .phase-cell { width:39px; float:left; padding:4px 0; margin:4px 25px 4px 0px; text-align:center; }
 
 	/* task */
 	.timesheets .table-head .task { width:184px; margin-top:22px; }
 	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; padding: 4px 30px 4px 5px; }
-		.timesheets .table-body .task-cell { width:178px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+		.timesheets .table-body .task-cell { width:178px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 
 	/* time entries */
@@ -81,6 +83,7 @@
 	.timesheets .table-head .date.today { color:#f1c40f; }
 	.timesheets .table-head .date .blanch { width:40px; padding:4px 0 0 0; margin:0px; font-size:15px; font-weight:900; text-align:center; }
 	.timesheets .time-entries { float:left; height:36px;}
+		.timesheets .view .time-entries { float:left; height:34px;}
  	.timesheets .time-entries .entry { float:left; }
  	.timesheets .time-entries .text-input { width:39px; height:32px; padding:0px 3px; margin:2px 4px 2px 0; text-align:center; }
  		 	.timesheets .saved .editable .time-entries .text-input, .timesheets .saved .editable .custom-select { border-color:#1abc9c; }
@@ -90,7 +93,7 @@
 	.timesheets .time-entries .entry.today .text-input:focus { border-color:#5bae60; }
 
 	/* uneditable time entries */
-	.timesheets .time-entries .entry .entry-spacer { width:39px; height:16px; padding:6px 3px 10px; margin:2px 4px 2px 0; text-align:center; border: 2px solid #f4f6f9; color: #16a085; font-size: 14px; text-indent: 0px; font-family: "Lato", sans-serif; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; display: inline-block; line-height: 20px; vertical-align: middle;}
+	.timesheets .time-entries .entry .entry-spacer { width:39px; height:16px; padding:3px 3px 7px; margin:2px 4px 1px 0; text-align:center; border: 2px solid #f4f6f9; font-size: 14px; text-indent: 0px; font-family: "Lato", sans-serif; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; display: inline-block; line-height: 20px; vertical-align: middle;}
 	.timesheets .time-entries .entry .entry-spacer.weekend { background-color:#f4f6f9; }
 	.timesheets .time-entries .entry.today .entry-spacer { border-color:#f1c40f; }
 
@@ -101,12 +104,12 @@
 	/* nb - category */
 	.timesheets .table-head .category { width:198px; padding-left:0px; margin-top:0px; margin-left:0px; }
 	.timesheets .category.custom-select { width:208px; margin:2px 4px 2px -8px; }
-		.timesheets .table-body .category-cell { width:204px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px -10px; color:#1abc9c; }
+		.timesheets .table-body .category-cell { width:204px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px -10px; }
 
 	/* nb - description */
 	.timesheets .table-head .nb-description { float:left; width:270px; padding-left:12px; margin-top:17px; }
 	.text-input.nb-description { float:left; width:248px; height:32px; margin:2px 4px 2px 0; text-align:left; }
-		.timesheets .table-body .description-cell { width:264px; float:left; padding:8px 0 8px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
+		.timesheets .table-body .description-cell { width:264px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
 
 	/* add link */
   	.add-link       { float:left; display:block; padding:2px 0 0 26px; margin-top:3px; background:url(/assets/add-mini-tall.png); background-repeat:no-repeat; font-family:Argumentum-Medium; text-decoration:none; }

@@ -3,7 +3,11 @@
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
-    <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+    <% if f.object.project_id %>
+        <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
+    <% else %>
+        <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+    <% end %>
     <% if f.object.project_id %>
         <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
     <% else %>
