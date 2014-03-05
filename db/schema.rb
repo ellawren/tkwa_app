@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140304174036) do
+ActiveRecord::Schema.define(:version => 20140305213237) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -443,16 +443,15 @@ ActiveRecord::Schema.define(:version => 20140304174036) do
   end
 
   create_table "timesheets", :force => true do |t|
-    t.integer  "year",                              :null => false
-    t.integer  "week",                              :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.integer  "year",                             :null => false
+    t.integer  "week",                             :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "selected_year"
-    t.boolean  "complete",       :default => false
-    t.integer  "user_id",                           :null => false
+    t.boolean  "complete",      :default => false
+    t.integer  "user_id",                          :null => false
     t.text     "notes"
-    t.boolean  "printed",        :default => false
-    t.integer  "data_record_id"
+    t.boolean  "printed",       :default => false
   end
 
   create_table "users", :force => true do |t|
