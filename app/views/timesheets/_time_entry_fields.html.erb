@@ -4,6 +4,7 @@
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
     <% if f.object.project_id %>
+        <%= f.hidden_field :project_id %>
         <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
     <% else %>
         <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>

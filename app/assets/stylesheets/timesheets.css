@@ -61,7 +61,7 @@
  	.timesheets .table-head .project-name { width:232px; margin:22px 4px 0 0; }
 	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; padding: 4px 30px 4px 5px;  /* extra padding at right is to prevent longer project names from overflowing over the down arrow */ }
 
-	.timesheets .table-body .project-cell { width:226px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+	.timesheets .table-body .project-cell { width:224px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.timesheets .table-body .view .project-cell { padding:4px 0 4px 6px; }
 
 		.timesheets .table-body .project-cell a { color:#16a085; }
@@ -99,7 +99,7 @@
 
  	/* total */
  	.timesheets .table-head .total { float:left; width:48px; padding:0px 4px; margin:26px 0 0 0; text-align:center; }
-	.timesheets .table-body .total { float:left; width:40px; height:21px; padding:12px 0 6px 5px; margin:0px 4px 0px 0; font-size:13px; font-weight:900; text-align:center; }
+	.timesheets .table-body .total { float:left; width:40px; height:21px; padding:12px 0 6px 5px; margin:0px 4px 0px 4px; font-size:13px; font-weight:900; text-align:center; }
 
 	/* nb - category */
 	.timesheets .table-head .category { width:198px; padding-left:0px; margin-top:0px; margin-left:0px; }
@@ -139,14 +139,14 @@
 
 	/* summary */
 
-	.summary { float:left; position:relative; width:100%; width:862px; padding:6px 4px 2px 4px; margin:5px 0; border-radius:6px 0 0 6px; background-color:#2c3445; color:#fff; }
+	.summary { float:left; position:relative; width:100%; width:853px; padding:6px 4px 2px 4px; margin:5px 0; border-radius:6px 0 0 6px; background-color:#2c3445; color:#fff; }
 		.summary .summary-label { float:left; width:438px; height:24px; padding:12px 8px 7px 12px; }
 		.summary .span { float:left; width:371px; height:38px; margin-left:24px; }
 			.summary .span .sum { float:left; width:36px; height:20px; padding:9px 4px 4px 4px; margin:1px 3px 2px 2px; border:2px solid #344953; border-radius:6px; background-color:#344953; font-size:13px; font-weight:400; text-align:center; }
 			.summary .span .total { float:left; width:50px; height:20px; padding:10px 5px 6px 5px; margin:0 9 0 4px; font-size:13px; font-weight:900; text-align:center; }
 				.summary .span .sum.today { border-color:#f1c40f; }
 	.table-main.timesheets .table-head.summary-header { border-bottom:none; }
-	.timesheet-total { float:left; width:50px; height:16px; padding:17px 10px 18px 10px; margin-top:5px; border-radius:0 6px 6px 0; background-color:#2c3445; color:#fff; font-size:14px; }
+	.timesheet-total { float:left; width:50px; height:16px; padding:17px 19px 18px 10px; margin-top:5px; border-radius:0 6px 6px 0; background-color:#2c3445; color:#fff; font-size:14px; }
 
 .switch-box { float:right; margin-top:-85px; font-size:16px; background-color:#f1c40f; color:#fff; text-align:center; border-radius:8px; width:80px; height:26px; padding:4px 0 0 0; }
 .switch-box.closed { background-color:#bcc6cc; }
