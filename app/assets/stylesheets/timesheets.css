@@ -51,7 +51,7 @@
 		.timesheets .table-body .table-row.holiday .category-cell, .timesheets .table-body .table-row.holiday .description-cell, 
 		.timesheets .table-body .table-row.holiday .entry-spacer
 				{ color:#0ba0d4; }
-	.timesheets .table-body .table-row:first-child { margin-top:2px; }
+	.timesheets .table-body .table-row:first-child { padding-top:2px; }
 	.timesheets .custom-select { padding:4px 3px; }
 	.timesheets .delete { margin:8px 0 8px 6px; }
 	.timesheets.non-billable .table-head     	{ float:left; }
@@ -207,9 +207,9 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 .print .timesheets .time-entries { height:30px; }
 
 .print .timesheets .table-head .project-name { width:262px; }
-.print .timesheets .table-body .project-cell { width:262px; color:#1abc9c; padding-left:0px; color:#34495e; }
+.print .timesheets .table-body .project-cell { width:260px; color:#1abc9c; padding-left:2px; color:#34495e; }
 
-.print .timesheets .table-body .phase-cell { width:19px; padding-left:10px; }
+.print .timesheets .table-body .phase-cell { width:19px; padding-left:10px; font-weight:900; }
 .print .timesheets .table-head .phase { width:48px; }
 
 .print .timesheets .table-body .task-cell { width:154px; padding-left:0px; }
@@ -218,12 +218,13 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 .print .timesheets .table-body .category-cell { width:200px; padding-left:2px; }
 .print .timesheets .table-head .category { width:196px; }
 
-.print .timesheets .time-entries .entry .entry-spacer { padding-top:3px; padding-bottom:7px; border:none; width:43px; margin-top:3px; }
+.print .timesheets .time-entries .entry .entry-spacer { padding-top:3px; padding-bottom:7px; border:none; width:43px; margin-top:3px; background:none; }
 .print .timesheets .time-entries .entry .entry-spacer.weekend { background:none; }
-.print .timesheets .table-body .total { padding-top:8px; padding-bottom:3px; width:37px; }
+.print .timesheets .table-body .total { padding-top:8px; padding-bottom:3px; width:36px; }
 
 .print .timesheets .table-body .table-row.holiday { background:none; }
-.print .timesheets .table-body .table-row { border-bottom: 1px solid #ced5da; width:892px; }
+.print .timesheets .table-body .table-row { border-bottom: 1px solid #ced5da; width:894px; }
+.print .timesheets .table-body .table-row:nth-of-type(odd) { background-color:#ecf0f5; }
 
 .print .timesheets.total .table-body { border:2px solid #34495e; margin-top:20px; color:#34495e; font-weight:700; margin-bottom:10px;  }
 .print .timesheets.total .table-body .table-row:first-child { margin-top:0px; }
