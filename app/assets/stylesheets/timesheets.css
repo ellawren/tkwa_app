@@ -224,7 +224,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 
 .print .timesheets .table-body .table-row.holiday { background:none; }
 .print .timesheets .table-body .table-row { border-bottom: 1px solid #ced5da; width:894px; }
-.print .timesheets .table-body .table-row:nth-of-type(odd) { background-color:#ecf0f5; }
+.print .timesheets .table-body .table-row:nth-of-type(odd) { background-color:#ecf0f5 !important; -webkit-print-color-adjust: exact; }
 
 .print .timesheets.total .table-body { border:2px solid #34495e; margin-top:20px; color:#34495e; font-weight:700; margin-bottom:10px;  }
 .print .timesheets.total .table-body .table-row:first-child { margin-top:0px; }
