@@ -220,7 +220,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 
 .print .timesheets .time-entries .entry .entry-spacer { padding-top:3px; padding-bottom:7px; border:none; width:43px; margin-top:3px; }
 .print .timesheets .time-entries .entry .entry-spacer.weekend { background:none; }
-.print .timesheets .table-body .total { padding-top:8px; padding-bottom:3px; }
+.print .timesheets .table-body .total { padding-top:8px; padding-bottom:3px; width:37px; }
 
 .print .timesheets .table-body .table-row.holiday { background:none; }
 .print .timesheets .table-body .table-row { border-bottom: 1px solid #ced5da; width:892px; }
