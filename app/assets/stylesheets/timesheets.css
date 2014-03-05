@@ -197,7 +197,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 /* print */
 
 .page-header.print { margin-top:60px; }
-.print .timesheets { width:903px; }
+.print .timesheets { width:903px; font-size:13px; }
 
  .print .timesheets .table-head { width:903px; }
 
@@ -207,7 +207,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 .print .timesheets .time-entries { height:30px; }
 
 .print .timesheets .table-head .project-name { width:262px; }
-.print .timesheets .table-body .project-cell { width:262px; color:#1abc9c; padding-left:0px; }
+.print .timesheets .table-body .project-cell { width:262px; color:#1abc9c; padding-left:0px; color:#34495e; }
 
 .print .timesheets .table-body .phase-cell { width:19px; padding-left:10px; }
 .print .timesheets .table-head .phase { width:48px; }
