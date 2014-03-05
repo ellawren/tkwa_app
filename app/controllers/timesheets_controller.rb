@@ -39,17 +39,9 @@ class TimesheetsController < ApplicationController
             @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
             @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
             
-            if @timesheet.data_record_id
-                @data_record = DataRecord.find(@timesheet.data_record_id)
-            else
-                @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
-                if @data_array.count > 0
-                    @data_record = @data_array[0]
-                    @timesheet.data_record_id = @data_record.id
-                end
-            end
-
-            if @data_record
+            @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
+            if @data_array.count > 0
+                @data_record = @data_array[0]
                 @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1) 
                 @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f) 
                 @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week) 
@@ -59,6 +51,7 @@ class TimesheetsController < ApplicationController
                     1.times { @timesheet.non_billable_entries.build }
                 end   
             end
+
             render :layout => 'default' 
         else
             flash[:error] = "Invalid date. Please try again."
