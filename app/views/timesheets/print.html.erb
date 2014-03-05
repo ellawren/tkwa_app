@@ -103,7 +103,13 @@
 				</div>  <!-- end box-->
 				<div class="detail">printed <%= Date.today.strftime("%B %d, %Y") %></div>
 
+				<div class="approved">
+					<div class="text">Approved</div>
+					<div class="box"></div>
+				</div>
+
 			</div>	
+
 			<div class="controls">
 				<%= f.check_box :printed, class: "hidden" %> 
 				<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
