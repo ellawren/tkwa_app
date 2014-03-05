@@ -1,7 +1,7 @@
 <% content_for :page_header do %>
 	<% provide :title, "Timesheets" %>
 	<div class="page-header">
-		<h1><%= current_user.name %></h1>
+		<h1>Timesheets Database <span class="light"><%= @user.name %></span></h1>
 	</div>
 <% end %>
 
@@ -24,7 +24,7 @@
 
     <div class="tile-box">
         <%= link_to image_tag("people.png", :alt => "all_timesheets", :class => "round-icon"), all_timesheets_path(this_year, this_week) %>
-        <%= link_to "All Timesheets", all_timesheets_path(this_year, this_week), :class => "tile-label" %>
+        <%= link_to "Everyone's Timesheets", all_timesheets_path(this_year, this_week), :class => "tile-label" %>
     </div>
 
 </div> <!-- end tiles -->

@@ -87,7 +87,7 @@ class ProjectsController < ApplicationController
         if params.has_key?(:q) && @projects.count == 1 
             redirect_to info_project_path(@projects.first(params[:id]))
         else
-            render :layout => 'search' 
+            render :layout => 'default' 
         end
     end
 

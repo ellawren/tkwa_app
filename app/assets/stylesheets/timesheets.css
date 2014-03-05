@@ -109,7 +109,7 @@
 	/* nb - description */
 	.timesheets .table-head .nb-description { float:left; width:270px; padding-left:12px; margin-top:17px; }
 	.text-input.nb-description { float:left; width:248px; height:32px; margin:2px 4px 2px 0; text-align:left; }
-		.timesheets .table-body .description-cell { width:264px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; color:#1abc9c; }
+		.timesheets .table-body .description-cell { width:264px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; }
 
 	/* add link */
   	.add-link       { float:left; display:block; padding:2px 0 0 26px; margin-top:3px; background:url(/assets/add-mini-tall.png); background-repeat:no-repeat; font-family:Argumentum-Medium; text-decoration:none; }
@@ -184,13 +184,13 @@
 .timesheets.gray-box .stats .number { float:left; width:100%; font-size:56px; margin:10px 0 11px; font-weight:200; }
 .timesheets.gray-box .stats .detail { float:left; font-style:normal; color:#bcc6cc; font-size:12px; }
 
-.error-message { float:left; display:block; margin-top:30px; }
+.error-message { float:left; display:block; }
 
 
 /* save row */
 
 #timesheet_complete.hidden { display:none; }
-input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px;  border:none; outline:none; background:none;  font-style:italic; color:#16a085; }
+input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px;  border:none; outline:none; background:none; font-style:italic; color:#ced5da; }
 input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 
 

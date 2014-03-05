@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
         if params.has_key?(:q) && @contacts.count == 1 
             redirect_to contact_path(@contacts.first(params[:id]))
         else
-            render :layout => 'search' 
+            render :layout => 'default' 
         end
     end
 

@@ -46,8 +46,8 @@
 
 				<div class="table-head">
 					<div class="cell project-name"><div class="timesheet-tab">Billable Time</div></div>
-					<div class="cell phase"><br />Phase<a href="<%= modal_phases_path %>" data-target="#phaseModal" data-toggle="modal" class="inline-edit-link fui-eye"></a></div>
-					<div class="cell task"><br />Task<a href="/tasks" class="inline-edit-link fui-new"></a></div>
+					<div class="cell phase"><br />Phase<% if @timesheet.complete == false %><a href="<%= modal_phases_path %>" data-target="#phaseModal" data-toggle="modal" class="inline-edit-link fui-eye"></a><% end %></div>
+					<div class="cell task"><br />Task<% if @timesheet.complete == false %><a href="/tasks" class="inline-edit-link fui-new"></a><% end %></div>
 					<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
 					<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
 					<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
