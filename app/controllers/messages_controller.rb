@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     def create
         @message = Message.new(params[:message])
         if @message.save
-            redirect_to messages_path
+            redirect_to root_path
         else
             render 'new'
         end
@@ -29,16 +29,16 @@ class MessagesController < ApplicationController
         @message = Message.find(params[:id])
         if @message.update_attributes(params[:message])
             flash[:success] = "Message updated"
-            redirect_to messages_path
+            redirect_to root_path
         else
-            render 'edit'
+            redirect_to root_path
         end
     end
 
     def destroy
         Message.find(params[:id]).destroy
         flash[:success] = "Message destroyed."
-        redirect_to messages_path
+        redirect_to root_path
     end
     
 end

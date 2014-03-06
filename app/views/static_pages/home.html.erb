@@ -19,25 +19,25 @@
                     <div class="tile-box">
                         <%= link_to image_tag("icons/Pocket@2x-round.png", :alt => "projects", :class => "round-icon resize"), projects_path %>
                         <%= link_to "Projects", projects_path, :class => "tile-label" %>
-                        <p>Project billing, tracking, scheduling and reports.</p>
+                        <p>Scope, team, forecast, billing, tracking.</p>
                     </div>
 
                     <div class="tile-box">
                         <%= link_to image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "round-icon resize"), contacts_path %>
                         <%= link_to "Contacts", contacts_path, :class => "tile-label" %>
-                        <p>Clients, consultants, employees, and friends.</p>
+                        <p>Add + edit contacts, view employees.</p>
                     </div>
 
                     <div class="tile-box">
                         <%= link_to image_tag("icons/Watches@2x.png", :alt => "timesheets", :class => "round-icon resize"), timesheets_path %>
                         <%= link_to "Timesheets", timesheets_path, :class => "tile-label" %>
-                        <p>Employee time tracking and targets.</p>
+                        <p>Timesheets, expense reports, vacations.</p>
                     </div>
 
                     <div class="tile-box disabled">
                         <%= link_to image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "round-icon resize"), "#" %>
                         <%= link_to "Patterns", "#", :class => "tile-label" %>
-                        <p>Database of pattern language for all our projects.</p>
+                        <p>Coming soon!</p>
                     </div>
 
                 </div> <!-- end icons -->
@@ -56,7 +56,7 @@
             <div class="container">
 
                 <ul id="messages">
-                    <h3>Studio Messages <a id="add-message">add message</a> <a id="my-messages" href="/messages">my messages</a></h3>
+                    <h3>Studio Messages <a id="add-message">add message</a> <!--<a id="my-messages" href="/messages">my messages</a>--></h3>
                     <%= render @messages %>
                     <div id="new-message">
                         <%= form_for(@message) do |f| %>

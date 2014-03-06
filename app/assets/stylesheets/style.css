@@ -323,15 +323,17 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 /* HOME */
 
-	.demo-headline { padding: 20px 0 50px; margin-top:60px; color:#fff; }
-	.timestamp { margin-bottom:30px; }
+	.demo-headline { padding: 20px 0 50px; margin-top:50px; color:#fff; }
+	.timestamp { margin-bottom:10px; }
 	.demo-logo small { margin-top:10px; color:rgba(255,255,255,.3); font-size:20px; font-weight:200; }
 
 	.home { position:relative; }
-		.home #navbar { height:780px; }
-			.home #navbar .container.main { height:700px; }
-			.home #navbar .container.sub { height:120px; }
+		.home #navbar { height:680px; }
+			.home #navbar .container.main { height:650px; }
+			.home #navbar .container.sub { height:30px; margin-top:0px; }
 			.home #navbar .navbar.logged-out { float:left; }
+
+			.home .navbar-inverse .nav > li > a { margin-top: 0px; }
 
 	.login-box { float:left; width:700px; height:60px; margin:30px 0 0 200px; }
 		.login-box div { float:left; width:200px; }
@@ -341,6 +343,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			.login-box .btn:hover { background-color: #48c9b0; }
 		.login-box .flash { float:left; width:540px; margin:-20px 0 20px 0; color:#e64c3c; text-align:center; }
 	.signup-link { display:block; width:200px; margin:30px 400px; font-size:14px; }
+
+	.home .row.icons { margin: 0px 0 0px 50px; }
 
 	.home .tile-box:hover img.round-icon { border-color:#16a085; background-color:#1abc9c; }
 	.home .tile-box a.tile-label { color:#fff; font-size:18px; font-weight:700;}
@@ -566,8 +570,10 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	ul#messages li { float:left; position:relative; width:600px; min-height:70px; padding:8px 15px; margin-bottom:6px; margin-left:20px; border: 2px solid #e1e6eb; border-radius:8px; list-style:none; }
 
 	ul#messages li img.avatar { position:absolute; top:10px; left:-20px; width:60px; height:60px; margin-right:15px; border: 3px solid #ced5da; border-radius:50px; }
-	ul#messages li .project-name { float:left; width:545px; margin-top:5px; margin-left:45px; color:#bdc3c7; font-size:12px; font-weight:900; }
-	ul#messages li .content { float:left; width:545px; margin-top:5px; margin-left:45px; color:#16a085; font-weight:900; }
+	ul#messages li .project-name { float:left; width:545px; margin-top:5px; margin-left:45px; font-size:12px; text-transform:uppercase; font-weight:900; }
+	ul#messages li .project-name a { color:#16a085; }
+		ul#messages li .project-name a:hover { color:#1abc9c; }
+	ul#messages li .content { float:left; width:545px; margin-top:2px; margin-left:45px; color:#16a085; font-weight:900; }
 	ul#messages li .byline { float:left; width:545px; margin-top:5px; margin-left:45px; color:#ced5da; }
 	.home ul#messages { margin-bottom:60px; }
 
@@ -576,7 +582,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	#add-message, #my-messages, #cancel-message { margin-left:10px; font-size:13px; font-weight:400; cursor:pointer; }
 	#cancel-message { margin-left:220px; font-size:14px; }
 
-	#new-message { float:left; display:none; width:630px; height:200px; margin-left:00px; }
+	#new-message { float:left; display:none; width:630px; height:200px; margin-left:20px; }
 	#message_expiration { width:100px; }
 	textarea.message-content-home { width:600px; height:60px; padding:15px; }
 
