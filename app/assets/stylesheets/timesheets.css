@@ -11,7 +11,7 @@
 	.simple-calendar .day { height:80px; width:81px; border:1px solid #ced5da; text-align:center; }
 	.simple-calendar .day div { font-size:11px; width:62px; margin:0 6px 0 10px; padding:0px; }
 	.simple-calendar .day.not-current-month { background-color:#ecf0f5; color:#bcc6cc; } 
-	.simple-calendar div.day_number { font-size:30px; font-weight:100; margin:0 auto;}
+	.simple-calendar div.day_number { font-size:30px; font-weight:200; margin:0 auto;}
 	.simple-calendar .day.today { background-color:#1abc9c; color:#fff; border:4px solid #f1c40f; height:72px; width:73px; }
 	.simple-calendar .day.events { background-color:#f1c40f; color:#34495e; }
 	.simple-calendar .day.past { background-image:url(/assets/calendar.png); background-repeat:no-repeat; }

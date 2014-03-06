@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
 
     def tracking
         @project = Project.find(params[:id])
+        @employee_teams = @project.employee_teams.ordered
     end
 
     def fee_calc

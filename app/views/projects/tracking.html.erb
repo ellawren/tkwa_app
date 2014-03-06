@@ -20,7 +20,7 @@
                 </tr>
             </thead>
 			<tbody>
-				<%= f.fields_for :employee_teams do |team| %>
+				<%= f.fields_for :employee_teams, @employee_teams do |team| %>
 		    		<tr>
 		    			<%= team.hidden_field :user_id %>
 		    			<td class="tname"><%= team.object.employee_name %>
