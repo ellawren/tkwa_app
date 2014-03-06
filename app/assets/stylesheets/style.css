@@ -30,6 +30,7 @@ a.header-label { float:left; display:block; width:auto; padding:4px 12px; margin
 a.header-label:hover { opacity:.8; color:#fff; }
 
 .page-header { border-bottom:none; margin-bottom:0px; width:100%; float:left; height:38px; }
+	.page-header.auto { height:auto; }
 	.page-header h1 { font-size:28px; color:#16a085; display:inline-block; width:700px; margin:0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.page-header h1.blue { color:#34495e; }
 		.page-header h1 .light { font-weight:200; margin-right:10px; color:#1abc9c; }
@@ -56,7 +57,7 @@ a.header-label:hover { opacity:.8; color:#fff; }
 
 /* links */
 
-a { text-decoration:none; color:#bcc6cc; font-weight:700; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
+a { text-decoration:none; color:#9ba6ac; font-weight:700; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 a:hover { color:#1abc9c; }
 a:active, a:focus { color:#1abc9c; outline:none; }
 
@@ -66,6 +67,10 @@ a.green:hover  { color:#16a085; }
 .btn { padding:7px 12px; font-weight:700; }
 
 a.mail-link { cursor:pointer; }
+
+ul.link-list li { margin-bottom:2px; }
+ul.link-list li a { color:#16a085; }
+ul.link-list li a:hover { color:#1abc9c; }
 
 /* transitions */
 
@@ -102,7 +107,7 @@ label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, 
 		#selected-company .well #company-data { width:430px; }
 		#selected-company .well #company-phone { width:300px; }
 
-.detail { color:#bcc6cc; font-style:italic; }
+.detail { color:#9ba6ac; font-style:italic; }
 
 /* tabnav */
 
@@ -232,7 +237,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.narrow.data_record_select .custom-select { width:60px; height:40px; }
 
 	.half { float:left; width:435px; }
-		.half .header-row { color:#c3cacf; }
+		.half .header-row { color:#9ba6ac; }
 		.half .header-row div { float:left; width:200px; margin-bottom:3px; }
 		.half .row { margin-left:0px; }
 		.half .custom-select { width:198px; }
@@ -264,13 +269,13 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 	.delete:hover { color:#e64c3c; }
 
 .add { margin-top:10px; cursor:pointer; }
-	.add:after { content:"add team member"; margin-left:6px; color:#86cc71; font-family: "Lato", sans-serif; font-size:14px; font-weight:700; }
-	.add.consultant:after { content:"add consultant"; }
+	.add:after { content:"new team member"; margin-left:6px; color:#86cc71; font-family: "Lato", sans-serif; font-size:14px; font-weight:700; }
+	.add.consultant:after { content:"new consultant"; }
 	.add.category:after { content:"select another category"; }
 	.add.pattern:after { content:"add pattern"; }
 	.add.schedule:after { content:"new line"; }
 	.add.drawing:after { content:"add shop drawing"; }
-	.add.add-vacation:after { content:"add vacation"; }
+	.add.add-vacation:after { content:"new row"; }
 	.add.list-member:after { content:"add list member"; }
 
 .add.category { margin-left:82px; margin-top:10px; }
@@ -389,6 +394,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.description { float:left; display:block; width:100%; margin:-15px 0 30px 0; font-size:14px; line-height:1.4em; }
 		.description a { color:#1abc9c; }
 			.description a:hover { opacity:.6; }
+
+			.page-header .description { margin:0px;}
 
 	.btn.btn-primary.search-btn { width:180px; margin-top:4px; margin-left:10px; border-radius:8px; font-size:16px; }
 		.btn.btn-primary.search-btn.contact { float:left; height:38px; margin-top:-38px; margin-left:20px; }

@@ -24,7 +24,7 @@
 .third { float:left; width:250px; margin-right:95px; }
 	.third.last {margin-right:0px; }
 
-label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
+label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
 	/* phases */
 
@@ -45,7 +45,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 	a.control-link { float:right; }
 	a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
 
-	.third .checkbox { margin-bottom:9px; }
+	.third .checkbox { margin-bottom:5px; }
 
 
 
@@ -76,9 +76,9 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#ced5da; }
 	.tracking-table tbody td { padding:4px 0 0 0; }
 		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
 		.tracking-table tbody td.tname { color:#1abc9c; }
-		.tracking-table tbody td.tname .role { color:#bcc6cc; font-family:"Asap"; font-style:italic; font-weight:400; }
+		.tracking-table tbody td.tname .role { color:#9ba6ac; font-family:"Asap"; font-style:italic; font-weight:400; }
 	.tracking-table td.labels { padding-top:4px; padding-right:0px; }
-		.labels div { font-size:12px; margin-top:0px; padding:5px 6px 5px 0; text-align:right; color:#bcc6cc; font-family:"Asap"; font-style:italic; }
+		.labels div { font-size:12px; margin-top:0px; padding:5px 6px 5px 0; text-align:right; color:#344953; font-family:"Asap"; font-style:italic; }
 			.labels div:last-child { margin-top:2px; }
 
 	.tracking-table input { float:none; width:45px; height:26px; margin:0 auto; text-align:center; }

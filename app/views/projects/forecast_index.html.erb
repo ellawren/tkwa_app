@@ -1,9 +1,11 @@
 <% content_for :page_header do %>
 	<% provide :title, "Project Forecast" %>
-    <div class="page-header">
-        <h1>4-Month Forecast</h1>
+    <div class="page-header auto">
+        <h1>Project Forecast</h1>
+        <p class="description">This page is still being refined! Everything works - you can enter data and it will be saved - but it's a little plain right now and I'll be working on it more soon.</p>
     </div>
 <% end %>
+
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 
 <!-- modal for forecast edit edit -->

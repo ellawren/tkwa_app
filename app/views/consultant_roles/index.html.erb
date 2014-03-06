@@ -6,7 +6,7 @@
 	</div>
 <% end %>
 
-<ul>
+<ul class="link-list">
 	<% @consultant_roles.each do |param| %>
 			<li>
 				<%= link_to param.consultant_role_name, edit_consultant_role_path(param.id) %>

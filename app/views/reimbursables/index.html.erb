@@ -6,7 +6,7 @@
 	</div>
 <% end %>
 
-<ul>
+<ul class="link-list">
 	<% @reimbursables.each do |param| %>
 			<li>
 				<%= link_to param.reimbursable_name, edit_reimbursable_path(param.id) %>

@@ -86,15 +86,15 @@
         <%= link_to "Project Forecast", projects_forecast_path, :class => "tile-label" %>
     </div>
 
-    <div class="tile-box">
-        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), "/potential_projects" %>
-        <%= link_to "Potential Projects", "/potential_projects", :class => "tile-label" %>
+    <div class="tile-box disabled">
+        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), "" %>
+        <%= link_to "Potential Projects", "", :class => "tile-label" %>
     </div>
 
   </div> <!-- end tiles -->
 
 <% if has_current_projects?(@user) %>
-  <h2>My Current Projects</h2>
+  <h2>My Projects</h2>
   	<ul class="project-list">
         <% @user.employee_teams.current.each do |team| %>
         <li><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></li>

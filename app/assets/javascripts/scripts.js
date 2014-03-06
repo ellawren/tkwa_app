@@ -99,7 +99,7 @@ $(document).ready(function() {
 
     // messages on home page
     $('#add-message').click( function() {
-        $('#new-message').show();
+        $('#new-message').slideDown();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         $('#message-content').focus();
     });
@@ -227,6 +227,17 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
   $( ".datepicker" ).datepicker();
+  return false;
+  
+}
+
+function add_vacation_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+  $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  $( ".datepicker" ).datepicker();
+
   return false;
   
 }

@@ -1,5 +1,5 @@
 <% content_for :page_header do %>
-	<% provide :title, "6-Month Forecast" %>
+	<% provide :title, "#{@user.name.split[0]}'s Forecast".html_safe %>
     <div class="page-header">
         <h1><%= @user.name.split[0] %>'s Forecast</h1>
     </div>
@@ -7,9 +7,7 @@
 
 <%= form_for @user do |f| %>
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
-
-    <h2 class="first">4-month Forecast</h2>
-
+<p class="description">This page is still being refined! Everything works - you can enter data and it will be saved - but it's a little plain right now and I'll be working on it more soon.</p>
     <table class="table forecast">
         <thead>
             <%= four_month_header_array(date) %>
@@ -39,7 +37,7 @@
     </table>
 
     <div class="save-row">
-        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
     </div>
 
 <% end %>

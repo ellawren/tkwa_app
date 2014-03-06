@@ -190,7 +190,7 @@
 /* save row */
 
 #timesheet_complete.hidden { display:none; }
-input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px;  border:none; outline:none; background:none; font-style:italic; color:#ced5da; }
+input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px;  border:none; outline:none; background:none; font-style:italic; color:#9ba6ac; }
 input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 
 
