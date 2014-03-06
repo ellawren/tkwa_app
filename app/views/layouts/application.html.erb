@@ -31,11 +31,13 @@
                     
     	</div> <!-- end container -->
 
-      <% if flash.count >= 1 %>
+        <% if flash.count >= 1 %>
             <script>
                 $( "#notice" ).delay( 2000 ).slideUp( 300 );
             </script>
-      <% end %>
+        <% end %>
 
+        <%= yield :scripts %>
     </body>  
+
 </html>  

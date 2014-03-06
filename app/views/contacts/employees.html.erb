@@ -24,30 +24,32 @@
 	<input type="button" id="getselected" class="btn btn-primary" value="Email All Selected">
 </div>
 
-<script>
-	$(function () {
-    $('#selectall').toggle(
-        function() {
-            $(':checkbox').prop('checked', true);
-            $('.checkbox').addClass('checked');
-            $(this).val('Deselect All');
-        },
-        function() {
-            $(':checkbox').prop('checked', false);
-            $('.checkbox').removeClass('checked');
-            $(this).val('Select All');
-        }
-    );
+<% content_for :scripts do %>
+	<script>
+		$(function () {
+	    $('#selectall').toggle(
+	        function() {
+	            $(':checkbox').prop('checked', true);
+	            $('.checkbox').addClass('checked');
+	            $(this).val('Deselect All');
+	        },
+	        function() {
+	            $(':checkbox').prop('checked', false);
+	            $('.checkbox').removeClass('checked');
+	            $(this).val('Select All');
+	        }
+	    );
 
-    $( "#getselected" ).click(function() {
-    	var allVals = [];
-    	$(':checkbox').each(function() {
-    		if ( $(this).prop('checked') == true ) {
-       			allVals.push($(this).val());
-       		}
-     	});
-	  	window.location.href = "mailto:" + allVals.join(",");
+	    $( "#getselected" ).click(function() {
+	    	var allVals = [];
+	    	$(':checkbox').each(function() {
+	    		if ( $(this).prop('checked') == true ) {
+	       			allVals.push($(this).val());
+	       		}
+	     	});
+		  	window.location.href = "mailto:" + allVals.join(",");
+		});
 	});
-});
-</script>
+	</script>
+<% end %>
 

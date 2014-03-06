@@ -69,9 +69,11 @@
         
     </table>
 
-<script>
-//reset modal remote on close
-$('#myModal').on('hide.bs.modal', function (e) {
-    $(this).data('bs.modal', null);
-});
-</script>
+<% content_for :scripts do %>
+    <script>
+    //reset modal remote on close
+    $('#myModal').on('hide.bs.modal', function (e) {
+        $(this).data('bs.modal', null);
+    });
+    </script>
+<% end %>

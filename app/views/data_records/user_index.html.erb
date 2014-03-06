@@ -59,12 +59,14 @@
 	</table>
 <% end %>
 
-<script>
-//reset modal remote on close
-    $('#myModal').on('hidden', function () {
-        $(this).removeData('modal');
-    })
-    $('#newModal').on('hidden', function () {
-        $(this).removeData('modal');
-    })
-</script>
+<% content_for :scripts do %>
+	<script>
+	//reset modal remote on close
+	    $('#myModal').on('hidden', function () {
+	        $(this).removeData('modal');
+	    })
+	    $('#newModal').on('hidden', function () {
+	        $(this).removeData('modal');
+	    })
+	</script>
+<% end %>

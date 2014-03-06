@@ -69,49 +69,52 @@
 	<input type="button" id="getselected" class="btn btn-primary" value="Email All Selected">
 </div>	
 
-<script>
-	// close timesheet
-	$('.close-timesheet').click( function() {
-        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', true);
-        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
-	});
-	// reopen timesheet
-	$('.open-timesheet').click( function() {
-        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
-        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
-	});
-	// unprint timesheet
-	$('.unprint-timesheet').click( function() {
-        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
-	});
-	//reset modal remote on close
-	$('#timesheetModal').on('hide.bs.modal', function (e) {
-	    $(this).data('bs.modal', null);
-	    location.reload(true);
-	});
-
-	$(function () {
-	    $('#selectall').toggle(
-	        function() {
-	            $(':checkbox.ck').prop('checked', true);
-	            $('.checkbox').addClass('checked');
-	            $(this).val('Deselect All');
-	        },
-	        function() {
-	            $(':checkbox.ck').prop('checked', false);
-	            $('.checkbox').removeClass('checked');
-	            $(this).val('Select All');
-	        }
-	    );
-
-	    $( "#getselected" ).click(function() {
-	    	var allVals = [];
-	    	$(':checkbox.ck').each(function() {
-	    		if ( $(this).prop('checked') == true ) {
-	       			allVals.push($(this).val());
-	       		}
-	     	});
-		  	window.location.href = "mailto:" + allVals.join(",") + "?subject=Please%20fill%20out%20timesheet%20<%= @week %>&body=Your%20timesheet%20for%20week%20<%= @week %>%20is%20still%20listed%20as%20OPEN.%20Please%20review%20it%20to%20make%20sure%20that%20all%20fields%20are%20filled%20out%20correctly%20and%20submit.%0D%0A%0D%0AThank you!%0D%0ALeta";
+<% content_for :scripts do %>
+	<script src="/assets/jquery.PrintArea.js?body=1" type="text/javascript"></script>
+	<script>
+		// close timesheet
+		$('.close-timesheet').click( function() {
+	        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', true);
+	        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
 		});
-	});
-</script>
+		// reopen timesheet
+		$('.open-timesheet').click( function() {
+	        $(this).parent(".edit_timesheet").children("#timesheet_complete").prop('checked', false);
+	        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
+		});
+		// unprint timesheet
+		$('.unprint-timesheet').click( function() {
+	        $(this).parent(".edit_timesheet").children("#timesheet_printed").prop('checked', false);
+		});
+		//reset modal remote on close
+		$('#timesheetModal').on('hide.bs.modal', function (e) {
+		    $(this).data('bs.modal', null);
+		    location.reload(true);
+		});
+
+		$(function () {
+		    $('#selectall').toggle(
+		        function() {
+		            $(':checkbox.ck').prop('checked', true);
+		            $('.checkbox').addClass('checked');
+		            $(this).val('Deselect All');
+		        },
+		        function() {
+		            $(':checkbox.ck').prop('checked', false);
+		            $('.checkbox').removeClass('checked');
+		            $(this).val('Select All');
+		        }
+		    );
+
+		    $( "#getselected" ).click(function() {
+		    	var allVals = [];
+		    	$(':checkbox.ck').each(function() {
+		    		if ( $(this).prop('checked') == true ) {
+		       			allVals.push($(this).val());
+		       		}
+		     	});
+			  	window.location.href = "mailto:" + allVals.join(",") + "?subject=Please%20fill%20out%20timesheet%20<%= @week %>&body=Your%20timesheet%20for%20week%20<%= @week %>%20is%20still%20listed%20as%20OPEN.%20Please%20review%20it%20to%20make%20sure%20that%20all%20fields%20are%20filled%20out%20correctly%20and%20submit.%0D%0A%0D%0AThank you!%0D%0ALeta";
+			});
+		});
+	</script>
+<% end %>

@@ -262,15 +262,17 @@
 
 <% end %> <!-- end conditional -->
 
-<script>
-	// close timesheet
-	$('#close-timesheet').click( function() {
-        $('#timesheet_complete').prop('checked', true);
-	});
-    // reopen timesheet
-	$('#reopen-timesheet').click( function() {
-        $('#timesheet_complete').prop('checked', false);
-	});
-</script>
+<% content_for :scripts do %>
+	<script>
+		// close timesheet
+		$('#close-timesheet').click( function() {
+	        $('#timesheet_complete').prop('checked', true);
+		});
+	    // reopen timesheet
+		$('#reopen-timesheet').click( function() {
+	        $('#timesheet_complete').prop('checked', false);
+		});
+	</script>
+<% end %>
 
 			    

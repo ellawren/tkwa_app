@@ -16,6 +16,7 @@
 
  <% end %>
 
+<% content_for :scripts do %>
     <script>
     if ( $('#project_status_potential').attr('checked') == 'checked' ) {
         $('#project_number').parent('.input-row').hide();
@@ -57,3 +58,4 @@
         }
     });
     </script>
+<% end %>
