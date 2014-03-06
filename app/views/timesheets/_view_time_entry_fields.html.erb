@@ -13,7 +13,7 @@
     </div>
     <div class="task-cell">
         <% if f.object.task %> 
-            <%= f.object.task %>
+            <%= Task.find(f.object.task).name %>
         <% end %> 
     </div>
     <div class="time-entries">  
