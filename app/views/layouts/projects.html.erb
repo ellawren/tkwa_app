@@ -14,9 +14,10 @@
             <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
     <% end %>
         <ul class="controls">
+            <!--
             <% unless @project.status == "potential" %>
                 <li><a href="#options" class="glyphicon glyphicon-eye-open tip" role="button" data-toggle="modal" title="View Options"></a></li>
-            <% end %>
+            <% end %>-->
             <li><%= link_to "", new_project_path, class: "glyphicon glyphicon-plus tip", title:"Add New Project" %></li>
             <li class="delete"><%= link_to "", @project, method: :delete, confirm: "Delete this project and all its data?", class: "glyphicon glyphicon-remove tip", title:"Delete This Project" %>
             </li>

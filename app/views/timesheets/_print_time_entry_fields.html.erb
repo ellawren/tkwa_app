@@ -4,7 +4,7 @@
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
     <% if f.object.project_id %>
-        <div class="project-cell"><span class="bold"><%= Project.find(f.object.project_id).number %></span> / <%= Project.find(f.object.project_id).name %></div>
+        <div class="project-cell"><span class="bold"><%= strip(Project.find(f.object.project_id).number) %></span> / <%= Project.find(f.object.project_id).name %></div>
     <% end %> 
     <div class="phase-cell">
         <% if f.object.phase_number %> 
