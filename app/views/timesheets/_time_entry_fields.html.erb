@@ -14,7 +14,7 @@
     <% else %>
         <%= f.collection_select :phase_number, Phase.order(:number), :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
     <% end %>
-    <%= f.collection_select(:task, Task.all, :name, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+    <%= f.collection_select(:task, Task.all, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
     <div class="time-entries">  
         <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
         <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>

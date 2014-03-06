@@ -9,7 +9,7 @@
 	<body class="home">
 	
 		<%= content_for?(:content) ? yield(:content) : yield %>
-    	
+    	<%= yield :scripts %>
 	</body>
   
 </html>

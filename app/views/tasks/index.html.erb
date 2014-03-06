@@ -9,7 +9,7 @@
 <ul>
 	<% @tasks.each do |param| %>
 		<li>
-			<%= link_to param.name, edit_task_path(param) %>
+			<%= link_to "#{param.number} - #{param.name}", edit_task_path(param) %>
 			<% if signed_in? %>
 				<% if current_user.admin? %>
 				| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
