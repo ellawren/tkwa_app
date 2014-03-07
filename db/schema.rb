@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140307170005) do
+ActiveRecord::Schema.define(:version => 20140307181418) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(:version => 20140307170005) do
 
   create_table "non_billable_entries", :force => true do |t|
     t.integer  "timesheet_id"
-    t.string   "category"
+    t.integer  "category"
     t.string   "description"
     t.decimal  "day1",         :precision => 4, :scale => 2
     t.decimal  "day2",         :precision => 4, :scale => 2
@@ -435,7 +435,7 @@ ActiveRecord::Schema.define(:version => 20140307170005) do
   create_table "time_entries", :force => true do |t|
     t.integer  "timesheet_id"
     t.integer  "project_id"
-    t.string   "task"
+    t.integer  "task"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.decimal  "day1",         :precision => 4, :scale => 2

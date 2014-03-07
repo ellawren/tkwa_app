@@ -3,8 +3,8 @@
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
     <div class="category-cell">
-        <% if f.object.category %> 
-            <%= f.object.category %>
+        <% unless f.object.category.blank? %> 
+            <%= NonBillableCategory.find(f.object.category).name %>
         <% end %> 
     </div>
     <div class="description-cell">

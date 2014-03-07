@@ -70,7 +70,7 @@
 
 							<!-- nested form for team-->
 				    		<%= f.fields_for :non_billable_entries do |builder| %>
-				    			<%= render 'view_non_billable_entry_fields', :f => builder %>
+				    			<%= render 'print_non_billable_entry_fields', :f => builder %>
 				    		<% end %>
 				   			<!-- end team form -->
 				   		</div>	

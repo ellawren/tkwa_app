@@ -1,21 +1,18 @@
-<div class="table-row <% if unsaved?(f.object) %>edit not-saved<% else %>saved<% end %>" id="entry-<%= f.object.id %>" >
-
+<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %> view" id="nb-entry-<%= f.object.id %>">
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
-    <% if f.object.project_id %>
-        <div class="project-cell"><span class="bold"><%= strip(Project.find(f.object.project_id).number) %></span> / <%= Project.find(f.object.project_id).name %></div>
-    <% end %> 
-    <div class="phase-cell">
-        <% unless f.object.phase_number.blank? %>
-            <%= f.object.phase_number %>
+    <div class="category-cell">
+        <% unless f.object.category.blank? %> 
+            <span class="bold"><%= NonBillableCategory.find(f.object.category).shorthand %></span> / <%= NonBillableCategory.find(f.object.category).name%>
         <% end %> 
     </div>
-    <div class="task-cell">
-        <% unless f.object.task.blank? %> 
-            <span class="bold"><%= Task.find(f.object.task).number %></span>  / <%= Task.find(f.object.task).name %>
+    <div class="description-cell">
+        <% if f.object.description %> 
+            <%= f.object.description %>
         <% end %> 
     </div>
+
     <div class="time-entries">  
         <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day1 %></div></div>
         <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= f.object.day2 %></div></div>
