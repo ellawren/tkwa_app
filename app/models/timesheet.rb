@@ -23,9 +23,6 @@ class Timesheet < ActiveRecord::Base
     has_many :non_billable_entries, :dependent => :destroy
     accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
 
-    NON_BILLABLE_CATEGORIES =   [ "Administrative", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
-                                    "Studio Projects", "Sustainable Research", "Vacation" ]
-
     def data_record
         # find all data records for user/year
         data_array = []
@@ -93,7 +90,7 @@ class Timesheet < ActiveRecord::Base
                 end
 
                 y.non_billable_entries.each do |entry|
-                    if entry.category == 'Vacation'
+                    if entry.category == 9
                         array.push( entry.day1.to_f ) if included_days.include? 1
                         array.push( entry.day2.to_f ) if included_days.include? 2
                         array.push( entry.day3.to_f ) if included_days.include? 3
@@ -106,7 +103,7 @@ class Timesheet < ActiveRecord::Base
 
             else
                 y.non_billable_entries.each do |entry|
-                    if entry.category == 'Vacation'
+                    if entry.category == 9
                         array.push(entry.entry_total)
                     end
                 end
