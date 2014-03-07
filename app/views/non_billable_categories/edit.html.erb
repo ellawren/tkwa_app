@@ -1,12 +1,12 @@
 <% content_for :page_header do %>
-    <% provide :title, @category.name %>
-    <%= link_to "Categories", categories_path, class: "header-label" %>
+    <% provide :title, @non_billable_category.name %>
+    <%= link_to "Non-Billable Categories", non_billable_categories_path, class: "header-label" %>
     <div class="page-header">
-        <h1><%= @category.name %></h1>
+        <h1><%= @non_billable_category.name %></h1>
     </div>
 <% end %>
 
-<%= form_for @category do |f| %>
+<%= form_for @non_billable_category do |f| %>
 
     <%= render 'shared/error_messages', object: f.object %>
     <%= render 'fields', f: f %>

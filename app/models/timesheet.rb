@@ -2,17 +2,16 @@
 #
 # Table name: timesheets
 #
-#  id             :integer         not null, primary key
-#  year           :integer         not null
-#  week           :integer         not null
-#  created_at     :datetime        not null
-#  updated_at     :datetime        not null
-#  selected_year  :integer
-#  complete       :boolean         default(FALSE)
-#  user_id        :integer         not null
-#  notes          :text
-#  printed        :boolean         default(FALSE)
-#  data_record_id :integer
+#  id            :integer         not null, primary key
+#  year          :integer         not null
+#  week          :integer         not null
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  selected_year :integer
+#  complete      :boolean         default(FALSE)
+#  user_id       :integer         not null
+#  notes         :text
+#  printed       :boolean         default(FALSE)
 #
 
 class Timesheet < ActiveRecord::Base
@@ -24,7 +23,7 @@ class Timesheet < ActiveRecord::Base
     has_many :non_billable_entries, :dependent => :destroy
     accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
 
-    NON_BILLABLE_CATEGORIES =   [ "Administrative", "Admin Meeting", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
+    NON_BILLABLE_CATEGORIES =   [ "Administrative", "Computer Systems", "Education/Training", "Marketing - General", "Marketing - Project", "Staff/Scheduling Meeting",  
                                     "Studio Projects", "Sustainable Research", "Vacation" ]
 
     def data_record

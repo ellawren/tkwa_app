@@ -101,6 +101,7 @@ TkwaApp::Application.routes.draw do
     resources :holidays
     resources :microposts,  only: [:create, :destroy]
     resources :messages
+    resources :non_billable_categories
     resources :plan_entries
     resources :reimbursables
     resources :relationships, only: [:create, :destroy]

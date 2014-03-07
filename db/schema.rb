@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140305213237) do
+ActiveRecord::Schema.define(:version => 20140307170005) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -208,6 +208,13 @@ ActiveRecord::Schema.define(:version => 20140305213237) do
     t.string   "category"
     t.string   "expiration"
     t.date     "exp_date"
+  end
+
+  create_table "non_billable_categories", :force => true do |t|
+    t.string   "name"
+    t.string   "shorthand"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "non_billable_entries", :force => true do |t|

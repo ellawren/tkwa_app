@@ -1,0 +1,21 @@
+<% content_for :page_header do %>
+	<% provide :title, "Non-Billable Categories" %>
+	<%= link_to "Admin Panel", admin_path, class: "header-label" %>
+	<div class="page-header">
+		<h1>Non-Billable Categories</h1>
+		<%= link_to "Add Non-Billable Category", new_non_billable_category_path, class: "btn btn-primary btn-right" %>
+	</div>
+<% end %>
+
+<ul>
+	<% @non_billable_categories.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_non_billable_category_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
