@@ -21,9 +21,9 @@
 /* TIMESHEETS edit/view */
 
 
-	.page-header ul.controls li .status { width:80px; padding:4px; color:#fff; text-align:center; border-radius:8px; margin-top:3px; font-size:15px; }
-		.page-header ul.controls li .status.open { background-color:#86cc71; }
-		.page-header ul.controls li .status.closed { background-color:#e64c3c; }
+	.page-header ul.controls li .status { width:auto; text-transform:uppercase; text-align:right; border-radius:8px; margin:14px 3px 0 0; font-size:15px; }
+		.page-header ul.controls li .status.open { color:#1abc9c; }
+		.page-header ul.controls li .status.closed { color:#e64c3c; }
 
 	/* not used */
 	.switch-box { position:relative; }
@@ -174,7 +174,7 @@
 		.timesheets.gray-box #summary .circle.actual { background-color:#1abc9c; border-color:#16a085; }
 		.timesheets.gray-box #summary .circle.under { background-color:#e64c3c; border-color:#c0392b; }
 		.timesheets.gray-box #summary .circle .title { font-size:11px; height:14px; text-transform:uppercase; margin-bottom:3px; }
-	.timesheets.gray-box #summary .detail { font-style:normal; text-align:center; color:#bcc6cc; font-size:12px; margin-top:6px; }
+	.timesheets.gray-box #summary .detail { font-style:normal; text-align:center; color:#9ba6ac; font-size:12px; margin-top:6px; }
 	.timesheets.gray-box #summary .arrow-left { float:left; margin:0 0 0 15px; width: 0; height: 0; border-top: 42px solid transparent; border-bottom: 42px solid transparent; border-right:20px solid #dce1e5; }
 	.timesheets.gray-box #summary .arrow-body { float:left; margin:0px; margin-right:-5px; width:135px; height:56px; padding:16px 12px 10px 8px; background-color:#dce1e5; font-family:"Asap"; font-style:italic; font-size:13px; line-height:16px; }
 
@@ -182,7 +182,7 @@
 	.timesheets.gray-box .stats.utilization { float:left; width:170px; height:140px; margin-left:10px; }
 
 .timesheets.gray-box .stats .number { float:left; width:100%; font-size:56px; margin:10px 0 11px; font-weight:200; }
-.timesheets.gray-box .stats .detail { float:left; font-style:normal; color:#bcc6cc; font-size:12px; }
+.timesheets.gray-box .stats .detail { float:left; font-style:normal; color:#9ba6ac; font-size:12px; }
 
 .error-message { float:left; display:block; }
 

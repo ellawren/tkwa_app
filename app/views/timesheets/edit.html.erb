@@ -129,7 +129,7 @@
 			<% if @timesheet.complete == false %>
 				<div class="save-row">
 			        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
-			        <%= f.submit "Submit Timesheet", id: "close-timesheet" %>
+			        <%= f.submit "Submit Timesheet", id: "close-timesheet", class: "tip-bottom", title: "Submit your timesheet at the end of the week when it is complete." %>
 				</div>
 			<% end %>
 
@@ -253,7 +253,7 @@
 			</div>
 			<%= f.check_box :complete, class: "hidden" %> 
 			<% if @timesheet.complete == true %>
-				<%= f.submit "Reopen Timesheet", id: "reopen-timesheet" %>
+				<%= f.submit "Reopen Timesheet", id: "reopen-timesheet", class: "tip-bottom", title: "Reopen timesheet if you need to edit after its been submitted." %>
 			<% end %>
 
 		</div>  <!-- end box-->
@@ -264,6 +264,7 @@
 
 <% content_for :scripts do %>
 	<script>
+		$("input.tip-bottom").tooltip({ animation: true, placement: 'bottom', trigger:'hover' });
 		// close timesheet
 		$('#close-timesheet').click( function() {
 	        $('#timesheet_complete').prop('checked', true);
