@@ -90,7 +90,7 @@ class Timesheet < ActiveRecord::Base
                 end
 
                 y.non_billable_entries.each do |entry|
-                    if entry.category == 9
+                    if entry.category == "9"
                         array.push( entry.day1.to_f ) if included_days.include? 1
                         array.push( entry.day2.to_f ) if included_days.include? 2
                         array.push( entry.day3.to_f ) if included_days.include? 3
@@ -103,7 +103,7 @@ class Timesheet < ActiveRecord::Base
 
             else
                 y.non_billable_entries.each do |entry|
-                    if entry.category == 9
+                    if entry.category == "9"
                         array.push(entry.entry_total)
                     end
                 end
