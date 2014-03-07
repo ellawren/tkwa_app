@@ -13,7 +13,11 @@
     </div>
     <div class="task-cell">
         <% unless f.object.task.blank? %> 
-            <%= Task.find(f.object.task).name %>
+            <% if f.object.phase_number == 70 %>
+                <%= f.object.task %> 
+            <% else %>
+                <%= Task.find(f.object.task).name %>
+            <% end %>
         <% end %> 
     </div>
     <div class="time-entries">  

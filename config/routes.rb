@@ -69,6 +69,7 @@ TkwaApp::Application.routes.draw do
     # PHASES
     match '/phases/modal',   to: 'phases#modal', as: "modal_phases"
     get 'time_entries/update_phases', :as => 'update_phases'
+    get 'time_entries/update_task_field', :as => 'update_task_field'
     resources :phases
 
 

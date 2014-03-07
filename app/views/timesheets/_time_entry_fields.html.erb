@@ -14,7 +14,14 @@
     <% else %>
         <%= f.collection_select :phase_number, Phase.order(:number), :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
     <% end %>
-    <%= f.collection_select(:task, Task.all, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+    <div id="task-<%= f.object.id %>" class="task-container">
+        <% if f.object.phase_number == 70 %>
+            <%= f.text_field :task, class: "task-writein" %>
+        <% else %>
+            <%= f.collection_select(:task, Task.all, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+        <% end %>
+    </div>
+
     <div class="time-entries">  
         <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
         <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>
@@ -38,6 +45,18 @@
                 data: { 'phase_id' : phase, 'project_id' : v },
                 dataType: "script"
             });
+        });
+
+        $('.phase').on('change', function() {
+            var v = $(this).find('option:selected').val();
+            var task = $(this).closest('.table-row').find('.task-container').attr('id');
+            var key = $(this).attr('id').replace( /[^\d.]/g, '' );
+            $.ajax({
+                url: "<%= update_task_field_path %>",
+                data: { 'task_id' : task, 'phase_number' : v, 'key' : key },
+                dataType: "script"
+            });
+            
         });
     </script>
 

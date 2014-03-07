@@ -64,7 +64,7 @@
 	.timesheets .table-body .project-cell { width:224px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.timesheets .table-body .view .project-cell { padding:4px 0 4px 6px; }
 
-		.timesheets .table-body .project-cell a { color:#16a085; }
+		.timesheets .table-body .project-cell a { color:#16a085; font-weight:400; }
 		.timesheets .table-body .project-cell a:hover { color:#1abc9c; }
 
  	/* phase */
@@ -76,7 +76,9 @@
 	.timesheets .table-head .task { width:184px; margin-top:22px; }
 	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; padding: 4px 30px 4px 5px; }
 		.timesheets .table-body .task-cell { width:178px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
+	.timesheets .table-body .task-writein { width:162px; float:left; margin:2px 4px 0 0; }
+	.timesheets .table-body .task-writein.hidden { display:none; }
+	.timesheets .table-body .task.custom-select.hidden { display:none; }
 
 	/* time entries */
 	.timesheets .table-head .date { float:left; width:41px; padding:4px 4px 0 4px; font-size:11px; font-weight:400; text-align:center; text-transform:uppercase; }

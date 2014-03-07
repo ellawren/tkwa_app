@@ -1,0 +1,6 @@
+var phase = <%= @phase_number %>;
+if(phase == 70) {
+	$("#<%= @task_id %>").html("<input class=\"task-writein\" id=\"timesheet_time_entries_attributes_<%= @key %>_task\" name=\"timesheet[time_entries_attributes][<%= @key %>][task]\" size=\"30\" type=\"text\">");
+} else {
+	$("#<%= @task_id %>").html("<select class=\"task custom-select\" id=\"timesheet_time_entries_attributes_<%= @key %>_task\" name=\"timesheet[time_entries_attributes][<%= @key %>][task]\"><%= escape_javascript(options_for_select(@tasks)) %></select>");
+}
