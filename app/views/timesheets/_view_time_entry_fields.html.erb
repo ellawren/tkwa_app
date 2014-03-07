@@ -7,12 +7,12 @@
         <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
     <% end %> 
     <div class="phase-cell">
-        <% if f.object.phase_number %> 
+        <% unless f.object.phase_number.blank? %> 
             <%= f.object.phase_number %>
         <% end %> 
     </div>
     <div class="task-cell">
-        <% if f.object.task %> 
+        <% unless f.object.task.blank? %> 
             <%= Task.find(f.object.task).name %>
         <% end %> 
     </div>

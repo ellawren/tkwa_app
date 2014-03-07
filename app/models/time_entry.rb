@@ -25,7 +25,8 @@ class TimeEntry < ActiveRecord::Base
     belongs_to :timesheet
     belongs_to :project
   
-    validates_presence_of :phase_number, :message => "must be selected"
+    validates_presence_of :project_id
+    validates_presence_of :phase_number
 
     def entry_total
         d1 = day1.to_f
