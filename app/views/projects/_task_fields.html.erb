@@ -1,0 +1,7 @@
+<div class="row">
+	<%= f.hidden_field :project_id, value: "#{@project.id}" %>
+	<%= f.hidden_field :_destroy %>
+	<%= f.text_field :name %>
+	<%= link_to_remove_fields_2 "  ", f %>
+</div>
+

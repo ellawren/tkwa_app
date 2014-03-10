@@ -16,6 +16,19 @@
         <% end %>
     </div>
 
+    <h2>Project-Specific Tasks</h2>
+    <p class="description">Architectural tasks added to the contract beyond the original scope. Items added here will show up on timesheets as available tasks for this project only. Be careful about deleting items from this list, as any time entered for those items will no longer have a task.</p>
+
+    <div class="project-tasks">
+    <!-- nested form for project tasks -->
+        <%= f.fields_for :tasks do |builder| %>
+            <%= render 'task_fields', :f => builder %>
+        <% end %>
+        <%= link_to_add_fields "", f, :tasks, "add fui-plus project-task" %>
+    <!-- end form -->
+
+    </div>
+
 	<h2>Scope</h2>
     <p class="description">All items selected below are <span class="bold">included</span> in the project fee. Items that are not selected must be contracted separately as additional services.</p>
 
@@ -67,9 +80,5 @@
     </div>
 
 <% end %>
-
-
-    
-
 
 

@@ -4,7 +4,7 @@
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
     <% if f.object.project_id %>
-        <%= f.hidden_field :project_id %>
+        <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select hidden" } ) %>
         <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
     <% else %>
         <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
@@ -18,7 +18,11 @@
         <% if f.object.phase_number == 70 %>
             <%= f.text_field :task, class: "task-writein" %>
         <% else %>
-            <%= f.collection_select(:task, Task.all, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+            <% if f.object.project_id %>
+                <%= f.collection_select(:task, Project.find(f.object.project_id).available_tasks, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+            <% else %>
+                <%= f.collection_select(:task, Task.universal, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+            <% end %>
         <% end %>
     </div>
 
@@ -50,10 +54,12 @@
         $('.phase').on('change', function() {
             var v = $(this).find('option:selected').val();
             var task = $(this).closest('.table-row').find('.task-container').attr('id');
+            var project_id = $(this).closest('.table-row').find('.project-name').find('option:selected').val();
             var key = $(this).attr('id').replace( /[^\d.]/g, '' );
+
             $.ajax({
                 url: "<%= update_task_field_path %>",
-                data: { 'task_id' : task, 'phase_number' : v, 'key' : key },
+                data: { 'task_id' : task, 'phase_number' : v, 'key' : key, 'project_id' : project_id },
                 dataType: "script"
             });
             

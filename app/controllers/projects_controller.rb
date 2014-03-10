@@ -32,6 +32,7 @@ class ProjectsController < ApplicationController
   
     def scope
         @project = Project.find(params[:id])
+        @tasks = Task.all
     end
 
     def tracking

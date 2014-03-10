@@ -60,6 +60,7 @@
  	.timesheet-tab { width:130px; margin-top:16px; font-weight:900; }
  	.timesheets .table-head .project-name { width:232px; margin:22px 4px 0 0; }
 	.timesheets .project-name.custom-select  { width:230px; margin:2px 4px 2px -8px; padding: 4px 30px 4px 5px;  /* extra padding at right is to prevent longer project names from overflowing over the down arrow */ }
+	.timesheets .project-name.custom-select.hidden { display:none; }
 
 	.timesheets .table-body .project-cell { width:224px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.timesheets .table-body .view .project-cell { padding:4px 0 4px 6px; }

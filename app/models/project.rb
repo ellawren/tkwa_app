@@ -100,7 +100,7 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :reimbursables
     accepts_nested_attributes_for :consultant_roles
     accepts_nested_attributes_for :phases
-    accepts_nested_attributes_for :tasks
+    accepts_nested_attributes_for :tasks, :allow_destroy => true, :reject_if => lambda { |a| a[:name].blank? } # need to allow delete of project-specific tasks
 
 	validates :name, presence: true
     validates :number, :uniqueness => true, :presence => true, if: lambda { |p| p.try(:status) != 'potential' }
@@ -118,7 +118,7 @@ class Project < ActiveRecord::Base
     # set default phase values
     before_create :phase_values
     def phase_values
-        self.phase_ids = [1, 2, 3, 4, 5, 6]
+        self.phase_ids = [1, 2, 3, 4, 5, 6, 7, 8]
     end
 
     scope :with_patterns, {
@@ -233,6 +233,17 @@ class Project < ActiveRecord::Base
           available_phases.push(Phase.find_by_id(t))
         end
         available_phases.sort_by{|e| e[:number]}
+    end
+
+    def available_tasks
+        available_tasks = []
+        Task.universal.each do |t|
+          available_tasks.push(t)
+        end
+        Task.project_tasks(self.id).each do |t|
+          available_tasks.push(t)
+        end
+        available_tasks
     end
 
     def schedule_item_list(phase)

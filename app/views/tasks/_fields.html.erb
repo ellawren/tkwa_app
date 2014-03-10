@@ -1,29 +1,20 @@
-<fieldset>
+<div class="wide">
+    <div class="input-row">
+        <%= f.label :name, class: "input-label" %>
+        <%= f.text_field :name %>
+    </div>   
+    <div class="input-row">
+        <%= f.label :description, class: "input-label" %>
+        <%= f.text_area :description, rows: "2" %>
+    </div>       
+</div>
 
-        <div class="row"> <div class="field">
+<div class="narrow">
+    <div class="input-row">
+        <%= f.label :number, class: "input-label" %>
+        <%= f.text_field :number %>
+    </div> 
+    <p>Note: Tasks available to all projects MUST include a unique number corresponding to Leta's task codes.</p>      
+</div>
 
-                <div class="control-group">
-                    <%= f.label(:number, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :number, class: "span1" %>
-                    </div>
-                </div>
 
-    			<div class="control-group">
-                    <%= f.label(:name, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_field :name, class: "span5" %>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <%= f.label(:description, class: "control-label") %>
-                    <div class="controls">
-                        <%= f.text_area :description, class: "span5", rows: "2" %>
-                    </div>
-                </div>
-
-   
-  		</div>
-
-</fieldset>

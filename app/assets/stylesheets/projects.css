@@ -26,6 +26,10 @@
 
 label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
+.project-tasks { float:left; width:500px; }
+.project-tasks .row { float:left; width:100%; margin-left:0px;  }
+.project-tasks .row input { float:left; width:250px; }
+
 	/* phases */
 
 	.phases label.checkbox { position:relative; z-index:99; width:108px; height:100px; padding-left:0px; margin-right:10px; text-align:center; }

@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     end
 
     def index
-  	    @tasks = Task.all
+  	    @tasks = Task.universal
     end
 
     def create

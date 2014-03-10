@@ -11,6 +11,7 @@ class TimeEntriesController < ApplicationController
 	end
 
 	def update_task_field
+		@project = Project.find(params[:project_id])
 		@phase_number = params[:phase_number]
 		@task_id = params[:task_id]
 		@tasks = Task.all.map{|a| [a.name, a.id]}.insert(0, "")
