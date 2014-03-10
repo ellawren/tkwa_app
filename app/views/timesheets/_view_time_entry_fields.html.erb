@@ -16,7 +16,9 @@
             <% if f.object.phase_number == 70 %>
                 <%= f.object.task %> 
             <% else %>
-                <%= Task.find(f.object.task).name %>
+                <% if Task.exists?(f.object.task) %>
+                    <%= Task.find(f.object.task).name %>
+                <% end %>
             <% end %>
         <% end %> 
     </div>
