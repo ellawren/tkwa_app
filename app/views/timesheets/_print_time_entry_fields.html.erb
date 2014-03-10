@@ -15,10 +15,12 @@
         <% unless f.object.task.blank? %> 
             <% if f.object.phase_number == 70 %>
                 <span class="bold"><%= f.object.task %></span>
-            <% elsif Task.exists?(f.object.task) && Task.find(f.object.task).project_id.present? %>
-                    <span class="bold"><%= Task.find(f.object.task).name %></span>
             <% elsif Task.exists?(f.object.task) %>
+                <% if Task.find(f.object.task).project_id.present? %>
+                    <span class="bold"><%= Task.find(f.object.task).name %></span>
+                <% else %>
                     <div class="task-abridged"><span class="bold"><%= Task.find(f.object.task).number %></span>  / <%= Task.find(f.object.task).name %></div>
+                <% end %>
             <% end %> 
         <% end %> 
     </div>
