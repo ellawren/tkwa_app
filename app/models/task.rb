@@ -16,7 +16,7 @@ class Task < ActiveRecord::Base
 	validates :name,  :presence => true,
                     :length   => { :maximum => 38 }
 
-    has_and_belongs_to_many :projects
+    belongs_to :project
 
     scope :universal, {
         :select => "tasks.*",

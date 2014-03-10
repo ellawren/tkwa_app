@@ -18,7 +18,7 @@
             <% elsif Task.find(f.object.task).project_id.present? %>
                 <span class="bold"><%= Task.find(f.object.task).name %></span>
             <% else %>
-                <span class="bold"><%= Task.find(f.object.task).number %></span>  / <%= Task.find(f.object.task).name %>
+                <div class="task-abridged"><span class="bold"><%= Task.find(f.object.task).number %></span>  / <%= Task.find(f.object.task).name %></div>
             <% end %> 
         <% end %> 
     </div>

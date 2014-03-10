@@ -76,7 +76,7 @@
 	/* task */
 	.timesheets .table-head .task { width:184px; margin-top:22px; }
 	.timesheets .table-body .task.custom-select { width:186px; margin:2px 4px 2px 0; padding: 4px 30px 4px 5px; }
-		.timesheets .table-body .task-cell { width:178px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+		.timesheets .table-body .view .task-cell { width:178px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 	.timesheets .table-body .task-writein { width:162px; float:left; margin:2px 4px 0 0; }
 	.timesheets .table-body .task-writein.hidden { display:none; }
 	.timesheets .table-body .task.custom-select.hidden { display:none; }
@@ -215,8 +215,9 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 .print .timesheets .table-body .phase-cell { width:19px; padding-left:10px; font-weight:900; }
 .print .timesheets .table-head .phase { width:48px; }
 
-.print .timesheets .table-body .task-cell { width:154px; padding-left:0px; }
+.print .timesheets .table-body .task-cell { float:left; width:154px; padding:0px; margin:6px 5px 4px 0px; }
 .print .timesheets .table-head .task { width:154px; }
+.print .timesheets .table-body .task-cell .task-abridged {  width:154px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 .print .timesheets .table-body .category-cell { width:200px; padding-left:2px; }
 .print .timesheets .table-head .category { width:196px; }
