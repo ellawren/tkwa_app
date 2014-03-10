@@ -123,7 +123,7 @@
                     <ul class="contacts-ul" id="others">
                         <% Contact.at_same_company(f.object.work_company).each do |c| %>
                             <% unless c.id == f.object.id %>
-                                <li><%= link_to "#{c.name} <span class='detail'>#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+                                <li><%= link_to "#{c.display_name} <span class='detail'>#{c.work_title}</span>".html_safe, contact_path(c) %></li>
                             <% end %>
                         <% end %>
                     </ul>

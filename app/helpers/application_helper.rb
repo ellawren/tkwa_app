@@ -30,6 +30,14 @@ module ApplicationHelper
         Date.today.cweek
     end
 
+    def prev_week
+        if Date.today.cweek == 1
+            Date.today.cweek
+        else
+            Date.today.cweek - 1
+        end
+    end
+
     def get_week_number(date)
         date.cweek
     end
