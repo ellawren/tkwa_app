@@ -50,6 +50,7 @@ a.header-label:hover { opacity:.8; color:#fff; }
 	.page-header ul.controls li .glyphicon { font-size:30px; }
 		.page-header ul.controls li .glyphicon-eye-open { margin-top:1px; }
 		.page-header ul.controls li .glyphicon-remove { margin-top:1px; font-size:32px; }
+		.page-header ul.controls li .glyphicon-search { margin-top:2px;  }
 			.page-header ul.controls li .glyphicon-remove:hover { color:#e64c3c; }
 
 

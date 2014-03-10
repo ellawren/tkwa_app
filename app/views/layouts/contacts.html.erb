@@ -13,6 +13,7 @@
             <% if @contact.next.present? %> 
                 <li><%= link_to "", contact_path(@contact.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
             <% end %>-->
+            <li><%= link_to "", contacts_path, class: "glyphicon glyphicon-search tip", title:"Search Contacts" %></li>
             <li><%= link_to "", new_contact_path, class: "glyphicon glyphicon-plus tip", title:"Add New Contact" %></li>
             <li class="delete">
                 <%= link_to "", @contact, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Contact" %>
