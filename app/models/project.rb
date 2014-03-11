@@ -118,7 +118,7 @@ class Project < ActiveRecord::Base
     # set default phase values
     before_create :phase_values
     def phase_values
-        self.phase_ids = [1, 2, 3, 4, 5, 6, 7, 8]
+        self.phase_ids = [1, 2, 3, 4, 5, 6, 7, 9]
     end
 
     scope :with_patterns, {
