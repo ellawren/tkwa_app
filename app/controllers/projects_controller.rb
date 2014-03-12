@@ -5,7 +5,6 @@ class ProjectsController < ApplicationController
 
     def new
         @project = (flash[:project]) ? flash[:project] : Project.new # this is so that error message shows up if number validation fails
-        render :layout => 'projects_static' 
     end
 
     def info
@@ -56,7 +55,6 @@ class ProjectsController < ApplicationController
 
     def forecast_index
         @projects = Project.current.all
-        render :layout => 'projects_static' 
     end
 
     def drawing_log
@@ -88,13 +86,12 @@ class ProjectsController < ApplicationController
         if params.has_key?(:q) && @projects.count == 1 
             redirect_to info_project_path(@projects.first(params[:id]))
         else
-            render :layout => 'default' 
+            render 'index' 
         end
     end
 
     def current
         @projects = Project.where(:status => "current")
-        render :layout => 'projects_static' 
     end
   
     def create

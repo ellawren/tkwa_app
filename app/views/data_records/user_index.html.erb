@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
-	<% provide :title, "Employee Data" %>
-	<div class="page-header">
-		<h1>Employee Data: <%= @user.name %> </h1>
-	</div>
-<% end %>
+<% provide :title, "Employee Data" %>
+<div class="page-header">
+	<h1>Employee Data: <%= @user.name %> </h1>
+</div>
 
 	<!-- modal for employee target edit -->
             <div class="modal fade data-record" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

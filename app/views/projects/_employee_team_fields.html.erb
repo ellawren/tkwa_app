@@ -1,8 +1,13 @@
-<div class="row">
+<div class="row <%= "saved" if f.object.user_id %>">
 
-	<%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+	<% if f.object.user_id %>
+		<div class="text name"><%= User.find(f.object.user_id).name %> <%= "<span class=\"detail\">(inactive)</span>".html_safe if User.find(f.object.user_id).active == false %></div>
+		<div class="text role"><%= f.object.role %></div>
+	<% else %>
+		<%= f.collection_select(:user_id, User.active_users, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+		<%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+	<% end %>
 	<%= f.hidden_field :_destroy %>
-	<%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
 	<%= link_to_remove_fields_2 "  ", f %>
 
 </div>

@@ -1,10 +1,8 @@
-<% content_for :page_header do %>
 	<% provide :title, "Reimbursables" %>
 	<div class="page-header">
 		<h1>Reimbursables</h1>
 		<%= link_to "Add Reimbursable", new_reimbursable_path, class: "btn btn-primary btn-right" %>
 	</div>
-<% end %>
 
 <ul class="link-list">
 	<% @reimbursables.each do |param| %>

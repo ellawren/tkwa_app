@@ -1,10 +1,8 @@
-<% content_for :page_header do %>
   	<% provide :title, "Edit Task" %>
   	<%= link_to "Tasks", tasks_path, class: "header-label" %>
   	<div class="page-header">
     	<h1><%= @task.name %></h1>
   	</div>
-<% end %>
 
 <%= form_for(@task) do |f| %>
 

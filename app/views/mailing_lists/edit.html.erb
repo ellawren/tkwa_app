@@ -1,11 +1,9 @@
-<% content_for :page_header do %>
   	<% provide :title, @mailing_list.name %>
   	<%= link_to "Mailing Lists", mailing_lists_path, class: "header-label" %>
   	<div class="page-header">
     	<h1><%= @mailing_list.name %></h1>
         <%= link_to "edit list members", mailing_list_path(@mailing_list), class: "text-btn" %>
   	</div>
-<% end %>
 
 <%= form_for @mailing_list do |f| %>
 

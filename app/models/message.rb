@@ -20,18 +20,23 @@ class Message < ActiveRecord::Base
 
     scope :studio_messages, {
         :select => "messages.*",
-        :conditions => ["category = ? AND exp_date > ?", 'studio', Time.now ]
+        :conditions => ["category = ? AND exp_date >= ?", 'studio', Date.today ]
     }
 
     scope :current, {
         :select => "messages.*",
-        :conditions => ["exp_date > ?", Time.now ]
+        :conditions => ["exp_date >= ?", Date.today ]
     }
 
     scope :user_messages, lambda { |project_id| where(:project_id => project_id) }
 
     def self.all_messages(id_array)
         user_messages(id_array).current + studio_messages
+    end
+
+    after_initialize :set_defaults
+    def set_defaults
+        self.expiration ||= (Date.today + 7).strftime("%m/%d/%Y").to_s
     end
 
     before_save :date_parse

@@ -1,0 +1,36 @@
+<!-- modal for view options -->
+<div id="options" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+
+    <%= form_for @project do |f| %>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        View Options
+                    </h4>
+                </div>
+                
+                <div class="modal-body">
+                    Select sections to toggle view on or off. The Info, Team, Scope, and Billing sections will always be visible by default.<br><br>
+            
+                    <% Project::VIEW_OPTIONS.each do |option| %>
+                        <label class="checkbox">
+                            <%= check_box_tag "project[view_options][]", option, @project.view_options.include?(option), data_toggle: "checkbox" %>
+                            <%= option %>
+                        </label>
+                    <% end %>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= f.submit "Save Options", class: "btn btn-primary" %>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    <% end %>
+  
+</div>
+<!-- end modal -->

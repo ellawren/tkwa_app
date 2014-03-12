@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
     <% provide :title, "New Schedule Item" %>
     <div class="page-header">
       <h1>New Schedule Item</h1>
     </div>
-<% end %>
 
 <%= form_for(@schedule_item) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>

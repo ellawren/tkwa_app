@@ -52,7 +52,6 @@ class TimesheetsController < ApplicationController
                 end   
             end
 
-            render :layout => 'default' 
         else
             flash[:error] = "Invalid date. Please try again."
             redirect_to timesheets_path

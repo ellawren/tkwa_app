@@ -1,12 +1,10 @@
-<% content_for :page_header do %>
 	<% provide :title, "Phases Index" %>
 	<div class="page-header">
 		<h1>Phases Index</h1>
 		<%= link_to "Add Phase", new_phase_path, class: "btn btn-primary btn-right" %>
 	</div>
-<% end %>
 
-<ul>
+<ul class="link-list">
 	<% @phases.each do |param| %>
 			<li>
 					<%= link_to param.name, edit_phase_path(param) %>

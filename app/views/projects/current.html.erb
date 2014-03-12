@@ -1,36 +1,34 @@
-<% content_for :page_header do %>
-	<% provide :title, "Current Projects" %>
-    <div class="page-header">
-        <h1>Current Projects (<%= @projects.count %>)</h1>
-    </div>
-<% end %>
+<% provide :title, "Current Projects" %>
+<div class="page-header">
+    <h1>Current Projects (<%= @projects.count %>)</h1>
+</div>
 
+<div class="buttons">
+    <%= link_to "by name", projects_current_path(:view => 'name'), :class => "btn #{'active' if params[:view] != 'number'}" %>
+    <%= link_to "by number", projects_current_path(:view => 'number'), :class => "btn #{'active' if params[:view] == 'number'}" %>
+</div>
 
-    <div class="buttons">
-        <%= link_to "by name", projects_current_path(:view => 'name'), :class => "btn #{'active' if params[:view] != 'number'}" %>
-        <%= link_to "by number", projects_current_path(:view => 'number'), :class => "btn #{'active' if params[:view] == 'number'}" %>
-    </div>
-    <table class="table search-results projects current">
-        <thead>
-            <tr>
-                <th>Number</th>
-                <th>Name</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-	    <tbody>
-            <% if params[:view] != 'number' %>
-		        <% @projects.order('name ASC').each do |param| %>
-                    <%= render 'project', :f => param %>
-                <% end %>
-            <% else %>
-            <% @projects.order('number ASC').each do |param| %>
-                    <%= render 'project', :f => param %>
-                <% end %>
+<table class="table search-results projects current">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if params[:view] != 'number' %>
+	        <% @projects.order('name ASC').each do |param| %>
+                <%= render 'project', :f => param %>
             <% end %>
-	    </tbody>
-	</table>
+        <% else %>
+        <% @projects.order('number ASC').each do |param| %>
+                <%= render 'project', :f => param %>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>

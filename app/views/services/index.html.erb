@@ -1,10 +1,8 @@
-<% content_for :page_header do %>
   	<% provide :title, "Services Index" %>
   	<div class="page-header">
     	<h1>Services Index</h1>
     	<%= link_to "Add Service", new_service_path, class: "btn btn-primary btn-right" %>
   	</div>
-<% end %>
 
 <ul class="link-list">
 	<%= render @services %>

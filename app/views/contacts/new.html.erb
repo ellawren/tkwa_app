@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
-	<% provide :title, "Contacts" %>
-    <div class="page-header">
-		<h1 class="blue">Add a New Contact</h1>
-	</div>
-<% end %>
+<% provide :title, "Contacts" %>
+<div class="page-header">
+	<h1 class="blue">Add a New Contact</h1>
+</div>
 
 <%= form_for @contact do |f| %>
 <%= render 'shared/error_messages', object: f.object %>

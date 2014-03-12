@@ -1,8 +1,11 @@
 <%= form_for @project do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+
+    <%= render 'project_header', f: f %>
+
+    <%= render 'shared/error_messages', object: f.object %>
 
 	<div class="full phases">
-        <h2 class="first">Phases</h2>
+        <h2>Phases</h2>
         <p class="description">Click phases to make them available for this project. Available phases are shown in green. Employees cannot add time to inactive phases.</p>
         <%= hidden_field_tag "project[phase_ids][]", nil %>
         <% Phase.find(:all, :order => 'number').each do |phase| %>
@@ -18,7 +21,7 @@
 
     <h2>Project-Specific Tasks</h2>
     
-    <p class="description">Architectural tasks added to the contract beyond the original scope. Items added here will show up on timesheets as available tasks for this project only. Be careful about deleting items from this list, because any time added to an item will no longer have a task.</p>
+    <p class="description scope">Architectural tasks added to the contract beyond the original scope. Items added here will show up on timesheets as available tasks for this project only. Be careful about deleting items from this list, because any time added to an item will no longer have a task.</p>
 
     <div class="project-tasks">
     <!-- nested form for project tasks -->

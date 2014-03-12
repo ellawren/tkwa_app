@@ -1,13 +1,7 @@
-<% content_for :page_header do %>
-	<% provide :title, "Contacts" %>
-    <div class="page-header">
-        <h1>Contacts Database</h1>
-        <!--<ul class="controls">
-            <li><a href="/projects/">reset</a></li>
-            <li><a href="#">advanced search</a></li>
-        </ul>-->
-	</div>
-<% end %>
+<% provide :title, "Contacts" %>
+<div class="page-header">
+    <h1>Contacts Database</h1>
+</div>
 
 <% if params[:q] && params[:q].has_key?("work_address_or_home_address_cont") && params[:q].has_key?("work_email_or_home_email_cont") && params[:q].has_key?("home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont")
 	if params[:q]["work_address_or_home_address_cont"].length > 0 || params[:q]["work_email_or_home_email_cont"].length > 0 || params[:q]["home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont"].length > 0 

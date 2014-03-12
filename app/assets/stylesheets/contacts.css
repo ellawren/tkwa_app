@@ -13,11 +13,11 @@
 
 	.list-names .list-item .delete { margin:0px; position:absolute; top:10px; right:12px; }
 
-	#documents { float:left; margin-top:30px; }
-	#documents a.circle { float:left; display:block; line-height:16px; color:#f1c40f; font-weight:400; width:90px; height:71px; padding:12px 0; text-align:center; border-radius:70px; border: 2px solid #f1c40f; margin-right:10px; }
+	#documents { float:left; margin-top:20px; }
+	#documents a.circle { float:left; display:block; font-size:15px; line-height:16px; color:#f1c40f; font-weight:400; width:100px; height:81px; padding:12px 0; text-align:center; border-radius:70px; border: 2px solid #f1c40f; margin-right:10px; }
 		#documents a.circle:hover { background-color:#f1c40f; border-color:#f39c12; color:#fff; }
 
-	#documents a.circle .glyphicon { display:block; text-align:center; color:#f1c40f; font-size:30px; width:20px; height:20px; margin:6px 0 0 30px; }
+	#documents a.circle .glyphicon { display:block; text-align:center; color:#f1c40f; font-size:30px; width:20px; height:20px; margin:10px 0 0 36px; }
 		#documents a.circle:hover .glyphicon { color:#fff; }
 
 	.formatted-address { float:left; width:100%; margin-top:15px; }

@@ -24,12 +24,11 @@ ul#nav li.disabled a:hover { color:#6b8299; }
 
 /* page structure */
 
-.container { margin-top:60px; }
+.container { margin-top:60px; position:relative; }
 
-a.header-label { float:left; display:block; width:auto; padding:4px 12px; margin-top:8px; margin-bottom:-10px; background-color:#1abc9c; color:#fff; font-size:10px; text-transform:uppercase; }
-a.header-label:hover { opacity:.8; color:#fff; }
+a.header-label { position:absolute; display:block; width:auto; top:0; left:0; color:#bcc6cc; font-size:12px; text-transform:uppercase; font-weight:900; }
 
-.page-header { border-bottom:none; margin-bottom:0px; width:100%; float:left; height:38px; }
+.page-header { border-bottom:none; margin:20px 0; width:100%; float:left; height:38px; padding:0px; }
 	.page-header.auto { height:auto; }
 	.page-header h1 { font-size:28px; color:#16a085; display:inline-block; width:700px; margin:0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.page-header h1.blue { color:#34495e; }
@@ -41,11 +40,12 @@ a.header-label:hover { opacity:.8; color:#fff; }
 	.page-header.with-spacer { margin:40px 0 20px; }
 		.page-header.with-spacer.contact { margin:40px 0 0px; }
 
-	.page-header ul.controls { float:right; list-style:none; margin:3px 0 0 0; display:block; }
+	.page-header ul.controls { float:right; list-style:none; margin:0; display:block; }
 		.page-header ul.controls li { float:left; margin-left:15px; }
 			.page-header ul.controls li.delete { margin:0px 0 0 12px; }
 			.page-header ul.controls li a { text-decoration:none; color:#ced5da; }
 				.page-header ul.controls li a:hover { color:#1abc9c; }
+			.page-header ul.controls li .btn-primary { width:80px; }
 
 	.page-header ul.controls li .glyphicon { font-size:30px; }
 		.page-header ul.controls li .glyphicon-eye-open { margin-top:1px; }
@@ -54,7 +54,7 @@ a.header-label:hover { opacity:.8; color:#fff; }
 			.page-header ul.controls li .glyphicon-remove:hover { color:#e64c3c; }
 
 
-.box { float:left; width:100%; margin-top:20px; position:relative; }
+.box { float:left; width:100%; position:relative; }
 
 /* links */
 
@@ -69,10 +69,9 @@ a.green:hover  { color:#16a085; }
 
 a.mail-link { cursor:pointer; }
 
+ul.link-list { float:left; }
 ul.link-list li { margin-bottom:2px; }
-ul.link-list li a { color:#16a085; }
-ul.link-list li a:hover { color:#1abc9c; }
-ul.list { float:left; }
+ul.link-list li a {  }
 
 /* transitions */
 
@@ -83,7 +82,7 @@ table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .i
 label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item, 
 .timesheets .table-body .project-cell, .edit-me, input#reopen-timesheet, #documents a.circle .glyphicon, .employee-list li,
 .employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet, .timesheets.table tr:hover td,
-.tracking-table tbody tr:hover td
+.tracking-table tbody tr:hover td, .half .row
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 
@@ -122,7 +121,7 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 			ul.tabnav li a:hover, ul.tabnav li.sel a:hover { background-color:#e1e6eb; color:#1abc9c; }
 
 /* tabnav timesheets table */
-	table.tabnav.timesheets { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0px; border-radius:5px; list-style:none; }
+	table.tabnav.timesheets { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0; border-radius:5px; list-style:none; }
 	table.tabnav.timesheets tr { width:960px; }
 	table.tabnav.timesheets td { padding:0px;  }
 	table.tabnav.timesheets tr td:nth-child(even) {  }
@@ -150,8 +149,9 @@ h2 { float:left; display:block; width:100%; height:34px; margin:30px 0 20px; bor
 	h2.dark { border-bottom:1px solid #344953; }
 	h2 .note { margin-left:4px; color:#bcc6cc; font-family:"Asap"; font-size:12px; font-style:italic; font-weight:normal; }
 	h2 .light { font-style:italic; font-weight:300; }
+	h2.underline { border-bottom:2px solid #344953; }
 
-	.half h2 { margin-bottom:10px; }
+	.half h2 { margin-bottom:20px; }
 	h2.optional { margin-bottom:-15px; }
 	h2.no-margin { margin-top:0px; margin-bottom:10px; }
 h3 { font-size:11pt; font-weight:900; }
@@ -171,8 +171,9 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input 
 			{ height:32px; padding:0px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; text-indent:0px; }
 		textarea { padding:5px 10px; margin-bottom:6px; border: 2px solid #e1e6eb; color: #16a085; font-size:14px; resize:vertical; }
-		button.input-button { width:68px; height:36px; padding:3px 12px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
-		a.input-button { float:left; width:45px; height:26px; padding:6px 12px 2px; margin:1px 0 0 10px; font-size:11px; line-height:12px; }
+		button.input-button { width:68px; height:35px; padding:3px 10px; margin:1px 0 0 10px; font-size:14px; line-height:12px; background-color:#9ba6ac; font-weight:400; }
+		a.input-button { float:left; width:45px; height:20px; padding:12px 12px 4px; margin:1px 0 0 10px; font-size:14px; line-height:12px; background-color:#9ba6ac; font-weight:400; }
+		button.input-button:hover, a.input-button:hover { background-color:#bcc6cc; }
 
 .input-row.short .input-cell { padding:4px 10px; }
 .input-row.short .input-label { padding:4px 0px; }
@@ -243,11 +244,17 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 		.narrow.data_record_select .custom-select { width:60px; height:40px; }
 
 	.half { float:left; width:435px; }
-		.half .header-row { color:#9ba6ac; }
-		.half .header-row div { float:left; width:200px; margin-bottom:3px; }
-		.half .row { margin-left:0px; }
+		.half .header-row { color:#9ba6ac; text-transform:uppercase; font-size:11px; }
+		.half .header-row div, .half .row .text { float:left; width:200px; margin-bottom:3px; }
+		.half .row .text { padding:10px 0 6px; }
+		.half .row { margin-left:0px; float:left; }
+		.half .row.saved:hover { background-color:#f4f6f9; }
+		.half .row.saved { border-top:1px solid #eee; }
 		.half .custom-select { width:198px; }
-		.half .custom-select:first-child, .half .header-row div:first-child { margin-right:5px; }
+		.half .custom-select:first-child, .half .header-row div:first-child, .half .row .text.name { margin-right:5px; }
+		.half .row .text.name { font-weight:700; }
+		.half .row .text.name .detail { font-weight:400; color:#bcc6cc; }
+		.half .row .text.role { width:196px; }
 		.half.last { margin-left:70px; }
 		.half.first { margin-right:70px; }
 		.half input[type="text"], .half textarea { float:left; width:260px; }
@@ -284,6 +291,8 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 	.add.add-vacation:after { content:"new row"; }
 	.add.list-member:after { content:"add list member"; }
 	.add.project-task:after { content:"new project task"; }
+
+	.half .add { margin-top:20px; }
 
 .add.category { margin-left:82px; margin-top:10px; }
 .add.schedule{ float:left; display:block; }
@@ -403,6 +412,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 			.description a:hover { opacity:.6; }
 
 			.page-header .description { margin:0px;}
+			.description.scope { margin-bottom:10px; }
+
 
 	.btn.btn-primary.search-btn { width:180px; margin-top:4px; margin-left:10px; border-radius:8px; font-size:16px; }
 		.btn.btn-primary.search-btn.contact { float:left; height:38px; margin-top:-38px; margin-left:20px; }
@@ -421,7 +432,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.gray-box.open a.more-options { display:none; }
 
 	div.search-results { float:left; width:100%; margin-top:0px; color:#000; font-size:11pt; text-align:center; }
-		table.search-results { width:750px; margin-left:100px; border-collapse:collapse; font-size:10pt; }
+		table.search-results { float:left; width:750px; margin-left:100px; border-collapse:collapse; font-size:10pt; }
 			table.search-results.projects { width:800px; margin-left:75px; }
 			table.search-results.projects.current { margin-top:40px;  }
 			table.search-results tr { border-bottom:1px solid #ecf0f5; }
@@ -588,7 +599,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	ul#messages li .project-name a { color:#16a085; }
 		ul#messages li .project-name a:hover { color:#1abc9c; }
 	ul#messages li .content { float:left; width:545px; margin-top:2px; margin-left:45px; color:#16a085; font-weight:900; }
-	ul#messages li .byline { float:left; width:545px; margin-top:5px; margin-left:45px; color:#ced5da; }
+	ul#messages li .byline { float:left; width:545px; margin-top:5px; margin-left:45px; color:#9ba6ac; }
 	.home ul#messages { margin-bottom:60px; }
 
 	.datepicker.dropdown-menu { width:auto; opacity:1; visibility:visible; -webkit-backface-visibility: visible; -webkit-transition: none; -moz-transition: none; -o-transition: none; transition: none; }
@@ -636,7 +647,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
 	/* forecast index */
-	.table.forecast.index { margin-top:30px; }
+	.table.forecast.index { margin-top:30px; float:left; }
 	.table.forecast tr.head td { border-top:1px solid #344953; }
 	.table.forecast tr.subhead td:first-child { padding-left:20px; font-weight:400; }
 	.table.forecast.index td.gray { background-color:#ecf0f5; }
@@ -663,7 +674,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 	div.forecast { float:left; position:relative; }
 
-	.buttons { position:absolute; top:0px; left:0px; text-align:left; margin-bottom:-50px; z-index:999;}
+	.buttons { float:left; text-align:left; margin-bottom:-50px; z-index:999;}
 	.buttons .btn { padding:2px 12px; margin:-15px 0 5px; background-color:#ced5da; font-size:13px; }
 	.buttons .btn:hover { opacity:.7; }
 	.buttons .btn.active { background-color:#1abc9c; color:#fff; }
@@ -733,13 +744,13 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 	/* timesheets - view phases modal */
 	.modal.phases { width:560px; left:50%; min-height:360px; }
-	.modal.phases .modal-header h4 { margin-left:20px; }
+	
 		.modal.phases .modal-body{ margin-left:10px; }
 	    ul.phase-list { list-style:none; margin-left:0px; width:100%; }
 		ul.phase-list li { margin-bottom:15px; float:left; width:100%; }
 			ul.phase-list li .phase-number { float:left; width:30px; height:16px; padding:5px 0 9px; border-radius:15px; border:1px solid #1abc9c; text-align:center; color:#1abc9c; font-weight:900; }
 			ul.phase-list li .phase-name { float:left; height:16px; width:80px; padding:5px 0 9px; margin-left:10px; color:#1abc9c; font-weight:900; }
-	 		ul.phase-list li .phase-description { float:left; width:320px; margin:5px 0 0 10px;  }
+	 		ul.phase-list li .phase-description { float:left; width:360px; margin:5px 0 0 10px;  }
  	/*---*/
 
  	/* timesheets - add to projects modal */
@@ -909,7 +920,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 /* footer */
 
 	footer { float:left; display:block; width:100%; margin-top:60px; margin-bottom:40px; background-color: #fff; font-size:13px; }
-
+	pre.debug_dump { float:left; width:100%; }
 
 /* print */
 

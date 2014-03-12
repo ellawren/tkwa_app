@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
-	<% provide :title, "Import CSV File" %>
-	<div class="page-header">
-		<h1>Import CSV File</h1>
-	</div>
-<% end %>
+<% provide :title, "Import CSV File" %>
+<div class="page-header">
+	<h1>Import CSV File</h1>
+</div>
 
 <%= form_tag '/cont_csv_import', class: "search form-horizontal", :multipart => true do %>
 	<div class="control-group">

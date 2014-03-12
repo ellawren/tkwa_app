@@ -6,7 +6,7 @@ class PatternsController < ApplicationController
 	    if @patterns.count == 1 
 	      redirect_to pattern_path(@patterns.first(params[:id]))
 	    else
-	      render :layout => 'default' 
+	      render 'index'
 	    end
 	end
 

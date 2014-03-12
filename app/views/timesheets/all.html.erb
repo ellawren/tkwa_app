@@ -1,14 +1,10 @@
-<% content_for :page_header do %>
-  <% provide :title, "All Timesheets" %>
-  <div class="page-header">
+<% provide :title, "All Timesheets" %>
+<div class="page-header">
     <h1><%= @week %> / All Timesheets &nbsp;<span class="light"><%= parse_date_full(@week, @year) %></span></h1>
     <input type="button" id="selectall" class="btn btn-right" value="Select All">
-  </div>
-<% end %>
+</div>
 
-<% content_for :tabnav do %>
-	<%= render "tabnav_all_timesheets" %>
-<% end %>
+<%= render "tabnav_all_timesheets" %>
 
 <!-- modal for timesheet print -->
 		<div class="print-timesheet modal fade" id="timesheetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

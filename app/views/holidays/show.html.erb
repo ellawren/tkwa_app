@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
-  <% provide :title, @holiday.name %>
-  <div class="page-header">
+<% provide :title, @holiday.name %>
+<div class="page-header">
     <h1><%= @holiday.name %></h1>
-  </div>
-<% end %>
+</div>
 
 <strong><%= @holiday.name %></strong><br />
 <%= @holiday.date_object.strftime("%m/%d/%Y") %><br />

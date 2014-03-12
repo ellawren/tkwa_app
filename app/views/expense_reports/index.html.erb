@@ -1,10 +1,8 @@
-<% content_for :page_header do %>
-	<% provide :title, "Expense Reports" %>
-	<div class="page-header">
-		<h1><%= @user.name.split[0] %>'s Expense Reports</h1>
-		<%= link_to "Add New Expense Report", new_user_expense_report_path(@user.id), class: "btn btn-primary btn-right" %>
-	</div>
-<% end %>
+<% provide :title, "Expense Reports" %>
+<div class="page-header">
+	<h1><%= @user.name.split[0] %>'s Expense Reports</h1>
+	<%= link_to "Add New Expense Report", new_user_expense_report_path(@user.id), class: "btn btn-primary btn-right" %>
+</div>
 
 <table class="table right-align expense-reports">
 	<thead>

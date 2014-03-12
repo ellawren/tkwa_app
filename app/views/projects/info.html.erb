@@ -1,6 +1,9 @@
 <%= form_for @project do |f| %>
 
+    <%= render 'project_header', f: f %>
+
     <%= render 'shared/error_messages', object: f.object %>
+
     <%= render 'fields', f: f %>
 
     <% if Project.related_projects(f.object.number_base).count > 1 %>

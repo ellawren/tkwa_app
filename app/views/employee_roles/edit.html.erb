@@ -1,10 +1,9 @@
-<% content_for :page_header do %>
-  	<% provide :title, @employee_role.name %>
-  	<%= link_to "Employee Roles", employee_roles_path, class: "header-label" %>
-  	<div class="page-header">
-    	<h1><%= @employee_role.name %></h1>
-  	</div>
-<% end %>
+<% provide :title, @employee_role.name %>
+<%= link_to "Employee Roles", employee_roles_path, class: "header-label" %>
+<div class="page-header">
+	<h1><%= @employee_role.name %></h1>
+</div>
+
 
 <%= form_for @employee_role do |f| %>
 

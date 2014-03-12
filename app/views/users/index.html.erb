@@ -1,11 +1,9 @@
-<% content_for :page_header do %>
 	<% provide :title, "Users Index" %>
 	<%= link_to "Admin Panel", admin_path, class: "header-label" %>
 	<div class="page-header">
 		<h1>Users Index</h1>
 		<%= link_to "Add New User", new_user_path, class: "btn btn-primary btn-right" %>
 	</div>
-<% end %>
 
 <h2>Active (<%= @users.active_users.count %>)</h2>
 

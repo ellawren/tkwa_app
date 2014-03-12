@@ -1,10 +1,7 @@
-<% content_for :page_header do %>
   <% provide :title, "Browse Patterns" %>
   <div class="page-header">
     <h1>Browse Patterns</h1>
   </div>
-<% end %>
-
 
 <div class="gray-box controls">
 	<%= collection_select(:pattern_search, :project_id, Project.with_patterns, :id, :name, { :include_blank => true, :selected => @project_id }, { :class => "pattern-name custom-select default-green" } ) %>

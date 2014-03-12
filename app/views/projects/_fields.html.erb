@@ -36,7 +36,7 @@
         </div>
 <% end %>
         
-        <h2 class="first">Project Information</h2>
+        <h2>Project Information</h2>
 
         <div class="wide">
             <div class="input-row">
@@ -46,7 +46,7 @@
             <div class="input-row">
                 <%= f.label(:location, "Location", class: "input-label") %>
                 <%= f.text_area :location, class: "button-right", rows: "2" %>
-                    <button class="btn input-button" onclick="showMap('project_location'); return false;">Google maps</button>
+                    <button class="btn input-button" onclick="showMap('project_location'); return false;">map</button>
             </div>
             <div class="input-row">
                 <%= f.label(:client, "Client", class: "input-label") %>
@@ -66,7 +66,7 @@
                                     <% unless @billing.work_phone.blank? %><%= number_to_phone(@billing.work_phone, :area_code => true) %><br><% end %>
                                     <% unless @billing.work_email.blank? %><a href="mailto:<%= @billing.work_email %>" class="email"><%= @billing.work_email %></a><br><% end %>
                                 </div>
-                                <a class="btn input-button change-contact" id="change-contact">change contact</a>
+                                <a class="btn input-button change-contact" id="change-contact">change</a>
                             </div>
                             
                             <div class="new-contact">

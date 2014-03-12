@@ -16,9 +16,6 @@
     
         <!-- main content -->
         <div class="container">
-            
-            <%= yield :page_header %>
-            <%= yield :tabnav %>
 
             <div class="box">	
           	    <%= content_for?(:content) ? yield(:content) : yield %>

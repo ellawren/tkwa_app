@@ -1,10 +1,8 @@
-<% content_for :page_header do %>
-	<% provide :title, "Employees" %>
-	<div class="page-header">
-		<h1>Employees (<%= @employees.count %>)</h1>
-		<input type="button" id="selectall" class="btn btn-right" value="Select All">
-	</div>
-<% end %>
+<% provide :title, "Employees" %>
+<div class="page-header">
+	<h1>Employees (<%= @employees.count %>)</h1>
+	<input type="button" id="selectall" class="btn btn-right" value="Select All">
+</div>
 
 <ul class="employee-list">
 	<li class="header">

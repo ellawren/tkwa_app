@@ -1,7 +1,7 @@
 <div class="row">
 	<%= f.hidden_field :project_id, value: "#{@project.id}" %>
 	<%= f.hidden_field :_destroy %>
-	<%= f.text_field :name %>
+	<%= f.text_field :name, placeholder: "Task Name (limit 38 characters)" %>
 	<%= link_to_remove_fields_2 "  ", f %>
 </div>
 

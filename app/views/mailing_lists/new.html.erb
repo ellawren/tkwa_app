@@ -1,10 +1,8 @@
-<% content_for :page_header do %>
   	<% provide :title, "Add New Mailing List" %>
   	<%= link_to "Mailing Lists", mailing_lists_path, class: "header-label" %>
   	<div class="page-header">
     	<h1>Add New Mailing List</h1>
   	</div>
-<% end %>
 
 <%= form_for @mailing_list do |f| %>
 

@@ -11,17 +11,15 @@ class ContactsController < ApplicationController
         if params.has_key?(:q) && @contacts.count == 1 
             redirect_to contact_path(@contacts.first(params[:id]))
         else
-            render :layout => 'default' 
+            render 'index'
         end
     end
 
     def employees
         @employees = Contact.employees
-        render :layout => 'contacts_static' 
     end
 
     def import
-        render :layout => 'contacts_static' 
     end
 
     def show
@@ -45,7 +43,6 @@ class ContactsController < ApplicationController
 
     def new
         @contact = Contact.new
-        render :layout => 'contacts_static' 
     end
 
     def create
@@ -64,7 +61,7 @@ class ContactsController < ApplicationController
             flash[:success] = "Contact updated successfully!"
             redirect_to @contact
         else
-            render 'edit'
+            render 'show'
         end
     end
 

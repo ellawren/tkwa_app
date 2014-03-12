@@ -1,0 +1,26 @@
+<% provide :title, @project.name.html_safe %>
+
+<% if @project.status == "potential" %>
+    <a class="header-label" href="/potential_projects">Potential Projects</a>
+    <div class="page-header">
+        <h1><%= @project.name %></h1>
+<% elsif @project.status == "current" %>
+    <a class="header-label" href="/projects/current">Current Projects</a>
+    <div class="page-header">
+        <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+<% else %>
+    <div class="page-header">
+        <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+<% end %>
+    <ul class="controls">
+        <!--<% unless @project.status == "potential" %>
+            <li><a href="#options" class="glyphicon glyphicon-eye-open tip" role="button" data-toggle="modal" title="View Options"></a></li>
+        <% end %>-->
+        <li><%= link_to "", projects_path, class: "glyphicon glyphicon-search tip", title:"Search Projects" %></li>
+        <li><%= link_to "", new_project_path(:status => 'current'), class: "glyphicon glyphicon-plus tip", title:"Add New Project" %></li>
+        <li class="delete"><%= link_to "", @project, method: :delete, confirm: "Are you sure you want to delete this project and all its data?", class: "glyphicon glyphicon-remove tip", title:"Delete This Project" %>
+        </li>
+        <li><%= f.submit "Save", class: "btn btn-primary save-btn" %></li>
+    </div>      
+
+<%= render "tabnav" %>

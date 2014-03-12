@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
     <% provide :title, "Add Pattern" %>
     <div class="page-header">
       <h1>Add Pattern</h1>
     </div>
-<% end %>
 
 <%= form_for(@pattern, :html => { :multipart => true }) do |f| %>
         

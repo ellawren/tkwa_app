@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
-  <% provide :title, "Edit Profile" %>
-  <div class="page-header">
+<% provide :title, "Edit Profile" %>
+<div class="page-header">
     <%= image_tag @user.photo.url(:thumb), class: "user-round" %><h1><%= @user.link_name %></h1>
-  </div>
-<% end %>
+</div>
 
 <%= form_for(@user, :multipart => true, class: "form-horizontal" ) do |f| %>
 

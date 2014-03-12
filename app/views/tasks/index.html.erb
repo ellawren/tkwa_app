@@ -1,13 +1,12 @@
-<% content_for :page_header do %>
 	<% provide :title, "Tasks Index" %>
 	<div class="page-header">
 		<h1>Tasks Index</h1>
 		<%= link_to "Add Task", new_task_path, class: "btn btn-primary btn-right" %>
 	</div>
-<% end %>
+
 <p class="description">Tasks listed on this page are available to all projects. Please be very careful about removing items from this list, as any time entered for that item will then have no task. Allen should approve any added tasks. <span class="bold">To enter project-specific tasks, go to the project scope page.</span></p>
 
-<ul class="list">
+<ul class="link-list">
 	<% @tasks.each do |param| %>
 		<li>
 			<%= link_to "#{param.number} - #{param.name}", edit_task_path(param) %>

@@ -1,9 +1,7 @@
-<% content_for :page_header do %>
   <% provide :title, "Project Patterns" %>
   <div class="page-header">
     <h1><%= @project.name %></h1>
   </div>
-<% end %>
 
 <%= form_for @project do |f| %>
 	<div class="pattern-list">

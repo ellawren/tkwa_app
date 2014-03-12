@@ -1,20 +1,18 @@
-<% content_for :page_header do %>
-    <% provide :title, "New Project" %>
-    <div class="page-header">
-        <h1 class="blue">New <%= "Potential " if params[:status] == 'potential' %>Project</h1>
-    </div>
-<% end %>
+<% provide :title, "New Project" %>
+<div class="page-header">
+    <h1 class="blue">New <%= "Potential " if params[:status] == 'potential' %>Project</h1>
+</div>
 
-    <%= form_for @project do |f| %>
-    
+    <%= form_for(@project, :html => { :class => "new-project"} ) do |f| %>
+
         <%= render 'shared/error_messages', object: f.object %>
         <%= render 'fields', f: f %>
-  
+
         <div class="save-row">
             <%= f.submit "Add Project", class: "btn btn-primary save-btn", action: "create", controller: "projects" %>
         </div>
 
- <% end %>
+    <% end %>
 
 <% content_for :scripts do %>
     <script>
