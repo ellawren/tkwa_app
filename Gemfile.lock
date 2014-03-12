@@ -67,6 +67,10 @@ GEM
     ffi (1.9.0)
     formtastic (2.2.1)
       actionpack (>= 3.0)
+    heroku_rails_deflate (1.0.3)
+      actionpack (>= 3.2.13)
+      activesupport (>= 3.2.13)
+      rack (>= 1.4.5)
     hike (1.2.3)
     i18n (0.6.9)
     journey (1.0.4)
@@ -190,6 +194,7 @@ DEPENDENCIES
   factory_girl_rails (= 1.4.0)
   faker (= 1.0.1)
   formtastic
+  heroku_rails_deflate
   jquery-rails
   jquery-ui-rails
   newrelic_rpm
