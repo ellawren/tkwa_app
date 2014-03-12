@@ -84,7 +84,8 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 		.tracking-table tbody tr:hover td { background-color:#f4f6f9; }
 	.tracking-table tbody td { padding:4px 0 0 0; }
 		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
-		.tracking-table tbody td.tname { color:#344953; }
+		.tracking-table tbody td.tname a { color:#16a085; }
+		.tracking-table tbody td.tname a:hover { color:#1abc9c; }
 		.tracking-table tbody td.tname .role { color:#9ba6ac; font-family:"Asap"; font-style:italic; font-weight:400; }
 	.tracking-table td.labels { padding-top:4px; padding-right:0px; }
 		.labels div { font-size:12px; margin-top:0px; padding:5px 6px 0px 0; text-align:right; color:#344953; font-family:"Asap"; font-style:italic; }
@@ -93,6 +94,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.tracking-table input { float:none; width:45px; height:26px; margin:0 auto; text-align:center; }
 	.tracking-table .actual-hours, .tracking-table .target-hours  { width:60px; height:16px; margin:3px auto 5px; text-align:center; font-weight:700; }
 		.tracking-table .actual-hours.over, .over { color:#e64c3c; }
+		.tracking-table input.rate-input { color:#9ba6ac; padding:0px 6px; font-size:12px; height:20px; }
 
 	.tracking-table td.total-hours { padding-top:4px; border-left:1px solid #666; }
 		.tracking-table td.total-hours div { width:auto; min-width:60px; height:16px; margin:3px auto 5px; text-align:center; font-weight:700; }

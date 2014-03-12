@@ -26,7 +26,7 @@ ul#nav li.disabled a:hover { color:#6b8299; }
 
 .container { margin-top:60px; position:relative; }
 
-a.header-label { position:absolute; display:block; width:auto; top:0; left:0; color:#bcc6cc; font-size:12px; text-transform:uppercase; font-weight:900; }
+a.header-label { position:absolute; display:block; width:auto; top:0; left:0; color:#9ba6ac; font-size:12px; text-transform:uppercase; font-weight:900; }
 
 .page-header { border-bottom:none; margin:20px 0; width:100%; float:left; height:38px; padding:0px; }
 	.page-header.auto { height:auto; }

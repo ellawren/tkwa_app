@@ -26,9 +26,10 @@
 				<%= f.fields_for :employee_teams, @employee_teams do |team| %>
 		    		<tr>
 		    			<%= team.hidden_field :user_id %>
-		    			<td class="tname"><%= team.object.employee_name %>
+		    			<td class="tname"><%= link_to team.object.employee_name, user_index_timesheets_path(team.object.user_id, this_year) %>
 		    				<div class="role">
-		    					<%= team.object.role %>
+		    					rate: $<%= number_with_precision(team.object.rate, precision: 2) %>
+		    					<!--rate: <%= team.text_field :rate, class: "rate-input" %>-->
 		    				</div>
 		    			</td>
 		    			<td class="labels">

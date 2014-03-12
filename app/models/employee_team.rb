@@ -17,13 +17,14 @@
 #  his_hours  :decimal(6, 2)
 #  add_hours  :decimal(6, 2)
 #  user_id    :integer
+#  rate       :decimal(5, 2)
 #
 
 class EmployeeTeam < ActiveRecord::Base
     include ApplicationHelper
 
 	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
-        :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours
+        :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours, :rate
 
 	belongs_to :project
     belongs_to :user
@@ -35,6 +36,10 @@ class EmployeeTeam < ActiveRecord::Base
 
     def employee_name
         User.find(self.user_id).name
+    end
+
+    def rate
+        DataRecord.find_by_user_id_and_year(self.user_id, this_year).billable_rate || 110
     end
 
     def project_name
