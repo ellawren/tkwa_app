@@ -3,33 +3,23 @@
 <% end %>
 
 <%= form_for @employee_team do |f| %>
+    <%= f.hidden_field :project_id, value: "#{f.object.project_id}" %>
+    <%= f.hidden_field :user_id, value: "#{f.object.user_id}" %>
+    <%= f.hidden_field :role, value: "#{f.object.role}" %>
+    
     <div class="modal-body team-edit">
-        <div class="phases">
-            <% @project.available_phases.each do |phase| %>
-                <div class="phase">
-                    <div class="number"><%= phase.number %></div>
-                    <div class="name"><%= phase.name %></div>
-                </div>
-            <% end %>
-            <div class="phase">
-                <div class="total">Total</div>
-            </div>
+        <div class="rate-box">
+            <%= f.label :rate, "Rate for this project", class: "input-label" %>
+            <%= f.text_field :rate, class: "rate-input" %>
         </div>
-        <div class="phases">
-            <% @project.available_phases.each do |phase| %>
-                <div class="phase">
-                    <%= f.text_field eval(":#{phase.shorthand}_hours") %>
-                </div>
-            <% end %>
-            <div class="phase">
-                <div class="total-hours"><%= @employee_team.est_total %></div>
-            </div>
+        <div class="rate-detail">
+            Default rate for <%= this_year %>:
+            <div class="rate-number"><%= number_to_currency(@data_record.billable_rate) %></div>
         </div>
     </div>
-              
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= f.submit "Save Changes", class: "btn btn-primary" %>
+        <%= f.submit "Save", class: "btn btn-primary" %>
     </div>
           
 <% end %>

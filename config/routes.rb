@@ -98,7 +98,6 @@ TkwaApp::Application.routes.draw do
     resources :consultant_roles
     resources :data_records
     resources :employee_roles
-    resources :employee_teams
     resources :globals, :only => [:index, :create, :update]
     resources :holidays
     resources :microposts,  only: [:create, :destroy]

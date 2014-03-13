@@ -345,7 +345,6 @@ class Project < ActiveRecord::Base
         gantt.join(", ").html_safe
     end
 
-
     def employee_hours(total_hours, user_id, phase)
       total_hours.find_all_by_user_id_and_phase_number(user_id, phase)
     end
@@ -395,7 +394,7 @@ class Project < ActiveRecord::Base
                 end
             end
             array.map{|x| sum += x}
-            data = DataRecord.find_or_create_by_year_and_user_id(2012, user_id)
+            data = DataRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, user_id)
             sum_array.push(sum * data.billable_rate)
         end
 
@@ -501,8 +500,6 @@ class Project < ActiveRecord::Base
     def employee_records(user_id, phase)
         TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
     end
-
-
 
     def budget
         array = []

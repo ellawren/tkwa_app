@@ -23,9 +23,6 @@
 class EmployeeTeam < ActiveRecord::Base
     include ApplicationHelper
 
-	attr_accessible :project_id, :user_id, :role, :pd_hours, :sd_hours, :dd_hours, 
-        :cd_hours, :bid_hours, :cca_hours, :int_hours, :his_hours, :add_hours, :rate
-
 	belongs_to :project
     belongs_to :user
     has_one :employee_role
@@ -38,12 +35,14 @@ class EmployeeTeam < ActiveRecord::Base
         User.find(self.user_id).name
     end
 
-    def rate
-        DataRecord.find_by_user_id_and_year(self.user_id, this_year).billable_rate || 110
-    end
-
     def project_name
         Project.find(self.project_id).name
+    end
+
+    before_save do
+        if self.rate.nil?
+            self.rate = DataRecord.find_by_user_id_and_year(self.user_id, this_year).billable_rate || 110
+        end
     end
 
     scope :ordered, {

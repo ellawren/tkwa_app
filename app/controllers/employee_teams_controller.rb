@@ -11,16 +11,15 @@ class EmployeeTeamsController < ApplicationController
     def edit
         @employee_team = EmployeeTeam.find(params[:id])
         @user = User.find(@employee_team.user_id)
-        @project = Project.find(@employee_team.project_id)
-        @phases = @project.available_phases
+        @data_record = DataRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
         render :layout => 'modal' 
     end
 
     def update
         @employee_team = EmployeeTeam.find(params[:id])
         if @employee_team.update_attributes(params[:employee_team])
-              flash[:success] = "Team updated successfully!"
-              redirect_to tracking_project_path(Project.find(@employee_team.project_id))
+            flash[:success] = "Team updated successfully!"
+            redirect_to tracking_project_path(Project.find(@employee_team.project_id))
         else
             redirect_to(:back) 
         end

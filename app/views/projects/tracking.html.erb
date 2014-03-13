@@ -28,8 +28,8 @@
 		    			<%= team.hidden_field :user_id %>
 		    			<td class="tname"><%= link_to team.object.employee_name, user_index_timesheets_path(team.object.user_id, this_year) %>
 		    				<div class="role">
-		    					rate: $<%= number_with_precision(team.object.rate, precision: 2) %>
-		    					<!--rate: <%= team.text_field :rate, class: "rate-input" %>-->
+		    					<!--rate: $<%= number_with_precision(team.object.rate, precision: 2) %>-->
+		    					rate: <%= team.text_field :rate, class: "rate-input" %>
 		    				</div>
 		    			</td>
 		    			<td class="labels">

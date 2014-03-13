@@ -84,7 +84,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 		.tracking-table tbody tr:hover td { background-color:#f4f6f9; }
 	.tracking-table tbody td { padding:4px 0 0 0; }
 		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
-		.tracking-table tbody td.tname a { color:#16a085; }
+		.tracking-table tbody td.tname a { color:#16a085; line-height:18px; }
 		.tracking-table tbody td.tname a:hover { color:#1abc9c; }
 		.tracking-table tbody td.tname .role { color:#9ba6ac; font-family:"Asap"; font-style:italic; font-weight:400; }
 	.tracking-table td.labels { padding-top:4px; padding-right:0px; }
