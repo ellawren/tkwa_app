@@ -64,6 +64,7 @@
 #  contact_address       :string(255)
 #  billed_to_date        :decimal(12, 2)
 #  hourly_billed_to_date :decimal(12, 2)
+#  year                  :integer
 #
 
 class Project < ActiveRecord::Base
@@ -112,6 +113,9 @@ class Project < ActiveRecord::Base
         self.status ||= 'current'
         if self.status == 'potential'
             self.number = "000000"
+        end
+        if self.year.nil?
+            self.year = Date.today.cwyear
         end
     end
 

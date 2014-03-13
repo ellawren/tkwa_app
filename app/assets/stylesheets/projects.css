@@ -70,6 +70,10 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
 	.tracking-table { float:none; margin-top:10px; margin-bottom:30px; border-collapse:collapse; font-size:10pt; }
 	.tracking-table td.tname { width:10%; min-width:90px; padding-top:8px; padding-left:0px; color:#344953; font-size: 10pt; font-weight:900; text-align:left; }
+	.billing-year { float:left; width:100%; margin:-20px 0 20px 0;}
+	.billing-year label { float:left; display:inline-block; width:80px; padding:7px 0 0 0; font-weight:900; font-size:13px; }
+	.billing-year select { float:left; display:inline-block; width:80px; }
+	.billing-year .detail { float:left; padding-top:7px; margin-left:10px; }
 
 	/* head */
 	.tracking-table th { width:5%; padding-top:0px; padding-bottom:4px; border-bottom:2px solid #34495e; font-size: 10pt; font-weight:700; text-align:left; }
