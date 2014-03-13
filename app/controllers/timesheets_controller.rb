@@ -11,6 +11,10 @@ class TimesheetsController < ApplicationController
        @holidays = Holiday.all
     end
 
+    def admin
+       @time_entries = TimeEntry.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
+    end
+
     def all
         @users = User.active_users
         @week = params[:week].to_i
@@ -37,6 +41,7 @@ class TimesheetsController < ApplicationController
 
         if @week <= weeks_in_year(@year)
             @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
+            @time_entries = @timesheet.time_entries.ordered
             @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
             
             @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
@@ -69,6 +74,7 @@ class TimesheetsController < ApplicationController
             if @data_array.count > 0
                 @data_record = @data_array[0]
                 @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
+                @time_entries = @timesheet.time_entries.ordered
                 @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
 
                 @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)

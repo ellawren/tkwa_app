@@ -179,7 +179,7 @@
 		.timesheets.gray-box #summary .circle .title { font-size:11px; height:14px; text-transform:uppercase; margin-bottom:3px; }
 	.timesheets.gray-box #summary .detail { font-style:normal; text-align:center; color:#9ba6ac; font-size:12px; margin-top:6px; }
 	.timesheets.gray-box #summary .arrow-left { float:left; margin:0 0 0 15px; width: 0; height: 0; border-top: 42px solid transparent; border-bottom: 42px solid transparent; border-right:20px solid #dce1e5; }
-	.timesheets.gray-box #summary .arrow-body { float:left; margin:0px; margin-right:-5px; width:135px; height:56px; padding:16px 12px 10px 8px; background-color:#dce1e5; font-family:"Asap"; font-style:italic; font-size:13px; line-height:16px; }
+	.timesheets.gray-box #summary .arrow-body { float:left; margin:0px; margin-right:-5px; width:135px; height:56px; padding:16px 12px 10px 8px; background-color:#dce1e5 !important; font-family:"Asap"; font-style:italic; font-size:13px; line-height:16px; -webkit-print-color-adjust: exact; /* for timesheets print */ }
 
 .timesheets.gray-box .stats { float:left; width:200px; height:140px; margin:0px; }
 	.timesheets.gray-box .stats.utilization { float:left; width:170px; height:140px; margin-left:10px; }
@@ -235,6 +235,10 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 .print .timesheets.total .table-body .table-row { border-bottom:none; }
 .print .timesheets.total .table-body .category-cell { padding-left:10px; color:#34495e; width:188px; margin-top:2px; margin-bottom:2px; font-size:13px; font-weight:900; }
 .print .timesheets.total .time-entries .entry .entry-spacer { color:#34495e; font-size:13px; }
+
+.print .timesheets.gray-box { width:870px; padding:20px; margin-bottom:10px; }
+.print .timesheets.gray-box .stats.utilization { width:160px; }
+
 
 .approved { display:none; }
 @media print {

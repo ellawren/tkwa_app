@@ -1,0 +1,37 @@
+<% provide :title, "Timesheets Admin" %>
+<div class="page-header">
+    <h1>Timesheets Admin</h1>
+</div>
+
+<table class="table timesheets-table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>User/Timesheet</th>
+			<th>Phase</th>
+			<th>Task</th>
+			<th>Total</th>
+			<th>Created</th>
+			<th>Updated</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @time_entries.each do |t| %>
+			<tr>
+				<% timesheet = Timesheet.find(t.timesheet_id) %>
+				<td><%= t.id %></td>
+				<td>
+					<%= link_to "#{User.find(t.user_id).name} [#{t.user_id}]", user_index_timesheets_path(t.user_id, timesheet.year) %><br>
+					<%= link_to "#{timesheet.week}/#{timesheet.year} [#{t.timesheet_id}]", user_timesheet_path(t.user_id, timesheet.year, timesheet.week) %>
+				</td>
+				<td><%= t.phase_number %></td>
+				<td><%= t.task %></td>
+				<td><%= t.entry_total %></td>
+				<td><%= t.created_at.strftime("%B %d, %Y<br>%l:%M:%S %p").html_safe %></td>
+				<td><%= t.updated_at.strftime("%B %d, %Y<br>%l:%M:%S %p").html_safe  if t.updated_at != t.created_at %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<%= will_paginate @time_entries %>

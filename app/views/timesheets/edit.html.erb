@@ -56,7 +56,7 @@
 
 		  		<div class="table-body">
 					<!-- nested form for team-->
-		    		<%= f.fields_for :time_entries do |builder| %>
+		    		<%= f.fields_for :time_entries, @time_entries do |builder| %>
 		    			<% if @timesheet.complete == false %>
 		    				<%= render 'time_entry_fields', :f => builder %>
 		    			<% else %>

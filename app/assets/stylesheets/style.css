@@ -384,7 +384,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.delete.projects { margin:-2px 0 0 0; }
 	.page-header ul.controls li a.delete:hover { color:#e64c3c; }
 
-	.gray-box { float:left; width:90%; height:80px; padding:20px 47px; border-radius:8px; background-color:#ecf0f5; }
+	.gray-box { float:left; width:90%; height:80px; padding:20px 47px; border-radius:8px; background-color:#ecf0f5 !important; -webkit-print-color-adjust: exact; /* for timesheets print */ }
 		.gray-box.contacts { height:auto; }
 	.content { float:left; width:100%; }
 
