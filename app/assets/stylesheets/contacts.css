@@ -78,7 +78,7 @@
 	}
 
 	/* envelope */
-	.envelope { padding:170px 0 0 0; width:1000px; height:400px; }
+	.envelope { padding:170px 0 0 0; width:1000px; }
 	.envelope .firm-logo { float:left; height:82px; width:auto; margin-top:30px; }
 	.envelope .firm-address { float:left; margin:14px 0 0 12px; margin-top:44px; font-size:12px; line-height:18px; }
 
