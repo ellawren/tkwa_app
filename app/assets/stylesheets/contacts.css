@@ -78,12 +78,12 @@
 	}
 
 	/* envelope */
-	.envelope { padding:0px; width:900px; }
-	.envelope .firm-logo { float:left; height:82px; width:auto; }
-	.envelope .firm-address { float:left; margin:14px 0 0 12px; font-size:12px; line-height:18px; }
+	.envelope { padding:170px 0 0 0; width:1000px; height:400px; }
+	.envelope .firm-logo { float:left; height:82px; width:auto; margin-top:30px; }
+	.envelope .firm-address { float:left; margin:14px 0 0 12px; margin-top:44px; font-size:12px; line-height:18px; }
 
-	.envelope .address { float:left; clear:left; margin:80px 0 0 360px; }
-	.envelope textarea.display { border:none; height:auto; width:300px; color:#344953; background-color:#f4f6f9; border-radius:0px; padding:3px 6px; resize:none; }
+	.envelope .address { float:left; clear:left; margin:95px 0 0 400px; }
+	.envelope textarea.display { border:none; line-height:20px; height:auto; width:340px; color:#344953; background-color:#f4f6f9; border-radius:0px; padding:3px 6px; resize:none; }
 
 
 

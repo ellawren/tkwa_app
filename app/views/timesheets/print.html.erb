@@ -15,13 +15,14 @@
 		</div>
 		
 	<% else %>
+	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
 		<div class="PrintArea">
 			<div class="page-header print">
 		        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
 		    </div>		
 		
 
-			<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
+			
 				
 				<div class="box print">
 					<%= render 'shared/error_messages', :object => f.object %>
@@ -232,7 +233,7 @@
 				<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
 				<a class="text-link" data-dismiss="modal" aria-hidden="true">close</a>
 			</div>
-			<% end %> <!-- end form -->
+		<% end %> <!-- end form -->
 		
 	<% end %><!-- end conditional -->
 	
