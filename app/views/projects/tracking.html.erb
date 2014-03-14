@@ -144,7 +144,7 @@
 				</div>
 				<div class="minus"></div>
 				<div class="circle">
-					<div class="text">Actual Fee<br>Used To Date</div>
+					<div class="text">Actual Fee<br>(Hours To Date)</div>
 					<div class="number"><%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %></div>
 					<div class="percentage"><%= number_to_percentage(@project.percent_used, :precision => 0) unless @project.target_billing_total('Total') == 0 %></div>
 				</div>

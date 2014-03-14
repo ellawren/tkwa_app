@@ -15,7 +15,7 @@
 		</div>
 		
 	<% else %>
-	<%= form_for(@timesheet, :html => { :class => "#{'complete' unless @timesheet.open?}" }) do |f| %>
+	<%= form_for(@timesheet, :html => { :class => "print #{'complete' unless @timesheet.open?}" }) do |f| %>
 		<div class="PrintArea">
 			<div class="page-header print">
 		        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>

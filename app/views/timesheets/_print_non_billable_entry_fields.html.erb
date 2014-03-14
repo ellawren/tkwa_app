@@ -1,4 +1,4 @@
-<div class="table-row <% if f.object.category == "Holiday" %>holiday<% end %> view" id="nb-entry-<%= f.object.id %>">
+<div class="table-row view" id="nb-entry-<%= f.object.id %>">
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 

@@ -30,7 +30,7 @@ class DataRecord < ActiveRecord::Base
         :conditions => ["active = ?", true ]
     }
 
-	def self.week_array
+	 def self.week_array
     	(self.start_week..self.end_week).to_a 
   	end
 
@@ -38,9 +38,13 @@ class DataRecord < ActiveRecord::Base
     	(self.start_week..self.end_week).to_a 
   	end
 
-  	def user_name
-  		User.find(self.user_id).name
-  	end
+    def user
+      User.find(self.user_id)
+    end
+
+    def user_name
+      self.user.name
+    end
 
   	def duration 
   		self.start_week - self.end_week + 1

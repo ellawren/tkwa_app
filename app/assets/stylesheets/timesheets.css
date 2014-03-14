@@ -45,12 +45,18 @@
     .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:1px solid #555; font-size:13px; font-weight:900; }
 	.timesheets .table-head .cell 	{ float:left; padding-top:5px; margin:0px 2px 0px 2px; }
 	.timesheets .table-body .table-row { padding:0px 0px 0px 8px; border-bottom:1px solid #e1e6eb;}
-		.timesheets .table-body .table-row.holiday { background-color:#e1f0f3; width:932px; padding-top:2px; }
+		.timesheets .table-body .table-row.holiday { background-color:#e1f0f3; width:932px; padding-top:2px; height:40px; }
+			.complete .timesheets .table-body .table-row.holiday{height:35px; }
+			.print .timesheets .table-body .table-row.holiday{height:30px; }
 		.timesheets .table-body .table-row:first-child.holiday { margin-top:0px; }
 		.timesheets .table-body .table-row.holiday .entry-spacer { background-color:#fff; border-color:#b3dbe4; }
 		.timesheets .table-body .table-row.holiday .category-cell, .timesheets .table-body .table-row.holiday .description-cell, 
 		.timesheets .table-body .table-row.holiday .entry-spacer
 				{ color:#0ba0d4; }
+		.timesheets .table-body .table-row.holiday .category-cell, .timesheets .table-body .table-row.holiday .description-cell { padding-top:8px; }
+		.complete .timesheets .table-body .table-row.holiday .category-cell, .complete .timesheets .table-body .table-row.holiday .description-cell { padding-top:4px; }
+		.print .timesheets .table-body .table-row.holiday .category-cell, .print .timesheets .table-body .table-row.holiday .description-cell { padding-top:6px; }
+
 	.timesheets .table-body .table-row:first-child { padding-top:2px; }
 	.timesheets .custom-select { padding:4px 3px; }
 	.timesheets .delete { margin:8px 0 8px 6px; }
@@ -96,7 +102,8 @@
 	.timesheets .time-entries .entry.today .text-input:focus { border-color:#5bae60; }
 
 	/* uneditable time entries */
-	.timesheets .time-entries .entry .entry-spacer { width:39px; height:16px; padding:3px 3px 7px; margin:2px 4px 1px 0; text-align:center; border: 2px solid #f4f6f9; font-size: 14px; text-indent: 0px; font-family: "Lato", sans-serif; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; display: inline-block; line-height: 20px; vertical-align: middle;}
+	.timesheets .time-entries .entry .entry-spacer { width:39px; height:18px; padding:6px 3px 8px; margin:2px 4px 1px 0; text-align:center; border: 2px solid #f4f6f9; font-size: 14px; text-indent: 0px; font-family: "Lato", sans-serif; -webkit-appearance: none; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; display: inline-block; line-height: 20px; vertical-align: middle;}
+			.complete .timesheets .time-entries .entry .entry-spacer, .complete .timesheets .holiday .time-entries .entry .entry-spacer { height:16px; padding:4px 3px 6px; margin-top:3px; }
 	.timesheets .time-entries .entry .entry-spacer.weekend { background-color:#f4f6f9; }
 	.timesheets .time-entries .entry.today .entry-spacer { border-color:#f1c40f; }
 

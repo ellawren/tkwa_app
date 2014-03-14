@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140314165332) do
+ActiveRecord::Schema.define(:version => 20140314211257) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(:version => 20140314165332) do
     t.decimal  "overage_from_prev", :precision => 6, :scale => 2
     t.decimal  "billable_rate",     :precision => 5, :scale => 2
   end
+
+  add_index "data_records", ["user_id", "year"], :name => "index_data_records_on_user_id_and_year", :unique => true
 
   create_table "data_records_users", :id => false, :force => true do |t|
     t.integer  "data_record_id", :null => false

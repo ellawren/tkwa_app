@@ -40,11 +40,10 @@ class TimesheetsController < ApplicationController
 
         if @week <= weeks_in_year(@year)
             @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-            @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
+            @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(@year, @user.id)
+            @data_record = DataRecord.find_by_user_id_and_year(@user.id, @year)
             
-            @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
-            if @data_array.count > 0
-                @data_record = @data_array[0]
+            if @data_record.present?
                 @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1) 
                 @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f) 
                 @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week) 
@@ -67,14 +66,11 @@ class TimesheetsController < ApplicationController
         @user = User.find(params[:id])
 
         if @week <= weeks_in_year(@year)
-            # find matching data record
-            @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)
-            if @data_array.count > 0
-                @data_record = @data_array[0]
-                @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-                @time_entries = @timesheet.time_entries.ordered
-                @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
-
+            @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
+            @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(@year, @user.id)
+            @data_record = DataRecord.find_by_user_id_and_year(@user.id, @year)
+            
+            if @data_record.present?
                 @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)
                 @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f)
                 @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)

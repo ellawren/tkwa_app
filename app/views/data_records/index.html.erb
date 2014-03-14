@@ -37,10 +37,10 @@
 					<tr>
 						<td>
 							<div class="user-name">
-								<a href=<%= "/users/#{d.user_id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= d.user_name %></a>
+								<a href=<%= "/users/#{d.user_id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= d.user.name %></a>
 							</div>
 							<div class="employee-number">
-								<%= Employee.find_by_user_id(User.find(d.user_id)).employee_number %>
+								<%= d.user.employee.employee_number %>
 							</div>
 						</td>
 						<td><%= "#{d.start_week} - #{d.end_week}" %></td>

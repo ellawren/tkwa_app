@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
         end
     end
 
+    after_create do
+        data_record = DataRecord.find_or_create_by_user_id_and_year(self.id, Date.today.cwyear)
+    end
+
     # SCOPES
     default_scope order('name ASC')
 

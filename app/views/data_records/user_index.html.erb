@@ -30,29 +30,28 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% DataRecord.find_all_by_year_and_user_id(y, @user.id).each do |d| %>
-				<tr>
+			<% d = DataRecord.find_by_year_and_user_id(y, @user.id) %>
+			<tr>
+				<td>
+					<div class="user-name">
+						<a href=<%= "/users/#{d.user_id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= d.user.name %></a>
+					</div>
+					<div class="employee-number">
+						<%= d.user.employee.employee_number %>
+					</div>
+				</td>
+				<td><%= "#{d.start_week} - #{d.end_week}" %></td>
+				<td><%= d.pay_type %></td>
+					<td><%= d.hours_in_week %></td>
+					<td><%= d.holiday %></td>
+					<td><%= d.overage_from_prev %></td>
+					<td><%= number_to_currency(d.billable_rate) %></td>
 					<td>
-						<div class="user-name">
-							<a href=<%= "/users/#{d.user_id}/data_records/#{d.id}" %> data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= d.user_name %></a>
-						</div>
-						<div class="employee-number">
-							<%= User.find(d.user_id).employee.employee_number %>
-						</div>
-					</td>
-					<td><%= "#{d.start_week} - #{d.end_week}" %></td>
-					<td><%= d.pay_type %></td>
-  					<td><%= d.hours_in_week %></td>
-  					<td><%= d.holiday %></td>
-  					<td><%= d.overage_from_prev %></td>
-  					<td><%= number_to_currency(d.billable_rate) %></td>
-  					<td>
-	  					<% if current_user.admin? %>
-	  						<%= link_to "", d, class: "delete fui-cross", method: :delete, confirm: "You sure?" %>
-						<% end %>
-					</td>
-  				</tr>
-  			<% end %>
+  					<% if current_user.admin? %>
+  						<%= link_to "", d, class: "delete fui-cross", method: :delete, confirm: "You sure?" %>
+					<% end %>
+				</td>
+				</tr>
 		</tbody>
 	</table>
 <% end %>
