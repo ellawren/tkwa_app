@@ -589,7 +589,7 @@ class Project < ActiveRecord::Base
     end
 
     def percent_used
-        (sum_actual / sum_est) * 100
+        (actual_billing_total('Total') / target_billing_total('Total')) * 100
     end
 
     def project_status

@@ -106,7 +106,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.remaining .act.sum { width:70px; height:20px; padding:2px 0; text-align:center; margin:30px auto 0px; border-radius:6px; background-color:#86cc71; color:#fff; font-weight:700; }
 		.remaining .act.sum.over { background-color:#e64c3c; }
 
-	.remaining .percent-used { border:1px dashed #344953; color:#344953; width:46px; height:20px; font-size:13px; margin-top:2px; padding:12px 0; border-radius:30px; background-color:#fff; font-weight:700; }
+	.remaining .percent-used { border:1px dashed #344953; color:#344953; width:46px; height:20px; font-size:13px; margin:2px auto 0px; padding:12px 0; border-radius:30px; background-color:#fff; font-weight:700; }
 	.remaining .percent-used.over { border-color:#e64c3c; color:#e64c3c; }
 
 	/* foot */

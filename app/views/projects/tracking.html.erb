@@ -146,10 +146,10 @@
 				<div class="circle">
 					<div class="text">Actual Fee<br>Used To Date</div>
 					<div class="number"><%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %></div>
-					<div class="percentage"><%= number_to_percentage(@project.percent_used, :precision => 0) %></div>
+					<div class="percentage"><%= number_to_percentage(@project.percent_used, :precision => 0) unless @project.target_billing_total('Total') == 0 %></div>
 				</div>
 				<div class="equals"></div>
-				<div class="circle <%= is_over?(@project.sum_est, @project.sum_actual) %>">
+				<div class="circle <%= is_over?(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>">
 					<div class="text"><br>Remainder</div>
 					<div class="number"><%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %></div>
 				</div>
