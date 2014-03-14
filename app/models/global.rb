@@ -19,5 +19,8 @@ class Global < ActiveRecord::Base
 		self.mileage ||= 0.51
 	end
 
+	# used for employee data records
+	AVAILABLE_YEARS =  [ [2014, 2014], [2013, 2013] ]
+
 end
 

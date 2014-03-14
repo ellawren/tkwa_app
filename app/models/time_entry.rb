@@ -21,7 +21,7 @@
 
 class TimeEntry < ActiveRecord::Base
 
-    scope :ordered, joins(:project).order('projects.name ASC, phase_number ASC, task ASC').readonly(false)
+    default_scope joins(:project).order('projects.name ASC, phase_number ASC, task ASC').readonly(false)
     belongs_to :timesheet
     belongs_to :project
   

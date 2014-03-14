@@ -9,11 +9,6 @@
 		<p class="description">This project's team has not been set up yet. Click the 'team' tab in the bar above to add team members.</p>
 	<% else %>
 		<p class="description">The table below compares actual hours as entered on timesheets with target hours as determined by our fee. Staying under the target will keep a project profitable, while going over (shown in <span class="bold over">red</span>) represents a net loss.</p>
-		<div class="billing-year">
-			<%= f.label :year, "Billing Year:" %>
-			<%= f.select(:year, options_for_select([["2014", 2014]]), {}, {:class => 'custom-select'}) %>
-			<div class="detail">(Determines which year's rates are used to calculate fees.)</div>
-		</div>
 
 		<table class="table tracking-table">
 			<thead>
@@ -62,7 +57,11 @@
 						<td class="remaining">
 							<% unless team.object.est_total == 0 %>
 								<div class="percent-used <%= is_over?(team.object.est_total, team.object.employee_actual('Total')) %>">
-								<%= number_to_percentage(team.object.percent_used, :precision => 0) %>
+									<% if team.object.percent_used > 999 %>
+							            !
+							        <% else %>
+							            <%= number_to_percentage(team.object.percent_used, :precision => 0) %>
+							        <% end %>
 								</div>
 							<% end %>
 						</td>
@@ -79,6 +78,24 @@
 					<td class="total-hours"><%= nonzero(@project.sum_est) %></td>
 					<td></td>
 				</tr>
+				<tr class="actual">
+					<td class="tname">Actual Hours</td>
+					<td class="labels">
+					</td>
+					<% @project.available_phases.each do |phase| %>
+						<td class="phase-cell">
+							<div class="actual-hours <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>">
+								<%= nonzero(@project.phase_actual("#{phase.number}")) %>
+							</div>
+						</td>
+					<% end %>
+					<td class="total-hours">
+						<div class="actual-total <%= is_over?(@project.sum_est, @project.sum_actual) %>">
+							<%= nonzero(@project.sum_actual) %>
+						</div>
+					</td>
+					<td class="remaining"></td>
+				</tr>
 				<tr class="est-fees">
 					<td>Target Fees</td>
 					<td></td>
@@ -89,34 +106,27 @@
 					<td></td>
 				</tr>
 				<tr class="actual">
-					<td class="tname">Actual Hours<br>Actual Fee</td>
+					<td class="tname">Actual Fee<br><div class="italic">% of Total</div></td>
 					<td class="labels">
 					</td>
 
 					<% @project.available_phases.each do |phase| %>
 						<td class="phase-cell">
 							<div class="actual-hours <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>">
-								<%= nonzero(@project.phase_actual("#{phase.number}")) %>
-								<br>
 								<%= nonzero_currency(@project.actual_billing_total(phase.number)) %>
+								<br>
+								<div class="italic"><%= nonzero_percentage(@project.percentage_of_total("#{phase.number}")) %></div>
 							</div>
 						</td>
 					<% end %>
 					
 					<td class="total-hours">
 						<div class="actual-total <%= is_over?(@project.sum_est, @project.sum_actual) %>">
-							<%= nonzero(@project.sum_actual) %><br>
 							<%= nonzero_currency(@project.actual_billing_total('Total')) %>
 						</div>
 					</td>
 
-					<td class="remaining">
-						<% unless @project.sum_est == 0 %>
-							<div class="percent-used <%= is_over?(@project.sum_est, @project.sum_actual) %>">
-								<%= number_to_percentage(@project.percent_used, :precision => 0) %>
-							</div>
-						<% end %>
-					</td>
+					<td class="remaining"></td>
 					
 				</tr>
 			</tfoot>
@@ -124,6 +134,10 @@
 
 		<div class="full">
 			<div class="tracking-summary">
+				<div class="circle billing">
+					<div class="text">TKWA Fee<br>(from billing)</div>
+					<div class="number"><%= number_to_currency(@project.tkwa_fee, :precision => 0) %></div>
+				</div>
 				<div class="circle">
 					<div class="text">Target Fee<br>(based on hours)</div>
 					<div class="number"><%= number_to_currency(@project.target_billing_total('Total'), :precision => 0) %></div>
@@ -132,11 +146,16 @@
 				<div class="circle">
 					<div class="text">Actual Fee<br>Used To Date</div>
 					<div class="number"><%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %></div>
+					<div class="percentage"><%= number_to_percentage(@project.percent_used, :precision => 0) %></div>
 				</div>
 				<div class="equals"></div>
 				<div class="circle <%= is_over?(@project.sum_est, @project.sum_actual) %>">
 					<div class="text"><br>Remainder</div>
 					<div class="number"><%= remaining_currency(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %></div>
+				</div>
+				<div class="circle billing">
+					<div class="text"><br>project is</div>
+					<div class="number"><%= @project.project_status %></div>
 				</div>
 			</div>
 

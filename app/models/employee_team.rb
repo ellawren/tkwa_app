@@ -131,7 +131,7 @@ class EmployeeTeam < ActiveRecord::Base
     end
 
     def percent_used
-        (self.employee_actual('Total') / self.est_total) * 100
+        percent = (self.employee_actual('Total') / self.est_total) * 100
     end
 
 end

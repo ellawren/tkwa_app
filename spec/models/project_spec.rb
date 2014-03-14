@@ -64,7 +64,6 @@
 #  contact_address       :string(255)
 #  billed_to_date        :decimal(12, 2)
 #  hourly_billed_to_date :decimal(12, 2)
-#  year                  :integer
 #
 
 require 'spec_helper'

@@ -40,7 +40,6 @@ class TimesheetsController < ApplicationController
 
         if @week <= weeks_in_year(@year)
             @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-            @time_entries = @timesheet.time_entries.ordered
             @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
             
             @data_array = DataRecord.where("user_id = ? AND year = ? AND start_week <= ? AND end_week >= ?", @user.id, @year, @week, @week)

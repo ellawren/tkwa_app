@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140313201159) do
+ActiveRecord::Schema.define(:version => 20140314165332) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -350,7 +350,6 @@ ActiveRecord::Schema.define(:version => 20140313201159) do
     t.string   "contact_address"
     t.decimal  "billed_to_date",        :precision => 12, :scale => 2
     t.decimal  "hourly_billed_to_date", :precision => 12, :scale => 2
-    t.integer  "year"
   end
 
   create_table "projects_reimbursables", :id => false, :force => true do |t|

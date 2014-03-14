@@ -64,7 +64,6 @@
 #  contact_address       :string(255)
 #  billed_to_date        :decimal(12, 2)
 #  hourly_billed_to_date :decimal(12, 2)
-#  year                  :integer
 #
 
 class Project < ActiveRecord::Base
@@ -113,9 +112,6 @@ class Project < ActiveRecord::Base
         self.status ||= 'current'
         if self.status == 'potential'
             self.number = "000000"
-        end
-        if self.year.nil?
-            self.year = Date.today.cwyear
         end
     end
 
@@ -370,6 +366,11 @@ class Project < ActiveRecord::Base
         sum
     end
 
+    # sum of actual hours entered for project, by phase
+    def percentage_of_total(phase)
+        phase_actual(phase) / sum_actual
+    end
+
     # calculate actual billing for each employee by phase
     # this function is used to calculate actual_billing_total (also in this file)
     def actual_billing(user_id, phase)
@@ -398,8 +399,8 @@ class Project < ActiveRecord::Base
                 end
             end
             array.map{|x| sum += x}
-            data = DataRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, user_id)
-            sum_array.push(sum * data.billable_rate)
+            team = EmployeeTeam.find_by_user_id_and_project_id(user_id, self.id)
+            sum_array.push(sum * team.rate)
         end
 
         sum_array.map{|x| total += x}
@@ -463,10 +464,9 @@ class Project < ActiveRecord::Base
             teams.each do |t| 
                 est_hours = eval("t.#{p.shorthand}_hours")
                 user_id = t.user_id
-                data = DataRecord.find_or_create_by_year_and_user_id(Time.now.year, user_id)
                 
                 unless est_hours.nil?
-                    billing = est_hours * data.billable_rate
+                    billing = est_hours * t.rate
                     total_array.push(billing)
                 end
             end
@@ -590,6 +590,16 @@ class Project < ActiveRecord::Base
 
     def percent_used
         (sum_actual / sum_est) * 100
+    end
+
+    def project_status
+        if self.percent_used <= 99
+            "on track"
+        elsif self.percent_used > 100 && self.percent_used <= 102
+            "in trouble"
+        elsif self.percent_used > 103
+            "over budget"
+        end
     end
 
     # do not change the order on these - it will affect all previous records

@@ -73,6 +73,12 @@ module ApplicationHelper
         end
     end
 
+    def nonzero_percentage(value)
+        if value > 0
+            number_to_percentage(value * 100, :precision => 0)
+        end
+    end
+
     def month_shading(week, year)
         # jan / mar / may / jul / sep / nov
         string = ""

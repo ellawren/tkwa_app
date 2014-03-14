@@ -24,7 +24,6 @@ TkwaApp::Application.routes.draw do
     match '/users/:user_id/data_records',               to: 'data_records#user_index'
 
     match '/timesheets/all/:year/:week',                to: 'timesheets#all', as: 'all_timesheets'
-    match '/timesheets/admin',                          to: 'timesheets#admin', as: 'timesheets_admin'
 
     match '/users/:user_id/data_records/:id',           to: 'data_records#edit', as: 'user_data_record'
     match '/vacations',  to: 'vacations#all',           as: 'all_vacations'
