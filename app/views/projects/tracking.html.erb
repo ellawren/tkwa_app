@@ -112,9 +112,9 @@
 					<% @project.available_phases.each do |phase| %>
 						<td class="phase-cell">
 							<div class="actual-hours <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>">
-								
+								<%= nonzero_currency(@project.actual_billing_total(phase.number)) %>
 								<br>
-								<div class="italic"></div>
+								<div class="italic"><%= nonzero_percentage(@project.percentage_of_total("#{phase.number}")) %></div>
 							</div>
 						</td>
 					<% end %>

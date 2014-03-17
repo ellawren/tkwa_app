@@ -76,8 +76,10 @@ module ApplicationHelper
     end
 
     def nonzero_percentage(value)
-        if value > 0
-            number_to_percentage(value * 100, :precision => 0)
+        unless value.nil?
+            if value > 0
+                number_to_percentage(value * 100, :precision => 0)
+            end
         end
     end
 
