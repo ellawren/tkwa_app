@@ -368,7 +368,15 @@ class Project < ActiveRecord::Base
 
     # sum of actual hours entered for project, by phase
     def percentage_of_total(phase)
-        phase_actual(phase) / sum_actual
+        if phase == 'Total'
+            actual_billing_total('Total') / target_billing_total('Total')
+        else
+            phase_actual(phase) / target_billing_total('Total')
+        end
+    end
+
+    # sum of actual hours entered for project, by phase
+    def percentage_of_total_all(phase)
     end
 
     # calculate actual billing for each employee by phase

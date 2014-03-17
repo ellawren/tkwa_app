@@ -23,13 +23,11 @@
                 </tr>
             </thead>
 			<tbody>
-				<%= f.fields_for :employee_teams, @employee_teams do |team| %>
+				<% @employee_teams.each do |team| %>
 		    		<tr>
-		    			<%= team.hidden_field :user_id %>
-		    			<td class="tname"><%= link_to team.object.employee_name, user_index_timesheets_path(team.object.user_id, this_year) %>
+		    			<td class="tname"><a href="<%= edit_project_employee_team_path(team.project_id, team.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= team.user.name %></a>
 		    				<div class="role">
-		    					<!--rate: $<%= number_with_precision(team.object.rate, precision: 2) %>-->
-		    					rate: <%= team.text_field :rate, class: "rate-input" %>
+		    					<%= team.role %> / $<%= strip(team.rate) %>
 		    				</div>
 		    			</td>
 		    			<td class="labels">
@@ -39,28 +37,29 @@
 
 						<% @project.available_phases.each do |phase| %>
 			                <td class="phase-cell">
-			                    <%= team.text_field eval(":#{phase.shorthand}_hours") %>
-			                    <div class="actual-hours <%= is_over?(eval("team.object.#{phase.shorthand}_hours"), team.object.employee_actual(phase.number)  ) %>">
-			                    	<%= nonzero(team.object.employee_actual(phase.number)) %>
+			                	<% est_hours = eval("team.#{phase.shorthand}_hours") %>
+							    <div class="target"><%= est_hours %></div>
+			                    <div class="actual <%= is_over?(eval("team.#{phase.shorthand}_hours"), team.employee_actual(phase.number)  ) %>">
+			                    	<%= nonzero(team.employee_actual(phase.number)) %>
 			                    </div>
 			                </td>
 			            <% end %>
 
 			            <td class="total-hours">
-			            	<div class="target-total">
-								<%= nonzero(team.object.est_total) %>
+			            	<div class="target">
+								<%= nonzero(team.est_total) %>
 							</div>
-							<div class="actual-total <%= is_over?(team.object.est_total, team.object.employee_actual('Total')) %>">
-								<%= nonzero(team.object.employee_actual('Total')) %>
+							<div class="actual <%= is_over?(team.est_total, team.employee_actual('Total')) %>">
+								<%= nonzero(team.employee_actual('Total')) %>
 							</div>
 						</td>
 						<td class="remaining">
-							<% unless team.object.est_total == 0 %>
-								<div class="percent-used <%= is_over?(team.object.est_total, team.object.employee_actual('Total')) %>">
-									<% if team.object.percent_used > 999 %>
+							<% unless team.est_total == 0 %>
+								<div class="percent-used <%= is_over?(team.est_total, team.employee_actual('Total')) %>">
+									<% if team.percent_used > 999 %>
 							            !
 							        <% else %>
-							            <%= number_to_percentage(team.object.percent_used, :precision => 0) %>
+							            <%= number_to_percentage(team.percent_used, :precision => 0) %>
 							        <% end %>
 								</div>
 							<% end %>
@@ -106,7 +105,7 @@
 					<td></td>
 				</tr>
 				<tr class="actual">
-					<td class="tname">Actual Fee<br><div class="italic">% of Total</div></td>
+					<td class="tname">Actual Fee<br><div class="italic">% of Target Total</div></td>
 					<td class="labels">
 					</td>
 
@@ -123,6 +122,8 @@
 					<td class="total-hours">
 						<div class="actual-total <%= is_over?(@project.sum_est, @project.sum_actual) %>">
 							<%= nonzero_currency(@project.actual_billing_total('Total')) %>
+							<br>
+							<div class="italic"><%= nonzero_percentage(@project.percentage_of_total('Total')) %></div>
 						</div>
 					</td>
 
@@ -146,7 +147,6 @@
 				<div class="circle">
 					<div class="text">Actual Fee<br>(Hours To Date)</div>
 					<div class="number"><%= number_to_currency(@project.actual_billing_total('Total'), :precision => 0) %></div>
-					<div class="percentage"><%= number_to_percentage(@project.percent_used, :precision => 0) unless @project.target_billing_total('Total') == 0 %></div>
 				</div>
 				<div class="equals"></div>
 				<div class="circle <%= is_over?(@project.target_billing_total('Total'), @project.actual_billing_total('Total')) %>">
@@ -160,11 +160,20 @@
 			</div>
 
 		</div>
-		 
-		<div class="save-row">
-			<%= f.submit "Save", class: "btn btn-primary save-btn" %>
-		</div>
 
 	<% end %>
 
+<% end %>
+
+<!-- modal for employee target edit -->
+    <div class="modal hide fade team-tracking" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div><!-- /.modal -->
+<!-- end modal -->
+
+<% content_for :scripts do %>
+    <script>
+    //reset modal remote on close
+    $('#myModal').on('hide.bs.modal', function (e) {
+        $(this).data('bs.modal', null);
+    });
+    </script>
 <% end %>

@@ -10,6 +10,7 @@ class EmployeeTeamsController < ApplicationController
   
     def edit
         @employee_team = EmployeeTeam.find(params[:id])
+        @project = Project.find(@employee_team.project_id)
         @user = User.find(@employee_team.user_id)
         @data_record = DataRecord.find_or_create_by_year_and_user_id(Date.today.cwyear, @user.id)
         render :layout => 'modal' 

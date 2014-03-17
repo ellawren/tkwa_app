@@ -718,38 +718,34 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
   		.modal-table th .blanch { width:100%; font-size:8pt; font-weight:500; text-transform:uppercase; }
   		.modal-table td { margin:8px 0; }
   		.modal-table td.modal-total { width:80px; height:34px; padding-top:14px; color:#34495e; font-size:14px; font-weight:900; text-align:center; }
+
+  	.modal .header-span, .modal .body-span { width:100%; margin-left:0px; color: #34495e; font-family: "Lato", sans-serif; }
+  	.modal .header-span h3 { width:100%; margin-bottom:30px; color:#34495e; font-size:16px; font-weight:900; }
+  	.modal th.table-cell { width:80px; padding-top:0px; color:#34495e; font-size:14pt; font-weight:900; text-align:center; }
+  	.modal a.btn { float:left; width:auto; padding:8px 16px; margin-top:15px; margin-bottom:30px; border-radius:8px; border:none; outline:none; font-size:13px; cursor:pointer; }
     /*---*/
 
     /* projects - tracking - employee team edit modal */
-    .modal-body.team-edit { height:100px; }
- 	.team-edit .phases { width:770px; float:left; padding-left:20px; }
+    .modal.team-tracking { left:36%; width:900px; }
+    .modal-body.team-edit { height:100px; padding-left:40px; }
+	.team-edit input.rate-input { width:70px; }
+	.team-edit .rate-box { float:left; width:110px; padding-top:25px; border-right:1px solid #ddd; }
+	.team-edit .rate-detail { float:left; width:180px; margin-left:20px; padding-top:2px; color: #9ba6ac; }
+	.team-edit .rate-number { margin-top:10px; font-weight:700; color:#34495e; }
+
+ 	.team-edit .phases { width:620px; float:left; padding-left:20px; }
 		.team-edit .phases .phase { float:left; width:85px; text-align:center; }
 			.team-edit .phases .phase .number { font-size:16px; font-weight:900; }
 			.team-edit .phases .phase .name { font-size:11px; text-transform:uppercase; margin-top:6px; }
 			.team-edit .phases .phase .total { font-size:13px; font-weight:900; padding-top:22px; }
 			.team-edit .phases .phase input { width:58px; margin:8px 2px 0px; text-align:center; }
 			.team-edit .phases .total-hours { float:left; width:100%; padding:17px 0; font-weight:900; }
- 
-  	.modal .header-span, .modal .body-span { width:100%; margin-left:0px; color: #34495e; font-family: "Lato", sans-serif; }
-  	.modal .header-span h3 { width:100%; margin-bottom:30px; color:#34495e; font-size:16px; font-weight:900; }
-  	.modal th.table-cell { width:80px; padding-top:0px; color:#34495e; font-size:14pt; font-weight:900; text-align:center; }
-  	.modal a.btn { float:left; width:auto; padding:8px 16px; margin-top:15px; margin-bottom:30px; border-radius:8px; border:none; outline:none; font-size:13px; cursor:pointer; }
   	/*---*/
 
   	/* view options modal */
   	#options { left:55%; width:450px; height:auto; }
     #options .modal-body { float:left; z-index:99; width:auto; height:auto; padding:20px 40px; margin-top:0px; overflow:visible; }
 	#options .modal-footer { float:left; width:400px; height:auto; }
-	/*---*/
-
-	/* rate edit modal */
-  	.modal.rate-edit { left:55%; width:450px; height:auto; }
-    .modal.rate-edit .modal-body { float:left; z-index:99; width:auto; height:auto; padding:20px 40px; margin-top:0px; overflow:visible; }
-	.modal.rate-edit .modal-footer { float:left; width:400px; height:auto; }
-	.modal.rate-edit input.rate-input { width:100px; }
-	.modal.rate-edit .rate-box { float:left; width:140px; }
-	.modal.rate-edit .rate-detail { float:left; width:180px; margin-left:20px; padding-top:2px; color: #9ba6ac; }
-	.modal.rate-edit .rate-number { margin-top:10px; font-weight:700; color:#34495e; }
 	/*---*/
 
 	/* timesheets - view phases modal */

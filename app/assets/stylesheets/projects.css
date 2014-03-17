@@ -80,33 +80,33 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 			.tracking-table th.remaining { padding:0px 8px 2px 8px; text-align:center; font-size: 10pt; }
 
 	/* body */
-	.tracking-table tbody tr { border-bottom:1px solid #bbb; }
-		.tracking-table tbody tr:hover td { background-color:#f4f6f9; }
-	.tracking-table tbody td { padding:4px 0 0 0; }
-		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
+
+	.tracking-table tbody tr:hover td { background-color:#f4f6f9; }
+	.tracking-table tbody tr:hover td .target { background-color:#ecf0f5; }
+
+	.tracking-table tbody td { padding:0px; padding-bottom:0px; margin-bottom:0px; border-top: 1px solid #666;}
 		.tracking-table tbody td.tname a { color:#16a085; line-height:18px; }
 		.tracking-table tbody td.tname a:hover { color:#1abc9c; }
 		.tracking-table tbody td.tname .role { color:#9ba6ac; font-family:"Asap"; font-style:italic; font-weight:400; }
-	.tracking-table td.labels { padding-top:4px; padding-right:0px; }
-		.labels div { font-size:11px; margin-top:0px; padding:5px 6px 0px 0; text-align:right; color:#344953; font-family:"Asap"; font-style:italic; }
-			.labels div:last-child { margin-top:2px; }
+	
+		.tracking-table td.labels { padding-right:0px; }
+			.labels div { font-size:11px; margin-top:0px; padding:0px 6px 0px 0; text-align:right; color:#344953; font-family:"Asap"; font-style:italic; font-weight:700; }
+			.labels .target { padding-top:4px; }
 
-	.tracking-table input { float:none; width:45px; height:26px; margin:0 auto; text-align:center; }
-	.tracking-table .actual-hours, .tracking-table .target-hours  { width:60px; height:16px; margin:3px auto 5px; text-align:center; font-weight:700; }
-		.tracking-table .actual-hours.over, .over { color:#e64c3c; }
-		.tracking-table input.rate-input { color:#9ba6ac; padding:0px 6px; font-size:12px; height:20px; width:40px; }
+		.tracking-table td.phase-cell { border-left:1px solid #666; text-align: center; }
+			.tracking-table .target { border-bottom:1px solid #ddd; padding-top:2px; padding-bottom:2px; background-color:#f4f6f9; margin:0px; height:20px; font-weight:700; }
+			.tracking-table .actual { padding-top:2px; padding-bottom:2px; height:20px; color:#1abc9c;}
+			.tracking-table .actual.over, .over { color:#e64c3c; }
 
-	.tracking-table td.total-hours { padding-top:4px; border-left:1px solid #666; }
-		.tracking-table td.total-hours div { width:auto; min-width:60px; height:16px; margin:3px auto 5px; text-align:center; font-weight:700; }
-			.tracking-table td.total-hours .target-total, .tracking-table .target-hours { color:#1abc9c; }
-			.tracking-table td.total-hours .actual-total { margin-top:12px; }
+		.tracking-table td.total-hours { border-left:1px solid #666; }
+			.tracking-table td.total-hours div { text-align:center; font-weight:700; margin:0px; }
 
 	/* remaining */
 	.tracking-table td.remaining { padding-left:0px; text-align: center; }
 	.remaining .act.sum { width:70px; height:20px; padding:2px 0; text-align:center; margin:30px auto 0px; border-radius:6px; background-color:#86cc71; color:#fff; font-weight:700; }
 		.remaining .act.sum.over { background-color:#e64c3c; }
 
-	.remaining .percent-used { border:1px dashed #344953; color:#344953; width:46px; height:20px; font-size:13px; margin:2px auto 0px; padding:12px 0; border-radius:30px; background-color:#fff; font-weight:700; }
+	.remaining .percent-used { border:1px dashed #344953; color:#344953; width:42px; height:18px; font-size:13px; margin:4px auto 2px; padding:10px 0; border-radius:30px; background-color:#fff; font-weight:700; }
 	.remaining .percent-used.over { border-color:#e64c3c; color:#e64c3c; }
 
 	/* foot */
@@ -228,7 +228,6 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.modal-body #schedule-list select.phase { width:125px; }
 	.modal-body .save-row.schedule { margin-top:10px; margin-bottom:10px; }
 	.modal .save-row.schedule input.btn-primary { width:200px; }
-	#myModal .modal-header { padding-left:45px; }
 
 .test-box { float:left; width:100%; height:100px; }
 
