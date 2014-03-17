@@ -404,8 +404,10 @@ class Project < ActiveRecord::Base
             end
             array.map{|x| sum += x}
             team = EmployeeTeam.find_by_user_id_and_project_id(user_id, self.id)
-            rate = team.rate || 110
-            sum_array.push(sum * rate)
+            if team
+                rate = team.rate || 110
+                sum_array.push(sum * rate)
+            end
         end
 
         sum_array.map{|x| total += x}
