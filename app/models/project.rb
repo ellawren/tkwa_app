@@ -404,7 +404,8 @@ class Project < ActiveRecord::Base
             end
             array.map{|x| sum += x}
             team = EmployeeTeam.find_by_user_id_and_project_id(user_id, self.id)
-            sum_array.push(sum * team.rate)
+            rate = team.rate || 110
+            sum_array.push(sum * rate)
         end
 
         sum_array.map{|x| total += x}
@@ -547,7 +548,7 @@ class Project < ActiveRecord::Base
             sum = 0
             time_entries.each do |t| 
                 year = Timesheet.find(t.timesheet_id).year
-                rate = DataRecord.find_by_user_id_and_year(user_id, year).billable_rate || 110
+                rate = t.rate || 110
                 array.push(t.entry_total * rate)
             end
             array.map{|x| sum += x}
@@ -558,7 +559,7 @@ class Project < ActiveRecord::Base
             sum = 0
             time_entries.each do |t| 
                 year = Timesheet.find(t.timesheet_id).year
-                rate = DataRecord.find_by_user_id_and_year(user_id, year).billable_rate
+                rate = t.rate || 110
                 array.push(t.entry_total * rate)
             end
             array.map{|x| sum += x}
