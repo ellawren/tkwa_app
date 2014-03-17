@@ -375,10 +375,6 @@ class Project < ActiveRecord::Base
         end
     end
 
-    # sum of actual hours entered for project, by phase
-    def percentage_of_total_all(phase)
-    end
-
     # calculate actual billing for each employee by phase
     # this function is used to calculate actual_billing_total (also in this file)
     def actual_billing(user_id, phase)

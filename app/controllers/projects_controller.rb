@@ -33,11 +33,6 @@ class ProjectsController < ApplicationController
         @project = Project.find(params[:id])
     end
 
-    def test
-        @project = Project.find(params[:id])
-        @employee_teams = @project.employee_teams.ordered
-    end
-
     def tracking
         @project = Project.find(params[:id])
         @employee_teams = @project.employee_teams.ordered

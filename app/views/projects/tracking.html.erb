@@ -27,7 +27,7 @@
 		    		<tr>
 		    			<td class="tname"><a href="<%= edit_project_employee_team_path(team.project_id, team.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= team.user.name %></a>
 		    				<div class="role">
-		    					<%= team.role %> / $<%= strip(team.rate) %>
+		    					$<%= strip(team.rate) %>/hr
 		    				</div>
 		    			</td>
 		    			<td class="labels">

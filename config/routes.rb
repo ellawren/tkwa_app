@@ -4,7 +4,6 @@ TkwaApp::Application.routes.draw do
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
     match '/projects/import',   to: 'projects#import'
-    match '/projects/:id',   to: 'projects#info'
     resources :projects do
         resources :employee_teams
         resources :schedule_items
@@ -13,7 +12,7 @@ TkwaApp::Application.routes.draw do
         get :autocomplete_billing_name, :on => :collection
         get :autocomplete_contact_work_company, :on => :collection
         member do
-            get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'patterns', 'forecast', 'edit_forecast', 'test'
+            get 'info', 'team', 'scope', 'tracking', 'fee_calc', 'schedule', 'schedule_full', 'billing', 'drawing_log', 'marketing', 'patterns', 'forecast', 'edit_forecast'
         end
     end    
     resources :employee_teams

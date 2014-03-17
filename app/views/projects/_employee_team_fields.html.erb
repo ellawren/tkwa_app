@@ -1,5 +1,4 @@
 <div class="row <%= "saved" if f.object.user_id %>">
-
 	<% if f.object.user_id %>
 		<div class="text name"><%= User.find(f.object.user_id).name %> <%= "<span class=\"detail\">(inactive)</span>".html_safe if User.find(f.object.user_id).active == false %></div>
 		<div class="text role"><%= f.object.role %></div>

@@ -729,16 +729,18 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
     .modal.team-tracking { left:36%; width:900px; }
     .modal-body.team-edit { height:100px; padding-left:40px; }
 	.team-edit input.rate-input { width:70px; }
-	.team-edit .rate-box { float:left; width:110px; padding-top:25px; border-right:1px solid #ddd; }
+	.team-edit .rate-box { float:left; width:110px; padding-top:26px; border-right:1px solid #ddd; }
+		.team-edit .rate-box .input-label { font-weight:900; color:#34495e; font-size:13px; }
+
 	.team-edit .rate-detail { float:left; width:180px; margin-left:20px; padding-top:2px; color: #9ba6ac; }
 	.team-edit .rate-number { margin-top:10px; font-weight:700; color:#34495e; }
 
- 	.team-edit .phases { width:620px; float:left; padding-left:20px; }
-		.team-edit .phases .phase { float:left; width:85px; text-align:center; }
+ 	.team-edit .phases { width:690px; float:left; padding-left:20px; }
+		.team-edit .phases .phase { float:left; width:75px; text-align:center; }
 			.team-edit .phases .phase .number { font-size:16px; font-weight:900; }
 			.team-edit .phases .phase .name { font-size:11px; text-transform:uppercase; margin-top:6px; }
 			.team-edit .phases .phase .total { font-size:13px; font-weight:900; padding-top:22px; }
-			.team-edit .phases .phase input { width:58px; margin:8px 2px 0px; text-align:center; }
+			.team-edit .phases .phase input { width:48px; margin:8px 2px 0px; text-align:center; }
 			.team-edit .phases .total-hours { float:left; width:100%; padding:17px 0; font-weight:900; }
   	/*---*/
 
