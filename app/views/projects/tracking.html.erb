@@ -105,16 +105,16 @@
 					<td></td>
 				</tr>
 				<tr class="actual">
-					<td class="tname">Actual Fee<br><div class="italic">% of Target Total</div></td>
+					<td class="tname">Actual Fee<br><div class="italic">% of Total</div></td>
 					<td class="labels">
 					</td>
 
 					<% @project.available_phases.each do |phase| %>
 						<td class="phase-cell">
 							<div class="actual-hours <%= is_over?(@project.phase_est("#{phase.shorthand}"), @project.phase_actual('#{phase.number}')) %>">
-								<%= @project.actual_billing_total(phase.number) %>
+								
 								<br>
-								<div class="italic"><%= @project.percentage_of_total("#{phase.number}") %></div>
+								<div class="italic"></div>
 							</div>
 						</td>
 					<% end %>
