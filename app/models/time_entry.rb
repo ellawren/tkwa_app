@@ -26,17 +26,9 @@ class TimeEntry < ActiveRecord::Base
     belongs_to :project
   
     validates_presence_of :project_id
-    validates_presence_of :phase_number
 
     def entry_total
-        d1 = day1.to_f
-        d2 = day2.to_f
-        d3 = day3.to_f
-        d4 = day4.to_f
-        d5 = day5.to_f
-        d6 = day6.to_f
-        d7 = day7.to_f
-        d1 + d2 + d3 + d4 + d5 + d6 + d7
+        day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
     end   
 
 end

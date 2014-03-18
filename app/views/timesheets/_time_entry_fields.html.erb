@@ -12,7 +12,7 @@
     <% if f.object.project_id %>
         <%= f.collection_select :phase_number, Project.find(f.object.project_id).available_phases, :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
     <% else %>
-        <%= f.collection_select :phase_number, Phase.order(:number), :number, :number, { include_blank: true }, { :class => "phase custom-select" } %>
+        <%= f.select :phase_number, [], { include_blank: true }, { :class => "phase custom-select" } %>
     <% end %>
     <div id="task-<%= f.object.id %>" class="task-container">
         <% if f.object.phase_number == 70 %>
@@ -21,7 +21,7 @@
             <% if f.object.project_id %>
                 <%= f.collection_select(:task, Project.find(f.object.project_id).available_tasks, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
             <% else %>
-                <%= f.collection_select(:task, Task.universal, :id, :name, { :include_blank => true }, { :class => "task custom-select" } ) %>
+                <%= f.select(:task, [], { :include_blank => true }, { :class => "task custom-select" } ) %>
             <% end %>
         <% end %>
     </div>

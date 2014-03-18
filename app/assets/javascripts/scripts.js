@@ -184,11 +184,8 @@ $(document).ready(function() {
 });
 
 function remove_fields(link) {
-  if (confirm("Delete this entry?")) {
-    $(link).prev("input[type=hidden]").val("1");
-    //$(link).closest(".input").hide();
-    $(link).closest(".table-row").hide();
-  }
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest(".table-row").hide();
   return false;
 }
 

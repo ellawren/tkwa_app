@@ -140,8 +140,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.tracking-summary .circle.billing .text, .tracking-summary .circle.billing .number { color:#344953; }
 	 
 	.tracking-summary .circle.target { background-color:#86cc71; border:2px solid #5bae60; }
-	.tracking-summary .circle.target .number, .tracking-summary .circle.target .text { color:#fff; font-weight:400;}
-	.tracking-summary .circle.target .text { font-weight:300;}
+	.tracking-summary .circle.target .number, .tracking-summary .circle.target .text { color:#fff; }
 
 	/* tracking table - targets */
 

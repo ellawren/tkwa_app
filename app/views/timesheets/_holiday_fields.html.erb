@@ -9,14 +9,14 @@
         </div>
 
         <div class="time-entries">  
-            <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= @data_record.holiday if f.day == 1 %></div></div>
-            <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= @data_record.holiday if f.day == 2 %></div></div>
-            <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= @data_record.holiday if f.day == 3 %></div></div>
-            <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= @data_record.holiday if f.day == 4 %></div></div>
-            <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= @data_record.holiday if f.day == 5 %></div></div>
-            <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= @data_record.holiday if f.day == 6 %></div></div>
-            <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= @data_record.holiday if f.day == 7 %></div></div>
-            <div class="total"><%= @data_record.holiday %></div>
+            <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= @timesheet.data_record.holiday if f.day == 1 %></div></div>
+            <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= @timesheet.data_record.holiday if f.day == 2 %></div></div>
+            <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= @timesheet.data_record.holiday if f.day == 3 %></div></div>
+            <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= @timesheet.data_record.holiday if f.day == 4 %></div></div>
+            <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= @timesheet.data_record.holiday if f.day == 5 %></div></div>
+            <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= @timesheet.data_record.holiday if f.day == 6 %></div></div>
+            <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= @timesheet.data_record.holiday if f.day == 7 %></div></div>
+            <div class="total"><%= @timesheet.data_record.holiday %></div>
         </div>
 
     </div>
