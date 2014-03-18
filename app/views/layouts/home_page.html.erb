@@ -10,9 +10,8 @@
 	
 		<%= content_for?(:content) ? yield(:content) : yield %>
 		
-    	<!-- scripts -->
-        <%= javascript_include_tag 'application' %>
-        <%= yield :scripts %>
+		<%= javascript_include_tag 'application' %>
+    	<%= yield :scripts %>
 	</body>
   
 </html>

@@ -10,7 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery-1.8.3.min
 //= require jquery-ujs
 //= require jquery-ui-1.10.3.custom.min
 //= require jquery.ui.touch-punch.min
