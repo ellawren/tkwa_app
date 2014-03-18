@@ -65,73 +65,64 @@ class EmployeeTeam < ActiveRecord::Base
         :order => "projects.name"
 	}
 
+
+    # TRACKING
+	
+    # actual hours
+    def employee_actual_hours(phase_number)
+        TimeEntry.where(:project_id => self.project_id, :user_id => self.user_id, :phase_number => phase_number).sum(&:entry_total)
+    end
+
+    def employee_actual_hours_all
+        TimeEntry.where(:project_id => self.project_id, :user_id => self.user_id).sum(&:entry_total)
+    end
+
+    # actual fees
+    def employee_actual_fees(phase_number)
+        employee_actual_hours(phase_number) * rate
+    end
+
+    def employee_actual_fees_all
+        employee_actual_hours_all * rate
+    end
+
+    # target hours
+    def employee_target_hours(phase_shorthand)
+        eval("#{phase_shorthand}_hours.to_f")
+    end
+
+    def employee_target_hours_all
+        sum = 0
+        Project.find(self.project_id).available_phases.map{|phase| sum += employee_target_hours(phase.shorthand)}
+        sum
+    end
+
+    # target fees
+    def employee_target_fees(phase_shorthand)
+        employee_target_hours(phase_shorthand) * rate
+    end
+
+    def employee_target_fees_all
+        employee_target_hours_all * rate
+    end
+
+    # percent used
+    def percent_used
+        (employee_actual_hours_all / self.employee_target_hours_all) * 100
+    end
+
+    # FORECAST
+
     def plan_entries
-        PlanEntry.find_all_by_project_id_and_user_id(self.project_id, self.user_id)
+        PlanEntry.where(:project_id => self.project_id, :user_id => self.user_id)
     end
 
     def current_plan_entries
-        array = []
-        plan_entries = PlanEntry.find_all_by_project_id_and_user_id_and_week_and_year(self.project_id, self.user_id, this_week, this_year)
-        plan_entries.each do |p|
-            if p.hours
-                array.push(p)
-            end
-        end
-        array
+        PlanEntry.where(:project_id => self.project_id, :user_id => self.user_id, :week => this_week, :year => this_year)
     end
 
     def plan_entries_total
-        array = []
-        sum = 0
-        plan_entries = PlanEntry.find_all_by_project_id_and_user_id(self.project_id, self.user_id)
-
-        plan_entries.each do |p|
-            if p.hours
-                array.push(p.hours)
-            end
-        end
-        array.map{|x| sum += x}
-        sum
-    end
-	
-    # sum of actual hours entered for project, by employee
-    def employee_actual(phase)
-        if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.project_id, self.user_id)
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                if Project.find(self.project_id).available_phases.map{|a| a.number}.include? t.phase_number
-                    array.push(t.entry_total)
-                end
-            end
-            array.map{|x| sum += x}
-            sum
-        else
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.project_id, self.user_id, phase)
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                array.push(t.entry_total)
-            end
-            array.map{|x| sum += x}
-            sum
-        end
-    end
-
-    # sum of target hours entered for project
-    def est_total
-        array = []
-        sum = 0
-        Project.find(self.project_id).available_phases.each do |phase|
-            array.push( eval("#{phase.shorthand}_hours.to_f") )
-        end
-        array.map{|x| sum += x}
-        sum.to_f
-    end
-
-    def percent_used
-        percent = (self.employee_actual('Total') / self.est_total) * 100
+        PlanEntry.where(:project_id => self.project_id, :user_id => self.user_id).sum(&:entry_total)
     end
 
 end

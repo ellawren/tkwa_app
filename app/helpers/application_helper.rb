@@ -62,24 +62,20 @@ module ApplicationHelper
     end
 
     def nonzero(value)
-        if value > 0
+        if value && value > 0
             number_with_precision(value, :precision => 2)
         end
     end
 
     def nonzero_currency(value)
-        unless value.nil?
-            if value > 0
-                number_to_currency(value, :precision => 0)
-            end
+        if value && value > 0
+            number_to_currency(value, :precision => 0)
         end
     end
 
     def nonzero_percentage(value)
-        unless value.nil?
-            if value > 0
-                number_to_percentage(value * 100, :precision => 0)
-            end
+        if value && value > 0
+            number_to_percentage(value * 100, :precision => 0)
         end
     end
 

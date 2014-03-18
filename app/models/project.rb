@@ -153,6 +153,32 @@ class Project < ActiveRecord::Base
         /\A\d*/.match(self.number)
     end
 
+
+
+# SCOPE #######################################################################
+
+    def available_phases
+        available_phases = []
+        self.phase_ids.each do |t|
+          available_phases.push(Phase.find_by_id(t))
+        end
+        available_phases.sort_by{|e| e[:number]}
+    end
+
+    def available_tasks
+        available_tasks = []
+        Task.universal.each do |t|
+          available_tasks.push(t)
+        end
+        Task.project_tasks(self.id).each do |t|
+          available_tasks.push(t)
+        end
+        available_tasks
+    end
+
+
+# BILLING #######################################################################
+
     def contract_amount=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)
         self[:contract_amount] = num.to_f
@@ -227,24 +253,116 @@ class Project < ActiveRecord::Base
       end
     end
 
-    def available_phases
-        available_phases = []
-        self.phase_ids.each do |t|
-          available_phases.push(Phase.find_by_id(t))
-        end
-        available_phases.sort_by{|e| e[:number]}
+# TRACKING #######################################################################
+
+
+    # HOURS
+
+    def total_target_hours(phase)
+        employee_teams.sum(phase+'_hours')
     end
 
-    def available_tasks
-        available_tasks = []
-        Task.universal.each do |t|
-          available_tasks.push(t)
+    def total_target_hours_all
+        array = []
+        sum = 0
+        available_phases.each do |phase|
+            array.push(total_target_hours(phase.shorthand).to_f )
         end
-        Task.project_tasks(self.id).each do |t|
-          available_tasks.push(t)
-        end
-        available_tasks
+        array.map{|x| sum += x}
+        sum.to_f
     end
+
+    def total_actual_hours(phase)
+        TimeEntry.where(:project_id => self.id, :phase_number => phase).sum(&:entry_total)
+    end
+
+    def total_actual_hours_all
+        time_entries = TimeEntry.find_all_by_project_id(id)
+        array = []
+        sum = 0
+        time_entries.each do |t| 
+            if available_phases.map{|a| a.number}.include? t.phase_number
+                array.push(t.entry_total)
+            end
+        end
+        array.map{|x| sum += x}
+        sum.to_f
+    end
+
+    # FEES
+
+    def total_actual_fees(phase_number)
+        sum = 0
+        employee_teams.map{|e| sum += e.employee_actual_fees(phase_number)}
+        sum
+    end
+
+    def total_actual_fees_all
+        employee_teams.sum(&:employee_actual_fees_all)
+    end
+
+    def total_target_fees(phase_shorthand)
+        sum = 0
+        employee_teams.map{|e| sum += e.employee_target_fees(phase_shorthand)}
+        sum
+    end
+
+    def total_target_fees_all
+        employee_teams.sum(&:employee_target_fees_all)
+    end
+
+    def percentage_of_total(phase_number)
+        total_actual_fees(phase_number) / total_target_fees_all
+    end
+
+    def percentage_of_total_all
+        total_actual_fees_all / total_target_fees_all
+    end
+
+    def percent_used
+        (total_actual_fees_all / total_target_fees_all) * 100
+    end
+
+    def project_status
+        if self.percent_used <= 99
+            "on track"
+        elsif self.percent_used > 100 && self.percent_used <= 102
+            "in trouble"
+        elsif self.percent_used > 103
+            "over budget"
+        end
+    end
+
+# FORECAST #######################################################################
+
+    def employee_forecast(user_id, four_month_array)
+        entries = []
+        four_month_array.each do |w, y|
+            entries.push(PlanEntry.find_or_create_by_project_id_and_user_id_and_year_and_week(self.id, user_id, y, w))
+        end
+        entries
+    end
+
+    def forecast_total(w, y)
+        plan_entries = PlanEntry.find_all_by_project_id_and_year_and_week(self.id, y, w)
+        array = []
+        sum = 0
+        plan_entries.each do |e|
+            if e.hours?
+                array.push(e.hours)
+            end
+        end
+        array.map{|x| sum += x}
+        if sum == 0
+            x = ""
+        else
+            x = sum
+        end
+        x
+    end
+
+ 
+# SCHEDULE #######################################################################
 
     def schedule_item_list(phase)
         p = Phase.find(phase).id
@@ -345,269 +463,7 @@ class Project < ActiveRecord::Base
         gantt.join(", ").html_safe
     end
 
-    def employee_hours(total_hours, user_id, phase)
-      total_hours.find_all_by_user_id_and_phase_number(user_id, phase)
-    end
-
-    # sum of estimated hours entered for project, by phase
-    def phase_est(var)
-        employee_teams.sum(var+'_hours')
-    end
-
-    # sum of actual hours entered for project, by phase
-    def phase_actual(phase)
-        time_entries = TimeEntry.find_all_by_project_id_and_phase_number(self.id, phase)
-        array = []
-        sum = 0
-        time_entries.each do |t| 
-            array.push(t.entry_total)
-        end
-        array.map{|x| sum += x}
-        sum
-    end
-
-    # sum of actual hours entered for project, by phase
-    def percentage_of_total(phase)
-        if phase == 'Total'
-            actual_billing_total('Total') / target_billing_total('Total')
-        else
-            phase_actual(phase) / target_billing_total('Total')
-        end
-    end
-
-    # calculate actual billing for each employee by phase
-    # this function is used to calculate actual_billing_total (also in this file)
-    def actual_billing(user_id, phase)
-
-        if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
-        else
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.id, user_id, phase)
-        end
-
-        year_array_full = []
-        time_entries.each do |t| 
-                year = Timesheet.find_by_id(t.timesheet_id).year
-                year_array_full.push(year)
-        end
-        year_array = year_array_full.uniq
-
-        sum_array = []
-        total = 0
-        year_array.each do |y|
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                if available_phases.map{|a| a.number}.include? t.phase_number
-                    array.push(t.entry_total)
-                end
-            end
-            array.map{|x| sum += x}
-            team = EmployeeTeam.find_by_user_id_and_project_id(user_id, self.id)
-            if team
-                rate = team.rate || 110
-                sum_array.push(sum * rate)
-            end
-        end
-
-        sum_array.map{|x| total += x}
-        total
-    end
-
-    # sums the employee totals for each phase using actual_billing (also in this file)
-    # this result shows up under "Total Billing - Actual" on the tracking page
-    def actual_billing_total(phase)
-        if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id(self.id)
-        else
-            time_entries = TimeEntry.find_all_by_project_id_and_phase_number(self.id, phase)
-        end
-
-        employee_array_full = []
-        time_entries.each do |t| 
-            employee_array_full.push(t.user_id)
-        end
-        employee_array = employee_array_full.uniq
-
-        total_array = []
-        sum = 0
-        employee_array.each do |e|
-            user = User.find_by_id(e)
-            number = self.actual_billing(user.id, phase)
-            total_array.push( number )
-        end
-
-        total_array.map{|x| sum += x}
-        sum
-
-    end
-
-    # calculate target billing for each employee by phase
-    # this result shows up under "Total Billing - Target" on the tracking page
-    def target_billing_total(phase)
-        if phase == "Total"
-            teams = EmployeeTeam.find_all_by_project_id(self.id)
-
-            total_array = []
-            sum = 0
-            teams.each do |t| 
-                est_hours = t.est_total
-                user_id = t.user_id
-                data = DataRecord.find_or_create_by_year_and_user_id(Time.now.year, user_id)
-                
-                unless est_hours.nil?
-                    billing = est_hours * data.billable_rate
-                    total_array.push(billing)
-                end
-            end
-            total_array.map{|x| sum += x}
-            sum
-        else
-            p = Phase.find_by_number(phase)
-            teams = EmployeeTeam.find_all_by_project_id(self.id)
-
-            total_array = []
-            sum = 0
-            teams.each do |t| 
-                est_hours = eval("t.#{p.shorthand}_hours")
-                user_id = t.user_id
-                
-                unless est_hours.nil?
-                    billing = est_hours * t.rate
-                    total_array.push(billing)
-                end
-            end
-            total_array.map{|x| sum += x}
-            sum
-        end
-        
-    end
-
-    # sum of estimated hours entered for project
-    def sum_est
-        array = []
-        sum = 0
-        available_phases.each do |phase|
-            array.push(phase_est(phase.shorthand).to_f )
-        end
-        array.map{|x| sum += x}
-        sum.to_f
-    end   
-
-    # sum of actual hours entered for project
-    def sum_actual
-        time_entries = TimeEntry.find_all_by_project_id(id)
-        array = []
-        sum = 0
-        time_entries.each do |t| 
-            if available_phases.map{|a| a.number}.include? t.phase_number
-                array.push(t.entry_total)
-            end
-        end
-        array.map{|x| sum += x}
-        sum.to_f
-    end
-
-    def employee_records(user_id, phase)
-        TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
-    end
-
-    def budget
-        array = []
-        sum = 0
-        employee_teams.each do |team|
-            user_id = team.user_id
-            rate = DataRecord.find_by_user_id_and_year(user_id, Time.now.year).billable_rate || 110
-            array.push((team.est_total * rate).to_f)
-        end
-        array.map{|x| sum += x}
-        sum
-    end
-
-    def actual
-        array = []
-        sum = 0
-        employee_teams.each do |team|
-            array.push(employee_act_costs(team.user_id, "Total"))
-        end
-        array.map{|x| sum += x}
-        sum
-    end
-
-    def employee_est_costs(user_id, phase)
-        if phase == "Total"
-            team = EmployeeTeam.find_by_user_id_and_project_id(user_id, id)
-            rate = DataRecord.find_by_user_id_and_year(user_id, Time.now.year).billable_rate || 110
-            (team.est_total * rate).to_f
-        end
-    end
-    
-    def employee_act_costs(user_id, phase)
-        if phase == "Total"
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id(self.id, user_id)
-
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                year = Timesheet.find(t.timesheet_id).year
-                rate = t.rate || 110
-                array.push(t.entry_total * rate)
-            end
-            array.map{|x| sum += x}
-            sum
-        else
-            time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(self.id, user_id, phase)
-            array = []
-            sum = 0
-            time_entries.each do |t| 
-                year = Timesheet.find(t.timesheet_id).year
-                rate = t.rate || 110
-                array.push(t.entry_total * rate)
-            end
-            array.map{|x| sum += x}
-            sum
-        end
-    end
-
-    def employee_forecast(user_id, four_month_array)
-        entries = []
-        four_month_array.each do |w, y|
-            entries.push(PlanEntry.find_or_create_by_project_id_and_user_id_and_year_and_week(self.id, user_id, y, w))
-        end
-        entries
-    end
-
-    def forecast_total(w, y)
-        plan_entries = PlanEntry.find_all_by_project_id_and_year_and_week(self.id, y, w)
-        array = []
-        sum = 0
-        plan_entries.each do |e|
-            if e.hours?
-                array.push(e.hours)
-            end
-        end
-        array.map{|x| sum += x}
-        if sum == 0
-            x = ""
-        else
-            x = sum
-        end
-        x
-    end
-
-    def percent_used
-        (actual_billing_total('Total') / target_billing_total('Total')) * 100
-    end
-
-    def project_status
-        if self.percent_used <= 99
-            "on track"
-        elsif self.percent_used > 100 && self.percent_used <= 102
-            "in trouble"
-        elsif self.percent_used > 103
-            "over budget"
-        end
-    end
+    #######################################################################
 
     # do not change the order on these - it will affect all previous records
     BUILDING_TYPES = [	"Condos", "Educational", "Financial", "HD Dealership", "Historic Restoration", 
