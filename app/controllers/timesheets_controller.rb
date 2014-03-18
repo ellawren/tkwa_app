@@ -44,27 +44,9 @@ class TimesheetsController < ApplicationController
     end
 
     def print
-        @year = params[:year].to_i
-        @week = params[:week].to_i
         @user = User.find(params[:id])
-
-        if @week <= weeks_in_year(@year)
-            @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, @year, @week)
-            @vacation_record = VacationRecord.find_or_create_by_year_and_user_id(@year, @user.id)
-            @data_record = DataRecord.find_by_user_id_and_year(@user.id, @year)
-            
-            if @data_record.present?
-                @goal = @data_record.hours_in_week * (@week - @data_record.start_week + 1)
-                @goal_with_overage = (@data_record.hours_in_week * (@week - @data_record.start_week + 1)) + -(@data_record.overage_from_prev.to_f)
-                @actual = total_hours_for(@user.id, @year, @week, @data_record.start_week)
-            end
-            # if no data records are found, go to page anyway - conditional will catch and show error message
-            render :layout => 'timesheet-modal' 
-        else
-            flash[:error] = "Invalid date"
-            redirect_to timesheets_path
-        end
-        
+        @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, params[:year].to_i, params[:week].to_i)
+        render :layout => 'timesheet-modal'
     end
 
     def create
