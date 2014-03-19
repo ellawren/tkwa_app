@@ -1,4 +1,5 @@
 class Subject < ActiveRecord::Base
+	default_scope order("number ASC")
 
 	validates :name, presence: true
 	validates :number, presence: true

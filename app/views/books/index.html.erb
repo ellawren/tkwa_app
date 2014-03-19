@@ -1,20 +1,66 @@
 <% provide :title, "Library" %>
 <div class="page-header">
 	<h1>Library</h1>
-	<%= link_to "Add Book", new_book_path, class: "btn btn-primary btn-right" %>
 </div>
-<div class="full">
-<ul class="link-list">
-	<% @books.each do |param| %>
-			<li>
-				<%= link_to param.title, edit_book_path(param.id) %>
-				<% if signed_in? %>
-					<% if current_user.admin? %>
-					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-					<% end %>
-				<% end %>
-			</li>
+
+<h2 class="first">Search Library</h2>
+
+<div class="description">Enter all or part of the title, author, and/or subject. Choose an option from the material type menu to narrow your search. To show all books within a type, just leave the search fields blank.</div>
+
+<div class="gray-box library <%= @var %>">
+
+	<%= search_form_for @q do |f| %>
+
+		<div class="status-options">
+			<div><%= f.radio_button(:material_type_eq, "") %><label class="radio">All</label></div>
+	        <div><%= f.radio_button(:material_type_eq, "Book") %><label class="radio">Books</label></div>
+	        <div><%= f.radio_button(:material_type_eq, "Magazine") %><label class="radio">Magazines</label></div>
+	        <div><%= f.radio_button(:material_type_eq, "Video") %><label class="radio">Videos</label></div>
+	        <div><%= f.radio_button(:material_type_eq, "Paper") %><label class="radio">Papers</label></div>
+		</div>
+
+		<%= f.text_field :title_cont, class: "search-name library", placeholder: "Title" %>
+		<%= f.text_field :author_cont, class: "search-name contact company", placeholder: "Author" %> 
+		<%= f.collection_select(:subject_id_eq, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select search-subject" } ) %>
+		
+		<%= f.submit "Search", class: "btn btn-primary search-btn library" %>
+	
 	<% end %>
-</ul>
+
 </div>
-<%= link_to "Subjects", subjects_path, class: "text-link" %>
+
+<% if (params.has_key?(:q)) %>
+
+	<% if @books.count == 0 %>
+		<h2>Search Results</h2>
+		<div class="search-results">
+			No matches.<br><br><a href="/library/" class="btn">Clear search and try again.</a><br><br>
+			<div class="line"></div>
+		</div>
+	<% else %>
+
+	<h2>Search Results (<%= @books.count %>) <a class="reset" href="/library">reset search</a></h2>
+
+		<table class="table search-results library">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Author</th>
+				</tr>
+			</thead>
+		    <tbody>
+		        <% @books.each do |f| %>
+		            <tr class="results-row">
+		                <td class="bold"><%= link_to f.title.titleize, edit_book_path(f) %></td>
+		                <td><%= link_to f.author, edit_book_path(f) %></td>
+		            </tr>
+		        <% end %>
+
+		    </tbody>
+		</table>
+		<%= will_paginate @book %>
+		<div class="line"></div>
+
+	<% end %>
+
+<% end %>

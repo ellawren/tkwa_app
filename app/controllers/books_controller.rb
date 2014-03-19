@@ -13,7 +13,13 @@ class BooksController < ApplicationController
     end
 
     def index
-  	    @books = Book.all
+  	    @q = Book.search(params[:q])
+        @books = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('title')
+        if params.has_key?(:q) && @books.count == 1 
+            redirect_to edit_book_path(@books.first(params[:id]))
+        else
+            render 'index'
+        end
     end
 
     def create

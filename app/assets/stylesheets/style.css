@@ -392,6 +392,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 	.gray-box { float:left; width:90%; height:80px; padding:20px 47px; border-radius:8px; background-color:#ecf0f5 !important; -webkit-print-color-adjust: exact; /* for timesheets print */ }
 		.gray-box.contacts { height:auto; }
+		.gray-box.library { position:relative; height:auto;}
 	.content { float:left; width:100%; }
 
 	.status-options { float:left; width:120px; margin:0px 36px 0 -47px; overflow:hidden; }
@@ -408,6 +409,9 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		input.search-name.contact { float:left; width:360px; margin:21px 0 0 30px; padding:2px 10px 1px; }
 		input.search-name.contact.company { margin-top:3px; }
 		input.search-name.patterns { float:left; width:200px; }
+		input.search-name.library { float:left; width:360px; margin:10px 0 0 30px; padding:2px 10px 1px; }
+
+		select.search-subject { float:left; margin:3px 300px 20px 30px; width:384px;  border-radius:8px; height:40px; }
 	input.search-number { width:120px; padding:2px 10px 1px; margin-top:11px; border-radius:8px; }
 
 	select.pattern-name { float:left; width:350px; height:44px; margin-top:12px; margin-right:4px; color:#bcc6cc; }
@@ -425,6 +429,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		.btn.btn-primary.search-btn.contact { float:left; height:38px; margin-top:-38px; margin-left:20px; }
 		.btn.btn-primary.search-btn.company { float:left; height:38px; margin-top:3px; margin-left:20px; }
 		.btn.btn-primary.search-btn.patterns { float:left; margin-top:13px; }
+		.btn.btn-primary.search-btn.library { position:absolute; height:38px; top:30px; right:100px; }
+
 
 	a.more-options, a.less-options { float:left; width:160px; padding:6px 10px; margin:5px 0 0 20px; color:#9ba6ac; text-align:center; cursor:pointer; }
 		a.more-options:hover, a.less-options:hover { color:#1abc9c; }
@@ -455,6 +461,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	a.reset { display:inline-block;margin-left:10px; font-size:13px; font-weight:400; }
 	table.search-results tr:hover td a:hover { color:#16a085; }
 
+	table.search-results.library tr .bold { max-width:430px; padding-right:40px; }
 
 	/* icons */
 

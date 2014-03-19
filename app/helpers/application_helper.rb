@@ -68,10 +68,8 @@ module ApplicationHelper
     end
 
     def nonzero_currency(value)
-        unless value.nil?
-            if value > 0
-                number_to_currency(value, :precision => 0)
-            end
+        if value > 0
+            number_to_currency(value, :precision => 0)
         end
     end
 
