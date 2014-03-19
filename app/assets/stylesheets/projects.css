@@ -101,11 +101,11 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 			.tracking-table td.total-hours div { text-align:center; font-weight:700; margin:0px; }
 
 	/* remaining */
-	.tracking-table td.remaining { padding-left:0px; text-align: center; }
+	.tracking-table td.remaining { padding-left:8px; text-align: center; }
 	.remaining .act.sum { width:70px; height:20px; padding:2px 0; text-align:center; margin:30px auto 0px; border-radius:6px; background-color:#86cc71; color:#fff; font-weight:700; }
 		.remaining .act.sum.over { background-color:#e64c3c; }
 
-	.remaining .percent-used { border:1px dashed #344953; color:#344953; width:42px; height:18px; font-size:13px; margin:4px auto 2px; padding:10px 0; border-radius:30px; background-color:#fff; font-weight:700; }
+	.remaining .percent-used { border:1px dashed #344953; color:#344953; width:42px; height:20px; font-size:13px; margin:4px auto 2px; padding:9px 0; border-radius:30px; background-color:#fff; font-weight:700; }
 	.remaining .percent-used.over { border-color:#e64c3c; color:#e64c3c; }
 
 	/* foot */
@@ -127,7 +127,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	/* summary */
 	.tracking-summary { float:left; width:780px; height:130px; margin-left:100px; }
 	.tracking-summary .circle { float:left; width:130px; height:130px; text-align:center; border:1px dashed #5bae60; border-radius:100px; }
-	.tracking-summary .circle .text { float:left; margin-top:34px; height:24px; width:130px; color:#368039; text-transform:uppercase; font-size:11px; }
+	.tracking-summary .circle .text { float:left; margin-top:30px; height:24px; width:130px; color:#368039; text-transform:uppercase; font-size:11px; }
 	.tracking-summary .circle .number { float:left; margin-top:6px; width:130px; color:#86cc71; font-size:20px; font-weight:700; }
 	.tracking-summary .circle .percentage { float:left; margin-top:6px; width:130px; color:#aaa; font-weight:400; font-family:"Asap"; font-style:italic; }
 	.tracking-summary .minus { float:left; width:16px; margin:65px 8px 60px; border-bottom:4px solid #bcc6cc; }

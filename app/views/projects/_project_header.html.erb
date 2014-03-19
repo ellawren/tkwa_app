@@ -20,7 +20,9 @@
         <li><%= link_to "", new_project_path(:status => 'current'), class: "glyphicon glyphicon-plus tip", title:"Add New Project" %></li>
         <li class="delete"><%= link_to "", @project, method: :delete, confirm: "Are you sure you want to delete this project and all its data?", class: "glyphicon glyphicon-remove tip", title:"Delete This Project" %>
         </li>
-        <li><%= f.submit "Save", class: "btn btn-primary save-btn" %></li>
+        <% unless params[:action] == "tracking" %>
+            <li><%= f.submit "Save", class: "btn btn-primary save-btn" %></li>
+        <% end %>
     </div>      
 
 <%= render "tabnav" %>

@@ -88,7 +88,7 @@ class EmployeeTeam < ActiveRecord::Base
 
     # target hours
     def employee_target_hours(phase_shorthand)
-        eval("#{phase_shorthand}_hours.to_f")
+        eval("#{phase_shorthand}_hours").to_f
     end
 
     def employee_target_hours_all

@@ -1,0 +1,20 @@
+<% provide :title, "Library" %>
+<div class="page-header">
+	<h1>Library</h1>
+	<%= link_to "Add Book", new_book_path, class: "btn btn-primary btn-right" %>
+</div>
+<div class="full">
+<ul class="link-list">
+	<% @books.each do |param| %>
+			<li>
+				<%= link_to param.title, edit_book_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
+</div>
+<%= link_to "Subjects", subjects_path, class: "text-link" %>

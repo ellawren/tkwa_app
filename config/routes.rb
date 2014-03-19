@@ -94,6 +94,7 @@ TkwaApp::Application.routes.draw do
         get :autocomplete_contact_name, :on => :collection
     end
 
+    resources :books
     resources :categories 
     resources :consultant_roles
     resources :data_records
@@ -109,10 +110,13 @@ TkwaApp::Application.routes.draw do
     resources :schedule_items
     resources :services
     resources :sessions, 		only: [:new, :create, :destroy]
+    resources :subjects
     resources :shop_drawings
     resources :tasks
     resources :timesheets, :only => [:index, :create, :update]
     resources :vacation_records
+
+    match '/library',    to: 'books#index'
 
     match '/signup',	to: 'users#new'
     match '/signin',  to: 'sessions#new'
