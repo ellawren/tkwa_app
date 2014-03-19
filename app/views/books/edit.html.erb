@@ -1,7 +1,20 @@
 <% provide :title, @book.title %>
 <%= link_to "Library", library_path, class: "header-label" %>
 <div class="page-header">
-    <h1><%= @book.title %></h1>
+    <h1><%= @book.title.titleize %> </h1>
+    <ul class="controls">
+        <% if @book.previous.present? %> 
+            <li><%= link_to "", edit_book_path(@book.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+        <% end %>
+        <% if @book.next.present? %> 
+            <li><%= link_to "", edit_book_path(@book.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+        <% end %>
+        <li><%= link_to "", library_path, class: "glyphicon glyphicon-search tip", title:"Search Library" %></li>
+        <li><%= link_to "", new_book_path, class: "glyphicon glyphicon-plus tip", title:"Add New Book" %></li>
+        <li class="delete">
+            <%= link_to "", @book, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Book" %>
+        </li>
+    </ul>
 </div>
 
 <%= form_for @book do |f| %>

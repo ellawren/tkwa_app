@@ -1,7 +1,15 @@
 <div class="wide">
     <div class="input-row">
+        <%= f.label(:shelf_location, "Shelf Location", class: "input-label") %>
+        <%= f.text_field :shelf_location, class: "input-small" %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:index, "Index", class: "input-label") %>
+        <%= f.text_field :index, class: "input-small" %>
+    </div>
+    <div class="input-row">
         <%= f.label(:title, "Title", class: "input-label") %>
-        <%= f.text_field :title %>
+        <%= f.text_area :title, rows: 3 %>
     </div>
     <div class="input-row">
         <%= f.label(:author, "Author", class: "input-label") %>
@@ -9,26 +17,67 @@
     </div>
     <div class="input-row">
         <%= f.label(:description, "Description", class: "input-label") %>
-        <%= f.text_area :description, rows: 5 %>
+        <%= f.text_field :description %>
     </div>
     <div class="input-row">
-        <%= f.label(:loc_data, "LOC Data", class: "input-label") %>
-        <%= f.text_area :loc_data, rows: 5 %>
+        <%= f.label(:date, "Date", class: "input-label") %>
+        <%= f.text_field :date %>
     </div>
+    <div class="input-row">
+        <%= f.label(:material_type, "Material Type", class: "input-label") %>
+        <div class="radio-group">
+            <%= hidden_field_tag "book[material_type]", nil %>
+            <label class="radio">
+                <%= f.radio_button :material_type, "Book", data_toggle: "radio" %>
+                Book
+            </label>
+            <label class="radio">
+                <%= f.radio_button :material_type, "Magazine", data_toggle: "radio" %>
+                Magazine
+            </label>
+            <label class="radio">
+                <%= f.radio_button :material_type, "Video", data_toggle: "radio" %>
+                Video
+            </label>
+            <label class="radio">
+                <%= f.radio_button :material_type, "CD/DVD", data_toggle: "radio" %>
+                CD/DVD
+            </label>
+            <label class="radio">
+                <%= f.radio_button :material_type, "Paper", data_toggle: "radio" %>
+                Paper
+            </label>
+        </div>
+    </div>
+
 </div>
 
-<div class="narrow">
-	<div class="input-row">
+<div class="narrow library">
+    <div class="input-row">
         <%= f.label(:subject_id, "Subject", class: "input-label") %>
         <%= f.collection_select(:subject_id, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select" } ) %>
     </div>
     <div class="input-row">
-        <%= f.label(:index, "Index", class: "input-label") %>
-        <%= f.text_field :index %>
+        <%= f.label(:categories, "Categories", class: "input-label") %>
+        <%= f.text_area :categories, rows: 5 %>
     </div>
     <div class="input-row">
-        <%= f.label(:shelf_location, "Shelf Location", class: "input-label") %>
-        <%= f.text_field :shelf_location %>
+        <%= f.label(:borrower, "Borrower", class: "input-label") %>
+        <%= f.text_field :borrower %>
     </div>
-
+    <div class="input-row">
+        <%= f.label(:status, "Status", class: "input-label") %>
+        <div class="radio-group">
+            <%= hidden_field_tag "book[status]", nil %>
+            <label class="radio">
+                <%= f.radio_button :status, "On Shelves", data_toggle: "radio" %>
+                On Shelves
+            </label>
+            <label class="radio">
+                <%= f.radio_button :status, "Checked Out", data_toggle: "radio" %>
+                Checked Out
+            </label>
+        </div>
+    </div>
+    
 </div>

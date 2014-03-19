@@ -6,6 +6,7 @@ class Subject < ActiveRecord::Base
 	def display_name
 		"#{number} - #{name}"
 	end
+
 end
 # == Schema Information
 #
@@ -13,7 +14,7 @@ end
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)
-#  number     :integer
+#  number     :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #

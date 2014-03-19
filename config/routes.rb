@@ -3,6 +3,7 @@ TkwaApp::Application.routes.draw do
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
+    post "/csv_import" => 'projects#csv_import'
     match '/projects/import',   to: 'projects#import'
     resources :projects do
         resources :employee_teams
@@ -54,7 +55,7 @@ TkwaApp::Application.routes.draw do
     
 
     # CONTACTS
-    post "/csv_import" => 'projects#csv_import'
+   
     post "/cont_csv_import" => 'contacts#cont_csv_import'
     match '/contacts/import',   to: 'contacts#import'
     match '/contacts/employees',   to: 'contacts#employees'
@@ -93,6 +94,11 @@ TkwaApp::Application.routes.draw do
     resources :list_members do
         get :autocomplete_contact_name, :on => :collection
     end
+
+    # LIBRARY
+    post "/lib_csv_import" => 'books#lib_csv_import'
+    match '/library/import',   to: 'books#import'
+
 
     resources :books
     resources :categories 
