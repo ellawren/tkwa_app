@@ -162,7 +162,11 @@ class Project < ActiveRecord::Base
     end
 
     def not_on_user_list
-        User.active_users.where('id NOT IN (?)', user_ids).order("name")
+        if user_ids.count > 0
+            User.active_users.where('id NOT IN (?)', user_ids).order("name")
+        else
+            User.active_users.order("name")
+        end
     end
 
 
@@ -323,24 +327,16 @@ class Project < ActiveRecord::Base
     end
 
     def percentage_of_total(phase_number)
-        total_actual_fees(phase_number) / total_target_fees_all
+        total_actual_fees(phase_number) / total_target_fees_all unless total_target_fees_all == 0
     end
 
     def percentage_of_total_all
-        total_actual_fees_all / total_target_fees_all
+        total_actual_fees_all / total_target_fees_all unless total_target_fees_all == 0
     end
 
     def percent_used
-        (total_actual_fees_all / total_target_fees_all) * 100
-    end
-
-    def project_status
-        if self.percent_used <= 99
-            "on track"
-        elsif self.percent_used > 100 && self.percent_used <= 102
-            "in trouble"
-        elsif self.percent_used > 103
-            "over budget"
+        if total_target_fees_all
+            (total_actual_fees_all / total_target_fees_all) * 100
         end
     end
 

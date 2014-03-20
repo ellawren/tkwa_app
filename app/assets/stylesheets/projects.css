@@ -125,18 +125,17 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.tracking-table tfoot .actual td .italic { color:#aaa; font-weight:400; font-family:"Asap"; font-style:italic; width:100%; }
 
 	/* summary */
-	.tracking-summary { float:left; width:780px; height:130px; margin-left:100px; }
+	.tracking-summary { float:left; width:800px; height:130px; margin-left:80px; }
 	.tracking-summary .circle { float:left; width:130px; height:130px; text-align:center; border:1px dashed #5bae60; border-radius:100px; }
 	.tracking-summary .circle .text { float:left; margin-top:30px; height:24px; width:130px; color:#368039; text-transform:uppercase; font-size:11px; }
 	.tracking-summary .circle .number { float:left; margin-top:6px; width:130px; color:#86cc71; font-size:20px; font-weight:700; }
-	.tracking-summary .circle .percentage { float:left; margin-top:6px; width:130px; color:#aaa; font-weight:400; font-family:"Asap"; font-style:italic; }
 	.tracking-summary .minus { float:left; width:16px; margin:65px 8px 60px; border-bottom:4px solid #bcc6cc; }
 	.tracking-summary .equals { float:left; width:16px; height:5px; margin:61px 8px 60px; border-bottom:4px solid #bcc6cc; border-top:4px solid #bcc6cc; }
 		.tracking-summary .circle.over { border-color:#c0392b; }
 		.tracking-summary .circle.over .text { color:#c0392b; }
 		.tracking-summary .circle.over .number { color:#e64c3c; }
 
-	.tracking-summary .circle.billing { float:left; width:130px; height:130px; text-align:center; border:none; border-radius:none; margin-right:10px; margin-left:10px; }
+	.tracking-summary .circle.billing { float:left; width:130px; height:130px; text-align:center; border:none; border-radius:none; margin-right:10px; margin-left:20px; }
 	.tracking-summary .circle.billing .text, .tracking-summary .circle.billing .number { color:#344953; }
 	 
 	.tracking-summary .circle.target { background-color:#86cc71; border:2px solid #5bae60; }

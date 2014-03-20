@@ -115,7 +115,11 @@ class User < ActiveRecord::Base
     end
 
     def not_on_project_list
-        Project.current.where('id NOT IN (?)', project_ids).order("name")
+        if project_ids.count > 0
+            Project.current.where('id NOT IN (?)', project_ids).order("name")
+        else
+            Project.current.order("name")
+        end
     end
 
     def employee_forecast(project_id, four_month_array)
