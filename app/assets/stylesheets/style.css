@@ -122,12 +122,12 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 
 /* tabnav timesheets table */
 	table.tabnav.timesheets { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0; border-radius:5px; list-style:none; }
-	table.tabnav.timesheets tr { width:960px; }
+	table.tabnav.timesheets tr { width:960px; width:100%; }
 	table.tabnav.timesheets td { padding:0px;  }
 	table.tabnav.timesheets tr td:nth-child(even) {  }
 	table.tabnav.timesheets tr td:nth-child(odd) { border-right:1px solid #ddd; }
 	table.tabnav.timesheets tr td:last-child { border-right:0px; }
-		table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 3px; min-width:8px; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
+		table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 3px; min-width:2%; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
 		table.tabnav.timesheets td:first-child a { border-radius:5px 0 0 5px; padding-left:8px; }
 			table.tabnav.timesheets td:last-child a { padding-right:6px; border-radius:0 5px 5px 0; width:14px; margin-right:-4px; }
 		table.tabnav.timesheets td.sel a { background-color:#ced5da; color:#758083; }
@@ -697,10 +697,17 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
 
+/* LIBRARY */
 
+	.library .input-box { float:left; padding:10px 0; line-height:20px; }
+	.library .input-box.bold { font-weight:700; }
+	.library .input-box.italic { font-family:"Asap"; font-style:italic; }
 
-
-
+	.page-header.library { height:auto; }
+	.page-header.library .author { font-size:18px; font-style:italic; font-weight:300; line-height:18px; color:#1abc9c; }
+	.library .narrow { width:340px; }
+	.library .narrow .input-label { width:120px; }
+.library .wide { width:440px; }
 /* MODALS */
 
 	/* main modal */

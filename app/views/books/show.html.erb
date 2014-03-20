@@ -1,2 +1,58 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<% provide :title, @book.title.titleize %>
+<%= link_to "Library", library_path, class: "header-label" %>
+<div class="page-header library">
+    <h1><%= @book.title.titleize %> </h1>
+    <ul class="controls">
+        <% if @book.previous.present? %> 
+            <li><%= link_to "", edit_book_path(@book.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+        <% end %>
+        <% if @book.next.present? %> 
+            <li><%= link_to "", edit_book_path(@book.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+        <% end %>
+        <li><%= link_to "", library_path, class: "glyphicon glyphicon-search tip", title:"Search Library" %></li>
+        <li><%= link_to "", new_book_path, class: "glyphicon glyphicon-plus tip", title:"Add New Book" %></li>
+        <li class="delete">
+            <%= link_to "", @book, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Book" %>
+        </li>
+    </ul>
+    <div class="author"><%= @book.author %></div>
+</div>
+<%= form_for @book do |f| %>
+	<div class="gray-box library">
+
+		<div class="narrow">
+			<div class="input-row">
+		       <label class="input-label">Shelf Location</label>
+		       <div class="input-box bold"><%= @book.shelf_location %></div>
+		    </div>
+		    <div class="input-row">
+		        <label class="input-label">Index #</label>
+		        <div class="input-box"><%= @book.index %></div>
+		    </div>
+		    <div class="input-row">
+		        <label class="input-label">Description</label>
+		        <div class="input-box"><%= @book.description %></div>
+		    </div>
+		    <div class="input-row">
+		        <label class="input-label">Date</label>
+		        <div class="input-box"><%= @book.date %></div>
+		    </div>
+		    <div class="input-row">
+		        <label class="input-label">Material Type</label>
+		        <div class="input-box"><%= @book.material_type %></div>
+		    </div>
+		</div>
+
+		<div class="wide last">
+			<div class="input-row">
+		       <label class="input-label">Subject</label>
+		       <div class="input-box bold"><%= Subject.find(@book.subject_id).display_name if @book.subject_id %></div>
+		    </div>
+		    <div class="input-row">
+		       <label class="input-label">Categories</label>
+		       <div class="input-box bold"><%= @book.categories %></div>
+		    </div>
+		</div>
+
+	</div>
+<% end %>

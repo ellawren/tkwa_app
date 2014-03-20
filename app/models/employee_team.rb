@@ -99,7 +99,7 @@ class EmployeeTeam < ActiveRecord::Base
 
     # target fees
     def employee_target_fees(phase_shorthand)
-        employee_target_hours(phase_shorthand) * rate
+        employee_target_hours(phase_shorthand) * rate || 0
     end
 
     def employee_target_fees_all
