@@ -153,6 +153,17 @@ class Project < ActiveRecord::Base
         /\A\d*/.match(self.number)
     end
 
+    def user_ids
+        self.employee_teams.current.pluck(:user_id)
+    end
+
+    def user_list
+        User.active_users.where('id IN (?)', user_ids).order("name")
+    end
+
+    def not_on_user_list
+        User.active_users.where('id NOT IN (?)', user_ids).order("name")
+    end
 
 
 # SCOPE #######################################################################

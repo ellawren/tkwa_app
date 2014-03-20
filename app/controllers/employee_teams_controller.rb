@@ -4,7 +4,7 @@ class EmployeeTeamsController < ApplicationController
         @employee_team = EmployeeTeam.new
         @user = User.find(params[:user_id])
         @employee_team.user_id = params[:user_id]
-        @projects = Project.where(:status => "current").order('name ASC')
+        @projects = @user.not_on_project_list
         render :layout => 'modal' 
     end
   

@@ -9,7 +9,7 @@
         <div class="role-label">Role</div>
         <%= f.collection_select(:project_id, @projects, :id, :name, { :include_blank => true }, { :class => "custom-select project-name" } ) %>
         
-        <%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+        <%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :selected => "Project Designer" }, { :class => "custom-select" } ) %>
     </div>     
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

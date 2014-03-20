@@ -105,20 +105,17 @@ class User < ActiveRecord::Base
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
     # METHODS
-    def project_list
-        arr = []
-        self.employee_teams.current.each do |team|
-          arr.push(Project.find(team.project_id))
-        end
-        arr.sort { |a,b| a.name <=> b.name }
-    end
 
     def project_ids
-        arr = []
-        self.project_list.each do |team|
-          arr.push(team.id)
-        end
-        arr
+        self.employee_teams.current.pluck(:project_id)
+    end
+
+    def project_list
+        Project.current.where('id IN (?)', project_ids).order("name")
+    end
+
+    def not_on_project_list
+        Project.current.where('id NOT IN (?)', project_ids).order("name")
     end
 
     def employee_forecast(project_id, four_month_array)

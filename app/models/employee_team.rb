@@ -65,7 +65,6 @@ class EmployeeTeam < ActiveRecord::Base
         :order => "projects.name"
 	}
 
-
     # TRACKING
 	
     # actual hours
