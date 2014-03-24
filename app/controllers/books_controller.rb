@@ -22,6 +22,10 @@ class BooksController < ApplicationController
         end
     end
 
+    def checked_out
+        @books = Book.where(status: "Checked Out")
+    end
+
     def create
         @book = Book.new(params[:book])
         if @book.save

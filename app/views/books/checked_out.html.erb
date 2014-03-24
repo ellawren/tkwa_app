@@ -1,0 +1,27 @@
+<% provide :title, "Checked-Out Books" %>
+<div class="page-header">
+	<h1>Checked-Out Books</h1>
+</div>
+
+<table class="table books">
+	<thead>
+		<tr>
+			<th>Index</th>
+			<th>Title</th>
+			<th>Checked Out By</th>
+			<th>On</th>
+			<th>Duration</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @books.each do |b| %>
+		<tr>
+			<td><%= b.index %></td>
+			<td class="title"><%= link_to b.title, edit_book_path(b.id) %></td>
+			<td><%= b.borrower %></td>
+			<td><%= b.date_checked_out.strftime("%B %d, %Y") if b.date_checked_out %></td>
+			<td><%= distance_of_time_in_words(Time.now - b.date_checked_out) if b.date_checked_out %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

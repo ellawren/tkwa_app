@@ -30,6 +30,7 @@
             <% @project.available_phases.each do |phase| %>
                 <div class="phase">
                     <%= f.text_field eval(":#{phase.shorthand}_hours") %>
+                    <div class="detail"><%= nonzero(@employee_team.employee_actual_hours(phase.number)) %></div>
                 </div>
             <% end %>
             <div class="phase">

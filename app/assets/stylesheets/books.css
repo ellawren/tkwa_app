@@ -1,4 +1,35 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+/* INDEX */
+
+.gray-box.library { position:relative; height:255px;}
+.library input.search-name.index { width:60px; margin:7px 300px 0px 30px; }
+.library input.search-name.title { width:360px; margin:3px 0px 0px 30px; }
+.library input.search-name.author { width:360px; margin:3px 0px 0px 30px; }
+.library .note { float:left; width:500px; margin:15px 0 0 172px; }
+.library select.search-subject { float:left; margin:3px 300px 0px 170px; width:384px;  border-radius:8px; height:40px; }
+.library input.search-name.keywords { width:360px; margin:3px 0px 0px 170px; }
+
+
+
+
+/* EDIT BOOK FORM */
+
+.library .input-box { float:left; padding:10px 0; line-height:20px; }
+.library .input-box.bold { font-weight:700; }
+.library .input-box.italic { font-family:"Asap"; font-style:italic; }
+
+.page-header.library { height:auto; }
+.page-header.library .author { font-size:18px; font-style:italic; font-weight:300; line-height:18px; color:#1abc9c; }
+.library .narrow { width:340px; }
+.library .narrow .input-label { width:120px; }
+.library .wide { width:440px; }
+
+.gray-box.checkout { height:156px; padding:20px 30px; margin-top:18px; }
+.gray-box.checkout .input-label { width:132px; }
+.input-row .detail { float:left; padding:10px 0; margin-left:10px; }
+
+.borrower { display:none; }
+.borrower.checked-out { display:block; }
+
+/* CHECKED-OUT BOOKS */
+
+.table.books td.title { width:500px; }

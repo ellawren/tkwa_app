@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140319210315) do
+ActiveRecord::Schema.define(:version => 20140324190757) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -26,16 +26,17 @@ ActiveRecord::Schema.define(:version => 20140319210315) do
     t.string   "author"
     t.integer  "index"
     t.string   "shelf_location"
-    t.string   "material_type",  :default => "Book"
+    t.string   "material_type",    :default => "Book"
     t.text     "loc_data"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "description"
     t.integer  "subject_id"
     t.string   "date"
     t.text     "categories"
-    t.string   "status",         :default => "On Shelves"
+    t.string   "status",           :default => "On Shelves"
     t.string   "borrower"
+    t.datetime "date_checked_out"
   end
 
   create_table "categories", :force => true do |t|

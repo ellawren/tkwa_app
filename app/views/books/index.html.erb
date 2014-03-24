@@ -5,7 +5,7 @@
 
 <h2 class="first">Search Library</h2>
 
-<div class="description">Enter all or part of the title, author, and/or subject. Choose an option from the material type menu to narrow your search. To show all books within a type, just leave the search fields blank.</div>
+<div class="description">Enter all or part of the title, author, and/or subject. Choose an option from the material type menu to narrow your search.</div>
 
 <div class="gray-box library <%= @var %>">
 
@@ -15,14 +15,15 @@
 			<div><%= f.radio_button(:material_type_eq, "") %><label class="radio">All</label></div>
 	        <div><%= f.radio_button(:material_type_eq, "Book") %><label class="radio">Books</label></div>
 	        <div><%= f.radio_button(:material_type_eq, "Magazine") %><label class="radio">Magazines</label></div>
-	        <div><%= f.radio_button(:material_type_eq, "Video") %><label class="radio">Videos</label></div>
-	        <div><%= f.radio_button(:material_type_eq, "Paper") %><label class="radio">Papers</label></div>
+	        <div><%= f.radio_button(:material_type_eq, "Video") %><label class="radio">Video/CD/DVD</label></div>
 		</div>
 
-		<%= f.text_field :title_cont, class: "search-name library", placeholder: "Title" %>
-		<%= f.text_field :author_cont, class: "search-name contact company", placeholder: "Author" %> 
+		<%= f.text_field :index_eq, class: "search-name index", placeholder: "Index" %>
+		<%= f.text_field :title_cont, class: "search-name title", placeholder: "Title" %>
+		<%= f.text_field :author_cont, class: "search-name author", placeholder: "Author" %> 
+		<p class="note">Search by subject:</p>
 		<%= f.collection_select(:subject_id_eq, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select search-subject" } ) %>
-		
+		<%= f.text_field :categories_cont, class: "search-name keywords", placeholder: "Keywords" %> 
 		<%= f.submit "Search", class: "btn btn-primary search-btn library" %>
 	
 	<% end %>
@@ -64,3 +65,22 @@
 	<% end %>
 
 <% end %>
+
+<div class="row icons three">
+
+    <div class="tile-box">
+        <%= link_to image_tag("new_book.png", :alt => "new-book", :class => "round-icon"), new_book_path %>
+        <%= link_to "Add A New Book", new_book_path, :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box">
+        <%= link_to image_tag("books.png", :alt => "checked out", :class => "round-icon"), checked_out_path %>
+        <%= link_to "Checked-Out Books", checked_out_path, :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box">
+        <%= link_to image_tag("clipboard-yellow.png", :alt => "edit subjects", :class => "round-icon"), subjects_path %>
+        <%= link_to "Manage Subjects", subjects_path, :class => "tile-label" %>
+    </div>
+
+  </div> <!-- end tiles -->

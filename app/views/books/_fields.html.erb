@@ -1,27 +1,37 @@
+<h2 class="first">Book Details</h2>
 <div class="wide">
     <div class="input-row">
-        <%= f.label(:shelf_location, "Shelf Location", class: "input-label") %>
-        <%= f.text_field :shelf_location, class: "input-small" %>
+        <%= f.label(:index, "Index", class: "input-label") %>
+        <%= f.text_field :index, class: "input-small bold", value: new_index %>
+        <div class="detail">ID label on first page of book</div>
     </div>
     <div class="input-row">
-        <%= f.label(:index, "Index", class: "input-label") %>
-        <%= f.text_field :index, class: "input-small" %>
+        <%= f.label(:subject_id, "Subject", class: "input-label") %>
+        <%= f.collection_select(:subject_id, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select library" } ) %>
     </div>
     <div class="input-row">
         <%= f.label(:title, "Title", class: "input-label") %>
-        <%= f.text_area :title, rows: 3 %>
+        <%= f.text_area :title, rows: 3, placeholder: "Full Title" %>
     </div>
     <div class="input-row">
         <%= f.label(:author, "Author", class: "input-label") %>
-        <%= f.text_field :author %>
+        <%= f.text_field :author, placeholder: "Lastname, Firstname" %>
     </div>
+    <div class="input-row">
+        <%= f.label(:categories, "Keywords", class: "input-label") %>
+        <%= f.text_area :categories, rows: 7, placeholder: "Library of Congress categories" %>
+    </div>
+    
+</div>
+
+<div class="narrow">
     <div class="input-row">
         <%= f.label(:description, "Description", class: "input-label") %>
-        <%= f.text_field :description %>
+        <%= f.text_field :description, placeholder: "# pages, dimensions" %>
     </div>
     <div class="input-row">
-        <%= f.label(:date, "Date", class: "input-label") %>
-        <%= f.text_field :date %>
+        <%= f.label(:date, "Published", class: "input-label") %>
+        <%= f.text_field :date, placeholder: "Year" %>
     </div>
     <div class="input-row">
         <%= f.label(:material_type, "Material Type", class: "input-label") %>
@@ -37,47 +47,51 @@
             </label>
             <label class="radio">
                 <%= f.radio_button :material_type, "Video", data_toggle: "radio" %>
-                Video
-            </label>
-            <label class="radio">
-                <%= f.radio_button :material_type, "CD/DVD", data_toggle: "radio" %>
-                CD/DVD
-            </label>
-            <label class="radio">
-                <%= f.radio_button :material_type, "Paper", data_toggle: "radio" %>
-                Paper
+                Video/CD/DVD
             </label>
         </div>
     </div>
 
-</div>
-
-<div class="narrow library">
-    <div class="input-row">
-        <%= f.label(:subject_id, "Subject", class: "input-label") %>
-        <%= f.collection_select(:subject_id, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select" } ) %>
-    </div>
-    <div class="input-row">
-        <%= f.label(:categories, "Categories", class: "input-label") %>
-        <%= f.text_area :categories, rows: 5 %>
-    </div>
-    <div class="input-row">
-        <%= f.label(:borrower, "Borrower", class: "input-label") %>
-        <%= f.text_field :borrower %>
-    </div>
-    <div class="input-row">
-        <%= f.label(:status, "Status", class: "input-label") %>
-        <div class="radio-group">
-            <%= hidden_field_tag "book[status]", nil %>
-            <label class="radio">
-                <%= f.radio_button :status, "On Shelves", data_toggle: "radio" %>
-                On Shelves
-            </label>
-            <label class="radio">
-                <%= f.radio_button :status, "Checked Out", data_toggle: "radio" %>
-                Checked Out
-            </label>
+    <div class="gray-box checkout">
+        <div class="input-row">
+            <%= f.label(:shelf_location, "Shelf Location", class: "input-label") %>
+            <%= f.text_field :shelf_location, class: "input-small bold", placeholder: "000 Aa" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:status, "Current Status", class: "input-label") %>
+            <div class="radio-group">
+                <%= hidden_field_tag "book[status]", nil %>
+                <label class="radio">
+                    <%= f.radio_button :status, "On Shelves", data_toggle: "radio" %>
+                    On Shelves
+                </label>
+                <label class="radio">
+                    <%= f.radio_button :status, "Checked Out", data_toggle: "radio" %>
+                    Checked Out
+                </label>
+            </div>
+        </div>
+        <div class="input-row borrower <%= "checked-out" if f.object.status == "Checked Out" %>">
+            <%= f.label(:borrower, "Current Borrower", class: "input-label") %>
+            <%= f.text_field :borrower, placeholder: "Enter Your Name" %>
+            <%= f.text_field :date_checked_out, placeholder: "Date" %>
         </div>
     </div>
     
 </div>
+
+<% content_for :scripts do %>
+    <script>
+        $('#book_status_checked_out').change( function() {
+            if ( $(this).attr("checked") == "checked" ) {
+                $('#book_date_checked_out').val("<%= Time.now %>");
+                $('.borrower').slideDown();
+
+            } else {
+                $('#book_date_checked_out').val("");
+                $('#book_borrower').val("");
+                $('.borrower').slideUp();
+            }
+        });
+    </script>
+<% end %>

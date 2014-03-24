@@ -97,7 +97,9 @@ TkwaApp::Application.routes.draw do
 
     # LIBRARY
     post "/lib_csv_import" => 'books#lib_csv_import'
+    match '/library',    to: 'books#index'
     match '/library/import',   to: 'books#import'
+    match '/library/checked_out',   to: 'books#checked_out', as: "checked_out"
 
 
     resources :books
@@ -122,7 +124,6 @@ TkwaApp::Application.routes.draw do
     resources :timesheets, :only => [:index, :create, :update]
     resources :vacation_records
 
-    match '/library',    to: 'books#index'
 
     match '/signup',	to: 'users#new'
     match '/signin',  to: 'sessions#new'
