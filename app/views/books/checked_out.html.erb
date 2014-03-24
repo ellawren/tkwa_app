@@ -20,7 +20,7 @@
 			<td class="title"><%= link_to b.title, edit_book_path(b.id) %></td>
 			<td><%= b.borrower %></td>
 			<td><%= b.date_checked_out.strftime("%B %d, %Y") if b.date_checked_out %></td>
-			<td><%= distance_of_time_in_words(Time.now - b.date_checked_out) if b.date_checked_out %></td>
+			<td><%= distance_of_time_in_words_to_now(b.date_checked_out) if b.date_checked_out %></td>
 		</tr>
 		<% end %>
 	</tbody>
