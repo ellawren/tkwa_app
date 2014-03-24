@@ -23,10 +23,11 @@
 .library .narrow .input-label { width:120px; }
 .library .wide { width:440px; }
 
-.gray-box.checkout { height:156px; padding:20px 30px; margin-top:18px; }
+.gray-box.checkout { height:164px; padding:20px 30px; margin-top:10px; }
 .gray-box.checkout .input-label { width:132px; }
 .input-row .detail { float:left; padding:10px 0; margin-left:10px; }
-
+.gray-box.checkout .radio-group .radio:last-child { margin-bottom:6px; }
+.borrower-info { float:left; padding:11px 0; font-weight:700; width:190px; }
 .borrower { display:none; }
 .borrower.checked-out { display:block; }
 

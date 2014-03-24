@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
     require 'csv'
+    autocomplete :contact, :name, :full => true, :scopes => [:employees]
+    
   	def new
   	    @book = Book.new
     end

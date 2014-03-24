@@ -1,5 +1,5 @@
 <% provide :title, @book.title.titleize %>
-<% if @book.status == "Checked Out" %><%= link_to "Checked-Out Books", checked_out_path, class: "header-label second" %><% end %>
+<%= link_to "Checked-Out Books", checked_out_path, class: "header-label second" %>
 <div class="page-header">
     <h1><%= @book.title.titleize %> </h1>
     <ul class="controls">

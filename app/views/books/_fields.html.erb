@@ -75,11 +75,20 @@
                 </label>
             </div>
         </div>
-        <div class="input-row borrower <%= "checked-out" if f.object.status == "Checked Out" %>">
-            <%= f.label(:borrower, "Current Borrower", class: "input-label") %>
-            <%= f.text_field :borrower, placeholder: "Enter Your Name" %>
-            <%= f.text_field :date_checked_out, placeholder: "Date" %>
-        </div>
+        <% if f.object.status == "Checked Out" %>
+            <div class="input-row borrower checked-out">
+                <%= f.label(:borrower, "Borrowed By", class: "input-label") %>
+                <div class="borrower-info"><%= f.object.borrower %><br><%= f.object.date_checked_out.strftime("%B %d, %Y") %> <%="(#{distance_of_time_in_words_to_now(f.object.date_checked_out)})" unless f.object.date_checked_out.to_date == Date.today %></div>
+                <%= f.hidden_field :borrower %>
+                <%= f.hidden_field :date_checked_out %>
+            </div>
+        <% else %>
+            <div class="input-row borrower">
+                <%= f.label(:borrower, "Borrowed By", class: "input-label") %>
+                <%= f.autocomplete_field :borrower, autocomplete_contact_name_books_path, placeholder: "Enter Your Name" %>
+                <%= f.hidden_field :date_checked_out, placeholder: "Date" %>
+            </div>
+        <% end %>
     </div>
     
 </div>
