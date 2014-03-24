@@ -2,7 +2,11 @@
 <div class="wide">
     <div class="input-row">
         <%= f.label(:index, "Index", class: "input-label") %>
-        <%= f.text_field :index, class: "input-small bold", value: new_index %>
+        <% if params[:action] == "new" %>
+            <%= f.text_field :index, class: "input-small bold", value: new_index %>
+        <% else %>
+            <%= f.text_field :index, class: "input-small bold" %>
+        <% end %>
         <div class="detail">ID label on first page of book</div>
     </div>
     <div class="input-row">

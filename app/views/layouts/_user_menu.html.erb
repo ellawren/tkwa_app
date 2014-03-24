@@ -2,10 +2,9 @@
 <li>
     <%= link_to current_user.name, edit_user_path(current_user.id) %>
     <ul>
+    	<% if current_user.admin? %><li><%= link_to "Admin", admin_path %></li> <% end %>
         <li><%= link_to "User Settings", edit_user_path(current_user.id) %></li>
         <li><%= link_to "Contact Info", contact_path(current_user.employee.contact_id) %></li>
-        <% if current_user.admin? %><li><%= link_to "Admin", admin_path %></li> <% end %>
-        <li><%= link_to "Library", library_path %></li>
         <li><%= link_to "Log Out", signout_path %></li>
     </ul> <!-- end sub menu -->
 </li>

@@ -9,9 +9,7 @@
                 <li class="<%= is_current?("contacts") %>"><%= link_to "Contacts", contacts_path %></li>
                 <li class="<%= is_current?("employees") || is_current?("timesheets") %>"><%= link_to "Timesheets", timesheets_path %></li>
                 <li class="<%= is_current?("patterns") %> disabled"><%= link_to "Patterns", "#" %></li>
-                <% if current_user.admin? %>
-                    <li class="<%= is_current?("admin") %>"><%= link_to "Admin", admin_path %></li>
-                <% end %>
+                <li class="<%= is_current?("books") %>"><%= link_to "Library", library_path %></li>
             </ul>
 
             <div class="navbar navbar-inverse">
