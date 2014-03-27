@@ -17,13 +17,13 @@
                 <div class="row icons">
 
                     <div class="tile-box">
-                        <%= link_to image_tag("icons/Pocket@2x-round.png", :alt => "projects", :class => "round-icon resize"), projects_path %>
+                        <%= link_to image_tag("icons/Pensils@2x.png", :alt => "projects", :class => "round-icon resize"), projects_path %>
                         <%= link_to "Projects", projects_path, :class => "tile-label" %>
                         <p>Scope, team, forecast, billing, tracking.</p>
                     </div>
 
                     <div class="tile-box">
-                        <%= link_to image_tag("icons/Infinity-Loop@2x.png", :alt => "contacts", :class => "round-icon resize"), contacts_path %>
+                        <%= link_to image_tag("people-home.png", :alt => "contacts", :class => "round-icon resize"), contacts_path %>
                         <%= link_to "Contacts", contacts_path, :class => "tile-label" %>
                         <p>Add + edit contacts, view employees.</p>
                     </div>
@@ -35,9 +35,15 @@
                     </div>
 
                     <div class="tile-box disabled">
-                        <%= link_to image_tag("icons/Pensils@2x.png", :alt => "patterns", :class => "round-icon resize"), "#" %>
+                        <%= link_to image_tag("patterns-home.png", :alt => "patterns", :class => "round-icon resize"), "#" %>
                         <%= link_to "Patterns", "#", :class => "tile-label" %>
                         <p>Coming soon!</p>
+                    </div>
+
+                    <div class="tile-box">
+                        <%= link_to image_tag("library-home.png", :alt => "patterns", :class => "round-icon resize"), library_path %>
+                        <%= link_to "Library", library_path, :class => "tile-label" %>
+                        <p>Browse and check out books.</p>
                     </div>
 
                 </div> <!-- end icons -->

@@ -6,7 +6,7 @@
 <div class="row icons timesheets">
 
 	<div class="tile-box">
-        <%= link_to image_tag("data.png", :alt => "timesheets", :class => "round-icon"), "/users/#{current_user.id}/timesheets/#{this_year}/#{this_week}" %>
+        <%= link_to image_tag("icons/Watches.png", :alt => "timesheets", :class => "round-icon"), "/users/#{current_user.id}/timesheets/#{this_year}/#{this_week}" %>
         <%= link_to "My Timesheets", "/users/#{current_user.id}/timesheets/#{@curr_year}/#{@curr_week}", :class => "tile-label" %>
     </div>
 
@@ -21,7 +21,7 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("people.png", :alt => "all_timesheets", :class => "round-icon"), all_timesheets_path(this_year, prev_week) %>
+        <%= link_to image_tag("people-sm.png", :alt => "all_timesheets", :class => "round-icon"), all_timesheets_path(this_year, prev_week) %>
         <%= link_to "Everyone's Timesheets", all_timesheets_path(this_year, prev_week), :class => "tile-label" %>
     </div>
 

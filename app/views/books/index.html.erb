@@ -80,7 +80,7 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("books.png", :alt => "checked out", :class => "round-icon"), checked_out_path %>
+        <%= link_to image_tag("library-sm.png", :alt => "checked out", :class => "round-icon"), checked_out_path %>
         <%= link_to "Checked-Out Books", checked_out_path, :class => "tile-label" %>
     </div>
 
@@ -97,7 +97,7 @@
 	<% @recommendations.each do |r| %>
 		<div class="book-tile">
 			<div class="photo"><%= link_to image_tag(Book.find(r.book_id).photo.url(:thumb)), edit_book_path(r.book_id) %></div>
-			<div class="text"><%= r.description %></div>
+			<div class="text"><h3><%= Book.find(r.book_id).title %></h3><%= r.description %></div>
 			<div class="user"><%= User.find(r.user_id).name %>, <%= r.created_at.strftime("%B %d, %Y") %></div>
 		</div>
 	<% end %>

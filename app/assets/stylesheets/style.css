@@ -373,13 +373,13 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		.login-box .flash { float:left; width:540px; margin:-20px 0 20px 0; color:#e64c3c; text-align:center; }
 	.signup-link { display:block; width:200px; margin:30px 400px; font-size:14px; }
 
-	.home .row.icons { margin: 0px 0 0px 50px; }
+	.home .row.icons { margin: 0px 0 0px 20px; }
 
 	.home .tile-box:hover img.round-icon { border-color:#16a085; background-color:#1abc9c; }
 	.home .tile-box a.tile-label { color:#fff; font-size:18px; font-weight:700;}
 	.home .tile-box:hover a.tile-label { color:#1abc9c; }
 	.home .tile-box:hover p  { color:#16a085; }
-	.home .tile-box img.round-icon.resize { width:140px; height:140px; padding:20px; }
+	.home .tile-box img.round-icon.resize { width:120px; height:120px; padding:20px; }
 
 
 
@@ -481,11 +481,15 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		.row.icons.three { float:left; margin:40px 150px 20px; }
 
 	.tile-box { float:left; position:relative; width:200px; height:220px; margin:0 5px; }
+		.home .tile-box { margin:0 5px; width:170px; height:180px; }
+
 		.tile-box a.tile-label { display:block; width:180px; padding-top:10px; margin-left:5px; color:#1abc9c; font-size:17px; font-weight:900;text-align:center; }
+			.home .tile-box a.tile-label { width:160px; }
+
 				.tile-box:hover a.tile-label { color:#2c3445; }
 		.tile-box img.round-icon { width:180px; height:180px; border:3px solid #e1e6eb; border-radius:110px; background:#fff; }
 			.tile-box:hover img.round-icon { border-color:#34495e; background-color:#f6f8fa; }
-		.tile-box p { display:block; width:180px; margin:10px 0 0 5px; color:rgba(255,255,255,.3); font-size:15px; font-weight:400; text-align:center; }
+		.tile-box p { display:block; width:160px; margin:10px 0 0 8px; color:rgba(255,255,255,.3); font-size:15px; font-weight:400; text-align:center; }
 
 		.tile-box.disabled img.round-icon { opacity:.3; }
 		.tile-box.disabled:hover img.round-icon { border-color:#e1e6eb; background-color:#fff; }
