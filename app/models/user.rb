@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
     has_one :contact, :through => :employee
     accepts_nested_attributes_for :contact
 
+    has_many :recommendations
+    has_many :books, :through => :recommendations
+
     before_save :create_remember_token
 
     after_initialize do

@@ -1,0 +1,27 @@
+<div class="row book-row <%= "saved" if f.object.user_id %>">
+	<%= f.hidden_field :book_id, value: f.object.book_id || params[:id] %>
+	<%= f.hidden_field :user_id, value: f.object.user_id || current_user.id %>
+	
+		<div class="description">
+			<% if f.object.user_id %>
+				<div class="text">
+					<%= simple_format(h f.object.description) %>
+				</div>
+				<div class="textarea">
+					<%= f.text_area :description, rows: 7 %>
+				</div>
+				<div class="user">
+					Recommended by: <%= User.find(f.object.user_id).name %>, <%= f.object.created_at.strftime("%B %d, %Y") %>
+					<% if current_user.id == f.object.user_id %>
+						<a class="edit">edit</a>
+						<%= f.hidden_field :_destroy %>
+						<%= link_to_remove_book_fields "delete", f %>
+						<a class="cancel">cancel</a>
+					<% end %>
+				</div>
+			<% else %>
+				<%= f.text_area :description, rows: 7, class: "rec-textarea" %>
+			<% end %>
+		</div>
+		
+</div>

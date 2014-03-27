@@ -1,12 +1,22 @@
 /* INDEX */
 
-.gray-box.library { position:relative; height:255px;}
+.gray-box.library { position:relative; height:auto;}
 .library input.search-name.index { width:60px; margin:7px 300px 0px 30px; }
 .library input.search-name.title { width:360px; margin:3px 0px 0px 30px; }
 .library input.search-name.author { width:360px; margin:3px 0px 0px 30px; }
 .library .note { float:left; width:500px; margin:15px 0 0 172px; }
 .library select.search-subject { float:left; margin:3px 300px 0px 170px; width:384px;  border-radius:8px; height:40px; }
 .library input.search-name.keywords { width:360px; margin:3px 0px 0px 170px; }
+
+.library .btn.btn-primary.search-btn { position:absolute; height:38px; top:30px; right:100px; }
+.library .options { position:absolute; top:80px; right:100px; }
+.library #more-options { margin-left:0px; }
+
+.book-tile { width:260px; height:185px; padding:20px; margin:0 10px 10px 0; float:left; background-color:#ecf0f5; border-radius:8px; }
+.book-tile .photo { display:block; float:left; height:auto; margin-right:15px; height:160px; }
+.book-tile .photo img { margin:auto; float:none; width:100px; height:auto; max-height:150px; border:5px solid #fff; }
+.book-tile .text { float:left; height:150px; width:135px; overflow:hidden; }
+.book-tile .user { float:left; margin:10px 0 0 0; font-weight:700; font-size:13px; }
 
 
 
@@ -31,6 +41,57 @@
 .borrower { display:none; }
 .borrower.checked-out { display:block; }
 
+	/* show/hide stuff  */
+	a#show, a#hide { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
+	a#show:hover, a#hide:hover, { color:#1abc9c; }
+	a#show { display:inline-block; }
+	a#hide { display:none; }
+
+.recs.hidden { display:none; float:left; }
+
 /* CHECKED-OUT BOOKS */
 
 .table.books td.title { width:500px; }
+
+
+
+/* RECOMMENDATIONS */
+
+.narrow.recommendations { width:155px; margin-right:40px; }
+	.narrow.recommendations .image-name { width:150px; height:auto; background-color:#ecf0f5; padding:0px; margin-top:0px; }
+	.narrow.recommendations img.book-photo { width:150px; height:200px; }
+
+	.narrow.recommendations .add-image { float:left; width:150px; background-color:#fff;  }
+	.narrow.recommendations .add-image .text { line-height:28px; color:#9ba6ac; margin:0px; text-align:left; font-size:13px;  }
+	.narrow.recommendations .add-image:hover .text { color:#ced5da; }
+
+.wide.recommendations { width:744px; }
+
+.narrow.recommendations.hidden, .wide.recommendations.hidden { display:none; }
+
+.book-row { width:740px; margin:0 0 10px 0; float:left; }
+.book-row.saved { width:700px; padding:20px; margin:0 0 10px 0; float:left; border:2px solid #ecf0f5; border-radius:8px; }
+.book-row.saved.editing { background-color:#f4f6f9; }
+
+.book-row .photo { display:block; float:left; width:100px; margin-right:20px; border:1px solid #9ba6ac; }
+.book-row .description { float:left; width:745px; margin:0px; }
+.book-row .description .text { float:left; width:685px; margin:0px; }
+.book-row .description .user { float:left; width:745px; margin:10px 0 0 0; font-weight:700; }
+.book-row .description .user a { margin-left:5px; }
+.book-row .description .user a.edit { cursor:pointer; }
+.book-row .description .user a.cancel { cursor:pointer; display:none; }
+
+.book-row .textarea textarea { width:670px; }
+.book-row .textarea { display:none; }
+.book-row .rec-textarea { padding:20px; width:700px; }
+
+
+.rec-list .book-row { width:900px; padding:20px; margin:0 0 10px 0; float:left; border:2px solid #ecf0f5; border-radius:8px; }
+.rec-list .book-row .description { float:left; width:775px; margin:0px; }
+.rec-list .book-row .description .text { float:left; width:765px; margin:0px; }
+.rec-list .book-row .description .text h3 { margin:0px; line-height:24px; }
+.rec-list .book-row .description .user { font-size:13px; }
+.rec-list .book-row .description .user img.user-round { width:40px; height:40px; margin:0 6px 0 0; }
+
+
+

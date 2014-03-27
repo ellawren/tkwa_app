@@ -21,10 +21,16 @@
 		<%= f.text_field :index_eq, class: "search-name index", placeholder: "Index" %>
 		<%= f.text_field :title_cont, class: "search-name title", placeholder: "Title" %>
 		<%= f.text_field :author_cont, class: "search-name author", placeholder: "Author" %> 
-		<p class="note">Search by subject:</p>
-		<%= f.collection_select(:subject_id_eq, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select search-subject" } ) %>
-		<%= f.text_field :categories_cont, class: "search-name keywords", placeholder: "Keywords" %> 
-		<%= f.submit "Search", class: "btn btn-primary search-btn library" %>
+
+		<%= f.submit "Search", class: "btn btn-primary search-btn" %>
+		<a class="options more-options">show more options</a>
+		<a class="options less-options">hide options</a>
+
+		<div id="more-options">
+			<p class="note">Search by subject or keyword</p>
+			<%= f.collection_select(:subject_id_eq, Subject.all, :id, :display_name, { :include_blank => true }, { :class => "custom-select search-subject" } ) %>
+			<%= f.text_field :categories_cont, class: "search-name keywords", placeholder: "Keywords" %> 
+		</div>
 	
 	<% end %>
 
@@ -79,8 +85,20 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("clipboard-yellow.png", :alt => "edit subjects", :class => "round-icon"), subjects_path %>
-        <%= link_to "Manage Subjects", subjects_path, :class => "tile-label" %>
+        <%= link_to image_tag("thumbs-up.png", :alt => "edit subjects", :class => "round-icon"), recommendations_path %>
+        <%= link_to "All Recommendations", recommendations_path, :class => "tile-label" %>
     </div>
 
-  </div> <!-- end tiles -->
+</div> <!-- end tiles -->
+
+<h2>Recently Recommended Books</h2>
+
+<div class="full">
+	<% @recommendations.each do |r| %>
+		<div class="book-tile">
+			<div class="photo"><%= link_to image_tag(Book.find(r.book_id).photo.url(:thumb)), edit_book_path(r.book_id) %></div>
+			<div class="text"><%= r.description %></div>
+			<div class="user"><%= User.find(r.user_id).name %>, <%= r.created_at.strftime("%B %d, %Y") %></div>
+		</div>
+	<% end %>
+</div>

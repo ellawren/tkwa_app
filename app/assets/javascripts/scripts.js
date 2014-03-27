@@ -198,6 +198,14 @@ function remove_consultant_fields(link) {
   return false;
 }
 
+function remove_book_fields(link) {
+  if (confirm("Delete this recommendation?")) {
+    $(link).prev("input[type=hidden]").val("1");
+    $(link).closest(".row").hide();
+  }
+  return false;
+}
+
 function remove_fields_2(link) {
   $(link).prev("input[type=hidden]").val("1");
   //$(link).closest(".input").hide();

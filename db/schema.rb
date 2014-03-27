@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324190757) do
+ActiveRecord::Schema.define(:version => 20140326194449) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -26,17 +26,21 @@ ActiveRecord::Schema.define(:version => 20140324190757) do
     t.string   "author"
     t.integer  "index"
     t.string   "shelf_location"
-    t.string   "material_type",    :default => "Book"
+    t.string   "material_type",      :default => "Book"
     t.text     "loc_data"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.string   "description"
     t.integer  "subject_id"
     t.string   "date"
     t.text     "categories"
-    t.string   "status",           :default => "On Shelves"
+    t.string   "status",             :default => "On Shelves"
     t.string   "borrower"
     t.datetime "date_checked_out"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "categories", :force => true do |t|
@@ -398,6 +402,14 @@ ActiveRecord::Schema.define(:version => 20140324190757) do
   end
 
   add_index "projects_tasks", ["project_id", "task_id"], :name => "index_projects_tasks_on_project_id_and_task_id", :unique => true
+
+  create_table "recommendations", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+  end
 
   create_table "reimbursables", :force => true do |t|
     t.string   "reimbursable_name"

@@ -1,29 +1,95 @@
 <% provide :title, @book.title.titleize %>
-<%= link_to "Checked-Out Books", checked_out_path, class: "header-label second" %>
+
+<%= form_for(@book, :multipart => true) do |f| %>
+
+<% if f.object.status == "Checked Out" %><%= link_to "Checked-Out Books", checked_out_path, class: "header-label" %><% end %>
 <div class="page-header">
-    <h1><%= @book.title.titleize %> </h1>
+    <h1><%= f.object.title.titleize %> </h1>
     <ul class="controls">
-        <% if @book.previous.present? %> 
-            <li><%= link_to "", edit_book_path(@book.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
-        <% end %>
-        <% if @book.next.present? %> 
-            <li><%= link_to "", edit_book_path(@book.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
-        <% end %>
         <li><%= link_to "", library_path, class: "glyphicon glyphicon-search tip", title:"Search Library" %></li>
         <li><%= link_to "", new_book_path, class: "glyphicon glyphicon-plus tip", title:"Add New Book" %></li>
         <li class="delete">
-            <%= link_to "", @book, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Book" %>
+            <%= link_to "", f.object, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Book" %>
         </li>
+        <li><%= f.submit "Save", class: "btn btn-primary save-btn" %></li>
     </ul>
 </div>
 
-<%= form_for @book do |f| %>
+
 
     <%= render 'shared/error_messages', object: f.object %>
     <%= render 'fields', f: f %>
+   
+    <h2>Recommendations <% if @book.recommendations.count == 0 %><a id="show">show</a><a id="hide">hide</a><% end %></h2>
+    
+    <div class="recs <%= "hidden" if @book.recommendations.count == 0 %>">
+        <div class="narrow recommendations">
+            <div class="input-row">
+                <% if @book.photo_file_name %>
+                    <%= image_tag @book.photo.url(:medium), class: "book-photo" %>
+                    <div class="add-image" >
+                        <%= f.file_field :photo %>
+                        <div class="text">Change Image</div>
+                    </div>
+                <% else %>
+                    <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
+                    <div class="add-image" >
+                        <%= f.file_field :photo %>
+                        <div class="text">Add Image</div>
+
+                    </div>
+                <% end %>
+            </div>
+        </div>  
+        <div class="wide recommendations">
+        <!-- nested form for recommendation -->
+            <%= f.fields_for :recommendations, :html => { :multipart => true } do |builder| %>
+                <%= render 'recommendation_fields', :f => builder %>
+            <% end %>
+            <% unless @book.recommendations.count == 0 %>
+                <%= link_to_add_fields_2 "", f, :recommendations, "add fui-plus recommendation" %>
+            <% end %>
+        <!-- end form -->
+        </div>
+
+    </div>
 
     <div class="save-row">
         <%= f.submit "Save", class: "btn btn-primary save-btn" %>
     </div>
 
+<% end %>
+
+<% content_for :scripts do %>
+    <script>
+        $('#book_photo').live('change', function(){
+            text = $(this).val().replace(/C:\\fakepath\\/i, '');
+            $('#photo-name').html(text);
+        });
+
+        $('.edit').live('click', function(){
+            $(this).parent().parent().parent().addClass("editing");
+            $(this).parent().parent().children('.text').hide();
+            $(this).parent().parent().children('.textarea').slideDown();
+            $(this).parent().children(".cancel").show();
+            $(this).hide();
+        });
+
+        $('.cancel').live('click', function(){
+            location.reload();
+        });
+        // show personal info on contacts page
+        $('#show').click( function() {
+            $('.recs').slideDown("slow");
+            $('#show').hide();
+            $('#hide').show();
+         });
+
+        $('#hide').click( function() {
+            $('.recs').slideUp("slow");
+            $('#show').show();
+            $('#hide').hide();
+        });
+        //---
+    </script>
 <% end %>

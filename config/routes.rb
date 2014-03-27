@@ -100,6 +100,7 @@ TkwaApp::Application.routes.draw do
     match '/library',    to: 'books#index'
     match '/library/import',   to: 'books#import'
     match '/library/checked_out',   to: 'books#checked_out', as: "checked_out"
+    match '/library/recommendations',   to: 'books#recommendations', as: "recommendations"
     resources :books do 
         get :autocomplete_contact_name, :on => :collection
     end

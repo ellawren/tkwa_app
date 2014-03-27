@@ -32,6 +32,8 @@ class Employee < ActiveRecord::Base
     def hired
     	if hire_date.present?
     		Date.strptime(hire_date, '%m/%d/%Y').strftime("%b %d, %Y")
+        else
+            "n/a"
     	end
     end
 

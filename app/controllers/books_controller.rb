@@ -12,11 +12,14 @@ class BooksController < ApplicationController
 
     def edit
   	    @book = Book.find(params[:id])
+        1.times { @book.recommendations.build } if @book.recommendations.count == 0
     end
 
     def index
   	    @q = Book.search(params[:q])
         @books = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('title')
+        @recommendations = Recommendation.find(:all, :order => "created_at DESC", :limit => 3)
+
         if params.has_key?(:q) && @books.count == 1 
             redirect_to edit_book_path(@books.first(params[:id]))
         else
@@ -26,6 +29,10 @@ class BooksController < ApplicationController
 
     def checked_out
         @books = Book.where(status: "Checked Out")
+    end
+
+    def recommendations
+        @recommendations = Recommendation.paginate(:page => params[:page], :per_page => 12).order('created_at DESC')
     end
 
     def create

@@ -279,17 +279,9 @@ module ApplicationHelper
         # exception for /mailing_lists
         elsif params[:controller] == "mailing_lists"
             "active" if c_name.include?('contacts')
-
-        # exceptions for /admin
-        elsif ( params[:controller] == "static_pages" && params[:action] == "admin" ) ||
-              ( params[:controller] == "users" && params[:action] == "index" ) ||
-              ( params[:controller] == "users" && params[:action] == "new" ) ||
-              ( params[:controller] == "holidays" ) ||
-              ( params[:controller] == "categories" ) ||
-              ( params[:controller] == "data_records" ) ||
-              ( params[:controller] == "globals" )
-            "active" if c_name.include?('admin')
-
+        # exception for /subjects
+        elsif params[:controller] == "subjects"
+            "active" if c_name.include?('books')
         # all other pages
         else
             "active" if c_name.include?(params[:controller])
@@ -401,6 +393,10 @@ module ApplicationHelper
 
     def link_to_remove_consultant_fields(name, f)
         f.hidden_field(:_destroy) + link_to_function(name, "remove_consultant_fields(this)", class: "delete fui-cross")
+    end
+
+    def link_to_remove_book_fields(name, f)
+        f.hidden_field(:_destroy) + link_to_function(name, "remove_book_fields(this)", class: "delete-row")
     end
 
     def link_to_add_category_fields(name, f, cat, html_class)
