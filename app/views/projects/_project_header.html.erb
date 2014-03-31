@@ -12,17 +12,23 @@
     <div class="page-header">
         <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
 <% end %>
-    <ul class="controls">
+    <ul class="controls project">
         <!--<% unless @project.status == "potential" %>
             <li><a href="#options" class="glyphicon glyphicon-eye-open tip" role="button" data-toggle="modal" title="View Options"></a></li>
         <% end %>-->
+        <% if @project.previous.present? %> 
+                <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.previous.id})"), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+            <% end %>
+            <% if @project.next.present? %> 
+                <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.next.id})"), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+        <% end %>
         <li><%= link_to "", projects_path, class: "glyphicon glyphicon-search tip", title:"Search Projects" %></li>
         <li><%= link_to "", new_project_path(:status => 'current'), class: "glyphicon glyphicon-plus tip", title:"Add New Project" %></li>
         <li class="delete"><%= link_to "", @project, method: :delete, confirm: "Are you sure you want to delete this project and all its data?", class: "glyphicon glyphicon-remove tip", title:"Delete This Project" %>
         </li>
-        <% unless params[:action] == "tracking" %>
+        <!--<% unless params[:action] == "tracking" %>
             <li><%= f.submit "Save", class: "btn btn-primary save-btn" %></li>
-        <% end %>
+        <% end %>-->
     </div>      
 
 <%= render "tabnav" %>

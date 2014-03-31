@@ -30,6 +30,10 @@ module ApplicationHelper
         Date.today.cweek
     end
 
+    def this_month
+        Date.today.month
+    end
+
     def prev_week
         if Date.today.cweek == 1
             Date.today.cweek

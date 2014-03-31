@@ -319,3 +319,19 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
 .shop-modal { left:55%; width:520px; }
 
+
+/* monthly billing */
+
+.table.monthly-billing th { text-align:right; padding-right:16px; padding-bottom:2px; font-size:12px;}
+.table.monthly-billing th:first-child { text-align:left; }
+.table.monthly-billing td { padding:6px 4px 4px;}
+.table.monthly-billing input[type="text"] { width:80px; text-align:right; margin-bottom:0px; color:#5bae60; }
+.table.monthly-billing td.contract-amount { padding-top:14px; font-weight:700; text-align:right; padding-right:16px; }
+.table.monthly-billing th.contract-amount { padding-right:16px; }
+
+.table.monthly-billing .percent { text-align:center; border:1px dashed #344953; color:#344953; width:42px; height:20px; font-size:13px; margin:0px auto; padding:9px 0; border-radius:30px; background-color:#fff; font-weight:700; }
+
+
+
+
+

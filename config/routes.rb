@@ -3,8 +3,10 @@ TkwaApp::Application.routes.draw do
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
-    post "/csv_import" => 'projects#csv_import'
+    post '/csv_import' => 'projects#csv_import'
     match '/projects/import',   to: 'projects#import'
+    match '/projects/monthly_billing',   to: 'projects#monthly_billing', as: 'monthly_billing'
+    match '/projects/all' => 'projects#update_all', :as => :update_all, :via => :put
     resources :projects do
         resources :employee_teams
         resources :schedule_items

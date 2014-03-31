@@ -57,6 +57,18 @@ class ProjectsController < ApplicationController
         @projects = Project.current.all
     end
 
+    def monthly_billing #edit_all
+        @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
+    end
+
+    def update_all #for monthly_billing
+      params['project'].keys.each do |id|
+        @project = Project.find(id.to_i)
+        @project.update_attributes(params['project'][id])
+      end
+      redirect_to(monthly_billing_path)
+    end
+
     def drawing_log
         @project = Project.find(params[:id])
     end

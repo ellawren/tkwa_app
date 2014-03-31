@@ -80,10 +80,15 @@
         <%= link_to "Project Forecast", projects_forecast_path, :class => "tile-label" %>
     </div>
 
-    <div class="tile-box disabled">
+    <div class="tile-box">
+        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), monthly_billing_path %>
+        <%= link_to "Monthly Billing", monthly_billing_path, :class => "tile-label" %>
+    </div>
+
+    <!--<div class="tile-box disabled">
         <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), "" %>
         <%= link_to "Potential Projects", "", :class => "tile-label" %>
-    </div>
+    </div>-->
 
   </div> <!-- end tiles -->
 

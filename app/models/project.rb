@@ -89,6 +89,9 @@ class Project < ActiveRecord::Base
     has_many :shop_drawings
     accepts_nested_attributes_for :shop_drawings, :allow_destroy => true, :reject_if => lambda { |a| a[:date_received].blank? }
 
+    has_many :monthly_billings, :foreign_key => :project_id
+    accepts_nested_attributes_for :monthly_billings
+
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
@@ -148,6 +151,19 @@ class Project < ActiveRecord::Base
     }
 
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
+
+    # next/prev
+    scope :next, lambda {|id| where("status = ? AND number > ?", "current", id).order("number ASC") }
+    scope :previous, lambda {|id| where("status = ? AND number < ?", "current", id).order("number DESC") }
+
+    def next
+        Project.next(self.number).first
+    end
+
+    def previous
+        Project.previous(self.number).first
+    end
+    #------------------------------------
 
     def number_base
         /\A\d*/.match(self.number)
