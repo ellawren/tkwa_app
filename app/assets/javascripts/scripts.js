@@ -201,7 +201,7 @@ function remove_consultant_fields(link) {
 function remove_book_fields(link) {
   if (confirm("Delete this recommendation?")) {
     $(link).prev("input[type=hidden]").val("1");
-    $(link).closest(".row").hide();
+    $('form.edit_book').submit();
   }
   return false;
 }

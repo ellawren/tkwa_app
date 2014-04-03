@@ -6,6 +6,10 @@
 <%= form_for @user do |f| %>
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
 <p class="description">This page is still being refined! Everything works - you can enter data and it will be saved - but it's a little plain right now and I'll be working on it more soon.</p>
+    <div class="buttons">
+        <%= link_to "all studio forecast", projects_forecast_path(:view => 'employee'), :class => "btn active" %>
+    </div>
+
     <table class="table forecast">
         <thead>
             <%= four_month_header_array(date) %>

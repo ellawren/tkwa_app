@@ -13,6 +13,7 @@
                 <th>Billed to Date</th>
                 <th>Hourly to Date</th>
                 <th>Payroll to Date</th>
+                <th><%= Date.today.strftime("%B %Y") %><br>Actual Billing</th>
                 <th>%</th>
             </tr>
         </thead>
@@ -30,6 +31,13 @@
                     <td><%= p.text_field :billed_to_date, value: number_to_currency(p.object.billed_to_date), autocomplete: "off" %></td>
                     <td><%= p.text_field :hourly_billed_to_date, value: number_to_currency(p.object.hourly_billed_to_date), autocomplete: "off" %></td>
                     <td><%= p.text_field :payroll, value: number_to_currency(p.object.payroll), autocomplete: "off" %></td>
+                    <td>
+                        <% @actual = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, Date.today.cwyear, Date.today.month) %>
+                        <% p.object.actuals.build %>
+                        <%= fields_for "project[#{p.object.id}]actuals[#{@actual.id}]", @actual do |a| %>
+                            <%= a.text_field :amount, autocomplete: "off"  %>
+                        <% end %>
+                    </td>
                     <td><div class="percent"><%= number_to_percentage(p.object.percent_billed_to_date, :precision => 0) %></div></td>
                 </tr>
                 <% end %>

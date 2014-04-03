@@ -1,6 +1,6 @@
 <% provide :title, "Project Forecast" %>
 <div class="page-header auto">
-    <h1>Project Forecast</h1>
+    <h1>Studio Forecast</h1>
     <p class="description">This page is still being refined! Everything works - you can enter data and it will be saved - but it's a little plain right now and I'll be working on it more soon.</p>
 </div>
 
@@ -33,7 +33,7 @@
                     <% if e.employee_teams.count > 0 %>
                         <tr class="head">
                             <td>
-                                <a href="<%= edit_forecast_user_path(e.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= e.name %></a>
+                                <%= link_to e.name, forecast_user_path(e.id) %>
                             </td>
                             <% four_month_array(date).each do |w, y| %>
                                 <td class="<%= month_shading(w, y) %>"><%= e.forecast_total(w, y) %></td>
@@ -46,7 +46,7 @@
                 <% Project.current.order("name ASC").each do |p| %>
                     <tr class="head">
                         <td>
-                            <a href="<%= edit_forecast_project_path(p.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn edit-targets"><%= p.name %></a>
+                            <%= link_to p.name, forecast_project_path(p.id) %>
                         </td>
                         <% four_month_array(date).each do |w, y| %>
                             <td class="<%= month_shading(w, y) %>"><%= p.forecast_total(w, y) %></td>

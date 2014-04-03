@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     def index
   	    @q = Book.search(params[:q])
         @books = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('title')
-        @recommendations = Recommendation.find(:all, :order => "created_at DESC", :limit => 3)
+        @recommendations = Recommendation.find(:all, :order => "created_at DESC", :limit => 6)
 
         if params.has_key?(:q) && @books.count == 1 
             redirect_to edit_book_path(@books.first(params[:id]))

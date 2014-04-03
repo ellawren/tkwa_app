@@ -332,6 +332,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 .table.monthly-billing .percent { text-align:center; border:1px dashed #344953; color:#344953; width:42px; height:20px; font-size:13px; margin:0px auto; padding:9px 0; border-radius:30px; background-color:#fff; font-weight:700; }
 
 
-
+.actual-billing { float:left; }
+.actual-billing input[type="text"] { width:80px; }
 
 

@@ -97,9 +97,19 @@
             </tbody>
         </table>
 
+        <h2>Actual Billings</h2>
+        <%= f.fields_for :actuals do |a| %>
+            <div class="actual-billing">
+                <%= a.label :amount, "#{monthname(a.object.month)} #{a.object.year}", class: "input-label" %>
+                <%= a.text_field :amount  %>
+            </div>
+        <% end %>
+
         <div class="save-row">
             <%= f.submit "Save", class: "btn btn-primary save-btn" %>
         </div>
+
+        
 
 <% end %>
 

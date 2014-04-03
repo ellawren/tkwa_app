@@ -89,8 +89,8 @@ class Project < ActiveRecord::Base
     has_many :shop_drawings
     accepts_nested_attributes_for :shop_drawings, :allow_destroy => true, :reject_if => lambda { |a| a[:date_received].blank? }
 
-    has_many :monthly_billings, :foreign_key => :project_id
-    accepts_nested_attributes_for :monthly_billings
+    has_many :actuals
+    accepts_nested_attributes_for :actuals
 
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables

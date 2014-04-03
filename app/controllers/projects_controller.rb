@@ -27,6 +27,7 @@ class ProjectsController < ApplicationController
         if @project.consultant_teams.count == 0 
             1.times { @project.consultant_teams.build }
         end
+        @actual = Actual.find_or_create_by_project_id_and_year_and_month(@project.id, Date.today.cwyear, Date.today.month)
     end
   
     def scope
