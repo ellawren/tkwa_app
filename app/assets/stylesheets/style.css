@@ -672,7 +672,6 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.table.forecast.index tfoot td { color:#344953; }
 	.table.forecast.index tr { display:block; width:940px; }
 	.table.forecast.index tbody { display:block; width:960px; height:auto; max-height:650px; overflow-y:auto; overflow-x:visible; }
-
 	.table.forecast.index tr.head td:first-child { padding-right:20px; }
 	.table.forecast.index tbody tr:last-child td { border-bottom:none; }
 
@@ -950,6 +949,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	body > .container { margin-top:10px; }
 	body { width:960px; margin:0 40px; }
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }
+
+	.table.forecast.index tbody { overflow-y:visible; max-height:auto; }
 
 }
 

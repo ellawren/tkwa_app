@@ -234,6 +234,10 @@ class Project < ActiveRecord::Base
         (self.contract_amount.to_f + self.hourly_billed_to_date.to_f) - self.consultant_contract_total.to_f
     end
 
+    def actuals_list
+        Actual.by_project(self.id)
+    end
+
     def consultant_contract_total
         contracts = self.consultant_teams
         array = []

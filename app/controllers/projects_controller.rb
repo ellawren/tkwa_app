@@ -27,7 +27,12 @@ class ProjectsController < ApplicationController
         if @project.consultant_teams.count == 0 
             1.times { @project.consultant_teams.build }
         end
-        @actual = Actual.find_or_create_by_project_id_and_year_and_month(@project.id, Date.today.cwyear, Date.today.month)
+        date = Date.today.beginning_of_month
+        (1..12).each do
+            Actual.find_or_create_by_project_id_and_year_and_month(@project.id, date.cwyear, date.month)
+            date = (date - 1).beginning_of_month
+        end
+        @actuals = @project.actuals.order("year ASC, month ASC")
     end
   
     def scope
@@ -58,6 +63,10 @@ class ProjectsController < ApplicationController
         @projects = Project.current.all
     end
 
+    def billed_to_date #edit_all
+        @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
+    end
+
     def monthly_billing #edit_all
         @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end
@@ -67,7 +76,7 @@ class ProjectsController < ApplicationController
         @project = Project.find(id.to_i)
         @project.update_attributes(params['project'][id])
       end
-      redirect_to(monthly_billing_path)
+      redirect_to(:back) 
     end
 
     def drawing_log

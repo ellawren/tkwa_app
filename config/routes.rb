@@ -14,6 +14,7 @@ TkwaApp::Application.routes.draw do
     post '/csv_import' => 'projects#csv_import'
     match '/projects/import',   to: 'projects#import'
     match '/projects/monthly_billing',   to: 'projects#monthly_billing', as: 'monthly_billing'
+     match '/projects/billed_to_date',   to: 'projects#billed_to_date', as: 'billed_to_date'
     match '/projects/all' => 'projects#update_all', :as => :update_all, :via => :put
     resources :projects do
         resources :employee_teams

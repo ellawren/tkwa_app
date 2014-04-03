@@ -57,6 +57,12 @@ module ApplicationHelper
         end  
     end  
 
+    def monthname_a(monthnumber)  
+        if monthnumber  
+            Date::ABBR_MONTHNAMES[monthnumber]  
+        end  
+    end 
+
     def phone(input)
         if input && input.length > 0
             if input.length == 7

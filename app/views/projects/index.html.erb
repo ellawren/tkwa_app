@@ -77,12 +77,12 @@
 
     <div class="tile-box">
         <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), projects_forecast_path %>
-        <%= link_to "Project Forecast", projects_forecast_path, :class => "tile-label" %>
+        <%= link_to "Studio Forecast", projects_forecast_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), monthly_billing_path %>
-        <%= link_to "Monthly Billing", monthly_billing_path, :class => "tile-label" %>
+        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), billed_to_date_path %>
+        <%= link_to "Billing", billed_to_date_path, :class => "tile-label" %>
     </div>
 
     <!--<div class="tile-box disabled">

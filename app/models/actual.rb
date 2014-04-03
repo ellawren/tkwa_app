@@ -16,5 +16,7 @@ class Actual < ActiveRecord::Base
 	belongs_to :project
 
 	scope :current, lambda {|id| where("project_id = ? AND year = ? AND month = ?", id, Date.today.cwyear, Date.today.month) }
+	scope :by_project, lambda {|id| where("project_id = ?", id) }
+
 end
 

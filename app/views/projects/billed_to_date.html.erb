@@ -1,0 +1,48 @@
+<% provide :title, "Monthly Billing" %>
+<div class="page-header auto">
+    <h1>Billed To Date</h1>
+</div>
+
+<%= form_for :project, :url => update_all_path, :html => { :method => :put } do %>
+    <table class="table monthly-billing">
+        
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="contract-amount">Contract</th>
+                <th>Billed to Date</th>
+                <th>Hourly to Date</th>
+                <th>Payroll to Date</th>
+                <th>%</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @projects.each do |project| %>
+                <%= fields_for "project[]", project do |p| %>
+                <tr>
+                    <td>
+                        <%= link_to p.object.name, billing_project_path(p.object), class: "green" %><br>
+                        <% e = EmployeeTeam.find_by_project_id_and_role(p.object, "Project Manager") %>
+                        <div class="detail"><%= User.find(e.user_id).name if e %></div>
+                    </td>
+                    <td class="contract-amount"><%= number_to_currency(p.object.contract_amount, precision: 0) %></td>
+                    <td><%= p.text_field :billed_to_date, value: number_to_currency(p.object.billed_to_date), autocomplete: "off" %></td>
+                    <td><%= p.text_field :hourly_billed_to_date, value: number_to_currency(p.object.hourly_billed_to_date), autocomplete: "off" %></td>
+                    <td><%= p.text_field :payroll, value: number_to_currency(p.object.payroll), autocomplete: "off" %></td>
+                    <td><div class="percent"><%= number_to_percentage(p.object.percent_billed_to_date, :precision => 0) %></div></td>
+                </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+
+        <tfoot>
+        </tfoot>
+        
+    </table>
+    <%= will_paginate @projects %>
+
+    <div class="save-row">
+        <%= submit_tag "Save", class: "btn btn-primary save-btn" %>
+    </div>
+<% end %>

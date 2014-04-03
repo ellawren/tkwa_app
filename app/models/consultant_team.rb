@@ -44,4 +44,10 @@ class ConsultantTeam < ActiveRecord::Base
         end
     end
 
+    def remaining
+        if consultant_bills_total && consultant_contract
+            consultant_contract.to_f - consultant_bills_total.to_f
+        end
+    end
+
 end
