@@ -4,42 +4,23 @@
 </div>
 
 <%= form_for :project, :url => update_all_path, :html => { :method => :put } do %>
+
     <table class="table monthly-billing">
         
         <thead>
-            <tr>
-                <th>Name</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
         </thead>
 
         <tbody>
-            <% @projects.each do |project| %>
-                <%= fields_for project.actuals do |a| %>
-                <tr>
-                   
-                        <td><div class="actual-billing">
-                            <%= a.label :amount, "#{monthname_a(a.object.month)} #{a.object.year}", class: "input-label" %>
-                            <%= a.text_field :amount  %>
-                        </div></td>
-                    
-                </tr>
-                <% end %>
-            <% end %>
+            
         </tbody>
 
         <tfoot>
         </tfoot>
         
     </table>
-    <%= will_paginate @projects %>
 
     <div class="save-row">
         <%= submit_tag "Save", class: "btn btn-primary save-btn" %>
     </div>
+
 <% end %>

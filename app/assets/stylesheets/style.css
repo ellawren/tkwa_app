@@ -794,17 +794,34 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
  	/* consultant billing - add bill modal */
- 	.modal.consultant { width:560px; left:50%; min-height:260px; height:auto; }
+ 	.modal.consultant { width:660px; left:45%; min-height:260px; height:auto; }
 	.modal.consultant .modal-body { height:100%; padding:10px 40px; height:auto; min-height:100px; max-height:450px; overflow-y:scroll; }
 
 	.modal-table.cbilling-table { width:100%; color:#34495e; }
-	  	.modal-table.cbilling-table th { border-bottom:2px solid #344953; font-size:14px; font-weight:900; text-align:right; }
+	  	.modal-table.cbilling-table th { border-bottom:2px solid #344953; font-size:11px; padding-bottom:0px; text-transform:uppercase; text-align:right; padding-right:0px; font-weight:900;}
 	  	.modal-table.cbilling-table td { padding:5px 0; border-bottom:1px solid #e1e6eb; text-align:right; }
 	  	.modal-table.cbilling-table td:first-child, .modal-table.cbilling-table th:first-child { text-align:left; }
 	  	.modal-table.cbilling-table input { width:160px; text-align:right; margin:0px; }
 	  	.modal-table.cbilling-table input:focus { border-color:#1abc9c; outline:none; }
 	  	.modal-table.cbilling-table tfoot td { border-bottom:none; border-top:2px solid #344953; }
-	  	.modal-table.cbilling-table .delete { margin:0 0 0 20px;  }
+	  	.modal-table.cbilling-table .delete { margin:10px 0 0 20px;  }
+
+	.modal-table.cbilling-table .invoice-number { width:80px; }
+	.modal-table.cbilling-table .datepicker { width:110px; }
+	.modal-table.cbilling-table .amount { width:110px; }
+
+	.modal-table.cbilling-table input.amount, .modal-table.cbilling-table .amount { font-weight:700; }
+	.modal-table.cbilling-table td.amount, .modal-table.cbilling-table th.amount { padding-left:10px; }
+	.modal-table.cbilling-table td.remaining, .modal-table.cbilling-table th.remaining{ padding-left:30px; }
+
+	.modal-table.cbilling-table .remaining { color:#9ba6ac; }
+	.modal-table.cbilling-table input.invoice-number { text-align:left; }
+
+	.modal-table.cbilling-table tfoot .amount { font-weight:700; padding-right:8px; }
+	.modal-table.cbilling-table .amount input { background-image:url(/assets/dollar-sign-gray.png); background-repeat:no-repeat; background-position:8px 10px; }
+
+	.modal-header .light { font-weight:300; }
+
  	/*---*/
 
  	/* forecast modal */
@@ -951,6 +968,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }
 
 	.table.forecast.index tbody { overflow-y:visible; max-height:auto; }
+	.table.forecast.index thead { display: table-header-group; }
+	.table.forecast.index tfoot { display: table-footer-group; }
 
 }
 

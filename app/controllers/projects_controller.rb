@@ -68,7 +68,8 @@ class ProjectsController < ApplicationController
     end
 
     def monthly_billing #edit_all
-        @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
+        @projects = Project.current.all
+        @actuals = Actual.all
     end
 
     def update_all #for monthly_billing

@@ -13,5 +13,7 @@ end
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
 #  consultant_team_id :integer         not null
+#  invoice_number     :string(255)
+#  date_approved      :string(255)
 #
 

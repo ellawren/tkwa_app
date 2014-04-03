@@ -1,0 +1,58 @@
+<% content_for :modal_header do %>
+  	<%= @consultant_team.consultant_name %> <span class="light">(<%= @consultant_team.consultant_role %>)</span>
+<% end %>
+
+<%= form_for @consultant_team do |c| %>
+	<div class="modal-body">
+		Total Contract: <span class="bold"><%= number_to_currency(@consultant_team.consultant_contract) %></span>
+		<br><br>
+			<table class="table modal-table cbilling-table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Invoice Date</th>
+						<th>Approved Date</th>
+						<th class="amount">Amount</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= c.fields_for :bills do |f| %>
+						<%= f.hidden_field :consultant_team_id, value: "#{@consultant_team.id}" %>
+						<tr>
+							<td><%= f.text_field :invoice_number, class: "invoice-number" %></td>
+							<td>
+								<%= f.text_field :date, class: "datepicker", data_date_format: "mm/dd/yyyy" %>
+							</td>
+							<td>
+								<%= f.text_field :date_approved, class: "datepicker", data_date_format: "mm/dd/yyyy" %>
+							</td>
+							<td class="amount"><%= f.text_field :amount, class: "amount", id:"txtDate" %></td>
+							<td><% unless f.object.id.nil? %><%= link_to "", "/consultant_teams/#{@consultant_team.id}/bills/#{f.object.id}", method: :delete, class: "delete fui-cross", confirm: "Delete and close window?" %><% end %></td>
+
+						</tr>
+					<% end %>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td class="amount"><%= number_to_currency(c.object.consultant_bills_total) %></td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+	</div>
+
+	<div class="modal-footer">
+    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    	<%= c.submit "Save + Return", class: "btn btn-primary" %>
+	</div>
+
+<% end %>
+
+<script>
+	$( ".datepicker" ).datepicker();
+</script>
+

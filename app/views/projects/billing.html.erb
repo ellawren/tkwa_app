@@ -61,7 +61,7 @@
         </div> 
 
 
-    <h2>Actual Billing by Month</h2>
+    <h2>Actual Monthly Billing</h2>
 
         <table class="table actuals-table" id="actuals">
             <tr class="tr">
@@ -86,12 +86,14 @@
 
             <thead>
                 <tr>
-                    <th>Firm</th>
-                    <th>Role</th>
-                    <th class="align-right contract-amt">Contract Amount</th>
-                    <th class="align-right">Billed to-date</th>
+                    <th class="firm">Firm</th>
+                    <th class="role">Role</th>
+                    <th class="contract-amount">Contract Amount</th>
+                    <th class="btd">Billed to-date</th>
                     <th class="percent">% Billed</th>
                     <th class="remaining">Remaining</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
                 
@@ -103,10 +105,10 @@
                 <tr class="footer">
                     <td><%= link_to_add_billing_fields "", f, :consultant_teams, "add fui-plus consultant add-billing" %></td>
                     <td></td>
-                    <td><div class="text-field lg bold contract-amount"><%= number_to_currency(@project.consultant_contract_total) %></div></td>
-                    <td><div class="text-field med bold"><%= number_to_currency(@project.project_bills_total) %></div></td>
-                    <td><div class="text-field small bold percent"><% if f.object.consultant_percent_billed > 0 %><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %><% end %></div></td>
-                    <td><div class="text-field med remaining"><%= number_to_currency(@project.consultant_contract_total - @project.project_bills_total) %></div></td>
+                    <td class="contract-amount"><%= number_to_currency(@project.consultant_contract_total) %></td>
+                    <td class="btd"><%= number_to_currency(@project.project_bills_total) %></td>
+                    <td class="percent"><% if f.object.consultant_percent_billed > 0 %><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %><% end %></td>
+                    <td class="remaining"><%= number_to_currency(@project.consultant_contract_total - @project.project_bills_total) %></td>
                     <td></td>
                     <td></td>
                 </tr>

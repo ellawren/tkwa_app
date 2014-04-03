@@ -16,11 +16,13 @@
         <!--<% unless @project.status == "potential" %>
             <li><a href="#options" class="glyphicon glyphicon-eye-open tip" role="button" data-toggle="modal" title="View Options"></a></li>
         <% end %>-->
-        <% if @project.previous.present? %> 
-                <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.previous.id})"), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+        <% if @project.status == "current" %>
+            <% if @project.previous.present? %> 
+                    <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.previous.id})"), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+                <% end %>
+                <% if @project.next.present? %> 
+                    <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.next.id})"), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
             <% end %>
-            <% if @project.next.present? %> 
-                <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.next.id})"), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
         <% end %>
         <li><%= link_to "", projects_path, class: "glyphicon glyphicon-search tip", title:"Search Projects" %></li>
         <li><%= link_to "", new_project_path(:status => 'current'), class: "glyphicon glyphicon-plus tip", title:"Add New Project" %></li>

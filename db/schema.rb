@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140401190442) do
+ActiveRecord::Schema.define(:version => 20140403190316) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(:version => 20140401190442) do
 
   create_table "bills", :force => true do |t|
     t.string   "date"
-    t.decimal  "amount"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.integer  "consultant_team_id", :null => false
+    t.decimal  "amount",             :precision => 10, :scale => 2
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+    t.integer  "consultant_team_id",                                :null => false
+    t.string   "invoice_number"
+    t.string   "date_approved"
   end
 
   create_table "books", :force => true do |t|

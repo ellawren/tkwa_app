@@ -20,7 +20,7 @@ class ConsultantTeam < ActiveRecord::Base
 
 	belongs_to :project
     has_many :bills, :dependent => :destroy
-    accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_team_id].blank? }
+    accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:amount].blank? }
 
    	def consultant_contract=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)
