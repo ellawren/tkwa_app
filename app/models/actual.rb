@@ -18,5 +18,10 @@ class Actual < ActiveRecord::Base
 	scope :current, lambda {|id| where("project_id = ? AND year = ? AND month = ?", id, Date.today.cwyear, Date.today.month) }
 	scope :by_project, lambda {|id| where("project_id = ?", id) }
 
+	def amount=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:amount] = num.to_f
+    end
+
 end
 

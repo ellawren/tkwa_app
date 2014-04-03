@@ -17,4 +17,9 @@ class Bill < ActiveRecord::Base
     default_scope order('created_at')
 	belongs_to :consultant_team
 
+	def amount=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:amount] = num.to_f
+    end
+
 end

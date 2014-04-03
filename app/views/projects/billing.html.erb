@@ -68,7 +68,7 @@
             <%= f.fields_for :actuals, @actuals do |a| %>
                 <td class="actual-billing <%= 'current' if a.object.month == this_month && a.object.year == this_year %>">
                     <%= a.label :amount, "#{monthname_a(a.object.month)} #{a.object.year}", class: "input-label" %>
-                    <%= a.text_field :amount  %>
+                    <%= a.text_field :amount, value: number_to_currency(a.object.amount)  %>
                 </td>
             <% end %>
             </tr>
@@ -98,7 +98,7 @@
             </thead>
                 
             <tbody>
-                <%= f.fields_for :consultant_teams do |builder| %>
+                <%= f.fields_for :consultant_teams, @project.consultant_teams.order("consultant_name ASC") do |builder| %>
                 		<%= render 'consultant_billing_fields', :f => builder %>
                 <% end %>
 

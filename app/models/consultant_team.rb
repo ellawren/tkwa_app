@@ -13,8 +13,6 @@
 
 class ConsultantTeam < ActiveRecord::Base
 
-    default_scope order('created_at')
-
     validates :project_id, :presence => true
     validates :consultant_name, :presence => true
 

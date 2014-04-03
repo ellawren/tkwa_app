@@ -29,7 +29,7 @@
         </div>
 
         <!-- nested form for team-->
-            <%= f.fields_for :consultant_teams do |builder| %>
+            <%= f.fields_for :consultant_teams, @project.consultant_teams.order("consultant_name ASC") do |builder| %>
                 <%= render 'consultant_team_fields', :f => builder %>
             <% end %>
             <%= link_to_add_fields "", f, :consultant_teams, "add fui-plus consultant" %>

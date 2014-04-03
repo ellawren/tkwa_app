@@ -27,7 +27,7 @@
 							<td>
 								<%= f.text_field :date_approved, class: "datepicker", data_date_format: "mm/dd/yyyy" %>
 							</td>
-							<td class="amount"><%= f.text_field :amount, class: "amount", id:"txtDate" %></td>
+							<td class="amount"><%= f.text_field :amount, class: "amount", id:"txtDate", value: number_to_currency(f.object.amount) %></td>
 							<td><% unless f.object.id.nil? %><%= link_to "", "/consultant_teams/#{@consultant_team.id}/bills/#{f.object.id}", method: :delete, class: "delete fui-cross", confirm: "Delete and close window?" %><% end %></td>
 
 						</tr>

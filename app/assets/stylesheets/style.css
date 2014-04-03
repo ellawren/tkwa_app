@@ -818,7 +818,6 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.modal-table.cbilling-table input.invoice-number { text-align:left; }
 
 	.modal-table.cbilling-table tfoot .amount { font-weight:700; padding-right:8px; }
-	.modal-table.cbilling-table .amount input { background-image:url(/assets/dollar-sign-gray.png); background-repeat:no-repeat; background-position:8px 10px; }
 
 	.modal-header .light { font-weight:300; }
 
@@ -967,7 +966,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	body { width:960px; margin:0 40px; }
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }
 
-	.table.forecast.index tbody { overflow-y:visible; max-height:auto; }
+	.table.forecast.index tbody { overflow-y:visible; max-height:none; }
 	.table.forecast.index thead { display: table-header-group; }
 	.table.forecast.index tfoot { display: table-footer-group; }
 
