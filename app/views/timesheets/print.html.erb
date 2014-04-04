@@ -19,6 +19,12 @@
 		<div class="PrintArea">
 			<div class="page-header print">
 		        <h1><%= @timesheet.week %> / <%= @user.name %>  &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+		        <div class="controls">
+					<%= f.check_box :printed, class: "hidden" %> 
+					<a class="text-link" data-dismiss="modal" aria-hidden="true">close</a>
+					<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
+					
+				</div>
 		    </div>		
 				
 				<div class="box print">
@@ -111,12 +117,7 @@
 				</div>
 
 			</div>	<!-- end PrintArea -->
-
-			<div class="controls">
-				<%= f.check_box :printed, class: "hidden" %> 
-				<%= f.submit "Print", class: "print-timesheet btn", id: "print_button" %>
-				<a class="text-link" data-dismiss="modal" aria-hidden="true">close</a>
-			</div>
+			
 		<% end %> <!-- end form -->
 		
 	<% end %><!-- end conditional -->

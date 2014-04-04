@@ -74,7 +74,7 @@
 	.timesheets .table-body .project-cell { width:224px; float:left; padding:8px 0 8px 6px; border-radius:8px; margin:4px 6px 0 -10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.timesheets .table-body .view .project-cell { padding:4px 0 4px 6px; }
 
-		.timesheets .table-body .project-cell a { color:#16a085; font-weight:400; }
+		.timesheets .table-body .project-cell a { color:#16a085; font-weight:700; }
 		.timesheets .table-body .project-cell a:hover { color:#1abc9c; }
 
  	/* phase */
@@ -210,6 +210,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 /* print */
 
 .page-header.print { margin-top:60px; }
+
 .print .timesheets { width:903px; font-size:13px; }
 .print .table-main.timesheets.total { margin-top:0px; }
 
@@ -257,6 +258,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 	.approved { display:block; float:right; width:120px; margin-right:10px; }
 	.approved .text { display:inline-block; padding:12px 0; height:16px; }
 	.approved .box { float:right; width:40px; height:40px; border:2px solid #344953; margin-top:0px; }
+	.print-timesheet.modal .box.print { height:auto; overflow-y:visible; overflow-x:visible;}
 }
 .PrintArea { width:915px; }
 
