@@ -1,11 +1,15 @@
-<div class="table-row <% if unsaved?(f.object) %>edit not-saved<% else %>saved<% end %>" id="entry-<%= f.object.id %>" >
+<div class="table-row <% if unsaved?(f.object) %>edit not-saved<% else %>saved<% end %> <%= 'first' unless f.object.previous? %>" id="entry-<%= f.object.id %>" >
 
     <%= f.hidden_field :timesheet_id, value: "#{@timesheet.id}" %>
     <%= f.hidden_field :user_id, value: "#{@timesheet.user_id}" %>
 
     <% if f.object.project_id %>
         <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select hidden" } ) %>
-        <div class="project-cell"><%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %></div>
+        <div class="project-cell">
+            <% unless f.object.previous? %>
+                <%= link_to Project.find(f.object.project_id).name, info_project_path(f.object.project_id) %>
+            <% end %>
+        </div>
     <% else %>
         <%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
     <% end %>

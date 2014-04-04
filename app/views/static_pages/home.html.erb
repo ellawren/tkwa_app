@@ -63,7 +63,6 @@
 
                 <ul id="messages">
                     <h3>Studio Messages <a id="add-message">add message</a> <!--<a id="my-messages" href="/messages">my messages</a>--></h3>
-                    <%= render @messages %>
                     <div id="new-message">
                         <%= form_for(@message) do |f| %>
                             <%= f.hidden_field :user_id, value: "#{current_user.id}" %>
@@ -76,6 +75,7 @@
 
                         <% end %>
                     </div>
+                    <%= render @messages %>
                 </ul>
 
             </div> <!-- end messages container -->

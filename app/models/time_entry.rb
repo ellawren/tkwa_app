@@ -31,5 +31,19 @@ class TimeEntry < ActiveRecord::Base
         day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
     end   
 
+    # next/prev
+    scope :previous, lambda {|ti, pr| where("timesheet_id = ? AND project_id = ?", ti, pr)}
+
+    def previous?
+        unless TimeEntry.previous(self.timesheet_id, self.project_id).blank?
+        	if TimeEntry.previous(self.timesheet_id, self.project_id).first.id == self.id
+	        	false
+	        else
+	        	true
+	        end
+        end
+    end
+    #------------------------------------
+
 end
 

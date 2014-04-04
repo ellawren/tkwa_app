@@ -34,15 +34,18 @@
 
     .table-main.timesheets     { float:left; width:100%; margin:20px 0 0 0; }
     .table-main.timesheets.non-billable     { margin:20px 0 20px 0; }
-    .table-main.timesheets .table-head { border-bottom:2px solid #333; }
+    .table-main.timesheets .table-head {  }
 
     .table-body     { float:left; width:100%;}
     .table-row      { float:left; width:935px; padding:4px 0 0 0; }
 
+    .table-row.first    { border-top:2px solid #344953; }
+    .timesheets.non-billable .table-head { border-bottom:2px solid #344953; }
+
     .table-head { padding-left:0px; border-bottom:2px solid #333;  }
 	.chzn-select, .chzn-container { float:left; }
 
-    .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:1px solid #555; font-size:13px; font-weight:900; }
+    .timesheets .table-head     	{ float:left; width:100%; padding:0px; border-bottom:none; font-size:13px; font-weight:900; }
 	.timesheets .table-head .cell 	{ float:left; padding-top:5px; margin:0px 2px 0px 2px; }
 	.timesheets .table-body .table-row { padding:0px 0px 0px 8px; border-bottom:1px solid #e1e6eb;}
 		.timesheets .table-body .table-row.holiday { background-color:#e1f0f3; width:932px; padding-top:2px; height:40px; }
@@ -246,6 +249,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 
 .print .timesheets.gray-box { width:870px; padding:20px; margin-bottom:10px; }
 .print .timesheets.gray-box .stats.utilization { width:160px; }
+.print .timesheets .table-head { border-bottom:2px solid #344953; }
 
 
 .approved { display:none; }
