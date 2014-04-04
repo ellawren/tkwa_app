@@ -1,7 +1,9 @@
 <% provide :title, "Timesheets" %>
 <div class="page-header">
-	<h1>Timesheets Database <span class="light"><%= @user.name %></span></h1>
+	<h1>Timesheets <span class="light"><%= @user.name %></span></h1>
 </div>
+
+<%= render 'index_summary' %>
 
 <div class="row icons timesheets">
 
@@ -26,6 +28,8 @@
     </div>
 
 </div> <!-- end tiles -->
+
+
 
 <div id="calendar">
     <%= calendar @holidays, {:prev_text=>" ", :next_text=>" ", class: "simple-calendar"} do |event| %>

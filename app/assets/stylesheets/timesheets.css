@@ -169,7 +169,7 @@
 .reopen {display:none; }
 .complete .reopen { display:block; }
 
-.timesheets.gray-box { height:auto; padding:20px 35px; width:870px; }
+.timesheets.gray-box { height:auto; padding:20px 35px; width:870px; margin-bottom:30px; }
 	.timesheets.gray-box .input-label { color:#2c3445; font-weight:900; font-size:13px; margin-bottom:6px; }
 
 .timesheets.gray-box #notes { float:left; width:290px; margin-right:50px; }
@@ -259,6 +259,7 @@ input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
 	.approved .text { display:inline-block; padding:12px 0; height:16px; }
 	.approved .box { float:right; width:40px; height:40px; border:2px solid #344953; margin-top:0px; }
 	.print-timesheet.modal .box.print { height:auto; overflow-y:visible; overflow-x:visible;}
+	.print-timesheet.modal .page-header.print .controls { display:none; }
 }
 .PrintArea { width:915px; }
 

@@ -8,6 +8,7 @@ class TimesheetsController < ApplicationController
     def index
        @user = current_user
        @holidays = Holiday.all
+       @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, Date.today.cwyear, Date.today.cweek)
     end
 
     def admin
