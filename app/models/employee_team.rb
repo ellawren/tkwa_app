@@ -27,7 +27,7 @@ class EmployeeTeam < ActiveRecord::Base
     belongs_to :user
     has_one :employee_role
 
-    has_many :plan_entries
+    has_many :plan_entries, :dependent => :destroy
     accepts_nested_attributes_for :plan_entries, :allow_destroy => true
 
 	validates :project_id, :presence => true
@@ -114,8 +114,6 @@ class EmployeeTeam < ActiveRecord::Base
     end
 
     # FORECAST
-
-
 
     def current_plan_entries
         PlanEntry.where(:project_id => self.project_id, :user_id => self.user_id, :week => this_week, :year => this_year)

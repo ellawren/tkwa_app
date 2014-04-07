@@ -22,5 +22,15 @@ class PlanEntry < ActiveRecord::Base
         :joins => "INNER JOIN projects ON projects.id = plan_entries.project_id", 
         :conditions => ["status = ?", "current" ]
     }
+
+    after_initialize do
+    	if self.employee_team_id.nil?
+    		e = EmployeeTeam.find_by_project_id_and_user_id(self.project_id, self.user_id)
+    		self.employee_team_id = e.id
+    	else
+    		self.project_id ||= EmployeeTeam.find(self.employee_team_id).project_id
+			self.user_id ||= EmployeeTeam.find(self.employee_team_id).user_id
+    	end
+    end
     
 end
