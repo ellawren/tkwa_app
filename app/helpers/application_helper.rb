@@ -83,6 +83,12 @@ module ApplicationHelper
         end
     end
 
+    def nonzero_round(value)
+        if value && value > 0
+            number_with_precision(value, :precision => 0)
+        end
+    end
+
     def nonzero_currency(value)
         if value > 0
             number_to_currency(value, :precision => 0)
@@ -124,6 +130,10 @@ module ApplicationHelper
 
         if week_start + 2 <= last_of_month && last_of_month <= week_end + 2
             string << " last"
+        end
+
+        if week_start <= Date.today && Date.today <= week_end
+            string << " current"
         end
 
         string

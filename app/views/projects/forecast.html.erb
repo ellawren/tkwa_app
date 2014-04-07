@@ -24,7 +24,7 @@
 				<tr>
 					<td><%= link_to e.employee_name, forecast_user_path(e.user_id) %></td>
 					<%= f.fields_for :plan_entries, @project.employee_forecast(e.user_id, four_month_array(date)) do |plan| %>
-						<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
+						<td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %><div class="tiny"><%= plan.object.employee_team_id %></div>
 						</td>
 					<% end %>
 				</tr>
@@ -34,7 +34,7 @@
 				<tr>
 					<td></td>
 					<% four_month_array(date).each do |w, y| %>
-                        <td class="field <%= month_shading(w, y) %>"><%= @project.forecast_total(w, y) %></td>
+                        <td class="field <%= month_shading(w, y) %>"><%= nonzero_round(@project.forecast_total(w, y)) %></td>
                     <% end %>	
 				</tr>
 			</tfoot>

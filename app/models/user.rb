@@ -134,21 +134,7 @@ class User < ActiveRecord::Base
     end
 
     def forecast_total(w, y)
-        plan_entries = PlanEntry.current.find_all_by_user_id_and_year_and_week(self.id, y, w)
-        array = []
-        sum = 0
-        plan_entries.each do |e|
-            if e.hours?
-                array.push(e.hours)
-            end
-        end
-        array.map{|x| sum += x}
-        if sum == 0
-            x = ""
-        else
-            x = sum
-        end
-        x
+        PlanEntry.current.where(:user_id => self.id, :week => w, :year => y).sum(:hours)
     end
 
     def link_name

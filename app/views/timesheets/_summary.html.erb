@@ -38,7 +38,13 @@
 								<div class="title">Actual</div>
 								<%= number_with_precision(@timesheet.ytd_total, strip_insignificant_zeros: true) %>
 							</div>
-							<div class="detail"><%= @timesheet.week == 1 ? "week 1" : "weeks 1-#{@timesheet.week}" -%></div>
+							<div class="detail">
+								<% if @timesheet.data_record.start_week == @timesheet.week %>
+									week <%= @timesheet.data_record.start_week %>
+								<% else %>
+									weeks <%= @timesheet.data_record.start_week %>-<%= @timesheet.week %>
+								<% end %>
+							</div>
 						</div>
 						<div class="equals"></div>
 						<div class="token">

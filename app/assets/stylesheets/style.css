@@ -669,13 +669,14 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.table.forecast.index td.gray { background-color:#ecf0f5; }
 	.table.forecast.index td a { color:#16a085;}
 		.table.forecast.index td a:hover { color:#1abc9c; }
+	.table.forecast.index td.current { background-color:#faeaaa; }
 	.table.forecast.index tfoot td { color:#344953; }
-	.table.forecast.index tr { display:block; width:940px; }
+	.table.forecast.index tr { display:block; width:940px;}
 	.table.forecast.index tbody { display:block; width:960px; height:auto; max-height:650px; overflow-y:auto; overflow-x:visible; }
 	.table.forecast.index tr.head td:first-child { padding-right:20px; }
 	.table.forecast.index tbody tr:last-child td { border-bottom:none; }
 
-	.table.forecast.index td { width:35px; max-width:35px; min-width:35px; border-right:1px solid #bcc6cc; text-align:center; }
+	.table.forecast.index td { width:35px; max-width:35px; min-width:35px; border-right:1px solid #ced5da; text-align:center; height:28px; line-height:28px; }
 	.table.forecast.index tr td:first-child { width:200px; max-width:200px; min-width:200px; text-align:left; }
 
 	.table.forecast.index tr th { width:38px; max-width:38px; min-width:38px; }
@@ -695,7 +696,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.buttons .btn.active { background-color:#1abc9c; color:#fff; }
 
 		.table.forecast.index td { padding:4px 2px;}
-
+		.tiny { font-size:8px; }
 
 
 /* MODALS */

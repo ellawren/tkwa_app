@@ -36,7 +36,7 @@
                                 <%= link_to e.name, forecast_user_path(e.id) %>
                             </td>
                             <% four_month_array(date).each do |w, y| %>
-                                <td class="<%= month_shading(w, y) %>"><%= e.forecast_total(w, y) %></td>
+                                <td class="<%= month_shading(w, y) %>"><%= nonzero_round(e.forecast_total(w, y)) %></td>
                             <% end %>
                         </tr>
                     <% end %>
@@ -49,7 +49,7 @@
                             <%= link_to p.name, forecast_project_path(p.id) %>
                         </td>
                         <% four_month_array(date).each do |w, y| %>
-                            <td class="<%= month_shading(w, y) %>"><%= p.forecast_total(w, y) %></td>
+                            <td class="<%= month_shading(w, y) %>"><%= nonzero_round(p.forecast_total(w, y)) %></td>
                         <% end %>
                     </tr>
                 <% end %>
@@ -60,12 +60,14 @@
             <tr>
                 <td></td>
                 <% four_month_array(date).each do |w, y| %>
-                    <td class="<%= month_shading(w, y) %>"><%= forecast_total_all(w, y) %></td>
+                    <td class="<%= month_shading(w, y) %>"><%= nonzero_round(forecast_total_all(w, y)) %></td>
                 <% end %>
             </tr>
         </tfoot>
         
     </table>
+
+<span class="bold">Current Projects: <%= @projects.count %></span>
 
 <% content_for :scripts do %>
     <script>

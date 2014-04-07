@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403190316) do
+ActiveRecord::Schema.define(:version => 20140407161037) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -314,13 +314,14 @@ ActiveRecord::Schema.define(:version => 20140403190316) do
   add_index "phases_projects", ["project_id", "phase_id"], :name => "index_phases_projects_on_project_id_and_phase_id", :unique => true
 
   create_table "plan_entries", :force => true do |t|
-    t.integer  "project_id",                               :null => false
-    t.decimal  "hours",      :precision => 3, :scale => 0
-    t.integer  "year",                                     :null => false
-    t.integer  "week",                                     :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.integer  "user_id",                                  :null => false
+    t.integer  "project_id",                                     :null => false
+    t.decimal  "hours",            :precision => 3, :scale => 0
+    t.integer  "year",                                           :null => false
+    t.integer  "week",                                           :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.integer  "user_id",                                        :null => false
+    t.integer  "employee_team_id"
   end
 
   create_table "projects", :force => true do |t|
