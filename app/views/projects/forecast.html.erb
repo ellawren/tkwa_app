@@ -29,6 +29,13 @@
 					<% end %>
 				</tr>
 				<% end %>
+				<tr class="unassigned">
+	                <td>Unassigned Hours</td>
+	                <%= f.fields_for :unassigned_hours, @project.unassigned(four_month_array(date)) do |a| %>
+	                    <td class="<%= month_shading(a.object.week, a.object.year) %>"><%= a.text_field :hours, class: "small #{'current' if a.object.week == this_week}" %>
+	                    </td>
+	                <% end %>
+	            </tr>
 			</tbody>
 			<tfoot>
 				<tr>
@@ -39,6 +46,9 @@
 				</tr>
 			</tfoot>
 		</table>
+
+    </table>
+
 		<div class="save-row">
 			<%= f.submit "Save", class: "btn btn-primary save-btn" %>
 		</div>

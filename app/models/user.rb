@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
         data_record = DataRecord.find_or_create_by_user_id_and_year(self.id, Date.today.cwyear)
     end
 
+    def data_record
+        DataRecord.find_by_user_id_and_year(self.id, Date.today.cwyear)
+    end
+
     # SCOPES
     default_scope order('name ASC')
 
@@ -107,6 +111,9 @@ class User < ActiveRecord::Base
     has_many :projects, :through => :employee_teams
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true
 
+    has_many :available_hours, :dependent => :destroy
+    accepts_nested_attributes_for :available_hours
+
     # METHODS
 
     def project_ids
@@ -131,6 +138,14 @@ class User < ActiveRecord::Base
             entries.push(PlanEntry.current.find_or_create_by_project_id_and_user_id_and_year_and_week(project_id, self.id, y, w))
         end
         entries
+    end
+
+    def available(four_month_array)
+        available = []
+        four_month_array.each do |w, y|
+            available.push(AvailableHour.find_or_create_by_user_id_and_year_and_week(self.id, y, w))
+        end
+        available
     end
 
     def forecast_total(w, y)

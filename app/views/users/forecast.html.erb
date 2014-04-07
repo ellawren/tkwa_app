@@ -5,7 +5,7 @@
 
 <%= form_for @user do |f| %>
 <% date = Date.today.beginning_of_week(start_day = :sunday) - 1.week %>
-<p class="description">This page is still being refined! Everything works - you can enter data and it will be saved - but it's a little plain right now and I'll be working on it more soon.</p>
+
     <div class="buttons">
         <%= link_to "all studio forecast", projects_forecast_path(:view => 'employee'), :class => "btn active" %>
     </div>
@@ -15,23 +15,32 @@
             <%= four_month_header_array(date) %>
         </thead>
         <tbody>
+            <tr class="available">
+                <td>Available Hours</td>
+                <%= f.fields_for :available_hours, @user.available(four_month_array(date)) do |a| %>
+                    <td class="<%= month_shading(a.object.week, a.object.year) %>"><%= a.text_field :hours, class: "small #{'current' if a.object.week == this_week}" %>
+                    </td>
+                <% end %>
+            </tr>
             <% @user.employee_teams.current.each do |t| %>
                 
-                    <tr>
-                        <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
-                        <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
-                            <td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
-                            </td>
-                        <% end %>
-                    </tr>
+                <tr>
+                    <td><%= link_to t.project_name, forecast_project_path(t.project_id) %></td>
+                    <%= f.fields_for :plan_entries, @user.employee_forecast(t.project_id, four_month_array(date)) do |plan| %>
+                        <td class="<%= month_shading(plan.object.week, plan.object.year) %>"><%= plan.text_field :hours, class: "small #{'current' if plan.object.week == this_week}" %>
+                        </td>
+                    <% end %>
+                </tr>
 
             <% end %>
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
+                <td>Scheduled Hours<br><div class="rem">Remaining Hours</div></td>
                 <% four_month_array(date).each do |w, y| %>
-                    <td class="<%= month_shading(w, y) %>"><%= nonzero_round(@user.forecast_total(w, y)) %></td>
+                    <td class="<%= month_shading(w, y) %>">
+                        <%= nonzero_round(@user.forecast_total(w, y)) %><br>
+                        <div class="rem"><%= nonzero_round(AvailableHour.find_by_user_id_and_week_and_year(@user.id, w, y).hours - @user.forecast_total(w, y)) %></div></td>
                 <% end %>
             </tr>
         </tfoot>

@@ -92,6 +92,9 @@ class Project < ActiveRecord::Base
     has_many :actuals
     accepts_nested_attributes_for :actuals
 
+    has_many :unassigned_hours, :dependent => :destroy
+    accepts_nested_attributes_for :unassigned_hours
+
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles
@@ -371,7 +374,15 @@ class Project < ActiveRecord::Base
     end
 
     def forecast_total(w, y)
-        PlanEntry.current.where(:project_id => self.id, :week => w, :year => y).sum(:hours)
+        PlanEntry.current.where(:project_id => self.id, :week => w, :year => y).sum(:hours).to_i + UnassignedHour.find_by_project_id_and_week_and_year(self.id, w, y).hours.to_i
+    end
+
+    def unassigned(four_month_array)
+        unassigned = []
+        four_month_array.each do |w, y|
+            unassigned.push(UnassignedHour.find_or_create_by_project_id_and_year_and_week(self.id, y, w))
+        end
+        unassigned
     end
 
  

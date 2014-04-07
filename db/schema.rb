@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140407161037) do
+ActiveRecord::Schema.define(:version => 20140407212126) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(:version => 20140407161037) do
     t.decimal  "amount",     :precision => 8, :scale => 2
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
+  end
+
+  create_table "available_hours", :force => true do |t|
+    t.integer  "hours"
+    t.integer  "user_id"
+    t.integer  "year"
+    t.integer  "week"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "bills", :force => true do |t|
@@ -512,6 +521,15 @@ ActiveRecord::Schema.define(:version => 20140407161037) do
     t.integer  "user_id",                          :null => false
     t.text     "notes"
     t.boolean  "printed",       :default => false
+  end
+
+  create_table "unassigned_hours", :force => true do |t|
+    t.integer  "hours"
+    t.integer  "project_id"
+    t.integer  "year"
+    t.integer  "week"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
