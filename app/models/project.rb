@@ -388,6 +388,14 @@ class Project < ActiveRecord::Base
         unassigned
     end
 
+    def unassigned(four_month_array)
+        entries = []
+        four_month_array.each do |w, y|
+            entries.push(UnassignedHour.find_or_create_by_project_id_and_year_and_week(self.id, y, w))
+        end
+        entries
+    end
+
     def unassigned_by_week(w,y)
         UnassignedHour.where(:project_id => self.id, :week => w, :year => y).sum(:hours)
     end
