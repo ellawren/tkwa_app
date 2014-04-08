@@ -34,6 +34,11 @@ module ApplicationHelper
         Date.today.month
     end
 
+    def prev_month
+        date = Date.today - 1.month
+        date.month
+    end
+
     def prev_week
         if Date.today.cweek == 1
             Date.today.cweek

@@ -2,7 +2,7 @@
 
     <%= render 'project_header', f: f %>
 
-    <h2>Contract + Fees <%= link_to "all billed-to-date", billed_to_date_path, class: "control-link-text" %></h2>
+    <h2>Contract + Billing To Date<%= link_to "all billed to date", billed_to_date_path, class: "control-link-text" %></h2>
 
         <div class="third billing">
             
@@ -61,12 +61,12 @@
         </div> 
 
 
-    <h2>Actual Monthly Billing</h2>
+    <h2>Fees Billed By Month<%= link_to "all fees billed by month", monthly_billing_path, class: "control-link-text" %></h2>
 
         <table class="table actuals-table" id="actuals">
             <tr class="tr">
             <%= f.fields_for :actuals, @actuals do |a| %>
-                <td class="actual-billing <%= 'current' if a.object.month == this_month && a.object.year == this_year %>">
+                <td class="actual-billing <%= 'current' if a.object.month == prev_month && a.object.year == this_year %>">
                     <%= a.label :amount, "#{monthname_a(a.object.month)} #{a.object.year}", class: "input-label" %>
                     <%= a.text_field :amount, value: number_to_currency(a.object.amount)  %>
                 </td>

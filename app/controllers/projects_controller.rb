@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
             Actual.find_or_create_by_project_id_and_year_and_month(@project.id, date.cwyear, date.month)
             date = (date - 1).beginning_of_month
         end
-        @actuals = @project.actuals.order("year ASC, month ASC")
+        @actuals = @project.actuals.order("year ASC, month ASC, id ASC")
     end
   
     def scope
@@ -68,8 +68,7 @@ class ProjectsController < ApplicationController
     end
 
     def monthly_billing #edit_all
-        @projects = Project.current.all
-        @actuals = Actual.all
+        @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end
 
     def update_all #for monthly_billing

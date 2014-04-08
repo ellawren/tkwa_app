@@ -89,8 +89,8 @@ class Project < ActiveRecord::Base
     has_many :shop_drawings
     accepts_nested_attributes_for :shop_drawings, :allow_destroy => true, :reject_if => lambda { |a| a[:date_received].blank? }
 
-    has_many :actuals
-    accepts_nested_attributes_for :actuals
+    has_many :actuals, :dependent => :destroy
+    accepts_nested_attributes_for :actuals, :allow_destroy => true
 
     has_many :unassigned_hours, :dependent => :destroy
     accepts_nested_attributes_for :unassigned_hours
@@ -238,8 +238,9 @@ class Project < ActiveRecord::Base
     end
 
     def actuals_list
-        Actual.by_project(self.id)
+        Actual.by_project(self.id).order("year ASC, month ASC")
     end
+
 
     def consultant_contract_total
         contracts = self.consultant_teams
@@ -289,6 +290,16 @@ class Project < ActiveRecord::Base
       if consultant_contract_total && project_bills_total
         ( project_bills_total.to_f / consultant_contract_total.to_f ) * 100
       end
+    end
+
+    def actual_array
+        date = Date.today.beginning_of_month
+        array = []
+        (1..5).each do |m| 
+            array.push(Actual.find_or_create_by_project_id_and_year_and_month(self.id, date.year, date.month)) 
+            date = date - 1.month
+        end
+        array
     end
 
 # TRACKING #######################################################################
@@ -377,18 +388,11 @@ class Project < ActiveRecord::Base
         PlanEntry.current.where(:project_id => self.id, :week => w, :year => y).sum(:hours).to_i + UnassignedHour.find_or_create_by_project_id_and_week_and_year(self.id, w, y).hours.to_i
     end
 
-    def unassigned_array(four_month_array)
-        unassigned = []
-        four_month_array.each do |w, y|
-            u = UnassignedHour.find_by_project_id_and_year_and_week(self.id, y, w)
-            if u.hours.to_i > 0
-                unassigned.push(u.hours)
-            end
-        end
-        unassigned
+    def unassigned_nonblank
+        UnassignedHour.active.where("project_id = ? and hours > ?", self.id, 0)
     end
 
-    def unassigned(four_month_array)
+    def unassigned_hours(four_month_array)
         entries = []
         four_month_array.each do |w, y|
             entries.push(UnassignedHour.find_or_create_by_project_id_and_year_and_week(self.id, y, w))
@@ -399,6 +403,8 @@ class Project < ActiveRecord::Base
     def unassigned_by_week(w,y)
         UnassignedHour.where(:project_id => self.id, :week => w, :year => y).sum(:hours)
     end
+
+
 
  
 # SCHEDULE #######################################################################

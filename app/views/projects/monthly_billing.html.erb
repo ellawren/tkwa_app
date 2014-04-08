@@ -1,26 +1,67 @@
-<% provide :title, "Monthly Billing" %>
+<% provide :title, "Fees Billed By Month" %>
 <div class="page-header auto">
-    <h1>Monthly Billing</h1>
+    <h1>Fees Billed By Month</h1>
+    <%= link_to "Billed To Date", billed_to_date_path, class: "btn btn-primary btn-right" %>
 </div>
 
 <%= form_for :project, :url => update_all_path, :html => { :method => :put } do %>
-
-    <table class="table monthly-billing">
+    <table class="table monthly-billing actuals">
         
         <thead>
+            <tr>
+                <th>Name</th>
+                <th class="contract-amount">Contract</th>
+                <th><%= monthname_a(five_month_array[4][0]) %> <%= five_month_array[4][1] %></th>
+                <th><%= monthname_a(five_month_array[3][0]) %> <%= five_month_array[3][1] %></th>
+                <th><%= monthname_a(five_month_array[2][0]) %> <%= five_month_array[2][1] %></th>
+                <th class="actual"><%= monthname_a(five_month_array[1][0]) %> <%= five_month_array[1][1] %></th>
+                <th><%= monthname_a(five_month_array[0][0]) %> <%= five_month_array[0][1] %></th>
+            </tr>
         </thead>
 
         <tbody>
-            
+            <% @projects.each do |project| %>
+                <%= fields_for "project[]", project do |p| %>
+                <tr>
+                    <td>
+                        <%= link_to p.object.name, billing_project_path(p.object), class: "green" %><br>
+                        <% e = EmployeeTeam.find_by_project_id_and_role(p.object, "Project Manager") %>
+                        <div class="detail"><%= User.find(e.user_id).name if e %></div>
+                    </td>
+                    <td class="contract-amount"><%= number_to_currency(p.object.contract_amount, precision: 0) %></td>
+                    <% @actual4 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[4][1], five_month_array[4][0]) %>
+                    <% @actual3 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[3][1], five_month_array[3][0]) %>
+                    <% @actual2 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[2][1], five_month_array[2][0]) %>
+                    <% @actual1 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[1][1], five_month_array[1][0]) %>
+                    <% @actual = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[0][1], five_month_array[0][0]) %>
+                    <%= p.fields_for "actuals_attributes[]", @actual4 do |a| %>
+                        <td><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
+                    <% end %>
+                    <%= p.fields_for "actuals_attributes[]", @actual3 do |a| %>
+                        <td><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
+                    <% end %>
+                    <%= p.fields_for "actuals_attributes[]", @actual2 do |a| %>
+                        <td><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
+                    <% end %>
+                    <%= p.fields_for "actuals_attributes[]", @actual1 do |a| %>
+                        <td class="actual"><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
+                    <% end %>
+                    <%= p.fields_for "actuals_attributes[]", @actual do |a| %>
+                        <td><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
+                    <% end %>
+                </tr>
+                <% end %>
+            <% end %>
         </tbody>
 
         <tfoot>
         </tfoot>
         
     </table>
+    <%= will_paginate @projects %>
 
     <div class="save-row">
         <%= submit_tag "Save", class: "btn btn-primary save-btn" %>
     </div>
-
 <% end %>
+

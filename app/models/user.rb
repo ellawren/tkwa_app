@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
         entries
     end
 
-    def available(four_month_array)
+    def available_hours(four_month_array)
         available = []
         four_month_array.each do |w, y|
             available.push(AvailableHour.find_or_create_by_user_id_and_year_and_week(self.id, y, w))

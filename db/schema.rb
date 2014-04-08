@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140408162842) do
+ActiveRecord::Schema.define(:version => 20140408182039) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -22,14 +22,19 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.datetime "updated_at",                               :null => false
   end
 
+  add_index "actuals", ["project_id"], :name => "index_actuals_on_project_id"
+
   create_table "available_hours", :force => true do |t|
     t.integer  "hours"
     t.integer  "user_id"
     t.integer  "year"
     t.integer  "week"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
+
+  add_index "available_hours", ["user_id"], :name => "available_hours_user_id"
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -40,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.string   "invoice_number"
     t.string   "date_approved"
   end
+
+  add_index "bills", ["consultant_team_id"], :name => "index_bills_on_consultant_team_id"
 
   create_table "books", :force => true do |t|
     t.text     "title"
@@ -62,6 +69,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
   end
+
+  add_index "books", ["subject_id"], :name => "index_books_on_subject_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -124,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.string   "work_fax"
   end
 
+  add_index "contacts", ["company_id"], :name => "index_contacts_on_company_id"
+
   create_table "data_records", :force => true do |t|
     t.integer  "year"
     t.decimal  "holiday",           :precision => 4, :scale => 2
@@ -175,6 +186,7 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
   end
 
   add_index "employee_teams", ["project_id"], :name => "index_employee_teams_on_project_id"
+  add_index "employee_teams", ["user_id"], :name => "index_employee_teams_on_user_id"
 
   create_table "employees", :force => true do |t|
     t.integer  "contact_id"
@@ -207,6 +219,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.datetime "updated_at",                                                   :null => false
     t.integer  "year"
   end
+
+  add_index "expense_reports", ["user_id", "project_id"], :name => "index_expense_reports_on_user_id_and_project_id"
 
   create_table "globals", :force => true do |t|
     t.integer  "year"
@@ -256,6 +270,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.date     "exp_date"
   end
 
+  add_index "messages", ["user_id", "project_id"], :name => "index_messages_on_user_id_and_project_id"
+
   create_table "non_billable_categories", :force => true do |t|
     t.string   "name"
     t.string   "shorthand"
@@ -279,14 +295,19 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.integer  "user_id",                                    :null => false
   end
 
+  add_index "non_billable_entries", ["timesheet_id", "user_id"], :name => "index_nb_entries_on_timesheet_id_and_user_id"
+
   create_table "non_billable_hours", :force => true do |t|
     t.integer  "hours"
     t.integer  "year"
     t.integer  "week"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
+
+  add_index "non_billable_hours", ["user_id"], :name => "non_billable_hours_user_id"
 
   create_table "patterns", :force => true do |t|
     t.string   "name"
@@ -313,6 +334,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.datetime "photo_updated_at"
   end
 
+  add_index "patterns", ["project_id"], :name => "index_patterns_on_project_id"
+
   create_table "phases", :force => true do |t|
     t.string   "name"
     t.integer  "number"
@@ -333,15 +356,20 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
   add_index "phases_projects", ["project_id", "phase_id"], :name => "index_phases_projects_on_project_id_and_phase_id", :unique => true
 
   create_table "plan_entries", :force => true do |t|
-    t.integer  "project_id",                                     :null => false
+    t.integer  "project_id",                                                       :null => false
     t.decimal  "hours",            :precision => 3, :scale => 0
-    t.integer  "year",                                           :null => false
-    t.integer  "week",                                           :null => false
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.integer  "user_id",                                        :null => false
+    t.integer  "year",                                                             :null => false
+    t.integer  "week",                                                             :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
+    t.integer  "user_id",                                                          :null => false
     t.integer  "employee_team_id"
+    t.boolean  "active",                                         :default => true
   end
+
+  add_index "plan_entries", ["employee_team_id"], :name => "plan_entries_employee_team_id"
+  add_index "plan_entries", ["project_id"], :name => "plan_entries_project_id"
+  add_index "plan_entries", ["user_id"], :name => "plan_entries_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -442,6 +470,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.text     "description"
   end
 
+  add_index "recommendations", ["book_id", "user_id"], :name => "index_recommendations_on_book_id_and_user_id"
+
   create_table "reimbursables", :force => true do |t|
     t.string   "reimbursable_name"
     t.datetime "created_at"
@@ -460,6 +490,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.date     "start_date"
     t.string   "meeting",    :default => "task"
   end
+
+  add_index "schedule_items", ["project_id", "phase_id"], :name => "index_schedule_items_on_project_id_and_phase_id"
 
   create_table "services", :force => true do |t|
     t.string   "service_name"
@@ -488,6 +520,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.string   "final_action"
   end
 
+  add_index "shop_drawings", ["project_id", "consultant_id"], :name => "index_shop_drawings_on_project_id_and_consultant_id"
+
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.string   "number"
@@ -503,6 +537,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.datetime "updated_at",  :null => false
     t.integer  "project_id"
   end
+
+  add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
 
   create_table "time_entries", :force => true do |t|
     t.integer  "timesheet_id"
@@ -521,6 +557,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.integer  "user_id",                                    :null => false
   end
 
+  add_index "time_entries", ["timesheet_id", "project_id", "user_id"], :name => "index_time_entries_on_timesheet_project_and_user"
+
   create_table "timesheets", :force => true do |t|
     t.integer  "year",                             :null => false
     t.integer  "week",                             :null => false
@@ -533,14 +571,19 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.boolean  "printed",       :default => false
   end
 
+  add_index "timesheets", ["user_id"], :name => "index_timesheets_on_user_id"
+
   create_table "unassigned_hours", :force => true do |t|
     t.integer  "hours"
     t.integer  "project_id"
     t.integer  "year"
     t.integer  "week"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
+
+  add_index "unassigned_hours", ["project_id"], :name => "unassigned_hours_project_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -569,6 +612,8 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.datetime "updated_at",                               :null => false
   end
 
+  add_index "vacation_records", ["user_id"], :name => "index_vacation_records_on_user_id"
+
   create_table "vacations", :force => true do |t|
     t.integer  "user_id"
     t.string   "start_date"
@@ -578,5 +623,7 @@ ActiveRecord::Schema.define(:version => 20140408162842) do
     t.datetime "updated_at", :null => false
     t.integer  "year"
   end
+
+  add_index "vacations", ["user_id"], :name => "index_vacations_on_user_id"
 
 end

@@ -2,6 +2,16 @@ module ProjectsHelper
 
 	include ActionView::Helpers::TextHelper
 
+    def five_month_array
+        date = Date.today.beginning_of_month
+        array = []
+        (1..5).each do |m|
+            array.push([date.month, date.year])
+            date = date - 1.month
+        end
+        array
+    end
+
   	def list_roles(consultant, project)
   		roles_count = ConsultantTeam.count(:all, 
   			:conditions => [ "consultant_id = #{consultant} AND project_id = #{project}" ] )

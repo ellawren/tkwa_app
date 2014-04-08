@@ -23,7 +23,8 @@
     </div>
 
     <% if params[:view] == 'project' || params[:view] == 'employee' %>
-        <table class="table forecast index">
+    <h2>Forecasted Hours</h2>
+        <table class="table forecast index unassigned">
             
             <thead>
                 <%= four_month_header_array(date) %>
@@ -82,13 +83,13 @@
 
             <tbody>
                 <% Project.current.order("name ASC").each do |p| %>
-                    <% if p.unassigned_array(four_month_array(date)).count > 0 %>
+                    <% if p.unassigned_nonblank.count > 0 %>
                         <tr class="head">
                             <td>
                                 <%= link_to p.name, forecast_project_path(p.id) %>
                             </td>
-                            <% four_month_array(date).each do |w, y| %>
-                                <td class="<%= month_shading(w, y) %>"><%= nonzero_round(p.unassigned_by_week(w, y)) %></td>
+                            <% p.unassigned_hours(four_month_array(date)).each do |plan| %>
+                                <td class="<%= month_shading(plan.week, plan.year) %>"><%= nonzero_round(plan.hours) %></td>
                             <% end %>
                         </tr>
                     <% end %>
@@ -138,7 +139,6 @@
         </table>
 
     <% end %>
-
 
 <% content_for :scripts do %>
     <script>
