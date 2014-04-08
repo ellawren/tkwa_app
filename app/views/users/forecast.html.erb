@@ -22,6 +22,13 @@
                     </td>
                 <% end %>
             </tr>
+            <tr class="non-billable">
+                <td>Non-Billable Hours</td>
+                <%= f.fields_for :non_billable_hours, @user.non_billable(four_month_array(date)) do |a| %>
+                    <td class="<%= month_shading(a.object.week, a.object.year) %>"><%= a.text_field :hours, class: "small #{'current' if a.object.week == this_week}" %>
+                    </td>
+                <% end %>
+            </tr>
             <% @user.employee_teams.current.each do |t| %>
                 
                 <tr>
@@ -40,7 +47,7 @@
                 <% four_month_array(date).each do |w, y| %>
                     <td class="<%= month_shading(w, y) %>">
                         <%= nonzero_round(@user.forecast_total(w, y)) %><br>
-                        <div class="rem"><%= nonzero_round(AvailableHour.find_by_user_id_and_week_and_year(@user.id, w, y).hours - @user.forecast_total(w, y)) %></div></td>
+                        <div class="rem"><%= nonzero_round(@user.remaining_hours(w,y)) %></div></td>
                 <% end %>
             </tr>
         </tfoot>

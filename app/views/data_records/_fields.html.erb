@@ -6,6 +6,7 @@
         <th>End Wk</th>
         <th>Pay Type</th>
         <th>Hours/Wk</th>
+        <th>Billable/Wk</th>
         <th>Holiday/Day</th>
         <th>Overage</th>
         <th>Billable Rate</th>
@@ -17,6 +18,7 @@
         <td><%= f.select(:end_week, (1..53).to_a.map { |value| [ value, value ] }, { :include_blank => true }, { :class => "custom-select number" } ) %></td>
         <td><%= f.select(:pay_type, [['Salary', 'Salary'], ['Hourly', 'Hourly']], {}, { :class => "custom-select pay-type" } ) %></td>
         <td class="number-input"><%= f.text_field :hours_in_week %></td>
+        <td class="number-input"><%= f.text_field :billable_per_week %></td>
         <td class="number-input"><%= f.text_field :holiday %></td>
         <td class="number-input"><%= f.text_field :overage_from_prev %></td>
         <td class="number-input"><%= f.text_field :billable_rate %></td>

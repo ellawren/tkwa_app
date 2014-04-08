@@ -76,8 +76,8 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), projects_forecast_path %>
-        <%= link_to "Studio Forecast", projects_forecast_path, :class => "tile-label" %>
+        <%= link_to image_tag("forecast.png", :alt => "forecast", :class => "round-icon"), projects_forecast_path(:view => 'employee') %>
+        <%= link_to "Studio Forecast", projects_forecast_path(:view => 'employee'), :class => "tile-label" %>
     </div>
 
     <div class="tile-box">

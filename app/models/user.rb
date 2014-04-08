@@ -114,6 +114,9 @@ class User < ActiveRecord::Base
     has_many :available_hours, :dependent => :destroy
     accepts_nested_attributes_for :available_hours
 
+    has_many :non_billable_hours, :dependent => :destroy
+    accepts_nested_attributes_for :non_billable_hours
+
     # METHODS
 
     def project_ids
@@ -148,8 +151,32 @@ class User < ActiveRecord::Base
         available
     end
 
+    def non_billable(four_month_array)
+        nb = []
+        four_month_array.each do |w, y|
+            nb.push(NonBillableHour.find_or_create_by_user_id_and_year_and_week(self.id, y, w))
+        end
+        nb
+    end
+
+    def remaining_hours(w,y)
+        AvailableHour.find_or_create_by_user_id_and_week_and_year(self.id, w, y).hours - self.forecast_total(w, y)
+    end
+
+    def self.all_remaining_hours(w,y)
+        remaining = []
+        User.active_users.each do |u|
+            remaining.push(u.remaining_hours(w,y))
+        end
+        remaining.inject{|sum,x| sum + x }
+    end
+
+    def all_forecasted(w,y)
+        PlanEntry.current.where(:week => w, :year => y).sum(:hours)
+    end
+
     def forecast_total(w, y)
-        PlanEntry.current.where(:user_id => self.id, :week => w, :year => y).sum(:hours)
+        PlanEntry.current.where(:user_id => self.id, :week => w, :year => y).sum(:hours) + NonBillableHour.where(:user_id => self.id, :week => w, :year => y).sum(:hours)
     end
 
     def link_name

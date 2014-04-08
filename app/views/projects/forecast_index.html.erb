@@ -17,57 +17,128 @@
 <!-- end modal -->
 
     <div class="buttons">
-        <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] != 'project'}" %>
+        <%= link_to "by employee", projects_forecast_path(:view => 'employee'), :class => "btn #{'active' if params[:view] == 'employee'}" %>
         <%= link_to "by project", projects_forecast_path(:view => 'project'), :class => "btn #{'active' if params[:view] == 'project'}" %>
+        <%= link_to "unassigned/available", projects_forecast_path(:view => 'unassigned'), :class => "btn #{'active' if params[:view] == 'unassigned'}" %>
     </div>
 
-    <table class="table forecast index">
-        
-        <thead>
-            <%= four_month_header_array(date) %>
-        </thead>
+    <% if params[:view] == 'project' || params[:view] == 'employee' %>
+        <table class="table forecast index">
+            
+            <thead>
+                <%= four_month_header_array(date) %>
+            </thead>
 
-        <tbody>
-            <% if params[:view] != 'project' %>
-                <% User.active_users.order("name ASC").each do |e| %>
-                    <% if e.employee_teams.count > 0 %>
+            <tbody>
+                <% if params[:view] != 'project' %>
+                    <% User.active_users.order("name ASC").each do |e| %>
+                        <% if e.employee_teams.count > 0 %>
+                            <tr class="head">
+                                <td>
+                                    <%= link_to e.name, forecast_user_path(e.id) %>
+                                </td>
+                                <% four_month_array(date).each do |w, y| %>
+                                    <td class="<%= month_shading(w, y) %>"><%= nonzero_round(e.forecast_total(w, y)) %></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    <% end %>
+                    
+                <% else %>
+                    <% Project.current.order("name ASC").each do |p| %>
                         <tr class="head">
                             <td>
-                                <%= link_to e.name, forecast_user_path(e.id) %>
+                                <%= link_to p.name, forecast_project_path(p.id) %>
                             </td>
                             <% four_month_array(date).each do |w, y| %>
-                                <td class="<%= month_shading(w, y) %>"><%= nonzero_round(e.forecast_total(w, y)) %></td>
+                                <td class="<%= month_shading(w, y) %>"><%= nonzero_round(p.forecast_total(w, y)) %></td>
                             <% end %>
                         </tr>
                     <% end %>
                 <% end %>
-                
-            <% else %>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"><%= nonzero_round(forecast_total_all(w, y)) %></td>
+                    <% end %>
+                </tr>
+            </tfoot>
+            
+        </table>
+        <span class="bold">Current Projects: <%= @projects.count %></span>
+
+    <% else %>
+
+        <h2>Unassigned Hours</h2>
+
+        <table class="table forecast index unassigned">
+            
+            <thead>
+                <%= four_month_header_array(date) %>
+            </thead>
+
+            <tbody>
                 <% Project.current.order("name ASC").each do |p| %>
+                    <% if p.unassigned_array(four_month_array(date)).count > 0 %>
+                        <tr class="head">
+                            <td>
+                                <%= link_to p.name, forecast_project_path(p.id) %>
+                            </td>
+                            <% four_month_array(date).each do |w, y| %>
+                                <td class="<%= month_shading(w, y) %>"><%= nonzero_round(p.unassigned_by_week(w, y)) %></td>
+                            <% end %>
+                        </tr>
+                    <% end %>
+                <% end %>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td>Total Unassigned</td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"><%= nonzero_round(UnassignedHour.all_by_week(w, y)) %></td>
+                    <% end %>
+                </tr>
+            </tfoot>
+            
+        </table>
+
+        <h2>Available Hours</h2>
+
+        <table class="table forecast index unassigned">
+            
+            <thead>
+                <%= four_month_header_array(date) %>
+            </thead>
+
+            <tbody>
+                <% User.active_users.order("name ASC").each do |u| %>
                     <tr class="head">
-                        <td>
-                            <%= link_to p.name, forecast_project_path(p.id) %>
-                        </td>
+                        <td><%= link_to u.name, forecast_user_path(u.id) %></td>
                         <% four_month_array(date).each do |w, y| %>
-                            <td class="<%= month_shading(w, y) %>"><%= nonzero_round(p.forecast_total(w, y)) %></td>
+                            <td class="<%= month_shading(w, y) %> <%= "over" if u.remaining_hours(w,y) < 0 %>">
+                                <div class="rem"><%= nonzero_round(u.remaining_hours(w,y)) %></div></td>
                         <% end %>
                     </tr>
                 <% end %>
-            <% end %>
-        </tbody>
+            </tbody>
 
-        <tfoot>
-            <tr>
-                <td></td>
-                <% four_month_array(date).each do |w, y| %>
-                    <td class="<%= month_shading(w, y) %>"><%= nonzero_round(forecast_total_all(w, y)) %></td>
-                <% end %>
-            </tr>
-        </tfoot>
-        
-    </table>
+            <tfoot>
+                <tr>
+                    <td>Total Available</td>
+                    <% four_month_array(date).each do |w, y| %>
+                        <td class="<%= month_shading(w, y) %>"><%= User.all_remaining_hours(w,y) %></td>
+                    <% end %>
+                </tr>
+            </tfoot>
+            
+        </table>
 
-<span class="bold">Current Projects: <%= @projects.count %></span>
+    <% end %>
+
 
 <% content_for :scripts do %>
     <script>

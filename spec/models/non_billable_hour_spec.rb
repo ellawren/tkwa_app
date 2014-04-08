@@ -1,22 +1,18 @@
+require 'spec_helper'
+
+describe NonBillableHour do
+  pending "add some examples to (or delete) #{__FILE__}"
+end
 # == Schema Information
 #
-# Table name: unassigned_hours
+# Table name: non_billable_hours
 #
 #  id         :integer         not null, primary key
 #  hours      :integer
-#  project_id :integer
 #  year       :integer
 #  week       :integer
+#  user_id    :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #
 
-class UnassignedHour < ActiveRecord::Base
-  
-  	belongs_to :project
-
-  	def self.all_by_week(w,y)
-        UnassignedHour.where(:week => w, :year => y).sum(:hours)
-    end
-
-end

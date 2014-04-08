@@ -84,7 +84,7 @@ module ApplicationHelper
     end
 
     def nonzero_round(value)
-        if value && value > 0
+        if value && value != 0
             number_with_precision(value, :precision => 0)
         end
     end

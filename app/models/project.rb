@@ -374,15 +374,22 @@ class Project < ActiveRecord::Base
     end
 
     def forecast_total(w, y)
-        PlanEntry.current.where(:project_id => self.id, :week => w, :year => y).sum(:hours).to_i + UnassignedHour.find_by_project_id_and_week_and_year(self.id, w, y).hours.to_i
+        PlanEntry.current.where(:project_id => self.id, :week => w, :year => y).sum(:hours).to_i + UnassignedHour.find_or_create_by_project_id_and_week_and_year(self.id, w, y).hours.to_i
     end
 
-    def unassigned(four_month_array)
+    def unassigned_array(four_month_array)
         unassigned = []
         four_month_array.each do |w, y|
-            unassigned.push(UnassignedHour.find_or_create_by_project_id_and_year_and_week(self.id, y, w))
+            u = UnassignedHour.find_by_project_id_and_year_and_week(self.id, y, w)
+            if u.hours.to_i > 0
+                unassigned.push(u.hours)
+            end
         end
         unassigned
+    end
+
+    def unassigned_by_week(w,y)
+        UnassignedHour.where(:project_id => self.id, :week => w, :year => y).sum(:hours)
     end
 
  

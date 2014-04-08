@@ -25,6 +25,7 @@
 					<th>Weeks</th>
 					<th>Pay Type</th>
 					<th>Hours Per Week</th>
+					<th>Billable Per Week</th>
 					<th>Comp Hours<br>Per Holiday</th>
 					<th>Overage From<br>Prev Period</th>
 					<th>Billable Rate</th>
@@ -46,6 +47,7 @@
 						<td><%= "#{d.start_week} - #{d.end_week}" %></td>
 						<td><%= d.pay_type %></td>
 		  				<td><%= d.hours_in_week %></td>
+		  				<td><%= d.billable_per_week %></td>
 		  				<td><%= d.holiday %></td>
 		  				<td><%= d.overage_from_prev %></td>
 		  				<td><%= number_to_currency(d.billable_rate) %></td>

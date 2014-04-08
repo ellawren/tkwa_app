@@ -14,6 +14,7 @@
 #  hours_in_week     :decimal(4, 2)
 #  overage_from_prev :decimal(6, 2)
 #  billable_rate     :decimal(5, 2)
+#  billable_per_week :decimal(4, 2)
 #
 
 class DataRecord < ActiveRecord::Base
@@ -59,6 +60,7 @@ class DataRecord < ActiveRecord::Base
 	    self.hours_in_week ||= 40
 	    self.holiday ||= 8
 	    self.billable_rate ||= 90
+      self.billable_per_week ||= 40
   	end
 
 end

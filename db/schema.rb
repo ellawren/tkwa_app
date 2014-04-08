@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140407212126) do
+ActiveRecord::Schema.define(:version => 20140408162842) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20140407212126) do
     t.decimal  "hours_in_week",     :precision => 4, :scale => 2
     t.decimal  "overage_from_prev", :precision => 6, :scale => 2
     t.decimal  "billable_rate",     :precision => 5, :scale => 2
+    t.decimal  "billable_per_week", :precision => 4, :scale => 2
   end
 
   add_index "data_records", ["user_id", "year"], :name => "index_data_records_on_user_id_and_year", :unique => true
@@ -276,6 +277,15 @@ ActiveRecord::Schema.define(:version => 20140407212126) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.integer  "user_id",                                    :null => false
+  end
+
+  create_table "non_billable_hours", :force => true do |t|
+    t.integer  "hours"
+    t.integer  "year"
+    t.integer  "week"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "patterns", :force => true do |t|

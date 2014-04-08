@@ -664,11 +664,12 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	.table.forecast td.available { text-align:center; }
 	.table.forecast tfoot td:first-child { text-align:left; }
 	.table.forecast tr.unassigned { border-top:2px solid #344953; }
-	.table.forecast tr.available { border-bottom:2px solid #344953; }
+	.table.forecast tr.available, .table.forecast tr.non-billable { border-bottom:2px solid #344953; }
 	.table.forecast tfoot td .rem { color:#bcc6cc; font-weight:400; margin-top:6px; }
 
 	/* forecast index */
 	.table.forecast.index { margin-top:30px; float:left; }
+		.table.forecast.index.unassigned { margin-top:0px; }
 	.table.forecast tr.head td { border-top:1px solid #344953; }
 	.table.forecast tr.subhead td:first-child { padding-left:20px; font-weight:400; }
 	.table.forecast.index td.gray { background-color:#ecf0f5; }
@@ -851,6 +852,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	/*---*/
 
 	/* data records modal */
+		.modal.data-record { left:35%; width:935px; }
 		.modal.data-record .modal-body { height:90px; padding-left:40px; width:770px; }
 
  		.modal-table.data-table { width:760px; margin:15px 0; float:left; }

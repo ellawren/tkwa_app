@@ -1,20 +1,19 @@
 # == Schema Information
 #
-# Table name: available_hours
+# Table name: non_billable_hours
 #
 #  id         :integer         not null, primary key
 #  hours      :integer
-#  user_id    :integer
 #  year       :integer
 #  week       :integer
+#  user_id    :integer
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #
 
+class NonBillableHour < ActiveRecord::Base
 
-class AvailableHour < ActiveRecord::Base
-
-	belongs_to :user
+  	belongs_to :user
 
 	scope :current, {
         :select => "available_hours.*",
@@ -22,8 +21,11 @@ class AvailableHour < ActiveRecord::Base
         :conditions => ["active = ?", true ]
     }
 
-	after_initialize do
-    	self.hours ||= User.find(self.user_id).data_record.hours_in_week.to_i
+    after_initialize do
+    	data = User.find(self.user_id).data_record
+    	self.hours ||= data.hours_in_week.to_i - data.billable_per_week.to_i
     end
+
 end
+
 
