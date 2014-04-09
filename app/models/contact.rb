@@ -52,6 +52,7 @@ class Contact < ActiveRecord::Base
         self.work_direct = self.work_direct.to_s.gsub(/\D/, '') 
         self.work_phone = self.work_phone.to_s.gsub(/\D/, '') 
         self.work_fax = self.work_fax.to_s.gsub(/\D/, '')
+        self.work_company = self.work_company.to_s.gsub(/\s\[{1}.*\]{1}\z/, '')
         if self.notes
             self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/^<br>/, '') # get rid of extra line breaks
         end
@@ -99,7 +100,7 @@ class Contact < ActiveRecord::Base
 
     def company_and_city
         if self.city.present?
-            "#{work_company} (#{city})"
+            "#{work_company} [#{city}]"
         else
             work_company
         end
