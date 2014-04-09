@@ -324,11 +324,15 @@ class Project < ActiveRecord::Base
     def actual_array_sum
         array = []
         sum = 0
-        self.actual_array.each do |a|
-            array.push(a.amount)
+        if self.actuals.count > 0
+            self.actual_array.each do |a|
+                array.push(a.amount)
+            end
+            array.map{|x| sum += x}
+            sum
+        else
+            0
         end
-        array.map{|x| sum += x}
-        sum
     end
 
 
@@ -422,21 +426,11 @@ class Project < ActiveRecord::Base
         UnassignedHour.active.where("project_id = ? and hours > ?", self.id, 0)
     end
 
-    def unassigned_hours(four_month_array)
-        entries = []
-        four_month_array.each do |w, y|
-            entries.push(UnassignedHour.find_or_create_by_project_id_and_year_and_week(self.id, y, w))
-        end
-        entries
-    end
-
     def unassigned_by_week(w,y)
         UnassignedHour.where(:project_id => self.id, :week => w, :year => y).sum(:hours)
     end
 
 
-
- 
 # SCHEDULE #######################################################################
 
     def schedule_item_list(phase)

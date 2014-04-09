@@ -14,6 +14,7 @@ TkwaApp::Application.routes.draw do
         resources :schedule_items
         resources :shop_drawings
         resources :actuals
+        resources :unassigned_hours
         get :autocomplete_contact_name, :on => :collection
         get :autocomplete_billing_name, :on => :collection
         get :autocomplete_contact_work_company, :on => :collection
@@ -40,6 +41,8 @@ TkwaApp::Application.routes.draw do
         resources :vacations
         resources :expense_reports
         resources :vacation_records
+        resources :available_hours
+        resources :non_billable_hours
         member do
             get 'forecast', 'edit_forecast'
         end
