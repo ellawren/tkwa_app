@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140409171859) do
+ActiveRecord::Schema.define(:version => 20140409181626) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -205,22 +205,26 @@ ActiveRecord::Schema.define(:version => 20140409171859) do
   add_index "employees", ["contact_id"], :name => "index_employees_on_contact_id"
   add_index "employees", ["user_id"], :name => "index_employees_on_user_id"
 
-  create_table "expense_reports", :force => true do |t|
-    t.integer  "user_id",                                                      :null => false
-    t.string   "date"
+  create_table "expense_items", :force => true do |t|
+    t.integer  "expense_report_id"
     t.integer  "project_id"
+    t.string   "date"
     t.string   "description"
     t.integer  "miles"
-    t.decimal  "food",        :precision => 5, :scale => 2
-    t.decimal  "parking",     :precision => 5, :scale => 2
-    t.decimal  "misc",        :precision => 5, :scale => 2
-    t.boolean  "complete",                                  :default => false
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
-    t.integer  "year"
+    t.decimal  "food",              :precision => 6, :scale => 2
+    t.decimal  "parking",           :precision => 6, :scale => 2
+    t.decimal  "misc",              :precision => 6, :scale => 2
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
   end
 
-  add_index "expense_reports", ["user_id", "project_id"], :name => "index_expense_reports_on_user_id_and_project_id"
+  create_table "expense_reports", :force => true do |t|
+    t.integer  "user_id",                       :null => false
+    t.boolean  "complete",   :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "year"
+  end
 
   create_table "globals", :force => true do |t|
     t.integer  "year"

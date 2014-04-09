@@ -92,6 +92,19 @@ class Contact < ActiveRecord::Base
         end
     end
 
+    def city
+        city = work_address.match /^[A-Za-z ]*,/
+        city.to_s.gsub(/,/, '')
+    end
+
+    def company_and_city
+        if self.city.present?
+            "#{work_company} (#{city})"
+        else
+            work_company
+        end
+    end
+
     def cell_phone
         if work_cell.present?
             work_cell

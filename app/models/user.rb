@@ -106,6 +106,7 @@ class User < ActiveRecord::Base
 
     has_many :expense_reports, dependent: :destroy
     accepts_nested_attributes_for :expense_reports, :allow_destroy => true
+    has_many :expense_items, :through => :expense_reports
     
     has_many :employee_teams, :dependent => :destroy
     has_many :projects, :through => :employee_teams

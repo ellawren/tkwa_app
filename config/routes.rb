@@ -51,6 +51,7 @@ TkwaApp::Application.routes.draw do
 
     # EXPENSE REPORTS
     resources :expense_reports
+    resources :expense_items
 
     
     # CONSULTANT TEAMS / BILLS

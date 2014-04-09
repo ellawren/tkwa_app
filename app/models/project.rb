@@ -102,6 +102,8 @@ class Project < ActiveRecord::Base
     has_and_belongs_to_many :phases
     has_many :tasks # do not use has_and_belongs_to_many, even though this is technically true - this line ONLY applies to the project-specific tasks and add/delete will get messed up
 
+    has_many :expense_items # this doesn't really matter since it's not ever called upon
+
     # allows project page to add items via checkboxes
     accepts_nested_attributes_for :services
     accepts_nested_attributes_for :reimbursables
