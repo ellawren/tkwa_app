@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
     end
 
     def monthly_billing #edit_all
-        @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
+        @projects = Project.current_and_billing.order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end
 
     def update_all #for monthly_billing
@@ -76,6 +76,7 @@ class ProjectsController < ApplicationController
         @project = Project.find(id.to_i)
         @project.update_attributes(params['project'][id])
       end
+      flash[:success] = "Projects updated successfully!"
       redirect_to(:back) 
     end
 

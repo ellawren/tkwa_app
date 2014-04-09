@@ -64,6 +64,7 @@
 #  contact_address       :string(255)
 #  billed_to_date        :decimal(12, 2)
 #  hourly_billed_to_date :decimal(12, 2)
+#  recent_billing        :boolean         default(FALSE)
 #
 
 class Project < ActiveRecord::Base
@@ -127,6 +128,17 @@ class Project < ActiveRecord::Base
         self.phase_ids = [1, 2, 3, 4, 5, 6, 7, 9]
     end
 
+    # check for recent billing and mark as true to add project to Leta's Monthly Billing view
+    after_initialize do
+        if self.recent_billing == false && self.actual_array_sum > 0
+            self.recent_billing = true
+            self.save
+        elsif self.recent_billing == true && self.actual_array_sum == 0
+            self.recent_billing = false
+            self.save
+        end
+    end
+
     scope :with_patterns, {
         :select => "DISTINCT projects.*",
         :joins => "INNER JOIN patterns ON patterns.project_id = projects.id"
@@ -152,6 +164,13 @@ class Project < ActiveRecord::Base
         :conditions => ["status = ?", 'current' ],
         :order => ["name ASC" ]
     }
+
+    scope :current_and_billing, {
+        :select => "projects.*",
+        :conditions => ["status = ? OR recent_billing = ?", 'current', true ],
+        :order => ["name ASC" ]
+    }
+
 
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
 
@@ -301,6 +320,15 @@ class Project < ActiveRecord::Base
         end
         array
     end
+
+    def actual_array_sum
+        array = []
+        self.actual_array.each do |a|
+            array.push(a.amount)
+        end
+        array.inject{|sum,x| sum + x }
+    end
+
 
 # TRACKING #######################################################################
 

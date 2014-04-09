@@ -1,12 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-  get "actuals/new"
-
-  get "actuals/show"
-
-  get "actuals/edit"
-
-  get "actuals/index"
 
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
@@ -20,6 +13,7 @@ TkwaApp::Application.routes.draw do
         resources :employee_teams
         resources :schedule_items
         resources :shop_drawings
+        resources :actuals
         get :autocomplete_contact_name, :on => :collection
         get :autocomplete_billing_name, :on => :collection
         get :autocomplete_contact_work_company, :on => :collection

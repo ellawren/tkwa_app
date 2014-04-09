@@ -325,17 +325,20 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 /* monthly billing */
 
 .table.monthly-billing th { text-align:right; padding-right:16px; padding-bottom:2px; font-size:12px;}
-.table.monthly-billing th:first-child { text-align:left; }
+.table.monthly-billing th.project-name { text-align:left; }
 .table.monthly-billing th:last-child { text-align:center; }
 .table.monthly-billing.actuals th:last-child { text-align:right; }
 
 .table.monthly-billing td { padding:6px 4px 4px;}
-.table.monthly-billing tr td:first-child { width:460px; }
-.table.monthly-billing input[type="text"] { width:76px; text-align:right; margin-bottom:0px; color:#5bae60; }
+.table.monthly-billing tr td.project-name{ width:460px; }
+.table.monthly-billing input[type="text"] { width:78px; text-align:right; margin-bottom:0px; color:#5bae60; }
 .table.monthly-billing td.contract-amount { padding-top:14px; font-weight:700; text-align:right; padding-right:16px; }
 .table.monthly-billing th.contract-amount { padding-right:16px; }
 
 .table.monthly-billing .percent { text-align:center; border:1px dashed #344953; color:#344953; width:42px; height:20px; font-size:13px; margin:0px auto; padding:9px 0; border-radius:30px; background-color:#fff; font-weight:700; }
+.table.monthly-billing td.notifier { width:10px; }
+.table.monthly-billing td.notifier div { width:10px; height:10px; border-radius:10px; background-color:#86cc71; margin-top:4px; }
+.table.monthly-billing td.notifier div.completed { background-color:#e64c3c; }
 
 table.actuals-table { display:block; width:936px; height:80px; overflow-x:auto; overflow-y:hidden; margin-bottom:0px; }
 td.actual-billing { text-align:right; width:80px; height:60px; }

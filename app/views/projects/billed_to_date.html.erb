@@ -3,18 +3,19 @@
     <h1>Billed To Date</h1>
     <%= link_to "Fees Billed By Month", monthly_billing_path, class: "btn btn-primary btn-right" %>
 </div>
+<p class="description detail">Showing all current projects.</p>
 
 <%= form_for :project, :url => update_all_path, :html => { :method => :put } do %>
     <table class="table monthly-billing">
         
         <thead>
             <tr>
-                <th>Name</th>
+                <th class="project-name">Name</th>
                 <th class="contract-amount">Contract</th>
                 <th>Billed to Date</th>
                 <th>Hourly to Date</th>
                 <th>Payroll to Date</th>
-                <th class="actual"><%= monthname(prev_month) %> <%= this_year %><br>Fees Billed</th>
+                <th class="actual"><%= monthname_a(prev_month) %> <%= this_year %><br>Fees Billed</th>
                 <th>%</th>
             </tr>
         </thead>
@@ -23,7 +24,7 @@
             <% @projects.each do |project| %>
                 <%= fields_for "project[]", project do |p| %>
                 <tr>
-                    <td>
+                    <td class="project-name">
                         <%= link_to p.object.name, billing_project_path(p.object), class: "green" %><br>
                         <% e = EmployeeTeam.find_by_project_id_and_role(p.object, "Project Manager") %>
                         <div class="detail"><%= User.find(e.user_id).name if e %></div>
