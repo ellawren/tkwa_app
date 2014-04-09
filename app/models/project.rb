@@ -322,11 +322,7 @@ class Project < ActiveRecord::Base
     end
 
     def actual_array_sum
-        array = []
-        self.actual_array.each do |a|
-            array.push(a.amount)
-        end
-        array.inject{|sum,x| sum + x }
+        0
     end
 
 
