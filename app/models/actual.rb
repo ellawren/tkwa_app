@@ -23,5 +23,9 @@ class Actual < ActiveRecord::Base
         self[:amount] = num.to_f
     end
 
+    def self.total_for_month(year, month)
+    	Actual.where(month: month, year: year).sum(:amount)
+    end
+
 end
 

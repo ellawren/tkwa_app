@@ -189,6 +189,12 @@ function remove_fields(link) {
   return false;
 }
 
+function remove_tr_fields(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  $(link).closest("tr").hide();
+  return false;
+}
+
 function remove_consultant_fields(link) {
   if (confirm("Delete this entry?")) {
     $(link).prev("input[type=hidden]").val("1");
@@ -231,6 +237,15 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
+  $( ".datepicker" ).datepicker();
+  return false;
+  
+}
+
+function add_tr_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).parent("td").parent("tr").before(content.replace(regexp, new_id));
   $( ".datepicker" ).datepicker();
   return false;
   

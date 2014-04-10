@@ -82,7 +82,8 @@ table.search-results tr, table.search-results a, img.round-icon, .tile-box p, .i
 label[for="user_delete_photo"], table.potential tbody tr, #shop-drawings label, ul.ui-autocomplete li.ui-menu-item, 
 .timesheets .table-body .project-cell, .edit-me, input#reopen-timesheet, #documents a.circle .glyphicon, .employee-list li,
 .employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet, .timesheets.table tr:hover td,
-.tracking-table tbody tr:hover td, .half .row, .narrow.recommendations .add-image .text
+.tracking-table tbody tr:hover td, .half .row, .narrow.recommendations .add-image .text, table.expense-reports-index tr,
+table.expense-reports tr
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 
@@ -299,6 +300,7 @@ h4 { float:left; display:block; width:100%; height:34px; margin:30px 0 0px; clea
 	.add.list-member:after { content:"add list member"; }
 	.add.project-task:after { content:"new project task"; }
 	.add.recommendation:after { content:"add a recommendation"; }
+	.add.expense-items:after { content:"add item"; }
 
 	.half .add { margin-top:20px; }
 
@@ -914,18 +916,34 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 
 	table.expense-reports {  width:100%; float:left; margin:30px 0; }
-	table.expense-reports td { margin:3px 0; vertical-align:middle; }
-	table.expense-reports th { border-bottom: 2px solid #2c3445; font-size:11px; padding-bottom:2px; text-transform:uppercase; color:#9ba6ac; }
-	table.expense-reports .delete { margin:0px; }
-	table.expense-reports .date { width:65px; }
-	table.expense-reports .desc { width:300px; }
-		table.expense-reports .date a { color:#1abc9c; }
-		table.expense-reports .date a:hover { color:#16a085; }
-	table.expense-reports .small { width:50px; text-align:right; border-left:1px solid #bcc6cc; }
-	table.expense-reports .miles { text-align:center; }
-	table.expense-reports .total { width:60px; font-weight:900; text-align:right; border-left:1px solid #bcc6cc; }
-	table.expense-reports .submit { width:60px; }
+	table.expense-reports td { margin:3px 0; border-bottom:1px solid #344953; padding:8px 2px; }
+	table.expense-reports tr:hover { background-color:#f4f6f9; }
+	table.expense-reports th { border-bottom: 2px solid #2c3445; font-size:12px; padding-bottom:2px;  }
+	table.expense-reports th.center { text-align:center; }
+	table.expense-reports th.right { text-align:right; }
+	table.expense-reports th.right.total { padding-right:16px; }
+	table.expense-reports input.datepicker { width:90px; }
+	table.expense-reports input.desc { width:241px; }
+	table.expense-reports select.project-name { width:265px; margin-bottom:4px; margin-top:1px; }
+	table.expense-reports input.miles { width:30px; text-align:center; }
+	table.expense-reports td.calc { width:120px; padding:16px 0 0 8px; color:#bcc6cc; }
+		table.expense-reports td.calc .bold { color:#344953; }
+	table.expense-reports input.amount { width:60px; text-align:right; }
+	table.expense-reports .delete { margin:6px 0 0 0 ; }
 
+	table.expense-reports tr.total-row td { border:none; }
+	table.expense-reports tr.total-row:hover { background:transparent;}
+	table.expense-reports td.total { width:100px; padding:16px 16px 0 0; text-align:right; font-weight:900; }
+
+
+	table.expense-reports-index {  width:100%; float:left; margin:30px 0; }
+	table.expense-reports-index tr:hover { background-color:#f4f6f9; }
+	table.expense-reports-index td { margin:3px 0; border-bottom:1px solid #bcc6cc; padding-top:12px; }
+	table.expense-reports-index th { border-bottom: 2px solid #2c3445; font-size:12px; padding-bottom:2px;  }
+	table.expense-reports-index .delete { margin:0 0 0 0; float:right; }
+
+	a.save-btn.expense-report { width:272px; margin-top:5px; background-color:#0ba0d4; }
+	a.save-btn.expense-report:hover { opacity:.8; background-color:#0ba0d4; }
 
 /* potential projects (keep in main styles because page is in static_pages folder) */
 
@@ -948,6 +966,8 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 	table.potential tbody tr:hover { background-color:#f6f8fa; }
 	table.potential tbody td { color:#16a085; }
 	table.potential tbody td a { color:#16a085; font-weight:900; }
+
+
 
 /* notice bar */
 

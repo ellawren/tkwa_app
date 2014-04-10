@@ -17,21 +17,42 @@
 
 
 class ExpenseItem < ActiveRecord::Base
-
+    default_scope :order => "created_at ASC"
 	belongs_to :project
 	belongs_to :expense_report
  
  	def date_object
-      	Date.strptime(self.date, "%m/%d/%Y")
+        if self.date
+      	    Date.strptime(self.date, "%m/%d/%Y")
+        end
   	end
+
+    def food=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:food] = num.to_f
+    end
+
+    def parking=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:parking] = num.to_f
+    end
+
+    def misc=(num)
+        num.gsub!(/[$,\s]/,'') if num.is_a?(String)
+        self[:misc] = num.to_f
+    end
 
   	def parent
   		ExpenseReport.find(self.expense_report_id)
   	end
+    
+    def per_mile
+        Global.find_by_year(2014).mileage
+    end
 
   	def mileage_comp
     	if self.miles
-    		self.miles * Global.find_by_year(parent.year).mileage
+    		self.miles * self.per_mile
     	end
     end
 

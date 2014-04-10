@@ -6,7 +6,7 @@
 <p class="description detail">Showing all current projects.</p>
 
 <%= form_for :project, :url => update_all_path, :html => { :method => :put } do %>
-    <table class="table monthly-billing">
+    <table class="table monthly-billing to-date">
         
         <thead>
             <tr>
@@ -15,7 +15,7 @@
                 <th>Billed to Date</th>
                 <th>Hourly to Date</th>
                 <th>Payroll to Date</th>
-                <th class="actual"><%= monthname_a(prev_month) %> <%= this_year %><br>Fees Billed</th>
+                <th class="actual"><%= monthname_a(prev_month) %> <%= this_year %><br>TKWA Fees Billed</th>
                 <th>%</th>
             </tr>
         </thead>

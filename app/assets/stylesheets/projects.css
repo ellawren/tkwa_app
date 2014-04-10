@@ -348,7 +348,12 @@ table.actuals-table td { border:none; padding:0px; }
 
 .table.monthly-billing td.actual { background-color:#ecf0f5; padding:6px 6px 4px; }
 .table.monthly-billing th.actual { background-color:#ecf0f5; line-height:16px; border-radius:8px 8px 0 0; }
-.table.monthly-billing tr:last-child td.actual { border-radius: 0 0 8px 8px; }
+.table.monthly-billing.to-date th.actual { padding-left:0px; padding-right:9px; }
 
+.table.monthly-billing.to-date tr:last-child td.actual { border-radius: 0 0 8px 8px; }
 
+.table.monthly-billing thead tr th { border-bottom:2px solid #344953; }
+.table.monthly-billing.actuals tfoot tr td { border-top:2px solid #344953;  text-align:right; font-weight:900; padding-right:16px; font-size:13px; }
+.table.monthly-billing.actuals tfoot tr td.actual { border-radius: 0 0 8px 8px; padding-top:10px; padding-bottom:10px; }
+.table.monthly-billing.actuals tfoot tr td.project-name { text-align:left; }
 

@@ -7,20 +7,20 @@
 #  complete   :boolean         default(FALSE)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
-#  year       :integer
+#  printed    :boolean         default(FALSE)
 #
 
 class ExpenseReport < ActiveRecord::Base
 	
-	default_scope :order => "date ASC"
+	default_scope :order => "created_at ASC"
 
   	belongs_to :user
 
     has_many :expense_items, dependent: :destroy
-    accepts_nested_attributes_for :expense_items, :allow_destroy => true
+    accepts_nested_attributes_for :expense_items, :allow_destroy => true, :reject_if => lambda { |a| a[:date].blank? }
 
-  	before_save do
-    	self.year = self.created_at.year
+    def total
+    	ExpenseItem.where(expense_report_id: self.id).sum(&:total)
     end
 
 end

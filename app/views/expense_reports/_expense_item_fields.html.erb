@@ -1,0 +1,14 @@
+<tr>
+    <td><%= f.text_field :date, class: "datepicker" %></td>     
+    <td><%= f.collection_select(:project_id, @user.project_list, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %> 
+    <%= f.text_field :description, class: "desc", placeholder: "Description" %></td>      
+    <td><%= f.text_field :miles, class: "miles" %></td>  
+    <td class="calc">x <%= f.object.per_mile %> = <span class="bold"><%= number_to_currency(f.object.mileage_comp) %></span></td> 
+    <td></td> 
+    <td><%= f.text_field :food, class: "amount", value: number_to_currency(f.object.food) %></td>   
+    <td><%= f.text_field :parking, class: "amount", value: number_to_currency(f.object.parking) %></td>   
+    <td><%= f.text_field :misc, class: "amount", value: number_to_currency(f.object.misc) %></td>   
+    <td class="total"><%= number_to_currency(f.object.total) %></td>
+    <%= f.hidden_field :_destroy %>
+    <td><%= link_to_remove_tr_fields "  ", f %></td>
+</tr>

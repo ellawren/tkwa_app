@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140409181626) do
+ActiveRecord::Schema.define(:version => 20140410165236) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(:version => 20140409181626) do
     t.boolean  "complete",   :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
-    t.integer  "year"
+    t.boolean  "printed",    :default => false
   end
 
   create_table "globals", :force => true do |t|
