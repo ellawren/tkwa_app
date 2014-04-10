@@ -63,7 +63,7 @@
 
 <% end %>
 
-<div class="row icons four">
+<div class="row icons five">
 
     <div class="tile-box">
         <%= link_to image_tag("pencils.png", :alt => "current-projects", :class => "round-icon"), projects_current_path %>
@@ -81,8 +81,13 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), billed_to_date_path %>
-        <%= link_to "Billing", billed_to_date_path, :class => "tile-label" %>
+        <%= link_to image_tag("worksheet.png", :alt => "forecast", :class => "round-icon"), billing_worksheet_path %>
+        <%= link_to "Billing Worksheet", billing_worksheet_path, :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box">
+        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), fees_billed_by_month_path %>
+        <%= link_to "TKWA Fees Billed By Month", fees_billed_by_month_path, :class => "tile-label" %>
     </div>
 
     <!--<div class="tile-box disabled">

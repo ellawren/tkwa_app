@@ -6,8 +6,8 @@ TkwaApp::Application.routes.draw do
     match '/projects/forecast',   to: 'projects#forecast_index'
     post '/csv_import' => 'projects#csv_import'
     match '/projects/import',   to: 'projects#import'
-    match '/projects/monthly_billing',   to: 'projects#monthly_billing', as: 'monthly_billing'
-     match '/projects/billed_to_date',   to: 'projects#billed_to_date', as: 'billed_to_date'
+    match '/projects/fees_billed_by_month',   to: 'projects#fees_billed_by_month', as: 'fees_billed_by_month'
+     match '/projects/billing_worksheet',   to: 'projects#billing_worksheet', as: 'billing_worksheet'
     match '/projects/all' => 'projects#update_all', :as => :update_all, :via => :put
     resources :projects do
         resources :employee_teams

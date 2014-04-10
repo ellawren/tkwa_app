@@ -63,11 +63,11 @@ class ProjectsController < ApplicationController
         @projects = Project.current.all
     end
 
-    def billed_to_date #edit_all
+    def billing_worksheet #edit_all
         @projects = Project.current.order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end
 
-    def monthly_billing #edit_all
+    def fees_billed_by_month #edit_all
         @projects = Project.current_and_billing.order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end
 

@@ -53,7 +53,6 @@ a.header-label { position:absolute; display:block; width:auto; top:0; left:0; co
 		.page-header ul.controls li .glyphicon-search { margin-top:2px;  }
 			.page-header ul.controls li .glyphicon-remove:hover { color:#e64c3c; }
 
-
 .box { float:left; width:100%; position:relative; }
 
 /* links */
@@ -482,6 +481,7 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		.row.icons.timesheets { float:left; margin:20px 0 30px 50px; }
 		.row.icons.three { float:left; margin:40px 150px 20px; }
 
+
 	.tile-box { float:left; position:relative; width:200px; height:220px; margin:0 5px; }
 		.home .tile-box { margin:0 5px; width:170px; height:180px; }
 
@@ -498,9 +498,10 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 		.tile-box.disabled a.tile-label { color:#bcc6cc; opacity:.3; }
 		.tile-box.disabled:hover a.tile-label { color:#bcc6cc; opacity:.3; }
 
-
-
-
+	.row.icons.five { float:left; margin:40px 40px 20px; }
+		.five .tile-box { width:160px; }
+		.five .tile-box img.round-icon { width:150px; height:150px; }
+		.five .tile-box a.tile-label { width:140px; padding:10px; font-size:16px; }
 
 
 
