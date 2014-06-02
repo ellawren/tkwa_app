@@ -16,11 +16,11 @@
 	</thead>
 	<tbody>
 		<% @expense_reports.each do |e| %>
-			<tr>
+			<tr class="<%= 'gray' if e.printed == true %>">
 				<td><a href="/users/<%= @user.id %>/expense_reports/<%= e.id %>/edit" class="green"><%= e.created_at.strftime("%B %-d, %Y") %></a></td>
 				<td><%= e.updated_at.strftime("%B %-d, %Y") %></td>
 				<td class="bold"><%= number_to_currency(e.total) %></td>
-				<td><%= e.printed %></td>
+				<td><%= e.date_printed.strftime("%B %-d, %Y") if e.printed %></td>
 				<td><%= link_to "", e, method: :delete, confirm: "You sure?", class: "delete fui-cross" %></td>
 			</tr>
 		<% end %>

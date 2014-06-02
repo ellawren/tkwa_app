@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140410165236) do
+ActiveRecord::Schema.define(:version => 20140410221457) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -91,8 +91,6 @@ ActiveRecord::Schema.define(:version => 20140410165236) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "consultant_roles_projects", ["project_id", "consultant_role_id"], :name => "index_cons_projects_on_project_id_and_consultant_role_id", :unique => true
 
   create_table "consultant_teams", :force => true do |t|
     t.integer  "project_id"
@@ -219,11 +217,12 @@ ActiveRecord::Schema.define(:version => 20140410165236) do
   end
 
   create_table "expense_reports", :force => true do |t|
-    t.integer  "user_id",                       :null => false
-    t.boolean  "complete",   :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "printed",    :default => false
+    t.integer  "user_id",                         :null => false
+    t.boolean  "complete",     :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.boolean  "printed",      :default => false
+    t.date     "date_printed"
   end
 
   create_table "globals", :force => true do |t|
@@ -595,14 +594,14 @@ ActiveRecord::Schema.define(:version => 20140410165236) do
     t.string   "email",              :default => "",    :null => false
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
+    t.string   "password_digest"
+    t.string   "remember_token"
     t.boolean  "admin",              :default => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "active",             :default => true
-    t.string   "remember_token"
-    t.string   "password_digest"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -88,28 +88,28 @@ Category.create([
 User.delete_all
 
 admin = User.create([
-	{ name: 'Erin Lawrence', email:'elawrence@tkwa.com', password:'123456', password_confirmation:'123456', admin: true,  employee_attributes: { number: '204' } }
+	{ name: 'Erin Lawrence', email:'elawrence@tkwa.com', password:'123456', password_confirmation:'123456', admin: true }
 ])
 
 User.create([
-	{ name: 'Tom Kubala', email:'tkubala@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '101' } },
-	{ name: 'Allen Washatko', email:'awashatko@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '102' } },
-	{ name: 'Vince Micha', email:'vmicha@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '103' } },
-	{ name: 'Joel Krueger', email:'jkrueger@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '105' } },
-        { name: 'Rich Hepner', email:'rhepner@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '126' } },
-        { name: 'Vicki Yurske', email:'vyurske@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '136' } },
-        { name: 'Karen Hancock', email:'khancock@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '215' } },
-        { name: 'Tim Hansmann', email:'thansmann@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '148' } },
-        { name: 'Mark Lefebvre', email:'mlefebvre@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '159' } },
-        { name: 'Leta Flom', email:'lflom@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '170' } },
-        { name: 'Kirk Lundgren', email:'klundgren@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '173' } },
-        { name: 'Ethan Bartos', email:'ebartos@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '176' } },
-        { name: 'Wayne Reckard', email:'wreckard@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '188' } },
-        { name: 'Justin Racinowski', email:'jracinowski@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '198' } },
-        { name: 'Adam Voltz', email:'avoltz@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '205' } },
-        { name: 'Ariel Steuer', email:'asteuer@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '208' } },
-        { name: 'Erik Hancock', email:'ehancock@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '211' } },
-        { name: 'Matt Frydach', email:'mfrydach@tkwa.com', password:'123456', password_confirmation:'123456', employee_attributes: { number: '214' } }
+	{ name: 'Tom Kubala', email:'tkubala@tkwa.com', password:'123456', password_confirmation:'123456' },
+	{ name: 'Allen Washatko', email:'awashatko@tkwa.com', password:'123456', password_confirmation:'123456' },
+	{ name: 'Vince Micha', email:'vmicha@tkwa.com', password:'123456', password_confirmation:'123456' },
+	{ name: 'Joel Krueger', email:'jkrueger@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Rich Hepner', email:'rhepner@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Vicki Yurske', email:'vyurske@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Karen Hancock', email:'khancock@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Tim Hansmann', email:'thansmann@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Mark Lefebvre', email:'mlefebvre@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Leta Flom', email:'lflom@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Kirk Lundgren', email:'klundgren@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Ethan Bartos', email:'ebartos@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Wayne Reckard', email:'wreckard@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Justin Racinowski', email:'jracinowski@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Adam Voltz', email:'avoltz@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Ariel Steuer', email:'asteuer@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Erik Hancock', email:'ehancock@tkwa.com', password:'123456', password_confirmation:'123456' },
+        { name: 'Matt Frydach', email:'mfrydach@tkwa.com', password:'123456', password_confirmation:'123456' }
 ])
 
 

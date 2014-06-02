@@ -1,22 +1,29 @@
 <% provide :title, "Edit Expense Report" %>
 <%= link_to"Expense Reports", user_expense_reports_path(@user), class: "header-label" %>
-<div class="page-header">
-    <h1><%= @user.name %> <span class="light"><%= @expense_report.created_at.strftime("%B %-d, %Y") %></span></h1>
+
+<div class="PrintArea">
+	<div class="page-header">
+	    <h1><%= @user.name %> <span class="light"><%= @expense_report.created_at.strftime("%B %-d, %Y") %></span></h1>
+	</div>
+
+	<%= form_for @expense_report do |f| %>
+
+	  	<%= render 'fields', f: f %>
+		
+	  	<div class="save-row">
+	  		<%= f.check_box :printed, class: "hidden" %> 
+			<%= f.hidden_field :date_printed %> 
+	    	<%= f.submit "Save", class: "btn btn-primary save-btn" %>
+	    	<%= f.submit "#{f.object.printed == true ? 'Already Printed' : 'Print' }", class: "btn btn-primary save-btn expense-report #{'printed' if f.object.printed == true}", id: "print_button" %>
+	  	</div>
+
+	<% end %>
 </div>
-
-<%= form_for @expense_report do |f| %>
-
-  	<%= render 'fields', f: f %>
-	<%= f.check_box :printed %> 
-  	<div class="save-row">
-    	<%= f.submit "Save", class: "btn btn-primary save-btn" %>
-    	 <a id="print_button" class="btn btn-primary save-btn expense-report">Print</a>
-  	</div>
-
-<% end %>
 
 <script>
 $("#print_button").click(function(){
 	$("#expense_report_printed").prop('checked', true);
+	$("#expense_report_date_printed").val("<%= Date.today %>");
+	window.print();
 });
 </script>
