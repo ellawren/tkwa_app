@@ -127,7 +127,7 @@ ul.tabnav { float:left; width:100%; height:26px; background-color:#ecf0f5; margi
 	table.tabnav.timesheets tr td:nth-child(even) {  }
 	table.tabnav.timesheets tr td:nth-child(odd) { border-right:1px solid #ddd; }
 	table.tabnav.timesheets tr td:last-child { border-right:0px; }
-		table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 3px; min-width:2%; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
+		table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 2px; min-width:1%; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
 		table.tabnav.timesheets td:first-child a { border-radius:5px 0 0 5px; padding-left:8px; }
 			table.tabnav.timesheets td:last-child a { padding-right:6px; border-radius:0 5px 5px 0; width:14px; margin-right:-4px; }
 		table.tabnav.timesheets td.sel a { background-color:#ced5da; color:#758083; }
@@ -999,11 +999,12 @@ tr.footer td { border-top:2px solid #344953; text-align:right; font-weight:900; 
 
 @media print {
 
-	#navbar, .page-header ul.controls, .save-row, .debug_dump, footer, button.input-button, ul.tabnav
+	#navbar, .page-header ul.controls, .save-row, .debug_dump, footer, button.input-button, ul.tabnav, .jqte_hiddenField
 		{ display:none; }
 	body > .container { margin-top:10px; }
 	body { width:960px; margin:0 40px; }
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }
+	.input-row.added { margin-top:20px; }
 
 	.table.forecast.index tbody { overflow-y:visible; max-height:none; }
 	.table.forecast.index thead { display: table-header-group; }

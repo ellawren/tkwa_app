@@ -65,6 +65,7 @@
 #  billed_to_date        :decimal(12, 2)
 #  hourly_billed_to_date :decimal(12, 2)
 #  recent_billing        :boolean         default(FALSE)
+#  cm                    :string(255)
 #
 
 require 'spec_helper'

@@ -4,7 +4,7 @@
 	<%= link_to "Add Employee Role", new_employee_role_path, class: "btn btn-primary btn-right" %>
 </div>
 
-<ul>
+<ul class="link-list">
 	<% @employee_roles.each do |param| %>
 			<li>
 				<%= link_to param.name, edit_employee_role_path(param.id) %>
