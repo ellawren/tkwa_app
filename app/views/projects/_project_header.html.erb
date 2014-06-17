@@ -7,10 +7,10 @@
 <% elsif @project.status == "current" %>
     <a class="header-label" href="/projects/current">Current Projects</a>
     <div class="page-header">
-        <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+        <h1><span class="light"><%= @project.number %></span><%= @project.name %></h1>
 <% else %>
     <div class="page-header">
-        <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
+        <h1><span class="light"><%= @project.number %></span><%= @project.name %></h1>
 <% end %>
     <ul class="controls project">
         <!--<% unless @project.status == "potential" %>

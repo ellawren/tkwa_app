@@ -20,6 +20,8 @@
 	.new-project button.input-button { display:none; }
 	.new-project #project_location { width:340px; }
 
+	.radio-group.compact .radio { margin-bottom:6px; }
+
 /* PROJECTS - scope */
 
 .column-header{ float:left; display:block; width:100%; margin:0 0 18px 0; border-bottom:1px solid #e1e6eb; }

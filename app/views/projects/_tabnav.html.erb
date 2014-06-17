@@ -1,6 +1,5 @@
 <ul class="tabnav">
 	<li class="<%= is_active?("info")%>"><%= link_to "info", info_project_path(@project) %></li>
-	<li class="<%= is_active?("team")%>"><%= link_to "team", team_project_path(@project) %></li>
 	<li class="<%= is_active?("scope")%>"><%= link_to "scope", scope_project_path(@project) %></li>
 	<% unless @project.status == "potential" %>
 		<% if @project.view_options.include?('billing') %>

@@ -4,7 +4,7 @@
 		<div class="text role"><%= f.object.role %></div>
 	<% else %>
 		<%= f.collection_select(:user_id, @project.not_on_user_list, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
-		<%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :selected => "Project Designer" }, { :class => "custom-select" } ) %>
+		<%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :selected => "Project Manager" }, { :class => "custom-select" } ) %>
 	<% end %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to_remove_fields_2 "  ", f %>

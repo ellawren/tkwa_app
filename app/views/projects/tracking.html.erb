@@ -6,7 +6,7 @@
 
 	<h2>Tracking</h2>
 	<% if @project.employee_teams.length == 0 || @project.phases.length == 0 %>
-		<p class="description">This project's team has not been set up yet. Click the 'team' tab in the bar above to add team members.</p>
+		<p class="description">This project's team has not been set up yet. Click the 'info' tab in the bar above to add team members.</p>
 	<% else %>
 		<p class="description">The table below compares actual hours as entered on timesheets with target hours as determined by our fee. Staying under the target will keep a project profitable, while going over (shown in <span class="bold over">red</span>) represents a net loss.</p>
 
