@@ -6,6 +6,41 @@
 
     <%= render 'fields', f: f %>
 
+    <div class="half">
+
+        <h2>Design Team <%= link_to "add/edit employee roles", employee_roles_path, class: "control-link-text" %></h2>
+        <div class="header-row">
+            <div>Name</div>
+            <div>Role</div>
+        </div>
+
+        <!-- nested form for team-->
+            <%= f.fields_for :employee_teams, @employee_teams do |builder| %>
+                <%= render 'employee_team_fields', :f => builder %>
+            <% end %>
+            <%= link_to_add_fields_2 "", f, :employee_teams, "add fui-plus" %>
+        <!-- end team form -->
+
+    </div>
+
+    <div class="half last">
+
+        <h2>Consultant Team <%= link_to "add/edit consultant roles", consultant_roles_path, class: "control-link-text" %></h2>
+
+        <div class="header-row">
+            <div>Company</div>
+            <div>Role</div>
+        </div>
+
+        <!-- nested form for team-->
+            <%= f.fields_for :consultant_teams, @project.consultant_teams.order("consultant_name ASC") do |builder| %>
+                <%= render 'consultant_team_fields', :f => builder %>
+            <% end %>
+            <%= link_to_add_fields "", f, :consultant_teams, "add fui-plus consultant" %>
+        <!-- end team form -->
+
+    </div>
+
     <% if Project.related_projects(f.object.number_base).count > 1 %>
         <h2>Related Projects</h2>
         <div class="full">
