@@ -76,7 +76,7 @@
                             
                         <% elsif f.object.billing_name.present? # if there is a billing name and it DOES NOT match an existing contact %>
                             <%= f.autocomplete_field :billing_name, autocomplete_contact_name_projects_path, class: "button-right" %>
-                            <%= link_to "add contact", new_contact_path(:name => f.object.billing_name), class: "btn input-button" %>
+                            <%= link_to "add", new_contact_path(:name => f.object.billing_name), class: "btn input-button" %>
                         <% end %>
                     <% end %>
                 </div>

@@ -95,6 +95,7 @@
 	#selected-company .well #company-data { width:430px; }
 	#selected-company .well #company-phone { width:300px; }
 	.detail { color:#9ba6ac; font-style:italic; }
+	.centered { text-align:center; }
 
 	/* tabnav */
 
@@ -872,6 +873,10 @@
 	.save-btn.expense-report:hover { opacity:.8; background-color:#0ba0d4; }
 	.save-btn.expense-report.printed { background-color:#e1e6eb; }
 	#expense_report_printed { display:none; }
+
+	@media print {
+		
+	}
 
 /* potential projects (keep in main styles because page is in static_pages folder) */
 

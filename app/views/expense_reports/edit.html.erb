@@ -9,7 +9,7 @@
 	<%= form_for @expense_report do |f| %>
 
 	  	<%= render 'fields', f: f %>
-		
+		<div class="detail centered">Please staple receipts to the back of your expense report before turning it in.</div>
 	  	<div class="save-row">
 	  		<%= f.check_box :printed, class: "hidden" %> 
 			<%= f.hidden_field :date_printed %> 
