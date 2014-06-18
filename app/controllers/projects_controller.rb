@@ -124,8 +124,7 @@ class ProjectsController < ApplicationController
             flash[:success] = "Project created successfully!"
             redirect_to info_project_path(@project)
         else
-            flash[:project] = @project # this is so that error message shows up if number validation fails
-            redirect_to new_project_path
+            render 'new'
         end
     end
   
