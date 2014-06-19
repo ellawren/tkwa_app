@@ -919,7 +919,7 @@
 
 @media print {
 
-	#navbar, .page-header ul.controls, .save-row, .debug_dump, footer, button.input-button, ul.tabnav, .jqte_hiddenField{ display:none; }
+	#navbar, .page-header ul.controls, .save-row, .debug_dump, footer, button.input-button, ul.tabnav, .jqte_hiddenField { display:none; }
 	body > .container { margin-top:10px; }
 	body { width:960px; margin:0 40px; }
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:340px; }

@@ -195,8 +195,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.billing-table td.btd, .billing-table td.percent, .billing-table tr.footer td.contract-amount{ padding-top:10px; font-weight:900; }
 	.billing-table td.remaining { padding-top:11px; color:#9ba6ac; font-family:"Asap"; font-style:italic; }
 	.billing-table td.remaining.over { color:#e64c3c; }
-	.billing-table td.button { padding-left:10px; }
-	.billing-table td.button a.btn { background-color:#f1c40f; }
+	.billing-table td.button { padding-left:10px; width:100px; }
 		.billing-table td.button a.btn:hover { background-color:#f39c12; }
 	.billing-table th.percent, .billing-table td.percent  { width:60px; text-align:center; padding-right:0px; padding-left:20px; }
 	.billing-table a.delete { margin-left:0px; }
