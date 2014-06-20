@@ -9,12 +9,13 @@ class ProjectsController < ApplicationController
 
     def info
         @project = Project.find(params[:id])
-        if @project.consultant_teams.count == 0 
-            1.times { @project.consultant_teams.build }
-        end
-        if @project.employee_teams.count == 0
-            1.times { @project.employee_teams.build }
-        end
+        @employee_teams = @project.employee_teams.ordered
+        #if @project.consultant_teams.count == 0 
+        #    1.times { @project.consultant_teams.build }
+        #end
+        #if @project.employee_teams.count == 0
+        #    1.times { @project.employee_teams.build }
+        #end
     end
 
     def team
