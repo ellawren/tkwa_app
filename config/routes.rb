@@ -114,7 +114,8 @@ TkwaApp::Application.routes.draw do
         get :autocomplete_contact_name, :on => :collection
     end
 
-    
+    resources :billing_types
+    resources :building_types
     resources :categories 
     resources :consultant_roles
     resources :data_records

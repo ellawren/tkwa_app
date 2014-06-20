@@ -1,0 +1,19 @@
+<% provide :title, "Building Type" %>
+<div class="page-header">
+	<h1>Building Type</h1>
+	<%= link_to "Add Building Type", new_building_type_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @building_types.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_building_type_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140609184152) do
+ActiveRecord::Schema.define(:version => 20140620155330) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(:version => 20140609184152) do
   end
 
   add_index "available_hours", ["user_id"], :name => "available_hours_user_id"
+
+  create_table "billing_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "bills", :force => true do |t|
     t.string   "date"
@@ -71,6 +77,12 @@ ActiveRecord::Schema.define(:version => 20140609184152) do
   end
 
   add_index "books", ["subject_id"], :name => "index_books_on_subject_id"
+
+  create_table "building_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"

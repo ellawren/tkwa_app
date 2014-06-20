@@ -1,0 +1,16 @@
+<% provide :title, "Add New Building Type" %>
+<%= link_to "Building Type", building_types_path, class: "header-label" %>
+<div class="page-header">
+	<h1>Add New Building Type</h1>
+</div>
+
+<%= form_for @building_type do |f| %>
+
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
+
+  	<div class="save-row">
+        <%= f.submit "Add Building Type", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>

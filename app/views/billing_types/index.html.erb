@@ -1,0 +1,19 @@
+<% provide :title, "Billing Type" %>
+<div class="page-header">
+	<h1>Building Type</h1>
+	<%= link_to "Add Billing Type", new_billing_type_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @billing_types.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_billing_type_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
+
