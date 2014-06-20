@@ -182,15 +182,19 @@ class Project < ActiveRecord::Base
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
 
     # next/prev
-    scope :next, lambda {|id| where("status = ? AND number > ?", "current", id).order("number ASC") }
-    scope :previous, lambda {|id| where("status = ? AND number < ?", "current", id).order("number DESC") }
+    #scope :next, lambda {|id| where("status = ? AND number > ?", "current", id).order("number ASC") }
+    #scope :previous, lambda {|id| where("status = ? AND number < ?", "current", id).order("number DESC") }
+    scope :next, lambda {|id| where("id > ?", id).order("id ASC") }
+    scope :previous, lambda {|id| where("id < ?", id).order("id DESC") }
 
     def next
-        Project.next(self.number).first
+        #Project.next(self.number).first
+        Project.next(self.id).first
     end
 
     def previous
-        Project.previous(self.number).first
+        #Project.previous(self.number).first
+        Project.previous(self.id).first
     end
     #------------------------------------
 
