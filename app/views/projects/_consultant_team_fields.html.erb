@@ -1,8 +1,9 @@
 <div class="row <%= "saved" if f.object.consultant_name %>">
 
 	<% if f.object.consultant_name %>
-		<div class="text name"><%= f.object.consultant_name %></div>
-		<div class="text role"><%= f.object.consultant_role %></div>
+		<div class="text name"><%= f.object.consultant_name %>
+			<div class="role"><%= f.object.consultant_role %></div>
+		</div>
 	<% else %>
 		<%= f.autocomplete_field :consultant_name, autocomplete_contact_work_company_projects_path, class: "consultant-name", :placeholder => "Firm Name" %>
 		<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :prompt => "Role", :include_blank => true }, { :class => "custom-select consultant-role" } ) %>

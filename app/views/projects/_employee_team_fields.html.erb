@@ -1,7 +1,8 @@
 <div class="row <%= "saved" if f.object.user_id %>">
 	<% if f.object.user_id %>
-		<div class="text name"><%= User.find(f.object.user_id).name %> <%= "<span class=\"detail\">(inactive)</span>".html_safe if User.find(f.object.user_id).active == false %></div>
-		<div class="text role"><%= f.object.role %></div>
+		<div class="text name"><%= User.find(f.object.user_id).name %> <%= "<span class=\"detail\">(inactive)</span>".html_safe if User.find(f.object.user_id).active == false %>
+			<div class="role"><%= f.object.role %></div>
+		</div>
 	<% else %>
 		<%= f.collection_select(:user_id, @project.not_on_user_list, :id, :name, { :include_blank => true, :prompt => "Name" }, { :class => "custom-select" } ) %>
 		<%= f.collection_select(:role, EmployeeRole.all, :name, :name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select" } ) %>
