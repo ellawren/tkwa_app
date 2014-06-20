@@ -4,8 +4,8 @@
 		<div class="text name"><%= f.object.consultant_name %></div>
 		<div class="text role"><%= f.object.consultant_role %></div>
 	<% else %>
-		<%= f.autocomplete_field :consultant_name, autocomplete_contact_work_company_projects_path, class: "consultant-name" %>
-		<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :include_blank => true }, { :class => "custom-select" } ) %>
+		<%= f.autocomplete_field :consultant_name, autocomplete_contact_work_company_projects_path, class: "consultant-name", :placeholder => "Firm Name" %>
+		<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :prompt => "Role", :include_blank => true }, { :class => "custom-select consultant-role" } ) %>
 	<% end %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to_remove_fields_2 "  ", f %>
