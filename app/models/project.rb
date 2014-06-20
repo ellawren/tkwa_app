@@ -66,6 +66,8 @@
 #  hourly_billed_to_date :decimal(12, 2)
 #  recent_billing        :boolean         default(FALSE)
 #  cm                    :string(255)
+#  building_type_id      :integer
+#  billing_type_id       :integer
 #
 
 class Project < ActiveRecord::Base

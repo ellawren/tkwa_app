@@ -93,8 +93,16 @@
                 <%= f.collection_select(:building_type, BuildingType.all, :name, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
             </div>
             <div class="input-row">
+                <%= f.label(:building_type_id, "Building Type ID", class: "input-label") %>
+                <%= f.collection_select(:building_type_id, BuildingType.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            </div>
+            <div class="input-row">
                 <%= f.label(:billing_type, "Billing Type", class: "input-label") %>
                 <%= f.collection_select(:billing_type, BillingType.all, :name, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:billing_type_id, "Billing Type ID", class: "input-label") %>
+                <%= f.collection_select(:billing_type_id, BillingType.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
             </div>
             <div class="input-row">
                 <%= f.label(:cm, "CM/GC", class: "input-label") %>
