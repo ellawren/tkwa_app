@@ -19,8 +19,8 @@
         
         <% if @project.previous.present? %> 
                 <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.previous.id})"), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
-            <% end %>
-            <% if @project.next.present? %> 
+        <% end %>
+        <% if @project.next.present? %> 
                 <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.next.id})"), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
         <% end %>
         

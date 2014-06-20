@@ -236,7 +236,7 @@
 	.half { float:left; width:435px; }
 	.half .header-row { color:#9ba6ac; text-transform:uppercase; font-size:11px; }
 	.half .header-row div, .half .row .text { float:left; width:200px; margin-bottom:3px; }
-	.half .row .text { padding:10px 0 6px; }
+	.half .row .text { padding:7px 0 0px; }
 	.half .row { margin-left:0px; float:left; }
 	.half .row.saved:hover { background-color:#f4f6f9; }
 	.half .row.saved { border-top:1px solid #eee; }
@@ -270,6 +270,8 @@
 
 	.delete { float:left; display:block; margin:6px 0 0 12px; color:#ced5da; font-size:20px; cursor:pointer; }
 	.delete:hover { color:#e64c3c; }
+	.half .row .delete { margin:3px 0 3px 12px; }
+
 
 	.add { margin-top:10px; cursor:pointer; }
 	.add:after { content:"new team member"; margin-left:6px; color:#86cc71; font-family:"Lato", sans-serif; font-size:14px; font-weight:700; }
