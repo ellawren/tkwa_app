@@ -7,7 +7,6 @@
 #  number                :string(255)
 #  location              :string(255)
 #  client                :string(255)
-#  building_type         :string(255)
 #  client_type           :string(255)
 #  status                :string(255)     default("current")
 #  contact_name          :string(255)
@@ -17,7 +16,6 @@
 #  billing_address       :string(255)
 #  billing_phone         :string(255)
 #  billing_email         :string(255)
-#  billing_type          :string(255)
 #  created_at            :datetime        not null
 #  updated_at            :datetime        not null
 #  billing_ext           :string(255)

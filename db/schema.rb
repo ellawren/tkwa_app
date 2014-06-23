@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140620162740) do
+ActiveRecord::Schema.define(:version => 20140623162718) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -391,7 +391,6 @@ ActiveRecord::Schema.define(:version => 20140620162740) do
     t.string   "number"
     t.string   "location"
     t.string   "client"
-    t.string   "building_type"
     t.string   "client_type"
     t.string   "status",                                               :default => "current"
     t.string   "contact_name"
@@ -401,7 +400,6 @@ ActiveRecord::Schema.define(:version => 20140620162740) do
     t.string   "billing_address"
     t.string   "billing_phone"
     t.string   "billing_email"
-    t.string   "billing_type"
     t.datetime "created_at",                                                                                                                     :null => false
     t.datetime "updated_at",                                                                                                                     :null => false
     t.string   "billing_ext"
