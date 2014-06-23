@@ -241,7 +241,7 @@
 	.half .row { margin-left:0px; float:left; }
 	.half .row.saved:hover { background-color:#f4f6f9; }
 	.half .row.saved { border-bottom:1px solid #ddd; margin-bottom:4px; }
-	.half .custom-select { width:198px; }
+	.half .custom-select { width:196px; }
 	.half .custom-select.consultant-role { width:168px; }
 	.half .custom-select:first-child, .half .header-row div:first-child, .half .row .text.name { margin-right:5px; }
 	.half .row .text.name { width:386px; font-weight:700; padding-left:5px; }

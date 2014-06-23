@@ -98,7 +98,7 @@
             </thead>
                 
             <tbody>
-                <%= f.fields_for :consultant_teams, @project.consultant_teams.order("consultant_name") do |builder| %>
+                <%= f.fields_for :consultant_teams, @project.consultant_teams do |builder| %>
                 		<%= render 'consultant_billing_fields', :f => builder %>
                 <% end %>
 
