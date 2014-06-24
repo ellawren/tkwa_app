@@ -102,11 +102,13 @@ $(document).ready(function() {
         $('#new-message').slideDown();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
         $('#message-content').focus();
+        $(this).hide();
     });
 
     $('#cancel-message').click( function() {
         $('#new-message').slideUp();
         $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+        $('#add-message').show();
     });
     //---
 

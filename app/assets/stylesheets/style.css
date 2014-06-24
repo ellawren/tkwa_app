@@ -556,8 +556,8 @@
 	.custom-select.birth-month { width:104px; }
 	.custom-select.birth-day { width:80px; margin-left:4px; }
 	.photo { position:relative; overflow:hidden; }
-	.photo .image-name { float:left; width:100px; margin-top:10px; }
-	.photo .add-image { float:left; margin-top:10px; }
+	.photo .image-name { float:left; width:180px; padding:6px 6px 6px 10px; border:2px solid #e1e6eb; border-radius:6px; min-height:20px; color:#16a085; font-size:13px; margin-right:0px; }
+	.photo .add-image { float:left; margin-left:160px; margin-top:5px; }
 	.photo .add-image input { position:absolute; top:-30px; left:-5px; height:60px; cursor:pointer; }
 	.photo .add-image .text { line-height:34px; }
 	.photo label[for="user_delete_photo"] { position:static; color:#34495e; text-align:center; float:left; background-color:#bcc6cc; font-size:12px; overflow:hidden; width:118px; height:24px; padding-top:3px; border-radius:8px; margin:4px 0 0 160px; }
@@ -584,11 +584,13 @@
 	ul#messages li .project-name { float:left; width:545px; margin-top:5px; margin-left:45px; font-size:12px; text-transform:uppercase; font-weight:900; }
 	ul#messages li .project-name a { color:#16a085; }
 	ul#messages li .project-name a:hover { color:#1abc9c; }
-	ul#messages li .content { float:left; width:545px; margin-top:2px; margin-left:45px; color:#16a085; font-weight:900; }
-	ul#messages li .byline { float:left; width:545px; margin-top:5px; margin-left:45px; color:#9ba6ac; }
+	ul#messages li .content { float:left; width:545px; margin-top:2px; margin-left:45px; color:#16a085; }
+	ul#messages li .byline { float:left; font-family:'Asap', sans-serif; font-style:italic; font-size:10pt; width:545px; margin-top:5px; margin-left:45px; color:#bcc6cc; }
 	.home ul#messages { margin-bottom:60px; }
 	.datepicker.dropdown-menu { width:auto; opacity:1; visibility:visible; -webkit-backface-visibility:visible; -webkit-transition:none; -moz-transition:none; -o-transition:none; transition:none; }
 	#add-message, #my-messages, #cancel-message { margin-left:10px; font-size:13px; font-weight:400; cursor:pointer; }
+	#add-message { background-color:#1abc9c; padding:4px 12px; border-radius:6px; color:#fff; }
+	#add-message:hover { background-color:#16a085; }
 	#cancel-message { margin-left:220px; font-size:14px; }
 	#new-message { float:left; display:none; width:630px; height:200px; margin-left:20px; }
 	#message_expiration { width:100px; }
