@@ -256,6 +256,7 @@
 	.half input[type="text"].consultant-name { width:200px; margin-right:6px; }
 	.half .input-label { float:left; width:100px; padding:10px 0; }
 	.half input[type="text"].button-right, .half textarea.button-right { width:230px; }
+	.half .row input[type="text"], .half .row select { margin-bottom:0px; }
 
 	.full { float:left; width:100%; clear:all; }
 	.full .input-label { float:left; width:150px; padding:10px 0; }
@@ -273,8 +274,8 @@
 
 	.delete { float:left; display:block; margin:6px 0 0 12px; color:#ced5da; font-size:20px; cursor:pointer; }
 	.delete:hover { color:#e64c3c; }
-	.half .row .delete { margin:3px 4px 3px 12px; }
-
+	.half .row .delete { margin:6px 4px 3px 12px; }
+	.half .row.saved .delete { margin-top:3px; margin-left:14px; }
 
 	.add { margin-top:10px; cursor:pointer; }
 	.add:after { content:"new team member"; margin-left:6px; color:#86cc71; font-family:"Lato", sans-serif; font-size:14px; font-weight:700; }
