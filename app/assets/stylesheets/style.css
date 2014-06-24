@@ -123,7 +123,7 @@
 	table.tabnav.timesheets td a.sel:hover { background-color:#1abc9c; color:#fff; opacity:.6; }
 	table.tabnav.timesheets td a.curr { color:#16a085; font-weight:700;}
 	table.tabnav.timesheets td a.curr.sel { color:#fff; } 
-	table.tabnav.timesheets td a.past.false { color:#86cc71; font-weight:900;}
+	table.tabnav.timesheets td a.past.false { color:#86cc71; font-weight:700;}
 
 	/* section headers */
 

@@ -63,7 +63,7 @@ module TimesheetsHelper
     (1..wk).to_a 
   end
 
-  def is_week?(week, year, user_id)
+  def is_week_open?(week, year, user_id)
       if (params[:week] == week) && (get_week_number(Date.today).to_i == week.to_i) && year == this_year
         "curr sel tip-bottom" 
       elsif params[:week] == week
@@ -78,6 +78,20 @@ module TimesheetsHelper
           t = "false"
         end
         "past tip-bottom #{t}" 
+      else
+        "tip-bottom"
+      end
+  end
+
+  def is_week?(week, year)
+      if (params[:week] == week) && (get_week_number(Date.today).to_i == week.to_i) && year == this_year
+        "curr sel tip-bottom" 
+      elsif params[:week] == week
+        "sel tip-bottom" 
+      elsif get_week_number(Date.today).to_i == week.to_i && year == this_year
+        "curr tip-bottom" 
+      elsif get_week_number(Date.today + 7).to_i > week.to_i
+        "past tip-bottom" 
       else
         "tip-bottom"
       end

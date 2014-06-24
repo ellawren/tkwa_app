@@ -3,7 +3,7 @@
 		<tr>
 		<% week_array(f.object.year).each do |x| %>
 			<% date_string = parse_date(x, f.object.year) %>
-			<td><%= link_to "#{x}", "/users/#{f.object.user_id}/timesheets/#{f.object.year}/#{x}", class: is_week?("#{x}", f.object.year, f.object.user_id), title: "#{date_string}" %></td>
+			<td><%= link_to "#{x}", "/users/#{f.object.user_id}/timesheets/#{f.object.year}/#{x}", class: is_week_open?("#{x}", f.object.year, f.object.user_id), title: "#{date_string}" %></td>
 		<% end %>
 		</tr>
 	</table>
