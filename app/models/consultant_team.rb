@@ -38,8 +38,10 @@ class ConsultantTeam < ActiveRecord::Base
     end
 
     def percent_billed
-        if consultant_bills_total > 0 && consultant_contract > 0
-            ( consultant_bills_total.to_f/consultant_contract.to_f ) * 100
+        if consultant_bills_total && consultant_contract
+            if consultant_bills_total > 0 && consultant_contract > 0
+                ( consultant_bills_total.to_f/consultant_contract.to_f ) * 100
+            end
         end
     end
 
