@@ -107,7 +107,7 @@
                     <td></td>
                     <td class="contract-amount"><%= number_to_currency(@project.consultant_contract_total) %></td>
                     <td class="btd"><%= number_to_currency(@project.project_bills_total) %></td>
-                    <td class="percent"><% if f.object.consultant_percent_billed > 0 %><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %><% end %></td>
+                    <td class="percent"><% if f.object.consultant_percent_billed.present? %><%= number_to_percentage(f.object.consultant_percent_billed, :precision => 0) %><% end %></td>
                     <td class="remaining"><%= number_to_currency(@project.consultant_contract_total - @project.project_bills_total) %></td>
                     <td></td>
                     <td></td>

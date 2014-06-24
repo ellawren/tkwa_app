@@ -315,8 +315,8 @@ class Project < ActiveRecord::Base
     end
 
     def consultant_percent_billed
-      if consultant_contract_total && project_bills_total
-        if consultant_contract_total > 0 && project_bills_total > 0
+      if consultant_contract_total.present? && project_bills_total.present?
+        unless consultant_contract_total == 0 || project_bills_total == 0
             ( project_bills_total.to_f / consultant_contract_total.to_f ) * 100
         end
       end
