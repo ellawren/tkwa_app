@@ -123,6 +123,7 @@
 	table.tabnav.timesheets td a.sel:hover { background-color:#1abc9c; color:#fff; opacity:.6; }
 	table.tabnav.timesheets td a.curr { color:#16a085; font-weight:700;}
 	table.tabnav.timesheets td a.curr.sel { color:#fff; } 
+	table.tabnav.timesheets td a.past.false { color:#86cc71; font-weight:900;}
 
 	/* section headers */
 
@@ -551,6 +552,7 @@
 	label[for="pattern_delete_diagram"].checked, label[for="pattern_delete_diagram"]:hover, label[for="pattern_delete_photo"].checked, label[for="pattern_delete_photo"]:hover, label[for="user_delete_photo"].checked, label[for="user_delete_photo"]:hover { color:#c0392b; }
 	.image-box input[type="checkbox"] { position:absolute; left:-20px; width:100%; height:100%; }
 	.user-round { border-radius:40px; border:2px solid #bcc6cc; margin:-6px 10px 20px 0; }
+	.user-round-sm { width:50px; height:50px; border-radius:50px; border:2px solid #bcc6cc; margin:-6px 10px 20px 0; }
 	.custom-select.birth-month { width:104px; }
 	.custom-select.birth-day { width:80px; margin-left:4px; }
 	.photo { position:relative; overflow:hidden; }

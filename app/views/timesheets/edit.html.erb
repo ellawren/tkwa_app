@@ -1,6 +1,6 @@
 <% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
 <div class="page-header">
-    <h1><%= link_to @timesheet.week, all_timesheets_path(@timesheet.year, @timesheet.week) %> / <%= link_to @user.name, user_index_timesheets_path(@timesheet.user_id) %> &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
+    <%= image_tag @user.photo.url(:thumb), class: "user-round-sm" %><h1><%= link_to @timesheet.week, all_timesheets_path(@timesheet.year, @timesheet.week) %> / <%= link_to @user.name, user_index_timesheets_path(@timesheet.user_id) %> &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
     <% if @timesheet.data_record.present? %>
         <ul class="controls">
         	<li>
@@ -153,5 +153,4 @@
 		});
 	</script>
 <% end %>
-
 			    

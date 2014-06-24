@@ -22,7 +22,7 @@
 
 
 	.page-header ul.controls li .status { width:auto; text-transform:uppercase; text-align:right; border-radius:8px; margin:14px 3px 0 0; font-size:15px; }
-		.page-header ul.controls li .status.open { color:#1abc9c; }
+		.page-header ul.controls li .status.open { color:#86cc71; font-weight:700;}
 		.page-header ul.controls li .status.closed { color:#e64c3c; }
 
 	/* not used */
