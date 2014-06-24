@@ -239,9 +239,9 @@
 	.half .header-row { color:#9ba6ac; text-transform:uppercase; font-size:11px; }
 	.half .header-row div, .half .row .text { float:left; width:200px; margin-bottom:3px; }
 	.half .row .text { padding:7px 0 0px; }
-	.half .row { margin-left:0px; float:left; }
+	.half .row { margin-left:0px; float:left; margin-top:4px; }
 	.half .row.saved:hover { background-color:#f4f6f9; }
-	.half .row.saved { border-bottom:1px solid #ddd; margin-bottom:4px; }
+	.half .row.saved { border-bottom:1px solid #ddd; color:#16a085; margin-top:0px; }
 	.half .custom-select { width:196px; }
 	.half .custom-select.consultant-role { width:168px; }
 	.half .custom-select:first-child, .half .header-row div:first-child, .half .row .text.name { margin-right:5px; }
@@ -288,7 +288,7 @@
 	.add.project-task:after { content:"new project task"; }
 	.add.recommendation:after { content:"add a recommendation"; }
 	.add.expense-items:after { content:"add item"; }
-	.half .add { margin-top:10px; }
+	.half .add { margin-top:15px; }
 	.add.category { margin-left:82px; margin-top:10px; }
 	.add.schedule{ float:left; display:block; }
 	.add.list-member { float:left; display:block; clear:left; }

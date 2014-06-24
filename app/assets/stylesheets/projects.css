@@ -54,6 +54,8 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
 	a.control-link { float:right; }
 	a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
+	a.control-link-billing { float:right; display:block; font-weight:400; font-size:13px; background-color:#86cc71; color:#fff; padding:6px 12px; border-radius:6px; height:16px; line-height:16px; }
+	a.control-link-billing:hover { background-color:#5bae60; }
 
 	.third .checkbox { margin-bottom:5px; }
 
@@ -192,7 +194,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.billing-table th.contract-amount { text-align:right;}
 	.billing-table td.contract-amount input { width:100px; float:right; }
 	.billing-table th.btd, .billing-table td.btd, .billing-table th.remaining, .billing-table td.remaining  { width:110px; text-align:right; }
-	.billing-table td.btd, .billing-table td.percent, .billing-table tr.footer td.contract-amount{ padding-top:10px; font-weight:900; }
+	.billing-table td.btd, .billing-table td.percent, .billing-table tr.footer td.contract-amount{ padding-top:10px; font-weight:900; padding-right:19px; }
 	.billing-table td.remaining { padding-top:11px; color:#9ba6ac; font-family:"Asap"; font-style:italic; }
 	.billing-table td.remaining.over { color:#e64c3c; }
 	.billing-table td.button { padding-left:10px; width:100px; }
