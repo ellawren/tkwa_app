@@ -178,7 +178,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 		.third.billing.gray-box	.input-row.text-only { margin-top:0px; }
 		
 	.third.billing.last { margin-right:0px; width:160px; }
-		.billed-to-date { float:left; padding:45px 10px; color:#86cc71; width:160px; height:90px; border:2px dotted #86cc71; border-radius:100px; text-align:center; }
+		.billed-to-date { float:left; padding:45px 10px; color:#5bae60; width:160px; height:90px; border:2px dotted #5bae60; border-radius:100px; text-align:center; }
 			.billed-to-date .percentage { font-size:60px; }
 
 	.btn-primary.green { background-color:#86cc71; }

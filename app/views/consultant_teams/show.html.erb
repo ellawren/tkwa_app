@@ -1,5 +1,5 @@
 <% content_for :modal_header do %>
-  	<%= @consultant_team.consultant_name %> <span class="light">(<%= @consultant_team.consultant_role %>)</span>
+  	<%= @consultant_team.consultant_name %> <span class="light"><%= @consultant_team.consultant_role %></span>
 <% end %>
 
 <%= form_for @consultant_team do |c| %>
@@ -47,7 +47,7 @@
 
 	<div class="modal-footer">
     	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    	<%= c.submit "Save + Return", class: "btn btn-primary" %>
+    	<%= c.submit "Save", class: "btn btn-primary" %>
 	</div>
 
 <% end %>

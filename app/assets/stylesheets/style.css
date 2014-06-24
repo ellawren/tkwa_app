@@ -685,6 +685,7 @@
     .close:hover { color:#000000; text-decoration: none; cursor: pointer; opacity: 0.4; filter: alpha(opacity=40); }
     .modal-total { float:left; width:100%; margin:20px 0 20px 10px; font-family:Argumentum-Bold; }
     .modal .btn { float:right; margin:5px; }
+    .modal .btn-default { float:none; margin:5px 0 10px 0; }
     .btn-150 { width:150px; }
     .btn-cancel { width:80px; }
     .modal-body p { margin-left:20px; }
