@@ -4,7 +4,10 @@
 
 <%= form_for @consultant_team do |c| %>
 	<div class="modal-body">
-		Total Contract: <span class="bold"><%= number_to_currency(@consultant_team.consultant_contract) %></span>
+		<div class="modal-notes">
+			<span class="bold"><%= Project.find(@consultant_team.project_id).name %></span><br>
+			Total Contract: <span class="bold"><%= number_to_currency(@consultant_team.consultant_contract) %></span>
+		</div>
 		<br><br>
 			<table class="table modal-table cbilling-table">
 				<thead>
@@ -20,15 +23,15 @@
 					<%= c.fields_for :bills do |f| %>
 						<%= f.hidden_field :consultant_team_id, value: "#{@consultant_team.id}" %>
 						<tr>
-							<td><%= f.text_field :invoice_number, class: "invoice-number" %></td>
+							<td><%= f.text_field :invoice_number, class: "invoice-number", autocomplete: "off", placeholder: "#" %></td>
 							<td>
-								<%= f.text_field :date, class: "datepicker", data_date_format: "mm/dd/yyyy" %>
+								<%= f.text_field :date, class: "datepicker", data_date_format: "mm/dd/yyyy", autocomplete: "off", placeholder: "Invoice Date" %>
 							</td>
 							<td>
-								<%= f.text_field :date_approved, class: "datepicker", data_date_format: "mm/dd/yyyy" %>
+								<%= f.text_field :date_approved, class: "datepicker", data_date_format: "mm/dd/yyyy", autocomplete: "off", placeholder: "Approved Date" %>
 							</td>
-							<td class="amount"><%= f.text_field :amount, class: "amount", id:"txtDate", value: number_to_currency(f.object.amount) %></td>
-							<td><% unless f.object.id.nil? %><%= link_to "", "/consultant_teams/#{@consultant_team.id}/bills/#{f.object.id}", method: :delete, class: "delete fui-cross", confirm: "Delete and close window?" %><% end %></td>
+							<td class="amount"><%= f.text_field :amount, class: "amount", id:"txtDate", value: number_to_currency(f.object.amount), autocomplete: "off", placeholder: "Amount" %></td>
+							<td class="delete-col"><% unless f.object.id.nil? %><%= link_to "", "/consultant_teams/#{@consultant_team.id}/bills/#{f.object.id}", method: :delete, class: "delete fui-cross", confirm: "Delete and close window?" %><% end %></td>
 
 						</tr>
 					<% end %>

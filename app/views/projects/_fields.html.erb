@@ -89,7 +89,7 @@
                 <%= f.text_field :number, autocomplete: "off" %>
             </div>
             <div class="input-row">
-                <%= f.label(:building_type_id, "Building Type", class: "input-label") %>
+                <%= f.label(:building_type_id, "Project Type", class: "input-label") %>
                 <%= f.collection_select(:building_type_id, BuildingType.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
             </div>
             <div class="input-row">
