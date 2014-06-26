@@ -1,6 +1,5 @@
 class BuildingType < ActiveRecord::Base
   default_scope :order => "name"
-  has_and_belongs_to_many :projects
 end
 # == Schema Information
 #

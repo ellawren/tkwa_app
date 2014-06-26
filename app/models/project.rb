@@ -105,8 +105,6 @@ class Project < ActiveRecord::Base
 
     has_many :expense_items # this doesn't really matter since it's not ever called upon
 
-    has_and_belongs_to_many :building_types
-
     # allows project page to add items via checkboxes
     accepts_nested_attributes_for :services
     accepts_nested_attributes_for :reimbursables
