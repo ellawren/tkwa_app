@@ -174,6 +174,11 @@ class Project < ActiveRecord::Base
         :order => ["name ASC" ]
     }
 
+    scope :alpha, {
+        :select => "projects.*",
+        :order => ["name ASC" ]
+    }
+
 
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
 

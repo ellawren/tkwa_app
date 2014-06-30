@@ -10,9 +10,9 @@
         <div class="input-row">
             <%= f.label(:project_id, "Project", class: "input-label") %>
             <% if params[:action] == "new" %>
-                <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
+                <%= f.collection_select(:project_id, Project.alpha, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
             <% else %>
-                <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+                <%= f.collection_select(:project_id, Project.alpha, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
             <% end %>
         </div>
         <div class="input-row">
