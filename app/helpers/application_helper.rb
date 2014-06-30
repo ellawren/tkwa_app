@@ -449,6 +449,14 @@ module ApplicationHelper
         link_to_function(name, "add_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
     end
 
+    def link_to_add_pattern_fields(name, f, association, html_class, partial=association)
+        new_object = f.object.class.reflect_on_association(association).klass.new
+        fields = f.fields_for(association, [new_object], :child_index => "new_#{association}") do |builder|
+          render(partial.to_s.singularize + "_fields", :f => builder)
+        end
+        link_to_function(name, "add_pattern_fields(this, '#{association}', '#{escape_javascript(fields)}')", html_options={ :class => html_class })
+    end
+
     def link_to_add_tr_fields(name, f, association, html_class, partial=association)
         new_object = f.object.class.reflect_on_association(association).klass.new
         fields = f.fields_for(association, [new_object], :child_index => "new_#{association}") do |builder|

@@ -131,8 +131,9 @@ $(document).ready(function() {
 
     // edit button on pattern projects page
     $('.edit-pattern').click( function() {
-        $(this).parent('.view-fields').hide();
-        $(this).parent().parent('.pattern').children('.edit-fields').show();
+        $(this).parent().parent('.view-fields').hide();
+        $(this).parent().parent().parent('.pattern').children('.edit-fields').show();
+        $(this).parent().parent().parent('.pattern').children('.edit-fields').children().children("textarea").autosize();
     });
 
     $('.text-button').click( function() {
@@ -240,6 +241,15 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g")
   $(link).before(content.replace(regexp, new_id));
   $( ".datepicker" ).datepicker();
+  return false;
+  
+}
+
+function add_pattern_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+  $('textarea').autosize();   
   return false;
   
 }

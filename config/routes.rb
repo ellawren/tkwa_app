@@ -85,9 +85,9 @@ TkwaApp::Application.routes.draw do
 
 
     # PATTERNS
-    match '/patterns/browse',   to: 'patterns#browse'
-    match '/patterns/browse/:id',   to: 'patterns#browse'
-    match '/patterns/projects/:id',   to: 'patterns#projects'
+    #match '/patterns/search',   to: 'patterns#search'
+    match '/patterns/by_project/',   to: 'patterns#by_project', as: 'all_patterns_by_project'
+    match '/patterns/by_project/:id',   to: 'patterns#projects', as: 'patterns_by_project'
     resources :patterns
 
 

@@ -1,16 +1,18 @@
   <% provide :title, "Project Patterns" %>
+
   <div class="page-header">
     <h1><%= @project.name %></h1>
+    <%= link_to "New Pattern", new_pattern_path(:p => @project.id), class: "btn btn-primary btn-right" %>
   </div>
 
 <%= form_for @project do |f| %>
-	<div class="pattern-list">
+	<ul id="pattern-tiles" >
 		<!-- nested form for pattern-->
 	    	<%= f.fields_for :patterns do |builder| %>
     			<%= render 'pattern_fields', :f => builder %>
     		<% end %>
-        	<%= link_to_add_fields "", f, :patterns, "add fui-plus timesheets" %>
+        	<%= link_to_add_pattern_fields "", f, :patterns, "add fui-plus patterns" %>
 	   	<!-- end pattern form -->
-	</div>
+	</ul>
 
 <% end %>

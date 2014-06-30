@@ -1,9 +1,19 @@
-<%= form_for(@pattern, :html => { :multipart => true }) do |f| %>
+<% provide :title, @pattern.name %>
+<%= link_to Project.find(@pattern.project_id).name, "/patterns/by_project/#{@pattern.project_id}", class: "header-label" %>
+<div class="page-header">
+	<h1><%= @pattern.name %></h1>
+	<ul class="controls project">
 
-    <% provide :title, @pattern.name %>
-    <div class="page-header">
-      <h1><%= f.text_field :name, class: "pattern-name" %></h1>
-    </div>
+        
+        <li><%= link_to "", patterns_path, class: "glyphicon glyphicon-search tip", title:"Search Patterns" %></li>
+        <li><%= link_to "", new_pattern_path(:p => @pattern.project_id), class: "glyphicon glyphicon-plus tip", title:"Add New Pattern" %></li>
+        <li class="delete"><%= link_to "", @pattern, method: :delete, confirm: "Are you sure you want to delete this pattern?", class: "glyphicon glyphicon-remove tip", title:"Delete This Pattern" %>
+        </li>
+
+    </ul>   
+</div>
+
+<%= form_for(@pattern, :html => { :multipart => true }) do |f| %>
 
     <%= render 'fields', f: f %>
 

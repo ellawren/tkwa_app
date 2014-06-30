@@ -1,0 +1,39 @@
+<% provide :title, "Patterns" %>
+  <div class="page-header">
+    <h1>Pattern Database</h1>
+  </div>
+
+<h2 class="first">Patterns By Project</h2>
+
+<div class="gray-box patterns">
+	<%= collection_select(:search, :select, Project.with_patterns, :id, :name, { :include_blank => true }, { :class => "pattern-name custom-select" } ) %>
+	<a id="search-patterns" class="btn btn-primary search-btn patterns">Search</a>
+</div>
+
+
+<div class="row icons three">
+
+    <div class="tile-box">
+        <%= link_to image_tag("pencils.png", :alt => "new-pattern", :class => "round-icon"), new_pattern_path %>
+        <%= link_to "Add A New Pattern", new_pattern_path, :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box disabled">
+        <%= link_to image_tag("patterns-small.png", :alt => "browse-patterns", :class => "round-icon"), "" %>
+        <%= link_to "Search Patterns", "", :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box disabled">
+        <%= link_to image_tag("browse.png", :alt => "generate-layout", :class => "round-icon"), "" %>
+        <%= link_to "Pattern List", "", :class => "tile-label" %>
+    </div>
+
+  </div> <!-- end tiles -->
+
+<script>
+
+$('#search-patterns').click(function(){
+	id = $('#search_select').val();
+  	window.location = "/patterns/by_project/" + id;
+});
+</script>

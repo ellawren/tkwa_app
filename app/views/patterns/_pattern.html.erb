@@ -1,6 +1,12 @@
 
-					<tr class="results-row">
-						<td><%= link_to "#{f.number}", edit_pattern_path(f) %></td>
-		                <td class="bold"><%= link_to "#{f.name}", edit_pattern_path(f) %></td>
-		                <td><%= Project.find(f.project_id).name %></td>
-		            </tr>
+		            <li>
+						<div class="header">
+							<div class="project"><%= Project.find(f.project_id).name %></div>
+							<div class="detail">Written on <%= f.created_at.strftime("%B %-d, %Y") %> by <%= f.author %></div>
+						</div>
+						<div class="number"><%= f.number %> /</div>
+						<div class="title"><%= link_to f.name, edit_pattern_path(f) %></div>
+						<div class="issue"><%= f.issue %></div>
+						<div class="solution"><%= f.solution %></div>
+						<div class="diagram"></div>
+					</li>

@@ -8,7 +8,7 @@
                 <li class="<%= is_current?("projects consultants potential_projects") %>"><%= link_to "Projects", projects_path %></li>
                 <li class="<%= is_current?("contacts") %>"><%= link_to "Contacts", contacts_path %></li>
                 <li class="<%= is_current?("employees") || is_current?("timesheets") %>"><%= link_to "Timesheets", timesheets_path %></li>
-                <li class="<%= is_current?("patterns") %> disabled"><%= link_to "Patterns", "#" %></li>
+                <li class="<%= is_current?("patterns") %>"><%= link_to "Patterns", all_patterns_by_project_path %></li>
                 <li class="<%= is_current?("books") %>"><%= link_to "Library", library_path %></li>
             </ul>
 

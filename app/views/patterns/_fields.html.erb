@@ -9,11 +9,10 @@
         </div>
         <div class="input-row">
             <%= f.label(:project_id, "Project", class: "input-label") %>
-            <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
-            <% if f.object.project_id %>
-                <div class="project-link">
-                    <%= link_to "project patterns", "/patterns/projects/#{f.object.project_id}", class: "btn" %>
-                </div>
+            <% if params[:action] == "new" %>
+                <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
+            <% else %>
+                <%= f.collection_select(:project_id, Project.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
             <% end %>
         </div>
         <div class="input-row">
@@ -72,11 +71,17 @@
             </div>
         </div>
         <div class="input-row">
-            
+            <%= f.label(:author, "Author", class: "input-label") %>
+            <%= f.autocomplete_field :author, autocomplete_contact_name_contacts_path,  class: "match-select" %>
         </div>
     </div>
 
     <script>
+
+    $(document).ready(function(){
+        $('textarea').autosize();   
+    });
+
     $('#pattern_photo').live('change', function(){
         text = $(this).val().replace(/C:\\fakepath\\/i, '');
         $('#photo-name').html(text);

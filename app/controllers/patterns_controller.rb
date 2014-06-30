@@ -1,23 +1,15 @@
 class PatternsController < ApplicationController
 	
-	def index
-	    @q = Pattern.search(params[:q])
-	    @patterns = @q.result(:distinct => true)
-	    if @patterns.count == 1 
-	      redirect_to pattern_path(@patterns.first(params[:id]))
-	    else
-	      render 'index'
+	def by_project
+	    @p = Pattern.search(params[:p])
+	    if params.has_key?(:p)
+	    	redirect_to patterns_by_project_path(params[:p][:project_id_eq])
 	    end
 	end
 
-	def browse
-		if params[:id]
-			@project_id = Project.find(params[:id]).id
-			@patterns = Pattern.find_all_by_project_id(params[:id])
-		else
-			@project_id = nil
-			@patterns = Pattern.all
-		end
+	def index
+		@q = Pattern.search(params[:q])
+	    @patterns = @q.result(:distinct => true)
 	end
 
 	def show
@@ -36,7 +28,7 @@ class PatternsController < ApplicationController
 	def create
 	    @pattern = Pattern.new(params[:pattern])
 	    if @pattern.save
-	      render 'edit'
+	      redirect_to patterns_by_project_path(@pattern.project_id)
 	    else
 	    	redirect_to patterns_path
 	    end
@@ -57,9 +49,11 @@ class PatternsController < ApplicationController
 	end
 
 	def destroy
+		project_id = Pattern.find(params[:id]).project_id
 	    Pattern.find(params[:id]).destroy
 	    flash[:success] = "Pattern destroyed."
-	    redirect_to patterns_path
+	    redirect_to patterns_by_project_path(project_id)
+
 	end
 
 end

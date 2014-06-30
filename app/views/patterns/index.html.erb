@@ -1,19 +1,15 @@
 <% provide :title, "Patterns" %>
   <div class="page-header">
-    <h1>Patterns Database</h1>
+    <h1>Search Patterns</h1>
   </div>
 
-<h2 class="first">Search Patterns</h2>
 
-<div class="description">View patterns by project, or search all patterns by name.</div>
-
-<div class="gray-box">
+<div class="gray-box patterns">
 
 	<%= search_form_for @q do |f| %>
 
 		<%= f.collection_select(:project_id_eq, Project.with_patterns, :id, :name, { :include_blank => true, :prompt => 'Project Name' }, { :class => "pattern-name custom-select" } ) %>
-		<%= f.text_field :name_cont, class: "search-name patterns", placeholder: "Pattern Name" %>   
-
+    <%= f.text_field :name_cont, class: "search-name", placeholder: "Pattern Name" %>   
 		<%= f.submit "Search", class: "btn btn-primary search-btn patterns" %>
 			     
 	<% end %>
@@ -28,43 +24,12 @@
 
 	<h2>Search Results</h2>
 
-		<table class="table search-results">
-		    <tbody>
+		<ul id="pattern-tiles" >
 		        <% @patterns.each do |param| %>
 		            <%= render 'pattern', :f => param %>
 		        <% end %>
-		    </tbody>
-		</table>
+		</ul>
 
 	<% end %>
 
 <% end %>
-
-<div class="row icons three">
-
-    <div class="tile-box">
-        <%= link_to image_tag("pencils.png", :alt => "new-pattern", :class => "round-icon"), new_pattern_path %>
-        <%= link_to "Add A New Pattern", new_pattern_path, :class => "tile-label" %>
-    </div>
-
-    <div class="tile-box">
-        <%= link_to image_tag("browse.png", :alt => "browse-patterns", :class => "round-icon"), patterns_browse_path %>
-        <%= link_to "Browse Patterns", patterns_browse_path, :class => "tile-label" %>
-    </div>
-
-    <div class="tile-box disabled">
-        <%= link_to image_tag("layouts.png", :alt => "generate-layout", :class => "round-icon"), "#" %>
-        <%= link_to "Generate Layout", "#", :class => "tile-label" %>
-    </div>
-
-  </div> <!-- end tiles -->
-
-<script>
-$('#q_project_id_eq').on('change', function() {
-	var v = $(this).find('option:selected').val();
-	if ( v != "" ) {
-  		$(this).addClass('active');
-  	}
-});
-</script>
-
