@@ -26,6 +26,7 @@
 #  photo_updated_at     :datetime
 #  pattern_group_id     :integer
 #  notes                :text
+#  project_name         :string(255)
 #
 
 class Pattern < ActiveRecord::Base
@@ -56,5 +57,11 @@ class Pattern < ActiveRecord::Base
         Pattern.previous(self.id).first
     end
     #------------------------------------
+
+    before_save do
+        if self.project_name.present?
+            self.project_id = Project.find_by_name(self.project_name).id
+        end
+    end
 
 end

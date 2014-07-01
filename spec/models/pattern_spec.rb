@@ -31,5 +31,6 @@ end
 #  photo_updated_at     :datetime
 #  pattern_group_id     :integer
 #  notes                :text
+#  project_name         :string(255)
 #
 

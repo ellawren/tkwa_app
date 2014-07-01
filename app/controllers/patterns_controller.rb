@@ -39,13 +39,13 @@ class PatternsController < ApplicationController
         CSV.new(file.tempfile, :headers => true).each do |row|
                 pattern = Pattern.create!(
                    :name => row[0], 
-                   :project_id => "#{Project.find_by_name(row[1]).id}", 
+                   :project_name => row[1], 
                    :number => row[2],  
                    :background => row[4],    
                    :challenges => row[5],  
                    :issue => row[6], 
                    :solution => row[7], 
-                   :notes => "#{row[1] + "\n" if row[1].present?}#{row[3] + "\n" if row[3].present?}#{row[8] + "\n" if row[8].present?}#{row[9] if row[9].present?}",
+                   :notes => "#{row[3] + "\n" if row[3].present?}#{row[8] + "\n" if row[8].present?}#{row[9] if row[9].present?}",
                    :created_at => "#{DateTime.strptime(row[10], "%-m/%-d/%Y") unless row[10].blank? }" || Time.now,
                    :updated_at => "#{DateTime.strptime(row[11], "%-m/%-d/%Y") unless row[11].blank? }" || Time.now
                   )
