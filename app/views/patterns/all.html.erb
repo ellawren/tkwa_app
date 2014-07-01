@@ -1,0 +1,21 @@
+<% provide :title, "Pattern List" %>
+<div class="page-header">
+	<h1>Pattern List</h1>
+</div>
+
+<table class="table">
+	<% @patterns.each do |param| %>
+			<tr>
+				<td><%= link_to Project.find(param.project_id).name, "/patterns/by_project/#{param.project_id}" %></td>
+				<td><%= param.number %></td>
+				<td><%= link_to param.name, edit_pattern_path(param.id) %></td>
+				<td>
+					<% if signed_in? %>
+						<% if current_user.admin? %>
+							<%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+						<% end %>
+					<% end %>
+				</td>
+			</tr>
+	<% end %>
+</table>

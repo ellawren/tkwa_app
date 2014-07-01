@@ -14,6 +14,10 @@ class PatternsController < ApplicationController
 	    @patterns = @q.result(:distinct => true)
 	end
 
+	def all
+	    @patterns = Pattern.all
+	end
+
 	def show
 	    @pattern = Pattern.find(params[:id])
 	end
@@ -46,7 +50,7 @@ class PatternsController < ApplicationController
                   )
 
         end  
-        redirect_to contacts_path
+        redirect_to patterns_path
     end
 
 	def create
