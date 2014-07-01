@@ -14,7 +14,7 @@
                 <%= f.collection_select(:project_id, Project.alpha, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
             </div>
         </div>
-    <% else %>
+    <% elsif f.object.project_id.blank? %>
         <div class="full patterns">
             <div class="input-row">
                 <%= f.label(:project_id, "Project", class: "input-label") %>
