@@ -31,7 +31,6 @@
 
 class Pattern < ActiveRecord::Base
 	
-	default_scope order('project_id DESC, number ASC')
 	belongs_to :project
 
 	has_attached_file :diagram, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "200x200>" }
@@ -57,6 +56,11 @@ class Pattern < ActiveRecord::Base
         Pattern.previous(self.id).first
     end
     #------------------------------------
+
+    scope :by_project, {
+        :select => "patterns.*",
+        :order => ["project_id DESC, number ASC" ]
+   }
 
     before_save do
         if self.project_name.present?

@@ -15,7 +15,7 @@ class PatternsController < ApplicationController
 	end
 
 	def all
-	    @patterns = Pattern.all
+	    @patterns = Pattern.by_project
 	end
 
 	def show
