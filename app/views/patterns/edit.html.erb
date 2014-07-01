@@ -9,7 +9,12 @@
             <%= f.text_field :name, class: "pattern-name" %>
         </h1>
     	<ul class="controls project">
-            
+            <% if @pattern.previous.present? %> 
+                <li><%= link_to "", edit_pattern_path(@pattern.previous.id), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+            <% end %>
+            <% if @pattern.next.present? %> 
+                <li><%= link_to "", edit_pattern_path(@pattern.next.id), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+            <% end %>
             <li><%= link_to "", patterns_path, class: "glyphicon glyphicon-search tip", title:"Search Patterns" %></li>
             <li><%= link_to "", new_pattern_path(:p => @pattern.project_id), class: "glyphicon glyphicon-plus tip", title:"Add New Pattern" %></li>
             <li class="delete"><%= link_to "", @pattern, method: :delete, confirm: "Are you sure you want to delete this pattern?", class: "glyphicon glyphicon-remove tip", title:"Delete This Pattern" %>

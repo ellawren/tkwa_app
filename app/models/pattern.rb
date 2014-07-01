@@ -41,19 +41,19 @@ class Pattern < ActiveRecord::Base
 	before_validation { photo.clear if delete_photo == '1' }
 
 	# next/prev
-    #scope :next, lambda {|id| where("status = ? AND number > ?", "current", id).order("number ASC") }
-    #scope :previous, lambda {|id| where("status = ? AND number < ?", "current", id).order("number DESC") }
-    scope :next, lambda {|id| where("number > ?", number).order("number ASC") }
-    scope :previous, lambda {|id| where("number < ?", number).order("number DESC") }
+    #scope :next, lambda {|id| where("number > ?", number).order("number ASC") }
+    #scope :previous, lambda {|id| where("number < ?", number).order("number DESC") }
+    scope :next, lambda {|id| where("id > ?", id).order("id ASC") }
+    scope :previous, lambda {|id| where("id < ?", id).order("id DESC") }
 
     def next
-        #Project.next(self.number).first
-        Pattern.next(self.number).first
+        #Pattern.next(self.number).first
+        Pattern.next(self.id).first
     end
 
     def previous
-        #Project.previous(self.number).first
-        Pattern.previous(self.number).first
+        #Pattern.previous(self.number).first
+        Pattern.previous(self.id).first
     end
     #------------------------------------
 

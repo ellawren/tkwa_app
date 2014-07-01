@@ -80,7 +80,7 @@ class PatternsController < ApplicationController
 		project_id = Pattern.find(params[:id]).project_id
 	    Pattern.find(params[:id]).destroy
 	    flash[:success] = "Pattern destroyed."
-	    redirect_to patterns_by_project_path(project_id)
+	    redirect_to all_patterns_by_project_path
 
 	end
 
