@@ -63,7 +63,7 @@ class Pattern < ActiveRecord::Base
     }
 
     before_save do
-        if self.project_name.present?
+        if self.project_name.present? && Project.find_by_name(self.project_name)
             self.project_id = Project.find_by_name(self.project_name).id
         end
     end
