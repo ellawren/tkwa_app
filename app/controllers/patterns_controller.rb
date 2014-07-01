@@ -39,7 +39,7 @@ class PatternsController < ApplicationController
         CSV.new(file.tempfile, :headers => true).each do |row|
                 pattern = Pattern.create!(
                    :name => row[0], 
-                   :project_id => Project.find_by_name(row[1]).id, 
+                   :project_id => "#{Project.find_by_name(row[1]).id}", 
                    :number => row[2],  
                    :background => row[4],    
                    :challenges => row[5],  
