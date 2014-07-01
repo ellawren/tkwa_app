@@ -13,7 +13,7 @@
 .p-issue { float:left; width:320px; }
 .p-solution { float:left; width:317px; }
 .p-diagram { float:left; width:222px; }
-.p-diagram .image-file { border:2px solid #e1e6eb; min-height:134px; border-radius:6px; padding:10px; }
+.p-diagram .image-file { border:2px solid #e1e6eb; border-radius:6px; padding:10px; min-height:134px; }
 
 .p-issue label, .p-solution label, .p-diagram label { float:left; display:block; width:290px; height:18px; margin:10px 0 5px; border-bottom:1px solid #1abc9c; color:#1abc9c; font-size:9px; font-weight:900; text-transform:uppercase; }
 	.p-issue label { border-color:#86cc71; color:#86cc71;}
@@ -64,7 +64,7 @@ ul#pattern-tiles li .diagram:before  { width:200px; }
 	ul#pattern-tiles li .solution:before { content:"solution"; border-color:#1abc9c; color:#1abc9c; }
 	ul#pattern-tiles li .diagram:before { content:"image"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 
-ul#pattern-tiles li .diagram { float:left; width:200px; height:220px; overflow:hidden; clear:all; text-align:center; }
+ul#pattern-tiles li .diagram { float:left; width:200px; max-height:220px; overflow:hidden; clear:all; text-align:center; }
 ul#pattern-tiles li .diagram img { width:200px; max-height:200px; width:auto; height:auto; }
 
 h1.pattern-header { color:#344953; font-weight:300; }

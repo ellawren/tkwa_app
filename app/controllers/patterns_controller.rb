@@ -28,7 +28,7 @@ class PatternsController < ApplicationController
 
 	def projects
 		@project = Project.find(params[:id])
-		@patterns = Pattern.find_all_by_project_id(params[:id])
+		@patterns = Pattern.where(:project_id => params[:id]).order(:number)
 	end
 
 	def import

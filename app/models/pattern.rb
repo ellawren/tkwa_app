@@ -60,7 +60,7 @@ class Pattern < ActiveRecord::Base
     scope :by_project, {
         :select => "patterns.*",
         :order => ["project_id DESC, number ASC" ]
-   }
+    }
 
     before_save do
         if self.project_name.present?

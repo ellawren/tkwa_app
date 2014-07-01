@@ -8,7 +8,7 @@
 <%= form_for @project do |f| %>
 	<ul id="pattern-tiles" >
 		<!-- nested form for pattern-->
-	    	<%= f.fields_for :patterns do |builder| %>
+	    	<%= f.fields_for :patterns, @patterns  do |builder| %>
     			<%= render 'pattern_fields', :f => builder %>
     		<% end %>
         	<%= link_to_add_pattern_fields "", f, :patterns, "add fui-plus patterns" %>
