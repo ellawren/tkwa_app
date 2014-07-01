@@ -56,9 +56,8 @@
                 <div class="image-box">
                     <% if f.object.diagram_file_name %>
                         <div class="image-placeholder" id="diagram-placeholder">
-                            <%= image_tag @pattern.diagram.url(:medium), class: "diagram" %>
+                            <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "diagram" %>
                         </div>
-                        <div class="image-name" id="diagram-name"><%= f.object.diagram_file_name %></div>
                         <div class="add-image" >
                             <%= f.file_field :diagram %>
                             <div class="text">Change Diagram</div>
