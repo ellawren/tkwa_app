@@ -18,7 +18,7 @@
                 <%= f.text_field :project_name, class: "pattern-name" %>
             </div>
         </div>        
-    <% else %>
+    <% elsif f.object.project_id.blank? %>
         <div class="full patterns">
             <div class="input-row">
                 <%= f.label(:project_id, "Project", class: "input-label") %>
