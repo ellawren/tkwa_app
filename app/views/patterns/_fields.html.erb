@@ -31,6 +31,14 @@
                 <%= f.label(:solution, "Solution", class: "input-label") %>
                 <%= f.text_area :solution, class: "pattern-text", rows: "5" %>
             </div>
+            <% if params[:action] != "new" %>
+                <div class="input-row added">
+                    Added <%= f.object.created_at.strftime("%-m/%d/%Y") %>
+                    <% if f.object.updated_at %>
+                         // Updated <%= f.object.updated_at.strftime("%-m/%d/%Y") %>
+                    <% end %>
+                </div>
+            <% end %>
         </div>
 
         <div class="narrow">
@@ -42,16 +50,6 @@
                 <%= f.label(:pattern_group_id, "Group", class: "input-label") %>
                 <%= f.collection_select(:pattern_group_id, PatternGroup.all, :id, :display_name, { :include_blank => true }, { :class => "pattern-group chzn-select custom-select" } ) %>
             </div>
-            <% if params[:action] != "new" %>
-                <div class="input-row">
-                    <label class="input-label">Created</label>
-                    <div class="input-cell"><%= f.object.created_at.strftime("%B %d, %Y") %></div>
-                </div>
-                <div class="input-row">
-                    <label class="input-label">Last Modified</label>
-                    <div class="input-cell"><%= f.object.updated_at.strftime("%B %d, %Y") %></div>
-                </div>
-            <% end %>
 
             <div class="input-row">
                 <%= f.label(:diagram, "Key Image", class: "input-label no-margin") %>

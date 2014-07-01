@@ -84,3 +84,5 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .narrow .image-placeholder { width:280px; height:280px; }
 .patterns .narrow .add-image.no-x { margin-right:5px; }
 .patterns .narrow .input-label.no-margin { padding-bottom:3px; }
+
+.input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }

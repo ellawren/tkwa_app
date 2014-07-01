@@ -313,6 +313,9 @@ module ApplicationHelper
         # exception for /subjects
         elsif params[:controller] == "subjects"
             "active" if c_name.include?('books')
+        # exception for /pattern_groups
+        elsif params[:controller] == "pattern_groups"
+            "active" if c_name.include?('patterns')
         # all other pages
         else
             "active" if c_name.include?(params[:controller])
