@@ -1,6 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
@@ -125,6 +124,7 @@ TkwaApp::Application.routes.draw do
     resources :microposts,  only: [:create, :destroy]
     resources :messages
     resources :non_billable_categories
+    resources :pattern_groups
     resources :plan_entries
     resources :reimbursables
     resources :relationships, only: [:create, :destroy]

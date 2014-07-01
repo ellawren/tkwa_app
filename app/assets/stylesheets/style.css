@@ -169,6 +169,7 @@
 	.wide input[type="text"].button-right, .wide textarea.button-right { width:260px; }
 	.wide input[type="text"].i-am-messed-up { height:34px; }
 	.wide input[type="text"].input-small { width:110px; }
+	.wide input[type="text"].input-tiny { width:30px; }
 	.wide .input-label { float:left; width:150px; padding:10px 0; }
 	.wide .input-label.small-label { width:90px; }
 	.wide.last { width:520px; margin-left:60px; }
@@ -189,6 +190,7 @@
 	.wide.contact-notes { width:580px; }
 	.wide.contact-notes textarea { width:540px; }
 	.wide.margin-bottom { margin-bottom:30px; }
+	.wide .input-row .note { display:inline-block; padding:10px 0px; }
 
 	.narrow { float:left; width:360px; }
 	.narrow input[type="text"], input[type="password"] { float:left; width:165px; }

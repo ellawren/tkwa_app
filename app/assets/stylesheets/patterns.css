@@ -31,10 +31,9 @@
 .v-issue:before { content:"issue"; float:left; margin-right:14px; display:inline-block; padding:2px 6px; background-color:#e1e6eb; font-size:10px; line-height:14px; text-transform:uppercase; }
 .v-solution:before { content:"solution"; float:left; margin-right:10px; display:inline-block; padding:2px 6px; background-color:#e1e6eb; font-size:10px; line-height:14px; text-transform:uppercase; }
 
-.full.patterns { margin-top:30px; }
 .full input.small { width:30px; }
 .full textarea.pattern-text { width: 648px; }
-.full input.pattern-name { width:300px; }
+.full input.pattern-name { width:400px; }
 
 .project-link { float:left; margin-left:10px;  }
 
@@ -50,11 +49,11 @@ ul#pattern-tiles li { float:left; width:92%; height:auto; padding:24px 4%; margi
 ul#pattern-tiles li .header { float:left; width:100%; display:block; margin-bottom:8px; }	
 	ul#pattern-tiles li .project { float:left; width:auto; height:20px; padding:1px 8px; margin:0 0 6px 0; background-color:#f3f6f9; font-size:10px; font-weight:300; text-transform:uppercase; }
 	ul#pattern-tiles li .detail { float:left; margin:2px 0 0 8px; color:#bcc6cc; font-size:12px; font-weight:300; font-style:italic; }
-ul#pattern-tiles li .footer { float:left; width:100%; margin:10px 0 0 0; color:#bcc6cc; font-size:12px; font-weight:300; font-style:italic; }
+ul#pattern-tiles li .footer { float:left; width:100%; margin:10px 0 0 0; color:#9ba6ac; font-size:12px; font-weight:300; font-style:italic; }
 ul#pattern-tiles li .header .btn { float:right; padding:7px 14px; width:60px; font-size:13px; margin:1px 0 0 6px; }
 
 ul#pattern-tiles li img { width:294px; height:auto; }
-ul#pattern-tiles li .number { float:left; width:auto; margin:10px 8px 10px 0; clear:left; font-size:22px; font-weight:100; }
+ul#pattern-tiles li .number { float:left; width:auto; margin:10px 8px 10px 0; clear:left; font-size:22px; font-weight:300; }
 ul#pattern-tiles li .title a { float:left; width:720px; height:auto; margin:10px 0; color:#344953; font-size:22px; font-weight:900; }
 ul#pattern-tiles li .title a:hover { color:#1abc9c; }
 
@@ -67,5 +66,21 @@ ul#pattern-tiles li .diagram:before  { width:200px; }
 
 ul#pattern-tiles li .diagram { float:left; width:200px; clear:all; }
 
+h1.pattern-header { color:#344953; font-weight:300; }
+h1 .pattern-number, h1 .pattern-name { border:none; border-radius:6px; font-size:22px; color:#344953; padding:0px 3px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; } 
+h1 .pattern-number { width:30px; font-weight:300; }
+h1 .pattern-name { width:640px;font-weight:900; }
+h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 
-h1 input { border:none; }
+.page-header.pattern-header { margin-bottom:5px; }
+.full.patterns { border-top:2px solid #344953; padding-top:10px; }
+.patterns .wide textarea { width:550px; }
+.patterns .wide .input-label { padding-bottom:2px; width:100%; }
+.patterns .narrow { width:300px; margin-left:60px; margin-top:20px; }
+.patterns .narrow .input-label { width:110px; }
+
+.full.patterns select.project-name { width:423px; }
+.patterns .narrow .image-box { width:308px; }
+.patterns .narrow .image-placeholder { width:280px; height:280px; }
+.patterns .narrow .add-image.no-x { margin-right:5px; }
+.patterns .narrow .input-label.no-margin { padding-bottom:3px; }

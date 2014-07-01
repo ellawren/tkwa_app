@@ -1,0 +1,19 @@
+<% provide :title, "Pattern Group" %>
+<div class="page-header">
+	<h1>Pattern Group</h1>
+	<%= link_to "Add Pattern Group", new_pattern_group_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @pattern_groups.each do |param| %>
+			<li>
+				<%= link_to "#{param.order}. #{param.name}", edit_pattern_group_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
+

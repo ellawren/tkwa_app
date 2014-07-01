@@ -10,7 +10,7 @@
             <div class="issue"><%= simple_format f.object.issue %></div>
             <div class="solution"><%= simple_format f.object.solution %></div>
             <div class="diagram"></div>
-            <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %> by <%= f.object.author %></div>
+            <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author %></div>
         </div>
         <div class="edit-fields">
             <%= f.hidden_field :project_id, value: "#{@project.id}" %>

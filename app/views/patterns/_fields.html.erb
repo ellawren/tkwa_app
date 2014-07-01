@@ -1,79 +1,107 @@
-    <div class="full patterns">
-        <div class="input-row">
-            <%= f.label(:number, "Pattern Number", class: "input-label") %>
-            <%= f.text_field :number, class: "small" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:name, "Pattern Name", class: "input-label") %>
-            <%= f.text_field :name, class: "pattern-name" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:project_id, "Project", class: "input-label") %>
-            <% if params[:action] == "new" %>
+     
+    <% if params[:action] == "new" %>
+        <div class="full patterns">
+            <div class="input-row">
+                <%= f.label(:number, "Pattern Number", class: "input-label") %>
+                <%= f.text_field :number, class: "small" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:name, "Pattern Name", class: "input-label") %>
+                <%= f.text_field :name, class: "pattern-name" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:project_id, "Project", class: "input-label") %>
                 <%= f.collection_select(:project_id, Project.alpha, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
-            <% else %>
-                <%= f.collection_select(:project_id, Project.alpha, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+            </div>
+        </div>
+    <% end %>
+    
+    <div class="full patterns">
+
+        <div class="wide">
+            <div class="input-row">
+                <%= f.label(:challenges, "First-Observed Challenges", class: "input-label") %>
+                <%= f.text_area :challenges, class: "pattern-text", rows: "2" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:issue, "Issue", class: "input-label") %>
+                <%= f.text_area :issue, class: "pattern-text", rows: "5" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:solution, "Solution", class: "input-label") %>
+                <%= f.text_area :solution, class: "pattern-text", rows: "5" %>
+            </div>
+        </div>
+
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label(:author, "Author", class: "input-label") %>
+                <%= f.autocomplete_field :author, autocomplete_contact_name_contacts_path,  class: "match-select" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:pattern_group_id, "Group", class: "input-label") %>
+                <%= f.collection_select(:pattern_group_id, PatternGroup.all, :id, :display_name, { :include_blank => true }, { :class => "pattern-group chzn-select custom-select" } ) %>
+            </div>
+            <% if params[:action] != "new" %>
+                <div class="input-row">
+                    <label class="input-label">Created</label>
+                    <div class="input-cell"><%= f.object.created_at.strftime("%B %d, %Y") %></div>
+                </div>
+                <div class="input-row">
+                    <label class="input-label">Last Modified</label>
+                    <div class="input-cell"><%= f.object.updated_at.strftime("%B %d, %Y") %></div>
+                </div>
             <% end %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:issue, "Issue", class: "input-label") %>
-            <%= f.text_area :issue, class: "pattern-text", rows: "6" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:solution, "Solution", class: "input-label") %>
-            <%= f.text_area :solution, class: "pattern-text", rows: "6" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:diagram, "Images", class: "input-label") %>
-            <div class="image-box">
-                <% if f.object.diagram_file_name %>
-                    <div class="image-placeholder" id="diagram-placeholder">
-                        <%= image_tag @pattern.diagram.url(:medium), class: "diagram" %>
-                    </div>
-                    <div class="image-name" id="diagram-name"><%= f.object.diagram_file_name %></div>
-                    <div class="add-image" >
-                        <%= f.file_field :diagram %>
-                        <div class="text">Change Diagram</div>
-                    </div>
-                    <label for="pattern_delete_diagram" class="fui-cross">
-                        <%= f.check_box(:delete_diagram) %>
-                    </label>
-                <% else %>
-                    <div class="image-placeholder" id="diagram-placeholder"></div>
-                    <div class="image-name" id="photo-name"></div>
-                    <div class="add-image no-x" >
-                        <%= f.file_field :diagram %>
-                        <div class="text">Select Diagram</div>
-                    </div>
-                <% end %>
-            </div>
-            <div class="image-box">
-                <% if f.object.photo_file_name %>
-                    <div class="image-placeholder" id="photo-placeholder">
-                        <%= image_tag @pattern.photo.url(:medium), class: "diagram" %>
-                    </div>
-                    <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
-                    <div class="add-image" >
-                        <%= f.file_field :photo %>
-                        <div class="text">Change Photo</div>
-                    </div>
-                    <label for="pattern_delete_photo" class="fui-cross">
-                        <%= f.check_box(:delete_photo) %>
-                    </label>
-                <% else %>
-                    <div class="image-placeholder" id="photo-placeholder"></div>
-                    <div class="image-name" id="photo-name"></div>
-                    <div class="add-image no-x" >
-                        <%= f.file_field :photo %>
-                        <div class="text">Select Photo</div>
-                    </div>
-                <% end %>
+
+            <div class="input-row">
+                <%= f.label(:diagram, "Key Image", class: "input-label no-margin") %>
+                <div class="image-box">
+                    <% if f.object.diagram_file_name %>
+                        <div class="image-placeholder" id="diagram-placeholder">
+                            <%= image_tag @pattern.diagram.url(:medium), class: "diagram" %>
+                        </div>
+                        <div class="image-name" id="diagram-name"><%= f.object.diagram_file_name %></div>
+                        <div class="add-image" >
+                            <%= f.file_field :diagram %>
+                            <div class="text">Change Diagram</div>
+                        </div>
+                        <label for="pattern_delete_diagram" class="fui-cross">
+                            <%= f.check_box(:delete_diagram) %>
+                        </label>
+                    <% else %>
+                        <div class="image-placeholder" id="diagram-placeholder"></div>
+                        <div class="image-name" id="photo-name"></div>
+                        <div class="add-image no-x" >
+                            <%= f.file_field :diagram %>
+                            <div class="text">Select Image</div>
+                        </div>
+                    <% end %>
+                </div>
+                <!--<div class="image-box">
+                    <% if f.object.photo_file_name %>
+                        <div class="image-placeholder" id="photo-placeholder">
+                            <%= image_tag @pattern.photo.url(:medium), class: "diagram" %>
+                        </div>
+                        <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
+                        <div class="add-image" >
+                            <%= f.file_field :photo %>
+                            <div class="text">Change Photo</div>
+                        </div>
+                        <label for="pattern_delete_photo" class="fui-cross">
+                            <%= f.check_box(:delete_photo) %>
+                        </label>
+                    <% else %>
+                        <div class="image-placeholder" id="photo-placeholder"></div>
+                        <div class="image-name" id="photo-name"></div>
+                        <div class="add-image no-x" >
+                            <%= f.file_field :photo %>
+                            <div class="text">Select Photo</div>
+                        </div>
+                    <% end %>
+                </div>-->
             </div>
         </div>
-        <div class="input-row">
-            <%= f.label(:author, "Author", class: "input-label") %>
-            <%= f.autocomplete_field :author, autocomplete_contact_name_contacts_path,  class: "match-select" %>
-        </div>
+        
     </div>
 
     <script>

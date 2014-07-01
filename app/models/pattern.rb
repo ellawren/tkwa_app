@@ -12,7 +12,6 @@
 #  updated_at           :datetime        not null
 #  project_id           :integer
 #  number               :integer
-#  group                :string(255)
 #  rating               :integer
 #  authors              :string(255)
 #  challenges           :text
@@ -25,6 +24,7 @@
 #  photo_content_type   :string(255)
 #  photo_file_size      :integer
 #  photo_updated_at     :datetime
+#  pattern_group_id     :integer
 #
 
 class Pattern < ActiveRecord::Base

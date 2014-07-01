@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140623162718) do
+ActiveRecord::Schema.define(:version => 20140701162437) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -324,6 +324,13 @@ ActiveRecord::Schema.define(:version => 20140623162718) do
 
   add_index "non_billable_hours", ["user_id"], :name => "non_billable_hours_user_id"
 
+  create_table "pattern_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "order"
+  end
+
   create_table "patterns", :force => true do |t|
     t.string   "name"
     t.text     "issue"
@@ -334,7 +341,6 @@ ActiveRecord::Schema.define(:version => 20140623162718) do
     t.datetime "updated_at",           :null => false
     t.integer  "project_id"
     t.integer  "number"
-    t.string   "group"
     t.integer  "rating"
     t.string   "authors"
     t.text     "challenges"
@@ -347,6 +353,7 @@ ActiveRecord::Schema.define(:version => 20140623162718) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "pattern_group_id"
   end
 
   add_index "patterns", ["project_id"], :name => "index_patterns_on_project_id"
