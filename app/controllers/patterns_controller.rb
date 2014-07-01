@@ -45,9 +45,8 @@ class PatternsController < ApplicationController
                    :challenges => row[5],  
                    :issue => row[6], 
                    :solution => row[7], 
-                   :notes => "#{row[3] + "\n" if row[3].present?}#{row[8] + "\n" if row[8].present?}#{row[9] if row[9].present?}",
-                   :created_at => "#{DateTime.strptime(row[10], "%-m/%-d/%Y") unless row[10].blank? }" || Time.now,
-                   :updated_at => "#{DateTime.strptime(row[11], "%-m/%-d/%Y") unless row[11].blank? }" || Time.now
+                   :notes => "#{row[3] + "\n" if row[3].present?}#{row[8] + "\n" if row[8].present?}#{row[9] if row[9].present?}"
+
                   )
 
         end  
