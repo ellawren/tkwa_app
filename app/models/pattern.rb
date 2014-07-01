@@ -32,8 +32,8 @@ class Pattern < ActiveRecord::Base
 	default_scope order('project_id DESC, number ASC')
 	belongs_to :project
 
-	has_attached_file :diagram, :styles => { :large => "600x600>", :medium => "300x300#", :thumb => "200x200#" }
-	has_attached_file :photo, :styles => { :large => "600x600>", :medium => "300x300#", :thumb => "200x200#" }
+	has_attached_file :diagram, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "200x200>" }
+	has_attached_file :photo, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "200x200>" }
 
 	attr_accessor :delete_diagram, :delete_photo
 	before_validation { diagram.clear if delete_diagram == '1' }
