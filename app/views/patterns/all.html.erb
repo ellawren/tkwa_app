@@ -6,7 +6,7 @@
 <table class="table">
 	<% @patterns.each do |param| %>
 			<tr>
-				<td><%= link_to Project.find(param.project_id).name, "/patterns/by_project/#{param.project_id}" %></td>
+				<td><% if param.project_id.present? %><%= link_to Project.find(param.project_id).name, "/patterns/by_project/#{param.project_id}" %><% end %></td>
 				<td><%= param.number %></td>
 				<td><%= link_to param.name, edit_pattern_path(param.id) %></td>
 				<td>
