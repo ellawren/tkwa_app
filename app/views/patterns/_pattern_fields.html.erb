@@ -14,7 +14,7 @@
                     <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
                 <% end %>
             </div>
-            <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author %></div>
+            <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author.present? %></div>
         </div>
         <div class="edit-fields">
             <%= f.hidden_field :project_id, value: "#{@project.id}" %>

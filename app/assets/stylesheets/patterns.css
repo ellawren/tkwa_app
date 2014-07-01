@@ -32,7 +32,7 @@
 .v-solution:before { content:"solution"; float:left; margin-right:10px; display:inline-block; padding:2px 6px; background-color:#e1e6eb; font-size:10px; line-height:14px; text-transform:uppercase; }
 
 .full input.small { width:30px; }
-.full textarea.pattern-text { width: 648px; }
+.full textarea.pattern-text { width:648px; }
 .full input.pattern-name { width:400px; }
 
 .project-link { float:left; margin-left:10px;  }

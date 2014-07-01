@@ -30,5 +30,6 @@ end
 #  photo_file_size      :integer
 #  photo_updated_at     :datetime
 #  pattern_group_id     :integer
+#  notes                :text
 #
 

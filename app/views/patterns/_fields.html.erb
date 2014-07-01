@@ -31,6 +31,10 @@
                 <%= f.label(:solution, "Solution", class: "input-label") %>
                 <%= f.text_area :solution, class: "pattern-text", rows: "5" %>
             </div>
+            <div class="input-row">
+                <%= f.label(:notes, "Notes", class: "input-label") %>
+                <%= f.text_area :notes, class: "pattern-text", rows: "2" %>
+            </div>
             <% if params[:action] != "new" %>
                 <div class="input-row added">
                     Added <%= f.object.created_at.strftime("%-m/%d/%Y") %>

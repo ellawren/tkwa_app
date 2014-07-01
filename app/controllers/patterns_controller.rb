@@ -1,5 +1,7 @@
 class PatternsController < ApplicationController
-	
+
+	require 'csv'
+
 	def by_project
 	    @p = Pattern.search(params[:p])
 	    if params.has_key?(:p)
@@ -24,6 +26,27 @@ class PatternsController < ApplicationController
 		@project = Project.find(params[:id])
 		@patterns = Pattern.find_all_by_project_id(params[:id])
 	end
+
+	def import
+    end
+
+    def patt_csv_import  
+        file = params[:file]  
+        CSV.new(file.tempfile, :headers => true).each do |row|
+                pattern = Pattern.create!(
+                   :name => row[0],  
+                   :number => row[2],  
+                   :background => row[4],    
+                   :challenges => row[5],  
+                   :issue => row[6], 
+                   :solution => row[7], 
+                   :created_at => "#{DateTime.strptime(row[8], "%m/%d/%y") unless row[8].blank? }" || Time.now,
+                   :updated_at => "#{DateTime.strptime(row[9], "%m/%d/%y") unless row[9].blank? }" || Time.now
+                  )
+
+        end  
+        redirect_to contacts_path
+    end
 
 	def create
 	    @pattern = Pattern.new(params[:pattern])
