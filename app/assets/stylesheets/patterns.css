@@ -62,10 +62,10 @@ ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before, ul#patt
 ul#pattern-tiles li .diagram:before  { width:200px; }
 	ul#pattern-tiles li .issue:before { content:"issue";  border-color:#86cc71; color:#86cc71;}
 	ul#pattern-tiles li .solution:before { content:"solution"; border-color:#1abc9c; color:#1abc9c; }
-	ul#pattern-tiles li .diagram:before { content:"image"; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
+	ul#pattern-tiles li .diagram:before { content:"image"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 
-ul#pattern-tiles li .diagram { float:left; width:200px; height:220px; overflow:hidden; clear:all; text-align:center;}
-ul#pattern-tiles li .diagram img { max-width:200px; max-height:200px; width:auto; height:auto; width:auto; height:auto; }
+ul#pattern-tiles li .diagram { float:left; width:200px; height:220px; overflow:hidden; clear:all; text-align:center; }
+ul#pattern-tiles li .diagram img { width:200px; max-height:200px; width:auto; height:auto; }
 
 h1.pattern-header { color:#344953; font-weight:300; }
 h1 .pattern-number, h1 .pattern-name { border:none; border-radius:6px; font-size:22px; color:#344953; padding:0px 3px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; } 
@@ -87,6 +87,6 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .narrow .add-image { margin-right:35px; }
 .patterns .narrow .add-image.no-x { margin-right:5px; }
 .patterns .narrow .input-label.no-margin { padding-bottom:3px; }
-.patterns .narrow label[for="pattern_delete_diagram"] { top:317px; right:5px; }
+.patterns .narrow label[for="pattern_delete_diagram"] { top:313px; right:7px; }
 
 .input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }
