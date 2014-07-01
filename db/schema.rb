@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140701183230) do
+ActiveRecord::Schema.define(:version => 20140701193431) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -459,6 +459,8 @@ ActiveRecord::Schema.define(:version => 20140701183230) do
     t.integer  "building_type_id"
     t.integer  "billing_type_id"
   end
+
+  add_index "projects", ["name"], :name => "index_projects_on_name"
 
   create_table "projects_reimbursables", :id => false, :force => true do |t|
     t.integer  "project_id",      :null => false
