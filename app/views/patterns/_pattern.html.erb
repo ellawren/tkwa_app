@@ -8,5 +8,9 @@
 						<div class="title"><%= link_to f.name, edit_pattern_path(f) %></div>
 						<div class="issue"><%= f.issue %></div>
 						<div class="solution"><%= f.solution %></div>
-						<div class="diagram"><%= image_tag f.object.diagram.url(:medium), class: "" %></div>
+						<div class="diagram">
+							<% if f.object.diagram_file_name %>
+		                            <%= image_tag @pattern.diagram.url(:medium), class: "diagram" %>
+		                    <% end %>
+						</div>
 					</li>
