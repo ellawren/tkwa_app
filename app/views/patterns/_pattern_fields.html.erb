@@ -11,7 +11,7 @@
             <div class="solution"><%= simple_format f.object.solution %></div>
             <div class="diagram">
                 <% if f.object.diagram_file_name %>
-                    <%= image_tag @pattern.diagram.url(:medium), class: "diagram" %>
+                    <%= image_tag f.object.diagram.url(:medium), class: "diagram" %>
                 <% end %>
             </div>
             <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author %></div>
