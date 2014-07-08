@@ -20,7 +20,7 @@
             <%= f.hidden_field :project_id, value: "#{@project.id}" %>
             <div class="header">
                 <div class="p-number">
-                    <%= f.text_field :number, class: "p-number", placeholder: "#" %>
+                    <%= f.text_field :number, autocomplete: "off", class: "p-number", placeholder: "#" %>
                 </div>
                 <div class="p-name">
                     <%= f.text_field :name, class: "p-name", placeholder: "Pattern Name" %>

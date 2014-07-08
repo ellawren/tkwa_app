@@ -57,7 +57,7 @@ class PatternsController < ApplicationController
 	    @pattern = Pattern.new(params[:pattern])
 	    if @pattern.save
 	      	#redirect_to patterns_by_project_path(@pattern.project_id)
-	      	redirect_to edit_pattern_path
+	      	redirect_to edit_pattern_path(@pattern)
 	    else
 	    	render 'new'
 	    end
@@ -71,7 +71,7 @@ class PatternsController < ApplicationController
 	    @pattern = Pattern.find(params[:id])
 	    if @pattern.update_attributes(params[:pattern])
 	      flash[:success] = "Pattern updated!"
-	      redirect_to edit_pattern_path
+	      redirect_to edit_pattern_path(@pattern)
 	    else
 	      render 'edit'
 	    end

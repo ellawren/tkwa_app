@@ -3,7 +3,7 @@
         <div class="full patterns">
             <div class="input-row">
                 <%= f.label(:number, "Pattern Number", class: "input-label") %>
-                <%= f.text_field :number, class: "small" %>
+                <%= f.text_field :number, autocomplete: "off", class: "small" %>
             </div>
             <div class="input-row">
                 <%= f.label(:name, "Pattern Name", class: "input-label") %>
