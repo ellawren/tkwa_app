@@ -15,7 +15,7 @@ class PatternsController < ApplicationController
 	end
 
 	def all
-	    @patterns = Pattern.by_project
+	    @patterns = Pattern.by_project.paginate(:page => params[:page], :per_page => 30)
 	end
 
 	def show
