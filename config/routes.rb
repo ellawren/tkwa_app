@@ -63,7 +63,6 @@ TkwaApp::Application.routes.draw do
     
 
     # CONTACTS
-   
     post "/cont_csv_import" => 'contacts#cont_csv_import'
     match '/contacts/import',   to: 'contacts#import'
     match '/contacts/employees',   to: 'contacts#employees'

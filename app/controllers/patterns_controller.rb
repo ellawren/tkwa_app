@@ -59,7 +59,7 @@ class PatternsController < ApplicationController
 	      #redirect_to patterns_by_project_path(@pattern.project_id)
 	      redirect_to all_patterns_path
 	    else
-	    	redirect_to patterns_path
+	    	redirect_to edit_pattern_path
 	    end
 	end
 
