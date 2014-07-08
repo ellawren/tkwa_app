@@ -169,6 +169,12 @@ class Project < ActiveRecord::Base
         :order => ["name ASC" ]
     }
 
+    scope :current_and_potential, {
+        :select => "projects.*",
+        :conditions => ["status = ? OR status = ? AND awarded != ?", 'current', 'potential', 'no' ],
+        :order => ["name ASC" ]
+    }
+
     scope :current_and_billing, {
         :select => "projects.*",
         :conditions => ["status = ? OR recent_billing = ?", 'current', true ],
