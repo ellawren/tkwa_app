@@ -25,7 +25,7 @@ class TimeEntry < ActiveRecord::Base
     belongs_to :timesheet
     belongs_to :project
   
-    validates_presence_of :project_id
+    validates_presence_of :project_id, :phase_number, :task
 
     def entry_total
         day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
