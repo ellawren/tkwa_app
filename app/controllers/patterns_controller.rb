@@ -56,10 +56,10 @@ class PatternsController < ApplicationController
 	def create
 	    @pattern = Pattern.new(params[:pattern])
 	    if @pattern.save
-	      #redirect_to patterns_by_project_path(@pattern.project_id)
-	      redirect_to all_patterns_path
+	      	#redirect_to patterns_by_project_path(@pattern.project_id)
+	      	redirect_to edit_pattern_path
 	    else
-	    	redirect_to edit_pattern_path
+	    	render 'new'
 	    end
 	end
 
