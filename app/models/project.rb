@@ -144,7 +144,8 @@ class Project < ActiveRecord::Base
 
     scope :with_patterns, {
         :select => "DISTINCT projects.*",
-        :joins => "INNER JOIN patterns ON patterns.project_id = projects.id"
+        :joins => "INNER JOIN patterns ON patterns.project_id = projects.id",
+        :order => ["name ASC" ]
     }
 
     scope :all_projects, {
