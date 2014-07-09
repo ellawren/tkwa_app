@@ -37,8 +37,12 @@
                 <%= f.text_area :solution, class: "pattern-text", rows: "5" %>
             </div>
             <div class="input-row">
-                <%= f.label(:notes, "Notes", class: "input-label") %>
+                <%= f.label(:notes, "Background/Notes", class: "input-label") %>
                 <%= f.text_area :notes, class: "pattern-text", rows: "2" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:background, "Background", class: "input-label") %>
+                <%= f.text_area :background, class: "pattern-text", rows: "2" %>
             </div>
             <div class="input-row">
                 <%= f.label(:author, "Author(s)", class: "input-label") %>
@@ -65,29 +69,28 @@
                         </div>
                         <div class="add-image" >
                             <%= f.file_field :diagram %>
-                            <div class="text">Change Diagram</div>
+                            <div class="text">Change Image</div>
                         </div>
                         <label for="pattern_delete_diagram" class="fui-cross">
                             <%= f.check_box(:delete_diagram) %>
                         </label>
                     <% else %>
                         <div class="image-placeholder" id="diagram-placeholder"></div>
-                        <div class="image-name" id="photo-name"></div>
+                        <div class="image-name" id="diagram-name"></div>
                         <div class="add-image no-x" >
                             <%= f.file_field :diagram %>
-                            <div class="text">Select Image 1</div>
+                            <div class="text">Select Image</div>
                         </div>
                     <% end %>
                 </div>
                 <div class="image-box">
                     <% if f.object.photo_file_name %>
                         <div class="image-placeholder" id="photo-placeholder">
-                            <%= image_tag @pattern.photo.url(:medium), class: "diagram" %>
+                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "diagram" %>
                         </div>
-                        <div class="image-name" id="photo-name"><%= f.object.photo_file_name %></div>
                         <div class="add-image" >
                             <%= f.file_field :photo %>
-                            <div class="text">Change Photo</div>
+                            <div class="text">Change Image</div>
                         </div>
                         <label for="pattern_delete_photo" class="fui-cross">
                             <%= f.check_box(:delete_photo) %>
@@ -97,13 +100,13 @@
                         <div class="image-name" id="photo-name"></div>
                         <div class="add-image no-x" >
                             <%= f.file_field :photo %>
-                            <div class="text">Select Image 2</div>
+                            <div class="text">Select Image</div>
                         </div>
                     <% end %>
                 </div>
             </div>
         </div>
-        
+
     </div>
 
     <script>
