@@ -53,6 +53,7 @@
 	a:hover { color:#1abc9c; }
 	a:active, a:focus { color:#1abc9c; outline:none; }
 	a.green  { color:#1abc9c; }
+	a.underline  { text-decoration:underline; }
 	a.green:hover  { color:#16a085; }
 	.btn { padding:7px 12px; font-weight:700; }
 	a.mail-link { cursor:pointer; }

@@ -4,9 +4,10 @@
   </div>
 
 <h2 class="first">Patterns By Project</h2>
+<div class="description">Select a project from the box below. If a project does not show up on the list, it means patterns have not been written for it yet, so choose "Add A New Pattern" to get started.</div>
 
 <div class="gray-box patterns">
-	<%= collection_select(:search, :select, Project.with_patterns, :id, :name, { :include_blank => true }, { :class => "pattern-name custom-select" } ) %>
+	<%= collection_select(:search, :select, Project.with_patterns, :id, :name, { :include_blank => true, :prompt => "Select Project..." }, { :class => "pattern-name custom-select" } ) %>
 	<a id="search-patterns" class="btn btn-primary search-btn patterns">Search</a>
 </div>
 

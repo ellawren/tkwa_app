@@ -75,12 +75,13 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 
 .page-header.pattern-header { margin-bottom:5px; }
 .full.patterns { border-top:2px solid #344953; padding-top:10px; }
-.patterns .wide textarea { width:550px; }
+.full.patterns.last { border-bottom:2px solid #344953; }
+.patterns .wide textarea, .patterns .wide input[type="text"] { width:550px; }
 .patterns .wide .input-label { padding-bottom:2px; width:100%; }
-.patterns .narrow { width:300px; margin-left:60px; margin-top:20px; }
+.patterns .narrow { width:300px; margin-left:60px; }
 .patterns .narrow .input-label { width:110px; }
 
-.full.patterns select.project-name { width:423px; }
+.full.patterns select.project-name { width:423px; margin-right:20px; }
 .patterns .narrow .image-box { width:308px; }
 .patterns .narrow .image-placeholder { width:276px; height:276px; text-align:center; }
 .patterns .narrow .image-placeholder img { max-width:276px; max-height:276px; width:auto; height:auto; }
@@ -90,3 +91,13 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .narrow label[for="pattern_delete_diagram"] { top:313px; right:7px; }
 
 .input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }
+
+#pattern_challenges, #pattern_notes { color:#9ba6ac; font-style:italic; }
+
+.input-row.dark label.input-label { color:#344953; font-weight:700; }
+.input-row.dark textarea { border-color:#344953; }
+
+
+
+
+
