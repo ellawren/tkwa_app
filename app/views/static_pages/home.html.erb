@@ -34,10 +34,10 @@
                         <p>Timesheets, expense reports, vacations.</p>
                     </div>
 
-                    <div class="tile-box disabled">
-                        <%= link_to image_tag("patterns-home.png", :alt => "patterns", :class => "round-icon resize"), "#" %>
-                        <%= link_to "Patterns", "#", :class => "tile-label" %>
-                        <p>Coming soon!</p>
+                    <div class="tile-box">
+                        <%= link_to image_tag("patterns-home.png", :alt => "patterns", :class => "round-icon resize"), all_patterns_by_project_path %>
+                        <%= link_to "Patterns", all_patterns_by_project_path, :class => "tile-label" %>
+                        <p>I'm still adding features, but this section is now up and running!</p>
                     </div>
 
                     <div class="tile-box">
