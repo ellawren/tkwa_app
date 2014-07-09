@@ -12,15 +12,12 @@ end
 #  issue                :text
 #  solution             :text
 #  author               :string(255)
-#  background           :text
 #  created_at           :datetime        not null
 #  updated_at           :datetime        not null
 #  project_id           :integer
 #  number               :integer
 #  rating               :integer
-#  authors              :string(255)
 #  challenges           :text
-#  approval             :string(255)
 #  diagram_file_name    :string(255)
 #  diagram_content_type :string(255)
 #  diagram_file_size    :integer
@@ -31,6 +28,5 @@ end
 #  photo_updated_at     :datetime
 #  pattern_group_id     :integer
 #  notes                :text
-#  project_name         :string(255)
 #
 

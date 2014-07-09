@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140701195328) do
+ActiveRecord::Schema.define(:version => 20140709220401) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -336,15 +336,12 @@ ActiveRecord::Schema.define(:version => 20140701195328) do
     t.text     "issue"
     t.text     "solution"
     t.string   "author"
-    t.text     "background"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "project_id"
     t.integer  "number"
     t.integer  "rating"
-    t.string   "authors"
     t.text     "challenges"
-    t.string   "approval"
     t.string   "diagram_file_name"
     t.string   "diagram_content_type"
     t.integer  "diagram_file_size"
@@ -355,7 +352,6 @@ ActiveRecord::Schema.define(:version => 20140701195328) do
     t.datetime "photo_updated_at"
     t.integer  "pattern_group_id"
     t.text     "notes"
-    t.string   "project_name"
   end
 
   add_index "patterns", ["project_id"], :name => "index_patterns_on_project_id"

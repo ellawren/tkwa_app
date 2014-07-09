@@ -95,4 +95,6 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .input-row.dark label.input-label { color:#344953; font-weight:700; }
 .input-row.dark textarea { border-color:#344953; }
 
+.pattern-text.background { color:#7f8b93; }
+
 
