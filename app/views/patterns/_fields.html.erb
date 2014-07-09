@@ -26,19 +26,19 @@
             </div>
             <div class="input-row">
                 <%= f.label(:challenges, "First-Observed Challenges", class: "input-label") %>
-                <%= f.text_area :challenges, class: "pattern-text", rows: "2" %>
+                <%= f.text_area :challenges, class: "pattern-text auto", rows: "2" %>
             </div>
             <div class="input-row dark">
                 <%= f.label(:issue, "Issue", class: "input-label") %>
-                <%= f.text_area :issue, class: "pattern-text", rows: "5" %>
+                <%= f.text_area :issue, class: "pattern-text auto", rows: "5" %>
             </div>
             <div class="input-row dark">
                 <%= f.label(:solution, "Solution", class: "input-label") %>
-                <%= f.text_area :solution, class: "pattern-text", rows: "5" %>
+                <%= f.text_area :solution, class: "pattern-text auto", rows: "5" %>
             </div>
             <div class="input-row">
                 <%= f.label(:notes, "Background/Notes", class: "input-label") %>
-                <%= f.text_area :notes, class: "pattern-text", rows: "2" %>
+                <%= f.text_area :notes, class: "pattern-text", rows: "4" %>
             </div>
             <div class="input-row">
                 <%= f.label(:background, "Background", class: "input-label") %>
@@ -112,7 +112,7 @@
     <script>
 
     $(document).ready(function(){
-        $('textarea').autosize();   
+        $('textarea.auto').autosize();   
     });
 
     $('#pattern_photo').live('change', function(){
