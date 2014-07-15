@@ -61,10 +61,8 @@
                 <%= f.label(:photo, "Key Photo", class: "input-label no-margin") %>
                 <div class="image-box">
                     <% if f.object.photo_file_name %>
-                        <div class="image-placeholder" id="photo-placeholder">
-                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "diagram" %>
-                        </div>
                         <div class="image-upload">
+                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "pattern-image" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
                             <div class="fileUpload btn" id="uploadBtn">
                                 <span>Change Photo</span>
@@ -82,7 +80,6 @@
                                 <span>Upload Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
                             </div>
-
                         </div>
                     <% end %>
                 </div>
@@ -90,10 +87,8 @@
                 <%= f.label(:diagram, "Solution Diagram", class: "input-label no-margin") %>
                 <div class="image-box">
                     <% if f.object.diagram_file_name %>
-                        <div class="image-placeholder" id="diagram-placeholder">
-                            <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "diagram" %>
-                        </div>
                         <div class="image-upload">
+                            <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "pattern-image" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
                             <div class="fileUpload btn" id="uploadBtn">
                                 <span>Change Diagram</span>
@@ -111,7 +106,6 @@
                                 <span>Upload Diagram</span>
                                 <%= f.file_field :diagram, class: "upload" %>
                             </div>
-                            
                         </div>
                     <% end %>
                 </div>

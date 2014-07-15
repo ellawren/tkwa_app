@@ -91,8 +91,6 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 
 .full.patterns select.project-name { width:423px; margin-right:20px; }
 .patterns .narrow .image-box { width:308px; }
-.patterns .narrow .image-placeholder { width:276px; height:auto; text-align:center; }
-.patterns .narrow .image-placeholder img { max-width:276px; max-height:276px; width:auto; height:auto; }
 .patterns .narrow .add-image { margin-right:35px; }
 .patterns .narrow .add-image.no-x { margin-right:5px; }
 .patterns .narrow .input-label.no-margin { padding-bottom:3px; }
@@ -106,4 +104,4 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 
 .pattern-text.background { color:#7f8b93; }
 
-
+img.pattern-image { float:left; width:276px; height:auto; }
