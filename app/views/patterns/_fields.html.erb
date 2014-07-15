@@ -62,7 +62,7 @@
                 <div class="image-box">
                     <% if f.object.photo_file_name %>
                         <div class="image-upload">
-                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "pattern-image" %>
+                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "pattern-image key-photo" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
                             <div class="fileUpload btn" id="uploadBtn">
                                 <span>Change Photo</span>
@@ -88,7 +88,7 @@
                 <div class="image-box">
                     <% if f.object.diagram_file_name %>
                         <div class="image-upload">
-                            <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "pattern-image" %>
+                            <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "pattern-image solution-diagram" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
                             <div class="fileUpload btn" id="uploadBtn">
                                 <span>Change Diagram</span>
@@ -127,30 +127,16 @@
         $(this).hide();
     });
 
-    $('#pattern_photo').live('change', function(){
-        text = $(this).val().replace(/C:\\fakepath\\/i, '');
-        $('#photo-name').html(text);
-        $('#photo-placeholder').empty();
-    });
-    $('#pattern_diagram').live('change', function(){
-        text = $(this).val().replace(/C:\\fakepath\\/i, '');
-        $('#diagram-name').html(text);
-        $('#diagram-placeholder').empty();
-    });
     $('#pattern_delete_diagram').live('change', function(){
         if($(this).is(':checked')){
-            $('#diagram-placeholder').empty();
-            $('#diagram-name').empty();
-            $('label[for="pattern_delete_diagram"]').addClass('checked');
+            $('img.solution-diagram').hide();
         } else {
             location.reload();
         }
     });
     $('#pattern_delete_photo').live('change', function(){
         if($(this).is(':checked')){
-            $('#photo-placeholder').empty();
-            $('#photo-name').empty();
-            $('label[for="pattern_delete_photo"]').addClass('checked');
+            $('img.key-photo').hide();
         } else {
             location.reload();
         }

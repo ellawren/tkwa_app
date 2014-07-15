@@ -104,4 +104,4 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 
 .pattern-text.background { color:#7f8b93; }
 
-img.pattern-image { float:left; width:276px; height:auto; }
+img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; border:1px solid #7f8b93; }
