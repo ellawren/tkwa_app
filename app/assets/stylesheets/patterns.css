@@ -15,6 +15,7 @@
 .p-images { float:left; width:222px; }
 .p-diagram, .p-photo { float:left; width:222px; }
 /*.p-diagram .image-file, .p-photo .image-file { border:2px solid #e1e6eb; border-radius:6px; padding:3px 10px; height:auto; }*/
+.image-upload { position:relative; }
 .image-upload input:disabled { background:#fff; border:none; margin:0px; padding:0px; width:100%; }
 input.uploadFile { display:none; }
 
@@ -95,7 +96,7 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .narrow .add-image { margin-right:35px; }
 .patterns .narrow .add-image.no-x { margin-right:5px; }
 .patterns .narrow .input-label.no-margin { padding-bottom:3px; }
-.patterns .narrow label[for="pattern_delete_diagram"], .patterns .narrow label[for="pattern_delete_photo"] { top:313px; right:7px; }
+.patterns .narrow label[for="pattern_delete_diagram"], .patterns .narrow label[for="pattern_delete_photo"] { bottom:20px; right:7px; }
 
 .input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }
 

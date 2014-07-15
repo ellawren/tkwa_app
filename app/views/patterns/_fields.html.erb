@@ -61,10 +61,11 @@
                 <%= f.label(:photo, "Key Photo", class: "input-label no-margin") %>
                 <div class="image-box">
                     <% if f.object.photo_file_name %>
+                        <div class="image-placeholder" id="photo-placeholder">
+                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "diagram" %>
+                        </div>
                         <div class="image-upload">
-                            <div class="image-placeholder" id="photo-placeholder">
-                                <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "diagram" %>
-                            </div>
+                            <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
                             <div class="fileUpload btn" id="uploadBtn">
                                 <span>Change Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
