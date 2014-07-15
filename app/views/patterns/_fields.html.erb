@@ -130,6 +130,7 @@
     $('#pattern_delete_diagram').live('change', function(){
         if($(this).is(':checked')){
             $('img.solution-diagram').hide();
+            $('#pattern-diagram').hide();
         } else {
             location.reload();
         }
@@ -137,6 +138,7 @@
     $('#pattern_delete_photo').live('change', function(){
         if($(this).is(':checked')){
             $('img.key-photo').hide();
+            $('#pattern-photo').hide();
         } else {
             location.reload();
         }
