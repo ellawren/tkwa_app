@@ -26,7 +26,7 @@
             </div>
             <div class="input-row">
                 <%= f.label(:challenges, "First-Observed Challenges", class: "input-label") %>
-                <%= f.text_area :challenges, class: "pattern-text", rows: "2" %>
+                <%= f.text_area :challenges, class: "pattern-text background", rows: "2" %>
             </div>
             <div class="input-row dark">
                 <%= f.label(:issue, "Issue", class: "input-label") %>
@@ -57,7 +57,7 @@
         <div class="narrow">
             
             <div class="input-row">
-                <%= f.label(:diagram, "Image(s)", class: "input-label no-margin") %>
+                <%= f.label(:diagram, "Key Photo", class: "input-label no-margin") %>
                 <div class="image-box">
                     <% if f.object.diagram_file_name %>
                         <div class="image-placeholder" id="diagram-placeholder">
@@ -79,6 +79,7 @@
                         </div>
                     <% end %>
                 </div>
+                <%= f.label(:diagram, "Solution Diagram", class: "input-label no-margin") %>
                 <div class="image-box">
                     <% if f.object.photo_file_name %>
                         <div class="image-placeholder" id="photo-placeholder">

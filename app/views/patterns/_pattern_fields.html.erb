@@ -9,10 +9,17 @@
             </div>
             <div class="issue"><%= simple_format f.object.issue %></div>
             <div class="solution"><%= simple_format f.object.solution %></div>
-            <div class="diagram">
-                <% if f.object.diagram_file_name %>
-                    <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
-                <% end %>
+            <div class="images">
+                <div class="photo">
+                    <% if f.object.photo_file_name %>
+                        <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
+                    <% end %>
+                </div>
+                <div class="diagram">
+                    <% if f.object.diagram_file_name %>
+                        <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
+                    <% end %>
+                </div>
             </div>
             <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author.present? %></div>
         </div>
@@ -37,11 +44,18 @@
                 <%= f.label :solution, class: "" %>
                 <%= f.text_area :solution, class: "", rows: 6 %>
             </div>
-            <div class="p-diagram">
-                <%= f.label(:diagram, class: "") %>
-                <%= f.file_field :diagram, class: "image-file" %>
+            <div class="p-images">
+                <label>Photo</label>
+                <div class="p-photo fileUpload btn">
+                    <span>Upload Photo</span>
+                    <%= f.file_field :photo, class: "upload" %>
+                </div>
+                <label>Diagram</label>
+                <div class="p-diagram fileUpload btn">
+                    <span>Upload Diagram</span>
+                    <%= f.file_field :diagram, class: "upload" %>
+                </div>
             </div>
-
             <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
             <a class="text-button">cancel</a>
         </div>
@@ -69,9 +83,17 @@
                 <%= f.label :solution, class: "" %>
                 <%= f.text_area :solution, class: "", rows: 6 %>
             </div>
-            <div class="p-diagram">
-                <%= f.label(:diagram, class: "") %>
-                <%= f.file_field :diagram, class: "image-file" %>
+            <div class="p-images">
+                <label>Photo</label>
+                <div class="p-photo fileUpload btn">
+                    <span>Upload Photo</span>
+                    <%= f.file_field :photo, class: "upload" %>
+                </div>
+                <label>Diagram</label>
+                <div class="p-diagram fileUpload btn">
+                    <span>Upload Diagram</span>
+                    <%= f.file_field :diagram, class: "upload" %>
+                </div>
             </div>
             <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
             <a class="text-button" href="/patterns/by_project/<%= @project.id %>">cancel</a>
