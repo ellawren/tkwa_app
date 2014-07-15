@@ -57,7 +57,7 @@ class PatternsController < ApplicationController
 	    @pattern = Pattern.new(params[:pattern])
 	    if @pattern.save
 	      	#redirect_to patterns_by_project_path(@pattern.project_id)
-	      	redirect_to edit_pattern_path(@pattern)
+	      	redirect_to edit_pattern_path(@pattern, :anchor => "pattern-1389")
 	    else
 	    	render 'new'
 	    end

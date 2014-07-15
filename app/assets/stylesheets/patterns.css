@@ -64,6 +64,8 @@ ul#pattern-tiles li .number { float:left; width:auto; margin:10px 8px 10px 0; cl
 ul#pattern-tiles li .title a { float:left; width:720px; height:auto; margin:10px 0; color:#344953; font-size:22px; font-weight:900; }
 ul#pattern-tiles li .title a:hover { color:#1abc9c; }
 
+ul#pattern-tiles li .images { float:left; }
+
 ul#pattern-tiles li .issue, ul#pattern-tiles li .solution { float:left; width:325px; margin-right:40px; }
 ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before, ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before   { content:""; float:left; display:block; width:325px; height:18px; margin:10px 0; border-bottom:1px solid #1abc9c; font-size:9px; font-weight:900; text-transform:uppercase; }
 ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before  { width:125px; }
@@ -72,7 +74,7 @@ ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before  { width:
 	ul#pattern-tiles li .diagram:before { content:"diagram"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 	ul#pattern-tiles li .photo:before { content:"photo"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 
-ul#pattern-tiles li .diagram, ul#pattern-tiles li .photo { float:left; width:125px; max-height:150px; overflow:hidden; clear:all; text-align:center; }
+ul#pattern-tiles li .diagram, ul#pattern-tiles li .photo { float:left; width:125px; max-height:175px; overflow:hidden; clear:all; text-align:center; }
 ul#pattern-tiles li .diagram img, ul#pattern-tiles li .photo img { width:125px; max-height:125px; width:auto; height:auto; }
 
 h1.pattern-header { color:#344953; font-weight:300; }
