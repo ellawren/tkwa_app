@@ -64,7 +64,7 @@
                         <div class="image-upload">
                             <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "pattern-image key-photo" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
-                            <div class="fileUpload btn" id="uploadBtn">
+                            <div class="fileUpload btn change-photo" id="uploadBtn">
                                 <span>Change Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="image-upload">
                             <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "pattern-image solution-diagram" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
-                            <div class="fileUpload btn" id="uploadBtn">
+                            <div class="fileUpload btn change-diagram" id="uploadBtn">
                                 <span>Change Diagram</span>
                                 <%= f.file_field :diagram, class: "upload" %>
                             </div>
@@ -130,7 +130,7 @@
     $('#pattern_delete_diagram').live('change', function(){
         if($(this).is(':checked')){
             $('img.solution-diagram').hide();
-            $('#pattern_diagram').hide();
+            $('.change-diagram').hide();
         } else {
             location.reload();
         }
@@ -138,7 +138,7 @@
     $('#pattern_delete_photo').live('change', function(){
         if($(this).is(':checked')){
             $('img.key-photo').hide();
-            $('#pattern_photo').hide();
+            $('.change-photo').hide();
         } else {
             location.reload();
         }
