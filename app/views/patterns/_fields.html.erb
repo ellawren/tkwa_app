@@ -70,7 +70,8 @@
                                 <span>Change Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
                             </div>
-                            <label for="pattern_delete_photo" class="fui-cross">
+                            <label for="pattern_delete_photo">
+                                delete photo
                                 <%= f.check_box(:delete_photo) %>
                             </label>
                         </div>
@@ -81,6 +82,7 @@
                                 <span>Upload Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
                             </div>
+
                         </div>
                     <% end %>
                 </div>
@@ -91,23 +93,29 @@
                         <div class="image-placeholder" id="diagram-placeholder">
                             <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "diagram" %>
                         </div>
-                        <div class="add-image" >
-                            <%= f.file_field :diagram %>
-                            <div class="text">Change Image</div>
+                        <div class="image-upload">
+                            <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                            <div class="fileUpload btn" id="uploadBtn">
+                                <span>Change Diagram</span>
+                                <%= f.file_field :diagram, class: "upload" %>
+                            </div>
+                            <label for="pattern_delete_diagram">
+                                delete diagram
+                                <%= f.check_box(:delete_diagram) %>
+                            </label>
                         </div>
-                        <label for="pattern_delete_diagram" class="fui-cross">
-                            <%= f.check_box(:delete_diagram) %>
-                        </label>
                     <% else %>
-                        <div class="image-placeholder" id="diagram-placeholder"></div>
-                        <div class="image-name" id="diagram-name"></div>
-                        <div class="add-image no-x" >
-                            <%= f.file_field :diagram %>
-                            <div class="text">Select Image</div>
+                        <div class="image-upload">
+                            <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                            <div class="p-diagram fileUpload btn">
+                                <span>Upload Diagram</span>
+                                <%= f.file_field :diagram, class: "upload" %>
+                            </div>
+                            
                         </div>
                     <% end %>
                 </div>
-                
+      
             </div>
         </div>
 
