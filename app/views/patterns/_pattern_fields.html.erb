@@ -10,16 +10,16 @@
             <div class="issue"><%= simple_format f.object.issue %></div>
             <div class="solution"><%= simple_format f.object.solution %></div>
             <div class="images">
-                <div class="photo">
-                    <% if f.object.photo_file_name %>
+                <% if f.object.photo_file_name %>
+                    <div class="photo">
                         <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
-                    <% end %>
-                </div>
-                <div class="diagram">
-                    <% if f.object.diagram_file_name %>
+                    </div>
+                <% end %>
+                <% if f.object.diagram_file_name %>
+                    <div class="diagram">
                         <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
-                    <% end %>
-                </div>
+                    </div>
+                <% end %>
             </div>
             <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author.present? %></div>
         </div>
@@ -46,8 +46,10 @@
             </div>
             <div class="p-images">
                 <label>Photo</label>
-                <div class="p-photo fileUpload btn">
+                <input id="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                <div class="p-photo fileUpload btn" id="uploadBtn">
                     <span>Upload Photo</span>
+                    
                     <%= f.file_field :photo, class: "upload" %>
                 </div>
                 <label>Diagram</label>
@@ -100,3 +102,10 @@
     </li>
 <% end %>
 
+<script>
+document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+};
+
+
+</script>
