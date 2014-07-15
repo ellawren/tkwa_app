@@ -46,12 +46,21 @@
             </div>
             <div class="p-images">
                 <label>Photo</label>
-                <input id="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
-                <div class="p-photo fileUpload btn" id="uploadBtn">
-                    <span>Upload Photo</span>
-                    
-                    <%= f.file_field :photo, class: "upload" %>
-                </div>
+                <% if f.object.photo_file_name %>
+                    <div class="photo">
+                        <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
+                    </div>
+                    <div class="p-photo fileUpload btn" id="uploadBtn">
+                        <span>Change Photo</span>
+                        <%= f.file_field :photo, class: "upload" %>
+                    </div>
+                <% else %>
+                    <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                    <div class="p-photo fileUpload btn">
+                        <span>Upload Photo</span>
+                        <%= f.file_field :photo, class: "upload" %>
+                    </div>
+                <% end %>
                 <label>Diagram</label>
                 <div class="p-diagram fileUpload btn">
                     <span>Upload Diagram</span>
@@ -102,10 +111,4 @@
     </li>
 <% end %>
 
-<script>
-document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-};
 
-
-</script>

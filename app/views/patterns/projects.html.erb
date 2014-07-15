@@ -16,3 +16,12 @@
 	</ul>
 
 <% end %>
+
+<script>
+
+    $('.fileUpload').change( function () {
+        fileName = $(this).children(".upload").val();
+        $(this).parent(".p-images").children(".uploadFile").val(fileName);
+    });
+
+</script>
