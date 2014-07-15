@@ -15,7 +15,8 @@
 .p-images { float:left; width:222px; }
 .p-diagram, .p-photo { float:left; width:222px; }
 /*.p-diagram .image-file, .p-photo .image-file { border:2px solid #e1e6eb; border-radius:6px; padding:3px 10px; height:auto; }*/
-.p-images input:disabled { background:#fff; border:none; margin:0px; padding:0px; }
+.image-upload input:disabled { background:#fff; border:none; margin:0px; padding:0px; width:100%; }
+input.uploadFile { display:none; }
 
 .fileUpload { position: relative; overflow: hidden; margin:0px; width:200px; cursor:pointer; }
 .fileUpload input.upload { position: absolute; top: 0; right: 0; margin: 0; padding: 0; font-size: 20px; cursor: pointer; opacity: 0; filter: alpha(opacity=0); }

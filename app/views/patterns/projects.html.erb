@@ -11,7 +11,6 @@
 	    	<%= f.fields_for :patterns, @patterns  do |builder| %>
     			<%= render 'pattern_fields', :f => builder %>
     		<% end %>
-        	<%= link_to_add_pattern_fields "", f, :patterns, "add fui-plus patterns" %>
 	   	<!-- end pattern form -->
 	</ul>
 
@@ -20,8 +19,9 @@
 <script>
 
     $('.fileUpload').change( function () {
-        fileName = $(this).children(".upload").val();
-        $(this).parent(".p-images").children(".uploadFile").val(fileName);
+        fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
+        $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
+        $(this).hide();
     });
 
 </script>

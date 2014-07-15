@@ -1,114 +1,92 @@
  
- <% if f.object.id %>
-    <li id="<%= f.object.id %>" class="pattern">
-        <div class="view-fields">
-            <div class="header">
-                <div class="number"><%= f.object.number %> /</div>
-                <div class="title"><%= link_to f.object.name, edit_pattern_path(f.object) %></div>
-                <a class="btn edit-pattern">quick edit</a>
-            </div>
-            <div class="issue"><%= simple_format f.object.issue %></div>
-            <div class="solution"><%= simple_format f.object.solution %></div>
-            <div class="images">
-                <% if f.object.photo_file_name %>
-                    <div class="photo">
-                        <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
-                    </div>
-                <% end %>
-                <% if f.object.diagram_file_name %>
-                    <div class="diagram">
-                        <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
-                    </div>
-                <% end %>
-            </div>
-            <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author.present? %></div>
+<li id="<%= f.object.id %>" class="pattern">
+    <div class="view-fields">
+        <div class="header">
+            <div class="number"><%= f.object.number %> /</div>
+            <div class="title"><%= link_to f.object.name, edit_pattern_path(f.object) %></div>
+            <a class="btn edit-pattern">quick edit</a>
         </div>
-        <div class="edit-fields">
-            <%= f.hidden_field :project_id, value: "#{@project.id}" %>
-            <div class="header">
-                <div class="p-number">
-                    <%= f.text_field :number, autocomplete: "off", class: "p-number", placeholder: "#" %>
+        <div class="issue"><%= simple_format f.object.issue %></div>
+        <div class="solution"><%= simple_format f.object.solution %></div>
+        <div class="images">
+            <% if f.object.photo_file_name %>
+                <div class="photo">
+                    <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
                 </div>
-                <div class="p-name">
-                    <%= f.text_field :name, class: "p-name", placeholder: "Pattern Name" %>
+            <% end %>
+            <% if f.object.diagram_file_name %>
+                <div class="diagram">
+                    <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
                 </div>
-                <a class="btn edit-pattern" href="/patterns/<%= f.object.id %>/edit">full edit</a>
+            <% end %>
+        </div>
+        <div class="footer">Written on <%= f.object.created_at.strftime("%B %-d, %Y") %><%= " by #{f.object.author}" if f.object.author.present? %></div>
+    </div>
+    <div class="edit-fields">
+        <%= f.hidden_field :project_id, value: "#{@project.id}" %>
+        <div class="header">
+            <div class="p-number">
+                <%= f.text_field :number, autocomplete: "off", class: "p-number", placeholder: "#" %>
             </div>
-            
-            <div class="p-issue">
-                <%= f.label :issue, class: "" %>
-                <%= f.text_area :issue, class: "", rows: 6 %>
+            <div class="p-name">
+                <%= f.text_field :name, class: "p-name", placeholder: "Pattern Name" %>
             </div>
+            <a class="btn edit-pattern" href="/patterns/<%= f.object.id %>/edit">full edit</a>
+        </div>
+        
+        <div class="p-issue">
+            <%= f.label :issue, class: "" %>
+            <%= f.text_area :issue, class: "", rows: 6 %>
+        </div>
 
-            <div class="p-solution">
-                <%= f.label :solution, class: "" %>
-                <%= f.text_area :solution, class: "", rows: 6 %>
-            </div>
-            <div class="p-images">
-                <label>Photo</label>
-                <% if f.object.photo_file_name %>
-                    <div class="photo">
-                        <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
-                    </div>
-                    <div class="p-photo fileUpload btn" id="uploadBtn">
-                        <span>Change Photo</span>
-                        <%= f.file_field :photo, class: "upload" %>
-                    </div>
-                <% else %>
+        <div class="p-solution">
+            <%= f.label :solution, class: "" %>
+            <%= f.text_area :solution, class: "", rows: 6 %>
+        </div>
+        <div class="p-images">
+
+            <label>Photo</label>
+            <% if f.object.photo_file_name %>
+                <div class="photo">
+                    <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
+                </div>
+                <div class="p-photo fileUpload btn" id="uploadBtn">
+                    <span>Change Photo</span>
+                    <%= f.file_field :photo, class: "upload" %>
+                </div>
+            <% else %>
+                <div class="image-upload">
                     <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
                     <div class="p-photo fileUpload btn">
                         <span>Upload Photo</span>
                         <%= f.file_field :photo, class: "upload" %>
                     </div>
-                <% end %>
-                <label>Diagram</label>
-                <div class="p-diagram fileUpload btn">
-                    <span>Upload Diagram</span>
+                </div>
+            <% end %>
+
+            <label>Diagram</label>
+            <% if f.object.diagram_file_name %>
+                <div class="diagram">
+                    <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
+                </div>
+                <div class="p-diagram fileUpload btn" id="uploadBtn">
+                    <span>Change Diagram</span>
                     <%= f.file_field :diagram, class: "upload" %>
                 </div>
-            </div>
-            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
-            <a class="text-button">cancel</a>
+            <% else %>
+                <div class="image-upload">
+                    <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                    <div class="p-diagram fileUpload btn">
+                        <span>Upload Diagram</span>
+                        <%= f.file_field :diagram, class: "upload" %>
+                    </div>
+                </div>
+            <% end %>
+
         </div>
-    </li>
-
-<% else %>
-    <li class="pattern">
-            <%= f.hidden_field :project_id, value: "#{@project.id}" %>
-
-            <div class="header">
-                 <div class="p-number">
-                    <%= f.text_field :number, class: "p-number", placeholder: "#" %>
-                </div>
-                <div class="p-name">
-                    <%= f.text_field :name, class: "p-name", placeholder: "Pattern Name" %>
-                </div>
-            </div>
-            
-            <div class="p-issue">
-                <%= f.label :issue, class: "" %>
-                <%= f.text_area :issue, class: "", rows: 6 %>
-            </div>
-
-            <div class="p-solution">
-                <%= f.label :solution, class: "" %>
-                <%= f.text_area :solution, class: "", rows: 6 %>
-            </div>
-            <div class="p-images">
-                <label>Photo</label>
-                <div class="p-photo fileUpload btn">
-                    <span>Upload Photo</span>
-                    <%= f.file_field :photo, class: "upload" %>
-                </div>
-                <label>Diagram</label>
-                <div class="p-diagram fileUpload btn">
-                    <span>Upload Diagram</span>
-                    <%= f.file_field :diagram, class: "upload" %>
-                </div>
-            </div>
-            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
-            <a class="text-button" href="/patterns/by_project/<%= @project.id %>">cancel</a>
-    </li>
-<% end %>
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        <a class="text-button">cancel</a>
+    </div>
+</li>
 
 

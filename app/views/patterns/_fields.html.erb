@@ -57,7 +57,34 @@
         <div class="narrow">
             
             <div class="input-row">
-                <%= f.label(:diagram, "Key Photo", class: "input-label no-margin") %>
+
+                <%= f.label(:photo, "Key Photo", class: "input-label no-margin") %>
+                <div class="image-box">
+                    <% if f.object.photo_file_name %>
+                        <div class="image-upload">
+                            <div class="image-placeholder" id="photo-placeholder">
+                                <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "diagram" %>
+                            </div>
+                            <div class="fileUpload btn" id="uploadBtn">
+                                <span>Change Photo</span>
+                                <%= f.file_field :photo, class: "upload" %>
+                            </div>
+                            <label for="pattern_delete_photo" class="fui-cross">
+                                <%= f.check_box(:delete_photo) %>
+                            </label>
+                        </div>
+                    <% else %>
+                        <div class="image-upload">
+                            <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                            <div class="p-photo fileUpload btn">
+                                <span>Upload Photo</span>
+                                <%= f.file_field :photo, class: "upload" %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+
+                <%= f.label(:diagram, "Solution Diagram", class: "input-label no-margin") %>
                 <div class="image-box">
                     <% if f.object.diagram_file_name %>
                         <div class="image-placeholder" id="diagram-placeholder">
@@ -79,28 +106,7 @@
                         </div>
                     <% end %>
                 </div>
-                <%= f.label(:diagram, "Solution Diagram", class: "input-label no-margin") %>
-                <div class="image-box">
-                    <% if f.object.photo_file_name %>
-                        <div class="image-placeholder" id="photo-placeholder">
-                            <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "diagram" %>
-                        </div>
-                        <div class="add-image" >
-                            <%= f.file_field :photo %>
-                            <div class="text">Change Image</div>
-                        </div>
-                        <label for="pattern_delete_photo" class="fui-cross">
-                            <%= f.check_box(:delete_photo) %>
-                        </label>
-                    <% else %>
-                        <div class="image-placeholder" id="photo-placeholder"></div>
-                        <div class="image-name" id="photo-name"></div>
-                        <div class="add-image no-x" >
-                            <%= f.file_field :photo %>
-                            <div class="text">Select Image</div>
-                        </div>
-                    <% end %>
-                </div>
+                
             </div>
         </div>
 
@@ -110,6 +116,12 @@
 
     $(document).ready(function(){
         $('textarea').autosize();   
+    });
+
+    $('.fileUpload').change( function () {
+        fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
+        $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
+        $(this).hide();
     });
 
     $('#pattern_photo').live('change', function(){
