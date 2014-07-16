@@ -15,8 +15,8 @@
 .p-images { float:left; width:200px; }
 .p-diagram, .p-photo { float:left; width:222px; }
 /*.p-diagram .image-file, .p-photo .image-file { border:2px solid #e1e6eb; border-radius:6px; padding:3px 10px; height:auto; }*/
-.image-upload { position:relative; float:left; height:auto; width:100%; }
-.image-upload input:disabled { background:#fff; border:none; margin:0px; padding:0px; width:100%; }
+.image-upload { position:relative; float:left; height:auto; width:100%; cursor:pointer; }
+.image-upload input:disabled { background:#fff; border:none; margin:0px; padding:0px; width:100%; cursor:pointer; }
 input.uploadFile { display:none; }
 
 .fileUpload { position: relative; overflow: hidden; margin:0px; width:176px; cursor:pointer; }
@@ -75,7 +75,7 @@ ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before  { width:
 	ul#pattern-tiles li .diagram:before { content:"diagram"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 	ul#pattern-tiles li .photo:before { content:"photo"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 
-ul#pattern-tiles li .diagram, ul#pattern-tiles li .photo { float:left; width:200px; max-height:220px; overflow:hidden; clear:all; text-align:center; margin-bottom:8px; }
+ul#pattern-tiles li .diagram, ul#pattern-tiles li .photo { float:left; width:200px; max-height:260px; overflow:hidden; clear:all; text-align:center; margin-bottom:8px; }
 ul#pattern-tiles li .diagram img, ul#pattern-tiles li .photo img { width:200px; max-height:200px; width:auto; height:auto; }
 
 h1.pattern-header { color:#344953; font-weight:300; }
