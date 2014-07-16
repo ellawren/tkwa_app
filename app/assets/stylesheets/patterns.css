@@ -19,7 +19,8 @@
 .image-upload input:disabled { background:#fff; border:none; margin:0px; padding:0px; width:100%; }
 input.uploadFile { display:none; }
 
-.fileUpload { position: relative; overflow: hidden; margin:0px; width:178px; cursor:pointer; }
+.fileUpload { position: relative; overflow: hidden; margin:0px; width:176px; cursor:pointer; }
+.fileUpload span { cursor:pointer; }
 .fileUpload input.upload { position: absolute; top: 0; right: 0; margin: 0; padding: 0; font-size: 20px; cursor: pointer; opacity: 0; filter: alpha(opacity=0); }
 
 .p-issue label, .p-solution label, .p-diagram label, .p-photo label, .p-images label  { float:left; display:block; width:290px; height:18px; margin:10px 0 5px; border-bottom:1px solid #1abc9c; color:#1abc9c; font-size:9px; font-weight:900; text-transform:uppercase; }
