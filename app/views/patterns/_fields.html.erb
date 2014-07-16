@@ -11,7 +11,7 @@
             </div>
             <div class="input-row">
                 <%= f.label(:project_id, "Project", class: "input-label") %>
-                <%= f.collection_select(:project_id, Project.current_and_potential, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
+                <%= f.collection_select(:project_id, Project.alpha, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "project-name chzn-select custom-select" } ) %>
                 <div class="detail">If you want to write patterns for an internal (non-billable) project, just add it as a <%= link_to "new potential project", potential_projects_path, class: "green underline" %>. </div>
             </div>
         </div>        
