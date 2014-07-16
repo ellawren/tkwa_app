@@ -67,7 +67,7 @@ ul#pattern-tiles li .title a:hover { color:#1abc9c; }
 ul#pattern-tiles li .images { float:left; width:200px; }
 
 ul#pattern-tiles li .issue, ul#pattern-tiles li .solution { float:left; width:290px; margin-right:40px; }
-ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before { content:""; float:left; display:block; width:290px; height:18px; margin:10px 0; border-bottom:1px solid #1abc9c; font-size:9px; font-weight:900; text-transform:uppercase; }
+ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before, ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before { content:""; float:left; display:block; width:290px; height:18px; margin:10px 0; border-bottom:1px solid #1abc9c; font-size:9px; font-weight:900; text-transform:uppercase; }
 ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before  { width:200px; }
 	ul#pattern-tiles li .issue:before { content:"issue";  border-color:#86cc71; color:#86cc71;}
 	ul#pattern-tiles li .solution:before { content:"solution"; border-color:#1abc9c; color:#1abc9c; }
