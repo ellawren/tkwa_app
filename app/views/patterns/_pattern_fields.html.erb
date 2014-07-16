@@ -54,11 +54,13 @@
                     <%= f.file_field :photo, class: "upload" %>
                 </div>
             <% else %>
-                <div class="image-upload">
-                    <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
-                    <div class="p-photo fileUpload btn">
-                        <span>Upload Photo</span>
-                        <%= f.file_field :photo, class: "upload" %>
+                <div class="photo">
+                    <div class="image-upload">
+                        <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                        <div class="p-photo fileUpload btn">
+                            <span>Upload Photo</span>
+                            <%= f.file_field :photo, class: "upload" %>
+                        </div>
                     </div>
                 </div>
             <% end %>
@@ -72,11 +74,13 @@
                     <%= f.file_field :diagram, class: "upload" %>
                 </div>
             <% else %>
-                <div class="image-upload">
-                    <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
-                    <div class="p-diagram fileUpload btn">
-                        <span>Upload Diagram</span>
-                        <%= f.file_field :diagram, class: "upload" %>
+                <div class="diagram">
+                    <div class="image-upload">
+                        <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                        <div class="p-diagram fileUpload btn">
+                            <span>Upload Diagram</span>
+                            <%= f.file_field :diagram, class: "upload" %>
+                        </div>
                     </div>
                 </div>
             <% end %>
