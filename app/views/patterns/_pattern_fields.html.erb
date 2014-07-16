@@ -45,7 +45,6 @@
         </div>
         <div class="p-images">
 
-            <label>Photo</label>
             <% if f.object.photo_file_name %>
                 <div class="photo">
                     <%= image_tag f.object.photo.url(:thumb), alt: f.object.photo_file_name %>
@@ -64,7 +63,6 @@
                 </div>
             <% end %>
 
-            <label>Diagram</label>
             <% if f.object.diagram_file_name %>
                 <div class="diagram">
                     <%= image_tag f.object.diagram.url(:thumb), alt: f.object.diagram_file_name %>
