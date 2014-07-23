@@ -15,6 +15,7 @@
 class PatternImage < ActiveRecord::Base
 	belongs_to :pattern
 	has_attached_file :photo, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "200x200>" }
-
+	attr_accessor :delete_photo
+    before_validation { photo.clear if delete_photo == '1' }
 end
 

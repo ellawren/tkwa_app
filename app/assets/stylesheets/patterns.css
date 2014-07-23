@@ -90,7 +90,8 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .wide textarea, .patterns .wide input[type="text"] { width:550px; }
 .patterns .wide .input-label { padding-bottom:2px; width:100%; }
 .patterns .narrow { width:300px; margin-left:60px; }
-.patterns .narrow .input-label { width:110px; }
+.patterns .narrow .input-label { width:100%; }
+.patterns .narrow .note { margin-top:30px; width:90%; line-height:15px; }
 
 .full.patterns select.project-name { width:423px; margin-right:20px; }
 .patterns .narrow .image-box { width:308px; }

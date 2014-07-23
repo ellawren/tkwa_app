@@ -112,10 +112,14 @@
       
             </div>
             <div class="input-row">
+                <label class="input-label no-margin">Background Images</label>
                 <%= f.fields_for :pattern_images do |builder| %>
                     <%= render 'pattern_image_fields', :f => builder %>
                 <% end %>
                 <%= link_to_add_fields_2 "", f, :pattern_images, "add fui-plus pattern-image" %>
+            </div>
+            <div class="input-row">
+                <div class="note">Note: Images will be reduced to 600x600 pixels on upload. Larger images will take much longer to process (and may time out the server), so for best results, reduce the size beforehand for anything over 1MB.</div>
             </div>
         </div>
 
