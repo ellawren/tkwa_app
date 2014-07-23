@@ -65,6 +65,7 @@ class PatternsController < ApplicationController
 
 	def edit
 	    @pattern = Pattern.find(params[:id])
+	    @pattern.build_pattern_images
 	end
 
 	def update
@@ -81,7 +82,11 @@ class PatternsController < ApplicationController
 		project_id = Pattern.find(params[:id]).project_id
 	    Pattern.find(params[:id]).destroy
 	    flash[:success] = "Pattern destroyed."
-	    redirect_to all_patterns_by_project_path
+	    if project_id.present?
+	    	redirect_to patterns_by_project_path(project_id)
+	    else
+	    	redirect_to all_patterns_by_project_path
+	    end
 
 	end
 

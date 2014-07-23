@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140709220401) do
+ActiveRecord::Schema.define(:version => 20140722201336) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -329,6 +329,16 @@ ActiveRecord::Schema.define(:version => 20140709220401) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "order"
+  end
+
+  create_table "pattern_images", :force => true do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "pattern_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "patterns", :force => true do |t|

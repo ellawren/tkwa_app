@@ -88,7 +88,10 @@ TkwaApp::Application.routes.draw do
     match '/patterns/all',   to: 'patterns#all', as: 'all_patterns'
     match '/patterns/by_project/',   to: 'patterns#by_project', as: 'all_patterns_by_project'
     match '/patterns/by_project/:id',   to: 'patterns#projects', as: 'patterns_by_project'
-    resources :patterns
+    resources :patterns do
+        resources :pattern_images
+    end
+    resources :pattern_images
 
 
     # STATIC PAGES

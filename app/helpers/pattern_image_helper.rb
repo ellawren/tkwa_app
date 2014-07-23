@@ -1,0 +1,2 @@
+module PatternImageHelper
+end
