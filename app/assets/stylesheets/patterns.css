@@ -4,6 +4,8 @@
 .pattern label { width:100%; }
 .pattern input, .pattern textarea { width:90%; }
 
+h2.patterns { border-bottom:2px solid #344953; }
+
 .p-number { float:left; width:50px; }
 .p-name { float:left; width:auto; margin-left:6px; }
 
@@ -85,13 +87,13 @@ h1 .pattern-name { width:640px; font-weight:900; }
 h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 
 .page-header.pattern-header { margin-bottom:5px; }
-.full.patterns { border-top:2px solid #344953; padding-top:10px; }
+.full.patterns { border-top:2px solid #344953; padding-top:5px; padding-bottom:10px; }
 .full.patterns.last { border-bottom:2px solid #344953; padding-bottom:10px; }
 .patterns .wide textarea, .patterns .wide input[type="text"] { width:550px; }
 .patterns .wide .input-label { padding-bottom:2px; width:100%; }
 .patterns .narrow { width:300px; margin-left:60px; }
-.patterns .narrow .input-label { width:100%; }
-.patterns .narrow .note { margin-top:30px; width:90%; line-height:15px; }
+.patterns .narrow .input-label { width:100%; padding-bottom:2px; }
+.patterns .narrow .note { margin-top:0px; width:90%; line-height:15px; }
 
 .full.patterns select.project-name { width:423px; margin-right:20px; }
 .patterns .narrow .image-box { width:308px; }
@@ -102,7 +104,9 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .narrow label[for="pattern_delete_photo"]:hover, .patterns .narrow label[for="pattern_delete_diagram"]:hover, .patterns .narrow label.pattern_image_delete_photo:hover { color:#1abc9c; }
 .pattern_image_delete_photo a {font-weight:400; }
 
-.input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }
+.patterns .narrow .custom-select.pattern-group { width:300px; }
+
+.input-row.added { color:#9ba6ac; margin-top:10px; font-style:italic; font-size:13px; }
 
 .input-row.dark label.input-label { color:#344953; font-weight:700; }
 .input-row.dark textarea { border-color:#344953; }

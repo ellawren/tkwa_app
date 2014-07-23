@@ -293,7 +293,7 @@
 	.add.recommendation:after { content:"add a recommendation"; }
 	.add.expense-items:after { content:"add item"; }
 	.add.patterns:after { content:"new pattern"; }
-	.add.pattern-image:after { content:"new pattern image"; }
+	.add.pattern-image:after { content:"add image"; }
 	.half .add { margin-top:15px; }
 	.add.category { margin-left:82px; margin-top:10px; }
 	.add.schedule{ float:left; display:block; }
