@@ -22,7 +22,7 @@
         <div class="wide">
            <div class="input-row">
                 <%= f.label(:challenges, "First-Observed Challenges", class: "input-label") %>
-                <%= f.text_area :challenges, class: "pattern-text background", rows: "2" %>
+                <%= f.text_area :challenges, class: "pattern-text", rows: "2" %>
             </div>
         </div>
 
@@ -37,14 +37,13 @@
 
         <div class="wide">
 
-
             <div class="input-row">
                 <%= f.label(:issue, "Issue", class: "input-label") %>
-                <%= f.text_area :issue, class: "pattern-text", rows: "5" %>
+                <%= f.text_area :issue, class: "pattern-text", rows: "3" %>
             </div>
             <div class="input-row">
                 <%= f.label(:solution, "Solution", class: "input-label") %>
-                <%= f.text_area :solution, class: "pattern-text", rows: "5" %>
+                <%= f.text_area :solution, class: "pattern-text", rows: "3" %>
             </div>
             
         </div>
@@ -59,6 +58,7 @@
                         <div class="image-upload">
                             <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "pattern-image key-photo" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                            <%= f.text_field :photo_caption, class: "pattern-caption photo-caption", placeholder: "Photo Caption" %>
                             <div class="fileUpload btn change-photo" id="uploadBtn">
                                 <span>Change Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
@@ -75,6 +75,7 @@
                                 <span>Upload Photo</span>
                                 <%= f.file_field :photo, class: "upload" %>
                             </div>
+                            <%= f.text_field :photo_caption, class: "pattern-caption hidden", placeholder: "Photo Caption" %>
                         </div>
                     <% end %>
                 </div>
@@ -85,6 +86,7 @@
                         <div class="image-upload">
                             <%= image_tag f.object.diagram.url(:medium), alt: f.object.diagram_file_name, class: "pattern-image solution-diagram" %>
                             <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                            <%= f.text_field :diagram_caption, class: "pattern-caption diagram-caption", placeholder: "Diagram Caption" %>
                             <div class="fileUpload btn change-diagram" id="uploadBtn">
                                 <span>Change Diagram</span>
                                 <%= f.file_field :diagram, class: "upload" %>
@@ -101,6 +103,7 @@
                                 <span>Upload Diagram</span>
                                 <%= f.file_field :diagram, class: "upload" %>
                             </div>
+                            <%= f.text_field :diagram_caption, class: "pattern-caption hidden", placeholder: "Diagram Caption" %>
                         </div>
                     <% end %>
                 </div>
@@ -117,16 +120,15 @@
         <h2 class="patterns">Background Data</h2>
 
         <div class="wide">
-            <div class="input-row">
-                <%= f.label(:notes, "Notes", class: "input-label") %>
-                <%= f.text_area :notes, class: "pattern-text background", rows: "2" %>
+            <div class="input-row top-margin">
+                <%= f.text_area :notes, class: "pattern-text", rows: "2" %>
             </div>
         </div>
 
         <div class="narrow">
 
             <div class="input-row">
-                <label class="input-label no-margin">Supporting Image(s)</label>
+                <label class="input-label no-margin">Supporting Images</label>
                 <%= f.fields_for :pattern_images do |builder| %>
                     <%= render 'pattern_image_fields', :f => builder %>
                 <% end %>
@@ -139,8 +141,14 @@
 
         <div class="wide">
 
-            <div class="input-row">
-                <%= f.autocomplete_field :author, autocomplete_contact_name_contacts_path,  class: "match-select" %>
+            <div class="input-row single-line">
+                <%= f.label(:author, "Contributors", class: "input-label") %>
+                <%= f.text_field :author %>
+            </div>
+
+            <div class="input-row single-line">
+                <%= f.label(:sources, "Sources", class: "input-label") %>
+                <%= f.text_area :sources, rows:"2" %>
             </div>
 
         </div>
@@ -168,6 +176,7 @@
     $('.fileUpload').change( function () {
         fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
         $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
+        $(this).parent(".image-upload").children(".pattern-caption").show();
         $(this).hide();
     });
 
@@ -175,6 +184,7 @@
         if($(this).is(':checked')){
             $('img.solution-diagram').hide();
             $('.change-diagram').hide();
+            $('.pattern-caption.diagram-caption').val("").hide();
         } else {
             location.reload();
         }
@@ -183,6 +193,7 @@
         if($(this).is(':checked')){
             $('img.key-photo').hide();
             $('.change-photo').hide();
+            $('.pattern-caption.photo-caption').val("").hide();
         } else {
             location.reload();
         }
@@ -191,6 +202,7 @@
         if($(this).is(':checked')){
             $(this).parent().parent(".image-upload").children(".key-photo").hide();
             $(this).parent().parent(".image-upload").children(".change-photo").hide();
+            $('.pattern-caption.background-caption').val("").hide();
         } else {
             location.reload();
         }

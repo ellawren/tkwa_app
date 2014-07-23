@@ -28,5 +28,8 @@ end
 #  photo_updated_at     :datetime
 #  pattern_group_id     :integer
 #  notes                :text
+#  sources              :text
+#  photo_caption        :text
+#  diagram_caption      :text
 #
 

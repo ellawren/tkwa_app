@@ -4,6 +4,7 @@
             <div class="image-upload">
                 <%= image_tag f.object.photo.url(:medium), alt: f.object.photo_file_name, class: "pattern-image key-photo" %>
                 <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
+                <%= f.text_field :caption, class: "pattern-caption background-caption", placeholder: "Image Caption" %>
                 <div class="fileUpload btn change-photo" id="uploadBtn">
                     <span>Change Photo</span>
                     <%= f.file_field :photo, class: "upload" %>
@@ -20,6 +21,7 @@
                     <span>Upload Photo</span>
                     <%= f.file_field :photo, class: "upload" %>
                 </div>
+                <%= f.text_field :caption, class: "pattern-caption hidden", placeholder: "Image Caption" %>
             </div>
         <% end %>
     </div>
@@ -29,12 +31,14 @@
 $('.fileUpload').change( function () {
         fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
         $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
+        $(this).parent(".image-upload").children(".pattern-caption").show();
         $(this).hide();
     });
 
  $(".pattern_image_delete_photo a").click(function(){
             $(this).parent().parent(".image-upload").children(".key-photo").hide();
             $(this).parent().parent(".image-upload").children(".change-photo").hide();
+            $('.pattern-caption.background-caption').val("").hide();
             $(this).hide();
         
     });
