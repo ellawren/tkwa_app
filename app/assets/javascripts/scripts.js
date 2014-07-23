@@ -236,6 +236,12 @@ function remove_fields_5(link) {
   $(link).closest(".list-item").hide();
 }
 
+function remove_fields_image_box(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  //$(link).closest(".input").hide();
+  $(link).closest(".image_box").hide();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")

@@ -437,6 +437,10 @@ module ApplicationHelper
         f.hidden_field(:_destroy) + link_to_function(name, "remove_book_fields(this)", class: "delete-row")
     end
 
+    def link_to_remove_fields_image_box(name, f)
+        f.hidden_field(:_destroy) + link_to_function(name, "remove_fields_image_box(this)", class: "delete-row")
+    end
+
     def link_to_add_category_fields(name, f, cat, html_class)
         label = f.label(" ", " ", class: "input-label" ) 
         select = f.collection_select("#{cat}", Category.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } )

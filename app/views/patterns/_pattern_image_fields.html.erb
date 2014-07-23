@@ -9,10 +9,10 @@
                     <%= f.file_field :photo, class: "upload" %>
                 </div>
                 <label class="pattern_image_delete_photo">
-                    delete photo
-                    <%= f.check_box(:delete_photo) %>
+                    <%= link_to_remove_fields_image_box "delete photo", f %>
                 </label>
             </div>
+
         <% else %>
             <div class="image-upload">
                 <input class="uploadFile" style="line-height: 16px;" type="text" disabled="disabled" placeholder="No file selected">
@@ -24,10 +24,18 @@
         <% end %>
     </div>
 
+
 <script>
 $('.fileUpload').change( function () {
         fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
         $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
         $(this).hide();
+    });
+
+ $(".pattern_image_delete_photo a").click(function(){
+            $(this).parent().parent(".image-upload").children(".key-photo").hide();
+            $(this).parent().parent(".image-upload").children(".change-photo").hide();
+            $(this).hide();
+        
     });
 </script>
