@@ -112,7 +112,7 @@
       
             </div>
             <div class="input-row">
-                <label class="input-label no-margin">Background Images</label>
+                <label class="input-label no-margin">Background Image(s)</label>
                 <%= f.fields_for :pattern_images do |builder| %>
                     <%= render 'pattern_image_fields', :f => builder %>
                 <% end %>
@@ -149,6 +149,14 @@
         if($(this).is(':checked')){
             $('img.key-photo').hide();
             $('.change-photo').hide();
+        } else {
+            location.reload();
+        }
+    });
+     $('.pattern_image_delete_photo input[type="checkbox']).live('change', function(){
+        if($(this).is(':checked')){
+            $(this).parent().parent(".image-upload").children(".key-photo").hide();
+            $(this).parent().parent(".image-upload").children(".change-photo").hide();
         } else {
             location.reload();
         }
