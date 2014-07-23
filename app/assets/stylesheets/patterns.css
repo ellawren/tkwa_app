@@ -99,7 +99,7 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 .patterns .narrow .add-image.no-x { margin-right:5px; }
 .patterns .narrow .input-label.no-margin { padding-bottom:3px; }
 .patterns .narrow label[for="pattern_delete_diagram"], .patterns .narrow label[for="pattern_delete_photo"], .patterns .narrow label.pattern_image_delete_photo { top:-22px; right:10px; font-size:13px; width:auto; color:#7f8b93; font-family:"Asap"; font-style:italic; }
-.patterns .narrow label[for="pattern_delete_photo"]:hover { color:#1abc9c; }
+.patterns .narrow label[for="pattern_delete_photo"]:hover, .patterns .narrow label[for="pattern_delete_diagram"]:hover, .patterns .narrow label.pattern_image_delete_photo:hover { color:#1abc9c; }
 
 .input-row.added { color:#9ba6ac; margin-top:6px; font-style:italic; font-size:13px; }
 

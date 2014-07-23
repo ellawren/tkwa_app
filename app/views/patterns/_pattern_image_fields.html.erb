@@ -23,3 +23,11 @@
             </div>
         <% end %>
     </div>
+
+<script>
+$('.fileUpload').change( function () {
+        fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
+        $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
+        $(this).hide();
+    });
+</script>
