@@ -65,7 +65,6 @@ class PatternsController < ApplicationController
 
 	def edit
 	    @pattern = Pattern.find(params[:id])
-	    @pattern.build_pattern_images
 	end
 
 	def update
