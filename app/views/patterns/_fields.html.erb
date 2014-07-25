@@ -16,6 +16,7 @@
             </div>
         </div>        
     <% end %>
+
     
     <div class="full patterns">
 
@@ -110,19 +111,24 @@
       
             </div>
             
-            <div class="input-row">
-                <div class="note">Note: Images will be reduced to 600x600 pixels on upload. Larger images will take much longer to process (and may time out the server), so for best results, reduce the size beforehand for anything over 1MB.</div>
-            </div>
         </div>
-
 
     
         <h2 class="patterns">Background Data</h2>
 
         <div class="wide">
-            <div class="input-row top-margin">
+            
+            <div class="input-row top-margin" id="bkg-edit">
                 <%= f.text_area :notes, class: "pattern-text", rows: "2" %>
+                <button class="btn btn-primary">save changes</button>
             </div>
+            <div class="input-row" id="bkg-display">
+                <div class="jqte-plaintext">
+                    <%= @pattern.notes.html_safe %>
+                </div>
+                <div class="btn" id="edit-background-text">edit background text</div>
+            </div>
+
         </div>
 
         <div class="narrow">
@@ -137,12 +143,12 @@
 
         </div>
 
-        <h2 class="patterns">Contributors/Sources</h2>
+        <h2 class="patterns">Credits</h2>
 
         <div class="wide">
 
             <div class="input-row single-line">
-                <%= f.label(:author, "Contributors", class: "input-label") %>
+                <%= f.label(:author, "Written By", class: "input-label") %>
                 <%= f.text_field :author %>
             </div>
 
@@ -167,10 +173,36 @@
 
     </div>
 
+<%= javascript_include_tag "jquery-te-1.4.0.min.js" -%>
+<%= stylesheet_link_tag "jquery-te-1.4.0" %>
+
+ <script>
+            $("#pattern_notes").jqte({
+                center: false,
+                fsize: false,
+                format: false,
+                indent: false,
+                linktypes: ["Web URL", "Email", ""],
+                left: false,
+                outdent: false,
+                p: false,
+                right: false,
+                rule: false,
+                source: false,
+                sub: false,
+                sup: false
+            });
+    </script>
+
     <script>
 
     $(document).ready(function(){
         $('textarea').autosize();   
+    });
+
+    $('#edit-background-text').click( function () {
+        $('#bkg-display').hide();
+        $('#bkg-edit').show();
     });
 
     $('.fileUpload').change( function () {

@@ -38,7 +38,7 @@
 	color:#16a085;
 	font-family:font-family: "Lato", sans-serif !important;
 	font-size:14px;
-	line-height:20px;
+	line-height:24px;
 }
 .jqte_focused {
 	border-color:#1abc9c;
@@ -367,6 +367,7 @@
 .jqte_editor a:link, .jqte_editor a:link * {
 	color:#0066FF !important;
 	text-decoration:underline;
+	cursor:pointer;
 }
 .jqte_editor blockquote {
 	margin-top:0;
