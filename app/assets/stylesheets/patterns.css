@@ -133,6 +133,7 @@ img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; bo
 
 .jqte-plaintext { width:100%; line-height:24px; float:left; margin-top:6px; margin-bottom:10px; }
 .jqte-plaintext li { line-height:24px; }
+.jqte-plaintext ul, .jqte-plaintext ol { margin-bottom:0px; }
 .jqte-plaintext b { font-weight:900; font-size:13px;}
 .jqte-plaintext a { color:#1abc9c; text-decoration:underline; }
 .jqte-plaintext a:hover { color:#16a085; }
