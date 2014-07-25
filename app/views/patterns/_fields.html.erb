@@ -175,13 +175,15 @@
 
     </div>
 
+<script>         
+    $(document).ready(function(){
+        $('textarea').autosize();   
+    });
+</script>
+
 <% content_for :scripts do %>
 
     <script>
-
-        $(document).ready(function(){
-            $('textarea').autosize();   
-        });
 
         $('#edit-background-text').click( function () {
             $('#bkg-display').hide();
