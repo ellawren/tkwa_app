@@ -175,70 +175,74 @@
 
     </div>
 
-<%= javascript_include_tag "jquery-te-1.4.0.min.js" -%>
-<%= stylesheet_link_tag "jquery-te-1.4.0" %>
-
- <script>
-            $("#pattern_notes").jqte({
-                center: false,
-                fsize: false,
-                format: false,
-                indent: false,
-                linktypes: ["Web URL", "Email", ""],
-                left: false,
-                outdent: false,
-                p: false,
-                right: false,
-                rule: false,
-                source: false,
-                sub: false,
-                sup: false
-            });
-    </script>
+<% content_for :scripts do %>
 
     <script>
 
-    $(document).ready(function(){
-        $('textarea').autosize();   
-    });
+        $(document).ready(function(){
+            $('textarea').autosize();   
+        });
 
-    $('#edit-background-text').click( function () {
-        $('#bkg-display').hide();
-        $('#bkg-edit').show();
-    });
+        $('#edit-background-text').click( function () {
+            $('#bkg-display').hide();
+            $('#bkg-edit').show();
+        });
 
-    $('.fileUpload').change( function () {
-        fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
-        $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
-        $(this).parent(".image-upload").children(".pattern-caption").show();
-        $(this).hide();
-    });
+        $('.fileUpload').change( function () {
+            fileName = $(this).children(".upload").val().replace("C:\\fakepath\\", '');
+            $(this).parent(".image-upload").children(".uploadFile").show().val(fileName);
+            $(this).parent(".image-upload").children(".pattern-caption").show();
+            $(this).hide();
+        });
 
-    $('#pattern_delete_diagram').live('change', function(){
-        if($(this).is(':checked')){
-            $('img.solution-diagram').hide();
-            $('.change-diagram').hide();
-            $('.pattern-caption.diagram-caption').val("").hide();
-        } else {
-            location.reload();
-        }
-    });
-    $('#pattern_delete_photo').live('change', function(){
-        if($(this).is(':checked')){
-            $('img.key-photo').hide();
-            $('.change-photo').hide();
-            $('.pattern-caption.photo-caption').val("").hide();
-        } else {
-            location.reload();
-        }
-    });
-     $(".pattern_image_delete_photo input[type='checkbox']").live('change', function(){
-        if($(this).is(':checked')){
-            $(this).parent().parent(".image-upload").children(".key-photo").hide();
-            $(this).parent().parent(".image-upload").children(".change-photo").hide();
-            $('.pattern-caption.background-caption').val("").hide();
-        } else {
-            location.reload();
-        }
-    });
+        $('#pattern_delete_diagram').live('change', function(){
+            if($(this).is(':checked')){
+                $('img.solution-diagram').hide();
+                $('.change-diagram').hide();
+                $('.pattern-caption.diagram-caption').val("").hide();
+            } else {
+                location.reload();
+            }
+        });
+        $('#pattern_delete_photo').live('change', function(){
+            if($(this).is(':checked')){
+                $('img.key-photo').hide();
+                $('.change-photo').hide();
+                $('.pattern-caption.photo-caption').val("").hide();
+            } else {
+                location.reload();
+            }
+        });
+         $(".pattern_image_delete_photo input[type='checkbox']").live('change', function(){
+            if($(this).is(':checked')){
+                $(this).parent().parent(".image-upload").children(".key-photo").hide();
+                $(this).parent().parent(".image-upload").children(".change-photo").hide();
+                $('.pattern-caption.background-caption').val("").hide();
+            } else {
+                location.reload();
+            }
+        });
     </script>
+
+    <%= javascript_include_tag "jquery-te-1.4.0.min.js" -%>
+    <%= stylesheet_link_tag "jquery-te-1.4.0" %>
+
+    <script>
+        $("#pattern_notes").jqte({
+            center: false,
+            fsize: false,
+            format: false,
+            indent: false,
+            linktypes: ["Web URL", "Email", ""],
+            left: false,
+            outdent: false,
+            p: false,
+            right: false,
+            rule: false,
+            source: false,
+            sub: false,
+            sup: false
+        });
+    </script>
+
+<% end %>

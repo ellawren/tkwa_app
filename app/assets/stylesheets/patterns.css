@@ -129,6 +129,7 @@ img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; bo
 #bkg-edit { display:none; }
 #bkg-display { padding-top:0px; }
 #bkg-display .btn { margin-top:6px; }
+#bkg-edit .btn { margin-top:10px; }
 
 .jqte-plaintext { width:100%; line-height:24px; float:left; margin-top:6px; margin-bottom:10px; }
 .jqte-plaintext li { line-height:24px; }
