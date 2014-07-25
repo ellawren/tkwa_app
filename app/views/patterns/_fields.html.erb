@@ -123,9 +123,11 @@
                 <button class="btn btn-primary">save changes</button>
             </div>
             <div class="input-row" id="bkg-display">
-                <div class="jqte-plaintext">
-                    <%= @pattern.notes.html_safe unless @pattern.notes.blank? %>
-                </div>
+                <% unless @pattern.notes.blank? %>
+                    <div class="jqte-plaintext">
+                        <%= @pattern.notes.html_safe %>
+                    </div>
+                <% end %>
                 <div class="btn" id="edit-background-text">edit background text</div>
             </div>
 

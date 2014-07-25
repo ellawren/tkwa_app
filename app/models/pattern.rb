@@ -47,6 +47,12 @@ class Pattern < ActiveRecord::Base
     scope :next, lambda {|id| where("id > ?", id).order("id ASC") }
     scope :previous, lambda {|id| where("id < ?", id).order("id DESC") }
 
+    before_save do
+        if self.notes
+            self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/^<br>/, '') # get rid of extra line breaks
+        end
+    end
+
     def next
         #Pattern.next(self.number).first
         Pattern.next(self.id).first
