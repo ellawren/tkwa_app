@@ -28,6 +28,12 @@
         </div>
 
         <div class="narrow">
+            <% if params[:action] == "edit" && @pattern.project_id.blank? %>
+                <div class="input-row">
+                    <%= f.label(:project_id, "Project", class: "input-label") %>
+                    <%= f.collection_select(:project_id, Project.current_and_potential, :id, :name, { :include_blank => true, :selected => params[:p] }, { :class => "pattern-group chzn-select custom-select" } ) %>
+                </div>
+            <% end %>
             <div class="input-row">
                 <%= f.label(:pattern_group_id, "Pattern Group", class: "input-label") %>
                 <%= f.collection_select(:pattern_group_id, PatternGroup.all, :id, :display_name, { :include_blank => true }, { :class => "pattern-group chzn-select custom-select" } ) %>
@@ -245,7 +251,8 @@
             source: false,
             strike: false,
             sub: false,
-            sup: false
+            sup: false,
+            u: false
         });
     </script>
 

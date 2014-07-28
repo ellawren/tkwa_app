@@ -135,6 +135,8 @@ img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; bo
 .jqte-plaintext li { line-height:24px; }
 .jqte-plaintext ul, .jqte-plaintext ol { margin-bottom:0px; }
 .jqte-plaintext b { font-weight:900; font-size:13px;}
-.jqte-plaintext a { color:#1abc9c; text-decoration:underline; }
-.jqte-plaintext a:hover { color:#16a085; }
+.jqte-plaintext a { color:#0ba0d4; text-decoration:underline; }
+.jqte-plaintext a:hover { color:#2984b6; }
+
+.jqte_editor a { color:#0ba0d4; }
 

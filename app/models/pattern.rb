@@ -64,25 +64,30 @@ class Pattern < ActiveRecord::Base
     end
     #------------------------------------
 
+    def project_name
+        if self.project_id
+            Project.find(self.project_id).name
+        end
+    end
+
+    def pattern_title
+        string = ""
+        if self.number
+            string << "#{self.number}. "
+        end
+        if self.name
+            string << self.name
+        end
+        if self.project_name
+            string << " | #{self.project_name}"
+        end
+        string
+
+    end
+
     scope :by_project, {
         :select => "patterns.*",
         :order => ["project_id DESC, number ASC" ]
-    }
-
-    private
-        # this is for the notes section - prevent unauthorized html
-        def sanitize_notes
-          self.notes = sanitize_text_editor(self.notes)
-        end
-        def sanitize_text_editor(field)
-          # uses sanitize gem
-          Sanitize.clean(field, 
-                    :elements => ['b', 'i', 'br', 'ol', 'ul', 'li', 'u', 'a'],
-                    :attributes => {'a' => ['href']},
-                    :protocols => {
-                       'a' => {'href' => ['http', 'https', 'mailto']}
-                    }
-                )
-        end
+    }        
 
 end

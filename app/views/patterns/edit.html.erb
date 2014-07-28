@@ -1,6 +1,6 @@
-<% provide :title, @pattern.name %>
+<% provide :title, @pattern.pattern_title %>
 <% if @pattern.project_id.present? %>
-    <%= link_to Project.find(@pattern.project_id).name, "/patterns/by_project/#{@pattern.project_id}", class: "header-label" %>
+    <%= link_to @pattern.project_name, "/patterns/by_project/#{@pattern.project_id}", class: "header-label" %>
 <% end %>
 <%= form_for(@pattern, :html => { :multipart => true }) do |f| %>
     <div class="page-header pattern-header">
