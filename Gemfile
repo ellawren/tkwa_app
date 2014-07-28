@@ -14,6 +14,7 @@ gem 'simple_calendar', '~> 0.1.9'
 gem 'newrelic_rpm'
 gem 'nilify_blanks' # to prevent blank contact names, which messes up search results ordering
 gem 'sanitize' # used to sanitize notes fields on contacts page
+gem 'unicorn' # webserver
 
 group :production do
   gem 'rails_12factor' # prevent Heroku auto-injecting plugins, which causes deprecation error
@@ -57,8 +58,6 @@ gem 'will_paginate', '3.0.3'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-# Use unicorn as the web server
-# gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
