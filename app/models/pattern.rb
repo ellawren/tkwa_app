@@ -50,7 +50,7 @@ class Pattern < ActiveRecord::Base
     before_save do
         if self.notes
             sanitize_notes
-            self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/<\/ul>(\s)*<br><br>/, '</ul><br>').gsub(/<\/ol>(\s)*<br><br>/, '</ol><br>').gsub(/^\s*(<br>)*/, '')  # get rid of extra line breaks
+            self.notes = self.notes.gsub(/^\s*(<br>)*/, '')  # get rid of extra line breaks
         end
     end
 
