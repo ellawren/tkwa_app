@@ -87,8 +87,3 @@ class Pattern < ActiveRecord::Base
         end
 
 end
-
-<div class="jqte-plaintext">
-                        See remediation report.
-                    </div>
-
