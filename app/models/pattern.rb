@@ -49,7 +49,7 @@ class Pattern < ActiveRecord::Base
 
     before_save do
         if self.notes
-            self.notes = self.notes.gsub(/^<br>/, '').gsub(/(<br>){3,}/, '<br><br>').gsub(/<\/ul><br><br>/, '</ul><br>').gsub(/<\/ol><br><br>/, '</ol><br>')   # get rid of extra line breaks
+            self.notes = self.notes.gsub(/^<br>/, '').gsub(/(<br>){3,}/, '<br><br>').gsub(/<\/ul><br><br>/, '</ul><br>').gsub(/<\/ol><br><br>/, '</ol><br>').gsub(/<p[^>]*style=.*?>/, '<p>').gsub(/<span[^>]*style=.*?>/, '<span>')   # get rid of extra line breaks
         end 
     end
 
