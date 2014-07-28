@@ -125,7 +125,7 @@
             <div class="input-row" id="bkg-display">
                 <% if @pattern.notes.length > 0 %>
                     <div class="jqte-plaintext">
-                        <%= @pattern.notes.html_safe %>
+                        <%= sanitize @pattern.notes.html_safe %>
                     </div>
                 <% end %>
                 <div class="btn" id="edit-background-text">edit background text</div>
@@ -232,6 +232,7 @@
     <script>
         $("#pattern_notes").jqte({
             center: false,
+            color: false,
             fsize: false,
             format: false,
             indent: false,
@@ -242,6 +243,7 @@
             right: false,
             rule: false,
             source: false,
+            strike: false,
             sub: false,
             sup: false
         });

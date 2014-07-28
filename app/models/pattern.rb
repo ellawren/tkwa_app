@@ -49,7 +49,8 @@ class Pattern < ActiveRecord::Base
 
     before_save do
         if self.notes
-            self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/<\/ul>(\s)*<br><br>/, '</ul><br>').gsub(/<\/ol>(\s)*<br><br>/, '</ol><br>').gsub(/\A<br>/, '').gsub(/\z<br>/, '')  # get rid of extra line breaks
+            sanitize_notes
+            self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/<\/ul>(\s)*<br><br>/, '</ul><br>').gsub(/<\/ol>(\s)*<br><br>/, '</ol><br>').gsub(/^\s*(<br>)*/, '')  # get rid of extra line breaks
         end
     end
 
@@ -68,5 +69,21 @@ class Pattern < ActiveRecord::Base
         :select => "patterns.*",
         :order => ["project_id DESC, number ASC" ]
     }
+
+    private
+        # this is for the notes section - prevent unauthorized html
+        def sanitize_notes
+          self.notes = sanitize_text_editor(self.notes)
+        end
+        def sanitize_text_editor(field)
+          # uses sanitize gem
+          Sanitize.clean(field, 
+                    :elements => ['b', 'i', 'br', 'ol', 'ul', 'li', 'u', 'a'],
+                    :attributes => {'a' => ['href']},
+                    :protocols => {
+                       'a' => {'href' => ['http', 'https', 'mailto']}
+                    }
+                )
+        end
 
 end
