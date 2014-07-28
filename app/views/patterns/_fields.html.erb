@@ -123,7 +123,7 @@
                 <button class="btn btn-primary">save changes</button>
             </div>
             <div class="input-row" id="bkg-display">
-                <% unless @pattern.notes.blank? %>
+                <% if @pattern.notes.length > 0 %>
                     <div class="jqte-plaintext">
                         <%= @pattern.notes.html_safe %>
                     </div>
