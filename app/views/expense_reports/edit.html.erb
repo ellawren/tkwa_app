@@ -3,7 +3,7 @@
 
 <div class="PrintArea">
 	<div class="page-header">
-	    <h1><%= @user.name %> <span class="light"><% if @expense_report.printed == false %>Created <%= @expense_report.created_at.strftime("%B %-d, %Y") %><% else %>Printed <%= @expense_report.date_printed.strftime("%B %-d, %Y") %><% end %></span></h1>
+	    <h1><%= @user.name %> <span class="light" id="header-span"><% if @expense_report.printed == false %>Created <%= @expense_report.created_at.strftime("%B %-d, %Y") %><% else %>Printed <%= @expense_report.date_printed.strftime("%B %-d, %Y") %><% end %></span></h1>
 	</div>
 
 	<%= form_for @expense_report do |f| %>
@@ -22,6 +22,7 @@
 
 <script>
 $("#print_button").click(function(){
+	$("#header-span").html("Printed <%= Date.today.strftime('%B %-d, %Y') %>");
 	$("#expense_report_printed").prop('checked', true);
 	$("#expense_report_date_printed").val("<%= Date.today %>");
 	window.print();
