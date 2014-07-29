@@ -879,12 +879,14 @@
 	table.expense-reports tr.total-row:hover { background:transparent; }
 	table.expense-reports td.total { width:100px; padding:16px 16px 0 0; text-align:right; font-weight:900; }
 	table.expense-reports-index {  width:100%; float:left; margin:30px 0; }
+	table.expense-reports-index a.green {  width:100%; height:100%; display:block; }
 	table.expense-reports-index tr:hover { background-color:#f4f6f9; }
 	table.expense-reports-index td { margin:3px 0; border-bottom:1px solid #bcc6cc; padding-top:12px; }
 	table.expense-reports-index th { border-bottom: 2px solid #2c3445; font-size:12px; padding-bottom:2px; }
 	table.expense-reports-index .delete { margin:0 0 0 0; float:right; }
 	table.expense-reports-index tr.gray { color:#ced5da; }
-	table.expense-reports-index tr.gray a.green { color:#ced5da; }
+	table.expense-reports-index tr.gray a.green { color:#bcc6cc; }
+	table.expense-reports-index tr.gray a.green:hover { color:#9ba6ac; }
 	.save-btn.expense-report { margin-top:5px; background-color:#0ba0d4; }
 	.save-btn.expense-report:hover { opacity:.8; background-color:#0ba0d4; }
 	.save-btn.expense-report.printed { background-color:#e1e6eb; }

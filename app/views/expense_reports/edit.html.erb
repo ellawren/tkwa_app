@@ -3,7 +3,7 @@
 
 <div class="PrintArea">
 	<div class="page-header">
-	    <h1><%= @user.name %> <span class="light"><%= @expense_report.created_at.strftime("%B %-d, %Y") %></span></h1>
+	    <h1><%= @user.name %> <span class="light"><% if @expense_report.printed == false %>Created <%= @expense_report.created_at.strftime("%B %-d, %Y") %><% else %>Printed <%= @expense_report.date_printed.strftime("%B %-d, %Y") %><% end %></span></h1>
 	</div>
 
 	<%= form_for @expense_report do |f| %>
