@@ -135,21 +135,21 @@
 		<div class="full">
 			<div class="tracking-summary">
 				<div class="circle billing">
-					<div class="text">TKWA Fee<br>(from contract)</div>
+					<div class="text">Actual Fee<br>(from contract)</div>
 					<div class="number"><%= number_to_currency(@project.tkwa_fee, :precision => 0) %></div>
 				</div>
 				<div class="circle target">
-					<div class="text"><br>Target Fee</div>
+					<div class="text">Fee Based on<br>Target Hours</div>
 					<div class="number"><%= number_to_currency(@project.total_target_fees_all, :precision => 0) %></div>
 				</div>
 				<div class="minus"></div>
 				<div class="circle">
-					<div class="text"><br>Actual Fee</div>
+					<div class="text">Fee Expended<br>To Date</div>
 					<div class="number"><%= number_to_currency(@project.total_actual_fees_all, :precision => 0) %></div>
 				</div>
 				<div class="equals"></div>
 				<div class="circle <%= is_over?(@project.total_target_fees_all, @project.total_actual_fees_all) %>">
-					<div class="text"><br>Remainder</div>
+					<div class="text"><br>Fee Remaining</div>
 					<div class="number"><%= remaining_currency(@project.total_target_fees_all, @project.total_actual_fees_all) %></div>
 				</div>
 				<div class="circle billing">
