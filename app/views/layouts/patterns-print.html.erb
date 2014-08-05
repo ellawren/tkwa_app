@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><%= yield(:title) %></title>
+		<%= render 'layouts/header' %>
+  		<%= csrf_meta_tags %>
+	</head>
+	
+	<body>
+		<div class="print-header">
+			<div class="container">
+			    <ul class="options">
+			        <li class="disabled">print options:</li>
+			        <li>8.5x11 (text only)</li>
+			        <li>8.5x11 (individual pages)</li>
+			        <li>11x17 (text only)</li>
+			        <li>slides</li>
+			    </ul>
+			    <ul class="glyphs">
+			    	<li id="print" class="glyphicon glyphicon-print"></li>
+			    	<li id="pdf" class="glyphicon glyphicon-floppy-save"></li>
+			    </ul>
+			</div>
+		</div>
+        <!-- main content -->
+        <div class="container">
+          <%= content_for?(:content) ? yield(:content) : yield %>
+    	</div> <!-- end container -->
+      
+    </body>  
+</html>  
+
+<script>
+$('#print').click(function(){
+     window.print();
+});
+
+$('#pdf').click(function(){
+     window.location.href = window.location.href + ".pdf"
+});
+
+</script>

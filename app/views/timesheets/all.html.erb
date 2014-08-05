@@ -16,8 +16,8 @@
 	<thead>
 		<tr>
 			<th class="left">Name</th>
-			<th>Week</th>
-			<th class="left dates">Dates</th>
+			<th class="left">Week</th>
+			<th>Exp. Reports</th>
 			<th class="line-left line-top line-right">Total Hours</th>
 			<th class="left link">Status</th>
 			<th class="check"></th>
@@ -31,8 +31,8 @@
 				<tr>
 
 					<td class="left"><%= link_to user.name, user_index_timesheets_path(t.user_id, t.year), class: "green" %></td>
-					<td><%= link_to t.week, user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
-					<td class="left dates"><%= link_to parse_date_full(t.week, t.year), user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
+					<td class="left"><%= link_to "#{t.week} / #{parse_date_full(t.week, t.year)}", user_timesheet_path(t.user_id, t.year, t.week), class: "green" %></td>
+					<td><%= link_to "View", user_expense_reports_path(t.user_id), class: "green" %></td>
 					<td class="bold line-left line-right line-bottom"><%= precise(nonzero?(t.timesheet_total)) %></td>
 	  				<td class="link">
 						<%= form_for(t) do |f| %>

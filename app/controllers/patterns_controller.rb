@@ -31,6 +31,18 @@ class PatternsController < ApplicationController
 		@patterns = Pattern.where(:project_id => params[:id]).order(:number)
 	end
 
+	def print
+		@project = Project.find(params[:id])
+		@patterns = Pattern.where(:project_id => params[:id]).order(:number)
+
+    	respond_to do |format|
+	      	format.html { render :layout => 'patterns-print' }
+	      	format.pdf do
+	        	render :pdf => "report", :layout => 'pdf.html.erb' 
+	      	end
+	    end
+	end
+
 	def import
     end
 

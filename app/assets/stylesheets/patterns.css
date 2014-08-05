@@ -125,6 +125,37 @@ h1 .pattern-number:focus, h1 .pattern-name:focus { background-color:#f4f6f9; }
 img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; border:1px solid #7f8b93; }
 
 
+
+
+
+/* Print Letter */
+
+.print-header { position:fixed; top:0px; width:100%; height:50px; background-color:#2984b6; color:#fff; z-index:1000; box-shadow:0px 3px 8px #aaa;}
+.print-header .container { margin:0px auto; width:940px; }
+.print-header ul.options { float:left; width:820px; margin:10px auto 0; }
+.print-header ul.options li { float:left; list-style:none; margin:0 4px 0 0; padding:5px 15px; background-color:#0ba0d4; }
+.print-header ul.options li:hover { background-color:#fff; color:#2984b6; cursor:pointer; }
+.print-header ul.options li.disabled, .print-header ul li.disabled:hover { background-color:transparent; color:#fff; padding-left:0px; }
+
+.print-header ul.glyphs { float:right; width:120px; margin:12px auto 0; font-size:28px; }
+.print-header ul.glyphs li { float:right; margin:0 0 0 12px; color:#0ba0d4; }
+.print-header ul.glyphs li.glyphicon-floppy-save { padding-top:2px; }
+.print-header ul.glyphs li:hover { color:#fff; cursor:pointer; }
+
+ul#pattern-tiles.print-letter li { float:left; width:800px; height:auto; padding:0px; margin:0 0 30px 0; border:none; page-break-inside: avoid; }
+
+ul#pattern-tiles.print-letter li .title { float:left; width:720px; height:auto; margin:10px 0; color:#344953; font-size:22px; font-weight:900; }
+
+ul#pattern-tiles.print-letter li .issue, ul#pattern-tiles.print-letter li .solution { width:100%; margin-right:0px; margin-left:80px; }
+ul#pattern-tiles.print-letter li .issue:before, ul#pattern-tiles.print-letter li .solution:before { float:left; display:block; width:auto; height:18px; margin:1px 0 0 -80px; padding-right:10px; border-bottom:none; font-size:10px; font-weight:900; text-transform:uppercase; }
+
+@media print {
+	.print-header { display:none; }
+}
+
+
+
+
 /* JQTE Plaintext */
 #bkg-edit { display:none; }
 #bkg-display { padding-top:0px; }

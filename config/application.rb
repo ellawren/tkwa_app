@@ -53,6 +53,7 @@ module TkwaApp
 
     config.assets.initialize_on_precompile = false
 
+
     # Enable the asset pipeline
     config.assets.enabled = true
     config.assets.paths << "#{Rails.root}/public/javascripts/google_visualization_api"
