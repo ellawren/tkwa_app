@@ -143,7 +143,7 @@ module TimesheetsHelper
   end
 
   def first_entry(project, timesheet)
-    TimeEntry.find_by_project_id_and_timesheet_id(project, timesheet)
+    TimeEntry.where(project_id: project, timesheet_id: timesheet).first
   end
 
   def is_first?(object)

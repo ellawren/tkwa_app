@@ -99,7 +99,7 @@ module ProjectsHelper
           task_array(entries).each do |task| 
               array = []
               sum = 0
-              TimeEntry.find_all_by_task(task).each do |t| 
+              TimeEntry.where(task: task).each do |t| 
                   array.push(t.entry_total)
               end
               array.map{|x| sum += x}

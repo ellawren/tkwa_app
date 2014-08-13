@@ -45,7 +45,7 @@ module SessionsHelper
 
     def user_from_remember_token
       remember_token = cookies[:remember_token]
-      User.find_by_remember_token(remember_token) unless remember_token.nil?
+      User.where(remember_token: remember_token).first unless remember_token.nil?
     end
     
     def clear_return_to

@@ -28,7 +28,7 @@ class PlanEntry < ActiveRecord::Base
 
     after_initialize do
     	if self.employee_team_id.nil?
-    		e = EmployeeTeam.find_by_project_id_and_user_id(self.project_id, self.user_id)
+    		e = EmployeeTeam.where(project_id: self.project_id, user_id: self.user_id).first
     		self.employee_team_id = e.id
     	else
     		self.project_id ||= EmployeeTeam.find(self.employee_team_id).project_id

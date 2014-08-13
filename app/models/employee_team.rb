@@ -44,7 +44,7 @@ class EmployeeTeam < ActiveRecord::Base
 
     before_save do
         if self.rate.nil?
-            self.rate = DataRecord.find_by_user_id_and_year(self.user_id, this_year).billable_rate || 110
+            self.rate = DataRecord.where(user_id: self.user_id, year: this_year).first.billable_rate || 110
         end
     end
 

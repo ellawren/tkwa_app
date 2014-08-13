@@ -47,7 +47,7 @@ class ExpenseItem < ActiveRecord::Base
   	end
     
     def per_mile
-        Global.find_by_year(2014).mileage
+        Global.where(year: 2014).first.mileage
     end
 
   	def mileage_comp

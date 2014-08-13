@@ -138,7 +138,7 @@ class Contact < ActiveRecord::Base
 
     def category
         unless self.cat_number.blank?
-            Category.find_by_number(self.cat_number).name
+            Category.where(number: self.cat_number).first.name
         end
     end
 

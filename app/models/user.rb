@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
     def employee_forecast(project_id, four_month_array)
         entries = []
         four_month_array.each do |w, y|
-            entries.push(PlanEntry.current.find_or_create_by_project_id_and_user_id_and_year_and_week(project_id, self.id, y, w))
+            entries.push(PlanEntry.current.where(project_id: project_id, user_id: self.id, year: y, week: w).first_or_create)
         end
         entries
     end
@@ -147,7 +147,7 @@ class User < ActiveRecord::Base
     def available_hours(four_month_array)
         available = []
         four_month_array.each do |w, y|
-            available.push(AvailableHour.find_or_create_by_user_id_and_year_and_week(self.id, y, w))
+            available.push(AvailableHour.where(user_id: self.id, year: y, week: w).first_or_create)
         end
         available
     end
@@ -155,13 +155,13 @@ class User < ActiveRecord::Base
     def non_billable(four_month_array)
         nb = []
         four_month_array.each do |w, y|
-            nb.push(NonBillableHour.find_or_create_by_user_id_and_year_and_week(self.id, y, w))
+            nb.push(NonBillableHour.where(user_id: self.id, year: y, week: w).first_or_create)
         end
         nb
     end
 
     def remaining_hours(w,y)
-        AvailableHour.find_or_create_by_user_id_and_week_and_year(self.id, w, y).hours - self.forecast_total(w, y)
+        AvailableHour.where(user_id: self.id, week: w, year: y).first_or_create.hours - self.forecast_total(w, y)
     end
 
     def self.all_remaining_hours(w,y)

@@ -30,7 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% d = DataRecord.find_by_year_and_user_id(y, @user.id) %>
+			<% d = DataRecord.where(year: y, user_id: @user.id).first %>
 			<tr>
 				<td>
 					<div class="user-name">

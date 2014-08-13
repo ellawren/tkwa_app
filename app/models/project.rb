@@ -232,7 +232,7 @@ class Project < ActiveRecord::Base
     def available_phases
         available_phases = []
         self.phase_ids.each do |t|
-          available_phases.push(Phase.find_by_id(t))
+          available_phases.push(Phase.find(t))
         end
         available_phases.sort_by{|e| e[:number]}
     end
@@ -381,7 +381,7 @@ class Project < ActiveRecord::Base
     end
 
     def total_actual_hours_all
-        time_entries = TimeEntry.find_all_by_project_id(id)
+        time_entries = TimeEntry.where(project_id: id)
         array = []
         sum = 0
         time_entries.each do |t| 

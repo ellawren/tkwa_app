@@ -101,7 +101,7 @@
   <h2>My Projects</h2>
   	<ul class="project-list">
         <% @user.employee_teams.current.each do |team| %>
-        <li><%= link_to Project.find_by_id(team.project_id).name, info_project_path(Project.find_by_id(team.project_id)) %></li>
+        <li><%= link_to Project.where(id: team.project_id).first.name, info_project_path(Project.where(id: team.project_id).first) %></li>
         <% end %>
      </ul>
 <% end %>
