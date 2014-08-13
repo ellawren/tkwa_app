@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
 
     def fee_calc
         @project = Project.find(params[:id])
-        @team_members = EmployeeTeam.find_all_by_project_id(@project.id)
+        @team_members = EmployeeTeam.where(project_id: @project.id)
         @phases = @project.available_phases
     end
 

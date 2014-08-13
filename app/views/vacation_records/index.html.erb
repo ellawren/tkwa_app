@@ -27,7 +27,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% vacation = VacationRecord.active_users.find_all_by_year(y).sort {|a,b| a.user_name <=> b.user_name} %>
+				<% vacation = VacationRecord.active_users.where(year: y).sort {|a,b| a.user_name <=> b.user_name} %>
 				<% vacation.each do |d| %>
 					<tr>
 						<td>

@@ -27,7 +27,7 @@ class ConsultantTeam < ActiveRecord::Base
     end
 
     def consultant_bills_total
-        bills = Bill.find_all_by_consultant_team_id(self.id)
+        bills = Bill.where(consultant_team_id: self.id)
         array = []
         sum = 0
         bills.each do |t| 

@@ -87,7 +87,7 @@ class Timesheet < ActiveRecord::Base
     
     # HOLIDAYS
     def holidays
-        Holiday.find_all_by_year_and_week(self.year, self.week)
+        Holiday.where(year: self.year, week: self.week)
     end
 
     def holiday_hours

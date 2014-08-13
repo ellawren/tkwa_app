@@ -2,7 +2,7 @@ class ConsultantTeamsController < ApplicationController
  
   	def show
   		@consultant_team = ConsultantTeam.find(params[:id].to_i)
-        @bills = Bill.find_all_by_consultant_team_id(@consultant_team_id)
+        @bills = Bill.where(consultant_team_id: @consultant_team_id)
         1.times { @consultant_team.bills.build }
         render :layout => 'modal' 
     end

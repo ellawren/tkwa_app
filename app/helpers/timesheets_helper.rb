@@ -139,7 +139,7 @@ module TimesheetsHelper
   end
 
   def all_entries(project, timesheet)
-    TimeEntry.find_all_by_project_id_and_timesheet_id(project, timesheet)
+    TimeEntry.where(project_id: project, timesheet_id: timesheet)
   end
 
   def first_entry(project, timesheet)

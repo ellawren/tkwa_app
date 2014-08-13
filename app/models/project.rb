@@ -312,10 +312,10 @@ class Project < ActiveRecord::Base
         bill_array = []
         sum = 0
         #find all consultant teams associated with current project
-        teams = ConsultantTeam.find_all_by_project_id(self.id)
+        teams = ConsultantTeam.where(project_id: self.id)
         #for each consultant team, create array of bills and add to master array
         teams.each do |t| 
-            bills = Bill.find_all_by_consultant_team_id(t.id)
+            bills = Bill.where(consultant_team_id: t.id)
             bills.each do |b|
                 bill_array.push(b.amount)
             end

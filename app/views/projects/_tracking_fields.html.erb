@@ -22,13 +22,13 @@
 			      if actual_hours == 0
 			        act = "<div class='input-spacer act'></div>"
 			      else
-			        time_entries = TimeEntry.find_all_by_project_id_and_user_id_and_phase_number(f.project_id, f.user_id, phase.number)
+			        time_entries = TimeEntry.where(project_id: f.project_id, user_id: f.user_id, phase_number: phase.number)
 
 			        str = []
 			            task_array(time_entries).each do |task| 
 			                array = []
 			                sum = 0
-			                TimeEntry.find_all_by_project_id_and_user_id_and_phase_number_and_task(f.project_id, f.user_id, phase.number, task).each do |t| 
+			                TimeEntry.where(project_id: .project_id, user_id: f.user_id, phase_number: phase.number, task: task).each do |t| 
 			                    array.push(t.entry_total)
 			                end
 			                array.map{|x| sum += x}

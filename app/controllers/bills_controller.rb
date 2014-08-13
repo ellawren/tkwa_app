@@ -3,7 +3,7 @@ class BillsController < ApplicationController
     def index
         @bill = Bill.new
         @team_id = params[:consultant_team_id].to_i
-        @bills = Bill.find_all_by_consultant_team_id(@team_id)
+        @bills = Bill.where(consultant_team_id: @team_id)
         @consultant_team = ConsultantTeam.find(@team_id)
         @project = Project.find(@consultant_team.project_id)
         render :layout => 'modal' 

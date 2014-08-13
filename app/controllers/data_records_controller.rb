@@ -4,7 +4,7 @@ class DataRecordsController < ApplicationController
         @users = User.all
         # make sure there is at least one data record for each user
         @users.each do |u|
-            if DataRecord.find_all_by_year_and_user_id(Date.today.cwyear, u.id).count == 0
+            if DataRecord.where(year: Date.today.cwyear, user_id: u.id).count == 0
                 DataRecord.create( :user_id => u.id, :year => Date.today.cwyear, :start_week => 1, :end_week => Date.new(Date.today.cwyear, 12, 28).cweek )
             end
         end

@@ -4,7 +4,7 @@ class VacationRecordsController < ApplicationController
         @users = User.all
         # make sure there is at least one data record for each user
         @users.each do |u|
-            if VacationRecord.find_all_by_year_and_user_id(Date.today.cwyear, u.id).count == 0
+            if VacationRecord.where(year: Date.today.cwyear, user_id: u.id).count == 0
                 VacationRecord.create( :user_id => u.id, :year => Date.today.cwyear )
             end
         end
@@ -13,7 +13,7 @@ class VacationRecordsController < ApplicationController
 
     def user_index
         @user = User.find(params[:user_id])
-        @vacation_records = VacationRecord.find_all_by_user_id(params[:user_id])
+        @vacation_records = VacationRecord.where(user_id: params[:user_id])
     end
 
     def new

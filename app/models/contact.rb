@@ -145,7 +145,7 @@ class Contact < ActiveRecord::Base
     def associated_projects
         arr = []
         if name.present?
-            Project.find_all_by_billing_name(name).each do |p|
+            Project.where(billing_name: name).each do |p|
                 arr.push(p)
             end
         end

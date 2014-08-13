@@ -24,7 +24,7 @@ class TimesheetsController < ApplicationController
     def user_index
         @user = User.find(params[:id])
         @year = params[:year].to_i 
-        @timesheets = Timesheet.find_all_by_user_id_and_year(@user.id, @year)
+        @timesheets = Timesheet.where(user_id: @user.id, year: @year)
         if @year == Date.today.cwyear
             @week = Date.today.cweek
         elsif @year < Date.today.cwyear

@@ -24,7 +24,7 @@ module ProjectsHelper
   	end
 
     def all_hours(id, phase)
-        array = Array.new(TimeEntry.find_all_by_project_id_and_phase_number(id, phase.number))
+        array = Array.new(TimeEntry.where(project_id: id, phase_number: phase.number))
     end
 
     def floor_to(x)
