@@ -143,17 +143,35 @@ img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; bo
 .print-header ul.glyphs li:hover { color:#fff; cursor:pointer; }
 
 ul#pattern-tiles.print-letter li { float:left; width:800px; height:auto; padding:0px; margin:0 0 30px 0; border:none; page-break-inside: avoid; }
-
 ul#pattern-tiles.print-letter li .title { float:left; width:720px; height:auto; margin:10px 0; color:#344953; font-size:22px; font-weight:900; }
-
 ul#pattern-tiles.print-letter li .issue, ul#pattern-tiles.print-letter li .solution { width:100%; margin-right:0px; margin-left:80px; }
 ul#pattern-tiles.print-letter li .issue:before, ul#pattern-tiles.print-letter li .solution:before { float:left; display:block; width:auto; height:18px; margin:1px 0 0 -80px; padding-right:10px; border-bottom:none; font-size:10px; font-weight:900; text-transform:uppercase; }
+
+ul#pattern-tiles.print-tabloid { width:2000px; }
+ul#pattern-tiles.print-tabloid .column { float:left; height:900px; }
+ul#pattern-tiles.print-tabloid li { float:left; width:360px; height:auto; padding:0px; margin:0px; border:none; page-break-inside: avoid; }
+ul#pattern-tiles.print-tabloid li .header { float:left; width:100%; height:auto; margin:0 0 6px 0; color:#344953; font-size:16px; font-weight:900; }
+ul#pattern-tiles.print-tabloid li .header .number { font-size:16px; float:left; padding:0px; margin:0 5px 0 0; }
+ul#pattern-tiles.print-tabloid li .header .title { float:left; }
 
 @media print {
 	.print-header { display:none; }
 }
 
+.tabloid-layout { float:left; width:1500px; height:800px; overflow:hidden; background-color:#f1f1f1 !important;}
+.column { float:left; width:335px; margin-right:40px; height:800px; background-color:#ccc !important; }
+.block { float:left; width:335px; padding-bottom:10px; background-color:#ccc !important; }
 
+.tabloid-columns { 
+	float:left; width:1400px;
+	background-color:#f1f1f1; 
+	-webkit-column-count: 4; /* Chrome, Safari, Opera */
+    -moz-column-count: 4; /* Firefox */
+    column-count: 4;
+    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 40px; /* Firefox */
+    column-gap: 40px;
+    }
 
 
 /* JQTE Plaintext */

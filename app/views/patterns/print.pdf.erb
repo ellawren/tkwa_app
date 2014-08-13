@@ -6,26 +6,15 @@
 
     <% @patterns.each  do |p| %>
         <li class="pattern" >
-        <div class="view-fields">
-            <div class="header">
-                <div class="number"><%= p.number %> /</div>
-                <div class="title"><%= p.name %></div>
+            <div class="view-fields">
+                <div class="header">
+                    <div class="number"><%= p.number %> /</div>
+                    <div class="title"><%= p.name %></div>
+                </div>
+                <div class="issue"><%= simple_format p.issue %></div>
+                <div class="solution"><%= simple_format p.solution %></div>
             </div>
-            <div class="issue"><%= simple_format p.issue %></div>
-            <div class="solution"><%= simple_format p.solution %></div>
-            <div class="images">
-                <% if p.photo_file_name %>
-                    <div class="photo">
-                        <%= image_tag p.photo.url(:thumb), alt: p.photo_file_name %>
-                    </div>
-                <% end %>
-                <% if p.diagram_file_name %>
-                    <div class="diagram">
-                        <%= image_tag p.diagram.url(:thumb), alt: p.diagram_file_name %>
-                    </div>
-                <% end %>
-            </div>
-        </div>
+        </li>
     <% end %>
 
 </ul>

@@ -18,3 +18,14 @@ ul#pattern-tiles li .number { font-size:14px; }
 ul#pattern-tiles.print-letter li .title { font-weight:700; font-size:14px; }
 
 ul#pattern-tiles li .issue:before, ul#pattern-tiles li .solution:before { float:left; height:20px; padding-top:12px; }
+
+.tabloid-columns { 
+	float:left; width:1400px;
+	background-color:#f1f1f1; 
+	-webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 40px; /* Firefox */
+    column-gap: 40px;
+    }

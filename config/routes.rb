@@ -89,6 +89,8 @@ TkwaApp::Application.routes.draw do
     match '/patterns/by_project/',   to: 'patterns#by_project', as: 'all_patterns_by_project'
     match '/patterns/by_project/:id',   to: 'patterns#projects', as: 'patterns_by_project'
     match '/patterns/by_project/:id/print',   to: 'patterns#print', as: 'patterns_print'
+    match '/patterns/by_project/:id/print_tabloid',   to: 'patterns#print_tabloid', as: 'patterns_print_tabloid'
+    match '/patterns/by_project/:id/simple',   to: 'patterns#simple', as: 'patterns_simple'
     resources :patterns do
         resources :pattern_images
     end

@@ -1,0 +1,75 @@
+<div class="page-header">
+    <h1><%= @project.name %> Patterns</h1>
+</div>
+
+<div id="text"></div>
+
+
+<div class="tabloid-columns">
+
+    <!--<% count = 1 %>-->
+    
+        <% @patterns.each  do |p| %>
+            <!--<div class="block" id="block-<%= count %>">-->
+                <div class="header">
+                    <div class="number"><%= p.number %> /</div>
+                    <div class="title"><%= p.name %></div>
+                </div>
+                <div class="issue">Issue: <%= p.issue %></div>
+            <!--</div>
+            <% count = count + 1 %>
+            <div class="block" id="block-<%= count %>">-->
+                <div class="solution">Solution: <%= p.solution %></div>  
+            <!--</div>
+            <% count = count + 1 %>-->
+        <% end %>
+    
+</div>
+
+<script src="/assets/jquery-1.8.3.min.js?body=1" type="text/javascript"></script>
+<script>
+
+$( document ).ready(function() {
+    var maxCol = 800;
+    var arr = [];
+    var total = [];
+
+    // add blocks to total array in groups of less than 800px height
+    $( ".block" ).each( function( index, element ){
+        var sum = 0;
+        // sums the heights of all elements currently in arr
+        $.each( arr, function( index, value ){
+            sum += $(value).height() + 10;
+        });
+        
+        if ( sum + $(this).height() < 800) {
+            arr.push( "#" + $(this).attr("id") );
+        } else {
+            total.push(arr);
+            arr = [];
+            arr.push( "#" + $(this).attr("id") );
+        }
+        
+    });
+    //add last array to total
+    total.push(arr);
+    arr = [];
+
+    //add column classes to each block
+    $.each( total, function( key, value ) {
+        $.each( value, function( k, v ) {
+            $(v).addClass("col-" + key);
+        });
+    });
+    //wrap blocks in column divs
+    var i;
+    for (i = 0; i < total.length; ++i) {
+        $(".col-" + i).wrapAll("<div class='column' />");
+    }
+
+    //$("#text").html( total.length );
+    
+});
+
+</script>
+

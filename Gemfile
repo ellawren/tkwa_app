@@ -15,8 +15,10 @@ gem 'newrelic_rpm'
 gem 'nilify_blanks' # to prevent blank contact names, which messes up search results ordering
 gem 'sanitize' # used to sanitize notes fields on contacts page
 gem 'unicorn' # webserver
-gem 'wkhtmltopdf-binary' # pdf generation
-gem 'wicked_pdf' # pdf generation
+# gem 'wkhtmltopdf-binary' # pdf generation
+# gem 'wicked_pdf' # pdf generation
+gem 'prawn_rails' # pdf generation
+gem 'oink' # memory usage info - added 8/13/14, can remove when not using anymore
 
 group :production do
   gem 'rails_12factor' # prevent Heroku auto-injecting plugins, which causes deprecation error
