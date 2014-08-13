@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
     after_initialize do
         if self.employee.blank?
             # find or create the associated contact model
-            contact = Contact.find_or_create_by_name(self.name)
+            contact = Contact.where(name: self.name).first_or_create
                 contact.work_company = "The Kubala Washatko Architects, Inc."
                 contact.work_address = "W61 N617 Mequon Avenue\nCedarburg, WI 53012"
                 contact.work_phone = "(262) 377-6039"
@@ -56,11 +56,11 @@ class User < ActiveRecord::Base
     end
 
     after_create do
-        data_record = DataRecord.find_or_create_by_user_id_and_year(self.id, Date.today.cwyear)
+        data_record = DataRecord.where(user_id: self.id, year: Date.today.cwyear).first_or_create
     end
 
     def data_record
-        DataRecord.find_by_user_id_and_year(self.id, Date.today.cwyear)
+        DataRecord.where(user_id: self.id, year: Date.today.cwyear).first
     end
 
     # SCOPES

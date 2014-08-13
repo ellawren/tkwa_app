@@ -248,7 +248,7 @@ module ApplicationHelper
     end
 
     def current_employee
-        Employee.find_by_user_id(current_user.id)
+        Employee.where(user_id: current_user.id).first
     end
 
     def link_to_add_category(name, f, cat, html_class)

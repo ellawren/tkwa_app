@@ -13,7 +13,7 @@ class DataRecordsController < ApplicationController
 
     def user_index
         @user = User.find(params[:user_id])
-        @data_records = DataRecord.find_all_by_user_id(params[:user_id])
+        @data_records = DataRecord.where(user_id: params[:user_id])
     end
 
     def new

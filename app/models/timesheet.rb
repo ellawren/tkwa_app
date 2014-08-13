@@ -26,14 +26,14 @@ class Timesheet < ActiveRecord::Base
 
     # TOTALS
     def data_record
-        d = DataRecord.find_by_user_id_and_year(self.user_id, self.year)
+        d = DataRecord.where(user_id: self.user_id, year: self.year).first
         if d && self.week >= d.start_week && self.week <= d.end_week 
             return d
         end
     end
 
     def vacation_record
-        VacationRecord.find_or_create_by_year_and_user_id(year, user_id)
+        VacationRecord.where(year: year, user_id: user_id).first_or_create
     end
 
     def total_hours

@@ -336,7 +336,7 @@ class Project < ActiveRecord::Base
         date = Date.today.beginning_of_month
         array = []
         (1..5).each do |m| 
-            array.push(Actual.find_or_create_by_project_id_and_year_and_month(self.id, date.year, date.month)) 
+            array.push(Actual.where(project_id: self.id, year: date.year, month: date.month).first_or_create) 
             date = date - 1.month
         end
         array
@@ -434,7 +434,7 @@ class Project < ActiveRecord::Base
     def employee_forecast(user_id, four_month_array)
         entries = []
         four_month_array.each do |w, y|
-            entries.push(PlanEntry.find_or_create_by_project_id_and_user_id_and_year_and_week(self.id, user_id, y, w))
+            entries.push(PlanEntry.where(project_id: self.id, user_id: user_id, year: y, week: w).first_or_create)
         end
         entries
     end

@@ -10,12 +10,6 @@ class ProjectsController < ApplicationController
     def info
         @project = Project.find(params[:id])
         @employee_teams = @project.employee_teams.ordered
-        #if @project.consultant_teams.count == 0 
-        #    1.times { @project.consultant_teams.build }
-        #end
-        #if @project.employee_teams.count == 0
-        #    1.times { @project.employee_teams.build }
-        #end
     end
 
     def team
@@ -30,7 +24,7 @@ class ProjectsController < ApplicationController
         end
         date = Date.today.beginning_of_month
         (1..12).each do
-            Actual.find_or_create_by_project_id_and_year_and_month(@project.id, date.cwyear, date.month)
+            Actual.where(project_id: @project.id, year: date.cwyear, month: date.month).first_or_create
             date = (date - 1).beginning_of_month
         end
         @actuals = @project.actuals.order("year ASC, month ASC, id ASC")

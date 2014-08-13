@@ -27,14 +27,14 @@
                     <td class="notifier"><div class="<%= p.object.status %>"></div></td>
                     <td class="project-name">
                         <%= link_to p.object.name, billing_project_path(p.object), class: "green" %><br>
-                        <% e = EmployeeTeam.find_by_project_id_and_role(p.object, "Project Manager") %>
+                        <% e = EmployeeTeam.where(project_id: p.object, role: "Project Manager").first %>
                         <div class="detail"><%= User.find(e.user_id).name if e %></div>
                     </td>
-                    <% @actual4 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[4][1], five_month_array[4][0]) %>
-                    <% @actual3 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[3][1], five_month_array[3][0]) %>
-                    <% @actual2 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[2][1], five_month_array[2][0]) %>
-                    <% @actual1 = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[1][1], five_month_array[1][0]) %>
-                    <% @actual = Actual.find_or_create_by_project_id_and_year_and_month(p.object.id, five_month_array[0][1], five_month_array[0][0]) %>
+                    <% @actual4 = Actual.where(project_id: p.object.id, year: five_month_array[4][1], month: five_month_array[4][0]).first_or_create %>
+                    <% @actual3 = Actual.where(project_id: p.object.id, year: five_month_array[3][1], month: five_month_array[3][0]).first_or_create %>
+                    <% @actual2 = Actual.where(project_id: p.object.id, year: five_month_array[2][1], month: five_month_array[2][0]).first_or_create %>
+                    <% @actual1 = Actual.where(project_id: p.object.id, year: five_month_array[1][1], month: five_month_array[1][0]).first_or_create %>
+                    <% @actual = Actual.where(project_id: p.object.id, year: five_month_array[0][1], month: five_month_array[0][0]).first_or_create %>
                     <%= p.fields_for "actuals_attributes[]", @actual4 do |a| %>
                         <td><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
                     <% end %>

@@ -8,7 +8,7 @@ class TimesheetsController < ApplicationController
     def index
        @user = current_user
        @holidays = Holiday.all
-       @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, Date.today.cwyear, Date.today.cweek)
+       @timesheet = Timesheet.where(user_id: @user.id, year: Date.today.cwyear, week: Date.today.cweek).first_or_create
     end
 
     def admin
@@ -36,7 +36,7 @@ class TimesheetsController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
-        @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, params[:year].to_i, params[:week].to_i)
+        @timesheet = Timesheet.where(user_id: @user.id, year: params[:year].to_i, week: params[:week].to_i).first_or_create
         
         if @timesheet.complete == false
             1.times { @timesheet.time_entries.build }
@@ -46,7 +46,7 @@ class TimesheetsController < ApplicationController
 
     def print
         @user = User.find(params[:id])
-        @timesheet = Timesheet.find_or_create_by_user_id_and_year_and_week(@user.id, params[:year].to_i, params[:week].to_i)
+        @timesheet = Timesheet.where(user_id: @user.id, year: params[:year].to_i, week: params[:week].to_i).first_or_create
         render :layout => 'timesheet-modal'
     end
 

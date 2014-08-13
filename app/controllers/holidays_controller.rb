@@ -38,7 +38,7 @@ class HolidaysController < ApplicationController
 
     def destroy
         hol_name = Holiday.find(params[:id]).name
-        NonBillableEntry.find_all_by_description(hol_name).each do |nb|
+        NonBillableEntry.where(description: hol_name).each do |nb|
             nb.destroy
         end
         Holiday.find(params[:id]).destroy
