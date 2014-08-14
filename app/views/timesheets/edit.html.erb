@@ -138,10 +138,10 @@
 		
 	<% end %> <!-- end form -->
 	<div class="full">
-		total hours saved: <%= @timesheet.total_hours_saved %><br>
-		nb total hours saved: <%= @timesheet.nb_total_hours_saved %><br>
-		timesheet total saved: <%= @timesheet.timesheet_total_saved %><br>
-		vacation hours saved: <%= @timesheet.vacation_hours_saved %><br>
+		billable hours: <%= precise(@timesheet.total_hours_saved) %><br>
+		non-billable hours: <%= precise(@timesheet.nb_total_hours_saved) %><br>
+		total: <%= precise(@timesheet.timesheet_total_saved) %><br>
+		vacation hours: <%= precise(@timesheet.vacation_hours_saved) %><br>
 	</div>
 
 <% end %> <!-- end conditional -->
