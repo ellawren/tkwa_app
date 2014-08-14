@@ -4,6 +4,13 @@ class ApplicationController < ActionController::Base
 
     before_filter :signed_in_user
 
+    # only enable mini profiler for admin users
+    def authorize
+      if current_user.admin == true
+        Rack::MiniProfiler.authorize_request
+      end
+    end
+
         private
         before_filter :instantiate_controller_and_action_names
 
@@ -17,12 +24,4 @@ class ApplicationController < ActionController::Base
             @current_controller = controller_name
         end
 
-
-        # only enable mini profiler for admin users
-        def authorize
-          if current_user.is_admin?
-            Rack::MiniProfiler.authorize_request
-          end
-        end
-        
 end
