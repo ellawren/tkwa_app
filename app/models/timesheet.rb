@@ -2,16 +2,20 @@
 #
 # Table name: timesheets
 #
-#  id            :integer         not null, primary key
-#  year          :integer         not null
-#  week          :integer         not null
-#  created_at    :datetime        not null
-#  updated_at    :datetime        not null
-#  selected_year :integer
-#  complete      :boolean         default(FALSE)
-#  user_id       :integer         not null
-#  notes         :text
-#  printed       :boolean         default(FALSE)
+#  id                    :integer         not null, primary key
+#  year                  :integer         not null
+#  week                  :integer         not null
+#  created_at            :datetime        not null
+#  updated_at            :datetime        not null
+#  selected_year         :integer
+#  complete              :boolean         default(FALSE)
+#  user_id               :integer         not null
+#  notes                 :text
+#  printed               :boolean         default(FALSE)
+#  total_hours_saved     :integer
+#  nb_total_hours_saved  :integer
+#  timesheet_total_saved :integer
+#  vacation_hours_saved  :integer
 #
 
 class Timesheet < ActiveRecord::Base
@@ -23,6 +27,13 @@ class Timesheet < ActiveRecord::Base
 
     has_many :non_billable_entries, :dependent => :destroy
     accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
+
+    before_save do
+        self.total_hours_saved = self.total_hours
+        self.nb_total_hours_saved = self.nb_total_hours
+        self.timesheet_total_saved = self.timesheet_total
+        self.vacation_hours_saved = self.vacation_hours
+    end
 
     # TOTALS
     def data_record
