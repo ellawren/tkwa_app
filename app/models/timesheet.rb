@@ -85,15 +85,15 @@ class Timesheet < ActiveRecord::Base
 
     # SUMMARY
     def ytd_vacation
-        Timesheet.where(year: year, user_id: user_id, week: 1..week).sum(&:vacation_hours)
+        Timesheet.where(year: year, user_id: user_id, week: 1..week).sum(:vacation_hours_saved)
     end
 
     def ytd_billable
-        Timesheet.where(user_id: user.id, year: year, week: data_record.start_week..week).sum(&:total_hours)
+        Timesheet.where(user_id: user.id, year: year, week: data_record.start_week..week).sum(:total_hours_saved)
     end
 
     def ytd_total
-        Timesheet.where(user_id: user.id, year: year, week: data_record.start_week..week).sum(&:timesheet_total)
+        Timesheet.where(user_id: user.id, year: year, week: data_record.start_week..week).sum(:timesheet_total_saved)
     end
 
     def goal
