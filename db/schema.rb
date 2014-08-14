@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140814162647) do
+ActiveRecord::Schema.define(:version => 20140814165649) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -598,19 +598,19 @@ ActiveRecord::Schema.define(:version => 20140814162647) do
   add_index "time_entries", ["timesheet_id", "project_id", "user_id"], :name => "index_time_entries_on_timesheet_project_and_user"
 
   create_table "timesheets", :force => true do |t|
-    t.integer  "year",                                     :null => false
-    t.integer  "week",                                     :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.integer  "year",                                                                   :null => false
+    t.integer  "week",                                                                   :null => false
+    t.datetime "created_at",                                                             :null => false
+    t.datetime "updated_at",                                                             :null => false
     t.integer  "selected_year"
-    t.boolean  "complete",              :default => false
-    t.integer  "user_id",                                  :null => false
+    t.boolean  "complete",                                            :default => false
+    t.integer  "user_id",                                                                :null => false
     t.text     "notes"
-    t.boolean  "printed",               :default => false
-    t.integer  "total_hours_saved"
-    t.integer  "nb_total_hours_saved"
-    t.integer  "timesheet_total_saved"
-    t.integer  "vacation_hours_saved"
+    t.boolean  "printed",                                             :default => false
+    t.decimal  "total_hours_saved",     :precision => 5, :scale => 2
+    t.decimal  "nb_total_hours_saved",  :precision => 5, :scale => 2
+    t.decimal  "timesheet_total_saved", :precision => 5, :scale => 2
+    t.decimal  "vacation_hours_saved",  :precision => 5, :scale => 2
   end
 
   add_index "timesheets", ["user_id"], :name => "index_timesheets_on_user_id"

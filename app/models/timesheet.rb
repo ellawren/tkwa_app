@@ -28,12 +28,7 @@ class Timesheet < ActiveRecord::Base
     has_many :non_billable_entries, :dependent => :destroy
     accepts_nested_attributes_for :non_billable_entries, :allow_destroy => true, :reject_if => lambda { |a| a[:category].blank? }
 
-    before_save do
-        self.total_hours_saved = self.total_hours
-        self.nb_total_hours_saved = self.nb_total_hours
-        self.timesheet_total_saved = self.timesheet_total
-        self.vacation_hours_saved = self.vacation_hours
-    end
+
 
     # TOTALS
     def data_record
@@ -48,11 +43,11 @@ class Timesheet < ActiveRecord::Base
     end
 
     def total_hours
-      	time_entries.sum(:day1) +  time_entries.sum(:day2) + time_entries.sum(:day3) + time_entries.sum(:day4) + time_entries.sum(:day5) + time_entries.sum(:day6) + time_entries.sum(:day7) 
+      	time_entries.sum(&:entry_total)
     end
 
     def nb_total_hours
-        non_billable_entries.sum(:day1) +  non_billable_entries.sum(:day2) + non_billable_entries.sum(:day3) + non_billable_entries.sum(:day4) + non_billable_entries.sum(:day5) + non_billable_entries.sum(:day6) + non_billable_entries.sum(:day7) 
+        non_billable_entries.sum(&:entry_total)
     end
 
     def timesheet_total
