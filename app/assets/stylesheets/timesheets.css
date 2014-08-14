@@ -169,7 +169,7 @@
 .reopen {display:none; }
 .complete .reopen { display:block; }
 
-.timesheets.gray-box { height:auto; padding:20px 35px; width:870px; margin-bottom:30px; }
+.timesheets.gray-box { height:auto; padding:20px 35px; width:870px; margin-bottom:10px; margin-top:10px; }
 	.timesheets.gray-box .input-label { color:#2c3445; font-weight:900; font-size:13px; margin-bottom:6px; }
 
 .timesheets.gray-box #notes { float:left; width:290px; margin-right:50px; }
@@ -177,7 +177,8 @@
 	.timesheets.gray-box #notes textarea { float:left; width:270px; }
 
 .timesheets.gray-box #summary { float:left; width:490px; height:140px; }
-	.timesheets.gray-box #summary .input-label { float:left; width:300px; }
+	.timesheets.gray-box #summary .input-label { float:left; width:400px; }
+		.timesheets.gray-box #summary .input-label .italic { font-style:italic; color:#c0392b; }
 	.timesheets.gray-box #summary .content { float:left; width:100%; }
 	.timesheets.gray-box #summary .token { float:left; width:84px; }
 	.timesheets.gray-box #summary .minus { float:left; width:16px; margin:40px 5px 60px; border-bottom:4px solid #bcc6cc; }
@@ -203,9 +204,9 @@
 /* save row */
 
 #timesheet_complete.hidden { display:none; }
-input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px;  border:none; outline:none; background:none; font-style:italic; color:#9ba6ac; }
+input#close-timesheet, input#reopen-timesheet { float:left; margin-left:430px; margin-top:10px; border:none; outline:none; background:none; font-style:italic; color:#9ba6ac; }
 input#close-timesheet:hover, input#reopen-timesheet:hover { color:#1abc9c; }
-
+input#reopen-timesheet { margin-top:0px; }
 
 /* print */
 

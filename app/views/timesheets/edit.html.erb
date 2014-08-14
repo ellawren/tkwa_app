@@ -122,14 +122,14 @@
 
 			<div class="timesheet-total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
 
-			<% #if @timesheet.complete == false %>
+			<% if @timesheet.complete == false %>
 				<div class="save-row">
 			        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
 			        <%= f.submit "Submit Timesheet", id: "close-timesheet", class: "tip-bottom", title: "Submit your timesheet at the end of the week when it is complete." %>
 				</div>
-			<% #end %>
+			<% end %>
 
-			
+			<%= render 'index_summary' %>
 
 			<%= f.check_box :complete, class: "hidden" %> 
 			<% if @timesheet.complete == true %>
@@ -137,12 +137,8 @@
 			<% end %>
 		
 	<% end %> <!-- end form -->
-	<div class="full">
-		billable hours: <%= precise(@timesheet.total_hours_saved) %><br>
-		non-billable hours: <%= precise(@timesheet.nb_total_hours_saved) %><br>
-		total: <%= precise(@timesheet.timesheet_total_saved) %><br>
-		vacation hours: <%= precise(@timesheet.vacation_hours_saved) %><br>
-	</div>
+
+	
 
 <% end %> <!-- end conditional -->
 
