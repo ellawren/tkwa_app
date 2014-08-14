@@ -8,11 +8,11 @@
 <h2>Active (<%= @users.active_users.count %>)</h2>
 
 	<ul class="users-menu">
-		<%= render @users.active_users %>
+		<%= render @users.active_users.includes(:employee) %>
 	</ul>
 
 <h2>Inactive (<%= @users.inactive_users.count %>)</h2>
 
 	<ul class="users-menu">
-		<%= render @users.inactive_users %>
+		<%= render @users.inactive_users.includes(:employee) %>
 	</ul>

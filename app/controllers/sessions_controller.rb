@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   skip_before_filter :signed_in_user
 
     def create
-        user = User.find_by_email(params[:session][:email])
+        user = User.where(email: params[:session][:email]).first
         if user && user.authenticate(params[:session][:password])
             sign_in user
             flash[:success] = "Signed in as #{user.name}!"

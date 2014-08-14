@@ -41,4 +41,15 @@ TkwaApp::Application.configure do
   # ImageMagick path for Paperclip
   Paperclip.options[:command_path] = "/opt/local/bin/"
 
+  # Bullet configuration to monitor and alert us of N+1 queries.
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = false
+    Bullet.console = false
+    Bullet.growl = false
+    Bullet.rails_logger = true
+    Bullet.airbrake = false
+  end
+
 end

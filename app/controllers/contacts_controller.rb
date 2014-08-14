@@ -76,7 +76,7 @@ class ContactsController < ApplicationController
     def cont_csv_import  
         file = params[:file]  
         CSV.new(file.tempfile, :headers => true).each do |row|
-            if Contact.find_all_by_name("#{row[0]} #{row[1]}").count == 0 || ( row[0].blank? && row[1].blank? )
+            if Contact.where(name: "#{row[0]} #{row[1]}").count == 0 || ( row[0].blank? && row[1].blank? )
                 contact = Contact.create!(:name => "#{row[0]} #{row[1]}",  
                    :work_company => row[2],  
                    :work_address => "#{row[3]}\n#{row[4]}#{", " unless row[5].blank? && row[6].blank?}#{row[5]} #{row[6]} #{row[7] unless row[7] == "USA"}",  

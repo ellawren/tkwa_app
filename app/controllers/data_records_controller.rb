@@ -1,7 +1,7 @@
 class DataRecordsController < ApplicationController
     
     def index
-        @users = User.all
+        @users = User.all(include: :employee)
         # make sure there is at least one data record for each user
         @users.each do |u|
             if DataRecord.where(year: Date.today.cwyear, user_id: u.id).count == 0

@@ -37,7 +37,7 @@
 								</a>
 							</div>
 							<div class="employee-number">
-								<%= Employee.find_by_user_id(User.find(d.user_id)).employee_number %>
+								<%= Employee.where(user_id: User.find(d.user_id)).first.employee_number %>
 							</div>
 						</td>
 		  				<td><%= d.hours %></td>

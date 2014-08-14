@@ -25,7 +25,7 @@ class ListMember < ActiveRecord::Base
   	before_save :update_id_or_name
     def update_id_or_name
     	if self.contact_name?
-    		self.contact_id = Contact.find_by_name(self.contact_name).id
+    		self.contact_id = Contact.where(name: self.contact_name).first.id
     	elsif self.contact_id?
     		self.contact_name = Contact.find(self.contact_id).name
     	end

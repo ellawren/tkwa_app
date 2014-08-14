@@ -113,7 +113,7 @@ module ProjectsHelper
           task_array(entries).each do |task| 
               array = []
               sum = 0
-              TimeEntry.find_all_by_task(task).each do |t| 
+              TimeEntry.where(task: task).each do |t| 
                   array.push(t.entry_total)
               end
               array.map{|x| sum += x}
@@ -141,7 +141,7 @@ module ProjectsHelper
 
     def billable_rate(user_id)
       user = User.find(user_id)
-      datarecord = DataRecord.find_by_user_id(user_id)
+      datarecord = DataRecord.where(user_id: user_id).first
       number_to_currency(datarecord.billable_rate)
     end
 
@@ -157,7 +157,7 @@ module ProjectsHelper
     def forecast_employee_week_total(user_id, four_month_array)
         x = []
         four_month_array.each do |w, y|
-            plan_entries = PlanEntry.find_all_by_user_id_and_year_and_week(user_id, y, w)
+            plan_entries = PlanEntry.where(user_id: user_id, year: y, week: w)
             array = []
             sum = 0
             plan_entries.each do |e|

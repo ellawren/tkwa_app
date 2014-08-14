@@ -67,7 +67,7 @@ class BooksController < ApplicationController
     def lib_csv_import  
         file = params[:file]  
         CSV.new(file.tempfile, :headers => true).each do |row|
-            if Book.find_all_by_title(row[1]).count == 0
+            if Book.where(title: row[1]).count == 0
                 book = Book.create!(
                     :shelf_location => row[0],  
                     :title => row[1],  
