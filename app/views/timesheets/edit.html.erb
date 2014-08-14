@@ -122,12 +122,12 @@
 
 			<div class="timesheet-total"><%= precise(nonzero?(@timesheet.timesheet_total)) %></div>
 
-			<% if @timesheet.complete == false %>
+			<% #if @timesheet.complete == false %>
 				<div class="save-row">
 			        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
 			        <%= f.submit "Submit Timesheet", id: "close-timesheet", class: "tip-bottom", title: "Submit your timesheet at the end of the week when it is complete." %>
 				</div>
-			<% end %>
+			<% #end %>
 
 			
 
