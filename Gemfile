@@ -16,7 +16,7 @@ gem 'nilify_blanks' # to prevent blank contact names, which messes up search res
 gem 'sanitize' # used to sanitize notes fields on contacts page
 gem 'unicorn' # webserver
 gem 'prawn_rails' # pdf generation
-gem 'rack-mini-profiler' # speed tests, db queries
+
 
 group :production do
   gem 'rails_12factor' # prevent Heroku auto-injecting plugins, which causes deprecation error
@@ -30,6 +30,7 @@ end
 group :development do
 	gem 'annotate', '~> 2.4.1.beta'
   gem 'bullet' # warn bad code during dev
+  gem 'rack-mini-profiler' # speed tests, db queries
 end
 
 # Gems used only for assets and not required
