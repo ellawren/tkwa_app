@@ -88,6 +88,8 @@ class Project < ActiveRecord::Base
     has_many :plan_entries, :dependent => :destroy
     accepts_nested_attributes_for :plan_entries, :allow_destroy => true
 
+    has_many :time_entries
+
     has_many :shop_drawings
     accepts_nested_attributes_for :shop_drawings, :allow_destroy => true, :reject_if => lambda { |a| a[:date_received].blank? }
 
@@ -377,14 +379,13 @@ class Project < ActiveRecord::Base
     end
 
     def total_actual_hours(phase)
-        TimeEntry.where(:project_id => self.id, :phase_number => phase).sum(&:entry_total)
+        self.time_entries.where(:phase_number => phase).sum(&:entry_total)
     end
 
     def total_actual_hours_all
-        time_entries = TimeEntry.where(project_id: id)
         array = []
         sum = 0
-        time_entries.each do |t| 
+        self.time_entries.each do |t| 
             if available_phases.map{|a| a.number}.include? t.phase_number
                 array.push(t.entry_total)
             end

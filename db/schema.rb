@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140814214306) do
+ActiveRecord::Schema.define(:version => 20140815182240) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -593,6 +593,7 @@ ActiveRecord::Schema.define(:version => 20140814214306) do
     t.decimal  "day7",         :precision => 4, :scale => 2
     t.integer  "phase_number"
     t.integer  "user_id",                                    :null => false
+    t.decimal  "total",        :precision => 5, :scale => 2
   end
 
   add_index "time_entries", ["project_id", "phase_number"], :name => "index_time_entries_on_project_id_and_phase_number"

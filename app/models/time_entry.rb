@@ -17,6 +17,7 @@
 #  day7         :decimal(4, 2)
 #  phase_number :integer
 #  user_id      :integer         not null
+#  total        :decimal(5, 2)
 #
 
 class TimeEntry < ActiveRecord::Base
@@ -31,6 +32,8 @@ class TimeEntry < ActiveRecord::Base
         day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
     end   
 
+    before_save :record_total
+
     # next/prev
     scope :previous, lambda {|ti, pr| where("timesheet_id = ? AND project_id = ?", ti, pr)}
 
@@ -44,6 +47,11 @@ class TimeEntry < ActiveRecord::Base
         end
     end
     #------------------------------------
+
+    private
+    def record_total
+      self.total = day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
+    end
 
 end
 

@@ -12,10 +12,10 @@
 #  user_id               :integer         not null
 #  notes                 :text
 #  printed               :boolean         default(FALSE)
-#  total_hours_saved     :integer
-#  nb_total_hours_saved  :integer
-#  timesheet_total_saved :integer
-#  vacation_hours_saved  :integer
+#  total_hours_saved     :decimal(5, 2)
+#  nb_total_hours_saved  :decimal(5, 2)
+#  timesheet_total_saved :decimal(5, 2)
+#  vacation_hours_saved  :decimal(5, 2)
 #
 
 class Timesheet < ActiveRecord::Base

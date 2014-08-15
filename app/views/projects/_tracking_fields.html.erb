@@ -22,23 +22,7 @@
 			      if actual_hours == 0
 			        act = "<div class='input-spacer act'></div>"
 			      else
-			        time_entries = TimeEntry.where(project_id: f.project_id, user_id: f.user_id, phase_number: phase.number)
-
-			        str = []
-			            task_array(time_entries).each do |task| 
-			                array = []
-			                sum = 0
-			                TimeEntry.where(project_id: .project_id, user_id: f.user_id, phase_number: phase.number, task: task).each do |t| 
-			                    array.push(t.entry_total)
-			                end
-			                array.map{|x| sum += x}
-			                str.push("<tr><td>#{task}</td><td>#{sum.to_f}</td></tr>")
-			            end 
-
-
-			        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'><a class='pop no-hover' rel='popover' data-original-title='#{User.find(f.user_id).name} - #{phase.name}' data-content=\"
-			                <table class='table-condensed table-striped pop-table'><thead><tr><th>Task</th><th>Hours</th></tr></thead><tbody>#{str.join}</tbody>
-			                </table>\">#{strip(actual_hours)}</a></div>"
+			        act = "<div class='input act #{is_over?(est_hours, actual_hours)}'>#{strip(actual_hours)}</div>"
 			      end  %>
 
 	      		<%= "#{act}".html_safe %>

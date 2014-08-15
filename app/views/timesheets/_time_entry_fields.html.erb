@@ -38,7 +38,7 @@
         <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input", autocomplete: "off" %></div>
         <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input", autocomplete: "off" %></div>
         <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %></div>
-        <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+        <div class="total"><%= precise(nonzero?(f.object.total.to_f)) %></div>
     </div>
 
     <%= link_to_remove_fields " ", f %>
