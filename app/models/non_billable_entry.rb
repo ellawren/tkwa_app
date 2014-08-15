@@ -16,15 +16,23 @@
 #  created_at   :datetime        not null
 #  updated_at   :datetime        not null
 #  user_id      :integer         not null
+#  total        :decimal(5, 2)
 #
 
 class NonBillableEntry < ActiveRecord::Base
 
     default_scope order('category ASC')
     belongs_to :timesheet
+
+    before_save :record_total
   
     def entry_total
         day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
-    end   
+    end 
+
+    private
+    def record_total
+      self.total = day1.to_f + day2.to_f + day3.to_f + day4.to_f + day5.to_f + day6.to_f + day7.to_f
+    end  
 
 end

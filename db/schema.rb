@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140815182240) do
+ActiveRecord::Schema.define(:version => 20140815184148) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -308,6 +308,7 @@ ActiveRecord::Schema.define(:version => 20140815182240) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.integer  "user_id",                                    :null => false
+    t.decimal  "total",        :precision => 5, :scale => 2
   end
 
   add_index "non_billable_entries", ["timesheet_id", "user_id"], :name => "index_nb_entries_on_timesheet_id_and_user_id"
