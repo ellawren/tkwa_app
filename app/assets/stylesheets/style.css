@@ -111,7 +111,7 @@
 
 	table.tabnav.timesheets { float:left; width:100%; height:26px; background-color:#ecf0f5; margin:0; border-radius:5px; list-style:none; }
 	table.tabnav.timesheets tr { width:960px; width:100%; }
-	table.tabnav.timesheets td { padding:0px;  }
+	table.tabnav.timesheets td { padding:0px; }
 	table.tabnav.timesheets tr td:nth-child(odd) { border-right:1px solid #ddd; }
 	table.tabnav.timesheets tr td:last-child { border-right:0px; }
 	table.tabnav.timesheets td a { float:left; display:block; height:100%; height:16px; padding:4px 2px; min-width:1%; text-align:center; margin:0px; color:#9ba6ac; text-transform:lowercase; font-weight:400; font-size:11px; }
@@ -124,7 +124,8 @@
 	table.tabnav.timesheets td a.sel:hover { background-color:#1abc9c; color:#fff; opacity:.6; }
 	table.tabnav.timesheets td a.curr { color:#16a085; font-weight:700;}
 	table.tabnav.timesheets td a.curr.sel { color:#fff; } 
-	table.tabnav.timesheets td a.past.false { color:#86cc71; font-weight:700;}
+	table.tabnav.timesheets td a.past.false { color:#e64c3c; font-weight:700;}
+	table.tabnav.timesheets td a.past.false.no-data { visibility:hidden; }
 
 	/* section headers */
 

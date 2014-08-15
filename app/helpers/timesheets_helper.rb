@@ -72,12 +72,11 @@ module TimesheetsHelper
         "curr tip-bottom" 
       elsif get_week_number(Date.today + 7).to_i > week.to_i
         # if past, check if open
-        if ts = Timesheet.where(:user_id => user_id, :year => year, :week => week).first
+        if ts = Timesheet.where(:user_id => user_id, :year => year, :week => week).first_or_create
           t = ts.complete
-        else
-          t = "false"
+          n = ts.data_record.present? ? "" : "no-data"
         end
-        "past tip-bottom #{t}" 
+        "past tip-bottom #{t} #{n}" 
       else
         "tip-bottom"
       end

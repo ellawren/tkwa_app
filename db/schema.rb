@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140814165649) do
+ActiveRecord::Schema.define(:version => 20140814214306) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -595,7 +595,10 @@ ActiveRecord::Schema.define(:version => 20140814165649) do
     t.integer  "user_id",                                    :null => false
   end
 
+  add_index "time_entries", ["project_id", "phase_number"], :name => "index_time_entries_on_project_id_and_phase_number"
+  add_index "time_entries", ["project_id"], :name => "index_time_entries_on_project_id"
   add_index "time_entries", ["timesheet_id", "project_id", "user_id"], :name => "index_time_entries_on_timesheet_project_and_user"
+  add_index "time_entries", ["user_id", "timesheet_id"], :name => "index_time_entries_on_user_id_and_timesheet_id"
 
   create_table "timesheets", :force => true do |t|
     t.integer  "year",                                                                   :null => false
@@ -613,6 +616,8 @@ ActiveRecord::Schema.define(:version => 20140814165649) do
     t.decimal  "vacation_hours_saved",  :precision => 5, :scale => 2
   end
 
+  add_index "timesheets", ["user_id", "year", "week"], :name => "index_timesheets_on_user_id_and_year_and_week"
+  add_index "timesheets", ["user_id", "year"], :name => "index_timesheets_on_user_id_and_year"
   add_index "timesheets", ["user_id"], :name => "index_timesheets_on_user_id"
 
   create_table "unassigned_hours", :force => true do |t|
