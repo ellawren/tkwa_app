@@ -34,7 +34,7 @@
         <div class="entry <%= is_today?(5, @timesheet) %>"><div class="entry-spacer"><%= f.object.day5 %></div></div>
         <div class="entry <%= is_today?(6, @timesheet) %>"><div class="entry-spacer"><%= f.object.day6 %></div></div>
         <div class="entry <%= is_today?(7, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day7 %></div></div>
-        <div class="total"><%= precise(nonzero?(f.object.entry_total)) %></div>
+        <div class="total"><%= precise(nonzero?(f.object.total.to_f)) %></div>
     </div>
 
 </div>
