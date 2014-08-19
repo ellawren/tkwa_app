@@ -69,7 +69,7 @@
 #
 
 class Project < ActiveRecord::Base
-    
+
     has_many :users, :through => :employee_teams
     has_many :employee_teams, :dependent => :destroy
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:user_id].blank? || a[:role].blank? }
@@ -232,11 +232,11 @@ class Project < ActiveRecord::Base
 # SCOPE #######################################################################
 
     def available_phases
-        available_phases = []
+        a = []
         self.phase_ids.each do |t|
-          available_phases.push(Phase.find(t))
+          a.push(Phase.find(t))
         end
-        available_phases.sort_by{|e| e[:number]}
+        a
     end
 
     def available_tasks
@@ -313,10 +313,9 @@ class Project < ActiveRecord::Base
         #initialize empty bill array and sum
         bill_array = []
         sum = 0
-        #find all consultant teams associated with current project
-        teams = ConsultantTeam.where(project_id: self.id)
+
         #for each consultant team, create array of bills and add to master array
-        teams.each do |t| 
+        consultant_teams.each do |t| 
             bills = Bill.where(consultant_team_id: t.id)
             bills.each do |b|
                 bill_array.push(b.amount)
@@ -379,7 +378,7 @@ class Project < ActiveRecord::Base
     end
 
     def total_actual_hours(phase)
-        self.time_entries.where(:phase_number => phase).sum(&:entry_total)
+        self.time_entries.where(:phase_number => phase).sum(:total)
     end
 
     def total_actual_hours_all
@@ -387,7 +386,7 @@ class Project < ActiveRecord::Base
         sum = 0
         self.time_entries.each do |t| 
             if available_phases.map{|a| a.number}.include? t.phase_number
-                array.push(t.entry_total)
+                array.push(t.total)
             end
         end
         array.map{|x| sum += x}

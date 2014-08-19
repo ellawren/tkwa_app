@@ -56,11 +56,11 @@ class Timesheet < ActiveRecord::Base
     end
 
     def total_hours
-      	time_entries.sum(&:entry_total)
+      	time_entries.sum(:total)
     end
 
     def nb_total_hours
-        non_billable_entries.sum(&:entry_total)
+        non_billable_entries.sum(:total)
     end
 
     def timesheet_total
@@ -79,7 +79,7 @@ class Timesheet < ActiveRecord::Base
             end
             included_days.sum
         else  
-            non_billable_entries.where(category: "9").sum(&:entry_total)
+            non_billable_entries.where(category: "9").sum(:total)
         end    
     end
 

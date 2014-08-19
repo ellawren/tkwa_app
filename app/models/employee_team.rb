@@ -69,14 +69,18 @@ class EmployeeTeam < ActiveRecord::Base
 	}
 
     # TRACKING
+
+    def time_entries
+        TimeEntry.where(user_id: self.user_id, project_id: self.project_id)
+    end
 	
     # actual hours
     def employee_actual_hours(phase_number)
-        TimeEntry.where(:project_id => self.project_id, :user_id => self.user_id, :phase_number => phase_number).sum(&:entry_total)
+        time_entries.where(:phase_number => phase_number).sum(:total)
     end
 
     def employee_actual_hours_all
-        TimeEntry.where(:project_id => self.project_id, :user_id => self.user_id).sum(&:entry_total)
+        time_entries.sum(:total)
     end
 
     # actual fees
