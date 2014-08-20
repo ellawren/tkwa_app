@@ -34,11 +34,6 @@ class Message < ActiveRecord::Base
         user_messages(id_array).current + studio_messages
     end
 
-    after_initialize :set_defaults
-    def set_defaults
-        self.expiration ||= (Date.today + 7).strftime("%m/%d/%Y").to_s
-    end
-
     before_save :date_parse
     def date_parse
         self.exp_date = Date.strptime(self.expiration, "%m/%d/%Y")

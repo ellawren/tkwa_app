@@ -25,7 +25,9 @@ class AvailableHour < ActiveRecord::Base
         :conditions => ["users.active = ?", true ]
     }
 
-	after_initialize do
+    def set_active 
+        # this used to be called on after_initialize but it's crazy slow, so I need to find a better way to do this
+        # deactivated on 8/20/14, which will cause problems with forecast ranges in the future
     	self.hours ||= User.find(self.user_id).data_record.hours_in_week.to_i
 
     	test = Date.commercial(self.year, self.week, 1) - 1 

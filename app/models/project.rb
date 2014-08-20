@@ -134,7 +134,8 @@ class Project < ActiveRecord::Base
     end
 
     # check for recent billing and mark as true to add project to Leta's Monthly Billing view
-    after_initialize do
+    after_save :set_billing
+    def set_billing
         if self.recent_billing == false && self.actual_array_sum > 0
             self.recent_billing = true
             self.save

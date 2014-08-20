@@ -51,7 +51,7 @@ class DataRecord < ActiveRecord::Base
   		self.start_week - self.end_week + 1
   	end
 
-	after_initialize :set_defaults
+	before_save :set_defaults # used to be after_initialize
 
 	def set_defaults
 	    self.year ||= Date.today.cwyear
@@ -60,7 +60,7 @@ class DataRecord < ActiveRecord::Base
 	    self.hours_in_week ||= 40
 	    self.holiday ||= 8
 	    self.billable_rate ||= 90
-      self.billable_per_week ||= 40
+      self.billable_per_week ||= self.hours_in_week
   	end
 
 end
