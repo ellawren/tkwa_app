@@ -118,6 +118,12 @@ class Project < ActiveRecord::Base
     validates :number, :uniqueness => true, :presence => true, if: lambda { |p| p.try(:status) != 'potential' }
     validates :status, presence: true
 
+    # set default phase values
+    before_create :phase_values
+    def phase_values
+        self.phase_ids = [1, 2, 3, 4, 5, 6, 7, 9]
+    end
+
     # default to 'current' status if not set, and fill in a number for a potential project so it doesn't throw an error
     before_save :default_values
     def default_values
@@ -125,12 +131,6 @@ class Project < ActiveRecord::Base
         if self.status == 'potential'
             self.number = "000000"
         end
-    end
-
-    # set default phase values
-    before_create :phase_values
-    def phase_values
-        self.phase_ids = [1, 2, 3, 4, 5, 6, 7, 9]
     end
 
     # check for recent billing and mark as true to add project to Leta's Monthly Billing view
@@ -188,7 +188,6 @@ class Project < ActiveRecord::Base
         :select => "projects.*",
         :order => ["name ASC" ]
     }
-
 
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
 
@@ -282,15 +281,11 @@ class Project < ActiveRecord::Base
         Actual.by_project(self.id).order("year ASC, month ASC")
     end
 
-
     def consultant_contract_total
-        contracts = self.consultant_teams
-        array = []
         sum = 0
-        contracts.each do |c| 
-            array.push(c.consultant_contract.to_f)
+        self.consultant_teams.each do |c| 
+            sum += c.consultant_contract.to_f
         end
-        array.map{|x| sum += x}
         sum
     end
 
@@ -319,10 +314,9 @@ class Project < ActiveRecord::Base
         consultant_teams.each do |t| 
             bills = Bill.where(consultant_team_id: t.id)
             bills.each do |b|
-                bill_array.push(b.amount)
+                sum += b.amount
             end
         end
-        bill_array.map{|x| sum += x}
         sum
     end
 
@@ -349,9 +343,8 @@ class Project < ActiveRecord::Base
         sum = 0
         if self.actuals.count > 0
             self.actual_array.each do |a|
-                array.push(a.amount)
+                sum += a.amount
             end
-            array.map{|x| sum += x}
             sum
         else
             0
@@ -369,12 +362,10 @@ class Project < ActiveRecord::Base
     end
 
     def total_target_hours_all
-        array = []
         sum = 0
         available_phases.each do |phase|
-            array.push(total_target_hours(phase.shorthand).to_f )
+            sum += total_target_hours(phase.shorthand).to_f
         end
-        array.map{|x| sum += x}
         sum.to_f
     end
 
@@ -383,15 +374,7 @@ class Project < ActiveRecord::Base
     end
 
     def total_actual_hours_all
-        array = []
-        sum = 0
-        self.time_entries.each do |t| 
-            if available_phases.map{|a| a.number}.include? t.phase_number
-                array.push(t.total)
-            end
-        end
-        array.map{|x| sum += x}
-        sum.to_f
+        self.time_entries.sum(:total)
     end
 
     # FEES
@@ -429,6 +412,7 @@ class Project < ActiveRecord::Base
             (total_actual_fees_all / total_target_fees_all) * 100
         end
     end
+
 
 # FORECAST #######################################################################
 

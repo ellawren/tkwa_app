@@ -151,8 +151,8 @@
 					<div class="number"><%= remaining_currency(@total_target_fees_all, @total_actual_fees_all) %></div>
 				</div>
 				<div class="circle billing">
-					<div class="text"><br>project is</div>
-					<div class="number"><%= @project.percent_used <= 100 ? "#{nonzero_percentage(@project.percentage_of_total_all)} complete" : "over budget" -%></div>
+					<div class="text"><br>project fee is</div>
+					<div class="number"><%= @project.percent_used <= 100 ? "#{nonzero_percentage(@project.percentage_of_total_all)} used" : "over budget" -%></div>
 				</div>
 			</div>
 

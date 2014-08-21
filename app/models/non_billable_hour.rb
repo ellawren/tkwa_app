@@ -24,7 +24,9 @@ class NonBillableHour < ActiveRecord::Base
         :conditions => ["users.active = ?", true ]
     }
 
-    after_initialize do
+    def set_active
+        # this used to be called on after_initialize but it's crazy slow, so I need to find a better way to do this
+        # deactivated on 8/20/14, which will cause problems with forecast ranges in the future
     	data = User.find(self.user_id).data_record
     	self.hours ||= data.hours_in_week.to_i - data.billable_per_week.to_i
 

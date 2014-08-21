@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
     before_save :create_remember_token
 
-    after_initialize do
+    after_create do
         if self.employee.blank?
             # find or create the associated contact model
             contact = Contact.where(name: self.name).first_or_create
@@ -53,14 +53,7 @@ class User < ActiveRecord::Base
                 employee.hire_date = Date.today
             employee.save        
         end
-    end
-
-    after_create do
         data_record = DataRecord.where(user_id: self.id, year: Date.today.cwyear).first_or_create
-    end
-
-    def data_record
-        DataRecord.where(user_id: self.id, year: Date.today.cwyear).first
     end
 
     # SCOPES
@@ -120,19 +113,23 @@ class User < ActiveRecord::Base
 
     # METHODS
 
+    def data_record
+        DataRecord.where(user_id: self.id, year: Date.today.cwyear).first
+    end
+
     def project_ids
         self.employee_teams.current.pluck(:project_id)
     end
 
     def project_list
-        Project.current.where('id IN (?)', project_ids).order("name")
+        Project.current.where('id IN (?)', project_ids)
     end
 
     def not_on_project_list
         if project_ids.count > 0
-            Project.current.where('id NOT IN (?)', project_ids).order("name")
+            Project.current.where('id NOT IN (?)', project_ids)
         else
-            Project.current.order("name")
+            Project.current
         end
     end
 

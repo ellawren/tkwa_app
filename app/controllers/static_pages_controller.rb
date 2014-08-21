@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
     def home
         if signed_in?
         	@message = Message.new
-        	@messages = Message.all_messages(current_user.project_ids)
+        	@messages = Message.studio_messages
         end
         render :layout => 'home_page' 
     end

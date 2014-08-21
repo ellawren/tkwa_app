@@ -26,7 +26,9 @@ class PlanEntry < ActiveRecord::Base
         :conditions => ["status = ?", "current" ]
     }
 
-    after_initialize do
+    def set_active
+        # this used to be called on after_initialize but it's crazy slow, so I need to find a better way to do this
+        # deactivated on 8/20/14, which will cause problems with forecast ranges in the future
     	if self.employee_team_id.nil?
     		e = EmployeeTeam.where(project_id: self.project_id, user_id: self.user_id).first
     		self.employee_team_id = e.id

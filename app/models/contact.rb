@@ -143,29 +143,9 @@ class Contact < ActiveRecord::Base
     end
 
     def associated_projects
-        arr = []
         if name.present?
-            Project.where(billing_name: name).each do |p|
-                arr.push(p)
-            end
+            Project.where(billing_name: name)
         end
-        arr
-    end
-
-    def project_list
-        arr = []
-        self.employee_teams.current.each do |team|
-            arr.push(Project.find(team.project_id))
-        end
-        arr.sort { |a,b| a.name <=> b.name }
-    end
-
-    def project_ids
-        arr = []
-        self.project_list.each do |team|
-            arr.push(team.id)
-        end
-        arr
     end
 
     private
