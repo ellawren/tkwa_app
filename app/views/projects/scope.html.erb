@@ -42,7 +42,7 @@
     	   <%= link_to "", services_path, class: "control-link fui-new" %>
         </div>
 		<%= hidden_field_tag "project[service_ids][]", nil %>
-		<% Service.find_each do |service| %>
+		<% Service.all.each do |service| %>
 			<label class="checkbox">
 				<%= check_box_tag "project[service_ids][]", service.id, @project.service_ids.include?(service.id), id: dom_id(service), data_toggle: "checkbox" %>
 				<%= service.service_name %>
@@ -56,7 +56,7 @@
             <%= link_to "", reimbursables_path, class: "control-link fui-new" %>
         </div>
 		<%= hidden_field_tag "project[reimbursable_ids][]", nil %>
-		<% Reimbursable.find_each do |reimbursable| %>
+		<% Reimbursable.all.each do |reimbursable| %>
 			<label class="checkbox">
 				<%= check_box_tag "project[reimbursable_ids][]", reimbursable.id, @project.reimbursable_ids.include?(reimbursable.id), id: dom_id(reimbursable), data_toggle: "checkbox" %>
 				<%= reimbursable.reimbursable_name %>

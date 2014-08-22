@@ -42,5 +42,3 @@ class NonBillableHour < ActiveRecord::Base
     end
 
 end
-
-

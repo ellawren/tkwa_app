@@ -22,7 +22,9 @@ class UnassignedHour < ActiveRecord::Base
 
     scope :active, where(:active => true)
 
-    after_initialize do
+    def set_active
+        # this used to be called on after_initialize but it's crazy slow, so I need to find a better way to do this
+        # deactivated on 8/20/14, which will cause problems with forecast ranges in the future
     	test = Date.commercial(self.year, self.week, 1) - 1 
     	curr = Date.commercial(Date.today.year, Date.today.cweek, 1) - 1
     	end_range = curr + 15.weeks

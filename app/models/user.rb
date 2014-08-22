@@ -158,7 +158,7 @@ class User < ActiveRecord::Base
     end
 
     def remaining_hours(w,y)
-        AvailableHour.where(user_id: self.id, week: w, year: y).first_or_create.hours - self.forecast_total(w, y)
+        AvailableHour.where(user_id: self.id, week: w, year: y).first_or_create.hours.to_f - self.forecast_total(w, y)
     end
 
     def self.all_remaining_hours(w,y)
