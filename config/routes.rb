@@ -3,7 +3,7 @@ TkwaApp::Application.routes.draw do
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
-    match '/projects/marketing',  to: 'projects#marketing_index'
+    match '/projects/marketing',  to: 'projects#marketing_index', as: 'marketing_index'
     post '/csv_import' => 'projects#csv_import'
     match '/projects/import',   to: 'projects#import'
     match '/projects/fees_billed_by_month',   to: 'projects#fees_billed_by_month', as: 'fees_billed_by_month'

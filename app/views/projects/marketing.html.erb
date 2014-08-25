@@ -40,6 +40,8 @@
                 </div>
             </div> 
             <%= f.hidden_field :mkt_last_edited_by, value: "#{current_user.name}" %>
+            <br><br>
+            <%= link_to "Marketing List", marketing_index_path, class: "btn" %>
             
         </div>
         

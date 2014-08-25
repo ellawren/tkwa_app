@@ -69,7 +69,7 @@ class ProjectsController < ApplicationController
     end
 
     def marketing_index
-        @projects = Project.current.all
+        @projects = Project.marketing_list.all
     end
 
     def billing_worksheet #edit_all
@@ -106,7 +106,7 @@ class ProjectsController < ApplicationController
 
     def schedule
         @project = Project.find(params[:id])
-        render :layout => 'schedule' 
+        render :layout => 'schedule'
     end
 
     def schedule_full

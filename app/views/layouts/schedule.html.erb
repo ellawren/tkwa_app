@@ -23,6 +23,7 @@
         <%= javascript_include_tag "flatui-checkbox" -%> <!-- for the options popup -->
         <%= javascript_include_tag "flatui-radio" -%> <!-- for the dit window -->
         <%= javascript_include_tag "bootstrap-datepicker" -%>
+        <%= javascript_include_tag "bootstrap-modal" -%>
 
         <!-- fonts -->
         <link href="http://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet" type="text/css">
@@ -65,40 +66,14 @@
             </div>
             <!-- end modal -->
 
-            <% flash.each do |key, value| %>
-                <%= content_tag(:div, value, class: "flash #{key}") %>
-            <% end %>
-
-            <!-- page header -->
-            <% if @project.status == "potential" %>
-                <a class="header-label" href="/potential_projects">Potential Projects</a>
-                <div class="page-header">
-                    <h1><%= @project.name %></h1>
-            <% else %>
-                <div class="page-header">
-                    <h1><span class="light"><%= strip(@project.number) %></span><%= @project.name %></h1>
-            <% end %>
-                <ul class="controls">
-                    <% unless @project.status == "potential" %>
-                        <li><a href="#options" role="button" data-toggle="modal">view options</a></li>
-                    <% end %>
-                    <li><a href="#">delete</a></li>
-                </ul>
-
-            </div>   
-            <!-- end header -->   
-
-            <%= render "tabnav" %>
 
             <div class="box">
                 <%= content_for?(:content) ? yield(:content) : yield %>
             </div> <!-- end box -->
 
-            <%= render 'layouts/footer' %>  
-            <%= debug(params) if Rails.env.development? %>
-
         </div>
 
+        <%= render 'projects/view_options_modal' %>
 
     </body>
 </html>

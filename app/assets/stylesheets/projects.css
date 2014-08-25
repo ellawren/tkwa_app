@@ -334,7 +334,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 .marketing .wide h2 { width:100%; }
 .marketing .wide textarea { width:570px; }
 .marketing .wide .char-count { color:#7f8b93; font-family:"Asap"; font-size:13px; font-style:italic; margin-bottom:3px; }
-.marketing .switch-box { margin:4px 0 0 16px; }
+.marketing .switch-box { margin:4px 0 30px 16px; }
 
 
 /* monthly billing */

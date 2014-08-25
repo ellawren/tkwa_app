@@ -1,16 +1,8 @@
 <%= form_for @project do |f| %>
-	<h2>Patterns</h2>
-	<div class="pattern-list">
-		<!-- nested form for pattern-->
-	    	<%= f.fields_for :patterns do |builder| %>
-    			<%= render 'pattern_fields', :f => builder %>
-    		<% end %>
-        	<%= link_to_add_fields "", f, :patterns, "add fui-plus timesheets" %>
-	   	<!-- end pattern form -->
-	</div>
 
-	<div class="save-row">
-	    <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
-	</div>
+	<%= render 'project_header', f: f %>
+
+	<h2>Patterns</h2>
+	<p>Nothing here yet...</p>
 
 <% end %>

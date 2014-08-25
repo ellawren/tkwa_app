@@ -192,6 +192,12 @@ class Project < ActiveRecord::Base
         :order => ["name ASC" ]
     }
 
+    scope :marketing_list, {
+        :select => "projects.*",
+        :conditions => ["mkt_active = ?", 'true' ],
+        :order => ["name ASC" ]
+    }
+
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
 
     # next/prev
