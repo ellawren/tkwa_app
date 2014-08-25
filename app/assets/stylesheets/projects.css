@@ -327,12 +327,12 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
 /* PROJECTS - marketing */
 
-.marketing .narrow { width:300px; margin-right:60px; }
+.marketing .narrow { width:340px; margin-left:60px; }
 .marketing .narrow .input-label { width:90px; }
-.marketing .narrow textarea, .marketing .narrow input[type="text"] { width:185px; }
-.marketing .wide { width:574px; }
+.marketing .narrow textarea, .marketing .narrow input[type="text"] { width:225px; }
+.marketing .wide { width:534px; }
 .marketing .wide h2 { width:100%; }
-.marketing .wide textarea { width:550px; }
+.marketing .wide textarea, .marketing .wide input[type="text"] { width:510px; }
 .marketing .wide .char-count { color:#7f8b93; font-family:"Asap"; font-size:13px; font-style:italic; margin-bottom:3px; }
 .marketing .switch-box { margin:4px 0 30px 16px; width:320px; }
 .marketing .switch-box a.green { float:right; margin:6px 0 0px 0px; }

@@ -2,30 +2,20 @@
 
     <%= render 'project_header', f: f %>
 
-    <h2>Marketing</h2>
     <div class="full marketing">
 
         <div class="wide">
+            <h2>Marketing Display Name <span class="note">(leave blank to use official name)</span></h2>
+            <%= f.text_field :mkt_display_name, class: "" %>
+
+            <h2>Project Description</h2>
+
             <div class="input-row">
-                  <%= f.label(:mkt_display_name, "Display Name", class: "input-label") %>
-                  <%= f.text_field :mkt_display_name, class: "" %>
+                <%= f.text_area :mkt_description, class: "", rows: "24" %>
             </div>
+            <div class="char-count">Last updated: <%= f.object.updated_at.strftime("%B %d, %Y at %I:%M %p") %> by <%= f.object.mkt_last_edited_by %></div>
+            <div class="char-count">Character count: <%= f.object.mkt_description.to_s.chars.length %> / 1600</div>
         </div>
-
-        <div class="narrow">
-            <div class="input-row">
-                  <%= f.label(:mkt_active, "Show in list?", class: "input-label") %>
-                  <div class="switch-box">
-                    <%= f.check_box(:mkt_active, { data_toggle: "switch"  } )  %> 
-                    <%= link_to "View Marketing List", marketing_index_path, class: "green" %>
-                </div>
-            </div> 
-        </div>
-
-    </div>
-
-
-    <div class="full marketing">
 
         <div class="narrow">
             <h2>Project Stats</h2>
@@ -47,27 +37,24 @@
                   <%= f.text_field :mkt_cost, class: "" %>
             </div> 
             <div class="input-row">
-                  <%= f.label(:mkt_summary, "Summary", class: "input-label") %>
-                  <%= f.text_area :mkt_summary, rows: "5" %>
+                  <%= f.label(:mkt_summary, "Program", class: "input-label") %>
+                  <%= f.text_area :mkt_summary, rows: "6" %>
             </div> 
             <div class="input-row">
                   <%= f.label(:mkt_reference, "Reference", class: "input-label") %>
                   <%= f.text_field :mkt_reference, class: "" %>
             </div> 
-            
-            <%= f.hidden_field :mkt_last_edited_by, value: "#{current_user.name}" %>
-            <br><br>
-            
-        </div>
-        
-        <div class="wide">
-            <h2>Description</h2>
 
             <div class="input-row">
-                <%= f.text_area :mkt_description, class: "", rows: "26" %>
-            </div>
-            <div class="char-count">Last updated: <%= f.object.updated_at.strftime("%B %d, %Y at %I:%M %p") %> by <%= f.object.mkt_last_edited_by %></div>
-            <div class="char-count">Character count: <%= f.object.mkt_description.to_s.chars.length %> / 1600</div>
+                  <%= f.label(:mkt_active, "Show in list?", class: "input-label") %>
+                  <div class="switch-box">
+                    <%= f.check_box(:mkt_active, { data_toggle: "switch"  } )  %> 
+                    <%= link_to "View Marketing List", marketing_index_path, class: "green" %>
+                </div>
+            </div> 
+            
+            <%= f.hidden_field :mkt_last_edited_by, value: "#{current_user.name}" %>
+            
         </div>
 
     </div>
