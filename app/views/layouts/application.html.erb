@@ -30,9 +30,6 @@
                 $( "#notice" ).delay( 2000 ).slideUp( 300 );
             </script>
         <% end %>
-        <% if params[:controller] == "projects" %>
-            <%= render 'projects/view_options_modal' %>
-        <% end %>
 
         <%= javascript_include_tag 'application' %>
         <%= yield :scripts %>

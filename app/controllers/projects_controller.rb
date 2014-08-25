@@ -10,11 +10,13 @@ class ProjectsController < ApplicationController
     def info
         @project = Project.find(params[:id])
         @employee_teams = @project.employee_teams.ordered
+        render :layout => 'single_project' 
     end
 
     def team
         @project = Project.find(params[:id])
         @employee_teams = @project.employee_teams.ordered
+        render :layout => 'single_project' 
     end
 
     def billing
@@ -28,10 +30,12 @@ class ProjectsController < ApplicationController
             date = (date - 1).beginning_of_month
         end
         @actuals = @project.actuals.order("year ASC, month ASC, id ASC")
+        render :layout => 'single_project' 
     end
   
     def scope
         @project = Project.find(params[:id])
+        render :layout => 'single_project' 
     end
 
     def tracking
@@ -40,16 +44,19 @@ class ProjectsController < ApplicationController
         @available_phases = @project.available_phases
         @total_target_fees_all = @project.total_target_fees_all
         @total_actual_fees_all = @project.total_actual_fees_all
+        render :layout => 'single_project' 
     end
 
     def fee_calc
         @project = Project.find(params[:id])
         @team_members = EmployeeTeam.where(project_id: @project.id)
         @phases = @project.available_phases
+        render :layout => 'single_project' 
     end
 
     def forecast
         @project = Project.find(params[:id])
+        render :layout => 'single_project' 
     end
 
     def edit_forecast
@@ -59,12 +66,10 @@ class ProjectsController < ApplicationController
 
     def forecast_index
         @projects = Project.current.all
-        render :layout => 'application' 
     end
 
     def marketing_index
         @projects = Project.current.all
-        render :layout => 'application' 
     end
 
     def billing_worksheet #edit_all
@@ -86,14 +91,17 @@ class ProjectsController < ApplicationController
 
     def drawing_log
         @project = Project.find(params[:id])
+        render :layout => 'single_project' 
     end
 
     def patterns
         @project = Project.find(params[:id])
+        render :layout => 'single_project' 
     end
 
     def marketing
         @project = Project.find(params[:id])
+        render :layout => 'single_project' 
     end
 
     def schedule
@@ -113,7 +121,7 @@ class ProjectsController < ApplicationController
         if params.has_key?(:q) && @projects.count == 1 
             redirect_to info_project_path(@projects.first(params[:id]))
         else
-            render :layout => 'application' 
+            render 'index' 
         end
 
     end
