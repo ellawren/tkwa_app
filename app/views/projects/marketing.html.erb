@@ -18,7 +18,6 @@
                   <div class="switch-box">
                     <%= f.check_box(:mkt_active, { data_toggle: "switch"  } )  %> 
                     <%= link_to "View Marketing List", marketing_index_path, class: "green" %>
-
                 </div>
             </div> 
         </div>
@@ -65,7 +64,7 @@
             <h2>Description</h2>
 
             <div class="input-row">
-                <%= f.text_area :mkt_description, class: "", rows: "22" %>
+                <%= f.text_area :mkt_description, class: "", rows: "26" %>
             </div>
             <div class="char-count">Last updated: <%= f.object.updated_at.strftime("%B %d, %Y at %I:%M %p") %> by <%= f.object.mkt_last_edited_by %></div>
             <div class="char-count">Character count: <%= f.object.mkt_description.to_s.chars.length %> / 1600</div>
