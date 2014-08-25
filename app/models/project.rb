@@ -69,6 +69,7 @@
 #  mkt_last_edited_by    :string(255)
 #  mkt_summary           :string(255)
 #  mkt_active            :boolean         default(FALSE)
+#  mkt_display_name      :string(255)
 #
 
 class Project < ActiveRecord::Base
@@ -235,6 +236,10 @@ class Project < ActiveRecord::Base
         else
             User.active_users.order("name")
         end
+    end
+
+    def marketing_display_name
+        self.mkt_display_name || self.name
     end
 
 

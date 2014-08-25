@@ -6,7 +6,7 @@
     <ul>
     	<% @projects.each do |param| %>
 			<li>
-				<%= link_to param.name, marketing_project_path(param.id) %>
+				<%= link_to param.marketing_display_name, marketing_project_path(param.id) %>
 			</li>
 		<% end %>
 
