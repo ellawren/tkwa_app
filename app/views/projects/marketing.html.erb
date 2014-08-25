@@ -1,10 +1,15 @@
 <%= form_for @project do |f| %>
 
-    <h2>Marketing Information</h2>
+    <%= render 'project_header', f: f %>
+
+    
+
+    <div class="full marketing">
 
         <div class="narrow">
+            <h2>Project Stats</h2>
                     
-             <div class="input-row">
+            <div class="input-row">
                   <%= f.label(:mkt_location, "Location", class: "input-label") %>
                   <%= f.text_field :mkt_location, class: "" %>
             </div>
@@ -20,24 +25,38 @@
                   <%= f.label(:mkt_cost, "Cost", class: "input-label") %>
                   <%= f.text_field :mkt_cost, class: "" %>
             </div> 
+            <div class="input-row">
+                  <%= f.label(:mkt_summary, "Summary", class: "input-label") %>
+                  <%= f.text_area :mkt_summary, rows: "5" %>
+            </div> 
+            <div class="input-row">
+                  <%= f.label(:mkt_reference, "Reference", class: "input-label") %>
+                  <%= f.text_field :mkt_reference, class: "" %>
+            </div> 
+            <div class="input-row">
+                  <%= f.label(:mkt_active, "Show in list?", class: "input-label") %>
+                  <div class="switch-box">
+                    <%= f.check_box(:mkt_active, { data_toggle: "switch"  } )  %> 
+                </div>
+            </div> 
+            <%= f.hidden_field :mkt_last_edited_by, value: "#{current_user.name}" %>
+            
         </div>
         
+        <div class="wide">
+            <h2>Description</h2>
 
-        <h2>Project Description</h2>
-
-            <div class="full">
-
-                <div class="input-row">
-                    <%= f.label(:mkt_description, "Description", class: "input-label") %>
-                    <%= f.text_area :mkt_description, class: "", rows: "20" %>
-                </div>
-
+            <div class="input-row">
+                <%= f.text_area :mkt_description, class: "", rows: "22" %>
             </div>
-
-        <div class="save-row">
-            <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+            <div class="char-count">Last updated: <%= f.object.updated_at.strftime("%B %d, %Y at %I:%M %p") %> by <%= f.object.mkt_last_edited_by %></div>
+            <div class="char-count">Character count: <%= f.object.mkt_description.to_s.chars.length %> / 1600</div>
         </div>
 
+    </div>
+
+    <div class="save-row">
+        <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+    </div>
 
 <% end %>
-

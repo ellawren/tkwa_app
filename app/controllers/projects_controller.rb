@@ -59,6 +59,12 @@ class ProjectsController < ApplicationController
 
     def forecast_index
         @projects = Project.current.all
+        render :layout => 'application' 
+    end
+
+    def marketing_index
+        @projects = Project.current.all
+        render :layout => 'application' 
     end
 
     def billing_worksheet #edit_all
@@ -107,8 +113,9 @@ class ProjectsController < ApplicationController
         if params.has_key?(:q) && @projects.count == 1 
             redirect_to info_project_path(@projects.first(params[:id]))
         else
-            render 'index' 
+            render :layout => 'application' 
         end
+
     end
 
     def current

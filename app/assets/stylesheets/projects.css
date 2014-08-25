@@ -325,6 +325,18 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 .shop-modal { left:55%; width:520px; }
 
 
+/* PROJECTS - marketing */
+
+.marketing .narrow { width:280px; margin-right:60px; }
+.marketing .narrow .input-label { width:90px; }
+.marketing .narrow textarea { width:165px; }
+.marketing .wide { width:594px; }
+.marketing .wide h2 { width:100%; }
+.marketing .wide textarea { width:570px; }
+.marketing .wide .char-count { color:#7f8b93; font-family:"Asap"; font-size:13px; font-style:italic; margin-bottom:3px; }
+.marketing .switch-box { margin:4px 0 0 16px; }
+
+
 /* monthly billing */
 
 .table.monthly-billing th { text-align:right; padding-right:16px; padding-bottom:2px; font-size:12px;}

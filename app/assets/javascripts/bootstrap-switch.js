@@ -22,8 +22,8 @@
               , classes = $element.attr('class')
               , color
               , moving
-              , onLabel = "open"
-              , offLabel = "closed"
+              , onLabel = "yes"
+              , offLabel = "no"
               , icon = false;
 
             $.each(['switch-mini', 'switch-small', 'switch-large'], function (i, el) {
