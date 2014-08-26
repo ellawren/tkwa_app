@@ -239,7 +239,7 @@ class Project < ActiveRecord::Base
     end
 
     def marketing_display_name
-        self.mkt_display_name || self.name
+        self.mkt_display_name ||= self.name
     end
 
 
