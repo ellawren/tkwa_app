@@ -239,7 +239,11 @@ class Project < ActiveRecord::Base
     end
 
     def marketing_display_name
-        self.mkt_display_name ||= self.name
+        if self.mkt_display_name.present?
+            self.mkt_display_name
+        else
+            self.name
+        end
     end
 
 
