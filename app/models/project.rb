@@ -135,6 +135,9 @@ class Project < ActiveRecord::Base
         if self.status == 'potential'
             self.number = "000000"
         end
+        if self.mkt_display_name.blank?
+            self.mkt_display_name = self.name
+        end
     end
 
     # check for recent billing and mark as true to add project to Leta's Monthly Billing view
@@ -196,7 +199,7 @@ class Project < ActiveRecord::Base
     scope :marketing_list, {
         :select => "projects.*",
         :conditions => ["mkt_active = ?", 'true' ],
-        :order => ["name ASC" ]
+        :order => ["mkt_display_name ASC" ]
     }
 
     scope :related_projects, lambda{|l|  where("number LIKE :l", l: "#{l}%")}
@@ -235,14 +238,6 @@ class Project < ActiveRecord::Base
             User.active_users.where('id NOT IN (?)', user_ids).order("name")
         else
             User.active_users.order("name")
-        end
-    end
-
-    def marketing_display_name
-        if self.mkt_display_name.present?
-            self.mkt_display_name
-        else
-            self.name
         end
     end
 

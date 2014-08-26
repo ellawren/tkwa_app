@@ -69,7 +69,7 @@ class ProjectsController < ApplicationController
     end
 
     def marketing_index
-        @projects = Project.marketing_list.all
+        @projects = Project.marketing_list
     end
 
     def billing_worksheet #edit_all

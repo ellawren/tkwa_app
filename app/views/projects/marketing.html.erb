@@ -5,13 +5,13 @@
     <div class="full marketing">
 
         <div class="wide">
-            <h2>Marketing Display Name <span class="note">(leave blank to use official name)</span></h2>
+            <h2>Marketing Display Name <span class="note">(edit if different from our project name)</span></h2>
             <%= f.text_field :mkt_display_name, class: "" %>
 
             <h2>Project Description</h2>
 
             <div class="input-row">
-                <%= f.text_area :mkt_description, class: "", rows: "24" %>
+                <%= f.text_area :mkt_description, class: "", rows: "26" %>
             </div>
             <div class="char-count">Last updated: <%= f.object.updated_at.strftime("%B %d, %Y at %I:%M %p") %> by <%= f.object.mkt_last_edited_by %></div>
             <div class="char-count">Character count: <%= f.object.mkt_description.to_s.chars.length %> / 1600</div>
