@@ -437,7 +437,7 @@ class Project < ActiveRecord::Base
         entries
     end
 
-    def unassigned_hours(four_month_array)
+    def unassigned_hours_array(four_month_array)
         unassigned = []
         four_month_array.each do |w, y|
             unassigned.push(UnassignedHour.where(project_id: self.id, year: y, week: w).first_or_create)
