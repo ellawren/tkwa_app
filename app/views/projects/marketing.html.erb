@@ -53,7 +53,7 @@
 
             <h2>Categories</h2>
 
-            <div class="input-row">
+            <div class="input-row marketing-categories">
                 <%= hidden_field_tag "project[marketing_category_ids][]", nil %>
                 <% MarketingCategory.all.each do |cat| %>
                     <label class="checkbox">
