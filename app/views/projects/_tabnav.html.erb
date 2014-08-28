@@ -17,17 +17,17 @@
 	<% if @project.view_options.include?('schedule') %>
 		<li class="<%= is_active?("schedule")%>"><%= link_to "schedule", schedule_project_path(@project) %></li>
 	<% end %>
+	<% unless @project.status == "potential" %>
+		<% if @project.view_options.include?('shop drawings') %>	
+			<li class="<%= is_active?("drawing_log")%>"><%= link_to "shop drawings", drawing_log_project_path(@project) %></li>
+		<% end %>
+	<% end %>
 	<% if @project.view_options.include?('patterns') %>
 		<li class="<%= is_active?("patterns")%>"><%= link_to "patterns", patterns_project_path(@project) %></li>
 	<% end %>
 	<% unless @project.status == "potential" %>
 		<% if @project.view_options.include?('marketing') %>
 			<li class="<%= is_active?("marketing")%>"><%= link_to "marketing", marketing_project_path(@project) %></li>
-		<% end %>
-	<% end %>
-	<% unless @project.status == "potential" %>
-		<% if @project.view_options.include?('shop drawings') %>	
-			<li class="<%= is_active?("drawing_log")%>"><%= link_to "shop drawings", drawing_log_project_path(@project) %></li>
 		<% end %>
 	<% end %>
 	<% unless @project.status == "potential" %>

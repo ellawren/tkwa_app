@@ -3,6 +3,7 @@
 	<head>
 		<title><%= yield(:title) %></title>
 		<%= render 'layouts/header' %>
+        <%= stylesheet_link_tag 'patterns', media: 'all' if params[:action] == "patterns" %>
   		<%= csrf_meta_tags %>
 	</head>
 	

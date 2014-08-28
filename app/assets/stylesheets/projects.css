@@ -277,6 +277,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	#shop-drawings .index { width:20px; }
 	#shop-drawings .received { width:100px; }
 	#shop-drawings .spec { width:80px; }
+	#shop-drawings input.spec { width:58px; }
 	#shop-drawings select.consultant, #shop-drawings .consultant { width:180px; }
 	#shop-drawings .header .desc { width:235px; }
 	#shop-drawings .desc { width:220px; }
@@ -290,7 +291,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	#shop-drawings .returned { width:100px; }
 	#shop-drawings .final-date { width:100px; }
 
-	#shop-drawings .datepicker { float:left; margin-top:0px; margin-right:5px; }
+	#shop-drawings .datepicker { float:left; margin-top:0px; margin-right:5px; width:76px; }
 
 .shop-drawing { float:left; width:100%; padding:5px 0; border-bottom:1px solid #e1e6eb; }
 .modal-fields { float:left; width:100%; }
@@ -313,7 +314,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	#shop-drawings .status:hover label.plaintext.add-action { color:#bcc6cc; }
 
 	#shop-drawings .status:hover label { background-color:#ecf0f5; }
-#shop-drawings label.approved { background-color:#86cc71; color:#fff; }
+#shop-drawings label.approved { background-color:#86cc71; color:#fff; padding-top:8px; padding-bottom:0px; }
 	#shop-drawings .status:hover label.approved { background-color:#5bae60; }
 #shop-drawings label.as-noted { background-color:#1abc9c; color:#fff; }
 	#shop-drawings .status:hover label.as-noted { background-color:#16a085; }

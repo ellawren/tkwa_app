@@ -96,6 +96,7 @@ class ProjectsController < ApplicationController
 
     def patterns
         @project = Project.find(params[:id])
+        @patterns = @project.patterns
         render :layout => 'single_project' 
     end
 

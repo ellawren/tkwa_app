@@ -6,7 +6,7 @@
     <div class="letter">O</div>
 	<%= f.text_field :description, class: "desc" %>
 
-	<%= f.collection_select(:consultant_id, Consultant.all, :id, :company, { :include_blank => true }, { :class => "custom-select consultant" } ) %>
+
 
     <a data-toggle="modal" href="#modal-<%= f.object.id %>-status" class="status"><%= f.object.current_status %></a>
     <a data-toggle="modal" href="#modal-<%= f.object.id %>-final" class="status"><%= f.object.final_action_div %></a>

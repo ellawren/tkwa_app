@@ -1,49 +1,23 @@
-    <div class="pattern">
-
-        <% if f.object.id %>
-            <div class="v-number">
-                <%= f.object.number %>
-            </div>
-            <div class="v-name">
-                <%= link_to f.object.name, edit_pattern_path(f.object.id) %>
-            </div>
-            <div class="v-issue">
-                <%= add_breaks(f.object.issue) %>
-            </div>
-            <div class="v-solution">
-                <%= add_breaks(f.object.solution) %>
-            </div>
-            <div class="v-diagram">
-                <% if f.object.diagram.url %>
-                    <%= image_tag f.object.diagram.url(:thumb) %>
-                <% end %>
-            </div>
-        <% else %>
-            <%= f.hidden_field :project_id, value: "#{@project.id}" %>
-
-            <div class="p-number">
-                <%= f.label :number, class: "" %>
-                <%= f.text_field :number, class: "" %>
-            </div>
-
-            <div class="p-name">
-                <%= f.label :name, class: "" %>
-                <%= f.text_field :name, class: "" %>
-            </div>
-
-            <div class="p-issue">
-                <%= f.label :issue, class: "" %>
-                <%= f.text_area :issue, class: "", rows: 6 %>
-            </div>
-
-            <div class="p-solution">
-                <%= f.label :solution, class: "" %>
-                <%= f.text_area :solution, class: "", rows: 6 %>
-            </div>
-            <div class="p-diagram">
-                <%= f.label(:diagram, "Diagram", class: "input-label") %>
-                <%= f.file_field :diagram %>
-            </div>
-        <% end %>
-
+<li id="<%= p.id %>" class="pattern" name="pattern-<%= p.id %>">
+    <div class="view-fields">
+        <div class="header">
+            <div class="number"><%= p.number %> /</div>
+            <div class="title"><%= link_to p.name, edit_pattern_path(p) %></div>
+        </div>
+        <div class="issue"><%= simple_format p.issue %></div>
+        <div class="solution"><%= simple_format p.solution %></div>
+        <div class="images">
+            <% if p.photo_file_name %>
+                <div class="photo">
+                    <%= image_tag p.photo.url(:thumb), alt: p.photo_file_name %>
+                </div>
+            <% end %>
+            <% if p.diagram_file_name %>
+                <div class="diagram">
+                    <%= image_tag p.diagram.url(:thumb), alt: p.diagram_file_name %>
+                </div>
+            <% end %>
+        </div>
+        <div class="footer">Written on <%= p.created_at.strftime("%B %-d, %Y") %><%= " by #{p.author}" if p.author.present? %></div>
     </div>
+</li>

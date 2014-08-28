@@ -3,6 +3,14 @@
 	<%= render 'project_header', f: f %>
 
 	<h2>Patterns</h2>
-	<p>Nothing here yet...</p>
+	<% if @patterns.count == 0 %>
+		No patterns yet!
+	<% else %>
+		<ul id="pattern-tiles" >
+		<% @patterns.order("number ASC").each do |p| %>
+			<%= render 'pattern_fields', :p => p %>
+		<% end %>
+		</ul>
+	<% end %>
 
 <% end %>

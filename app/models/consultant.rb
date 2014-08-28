@@ -8,8 +8,6 @@
 #  updated_at :datetime        not null
 #
 
-require 'spec_helper'
+class Consultant < ActiveRecord::Base
 
-describe Consultant do
-  pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -74,7 +74,8 @@ TkwaApp::Application.routes.draw do
             get 'transmittal', 'fax', 'envelope'
         end
     end
-    
+    resources :consultants
+
 
     # PHASES
     match '/phases/modal',   to: 'phases#modal', as: "modal_phases"
