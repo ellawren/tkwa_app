@@ -67,7 +67,6 @@
 #  building_type_id      :integer
 #  billing_type_id       :integer
 #  mkt_last_edited_by    :string(255)
-#  mkt_summary           :string(255)
 #  mkt_active            :boolean         default(FALSE)
 #  mkt_display_name      :string(255)
 #
@@ -103,6 +102,7 @@ class Project < ActiveRecord::Base
     has_many :unassigned_hours, :dependent => :destroy
     accepts_nested_attributes_for :unassigned_hours
 
+    has_and_belongs_to_many :marketing_categories
     has_and_belongs_to_many :services
     has_and_belongs_to_many :reimbursables
     has_and_belongs_to_many :consultant_roles

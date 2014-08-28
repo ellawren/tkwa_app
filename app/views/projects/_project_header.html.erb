@@ -13,10 +13,6 @@
         <h1><span class="light"><%= @project.number %></span><%= @project.name %></h1>
 <% end %>
     <ul class="controls project">
-        <% unless @project.status == "potential" %>
-            <li><a href="#options" class="glyphicon glyphicon-eye-open tip" role="button" data-toggle="modal" title="View Options"></a></li>
-        <% end %>
-        
         <% if @project.previous.present? %> 
                 <li><%= link_to "", eval("#{params[:action]}_project_path(#{@project.previous.id})"), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
         <% end %>

@@ -37,10 +37,6 @@
                   <%= f.text_field :mkt_cost, class: "" %>
             </div> 
             <div class="input-row">
-                  <%= f.label(:mkt_summary, "Program", class: "input-label") %>
-                  <%= f.text_area :mkt_summary, rows: "6" %>
-            </div> 
-            <div class="input-row">
                   <%= f.label(:mkt_reference, "Reference", class: "input-label") %>
                   <%= f.text_field :mkt_reference, class: "" %>
             </div> 
@@ -54,7 +50,19 @@
             </div> 
             
             <%= f.hidden_field :mkt_last_edited_by, value: "#{current_user.name}" %>
-            
+
+            <h2>Categories</h2>
+
+            <div class="input-row">
+                <%= hidden_field_tag "project[marketing_category_ids][]", nil %>
+                <% MarketingCategory.all.each do |cat| %>
+                    <label class="checkbox">
+                        <%= check_box_tag "project[marketing_category_ids][]", cat.id, @project.marketing_category_ids.include?(cat.id), id: dom_id(cat), data_toggle: "checkbox" %>
+                        <%= cat.name %>
+                    </label>
+                <% end %>
+            </div> 
+
         </div>
 
     </div>

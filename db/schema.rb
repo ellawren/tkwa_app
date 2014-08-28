@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140825204743) do
+ActiveRecord::Schema.define(:version => 20140828152926) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -274,6 +274,21 @@ ActiveRecord::Schema.define(:version => 20140825204743) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "marketing_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "marketing_categories_projects", :id => false, :force => true do |t|
+    t.integer  "marketing_category_id", :null => false
+    t.integer  "project_id",            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "marketing_categories_projects", ["marketing_category_id", "project_id"], :name => "marketing_projects_index", :unique => true
+
   create_table "messages", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -471,7 +486,6 @@ ActiveRecord::Schema.define(:version => 20140825204743) do
     t.integer  "building_type_id"
     t.integer  "billing_type_id"
     t.string   "mkt_last_edited_by"
-    t.string   "mkt_summary"
     t.boolean  "mkt_active",                                           :default => false
     t.string   "mkt_display_name"
   end

@@ -67,7 +67,6 @@
 #  building_type_id      :integer
 #  billing_type_id       :integer
 #  mkt_last_edited_by    :string(255)
-#  mkt_summary           :string(255)
 #  mkt_active            :boolean         default(FALSE)
 #  mkt_display_name      :string(255)
 #

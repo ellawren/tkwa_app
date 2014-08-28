@@ -130,6 +130,7 @@ TkwaApp::Application.routes.draw do
     resources :globals, :only => [:index, :create, :update]
     resources :holidays
     resources :microposts,  only: [:create, :destroy]
+    resources :marketing_categories
     resources :messages
     resources :non_billable_categories
     resources :pattern_groups
