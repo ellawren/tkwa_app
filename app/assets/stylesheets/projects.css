@@ -203,6 +203,8 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.billing-table a.delete { margin-left:0px; }
 	.add-billing { float:left; }
 
+	.billing-table .custom-select.consultant { width:195px; }
+
 /* schedule */
 
 .container.schedule { margin-bottom:60px; }
@@ -280,7 +282,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	#shop-drawings input.spec { width:58px; }
 	#shop-drawings select.consultant, #shop-drawings .consultant { width:180px; }
 	#shop-drawings .header .desc { width:235px; }
-	#shop-drawings .desc { width:220px; }
+	#shop-drawings .desc { width:193px; }
 	#shop-drawings .header .status, #shop-drawings .header .final-action { width:135px; }
 	#shop-drawings .modal-body .header .status, #shop-drawings .modal-body .header .final-action { width:183px; }
 	#shop-drawings .review-status { width:180px; }

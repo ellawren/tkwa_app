@@ -9,6 +9,7 @@
 #  consultant_role     :string(255)
 #  consultant_contract :decimal(12, 2)
 #  consultant_name     :string(255)
+#  consultant_id       :integer
 #
 
 class ConsultantTeam < ActiveRecord::Base
@@ -18,9 +19,10 @@ class ConsultantTeam < ActiveRecord::Base
     validates :consultant_name, :presence => true
 
 	belongs_to :project
+    belongs_to :consultant
     has_many :bills, :dependent => :destroy
     accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:amount].blank? }
-
+    
    	def consultant_contract=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)
         self[:consultant_contract] = num
