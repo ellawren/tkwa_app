@@ -1,10 +1,10 @@
-<div class="row <%= "saved" if f.object.consultant_name %>">
-	<% if f.object.consultant_name %>
-		<div class="text name"><%= f.object.consultant_name %>
+<div class="row <%= "saved" if f.object.consultant_id %>">
+	<% if f.object.consultant_id %>
+		<div class="text name"><%= f.object.consultant.name %>
 			<div class="role"><%= f.object.consultant_role %></div>
 		</div>
 	<% else %>
-		<%= f.autocomplete_field :consultant_name, autocomplete_contact_work_company_projects_path, class: "consultant-name", :placeholder => "Firm Name" %>
+		<%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :prompt => "Firm", :include_blank => true }, { :class => "custom-select consultant-name" } ) %>
 		<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :prompt => "Role", :include_blank => true }, { :class => "custom-select consultant-role" } ) %>
 	<% end %>
 	<%= f.hidden_field :_destroy %>

@@ -250,7 +250,7 @@
 	.half .row.saved:hover { background-color:#f4f6f9; }
 	.half .row.saved { border-bottom:1px solid #ddd; color:#16a085; margin-top:0px; }
 	.half .custom-select { width:196px; }
-	.half .custom-select.consultant-role { width:168px; }
+	.half .custom-select.consultant-role { width:178px; }
 	.half .custom-select:first-child, .half .header-row div:first-child, .half .row .text.name { margin-right:5px; }
 	.half .row .text.name { width:386px; font-weight:700; padding-left:5px; }
 	.half .row .text.name .detail { font-weight:400; color:#bcc6cc; }
@@ -260,7 +260,7 @@
 	.half input[type="text"], .half textarea { float:left; width:260px; }
 	.half input[type="text"].i-am-messed-up, .half textarea.i-am-messed-up { float:left; width:276px; height:34px; }
 	.half.billing input[type="text"] { width:200px; text-align:right; }
-	.half input[type="text"].consultant-name { width:200px; margin-right:6px; }
+	.half .custom-select.consultant-name { width:214px; margin-right:6px; }
 	.half .input-label { float:left; width:100px; padding:10px 0; }
 	.half input[type="text"].button-right, .half textarea.button-right { width:230px; }
 	.half .row input[type="text"], .half .row select { margin-bottom:0px; }

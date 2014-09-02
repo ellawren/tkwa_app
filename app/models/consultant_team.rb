@@ -16,7 +16,7 @@ class ConsultantTeam < ActiveRecord::Base
     default_scope order('created_at')
 
     validates :project_id, :presence => true
-    validates :consultant_name, :presence => true
+    validates :consultant_id, :presence => true
 
 	belongs_to :project
     belongs_to :consultant
@@ -37,6 +37,10 @@ class ConsultantTeam < ActiveRecord::Base
         end
         array.map{|x| sum += x}
         sum
+    end
+
+    def consultant
+        Consultant.find(self.consultant_id)
     end
 
     def percent_billed

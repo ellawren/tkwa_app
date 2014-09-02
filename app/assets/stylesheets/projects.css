@@ -54,6 +54,7 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 
 	a.control-link { float:right; }
 	a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
+	a.control-link-text.margin-right { margin-right:10px; }
 	a.control-link-billing { float:right; display:block; font-weight:400; font-size:13px; background-color:#86cc71; color:#fff; padding:6px 12px; border-radius:6px; height:16px; line-height:16px; }
 	a.control-link-billing:hover { background-color:#5bae60; }
 
