@@ -561,6 +561,17 @@ class Project < ActiveRecord::Base
         gantt.join(", ").html_safe
     end
 
+    # MISC ################################################################
+
+    def project_year
+        num = self.number[4,5]
+        if num.to_i > 80 
+            "19" + num
+        else
+            "20" + num
+        end
+    end
+
     #######################################################################
 
     # do not change the order on these - it will affect all previous records

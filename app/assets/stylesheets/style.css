@@ -58,8 +58,8 @@
 	.btn { padding:7px 12px; font-weight:700; }
 	a.mail-link { cursor:pointer; }
 	ul.link-list { float:left; }
+		ul.link-list .note { font-size:13px; }
 	ul.link-list li { margin-bottom:2px; }
-	ul.link-list li a {  }
 
 	/* transitions */
 

@@ -3,13 +3,15 @@
 
 <div class="page-header">
     <h1><%= @consultant.name %></h1>
-    <%= link_to "edit", edit_consultant_path(@consultant), class: "btn btn-right" %>
+    <%= link_to "edit name", edit_consultant_path(@consultant), class: "btn btn-right" %>
 </div>
 
-<ul class="link-list">
-	<% @consultant.teams.each do |t| %>
+<h2>Projects</h2>
+<ul class="link-list green">
+	<% @consultant.projects.each do |id| %>
+		<% project = Project.find(id) %>
 		<li>
-			<%= link_to "#{Project.find(t.project_id).name} - #{t.consultant_role}", info_project_path(t.project_id) %>
+			<%= link_to "#{project.name} (#{project.project_year})<span class=\"note\">#{@consultant.all_roles(id)}</span>".html_safe, info_project_path(id) %>
 		</li>
 	<% end %>
 </ul>
