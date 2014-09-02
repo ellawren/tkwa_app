@@ -1,1 +1,15 @@
-<h1><%= @consultant.name %></h1>
+<% provide :title, @consultant.name %>
+<%= link_to "Consultants", consultants_path, class: "header-label" %>
+
+<div class="page-header">
+    <h1><%= @consultant.name %></h1>
+    <%= link_to "edit", edit_consultant_path(@consultant), class: "btn btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @consultant.teams.each do |t| %>
+		<li>
+			<%= link_to "#{Project.find(t.project_id).name} - #{t.consultant_role}", info_project_path(t.project_id) %>
+		</li>
+	<% end %>
+</ul>
