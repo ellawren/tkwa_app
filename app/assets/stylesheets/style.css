@@ -253,6 +253,8 @@
 	.half .custom-select.consultant-role { width:178px; }
 	.half .custom-select:first-child, .half .header-row div:first-child, .half .row .text.name { margin-right:5px; }
 	.half .row .text.name { width:386px; font-weight:700; padding-left:5px; }
+	.half .row .text.name a { color:#16a085; }
+	.half .row .text.name a:hover { color:#1abc9c; }
 	.half .row .text.name .detail { font-weight:400; color:#bcc6cc; }
 	.half .row .role { width:auto; display:inline; font-weight:300; font-style:italic; }
 	.half.last { margin-left:70px; }
@@ -484,6 +486,7 @@
 	.tile-box.disabled a.tile-label { color:#bcc6cc; opacity:.3; }
 	.tile-box.disabled:hover a.tile-label { color:#bcc6cc; opacity:.3; }
 	.row.icons.five { float:left; margin:40px 40px 20px; }
+	.row.icons.five.three { float:left; margin:-20px 40px 0px 220px; }
 	.five .tile-box { width:160px; }
 	.five .tile-box img.round-icon { width:150px; height:150px; }
 	.five .tile-box a.tile-label { width:140px; padding:10px; font-size:16px; }

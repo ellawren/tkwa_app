@@ -9,5 +9,9 @@
 #
 
 class Consultant < ActiveRecord::Base
+
+	def projects
+		project_ids = ConsultantTeam.where(consultant_id: self.id).pluck(:project_id)
+	end
 	
 end

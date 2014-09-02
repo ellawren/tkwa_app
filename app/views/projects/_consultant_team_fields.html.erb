@@ -1,6 +1,6 @@
 <div class="row <%= "saved" if f.object.consultant_id %>">
 	<% if f.object.consultant_id %>
-		<div class="text name"><%= f.object.consultant.name %>
+		<div class="text name"><%= link_to f.object.consultant.name, f.object.consultant %>
 			<div class="role"><%= f.object.consultant_role %></div>
 		</div>
 	<% else %>

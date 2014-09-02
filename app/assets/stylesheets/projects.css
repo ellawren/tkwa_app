@@ -203,6 +203,8 @@ label.checkbox { float:left; width:100%; margin-left:0px; color:#bcc6cc; }
 	.billing-table th.percent, .billing-table td.percent  { width:60px; text-align:center; padding-right:0px; padding-left:20px; }
 	.billing-table a.delete { margin-left:0px; }
 	.add-billing { float:left; }
+	.billing-table td.consultant { width:240px; }
+	.billing-table a.glyphicon { font-size:16px; padding:10px 0 0 6px;}
 
 	.billing-table .custom-select.consultant { width:195px; }
 

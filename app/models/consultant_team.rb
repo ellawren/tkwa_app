@@ -8,7 +8,6 @@
 #  updated_at          :datetime        not null
 #  consultant_role     :string(255)
 #  consultant_contract :decimal(12, 2)
-#  consultant_name     :string(255)
 #  consultant_id       :integer
 #
 
@@ -41,6 +40,10 @@ class ConsultantTeam < ActiveRecord::Base
 
     def consultant
         Consultant.find(self.consultant_id)
+    end
+
+    def consultant_name
+        Consultant.find(self.consultant_id).name
     end
 
     def percent_billed

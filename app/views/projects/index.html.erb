@@ -81,6 +81,19 @@
     </div>
 
     <div class="tile-box">
+        <%= link_to image_tag("marketing-icon.png", :alt => "marketing", :class => "round-icon"), marketing_index_path %>
+        <%= link_to "Marketing", marketing_index_path, :class => "tile-label" %>
+    </div>
+
+    <div class="tile-box">
+        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), potential_projects_path %>
+        <%= link_to "Potential Projects", potential_projects_path, :class => "tile-label" %>
+    </div>
+
+</div> <!-- end icons -->
+<div class="row icons five three">
+
+    <div class="tile-box">
         <%= link_to image_tag("worksheet.png", :alt => "forecast", :class => "round-icon"), billing_worksheet_path %>
         <%= link_to "Billing Worksheet", billing_worksheet_path, :class => "tile-label" %>
     </div>
@@ -90,12 +103,12 @@
         <%= link_to "TKWA Fees Billed By Month", fees_billed_by_month_path, :class => "tile-label" %>
     </div>
 
-    <!--<div class="tile-box disabled">
-        <%= link_to image_tag("potential.png", :alt => "potential", :class => "round-icon"), "" %>
-        <%= link_to "Potential Projects", "", :class => "tile-label" %>
-    </div>-->
+    <div class="tile-box">
+        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
+        <%= link_to "Consultants", consultants_path, :class => "tile-label" %>
+    </div>
 
-  </div> <!-- end tiles -->
+</div> <!-- end icons -->
 
 <% if has_current_projects?(@user) %>
   <h2>My Projects</h2>

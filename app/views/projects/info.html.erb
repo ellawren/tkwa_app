@@ -24,7 +24,7 @@
         <h2 class="no-lower-margin">Consultant Team <%= link_to "edit roles", consultant_roles_path, class: "control-link-text" %><%= link_to "edit consultants", consultants_path, class: "control-link-text margin-right" %></h2>
 
         <!-- nested form for team-->
-            <%= f.fields_for :consultant_teams, @project.consultant_teams.order("consultant_name ASC") do |builder| %>
+            <%= f.fields_for :consultant_teams, @project.consultant_teams.sort_by(&:consultant_name) do |builder| %>
                 <%= render 'consultant_team_fields', :f => builder %>
             <% end %>
             <%= link_to_add_fields "", f, :consultant_teams, "add fui-plus consultant no-margin" %>
