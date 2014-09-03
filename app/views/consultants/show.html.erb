@@ -8,10 +8,9 @@
 
 <h2>Projects</h2>
 <ul class="link-list green">
-	<% @consultant.projects.each do |id| %>
-		<% project = Project.find(id) %>
+	<% @consultant.all_projects.each do |p| %>
 		<li>
-			<%= link_to "#{project.name} (#{project.project_year})<span class=\"note\">#{@consultant.all_roles(id)}</span>".html_safe, info_project_path(id) %>
+			<%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
 		</li>
 	<% end %>
 </ul>

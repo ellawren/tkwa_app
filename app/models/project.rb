@@ -564,7 +564,7 @@ class Project < ActiveRecord::Base
     # MISC ################################################################
 
     def project_year
-        num = self.number[4,5]
+        num = self.number[4..5]
         if num.to_i > 80 
             "19" + num
         else

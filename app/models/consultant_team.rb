@@ -39,11 +39,15 @@ class ConsultantTeam < ActiveRecord::Base
     end
 
     def consultant
-        Consultant.find(self.consultant_id)
+        if self.consultant_id.present?
+            Consultant.find(self.consultant_id)
+        end
     end
 
     def consultant_name
-        Consultant.find(self.consultant_id).name
+        if self.consultant.present?
+            self.consultant.name
+        end
     end
 
     def percent_billed
