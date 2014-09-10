@@ -1,11 +1,11 @@
 <div class="row <%= "saved" if f.object.consultant_id %>">
 	<% if f.object.consultant_id %>
 		<div class="text name"><%= link_to f.object.consultant.name, f.object.consultant %>
-			<div class="role"><%= f.object.consultant_role %></div>
+			<div class="role"><%= ConsultantRole.find(f.object.consultant_role_id).consultant_role_name %></div>
 		</div>
 	<% else %>
 		<%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :prompt => "Firm", :include_blank => true }, { :class => "custom-select consultant-name" } ) %>
-		<%= f.collection_select(:consultant_role, ConsultantRole.all, :consultant_role_name, :consultant_role_name, { :prompt => "Role", :include_blank => true }, { :class => "custom-select consultant-role" } ) %>
+		<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :prompt => "Role", :include_blank => true }, { :class => "custom-select role" } ) %>
 	<% end %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to_remove_fields_2 "  ", f %>
