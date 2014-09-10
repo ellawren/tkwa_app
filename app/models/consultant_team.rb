@@ -9,6 +9,7 @@
 #  consultant_role     :string(255)
 #  consultant_contract :decimal(12, 2)
 #  consultant_id       :integer
+#  consultant_role_id  :integer
 #
 
 class ConsultantTeam < ActiveRecord::Base
@@ -19,6 +20,7 @@ class ConsultantTeam < ActiveRecord::Base
 
 	belongs_to :project
     belongs_to :consultant
+    #belongs_to :consultant_role
     has_many :bills, :dependent => :destroy
     accepts_nested_attributes_for :bills, :allow_destroy => true, :reject_if => lambda { |a| a[:amount].blank? }
     

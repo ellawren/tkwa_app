@@ -5,6 +5,17 @@
 	<%= link_to "Add Consultant", new_consultant_path, class: "btn btn-primary btn-right" %>
 </div>
 
+<div class="gray-box">
+
+	<%= search_form_for @q do |f| %>
+
+		<%= f.text_field :name_cont, class: "search-name", placeholder: "Firm Name" %>   
+		<%= f.submit "Search", class: "btn btn-primary search-btn" %>
+			     
+	<% end %>
+
+</div>
+
 <ul class="link-list">
 	<% @consultants.each do |param| %>
 			<li>

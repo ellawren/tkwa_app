@@ -6,6 +6,8 @@
     <%= link_to "edit name", edit_consultant_path(@consultant), class: "btn btn-right" %>
 </div>
 
+<%= @consultant.roles %>
+
 <h2>Projects</h2>
 <ul class="link-list green">
 	<% @consultant.all_projects.each do |p| %>
@@ -14,3 +16,5 @@
 		</li>
 	<% end %>
 </ul>
+
+<h2>Contacts</h2>

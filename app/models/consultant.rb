@@ -18,6 +18,11 @@ class Consultant < ActiveRecord::Base
 		Project.alpha.find(array)
 	end
 
+	def roles 
+		array = ConsultantTeam.where(consultant_id: self.id).pluck(:consultant_role).uniq
+		array.to_s.gsub('"', '').gsub('[', '  ').gsub(']', '')
+	end
+
 	def all_roles(project_id)
 		array = ConsultantTeam.where(consultant_id: self.id, project_id: project_id).pluck(:consultant_role)
 		array.to_s.gsub('"', '').gsub('[', '  ').gsub(']', '')

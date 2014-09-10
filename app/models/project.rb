@@ -78,7 +78,7 @@ class Project < ActiveRecord::Base
     accepts_nested_attributes_for :employee_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:user_id].blank? || a[:role].blank? }
 
     has_many :consultants, :through => :consultant_teams
-    has_many :consultant_teams, :dependent => :destroy
+    has_many :consultant_teams, :dependent => :destroy #:include => [:consultant_role]
     accepts_nested_attributes_for :consultant_teams, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? }
 
     has_many :bills, :through => :consultant_teams

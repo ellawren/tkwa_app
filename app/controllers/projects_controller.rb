@@ -124,7 +124,6 @@ class ProjectsController < ApplicationController
         else
             render 'index' 
         end
-
     end
 
     def current
