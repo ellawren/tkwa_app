@@ -1,7 +1,7 @@
 <div class="row <%= "saved" if f.object.consultant_id %>">
 	<% if f.object.consultant_id %>
 		<div class="text name"><%= link_to f.object.consultant.name, f.object.consultant %>
-			<div class="role"><%= ConsultantRole.find(f.object.consultant_role_id).consultant_role_name %></div>
+			<div class="role"><%= ConsultantRole.find(f.object.consultant_role_id).consultant_role_name if f.object.consultant_role_id.present? %></div>
 		</div>
 	<% else %>
 		<%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :prompt => "Firm", :include_blank => true }, { :class => "custom-select consultant-name" } ) %>
