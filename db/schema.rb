@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140910170030) do
+ActiveRecord::Schema.define(:version => 20140929201747) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -263,6 +263,18 @@ ActiveRecord::Schema.define(:version => 20140910170030) do
     t.integer  "day"
   end
 
+  create_table "imperatives", :force => true do |t|
+    t.integer  "version"
+    t.string   "category"
+    t.string   "name"
+    t.integer  "number"
+    t.text     "short_desc"
+    t.text     "full_desc"
+    t.text     "strategies"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "list_members", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "mailing_list_id"
@@ -274,6 +286,20 @@ ActiveRecord::Schema.define(:version => 20140910170030) do
   add_index "list_members", ["contact_id", "mailing_list_id"], :name => "index_list_members_on_contact_id_and_mailing_list_id", :unique => true
   add_index "list_members", ["contact_id"], :name => "index_list_members_on_contact_id"
   add_index "list_members", ["mailing_list_id"], :name => "index_list_members_on_mailing_list_id"
+
+  create_table "living_building_categories", :force => true do |t|
+    t.string   "version"
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "numerical_order"
+  end
+
+  create_table "living_buildings", :force => true do |t|
+    t.integer  "version"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "mailing_lists", :force => true do |t|
     t.string   "name"

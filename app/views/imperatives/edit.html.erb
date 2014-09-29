@@ -1,0 +1,16 @@
+<% provide :title, @imperative.name %>
+<%= link_to "Imperatives", imperatives_path, class: "header-label" %>
+<div class="page-header">
+    <h1><%= @imperative.name %></h1>
+</div>
+
+<%= form_for @imperative do |f| %>
+
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'fields', f: f %>
+
+    <div class="save-row">
+        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>

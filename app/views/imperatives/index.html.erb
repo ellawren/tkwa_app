@@ -1,0 +1,20 @@
+<% provide :title, "Imperatives" %>
+<%= link_to "Admin Panel", admin_path, class: "header-label" %>
+<div class="page-header">
+	<h1>Imperatives</h1>
+	<%= link_to "Add Imperative", new_imperative_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @imperatives.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_imperative_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>
+

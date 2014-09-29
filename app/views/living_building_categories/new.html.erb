@@ -1,0 +1,16 @@
+<% provide :title, "New Living Building Category" %>
+<div class="page-header">
+    <h1>New Living Building Category</h1>
+</div>
+
+<%= form_for @living_building_category do |f| %>
+
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'fields', f: f %>
+
+    <div class="save-row">
+        <%= f.submit "Create Living Building Category", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>
+

@@ -130,6 +130,9 @@ TkwaApp::Application.routes.draw do
     resources :employee_roles
     resources :globals, :only => [:index, :create, :update]
     resources :holidays
+    resources :imperatives
+    resources :living_buildings
+    resources :living_building_categories
     resources :microposts,  only: [:create, :destroy]
     resources :marketing_categories
     resources :messages

@@ -1,0 +1,30 @@
+<div class="wide">
+	<div class="input-row">
+        <%= f.label(:version, "Version", class: "input-label") %>
+        <%= f.collection_select(:version, LivingBuilding.all, :id, :version, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:category, "Category", class: "input-label") %>
+        <%= f.collection_select(:version, LivingBuildingCategory.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:name, "Name", class: "input-label") %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:number, "Number", class: "input-label") %>
+        <%= f.text_field :number %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:short_desc, "Short Description", class: "input-label") %>
+        <%= f.text_area :short_desc %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:full_desc, "Full Description", class: "input-label") %>
+        <%= f.text_area :full_desc %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:strategies, "Strategies", class: "input-label") %>
+        <%= f.text_area :strategies %>
+    </div>
+</div>
