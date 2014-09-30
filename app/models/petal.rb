@@ -14,6 +14,26 @@
 #
 
 class Petal < ActiveRecord::Base
+
+	has_many :imperatives
+
+	def formatted_number
+		self.numerical_order.to_s.rjust(2, '0')
+	end
+
+	# next/prev
+    scope :next, lambda {|numerical_order| where("numerical_order > ?", numerical_order).order("numerical_order ASC") }
+    scope :previous, lambda {|numerical_order| where("numerical_order < ?", numerical_order).order("numerical_order DESC") }
+
+    def next
+        Petal.next(self.numerical_order).first
+    end
+
+    def previous
+        Petal.previous(self.numerical_order).first
+    end
+    #------------------------------------
+
   
 end
 

@@ -4,6 +4,13 @@
         <%= f.collection_select(:category, Petal.order("numerical_order ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
     </div>
     <div class="input-row">
+        <%= f.label(:petal_id, "Petal ID", class: "input-label") %>
+        <%= f.collection_select(:petal_id, Petal.order("numerical_order ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+        <% if f.object.petal_id %>
+            <%= link_to "view all", edit_petal_path(f.object.petal_id) %>
+        <% end %>
+    </div>
+    <div class="input-row">
         <%= f.label(:name, "Name", class: "input-label") %>
         <%= f.text_field :name %>
     </div>

@@ -922,6 +922,23 @@
 	table.potential tbody td { color:#16a085; }
 	table.potential tbody td a { color:#16a085; font-weight:900; }
 
+
+/* living future - petals/imperatives */
+	
+	ul.petals { float:left; width:100%; margin:0px; }
+	ul.petals li { list-style:none; float:left; width:100%; margin-bottom:10px; }
+	ul.petals li .header { float:left; width:100%; margin-bottom:10px; font-size:14px; color:#344953; font-weight:900; }
+
+	.page-header.petal-header { margin-bottom:5px; }
+	h1.petal-header { color:#344953; font-weight:300; font-size:23px; }
+	h1 .petal-number, h1 .petal-name { border:none; border-radius:6px; font-size:22px; color:#344953; padding:0px 3px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; } 
+	h1 .petal-number { width:30px; font-weight:300; }
+	h1 .petal-name { width:640px; font-weight:900; }
+	h1 .petal-number:focus, h1 .petal-name:focus { background-color:#f4f6f9; }
+
+	.full.petals { border-top: 2px solid #344953; padding-top:20px; padding-bottom:10px; }
+	.full input[type="text"] { width:620px; }
+
 /* notice bar */
 
 	#notice { position:fixed; z-index:9999; width:100%; height:28px; background-color:#0ba0d4; color:#fff; }

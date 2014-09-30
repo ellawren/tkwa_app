@@ -41,17 +41,17 @@ class Pattern < ActiveRecord::Base
 	before_validation { diagram.clear if delete_diagram == '1' }
 	before_validation { photo.clear if delete_photo == '1' }
 
-	# next/prev
-    #scope :next, lambda {|id| where("number > ?", number).order("number ASC") }
-    #scope :previous, lambda {|id| where("number < ?", number).order("number DESC") }
-    scope :next, lambda {|id| where("id > ?", id).order("id ASC") }
-    scope :previous, lambda {|id| where("id < ?", id).order("id DESC") }
-
     before_save do
         if self.notes
             self.notes = self.notes.gsub(/^<br>/, '').gsub(/(<br>){3,}/, '<br><br>').gsub(/<\/ul><br><br>/, '</ul><br>').gsub(/<\/ol><br><br>/, '</ol><br>').gsub(/<p[^>]*style=.*?>/, '<p>').gsub(/<span[^>]*style=.*?>/, '<span>')   # get rid of extra line breaks
         end 
     end
+
+	# next/prev
+    #scope :next, lambda {|id| where("number > ?", number).order("number ASC") }
+    #scope :previous, lambda {|id| where("number < ?", number).order("number DESC") }
+    scope :next, lambda {|id| where("id > ?", id).order("id ASC") }
+    scope :previous, lambda {|id| where("id < ?", id).order("id DESC") }
 
     def next
         #Pattern.next(self.number).first

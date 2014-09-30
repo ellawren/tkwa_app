@@ -1,13 +1,38 @@
 <% provide :title, @petal.name %>
-<%= link_to "Petals", petals_path, class: "header-label" %>
-<div class="page-header">
-    <h1><%= @petal.name %></h1>
-</div>
+<%= link_to "Living Building Challenge", petals_path, class: "header-label" %>
 
 <%= form_for @petal do |f| %>
 
-    <%= render 'shared/error_messages', object: f.object %>
+	 <div class="page-header petal-header">
+	    
+	    <h1 class="petal-header">
+            Petal <%= f.text_field :numerical_order, value: @petal.formatted_number, class: "petal-number" %>/
+            <%= f.text_field :name, class: "petal-name" %>
+        </h1>
+        <ul class="controls project">
+            <% if @petal.previous.present? %> 
+                <li><%= link_to "", edit_petal_path(@petal.previous.id), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+            <% end %>
+            <% if @petal.next.present? %> 
+                <li><%= link_to "", edit_petal_path(@petal.next.id), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+            <% end %>
+            <li><%= link_to "", new_petal_path, class: "glyphicon glyphicon-plus tip", title:"Add New Petal" %></li>
+            <li class="delete"><%= link_to "", @petal, method: :delete, confirm: "Are you sure you want to delete this petal?", class: "glyphicon glyphicon-remove tip", title:"Delete This Petal" %>
+            </li>
+
+        </ul>  
+
+	</div>
+
     <%= render 'fields', f: f %>
+
+    <h2>Imperatives</h2>
+
+    <ul class="link-list">
+    	<% @petal.imperatives.each do |i| %>
+    		<li><%= link_to "#{i.number}. #{i.name}", edit_imperative_path(i) %></li>
+    	<% end %>
+    </ul>
 
     <div class="save-row">
         <%= f.submit "Save", class: "btn btn-primary save-btn" %>

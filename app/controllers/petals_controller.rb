@@ -37,7 +37,7 @@ class PetalsController < ApplicationController
     end
 
     def destroy
-        LivingBuildingCategory.find(params[:id]).destroy
+        Petal.find(params[:id]).destroy
         flash[:success] = "Petal destroyed."
         redirect_to petals_path
     end

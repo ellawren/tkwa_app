@@ -1,20 +1,17 @@
-<% provide :title, "Petals" %>
-<%= link_to "Admin Panel", admin_path, class: "header-label" %>
+<% provide :title, "Living Building Challenge" %>
+
 <div class="page-header">
-	<h1>Petals</h1>
+	<h1>Living Building Challenge</h1>
 	<%= link_to "Add Petal", new_petal_path, class: "btn btn-primary btn-right" %>
 </div>
 
-<ul class="link-list">
-	<% @petals.each do |param| %>
-			<li>
-				<%= link_to param.name, edit_petal_path(param.id) %>
-				<% if signed_in? %>
-					<% if current_user.admin? %>
-					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-					<% end %>
-				<% end %>
-			</li>
+<ul class="petals">
+	<% @petals.each do |p| %>
+		<li>
+			<div class="header"><%= p.numerical_order %>. <%= p.name %></div>
+			<div class="intent"><%= p.intent.gsub(/\n/, '<br />').html_safe %></div>
+			<%= link_to "edit", edit_petal_path(p.id) %>
+		</li>
 	<% end %>
 </ul>
 
