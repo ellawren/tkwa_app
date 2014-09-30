@@ -1,16 +1,19 @@
 # == Schema Information
 #
-# Table name: living_building_categories
+# Table name: petals
 #
 #  id              :integer         not null, primary key
-#  version         :string(255)
 #  name            :string(255)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
 #  numerical_order :integer
+#  intent          :text
+#  conditions      :text
+#  subtitle        :string(255)
+#  short_desc      :text
 #
 
-class LivingBuildingCategory < ActiveRecord::Base
+class Petal < ActiveRecord::Base
   
 end
 

@@ -30,7 +30,7 @@ class ImperativesController < ApplicationController
         @imperative = Imperative.find(params[:id])
         if @imperative.update_attributes(params[:imperative])
             flash[:success] = "Imperative updated!"
-            redirect_to imperatives_path
+            redirect_to imperative_path(@imperative)
         else
             render 'edit'
         end
@@ -39,7 +39,7 @@ class ImperativesController < ApplicationController
     def destroy
         Imperative.find(params[:id]).destroy
         flash[:success] = "Imperative destroyed."
-        redirect_to imperatives_path
+        redirect_to imperative_path(@imperative)
     end
 
 end

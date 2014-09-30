@@ -3,7 +3,6 @@
 # Table name: imperatives
 #
 #  id         :integer         not null, primary key
-#  version    :integer
 #  category   :string(255)
 #  name       :string(255)
 #  number     :integer

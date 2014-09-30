@@ -132,7 +132,7 @@ TkwaApp::Application.routes.draw do
     resources :holidays
     resources :imperatives
     resources :living_buildings
-    resources :living_building_categories
+    resources :petals
     resources :microposts,  only: [:create, :destroy]
     resources :marketing_categories
     resources :messages

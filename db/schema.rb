@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140929201747) do
+ActiveRecord::Schema.define(:version => 20140929211235) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -264,7 +264,6 @@ ActiveRecord::Schema.define(:version => 20140929201747) do
   end
 
   create_table "imperatives", :force => true do |t|
-    t.integer  "version"
     t.string   "category"
     t.string   "name"
     t.integer  "number"
@@ -286,20 +285,6 @@ ActiveRecord::Schema.define(:version => 20140929201747) do
   add_index "list_members", ["contact_id", "mailing_list_id"], :name => "index_list_members_on_contact_id_and_mailing_list_id", :unique => true
   add_index "list_members", ["contact_id"], :name => "index_list_members_on_contact_id"
   add_index "list_members", ["mailing_list_id"], :name => "index_list_members_on_mailing_list_id"
-
-  create_table "living_building_categories", :force => true do |t|
-    t.string   "version"
-    t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "numerical_order"
-  end
-
-  create_table "living_buildings", :force => true do |t|
-    t.integer  "version"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "mailing_lists", :force => true do |t|
     t.string   "name"
@@ -418,6 +403,17 @@ ActiveRecord::Schema.define(:version => 20140929201747) do
   end
 
   add_index "patterns", ["project_id"], :name => "index_patterns_on_project_id"
+
+  create_table "petals", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "numerical_order"
+    t.text     "intent"
+    t.text     "conditions"
+    t.string   "subtitle"
+    t.text     "short_desc"
+  end
 
   create_table "phases", :force => true do |t|
     t.string   "name"

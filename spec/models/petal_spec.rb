@@ -7,15 +7,14 @@ end
 #
 # Table name: petals
 #
-#  id         :integer         not null, primary key
-#  version    :integer
-#  category   :string(255)
-#  name       :string(255)
-#  number     :integer
-#  short_desc :text
-#  full_desc  :text
-#  strategies :text
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  id              :integer         not null, primary key
+#  name            :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  numerical_order :integer
+#  intent          :text
+#  conditions      :text
+#  subtitle        :string(255)
+#  short_desc      :text
 #
 

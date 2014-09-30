@@ -1,0 +1,28 @@
+<div class="wide">
+    <div class="input-row">
+        <%= f.label(:numerical_order, "Order", class: "input-label") %>
+        <%= f.text_field :numerical_order %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:name, "Name", class: "input-label") %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:subtitle, "Subtitle", class: "input-label") %>
+        <%= f.text_field :subtitle %>
+    </div>
+</div>
+<div class="full">
+    <div class="input-row">
+        <%= f.label(:short_desc, "Short Description", class: "input-label") %>
+        <%= f.text_area :short_desc, rows: 2 %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:intent, "Petal Intent", class: "input-label") %>
+        <%= f.text_area :intent %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:conditions, "Ideal Conditions & Current Limitations", class: "input-label") %>
+        <%= f.text_area :conditions %>
+    </div>
+</div>
