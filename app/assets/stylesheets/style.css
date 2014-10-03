@@ -25,6 +25,7 @@
 
 	.container { margin-top:60px; position:relative; }
 	a.header-label { position:absolute; display:block; width:auto; top:0; left:0; color:#9ba6ac; font-size:12px; text-transform:uppercase; font-weight:900; }
+
 	.page-header { border-bottom:none; margin:20px 0; width:100%; float:left; height:38px; padding:0px; }
 	.page-header.auto { height:auto; }
 	.page-header h1 { font-size:28px; color:#16a085; display:inline-block; width:660px; margin:0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }

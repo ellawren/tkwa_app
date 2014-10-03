@@ -1,12 +1,30 @@
 <% provide :title, @imperative.name %>
 <% if @imperative.parent_petal %>
-	<%= link_to "Petal #{@imperative.parent_petal.formatted_number}: #{@imperative.parent_petal.name}", edit_petal_path(@imperative.parent_petal.id), class: "header-label" %>
+	<%= link_to "Petal #{@imperative.parent_petal.formatted_number}: #{@imperative.parent_petal.name}", edit_petal_path(@imperative.parent_petal.id), class: "header-label second" %>
 <% end %>
-<div class="page-header">
-    <h1><%= @imperative.name %></h1>
-</div>
 
 <%= form_for @imperative do |f| %>
+
+	<div class="page-header petal-header">
+	    
+	    <h1 class="petal-header">
+            Imperative <%= f.text_field :number, value: @imperative.formatted_number, class: "petal-number" %>/
+            <%= f.text_field :name, class: "petal-name" %>
+        </h1>
+        <ul class="controls project">
+            <% if @imperative.previous.present? %> 
+                <li><%= link_to "", edit_imperative_path(@imperative.previous.id), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+            <% end %>
+            <% if @imperative.next.present? %> 
+                <li><%= link_to "", edit_imperative_path(@imperative.next.id), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+            <% end %>
+            <li><%= link_to "", new_imperative_path, class: "glyphicon glyphicon-plus tip", title:"Add New Imperative" %></li>
+            <li class="delete"><%= link_to "", @imperative, method: :delete, confirm: "Are you sure you want to delete this imperative?", class: "glyphicon glyphicon-remove tip", title:"Delete This Imperative" %>
+            </li>
+
+        </ul>  
+
+	</div>
 
     <%= render 'shared/error_messages', object: f.object %>
     <%= render 'fields', f: f %>

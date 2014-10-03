@@ -16,15 +16,21 @@
         <%= f.text_field :subtitle %>
     </div>
     <div class="input-row">
-        <%= f.label(:short_desc, "Short Description", class: "input-label") %>
+        <%= f.label(:short_desc, "Brief Description", class: "input-label") %>
         <%= f.text_area :short_desc, rows: 3 %>
     </div>
     <div class="input-row">
         <%= f.label(:intent, "Petal Intent", class: "input-label") %>
-        <%= f.text_area :intent %>
+        <%= f.text_area :intent, rows: 6 %>
     </div>
     <div class="input-row">
         <%= f.label(:conditions, "Ideal Conditions & Current Limitations", class: "input-label") %>
-        <%= f.text_area :conditions %>
+        <%= f.text_area :conditions, rows: 6 %>
     </div>
 </div>
+
+<script>         
+    $(document).ready(function(){
+        $('textarea').autosize();   
+    });
+</script>

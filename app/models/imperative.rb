@@ -24,5 +24,22 @@ class Imperative < ActiveRecord::Base
   		end
   	end
 
+  	def formatted_number
+		self.number.to_s.rjust(2, '0')
+	end
+
+  	# next/prev
+    scope :next, lambda {|number| where("number > ?", number).order("number ASC") }
+    scope :previous, lambda {|number| where("number < ?", number).order("number DESC") }
+
+    def next
+        Imperative.next(self.number).first
+    end
+
+    def previous
+        Imperative.previous(self.number).first
+    end
+    #------------------------------------
+
 end
 
