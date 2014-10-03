@@ -1,5 +1,7 @@
 <% provide :title, @imperative.name %>
-<%= link_to "Petal #{@imperative.parent_petal.formatted_number}: #{@imperative.parent_petal.name}", edit_petal_path(@imperative.parent_petal.id), class: "header-label" %>
+<% if @imperative.parent_petal %>
+	<%= link_to "Petal #{@imperative.parent_petal.formatted_number}: #{@imperative.parent_petal.name}", edit_petal_path(@imperative.parent_petal.id), class: "header-label" %>
+<% end %>
 <div class="page-header">
     <h1><%= @imperative.name %></h1>
 </div>

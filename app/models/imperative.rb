@@ -19,7 +19,9 @@ class Imperative < ActiveRecord::Base
   	belongs_to :petal
 
   	def parent_petal
-  		Petal.find(self.petal_id)
+  		if self.petal_id
+  			Petal.find(self.petal_id)
+  		end
   	end
 
 end
