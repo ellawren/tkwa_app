@@ -15,7 +15,7 @@
 #
 
 class Imperative < ActiveRecord::Base
-  
+
   	belongs_to :petal
 
   	def parent_petal

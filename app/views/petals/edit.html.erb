@@ -29,8 +29,8 @@
     <h2>Imperatives</h2>
 
     <ul class="link-list">
-    	<% @petal.imperatives.each do |i| %>
-    		<li><%= link_to "#{i.number}. #{i.name}", edit_imperative_path(i) %></li>
+    	<% @petal.imperatives.order("number ASC").each do |i| %>
+    		<li><%= link_to "#{i.formatted_number}. #{i.name}", edit_imperative_path(i) %></li>
     	<% end %>
     </ul>
 
