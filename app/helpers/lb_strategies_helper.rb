@@ -1,0 +1,2 @@
+module LbStrategiesHelper
+end

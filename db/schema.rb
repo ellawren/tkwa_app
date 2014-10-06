@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140930184835) do
+ActiveRecord::Schema.define(:version => 20141006195337) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -263,18 +263,6 @@ ActiveRecord::Schema.define(:version => 20140930184835) do
     t.integer  "day"
   end
 
-  create_table "imperatives", :force => true do |t|
-    t.string   "category"
-    t.string   "name"
-    t.integer  "number"
-    t.text     "short_desc"
-    t.text     "full_desc"
-    t.text     "strategies"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "petal_id"
-  end
-
   create_table "list_members", :force => true do |t|
     t.integer  "contact_id"
     t.integer  "mailing_list_id"
@@ -404,17 +392,6 @@ ActiveRecord::Schema.define(:version => 20140930184835) do
   end
 
   add_index "patterns", ["project_id"], :name => "index_patterns_on_project_id"
-
-  create_table "petals", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.integer  "numerical_order"
-    t.text     "intent"
-    t.text     "conditions"
-    t.string   "subtitle"
-    t.text     "short_desc"
-  end
 
   create_table "phases", :force => true do |t|
     t.string   "name"
