@@ -1,0 +1,13 @@
+<div class="wide">
+  
+    <div class="input-row">
+        <%= f.label(:project_id, "Project", class: "input-label") %>
+        <%= f.collection_select(:project_id, Project.current, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>
+
+    <div class="input-row">
+        <%= f.label(:imperative_id, "Imperative", class: "input-label") %>
+        <%= f.collection_select(:imperative_id, Imperative.order("number ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+    </div>
+
+</div>

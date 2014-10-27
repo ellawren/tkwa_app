@@ -3,12 +3,28 @@ module TimesheetsHelper
     "#{date.year}/#{date.week}"
   end
 
+  def tkwa_date(y, w, d)
+    # custom date parse so that last days are not carried over to next year
+    # the minus one at the end corrects for a sunday week start instead of monday
+      parsed = (Date.commercial(y, 1, 1) + ((w - 1 ) * 7) + (d - 1)) - 1
+    # return date only if it is in the current year
+    if parsed.year == y
+      parsed
+    else
+      nil
+    end
+  end
+
+  def tkwa_date_label(tkwa_date)
+    tkwa_date.strftime("%a<div class='blanch'>%h<br>%e</div>").html_safe
+  end
+
   def get_date(day, param)
     # wk_1 finds the first day of the first week of the given year
     wk_1 = Date.commercial(param.year, 1, 1).beginning_of_week(start_day = :sunday)  
 
     # day_1 finds the first day of the given week number
-    day_1 = Date.commercial(param.year, param.week, 1).beginning_of_week(start_day = :sunday) 
+    day_1 = (Date.commercial(param.year, 1, 1) + ((param.week - 1 ) * 7) ) - 1
     day_1 + (day-1)
   end
 
@@ -17,9 +33,13 @@ module TimesheetsHelper
     wk_1 = Date.commercial(year, 1, 1).beginning_of_week(start_day = :sunday)  
 
     # day_1 finds the first day of the given week number
-    day_1 = Date.commercial(year, week, 1).beginning_of_week(start_day = :sunday) 
+    day_1 = (Date.commercial(year, 1, 1) + ((week - 1 ) * 7) ) - 1
     day_7 = day_1 + 6
-    if day_1.month == day_7.month
+    if day_1.year < year
+      str = Date.new(year, 1, 1).strftime("%b %-d") + "-" + day_7.strftime("%-d")
+    elsif day_7.year > year
+      str = day_1.strftime("%b %-d") + " - " + Date.new(year,12,31).strftime("%-d")
+    elsif day_1.month == day_7.month
       str = day_1.strftime("%b %-d") + "-" + day_7.strftime("%-d")
     else
       str = day_1.strftime("%b %-d") + "-" + day_7.strftime("%b %-d")
@@ -40,9 +60,13 @@ module TimesheetsHelper
     wk_1 = Date.commercial(year, 1, 1).beginning_of_week(start_day = :sunday)  
 
     # day_1 finds the first day of the given week number
-    day_1 = Date.commercial(year, week, 1).beginning_of_week(start_day = :sunday) 
+    day_1 = (Date.commercial(year, 1, 1) + ((week - 1 ) * 7) ) - 1
     day_7 = day_1 + 6
-    if day_1.month == day_7.month
+    if day_1.year < year
+      str = Date.new(year, 1, 1).strftime("%B %-d") + "-" + day_7.strftime("%-d, %Y")
+    elsif day_7.year > year
+      str = day_1.strftime("%B %-d") + " - " + Date.new(year,12,31).strftime("%B %-d, %Y")
+    elsif day_1.month == day_7.month
       str = day_1.strftime("%B %-d") + "-" + day_7.strftime("%-d, %Y")
     else
       str = day_1.strftime("%B %-d") + " - " + day_7.strftime("%B %-d, %Y")
@@ -59,7 +83,7 @@ module TimesheetsHelper
   end
 
   def week_array(year)
-    wk = weeks_in_year(year)
+    wk = weeks_in_year(year) + 1
     (1..wk).to_a 
   end
 

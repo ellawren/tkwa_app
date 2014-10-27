@@ -18,6 +18,7 @@
 #  phase_number :integer
 #  user_id      :integer         not null
 #  total        :decimal(5, 2)
+#  year         :integer
 #
 
 class TimeEntry < ActiveRecord::Base

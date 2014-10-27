@@ -25,6 +25,8 @@
 		.page-header ul.controls li .status.open { color:#86cc71; font-weight:700;}
 		.page-header ul.controls li .status.closed { color:#e64c3c; }
 
+	.spacer { width:49px; height:34px; margin:2px 4px 2px 0; }
+
 	/* not used */
 	.switch-box { position:relative; }
 	.switch-box .shield { position:absolute; width:100%; height:100%; top:0px; }

@@ -11,6 +11,10 @@ class StaticPagesController < ApplicationController
         render :layout => 'home_page' 
     end
 
+    def living_buildings
+
+    end
+
     def potential_projects
     	@potential_projects = Project.potential_projects
     	@past_potential_projects = Project.past_potential_projects

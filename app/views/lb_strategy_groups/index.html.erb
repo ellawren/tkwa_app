@@ -1,0 +1,13 @@
+<% provide :title, "Living Building Challenge" %>
+
+<div class="page-header">
+	<h1>Living Building Strategy Group</h1>
+	<%= link_to "Add Group", new_lb_strategy_group_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="petals">
+	<% @lb_strategy_groups.each do |p| %>
+		<li><%= p.project_id %> / <%= p.imperative_id %></li>
+	<% end %>
+</ul>
+

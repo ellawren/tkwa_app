@@ -15,6 +15,7 @@
 class Imperative < ActiveRecord::Base
 
   	belongs_to :petal
+    has_many :lb_strategy_groups
 
   	def parent_petal
   		if self.petal_id

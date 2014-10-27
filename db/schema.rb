@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141006203259) do
+ActiveRecord::Schema.define(:version => 20141027154702) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -271,6 +271,21 @@ ActiveRecord::Schema.define(:version => 20141006203259) do
     t.integer  "petal_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "lb_strategies", :force => true do |t|
+    t.integer  "lb_strategy_group_id"
+    t.text     "solution"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "lb_strategy_groups", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "required"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "imperative_id"
   end
 
   create_table "list_members", :force => true do |t|
@@ -641,6 +656,7 @@ ActiveRecord::Schema.define(:version => 20141006203259) do
     t.integer  "phase_number"
     t.integer  "user_id",                                    :null => false
     t.decimal  "total",        :precision => 5, :scale => 2
+    t.integer  "year"
   end
 
   add_index "time_entries", ["project_id", "phase_number"], :name => "index_time_entries_on_project_id_and_phase_number"

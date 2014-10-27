@@ -105,6 +105,7 @@ TkwaApp::Application.routes.draw do
     match '/admin',   to: 'static_pages#admin'
     match '/error',   to: 'static_pages#error'
     match '/potential_projects',   to: 'static_pages#potential_projects'
+    match '/living_buildings',   to: 'static_pages#living_buildings'
 
     # MAILING LISTS
     resources :mailing_lists
@@ -131,7 +132,8 @@ TkwaApp::Application.routes.draw do
     resources :globals, :only => [:index, :create, :update]
     resources :holidays
     resources :imperatives
-    resources :living_buildings
+    resources :lb_strategy_groups
+    resources :lb_strategies
     resources :petals
     resources :microposts,  only: [:create, :destroy]
     resources :marketing_categories

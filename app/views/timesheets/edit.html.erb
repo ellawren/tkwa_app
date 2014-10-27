@@ -1,5 +1,5 @@
 <% provide :title, "#{parse_date_full(@timesheet.week, @timesheet.year)}" %>
-<div class="page-header">
+<div class="page-header timesheet">
     <%= image_tag @user.photo.url(:thumb), class: "user-round-sm" %><h1><%= link_to @timesheet.week, all_timesheets_path(@timesheet.year, @timesheet.week) %> / <%= link_to @user.name, user_index_timesheets_path(@timesheet.user_id) %> &nbsp;<span class="light"><%= parse_date_full(@timesheet.week, @timesheet.year) %></span></h1>
     <% if @timesheet.data_record.present? %>
         <ul class="controls">
@@ -40,17 +40,26 @@
 
 		    <div class="table-main timesheets">
 
+		    	<% @day_1 = tkwa_date(@timesheet.year, @timesheet.week, 1) %>
+		    	<% @day_2 = tkwa_date(@timesheet.year, @timesheet.week, 2) %>
+		    	<% @day_3 = tkwa_date(@timesheet.year, @timesheet.week, 3) %>
+		    	<% @day_4 = tkwa_date(@timesheet.year, @timesheet.week, 4) %>
+		    	<% @day_5 = tkwa_date(@timesheet.year, @timesheet.week, 5) %>
+		    	<% @day_6 = tkwa_date(@timesheet.year, @timesheet.week, 6) %>
+		    	<% @day_7 = tkwa_date(@timesheet.year, @timesheet.week, 7) %>
+
+
 				<div class="table-head">
 					<div class="cell project-name"><div class="timesheet-tab">Billable Time</div></div>
 					<div class="cell phase"><br />Phase<a href="<%= modal_phases_path %>" data-target="#phaseModal" data-toggle="modal" class="inline-edit-link fui-eye"></a></div>
 					<div class="cell task"><br />Task</div>
-					<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><%= date_label(1, @timesheet) %></div>
-					<div class="cell date <%= is_today?(2, @timesheet) %>"><%= date_label(2, @timesheet) %></div>
-					<div class="cell date <%= is_today?(3, @timesheet) %>"><%= date_label(3, @timesheet) %></div>
-					<div class="cell date <%= is_today?(4, @timesheet) %>"><%= date_label(4, @timesheet) %></div>
-					<div class="cell date <%= is_today?(5, @timesheet) %>"><%= date_label(5, @timesheet) %></div>
-					<div class="cell date <%= is_today?(6, @timesheet) %>"><%= date_label(6, @timesheet) %></div>
-					<div class="cell date weekend <%= is_today?(7, @timesheet) %>"><%= date_label(7, @timesheet) %></div>
+					<div class="cell date weekend <%= is_today?(1, @timesheet) %>"><% if @day_1.present? %><%= tkwa_date_label(@day_1) %><% end %></div>
+					<div class="cell date <%= is_today?(2, @timesheet) %>"><% if @day_2.present? %><%= tkwa_date_label(@day_2) %><% end %></div>
+					<div class="cell date <%= is_today?(3, @timesheet) %>"><% if @day_3.present? %><%= tkwa_date_label(@day_3) %><% end %></div>
+					<div class="cell date <%= is_today?(4, @timesheet) %>"><% if @day_4.present? %><%= tkwa_date_label(@day_4) %><% end %></div>
+					<div class="cell date <%= is_today?(5, @timesheet) %>"><% if @day_5.present? %><%= tkwa_date_label(@day_5) %><% end %></div>
+					<div class="cell date <%= is_today?(6, @timesheet) %>"><% if @day_6.present? %><%= tkwa_date_label(@day_6) %><% end %></div>
+					<div class="cell date weekend <%= is_today?(7, @timesheet) %>"><% if @day_7.present? %><%= tkwa_date_label(@day_7) %><% end %></div>
 					<div class="total"><br />Total</div>
 				</div>
 
@@ -138,7 +147,7 @@
 		
 	<% end %> <!-- end form -->
 
-	
+<%= tkwa_date(2014, 53, 5) %>
 
 <% end %> <!-- end conditional -->
 
