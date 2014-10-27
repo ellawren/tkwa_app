@@ -37,7 +37,13 @@ class TimesheetsController < ApplicationController
     def edit
         @user = User.find(params[:id])
         @timesheet = Timesheet.where(user_id: @user.id, year: params[:year].to_i, week: params[:week].to_i).first_or_create
-        
+            @day_1 = tkwa_date(@timesheet.year, @timesheet.week, 1)
+            @day_2 = tkwa_date(@timesheet.year, @timesheet.week, 2)
+            @day_3 = tkwa_date(@timesheet.year, @timesheet.week, 3) 
+            @day_4 = tkwa_date(@timesheet.year, @timesheet.week, 4) 
+            @day_5 = tkwa_date(@timesheet.year, @timesheet.week, 5)
+            @day_6 = tkwa_date(@timesheet.year, @timesheet.week, 6) 
+            @day_7 = tkwa_date(@timesheet.year, @timesheet.week, 7)
         if @timesheet.complete == false
             1.times { @timesheet.time_entries.build }
             1.times { @timesheet.non_billable_entries.build }
