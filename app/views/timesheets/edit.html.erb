@@ -119,13 +119,13 @@
 				<div class="summary-label">Week Totals</div>
 				<div class="span">
 
-					<div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day1))) %></div>
-					<div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day2))) %></div>
-					<div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day3))) %></div>
-					<div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day4))) %></div>
-					<div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day5))) %></div>
-					<div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day6))) %></div>
-					<div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day7))) %></div>
+					<% if @day_1.present? %><div class="sum <%= is_today?(1, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day1))) %></div><% else %><div class="spacer"></div><% end %>
+					<% if @day_2.present? %><div class="sum <%= is_today?(2, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day2))) %></div><% else %><div class="spacer"></div><% end %>
+					<% if @day_3.present? %><div class="sum <%= is_today?(3, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day3))) %></div><% else %><div class="spacer"></div><% end %>
+					<% if @day_4.present? %><div class="sum <%= is_today?(4, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day4))) %></div><% else %><div class="spacer"></div><% end %>
+					<% if @day_5.present? %><div class="sum <%= is_today?(5, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day5))) %></div><% else %><div class="spacer"></div><% end %>
+					<% if @day_6.present? %><div class="sum <%= is_today?(6, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day6))) %></div><% else %><div class="spacer"></div><% end %>
+					<% if @day_7.present? %><div class="sum <%= is_today?(7, @timesheet) %>"><%= precise(nonzero?(timesheet_sum(:day7))) %></div><% else %><div class="spacer"></div><% end %>
 				</div>
 			</div>
 

@@ -31,13 +31,13 @@
     </div>
 
     <div class="time-entries">  
-        <div class="entry <%= is_today?(1, @timesheet) %>"><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %></div>
-        <div class="entry <%= is_today?(2, @timesheet) %>"><%= f.text_field :day2, class: "text-input", autocomplete: "off" %></div>
-        <div class="entry <%= is_today?(3, @timesheet) %>"><%= f.text_field :day3, class: "text-input", autocomplete: "off" %></div>
-        <div class="entry <%= is_today?(4, @timesheet) %>"><%= f.text_field :day4, class: "text-input", autocomplete: "off" %></div>
-        <div class="entry <%= is_today?(5, @timesheet) %>"><%= f.text_field :day5, class: "text-input", autocomplete: "off" %></div>
-        <div class="entry <%= is_today?(6, @timesheet) %>"><%= f.text_field :day6, class: "text-input", autocomplete: "off" %></div>
-        <div class="entry <%= is_today?(7, @timesheet) %>"><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %></div>
+        <div class="entry <%= is_today?(1, @timesheet) %>"><% if @day_1.present? %><%= f.text_field :day1, class: "text-input weekend", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(2, @timesheet) %>"><% if @day_2.present? %><%= f.text_field :day2, class: "text-input", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(3, @timesheet) %>"><% if @day_3.present? %><%= f.text_field :day3, class: "text-input", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(4, @timesheet) %>"><% if @day_4.present? %><%= f.text_field :day4, class: "text-input", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(5, @timesheet) %>"><% if @day_5.present? %><%= f.text_field :day5, class: "text-input", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(6, @timesheet) %>"><% if @day_6.present? %><%= f.text_field :day6, class: "text-input", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(7, @timesheet) %>"><% if @day_7.present? %><%= f.text_field :day7, class: "text-input weekend", autocomplete: "off" %><% else %><div class="spacer"></div><% end %></div>
         <div class="total"><%= precise(nonzero?(f.object.total.to_f)) %></div>
     </div>
 
