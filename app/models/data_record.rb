@@ -51,6 +51,26 @@ class DataRecord < ActiveRecord::Base
   		self.start_week - self.end_week + 1
   	end
 
+    def first_week_correction
+      # calculates # of hours in first week, since it usually won't be 40
+      # holiday hours in day is used as multiplier
+      d = Date.new(year, 1, 1).wday + 1
+      if d == 1
+        d = 2
+      end
+      (7 - d) * holiday
+    end
+
+    def last_week_correction
+      # calculates # of hours in last week, since it usually won't be 40
+      # holiday hours in day is used as multiplier
+      d = Date.new(year, 12, 31).wday + 1
+      if d == 7
+        d = 6
+      end
+      (d - 1) * holiday
+    end
+
 	before_save :set_defaults # used to be after_initialize
 
 	def set_defaults

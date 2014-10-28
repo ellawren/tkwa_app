@@ -85,7 +85,11 @@ class Timesheet < ActiveRecord::Base
     end
 
     def goal
-        data_record.hours_in_week * (week - data_record.start_week + 1)
+        if week == 53
+            data_record.hours_in_week * (52 - data_record.start_week) + data_record.first_week_correction + data_record.last_week_correction
+        else
+            data_record.hours_in_week * (week - data_record.start_week) + data_record.first_week_correction
+        end
     end
 
     def goal_with_overage
