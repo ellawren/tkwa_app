@@ -67,20 +67,8 @@ class Timesheet < ActiveRecord::Base
         total_hours.to_f + nb_total_hours.to_f + holiday_total_hours.to_f
     end
 
-    def vacation_hours
-        if week == 1
-            included_days = []
-            non_billable_entries.where(category: "9").each do |entry|
-                day_of_week = Date.new(year, 1, 1).strftime("%w").to_i + 1
-                while day_of_week <= 7 do
-                    included_days << eval("entry.day#{day_of_week}.to_f")
-                    day_of_week = day_of_week + 1
-                end
-            end
-            included_days.sum
-        else  
-            non_billable_entries.where(category: "9").sum(:total)
-        end    
+    def vacation_hours 
+        non_billable_entries.where(category: "9").sum(:total)
     end
 
     # SUMMARY
