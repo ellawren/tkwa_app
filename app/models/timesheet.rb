@@ -86,14 +86,22 @@ class Timesheet < ActiveRecord::Base
 
     def goal
         if week == 53
-            data_record.hours_in_week * (52 - data_record.start_week) + data_record.first_week_correction + data_record.last_week_correction
+            if data_record.start_week == 1
+                data_record.hours_in_week * (52 - data_record.start_week) + data_record.first_week_correction + data_record.last_week_correction
+            else
+                data_record.hours_in_week * (52 - data_record.start_week + 1) + data_record.last_week_correction
+            end
         else
-            data_record.hours_in_week * (week - data_record.start_week) + data_record.first_week_correction
+            if data_record.start_week == 1
+                data_record.hours_in_week * (week - data_record.start_week) + data_record.first_week_correction
+            else
+                data_record.hours_in_week * (week - data_record.start_week + 1) 
+            end
         end
     end
 
     def goal_with_overage
-        (data_record.hours_in_week * (week - data_record.start_week + 1)) + -(data_record.overage_from_prev.to_f)
+      self.goal + -(data_record.overage_from_prev.to_f)
     end 
     
     # HOLIDAYS
