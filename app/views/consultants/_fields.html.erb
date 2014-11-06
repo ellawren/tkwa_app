@@ -4,3 +4,16 @@
         <%= f.text_field :name %>
     </div>
 </div>
+<div class="full consultants">
+
+    	   <h2>Role(s) <%= link_to "edit roles", consultant_roles_path, class: "control-link-text" %></h2>
+    	   	
+
+		<%= hidden_field_tag "consultant[consultant_role_ids][]", nil %>
+		<% ConsultantRole.all.each do |consultant_role| %>
+			<label class="checkbox">
+					<%= check_box_tag "consultant[consultant_role_ids][]", consultant_role.id, @consultant.consultant_role_ids.include?(consultant_role.id), id: dom_id(consultant_role), data_toggle: "checkbox" %>
+					<%= consultant_role.consultant_role_name %>
+				</label>
+		<% end %>
+</div>

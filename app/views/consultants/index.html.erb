@@ -16,16 +16,35 @@
 
 </div>
 
-<ul class="link-list">
-	<% @consultants.each do |param| %>
-			<li>
-				<%= link_to param.name, consultant_path(param.id) %>
-				<% if signed_in? %>
-					<% if current_user.admin? %>
-					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
-					<% end %>
-				<% end %>
-			</li>
-	<% end %>
-</ul>
+<% if @consultants.count == 0 %>
+	<h2>Search Results</h2>
+	<div class="search-results">
+		No matches.<br><br><a href="/consultants/" class="btn">Clear search and try again.</a><br><br>
+		<div class="line"></div>
+	</div>
+<% else %>
 
+	<h2>Search Results (<%= @consultants.count %>) <a class="reset" href="/consultants">reset search</a></h2>
+
+	<table class="table search-results">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Role(s)</th>
+				<th>Recommended?</th>
+			</tr>
+		</thead>
+	    <tbody>
+			<% @consultants.each do |param| %>
+				<tr class="results-row">
+	                <td class="bold"><%= link_to param.name, edit_consultant_path(param.id) %></td>
+	                <td><%= param.roles %></td>
+	                <td></td>
+	            </tr>
+	        <% end %>
+	    </tbody>
+	</table>
+				
+	<%= will_paginate @consultant %>
+
+<% end %>

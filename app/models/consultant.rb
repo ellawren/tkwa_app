@@ -12,6 +12,7 @@ class Consultant < ActiveRecord::Base
 
 	has_many :consultant_teams
 	has_many :projects, :through => :consultant_teams,  :select => 'distinct projects.*'
+	has_and_belongs_to_many :consultant_roles
 	
 	def all_projects #need to use this instead of calling via the association to get alpha sort
 		array = ConsultantTeam.where(consultant_id: self.id).pluck(:project_id).uniq

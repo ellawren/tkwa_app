@@ -60,6 +60,7 @@
 	.btn { padding:7px 12px; font-weight:700; }
 	a.mail-link { cursor:pointer; }
 	ul.link-list { float:left; }
+		ul.link-list.consultants { margin-left:300px;  }
 		ul.link-list .note { font-size:13px; }
 	ul.link-list li { margin-bottom:2px; }
 
@@ -940,6 +941,14 @@
 
 	.full.petals { border-top: 2px solid #344953; padding-top:20px; padding-bottom:10px; }
 	.full input[type="text"] { width:620px; }
+
+
+/* consultants */
+
+	.full.consultants .checkbox {float:left; width:203px;}
+	.full.consultants a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
+
+
 
 /* notice bar */
 
