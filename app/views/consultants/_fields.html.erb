@@ -4,10 +4,14 @@
         <%= f.text_field :name %>
     </div>
 </div>
+<div class="narrow">
+    <%= @consultant.roles %>
+</div>
 <div class="full consultants">
 
     	   <h2>Role(s) <%= link_to "edit roles", consultant_roles_path, class: "control-link-text" %></h2>
     	   	
+    
 
 		<%= hidden_field_tag "consultant[consultant_role_ids][]", nil %>
 		<% ConsultantRole.all.each do |consultant_role| %>
