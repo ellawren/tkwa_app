@@ -1,20 +1,105 @@
 <% provide :title, @consultant.name %>
 <%= link_to "Consultants", consultants_path, class: "header-label" %>
-
 <div class="page-header">
     <h1><%= @consultant.name %></h1>
-    <%= link_to "edit name", edit_consultant_path(@consultant), class: "btn btn-right" %>
+    <ul class="controls project">
+        <% if @consultant.previous.present? %> 
+                <li><%= link_to "", consultant_path(@consultant.previous.id), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+        <% end %>
+        <% if @consultant.next.present? %> 
+                <li><%= link_to "", consultant_path(@consultant.next.id), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+        <% end %>
+        
+        <li><%= link_to "", consultants_path, class: "glyphicon glyphicon-search tip", title:"Search Consultants" %></li>
+        <li><%= link_to "", new_consultant_path, class: "glyphicon glyphicon-plus tip", title:"Add New Consultant" %></li>
+        <li class="delete"><%= link_to "", @consultant, method: :delete, confirm: "Are you sure you want to delete this consultant and all its data? Do not do this if the consultant has been used on any projects!!!", class: "glyphicon glyphicon-remove tip", title:"Delete This Consultant" %>
+        </li>
+    </ul> 
 </div>
 
-<%= @consultant.roles %>
+<%= form_for @consultant do |f| %>
 
-<h2>Projects</h2>
-<ul class="link-list green">
-	<% @consultant.all_projects.each do |p| %>
-		<li>
-			<%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
-		</li>
-	<% end %>
-</ul>
+    <h2>Contact Information</h2>
 
-<h2>Contacts</h2>
+        <div class="wide margin-bottom">
+            <div class="input-row">
+                <%= f.label(:name, "Consultant Name", class: "input-label") %>
+                <%= f.text_field :name %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:address, "Address", class: "input-label") %>
+                <%= f.text_area :address, class: "button-right", rows: "3" %>
+                <button class="btn input-button" onclick="showMap('consultant_address'); return false;">map</button>
+            </div>   
+            <div class="input-row">
+                <%= f.label(:url, "Website", class: "input-label") %>
+                <%= f.text_field :url, class: "button-right" %>
+                <button class="btn input-button" onclick="openURL('consultant_url'); return false;">website</button>
+            </div>  
+        </div>
+
+        <div class="narrow contact-phone margin-bottom">
+            <div class="input-row">
+                <%= f.label(:phone, "Main Phone", class: "input-label") %>
+                <%= f.text_field :phone, value: phone(@consultant.phone), class: "phone" %>
+            </div>
+            <div class="input-row">
+                <%= f.label(:fax, "Fax", class: "input-label") %>
+                <%= f.text_field :fax, value: phone(@consultant.fax), class: "phone" %>
+            </div>
+        </div>
+
+    <h2>Role(s)</h2>
+    	<div class="full consultants">
+	        <ul class="link-list">
+				<% @consultant.consultant_roles.each do |r| %>
+					<li><%= r.consultant_role_name %></li>
+				<% end %>
+			</ul>
+			<%= link_to "edit roles", edit_consultant_path(@consultant), class: "btn" %>
+		</div>
+
+	<h2>Notes</h2>
+    
+        <div class="wide consultants">
+            <div class="input-row">
+                <%= f.text_area :notes, rows: 6 %>
+            </div>
+        </div>
+        <div class="narrow">
+            <div class="input-row">
+                <%= f.label(:recommended, "Recommended?", class: "input-label") %>
+                    <%= hidden_field_tag "consultant[recommended]", nil %>
+                    <div class="radio-group compact">
+                        <label class="radio">
+                            <%= f.radio_button :recommended, "yes", data_toggle: "radio" %>
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :recommended, "no", data_toggle: "radio" %>
+                            No
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :recommended, "n/a", data_toggle: "radio" %>
+                            Undecided
+                        </label>
+                    </div>
+               
+            </div>
+        </div>
+
+    <h2>Projects</h2>
+
+    	<ul class="link-list green">
+    		<% @consultant.all_projects.each do |p| %>
+    			<li>
+    				<%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
+    			</li>
+    		<% end %>
+    	</ul>
+
+    <div class="save-row">
+        <%= f.submit "Save", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>

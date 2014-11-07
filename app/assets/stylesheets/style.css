@@ -947,8 +947,8 @@
 
 	.full.consultants .checkbox {float:left; width:203px;}
 	.full.consultants a.control-link-text { float:right; font-weight:400; font-size:13px; font-family:"Asap"; font-style:italic; }
-
-
+	.wide.consultants textarea { width:500px; }
+	.full.consultants .link-list { width:100%; }
 
 /* notice bar */
 

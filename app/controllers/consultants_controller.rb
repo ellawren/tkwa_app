@@ -37,7 +37,7 @@ class ConsultantsController < ApplicationController
         @consultant = Consultant.find(params[:id])
         if @consultant.update_attributes(params[:consultant])
             flash[:success] = "Consultant updated!"
-            redirect_to edit_consultant_path(@consultant)
+            redirect_to consultant_path(@consultant)
         else
             render 'edit'
         end
