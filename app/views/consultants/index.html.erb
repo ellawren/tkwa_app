@@ -37,7 +37,7 @@
 	    <tbody>
 			<% @consultants.each do |param| %>
 				<tr class="results-row">
-	                <td class="bold"><%= link_to param.name, edit_consultant_path(param.id) %></td>
+	                <td class="bold"><%= link_to param.name, consultant_path(param.id) %></td>
 	                <td><%= param.roles %></td>
 	                <td></td>
 	            </tr>

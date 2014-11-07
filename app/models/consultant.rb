@@ -20,6 +20,11 @@ class Consultant < ActiveRecord::Base
 	has_many :projects, :through => :consultant_teams,  :select => 'distinct projects.*'
 	has_and_belongs_to_many :consultant_roles
 
+	before_save do
+        self.phone = self.phone.to_s.gsub(/\D/, '')
+        self.fax = self.fax.to_s.gsub(/\D/, '')
+    end
+
 	# next/prev
     scope :next, lambda {|id| where("id > ?", id).order("id ASC") }
     scope :previous, lambda {|id| where("id < ?", id).order("id DESC") }
