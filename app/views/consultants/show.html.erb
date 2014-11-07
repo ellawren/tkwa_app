@@ -80,8 +80,12 @@
                             No
                         </label>
                         <label class="radio">
-                            <%= f.radio_button :recommended, "n/a", data_toggle: "radio" %>
+                            <%= f.radio_button :recommended, "undecided", data_toggle: "radio" %>
                             Undecided
+                        </label>
+                        <label class="radio">
+                            <%= f.radio_button :recommended, "defunct", data_toggle: "radio" %>
+                            Defunct
                         </label>
                     </div>
                
