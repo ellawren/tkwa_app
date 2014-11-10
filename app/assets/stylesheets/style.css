@@ -419,6 +419,7 @@
 	input.search-number { width:120px; padding:2px 10px 1px; margin-top:7px; border-radius:8px; }
 
 	select.pattern-name { float:left; width:350px; height:40px; margin:12px 4px 10px 135px; border-radius:8px; }
+	select.consultant-name { float:none; width:260px; height:40px; margin:12px 4px 10px 0px; border-radius:8px; }
 
 	.description { float:left; display:block; width:100%; margin:-15px 0 30px 0; font-size:14px; line-height:1.4em; }
 	.description a { color:#1abc9c; }

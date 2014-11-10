@@ -10,6 +10,7 @@
 	<%= search_form_for @q do |f| %>
 
 		<%= f.text_field :name_cont, class: "search-name", placeholder: "Firm Name" %>   
+		<%= f.collection_select(:consultant_roles_id_eq, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => 'Role' }, { :class => "custom-select consultant-name" } ) %>
 		<%= f.submit "Search", class: "btn btn-primary search-btn" %>
 			     
 	<% end %>
