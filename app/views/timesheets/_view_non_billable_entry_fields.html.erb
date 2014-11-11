@@ -14,10 +14,10 @@
     </div>
 
     <div class="time-entries">  
-        <div class="entry <%= is_today?(1, @timesheet) %>"><div class="entry-spacer weekend"><%= f.object.day1 %></div></div>
-        <div class="entry <%= is_today?(2, @timesheet) %>"><div class="entry-spacer"><%= f.object.day2 %></div></div>
-        <div class="entry <%= is_today?(3, @timesheet) %>"><div class="entry-spacer"><%= f.object.day3 %></div></div>
-        <div class="entry <%= is_today?(4, @timesheet) %>"><div class="entry-spacer"><%= f.object.day4 %></div></div>
+        <div class="entry <%= is_today?(1, @timesheet) %>"><% if @day_1.present? %><div class="entry-spacer weekend"><%= f.object.day1 %></div><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(2, @timesheet) %>"><% if @day_2.present? %><div class="entry-spacer"><%= f.object.day2 %></div><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(3, @timesheet) %>"><% if @day_3.present? %><div class="entry-spacer"><%= f.object.day3 %></div><% else %><div class="spacer"></div><% end %></div>
+        <div class="entry <%= is_today?(4, @timesheet) %>"><% if @day_4.present? %><div class="entry-spacer"><%= f.object.day4 %></div><% else %><div class="spacer"></div><% end %></div>
         <div class="entry <%= is_today?(5, @timesheet) %>"><% if @day_5.present? %><div class="entry-spacer"><%= f.object.day5 %></div><% else %><div class="spacer"></div><% end %></div>
         <div class="entry <%= is_today?(6, @timesheet) %>"><% if @day_6.present? %><div class="entry-spacer"><%= f.object.day6 %></div><% else %><div class="spacer"></div><% end %></div>
         <div class="entry <%= is_today?(7, @timesheet) %>"><% if @day_7.present? %><div class="entry-spacer weekend"><%= f.object.day7 %></div><% else %><div class="spacer"></div><% end %></div>
