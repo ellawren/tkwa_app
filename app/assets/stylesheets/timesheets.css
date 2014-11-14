@@ -121,6 +121,7 @@
 
 	/* nb - description */
 	.timesheets .table-head .nb-description { float:left; width:270px; padding-left:12px; margin-top:17px; }
+	.text-input.nb-category { float:left; width:148px; height:32px; margin:2px 4px 2px 0; text-align:left; }
 	.text-input.nb-description { float:left; width:248px; height:32px; margin:2px 4px 2px 0; text-align:left; }
 		.timesheets .table-body .description-cell { width:264px; float:left; padding:4px 0 4px 6px; margin:4px 5px 4px 0px; }
 
@@ -169,8 +170,9 @@
 .reopen {display:none; }
 .complete .reopen { display:block; }
 
-.timesheets.gray-box { height:auto; padding:20px 35px; width:870px; margin-bottom:10px; margin-top:10px; }
+.timesheets.gray-box { height:165px; padding:20px 5px 20px 35px; width:900px; margin-bottom:10px; margin-top:10px; }
 	.timesheets.gray-box .input-label { color:#2c3445; font-weight:900; font-size:13px; margin-bottom:6px; }
+	.timesheets.gray-box .input-label a { color:#2c3445; font-weight:900; }
 
 .timesheets.gray-box #notes { float:left; width:290px; margin-right:50px; }
 	.timesheets.gray-box #notes .input-label { float:left; width:100% }
@@ -192,13 +194,37 @@
 	.timesheets.gray-box #summary .arrow-left { float:left; margin:0 0 0 15px; width: 0; height: 0; border-top: 42px solid transparent; border-bottom: 42px solid transparent; border-right:20px solid #dce1e5; }
 	.timesheets.gray-box #summary .arrow-body { float:left; margin:0px; margin-right:-5px; width:135px; height:56px; padding:16px 12px 10px 8px; background-color:#dce1e5 !important; font-family:"Asap"; font-style:italic; font-size:13px; line-height:16px; -webkit-print-color-adjust: exact; /* for timesheets print */ }
 
-.timesheets.gray-box .stats { float:left; width:200px; height:140px; margin:0px; }
+.timesheets.gray-box .stats { float:left; width:170px; height:140px; margin:0px; }
 	.timesheets.gray-box .stats.utilization { float:left; width:170px; height:140px; margin-left:10px; }
 
 .timesheets.gray-box .stats .number { float:left; width:100%; font-size:56px; margin:10px 0 11px; font-weight:200; }
 .timesheets.gray-box .stats .detail { float:left; font-style:normal; color:#9ba6ac; font-size:12px; }
+.timesheets.gray-box .stats.non-billable { width:210px; }
+
+ul.nb-targets { list-style:none; padding:0px; margin:0px; color: #9ba6ac; font-size: 12px; }
+ul.nb-targets .hours { font-weight:900; color:#2c3445; display:inline-block; }
+ul.nb-targets .hours.over { color:#e64c3c; }
 
 .error-message { float:left; display:block; }
+
+.timesheets.gray-box.non-billable { height:auto; padding:20px 25px 20px 35px; width:880px; margin-bottom:10px; margin-top:10px; }
+.timesheets.gray-box.non-billable .stats { float:left; width:110px; height:100px; margin:0px; }
+.timesheets.gray-box.non-billable .stats .number { float:left; width:100%; font-size:30px; margin:0px 0 11px; font-weight:200; }
+
+
+/* nb targets - these may not be needed depending on which version of this is kept */
+
+.nb-targets { width:100%; float:left; margin:40px 0 -30px 0; }
+.nb-targets .circle { color:#2c3445; float:right; width:46px; height:20px; font-size:12px; border-radius:50px; border:2px solid #2c3445;  padding:13px 2px 17px; text-align:center; margin-left:2px; }
+.nb-targets .circle a { color:#2c3445; cursor:pointer; }
+.nb-targets .circle.deactivated { color:#ced5da; border:2px solid #e1e6eb; background-color:#fff; }
+.nb-targets .circle.deactivated a { color:#ced5da; }
+.nb-targets .circle.over { border-color:#c0392b; }
+.nb-targets .circle.over a { color:#c0392b; }
+.small-label { font-size:9px; font-weight:200; }
+.nb-targets .text { float:right; padding-top:20px; padding-right:6px; color:#ced5da; font-size:11px; text-transform: uppercase; }
+
+
 
 
 /* save row */

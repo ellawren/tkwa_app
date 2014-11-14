@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141107202154) do
+ActiveRecord::Schema.define(:version => 20141113180124) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -178,6 +178,14 @@ ActiveRecord::Schema.define(:version => 20141107202154) do
     t.decimal  "overage_from_prev", :precision => 6, :scale => 2
     t.decimal  "billable_rate",     :precision => 5, :scale => 2
     t.decimal  "billable_per_week", :precision => 4, :scale => 2
+    t.decimal  "stp_target",        :precision => 6, :scale => 2
+    t.decimal  "mtg_target",        :precision => 6, :scale => 2
+    t.decimal  "adm_target",        :precision => 6, :scale => 2
+    t.decimal  "cmp_target",        :precision => 6, :scale => 2
+    t.decimal  "edu_target",        :precision => 6, :scale => 2
+    t.decimal  "sus_target",        :precision => 6, :scale => 2
+    t.decimal  "mkp_target",        :precision => 6, :scale => 2
+    t.decimal  "mkg_target",        :precision => 6, :scale => 2
   end
 
   add_index "data_records", ["user_id", "year"], :name => "index_data_records_on_user_id_and_year", :unique => true
@@ -350,8 +358,9 @@ ActiveRecord::Schema.define(:version => 20141107202154) do
   create_table "non_billable_categories", :force => true do |t|
     t.string   "name"
     t.string   "shorthand"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   create_table "non_billable_entries", :force => true do |t|

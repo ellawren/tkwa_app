@@ -518,11 +518,9 @@
 
 
 
-
-
 /* VACATION DATA RECORDS */
 
-	.data-records.vacation { width:450px; }
+	.data-records.vacation { width:180px; }
 
 
 
@@ -816,8 +814,8 @@
 
 	/* data records modal */
 
-	.modal.data-record { left:35%; width:935px; }
-	.modal.data-record .modal-body { height:90px; padding-left:40px; width:770px; }
+	.modal.data-record { left:35%; width:935px;}
+	.modal.data-record .modal-body { height:90px; padding-left:40px; width:770px; height:200px;}
  	.modal-table.data-table { width:760px; margin:15px 0; float:left; }
 	.modal-table.data-table th { text-align:left; font-size:13px; color:#344953; padding-bottom:0px; font-size:11px; }
 	.modal-table.data-table th:first-child { text-align:left; }
@@ -827,6 +825,10 @@
 	.modal-table.data-table .custom-select.name { width:190px; }
 	.modal-table.data-table td.number-input { width:80px; text-align:left; padding-left:3px; }
 	.modal-table.data-table td.number-input input { width:46px; }
+	.modal-table.data-table.targets { width:860px; }
+	.modal-table.data-table.targets th { padding-left:4px; }
+	.modal-table.data-table.targets td.first-spacer { width:185px; }
+
 
 	/* vacation records modal */
 

@@ -1,6 +1,6 @@
 	<div class="gray-box timesheets">
 		<% if @timesheet.data_record.pay_type == "Salary" %>
-			<div class="stats utilization">
+			<!--<div class="stats utilization">
 				<label class="input-label">Utilization Rate</label>
 				<div class="number">
 					<% if @timesheet.ytd_total > 0 %>
@@ -11,14 +11,23 @@
 				</div>
 				<div class="detail">percent billable hours
 				</div>
-			</div>
+			</div>-->
 		<% end %>
+		<div class="stats non-billable">
+			<label class="input-label">Remaining Non-Billable Hours</label>
+			<ul class="nb-targets">
+				<% @timesheet.nb_categories.each do |c| %>
+					<% target = eval("@timesheet.#{c.shorthand.downcase!}") %>
+					<li><%= c.name %>: <div class="hours <%= 'over' if target < 0 %>"><%= target %></div></li>
+				<% end %>
+			</ul>
+		</div>
 		<div class="stats">
 			<label class="input-label">Remaining Vacation</label>
 			<div class="number">
 				<%= @timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f - @timesheet.ytd_vacation  %>
 			</div>
-			<div class="detail">used <%= number_with_precision(@timesheet.ytd_vacation, strip_insignificant_zeros: true) %> of <%= number_with_precision((@timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f), strip_insignificant_zeros: true) %> hours in <%= this_year %> 
+			<div class="detail">used <%= number_with_precision(@timesheet.ytd_vacation, strip_insignificant_zeros: true) %> of <%= number_with_precision((@timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f), strip_insignificant_zeros: true) %> hours 
 			</div>
 		</div>
 		<% if @timesheet.data_record.pay_type == "Salary" %>
@@ -60,6 +69,7 @@
 	        				<% end %>
 	        			</div>
 					</div>
+					
 					<div class="arrow-left"></div>
 					<div class="arrow-body">
         				<% if @timesheet.data_record.overage_from_prev.to_f > 0 %>
@@ -76,6 +86,7 @@
         					<% end %>
         				<% end %>
 					</div>
+					
 				</div>
 			</div>
 		<% end %>

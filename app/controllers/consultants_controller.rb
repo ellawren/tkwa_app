@@ -14,7 +14,7 @@ class ConsultantsController < ApplicationController
 
     def index
         @q = Consultant.order("name ASC").search(params[:q])
-        @consultants = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('name ASC')
+        @consultants = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('name ASC').includes(:consultant_roles)
         @all_consultants = Consultant.order("name ASC")
         if params.has_key?(:q) && @consultants.count == 1 
             redirect_to consultant_path(@consultants.first(params[:id]))

@@ -15,6 +15,14 @@
 #  overage_from_prev :decimal(6, 2)
 #  billable_rate     :decimal(5, 2)
 #  billable_per_week :decimal(4, 2)
+#  stp_target        :decimal(6, 2)
+#  mtg_target        :decimal(6, 2)
+#  adm_target        :decimal(6, 2)
+#  cmp_target        :decimal(6, 2)
+#  edu_target        :decimal(6, 2)
+#  sus_target        :decimal(6, 2)
+#  mkp_target        :decimal(6, 2)
+#  mkg_target        :decimal(6, 2)
 #
 
 class DataRecord < ActiveRecord::Base
