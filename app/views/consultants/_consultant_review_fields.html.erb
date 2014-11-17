@@ -1,7 +1,7 @@
 <div class="row">
 
 	<%= f.hidden_field :consultant_id, value: "#{@consultant.id}" %>
-	<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select" } ) %>
+	<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select role" } ) %>
 	<%= f.select(:recommendation, [['yes', 1], ['no', 2], ['undecided', 3], ['defunct', 4]], { :include_blank => true }, { :class => 'custom-select consultant-recommendation' }) %>
 	<%= f.text_field :notes, class: "consultant-notes" %>
 	<%= f.hidden_field :_destroy %>

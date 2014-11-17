@@ -47,8 +47,13 @@ class Consultant < ActiveRecord::Base
 	end
 
 	def roles 
-		array = ConsultantTeam.where(consultant_id: self.id).pluck(:consultant_role).uniq
-		array.to_s.gsub('"', '').gsub('[', '  ').gsub(']', '')
+		array = ConsultantReview.where(consultant_id: self.id).pluck(:consultant_role_id).uniq
+		roles = []
+		array.each do |c|
+			roles.push(ConsultantRole.find(c).consultant_role_name)
+		end
+
+		roles.join(", ")
 	end
 
 	def all_roles(project_id)

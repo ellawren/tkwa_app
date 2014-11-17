@@ -16,4 +16,8 @@ class ConsultantReview < ActiveRecord::Base
   	belongs_to :consultant
   	has_one :consultant_role
 
+  	def consultant_role
+		ConsultantRole.find(self.consultant_role_id)
+	end
+
 end

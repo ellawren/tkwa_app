@@ -48,7 +48,7 @@
 			<% @consultants.each do |param| %>
 				<tr class="results-row">
 	                <td class="bold"><%= link_to param.name, consultant_path(param.id) %></td>
-	                <td><%= param.consultant_roles.map(&:consultant_role_name).join(", ") %></td>
+	                <td><%= param.roles %></td>
 	                <td><%= param.recommended %></td>
 	                <td><%= param.notes %></td>
 	            </tr>

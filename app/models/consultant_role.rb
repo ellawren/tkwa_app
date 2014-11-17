@@ -18,4 +18,6 @@ class ConsultantRole < ActiveRecord::Base
 
 	has_many :consultant_reviews
 
+
+
 end

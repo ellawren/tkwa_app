@@ -960,9 +960,14 @@
 	.narrow .link-list { margin-top:10px; }
 	a.text-link { color:#1abc9c; }
 
-	.full.reviews .row { margin-left:0px; }
-	.full.reviews .row select.consultant-recommendation { margin-left:5px; width:110px; }
-	.full.reviews .row input.consultant-notes { float:left; margin-left:5px; width:540px; }
+	.full.reviews .row { margin-left:0px; margin-bottom:3px; }
+	.full.reviews .row select.role { margin-bottom:0px; }
+	.full.reviews .row select.consultant-recommendation { margin-left:5px; width:110px; margin-bottom:0px; }
+	.full.reviews .row input.consultant-notes { float:left; margin-left:5px; width:540px; margin-bottom:0px; }
+	.full .header-row { float:left; width:100%; font-size:11px; margin-bottom:2px; }
+	.full .header-row div { float:left; }
+	.full .header-row .role { width:227px; }
+	.full .header-row .recommended { width:115px; }
 
 /* organizations */
 

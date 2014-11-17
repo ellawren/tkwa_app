@@ -47,15 +47,24 @@
                 <%= f.label(:fax, "Fax", class: "input-label") %>
                 <%= f.text_field :fax, value: phone(@consultant.fax), class: "phone" %>
             </div>
-            <div class="input-row">
-                <label class="input-label">Roles <%= link_to "(edit)", edit_consultant_path(@consultant), class: "text-link" %></label>
-                <ul class="link-list">
-                    <% @consultant.consultant_roles.each do |r| %>
-                        <li><%= link_to r.consultant_role_name, "/consultants?utf8=%E2%9C%93&q%5Bconsultant_roles_id_eq%5D=#{r.id}" %></li>
-                    <% end %>
-                </ul>
-            </div>
         </div>
+
+    <div class="full reviews">
+
+        <h2 class="no-margin">Roles</h2>
+        <div class="header-row">
+            <div class="role">Role</div>
+            <div class="recommended">Recommended?</div>
+            <div class="notes">Notes</div>
+        </div>
+        <!-- nested form for consultant_review -->
+            <%= f.fields_for :consultant_reviews do |builder| %>
+                <%= render 'consultant_review_fields', :f => builder %>
+            <% end %>
+            <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
+        <!-- end team form -->
+
+    </div>
 
     <div class="half">
             <h2>Projects</h2>
@@ -76,52 +85,6 @@
                     <li><%= link_to "#{c.display_name} <span class=\"note\">#{c.work_title}</span>".html_safe, contact_path(c) %></li>
                 <% end %>
             </ul>
-        </div>
-
-        <div class="full reviews">
-            <h2>Roles</h2>
-
-
-        <!-- nested form for consultant_review -->
-            <%= f.fields_for :consultant_reviews do |builder| %>
-                <%= render 'consultant_review_fields', :f => builder %>
-            <% end %>
-            <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
-        <!-- end team form -->
-
-    </div>
-
-	<h2>Notes</h2>
-    
-        <div class="wide consultants">
-            <div class="input-row">
-                <%= f.text_area :notes, rows: 6 %>
-            </div>
-        </div>
-        <div class="narrow">
-            <div class="input-row">
-                <%= f.label(:recommended, "Recommended?", class: "input-label") %>
-                    <%= hidden_field_tag "consultant[recommended]", nil %>
-                    <div class="radio-group compact">
-                        <label class="radio">
-                            <%= f.radio_button :recommended, "yes", data_toggle: "radio" %>
-                            Yes
-                        </label>
-                        <label class="radio">
-                            <%= f.radio_button :recommended, "no", data_toggle: "radio" %>
-                            No
-                        </label>
-                        <label class="radio">
-                            <%= f.radio_button :recommended, "undecided", data_toggle: "radio" %>
-                            Undecided
-                        </label>
-                        <label class="radio">
-                            <%= f.radio_button :recommended, "defunct", data_toggle: "radio" %>
-                            Defunct
-                        </label>
-                    </div>
-               
-            </div>
         </div>
 
         
