@@ -51,7 +51,7 @@
                 <label class="input-label">Roles <%= link_to "(edit)", edit_consultant_path(@consultant), class: "text-link" %></label>
                 <ul class="link-list">
                     <% @consultant.consultant_roles.each do |r| %>
-                        <li><%= r.consultant_role_name %></li>
+                        <li><%= link_to r.consultant_role_name, "/consultants?utf8=%E2%9C%93&q%5Bconsultant_roles_id_eq%5D=#{r.id}" %></li>
                     <% end %>
                 </ul>
             </div>
