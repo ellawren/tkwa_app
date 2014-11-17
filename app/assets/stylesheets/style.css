@@ -953,6 +953,9 @@
 	.wide.consultants textarea { width:500px; }
 	.full.consultants .link-list { width:100%; }
 
+	.narrow .link-list { margin-top:10px; }
+	a.text-link { color:#1abc9c; }
+
 /* notice bar */
 
 	#notice { position:fixed; z-index:9999; width:100%; height:28px; background-color:#0ba0d4; color:#fff; }

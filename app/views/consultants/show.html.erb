@@ -47,17 +47,36 @@
                 <%= f.label(:fax, "Fax", class: "input-label") %>
                 <%= f.text_field :fax, value: phone(@consultant.fax), class: "phone" %>
             </div>
+            <div class="input-row">
+                <label class="input-label">Roles <%= link_to "(edit)", edit_consultant_path(@consultant), class: "text-link" %></label>
+                <ul class="link-list">
+                    <% @consultant.consultant_roles.each do |r| %>
+                        <li><%= r.consultant_role_name %></li>
+                    <% end %>
+                </ul>
+            </div>
         </div>
 
-    <h2>Role(s)</h2>
-    	<div class="full consultants">
-	        <ul class="link-list">
-				<% @consultant.consultant_roles.each do |r| %>
-					<li><%= r.consultant_role_name %></li>
-				<% end %>
-			</ul>
-			<%= link_to "edit roles", edit_consultant_path(@consultant), class: "btn" %>
-		</div>
+    <div class="half">
+            <h2>Projects</h2>
+
+                <ul class="link-list green">
+                    <% @consultant.all_projects.each do |p| %>
+                        <li>
+                            <%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
+                        </li>
+                    <% end %>
+                </ul>
+        </div>
+
+        <div class="half last">
+            <h2>Contacts</h2>
+            <ul class="link-list green">
+                <% Contact.where(work_company: @consultant.name).each do |c| %>
+                    <li><%= link_to "#{c.display_name} <span class=\"note\">#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+                <% end %>
+            </ul>
+        </div>
 
 	<h2>Notes</h2>
     
@@ -92,15 +111,7 @@
             </div>
         </div>
 
-    <h2>Projects</h2>
-
-    	<ul class="link-list green">
-    		<% @consultant.all_projects.each do |p| %>
-    			<li>
-    				<%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
-    			</li>
-    		<% end %>
-    	</ul>
+        
 
     <div class="save-row">
         <%= f.submit "Save", class: "btn btn-primary save-btn" %>
