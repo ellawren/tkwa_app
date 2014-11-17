@@ -1,0 +1,46 @@
+<% provide :title, "Organizations" %>
+
+<div class="page-header">
+	<h1>Organizations</h1>
+	<%= link_to "Add Organization", new_organization_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<div class="gray-box">
+
+	<%= search_form_for @q do |f| %>
+
+		<%= f.text_field :name_cont, class: "search-name", placeholder: "Firm Name" %>   
+		<%= f.submit "Search", class: "btn btn-primary search-btn" %>
+			     
+	<% end %>
+
+</div>
+
+<% if @organizations.count == 0 %>
+	<h2>Search Results</h2>
+	<div class="search-results">
+		No matches.<br><br><a href="/organizations/" class="btn">Clear search and try again.</a><br><br>
+		<div class="line"></div>
+	</div>
+<% else %>
+
+	<h2>Search Results (<%= @organizations.count %>) <a class="reset" href="/organizations">reset search</a></h2>
+
+	<table class="table search-results">
+		<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+		</thead>
+	    <tbody>
+			<% @organizations.each do |param| %>
+				<tr class="results-row">
+	                <td class="bold"><%= link_to param.name, edit_organization_path(param.id) %></td>
+	            </tr>
+	        <% end %>
+	    </tbody>
+	</table>
+				
+	<%= will_paginate @organization %>
+
+<% end %>

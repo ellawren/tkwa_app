@@ -28,6 +28,7 @@
 #  work_phone      :string(255)
 #  work_url        :string(255)
 #  work_fax        :string(255)
+#  organization_id :integer
 #
 
 class Contact < ActiveRecord::Base

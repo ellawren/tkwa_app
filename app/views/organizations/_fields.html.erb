@@ -1,0 +1,28 @@
+<h2>Company Information</h2>
+<div class="wide margin-bottom">
+    <div class="input-row">
+        <%= f.label(:name, "Name", class: "input-label") %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:address, "Address", class: "input-label") %>
+        <%= f.text_area :address, class: "button-right", rows: "3" %>
+        <button class="btn input-button" onclick="showMap('organization_address'); return false;">map</button>
+    </div>   
+    <div class="input-row">
+        <%= f.label(:website, "Website", class: "input-label") %>
+        <%= f.text_field :website, class: "button-right" %>
+        <button class="btn input-button" onclick="openURL('organization_website'); return false;">website</button>
+    </div>  
+</div>
+
+<div class="narrow contact-phone margin-bottom">
+    <div class="input-row">
+        <%= f.label(:phone, "Main Phone", class: "input-label") %>
+        <%= f.text_field :phone, value: phone(@organization.phone), class: "phone" %>
+    </div>
+    <div class="input-row">
+        <%= f.label(:fax, "Fax", class: "input-label") %>
+        <%= f.text_field :fax, value: phone(@organization.fax), class: "phone" %>
+    </div>
+</div>

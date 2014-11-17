@@ -133,6 +133,25 @@
 
     <% end %>
 
+    <h2 class="no-margin">Company Information</h2>
+    <div class="wide">
+        <div class="input-row">
+            <%= f.label(:organization_id, "Company", class: "input-label" ) %>
+            <% if @contact.organization_id.present? %>
+                <% company = Organization.find(@contact.organization_id) %>
+                <div class="company-info">
+                    <% if company.name.present? %>
+                        <span class="bold"><%= company.name %></span><br>
+                    <% end %>
+                    <%= "#{company.address}<br>".html_safe if company.address.present? %>
+                    <%= "t: #{phone(company.phone)}".html_safe if company.phone.present? %>
+                </div>
+            <% else %>
+                <%= f.collection_select(:organization_id, Organization.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            <% end %>
+        </div>
+    </div>
+
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
         <% @personal = "visible" %>
     <% else %>

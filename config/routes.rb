@@ -75,6 +75,7 @@ TkwaApp::Application.routes.draw do
         end
     end
     resources :consultants
+    resources :organizations
 
 
     # PHASES

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141113180124) do
+ActiveRecord::Schema.define(:version => 20141117194013) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20141113180124) do
     t.string   "work_phone"
     t.string   "work_url"
     t.string   "work_fax"
+    t.integer  "organization_id"
   end
 
   add_index "contacts", ["company_id"], :name => "index_contacts_on_company_id"
@@ -393,6 +394,17 @@ ActiveRecord::Schema.define(:version => 20141113180124) do
   end
 
   add_index "non_billable_hours", ["user_id"], :name => "non_billable_hours_user_id"
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "fax"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "category"
+  end
 
   create_table "pattern_groups", :force => true do |t|
     t.string   "name"

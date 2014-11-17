@@ -956,6 +956,10 @@
 	.narrow .link-list { margin-top:10px; }
 	a.text-link { color:#1abc9c; }
 
+/* organizations */
+
+	.company-info { margin-top:10px; float:left; margin-bottom:15px; }
+
 /* notice bar */
 
 	#notice { position:fixed; z-index:9999; width:100%; height:28px; background-color:#0ba0d4; color:#fff; }
