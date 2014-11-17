@@ -78,6 +78,19 @@
             </ul>
         </div>
 
+        <div class="full reviews">
+            <h2>Roles</h2>
+
+
+        <!-- nested form for consultant_review -->
+            <%= f.fields_for :consultant_reviews do |builder| %>
+                <%= render 'consultant_review_fields', :f => builder %>
+            <% end %>
+            <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
+        <!-- end team form -->
+
+    </div>
+
 	<h2>Notes</h2>
     
         <div class="wide consultants">

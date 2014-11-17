@@ -136,8 +136,9 @@
     <h2 class="no-margin">Company Information</h2>
     <div class="wide">
         <div class="input-row">
-            <%= f.label(:organization_id, "Company", class: "input-label" ) %>
+            
             <% if @contact.organization_id.present? %>
+                <%= f.label(:organization_id, "Company", class: "input-label" ) %>
                 <% company = Organization.find(@contact.organization_id) %>
                 <div class="company-info">
                     <% if company.name.present? %>
@@ -147,6 +148,7 @@
                     <%= "t: #{phone(company.phone)}".html_safe if company.phone.present? %>
                 </div>
             <% else %>
+                <%= f.label(:organization_id, "Choose Existing", class: "input-label" ) %>
                 <%= f.collection_select(:organization_id, Organization.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
             <% end %>
         </div>

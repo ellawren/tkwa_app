@@ -20,6 +20,9 @@ class Consultant < ActiveRecord::Base
 	has_many :projects, :through => :consultant_teams,  :select => 'distinct projects.*'
 	has_and_belongs_to_many :consultant_roles
 
+ 	has_many :consultant_reviews, :dependent => :destroy
+    accepts_nested_attributes_for :consultant_reviews, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? || a[:consultant_role_id].blank? }
+
 	before_save do
         self.phone = self.phone.to_s.gsub(/\D/, '')
         self.fax = self.fax.to_s.gsub(/\D/, '')

@@ -292,6 +292,7 @@
 	.add { margin-top:10px; cursor:pointer; }
 	.add:after { content:"new team member"; margin-left:6px; color:#86cc71; font-family:"Lato", sans-serif; font-size:14px; font-weight:700; }
 	.add.consultant:after { content:"new consultant"; }
+	.add.consultant-review:after { content:"add role"; }
 	.add.category:after { content:"select another category"; }
 	.add.pattern:after { content:"add pattern"; }
 	.add.schedule:after { content:"new line"; }
@@ -958,6 +959,10 @@
 
 	.narrow .link-list { margin-top:10px; }
 	a.text-link { color:#1abc9c; }
+
+	.full.reviews .row { margin-left:0px; }
+	.full.reviews .row select.consultant-recommendation { margin-left:5px; width:110px; }
+	.full.reviews .row input.consultant-notes { float:left; margin-left:5px; width:540px; }
 
 /* organizations */
 
