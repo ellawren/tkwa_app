@@ -1,0 +1,33 @@
+<% provide :title, "#{@year} Non-Billable Summary" %>
+<div class="page-header">
+    <h1><%= @year %> Non-Billable Summary</h1>
+</div>
+
+<table class="table right-align timesheets">
+	<thead>
+		<tr>
+			<th class="left">Name</th>
+			<th>Studio Projects</th>
+			<th>Staff/Sched Meeting</th>
+			<th>Administration</th>
+			<th>Computer</th>
+			<th>Education</th>
+			<th>Mkt - Project</th>
+			<th>Mkt - General</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td class="left"><%= user.name %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_stp).to_f) %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_mtg).to_f) %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_adm).to_f) %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_cmp).to_f) %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_edu).to_f) %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_mkp).to_f) %></td>
+				<td><%= nonzero(Timesheet.where(user_id: user.id, year: @year).sum(&:nb_mkg).to_f) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

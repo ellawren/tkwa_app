@@ -21,6 +21,11 @@ class TimesheetsController < ApplicationController
         @year = params[:year].to_i 
     end
 
+    def non_billable
+        @users = User.active_users
+        @year = params[:year].to_i 
+    end
+
     def user_index
         @user = User.find(params[:id])
         @year = params[:year].to_i 
