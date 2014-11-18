@@ -1,4 +1,5 @@
 <h2>Contact Information</h2>
+
 <div class="wide margin-bottom">
     <div class="input-row">
         <%= f.label(:name, "Consultant Name", class: "input-label") %>
@@ -27,14 +28,19 @@
     </div>
 </div>
 
-<h2>Role(s) <%= link_to "edit roles", consultant_roles_path, class: "control-link-text" %></h2>
+<div class="full reviews">
 
-<div class="full consultants">
-	<%= hidden_field_tag "consultant[consultant_role_ids][]", nil %>
-	<% ConsultantRole.all.each do |consultant_role| %>
-		<label class="checkbox">
-				<%= check_box_tag "consultant[consultant_role_ids][]", consultant_role.id, @consultant.consultant_role_ids.include?(consultant_role.id), id: dom_id(consultant_role), data_toggle: "checkbox" %>
-				<%= consultant_role.consultant_role_name %>
-			</label>
-	<% end %>
+    <h2 class="no-margin">Roles</h2>
+    <div class="header-row">
+        <div class="role">Role</div>
+        <div class="recommended">Recommended?</div>
+        <div class="notes">Notes</div>
+    </div>
+    <!-- nested form for consultant_review -->
+        <%= f.fields_for :consultant_reviews do |builder| %>
+            <%= render 'consultant_review_fields', :f => builder %>
+        <% end %>
+        <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
+    <!-- end team form -->
+
 </div>

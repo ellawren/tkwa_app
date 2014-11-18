@@ -14,5 +14,7 @@ end
 #  created_at         :datetime        not null
 #  updated_at         :datetime        not null
 #  notes              :string(255)
+#  name               :string(255)
+#  role               :string(255)
 #
 

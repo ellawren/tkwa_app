@@ -457,7 +457,9 @@
 	table.search-results td { border:0px; padding:4px 8px; }
 	table.search-results td:first-child { border-radius:5px 0 0 5px; }
 	table.search-results td:last-child { border-radius:0 5px 5px 0; }
-	table.search-results a { color:#34495e; text-decoration:none; display:block; min-width:20px; min-height:20px; }
+	table.search-results a { color:#34495e; text-decoration:none; display:block; min-width:20px; min-height:20px; font-weight:normal; }
+	table.search-results .bold a { font-weight:900; }
+
 	table.search-results td.bold.green { color:#16a085; }
 	table.search-results td.bold.green:hover { color:#1abc9c; }
 	table.search-results th { padding:0px 8px; color:#bcc6cc; font-size:11px; font-weight:400; text-transform:uppercase; }

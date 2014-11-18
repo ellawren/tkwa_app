@@ -2,23 +2,22 @@
 #
 # Table name: consultants
 #
-#  id          :integer         not null, primary key
-#  name        :string(255)
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
-#  address     :string(255)
-#  phone       :string(255)
-#  fax         :string(255)
-#  url         :string(255)
-#  notes       :text
-#  recommended :string(255)     default("n/a")
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  address    :string(255)
+#  phone      :string(255)
+#  fax        :string(255)
+#  url        :string(255)
+#  defunct    :boolean         default(FALSE)
+#  mbe        :boolean         default(FALSE)
 #
 
 class Consultant < ActiveRecord::Base
 
 	has_many :consultant_teams
 	has_many :projects, :through => :consultant_teams,  :select => 'distinct projects.*'
-	has_and_belongs_to_many :consultant_roles
 
  	has_many :consultant_reviews, :dependent => :destroy
     accepts_nested_attributes_for :consultant_reviews, :allow_destroy => true, :reject_if => lambda { |a| a[:consultant_id].blank? || a[:consultant_role_id].blank? }

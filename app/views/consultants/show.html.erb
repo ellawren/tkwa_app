@@ -19,52 +19,7 @@
 
 <%= form_for @consultant do |f| %>
 
-    <h2>Contact Information</h2>
-
-        <div class="wide margin-bottom">
-            <div class="input-row">
-                <%= f.label(:name, "Consultant Name", class: "input-label") %>
-                <%= f.text_field :name %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:address, "Address", class: "input-label") %>
-                <%= f.text_area :address, class: "button-right", rows: "3" %>
-                <button class="btn input-button" onclick="showMap('consultant_address'); return false;">map</button>
-            </div>   
-            <div class="input-row">
-                <%= f.label(:url, "Website", class: "input-label") %>
-                <%= f.text_field :url, class: "button-right" %>
-                <button class="btn input-button" onclick="openURL('consultant_url'); return false;">website</button>
-            </div>  
-        </div>
-
-        <div class="narrow contact-phone margin-bottom">
-            <div class="input-row">
-                <%= f.label(:phone, "Main Phone", class: "input-label") %>
-                <%= f.text_field :phone, value: phone(@consultant.phone), class: "phone" %>
-            </div>
-            <div class="input-row">
-                <%= f.label(:fax, "Fax", class: "input-label") %>
-                <%= f.text_field :fax, value: phone(@consultant.fax), class: "phone" %>
-            </div>
-        </div>
-
-    <div class="full reviews">
-
-        <h2 class="no-margin">Roles</h2>
-        <div class="header-row">
-            <div class="role">Role</div>
-            <div class="recommended">Recommended?</div>
-            <div class="notes">Notes</div>
-        </div>
-        <!-- nested form for consultant_review -->
-            <%= f.fields_for :consultant_reviews do |builder| %>
-                <%= render 'consultant_review_fields', :f => builder %>
-            <% end %>
-            <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
-        <!-- end team form -->
-
-    </div>
+    <%= render 'fields', :f => f %>
 
     <div class="half">
             <h2>Projects</h2>

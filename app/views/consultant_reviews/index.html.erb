@@ -1,0 +1,64 @@
+<% provide :title, "Consultants" %>
+
+<div class="page-header">
+	<h1>Consultants</h1>
+	<%= link_to "Add Consultant", new_consultant_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<div class="gray-box consultants">
+
+	<%= search_form_for @q do |f| %>
+
+		<div class="status-options">
+			<div><%= f.radio_button(:recommendation_eq, "") %><label class="radio">All</label></div>
+	        <div><%= f.radio_button(:recommendation_eq, 1) %><label class="radio">Recommended</label></div>
+	        <div><%= f.radio_button(:recommendation_eq, 2) %><label class="radio">Not Recommended</label></div>
+	        <div><%= f.radio_button(:recommendation_eq, 3) %><label class="radio">Undecided</label></div>
+	        <div><%= f.radio_button(:recommendation_eq, 4) %><label class="radio">Defunct</label></div>
+		</div>
+		<%= f.text_field :consultant_name_cont, class: "search-name consultant-name", placeholder: "Firm Name" %> 
+		<%= f.collection_select(:consultant_role_id_eq, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => 'Role' }, { :class => "custom-select consultant-role" } ) %>
+		<%= f.submit "Search", class: "btn btn-primary search-btn consultants" %>
+			     
+	<% end %>
+
+</div>
+
+<% if (params.has_key?(:q)) %>
+
+	<% if @consultant_reviews.count == 0 %>
+		<h2>Search Results</h2>
+		<div class="search-results">
+			No matches.<br><br><a href="/consultants/" class="btn">Clear search and try again.</a><br><br>
+			<div class="line"></div>
+		</div>
+	<% else %>
+
+		<h2>Search Results (<%= @consultant_reviews.count %>) <a class="reset" href="/consultants">reset search</a></h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+					<th>Recommended?</th>
+					<th>Notes</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @consultant_reviews.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.consultant.name, consultant_path(param.consultant.id) %></td>
+		                <td><%= link_to param.consultant_role_name, consultant_path(param.consultant.id) %></td>
+		                <td><%= link_to param.rec, consultant_path(param.consultant.id) %></td>
+		                <td><%= link_to param.notes, consultant_path(param.consultant.id) %></td>
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+					
+		<%= will_paginate @consultant %>
+
+	<% end %>
+
+<% end %>

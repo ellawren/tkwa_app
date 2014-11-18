@@ -74,7 +74,9 @@ TkwaApp::Application.routes.draw do
             get 'transmittal', 'fax', 'envelope'
         end
     end
+    match '/consultants',   to: 'consultant_reviews#index', :via => :get
     resources :consultants
+    resources :consultant_reviews
     resources :organizations
 
 
