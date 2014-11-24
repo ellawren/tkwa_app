@@ -967,11 +967,11 @@
 	.narrow .link-list { margin-top:10px; }
 	a.text-link { color:#1abc9c; }
 
-	.full.reviews .row { margin-left:0px; margin-bottom:3px; }
+	.full.reviews .row { margin-left:0px; margin-bottom:3px; float:left; border-bottom:1px solid #ced5da; padding-bottom:3px; }
 	.full.reviews .row select.role { margin-bottom:0px; }
 	.full.reviews .row select.consultant-recommendation { margin-left:5px; width:110px; margin-bottom:0px; }
 	.full.reviews .row input.consultant-notes { float:left; margin-left:5px; width:540px; margin-bottom:0px; }
-	.full .header-row { float:left; width:100%; font-size:11px; margin-bottom:2px; }
+	.full .header-row { float:left; width:100%; font-size:11px; margin-bottom:2px; border-bottom:1px solid #344953; }
 	.full .header-row div { float:left; }
 	.full .header-row .role { width:227px; }
 	.full .header-row .recommended { width:115px; }
@@ -980,6 +980,10 @@
 	.gray-box.consultants .options .radio-group { width:260px; }
 	.gray-box.consultants .options .radio-group label.main { width:80px; }
 	.gray-box.consultants .options .radio-group label { width:40px; }
+
+	.reviews .row .text.role { width:220px; float:left; padding:9px 0px; }
+	.reviews .row .text.role a { color:#1abc9c; }
+	.reviews .row .text.role a:hover { color:#16a085; }
 
 /* organizations */
 

@@ -1,7 +1,11 @@
 <div class="row">
 
 	<%= f.hidden_field :consultant_id, value: "#{@consultant.id}" %>
-	<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select role" } ) %>
+	<% if f.object.consultant_role_id %>
+		<div class="text role"><%= link_to f.object.consultant_role_name, "/consultants/?utf8=%E2%9C%93&q%5Bconsultant_role_id_eq%5D=#{f.object.consultant_role_id}" %></div>
+	<% else %>
+		<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select role" } ) %>
+	<% end %>
 	<%= f.select(:recommendation, [['yes', 1], ['no', 2], ['undecided', 3]], { }, { :class => 'custom-select consultant-recommendation' }) %>
 	<%= f.text_field :notes, class: "consultant-notes" %>
 	<%= f.hidden_field :_destroy %>
