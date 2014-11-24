@@ -11,6 +11,8 @@
 #  notes              :string(255)
 #  name               :string(255)
 #  role               :string(255)
+#  defunct            :boolean
+#  mbe                :boolean
 #
 
 class ConsultantReview < ActiveRecord::Base
@@ -48,10 +50,14 @@ class ConsultantReview < ActiveRecord::Base
 		elsif self.recommendation == 2
 			"no" 
 		elsif self.recommendation == 3
-			"undecided" 
-		elsif self.recommendation == 4
-			"defunct" 
+			"undecided"
 		end
 	end
+
+    scope :in_business, {
+        :select => "consultant_reviews.*",
+        :joins => "INNER JOIN consultants ON consultants.id = consultant_reviews.consultant_id", 
+        :conditions => ["consultants.defunct = ?", false ]
+    }
 
 end

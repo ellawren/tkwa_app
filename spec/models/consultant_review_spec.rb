@@ -16,5 +16,7 @@ end
 #  notes              :string(255)
 #  name               :string(255)
 #  role               :string(255)
+#  defunct            :boolean
+#  mbe                :boolean
 #
 

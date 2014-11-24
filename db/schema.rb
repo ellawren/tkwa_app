@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141118171151) do
+ActiveRecord::Schema.define(:version => 20141118191846) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -100,6 +100,8 @@ ActiveRecord::Schema.define(:version => 20141118171151) do
     t.string   "notes"
     t.string   "name"
     t.string   "role"
+    t.boolean  "defunct"
+    t.boolean  "mbe"
   end
 
   create_table "consultant_roles", :force => true do |t|
