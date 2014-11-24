@@ -2,6 +2,7 @@
 
 	<%= f.hidden_field :consultant_id, value: "#{@consultant.id}" %>
 	<% if f.object.consultant_role_id %>
+		<%= f.hidden_field :consultant_role_id, value: "#{f.object.consultant_role_id}" %>
 		<div class="text role"><%= link_to f.object.consultant_role_name, "/consultants/?utf8=%E2%9C%93&q%5Bconsultant_role_id_eq%5D=#{f.object.consultant_role_id}" %></div>
 	<% else %>
 		<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select role" } ) %>
