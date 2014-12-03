@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141118191846) do
+ActiveRecord::Schema.define(:version => 20141202160955) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20141118191846) do
     t.string   "url"
     t.boolean  "defunct",    :default => false
     t.boolean  "mbe",        :default => false
+    t.integer  "category"
   end
 
   create_table "contacts", :force => true do |t|

@@ -12,6 +12,7 @@
 #  url        :string(255)
 #  defunct    :boolean         default(FALSE)
 #  mbe        :boolean         default(FALSE)
+#  category   :integer
 #
 
 require 'spec_helper'

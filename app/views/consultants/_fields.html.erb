@@ -19,6 +19,10 @@
 
 <div class="narrow contact-phone margin-bottom">
     <div class="input-row">
+        <%= f.label(:category, "Category", class: "input-label" ) %>
+        <%= f.select(:category, [['Consultant', 1], ['Contractor', 2], ['Marketing', 3], ['Municipal', 3], ['Supplier', 4]], { :include_blank => true }, { :class => "custom-select consultant" } ) %>
+    </div>
+    <div class="input-row">
         <%= f.label(:phone, "Main Phone", class: "input-label") %>
         <%= f.text_field :phone, value: phone(@consultant.phone), class: "phone" %>
     </div>
@@ -56,19 +60,23 @@
     </div>
 </div>
 
-<div class="full reviews">
+<% unless params[:action] == "new" %>
 
-    <h2 class="no-margin">Roles</h2>
-    <div class="header-row">
-        <div class="role">Role</div>
-        <div class="recommended">Recommended?</div>
-        <div class="notes">Notes</div>
+    <div class="full reviews">
+
+        <h2 class="no-margin">Roles</h2>
+        <div class="header-row">
+            <div class="role">Role</div>
+            <div class="recommended">Recommended?</div>
+            <div class="notes">Notes</div>
+        </div>
+        <!-- nested form for consultant_review -->
+            <%= f.fields_for :consultant_reviews do |builder| %>
+                <%= render 'consultant_review_fields', :f => builder %>
+            <% end %>
+            <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
+        <!-- end team form -->
+
     </div>
-    <!-- nested form for consultant_review -->
-        <%= f.fields_for :consultant_reviews do |builder| %>
-            <%= render 'consultant_review_fields', :f => builder %>
-        <% end %>
-        <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
-    <!-- end team form -->
 
-</div>
+<% end %>

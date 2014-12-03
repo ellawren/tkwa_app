@@ -207,6 +207,7 @@
 	.narrow .input-cell { width:170px; color:#34495e; }
 	.narrow textarea { width:163px; resize:vertical; }
 	.narrow .custom-select { width:190px; margin-bottom:6px; }
+	.narrow .custom-select.consultant { width:154px; margin-bottom:6px; }
 	.narrow .input-label { float:left; width:160px; padding:10px 0; }
 
 	.narrow.contact .input-label { width:80px; }
