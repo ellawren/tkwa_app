@@ -36,8 +36,8 @@
         <div class="half last">
             <h2>Contacts</h2>
             <ul class="link-list green">
-                <% Contact.where(work_company: @consultant.name).each do |c| %>
-                    <li><%= link_to "#{c.display_name} <span class=\"note\">#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+                <% Contact.where(work_company: @consultant.name).order("name ASC").each do |c| %>
+                    <li><%= "* " if c.consultant_id.present? %><%= link_to "#{c.display_name} <span class=\"note\">#{c.work_title}</span>".html_safe, contact_path(c) %></li>
                 <% end %>
             </ul>
         </div>
