@@ -22,13 +22,13 @@
 #  direct_ext      :string(255)
 #  work_cell       :string(255)
 #  cat_number      :string(255)
-#  company_id      :integer
 #  work_company    :string(255)
 #  work_address    :string(255)
 #  work_phone      :string(255)
 #  work_url        :string(255)
 #  work_fax        :string(255)
 #  organization_id :integer
+#  consultant_id   :integer
 #
 
 class Contact < ActiveRecord::Base

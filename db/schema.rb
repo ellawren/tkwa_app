@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141202160955) do
+ActiveRecord::Schema.define(:version => 20141203212113) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -162,16 +162,14 @@ ActiveRecord::Schema.define(:version => 20141202160955) do
     t.string   "direct_ext"
     t.string   "work_cell"
     t.string   "cat_number"
-    t.integer  "company_id"
     t.string   "work_company"
     t.string   "work_address"
     t.string   "work_phone"
     t.string   "work_url"
     t.string   "work_fax"
     t.integer  "organization_id"
+    t.integer  "consultant_id"
   end
-
-  add_index "contacts", ["company_id"], :name => "index_contacts_on_company_id"
 
   create_table "data_records", :force => true do |t|
     t.integer  "year"

@@ -137,19 +137,19 @@
     <div class="wide">
         <div class="input-row">
             
-            <% if @contact.organization_id.present? %>
-                <%= f.label(:organization_id, "Company", class: "input-label" ) %>
-                <% company = Organization.find(@contact.organization_id) %>
+            <% if @contact.consultant_id.present? %>
+                <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
+                <% company = Consultant.find(@contact.consultant_id) %>
                 <div class="company-info">
                     <% if company.name.present? %>
-                        <span class="bold"><%= company.name %></span><br>
+                        <span class="bold"><%= link_to company.name, consultant_path(company) %></span><br>
                     <% end %>
                     <%= "#{company.address}<br>".html_safe if company.address.present? %>
                     <%= "t: #{phone(company.phone)}".html_safe if company.phone.present? %>
                 </div>
             <% else %>
-                <%= f.label(:organization_id, "Choose Existing", class: "input-label" ) %>
-                <%= f.collection_select(:organization_id, Organization.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+                <%= f.label(:consultant_id, "Choose Existing", class: "input-label" ) %>
+                <%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
             <% end %>
         </div>
     </div>
