@@ -9,7 +9,11 @@
         <%= f.label(:address, "Address", class: "input-label") %>
         <%= f.text_area :address, class: "button-right", rows: "3" %>
         <button class="btn input-button" onclick="showMap('consultant_address'); return false;">map</button>
-    </div>   
+    </div>  
+    <div class="input-row">
+        <%= f.label(:po_box, "P.O. Box", class: "input-label") %>
+        <%= f.text_field :po_box, class: "button-right" %>
+    </div> 
     <div class="input-row">
         <%= f.label(:url, "Website", class: "input-label") %>
         <%= f.text_field :url, class: "button-right" %>
