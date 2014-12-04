@@ -44,7 +44,7 @@ class Consultant < ActiveRecord::Base
     #------------------------------------
 	
 	def display_name
-		s = self.name 
+		s = "#{self.name}" 
 		s << " (MBE)" if self.mbe == true
 		s << " (Closed)" if self.defunct == true
 		s
