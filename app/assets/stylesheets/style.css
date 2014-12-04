@@ -63,6 +63,8 @@
 		ul.link-list.consultants { margin-left:300px;  }
 		ul.link-list .note { font-size:13px; }
 	ul.link-list li { margin-bottom:2px; }
+	a.underline { text-decoration:underline; color:#1abc9c; cursor:pointer; font-weight:400; }
+	a.underline:hover { color:#16a085; }
 
 	/* transitions */
 
@@ -985,6 +987,14 @@
 	.reviews .row .text.role { width:220px; float:left; padding:9px 0px; }
 	.reviews .row .text.role a { color:#1abc9c; }
 	.reviews .row .text.role a:hover { color:#16a085; }
+
+	.new-company { display:none; }
+	.new-company .text-btn { margin-top:8px; }
+	#cancel-change-company { float:left; padding:6px 16px; cursor:pointer; }
+	#change-company { margin-top:14px; }
+	.company-address .text { float:left; width:284px; margin-top:12px; }
+	#contact_consultant_id { margin-top:6px; }
+
 
 /* organizations */
 

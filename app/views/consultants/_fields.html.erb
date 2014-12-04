@@ -14,7 +14,12 @@
         <%= f.label(:url, "Website", class: "input-label") %>
         <%= f.text_field :url, class: "button-right" %>
         <button class="btn input-button" onclick="openURL('consultant_url'); return false;">website</button>
-    </div>  
+    </div> 
+    <div class="input-row">
+        <%= f.label(:general_email, "General Email", class: "input-label") %>
+        <%= f.text_field :general_email, class: "button-right" %>
+        <button class="btn input-button" onclick="mailTo('<%= f.object.general_email %>'); return false;">email</button>
+    </div> 
 </div>
 
 <div class="narrow contact-phone margin-bottom">

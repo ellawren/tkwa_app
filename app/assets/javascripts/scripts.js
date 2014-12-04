@@ -29,6 +29,21 @@ $(document).ready(function() {
     });
     //---
 
+    // change company on contact page
+    $('#change-company').click( function() {
+        $('.company-address').hide();
+        billing_name = $('#project_billing_name').val();
+        $('#project_billing_name').val("");
+        $('.new-company').show();
+    });
+
+    $('#cancel-change-company').click( function() {
+        $('.company-address').show();
+        $('#project_billing_name').val(billing_name);
+        $('.new-company').hide();
+    });
+    //---
+
     // show personal info on contacts page
     $('#show').click( function() {
         $('#personal-info').slideDown("slow");
@@ -473,6 +488,16 @@ function sendEmail(id) {
 // open URL
 function openURL(id) {
   url = $("#"+id).val();
+  if (url.substring(0,7) === "http://") {
+    queryString = url;
+  } else {
+    queryString = 'http://' + url;
+  }
+  window.open(queryString);
+}
+
+// open URL direct
+function openURL_direct(url) {
   if (url.substring(0,7) === "http://") {
     queryString = url;
   } else {

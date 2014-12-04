@@ -2,17 +2,19 @@
 #
 # Table name: consultants
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  address    :string(255)
-#  phone      :string(255)
-#  fax        :string(255)
-#  url        :string(255)
-#  defunct    :boolean         default(FALSE)
-#  mbe        :boolean         default(FALSE)
-#  category   :integer
+#  id            :integer         not null, primary key
+#  name          :string(255)
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  address       :string(255)
+#  phone         :string(255)
+#  fax           :string(255)
+#  url           :string(255)
+#  defunct       :boolean         default(FALSE)
+#  mbe           :boolean         default(FALSE)
+#  category      :integer
+#  po_box        :string(255)
+#  general_email :string(255)
 #
 
 class Consultant < ActiveRecord::Base
@@ -41,6 +43,13 @@ class Consultant < ActiveRecord::Base
     end
     #------------------------------------
 	
+	def display_name
+		s = self.name 
+		s << " (MBE)" if self.mbe == true
+		s << " (Closed)" if self.defunct == true
+		s
+	end
+
 	def all_projects #need to use this instead of calling via the association to get alpha sort
 		array = ConsultantTeam.where(consultant_id: self.id).pluck(:project_id).uniq
 		Project.alpha.find(array)

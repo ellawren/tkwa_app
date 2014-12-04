@@ -95,6 +95,40 @@
         <% end %>
     </div>
 
+    <h2 class="no-margin">Company Information</h2>
+    <div class="wide">
+
+        <div class="input-row">
+            <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
+            <% if @contact.consultant_id.blank? %>
+                <%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+            <% else %>
+                <% company = Consultant.find(@contact.consultant_id) %>
+                <% if company %>
+                    <div class="company-address">
+                        <div class="text">
+                            <% if company.name.present? %>
+                                <span class="bold"><%= link_to company.name, consultant_path(company) %></span><br>
+                            <% end %>
+                            <%= "#{company.address}<br>".gsub(/\n/, '<br>').html_safe if company.address.present? %>
+                            <%= "t: #{phone(company.phone)}<br>".html_safe if company.phone.present? %>
+                            <%= "f: #{phone(company.fax)}<br>".html_safe if company.fax.present? %>
+                            <a class="underline" onclick="openURL_direct('<%= company.url %>');"><%= company.url %></a>
+                        </div>
+                        <a class="btn input-button change-company" id="change-company">change</a>
+                    </div>
+                    
+                    <div class="new-company">
+                        <%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+                        <a class="text-btn" id="cancel-change-company">cancel</a>
+                    </div>
+
+                <% end %>
+            <% end %>
+        </div>
+
+    </div>
+
     <% unless params[:action] == "new" %> 
 
         <div class="full">
@@ -119,7 +153,7 @@
                 <% else %>
                     <div class="half">
                 <% end %>
-                    <h2 class="no-margin">Others At <%= f.object.work_company %> (<%= Contact.at_same_company(f.object.work_company).count - 1 %>)<a id="show-others">show</a><a id="hide-others">hide</a></h2>
+                    <h2>Others At <%= f.object.work_company %> (<%= Contact.at_same_company(f.object.work_company).count - 1 %>)<a id="show-others">show</a><a id="hide-others">hide</a></h2>
                     <ul class="contacts-ul" id="others">
                         <% Contact.at_same_company(f.object.work_company).each do |c| %>
                             <% unless c.id == f.object.id %>
@@ -133,34 +167,13 @@
 
     <% end %>
 
-    <h2 class="no-margin">Company Information</h2>
-    <div class="wide">
-        <div class="input-row">
-            
-            <% if @contact.consultant_id.present? %>
-                <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
-                <% company = Consultant.find(@contact.consultant_id) %>
-                <div class="company-info">
-                    <% if company.name.present? %>
-                        <span class="bold"><%= link_to company.name, consultant_path(company) %></span><br>
-                    <% end %>
-                    <%= "#{company.address}<br>".html_safe if company.address.present? %>
-                    <%= "t: #{phone(company.phone)}".html_safe if company.phone.present? %>
-                </div>
-            <% else %>
-                <%= f.label(:consultant_id, "Choose Existing", class: "input-label" ) %>
-                <%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
-            <% end %>
-        </div>
-    </div>
-
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
         <% @personal = "visible" %>
     <% else %>
         <% @personal = "hidden" %>
     <% end %>
 
-    <h2 class="no-margin">Personal Information <a id="show" class="<%= @personal %>">show</a><a id="hide" class="<%= @personal %>">hide</a></h2>
+    <h2 class="no-margin">Personal Information  <a id="show" class="<%= @personal %>">show</a><a id="hide" class="<%= @personal %>">hide</a></h2>
 
     <div id="personal-info" class="<%= @personal %>">
         <div class="wide">

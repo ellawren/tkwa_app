@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141203212113) do
+ActiveRecord::Schema.define(:version => 20141203224238) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -131,15 +131,17 @@ ActiveRecord::Schema.define(:version => 20141203212113) do
 
   create_table "consultants", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "address"
     t.string   "phone"
     t.string   "fax"
     t.string   "url"
-    t.boolean  "defunct",    :default => false
-    t.boolean  "mbe",        :default => false
+    t.boolean  "defunct",       :default => false
+    t.boolean  "mbe",           :default => false
     t.integer  "category"
+    t.string   "po_box"
+    t.string   "general_email"
   end
 
   create_table "contacts", :force => true do |t|
