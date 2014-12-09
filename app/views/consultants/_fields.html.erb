@@ -11,26 +11,18 @@
         <button class="btn input-button" onclick="showMap('consultant_address'); return false;">map</button>
     </div>  
     <div class="input-row">
-        <%= f.label(:po_box, "P.O. Box", class: "input-label") %>
-        <%= f.text_field :po_box, class: "button-right" %>
-    </div> 
-    <div class="input-row">
         <%= f.label(:url, "Website", class: "input-label") %>
         <%= f.text_field :url, class: "button-right" %>
         <button class="btn input-button" onclick="openURL('consultant_url'); return false;">website</button>
     </div> 
-    <div class="input-row">
-        <%= f.label(:general_email, "General Email", class: "input-label") %>
-        <%= f.text_field :general_email, class: "button-right" %>
-        <button class="btn input-button" onclick="mailTo('<%= f.object.general_email %>'); return false;">email</button>
-    </div> 
 </div>
 
 <div class="narrow contact-phone margin-bottom">
-    <div class="input-row">
+    <!--<div class="input-row">
         <%= f.label(:category, "Category", class: "input-label" ) %>
-        <%= f.select(:category, [['Consultant', 1], ['Contractor', 2], ['Marketing', 3], ['Municipal', 4], ['Supplier', 5]], { :include_blank => true }, { :class => "custom-select consultant" } ) %>
-    </div>
+        <%= f.select(:category, [['Consultant', 1], ['Contractor', 2], ['Marketing', 3], ['Municipal', 4], ['Supplier', 5]], { }, { :class => "custom-select consultant" } ) %>
+    </div>-->
+    <%= f.hidden_field :category, :value => 1 %>
     <div class="input-row">
         <%= f.label(:phone, "Main Phone", class: "input-label") %>
         <%= f.text_field :phone, value: phone(@consultant.phone), class: "phone" %>
@@ -71,12 +63,12 @@
 
 <% unless params[:action] == "new" %>
 
-    <div class="full reviews">
+    <div class="wide reviews">
 
         <h2 class="no-margin">Roles</h2>
         <div class="header-row">
             <div class="role">Role</div>
-            <div class="recommended">Recommended?</div>
+            <div class="recommended">Rec?</div>
             <div class="notes">Notes</div>
         </div>
         <!-- nested form for consultant_review -->
@@ -88,4 +80,11 @@
 
     </div>
 
+    <div class="narrow">
+        <h2 class="no-margin">Notes</h2>
+        <%= f.text_area :notes, rows: 3, class: "wide" %>
+
+    </div>
+
 <% end %>
+

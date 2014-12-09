@@ -7,7 +7,7 @@
 	<% else %>
 		<%= f.collection_select(:consultant_role_id, ConsultantRole.all, :id, :consultant_role_name, { :include_blank => true, :prompt => "Role" }, { :class => "custom-select role" } ) %>
 	<% end %>
-	<%= f.select(:recommendation, [['yes', 1], ['no', 2], ['undecided', 3]], { }, { :class => 'custom-select consultant-recommendation' }) %>
+	<%= f.select(:recommendation, [['yes', 1], ['no', 2], ['--', 3]], { }, { :class => 'custom-select consultant-recommendation' }) %>
 	<%= f.text_field :notes, class: "consultant-notes" %>
 	<%= f.hidden_field :_destroy %>
 	<%= link_to_remove_fields_2 "  ", f %>

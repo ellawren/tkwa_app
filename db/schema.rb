@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141203224238) do
+ActiveRecord::Schema.define(:version => 20141209183509) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -131,17 +131,16 @@ ActiveRecord::Schema.define(:version => 20141203224238) do
 
   create_table "consultants", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "address"
     t.string   "phone"
     t.string   "fax"
     t.string   "url"
-    t.boolean  "defunct",       :default => false
-    t.boolean  "mbe",           :default => false
+    t.boolean  "defunct",    :default => false
+    t.boolean  "mbe",        :default => false
     t.integer  "category"
-    t.string   "po_box"
-    t.string   "general_email"
+    t.text     "notes"
   end
 
   create_table "contacts", :force => true do |t|
@@ -157,9 +156,9 @@ ActiveRecord::Schema.define(:version => 20141203224238) do
     t.string   "home_email"
     t.string   "staff_contact"
     t.text     "notes"
-    t.boolean  "employee",        :default => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.boolean  "employee",          :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "birthday"
     t.string   "direct_ext"
     t.string   "work_cell"
@@ -171,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20141203224238) do
     t.string   "work_fax"
     t.integer  "organization_id"
     t.integer  "consultant_id"
+    t.string   "organization_name"
   end
 
   create_table "data_records", :force => true do |t|

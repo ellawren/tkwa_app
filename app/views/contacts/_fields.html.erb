@@ -101,7 +101,8 @@
         <div class="input-row">
             <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
             <% if @contact.consultant_id.blank? %>
-                <%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+                <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
+                <%= f.text_field :consultant_id, class: "small" %>
             <% else %>
                 <% company = Consultant.find(@contact.consultant_id) %>
                 <% if company %>
@@ -119,7 +120,8 @@
                     </div>
                     
                     <div class="new-company">
-                        <%= f.collection_select(:consultant_id, Consultant.order("name ASC"), :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
+                        <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
+                        <%= f.text_field :consultant_id, class: "small" %>
                         <a class="text-btn" id="cancel-change-company">cancel</a>
                     </div>
 
@@ -204,7 +206,6 @@
 
 <!--    
     <h2 class="optional">Mailing Lists <a id="show-mailing">show fields</a><a id="hide-mailing">hide fields</a></h2>
-
     <div id="mailing-list" class="hidden">
         <div class="full mailing-list">
             <%= hidden_field_tag "contact[mailing_list_ids][]", nil %>

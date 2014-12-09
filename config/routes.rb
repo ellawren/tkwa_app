@@ -70,6 +70,7 @@ TkwaApp::Application.routes.draw do
     resources :contacts do
         get :autocomplete_contact_work_company, :on => :collection
         get :autocomplete_contact_name, :on => :collection
+        get :autocomplete_consultant_name, :on => :collection
         member do
             get 'transmittal', 'fax', 'envelope'
         end

@@ -970,14 +970,14 @@
 	.narrow .link-list { margin-top:10px; }
 	a.text-link { color:#1abc9c; }
 
-	.full.reviews .row { margin-left:0px; margin-bottom:3px; float:left; border-bottom:1px solid #ced5da; padding-bottom:3px; }
-	.full.reviews .row select.role { margin-bottom:0px; }
-	.full.reviews .row select.consultant-recommendation { margin-left:5px; width:110px; margin-bottom:0px; }
-	.full.reviews .row input.consultant-notes { float:left; margin-left:5px; width:540px; margin-bottom:0px; }
-	.full .header-row { float:left; width:100%; font-size:11px; margin-bottom:2px; border-bottom:1px solid #344953; }
-	.full .header-row div { float:left; }
-	.full .header-row .role { width:227px; }
-	.full .header-row .recommended { width:115px; }
+	.reviews .row { margin-left:0px; margin-bottom:3px; float:left; border-bottom:1px solid #ced5da; padding-bottom:3px; }
+	.reviews .row select.role { margin-bottom:0px; }
+	.reviews .row select.consultant-recommendation { margin-left:5px; width:70px; margin-bottom:0px; }
+	.reviews .row input.consultant-notes { float:left; margin-left:5px; width:170px; margin-bottom:0px; }
+	.reviews .header-row { float:left; width:522px; font-size:11px; margin-bottom:2px; border-bottom:1px solid #344953; }
+	.reviews .header-row div { float:left; }
+	.reviews .header-row .role { width:227px; }
+	.reviews .header-row .recommended { width:75px; }
 
 	.gray-box.consultants .options { float:left; }
 	.gray-box.consultants .options .radio-group { width:260px; }
@@ -990,10 +990,12 @@
 
 	.new-company { display:none; }
 	.new-company .text-btn { margin-top:8px; }
-	#cancel-change-company { float:left; padding:6px 16px; cursor:pointer; }
+	#cancel-change-company { float:left; padding:2px 16px; cursor:pointer; }
 	#change-company { margin-top:6px; }
 	.company-address .text { float:left; width:284px; margin-top:12px; }
-	#contact_consultant_id { margin-top:6px; width:282px; }
+	#contact_organization_name { width:265px; }
+	#contact_consultant_id { width:22px; margin-left:3px; }
+	textarea.wide { width:334px; margin-top:10px; }
 
 
 /* organizations */

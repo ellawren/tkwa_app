@@ -10,6 +10,7 @@ class ConsultantsController < ApplicationController
 
     def edit
   	    @consultant = Consultant.find(params[:id])
+
     end
 
     def index

@@ -2,19 +2,18 @@
 #
 # Table name: consultants
 #
-#  id            :integer         not null, primary key
-#  name          :string(255)
-#  created_at    :datetime        not null
-#  updated_at    :datetime        not null
-#  address       :string(255)
-#  phone         :string(255)
-#  fax           :string(255)
-#  url           :string(255)
-#  defunct       :boolean         default(FALSE)
-#  mbe           :boolean         default(FALSE)
-#  category      :integer
-#  po_box        :string(255)
-#  general_email :string(255)
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  address    :string(255)
+#  phone      :string(255)
+#  fax        :string(255)
+#  url        :string(255)
+#  defunct    :boolean         default(FALSE)
+#  mbe        :boolean         default(FALSE)
+#  category   :integer
+#  notes      :text
 #
 
 class Consultant < ActiveRecord::Base

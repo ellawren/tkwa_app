@@ -21,17 +21,6 @@
 
 		<div class="options">
 			<div class="radio-group single-row">
-				<label class="main">Closed?</label>
-				<label class="radio">
-	                <%= f.radio_button :consultant_defunct_eq, false, data_toggle: "radio", checked: "checked" %>
-	                No
-	            </label>
-	            <label class="radio">
-	                <%= f.radio_button :consultant_defunct_eq, true, data_toggle: "radio" %>
-	                Yes
-	            </label>
-	        </div>
-	        <div class="radio-group single-row">
 				<label class="main">MBE Only?</label>
 				<label class="radio">
 	                <%= f.radio_button :consultant_mbe_eq, "", data_toggle: "radio", checked: "checked" %>
@@ -39,6 +28,17 @@
 	            </label>
 	            <label class="radio">
 	                <%= f.radio_button :consultant_mbe_eq, true, data_toggle: "radio" %>
+	                Yes
+	            </label>
+	        </div>
+			<div class="radio-group single-row">
+				<label class="main">Closed?</label>
+				<label class="radio">
+	                <%= f.radio_button :consultant_defunct_eq, false, data_toggle: "radio", checked: "checked" %>
+	                No
+	            </label>
+	            <label class="radio">
+	                <%= f.radio_button :consultant_defunct_eq, true, data_toggle: "radio" %>
 	                Yes
 	            </label>
 	        </div>
