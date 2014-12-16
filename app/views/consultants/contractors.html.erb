@@ -1,0 +1,182 @@
+<% provide :title, "Contractors" %>
+
+<div class="page-header">
+	<h1>Contractors</h1>
+	<%= link_to "Add Contractor", new_consultant_path(:category => '5'), class: "btn btn-primary btn-right" %>
+</div>
+
+	<h2>Clients (<%= @clients.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @clients.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Marketing (<%= @marketing.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @marketing.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Consultants (<%= @consultants.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @consultants.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Architects (<%= @architects.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @architects.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Contractors (<%= @contractors.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @contractors.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Suppliers (<%= @suppliers.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @suppliers.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Municipal (<%= @municipal.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @municipal.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Developers (<%= @developers.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @developers.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		<h2>Legal (<%= @legal.count %>)</h2>
+
+		<table class="table search-results consultants">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Role(s)</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @legal.each do |param| %>
+					<tr class="results-row">
+		                <td class="bold"><%= link_to param.display_name, consultant_path(param.id) %></td>
+	
+		            </tr>
+		        <% end %>
+		    </tbody>
+		</table>
+
+		
+					
+
+

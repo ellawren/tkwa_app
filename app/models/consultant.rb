@@ -41,7 +41,52 @@ class Consultant < ActiveRecord::Base
         Consultant.previous(self.id).first
     end
     #------------------------------------
-	
+
+    scope :consultants_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 3],
+    }	
+
+	scope :contractors_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 5],
+    }
+
+    scope :marketing_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 2],
+    }	
+
+    scope :suppliers_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 6],
+    }	
+
+    scope :architects_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 4],
+    }	
+
+    scope :municipal_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 9],
+    }		
+
+    scope :developers_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 11],
+    }	
+
+    scope :legal_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 12],
+    }	
+
+    scope :clients_only, {
+        :select => "consultants.*",
+        :conditions => ["consultants.category = ?", 1],
+    }	
+
 	def display_name
 		s = "#{self.name}" 
 		s << " (MBE)" if self.mbe == true

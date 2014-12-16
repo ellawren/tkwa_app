@@ -23,6 +23,18 @@ class ConsultantsController < ApplicationController
         end
     end
 
+    def contractors
+        @clients = Consultant.clients_only
+        @contractors = Consultant.contractors_only
+        @consultants = Consultant.consultants_only
+        @marketing = Consultant.marketing_only
+        @suppliers = Consultant.suppliers_only
+        @architects = Consultant.architects_only
+        @municipal = Consultant.municipal_only
+        @developers = Consultant.developers_only
+        @legal = Consultant.legal_only
+    end
+
     def create
         @consultant = Consultant.new(params[:consultant])
         if @consultant.save

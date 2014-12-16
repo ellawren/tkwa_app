@@ -12,5 +12,11 @@
 class Category < ActiveRecord::Base
 
 	has_and_belongs_to_many :contacts
+
+	scope :consultant_list, {
+        :select => "categories.*",
+        :conditions => ["number != ? AND number != ?", 7,8],
+        :order => "number ASC",
+    }	
 	
 end

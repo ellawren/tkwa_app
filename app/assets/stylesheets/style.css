@@ -997,6 +997,9 @@
 	#contact_consultant_id { width:22px; margin-left:3px; }
 	textarea.wide { width:334px; margin-top:10px; }
 
+	.consultant-category { position:absolute; top:100px; right:0px; }
+	.consultant-category .custom-select { width:140px; background-color:#344953; border-color:#2c3445; color:#fff; padding-top:0px; padding-bottom:0px; background-image: url(/assets/select-arrow-blue.png); }
+
 
 /* organizations */
 
