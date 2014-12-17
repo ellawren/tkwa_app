@@ -8,7 +8,7 @@
 </div>
 <h2>Contact Information</h2>
 
-<div class="wide margin-bottom">
+<div class="wide">
     <div class="input-row">
         <%= f.label(:name, "Company Name", class: "input-label") %>
         <%= f.text_field :name %>
@@ -25,7 +25,7 @@
     </div> 
 </div>
 
-<div class="narrow contact-phone margin-bottom">
+<div class="narrow contact-phone">
     
     <div class="input-row">
         <%= f.label(:phone, "Main Phone", class: "input-label") %>
@@ -35,20 +35,24 @@
         <%= f.label(:fax, "Fax", class: "input-label") %>
         <%= f.text_field :fax, value: phone(@consultant.fax), class: "phone" %>
     </div>
-    <div class="input-row margin-top">
-        <%= f.label(:mbe, "MBE?", class: "input-label") %>
-        <%= hidden_field_tag "consultant[mbe]", nil %>
-        <div class="radio-group single-row">
-            <label class="radio">
-                <%= f.radio_button :mbe, true, data_toggle: "radio" %>
-                Yes
-            </label>
-            <label class="radio">
-                <%= f.radio_button :mbe, false, data_toggle: "radio" %>
-                No
-            </label>
+
+    <% if @consultant.category == 3 %>
+        <div class="input-row margin-top">
+            <%= f.label(:mbe, "MBE?", class: "input-label") %>
+            <%= hidden_field_tag "consultant[mbe]", nil %>
+            <div class="radio-group single-row">
+                <label class="radio">
+                    <%= f.radio_button :mbe, true, data_toggle: "radio" %>
+                    Yes
+                </label>
+                <label class="radio">
+                    <%= f.radio_button :mbe, false, data_toggle: "radio" %>
+                    No
+                </label>
+            </div>
         </div>
-    </div>
+    <% end %>
+
     <div class="input-row">
         <%= f.label(:defunct, "Closed?", class: "input-label") %>
         <%= hidden_field_tag "consultant[defunct]", nil %>
@@ -65,30 +69,6 @@
     </div>
 </div>
 
-<% unless params[:action] == "new" %>
 
-    <div class="wide reviews">
 
-        <h2 class="no-margin">Roles</h2>
-        <div class="header-row">
-            <div class="role">Role</div>
-            <div class="recommended">Rec?</div>
-            <div class="notes">Notes</div>
-        </div>
-        <!-- nested form for consultant_review -->
-            <%= f.fields_for :consultant_reviews do |builder| %>
-                <%= render 'consultant_review_fields', :f => builder %>
-            <% end %>
-            <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
-        <!-- end team form -->
-
-    </div>
-
-    <div class="narrow">
-        <h2 class="no-margin">Notes</h2>
-        <%= f.text_area :notes, rows: 3, class: "wide" %>
-
-    </div>
-
-<% end %>
 

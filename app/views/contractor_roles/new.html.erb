@@ -1,0 +1,16 @@
+<% provide :title, "Add New Contractor Role" %>
+<%= link_to "Contractor Roles", contractor_roles_path, class: "header-label" %>
+<div class="page-header">
+	<h1>Add New Contractor Role</h1>
+</div>
+
+<%= form_for @contractor_role do |f| %>
+
+  	<%= render 'shared/error_messages', object: f.object %>
+  	<%= render 'fields', f: f %>
+
+  	<div class="save-row">
+        <%= f.submit "Add Contractor Role", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>

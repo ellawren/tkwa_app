@@ -8,11 +8,6 @@ class ConsultantsController < ApplicationController
   	    @consultant = Consultant.find(params[:id])
     end
 
-    def edit
-  	    @consultant = Consultant.find(params[:id])
-
-    end
-
     def index
         @q = Consultant.order("name ASC").search(params[:q])
         @consultants = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('name ASC')
@@ -26,7 +21,7 @@ class ConsultantsController < ApplicationController
     def contractors
         @clients = Consultant.clients_only
         @contractors = Consultant.contractors_only
-        @consultants = Consultant.consultants_only
+        #@consultants = Consultant.consultants_only
         @marketing = Consultant.marketing_only
         @suppliers = Consultant.suppliers_only
         @architects = Consultant.architects_only

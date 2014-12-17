@@ -1,0 +1,18 @@
+<% provide :title, "Contractor Roles" %>
+<div class="page-header">
+	<h1>Contractor Roles</h1>
+	<%= link_to "Add Contractor Role", new_contractor_role_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @contractor_roles.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_contractor_role_path(param.id) %>
+				<% if signed_in? %>
+					<% if current_user.admin? %>
+					| <%= link_to "delete", param, method: :delete, confirm: "You sure?" %>
+					<% end %>
+				<% end %>
+			</li>
+	<% end %>
+</ul>

@@ -132,6 +132,7 @@ TkwaApp::Application.routes.draw do
     resources :building_types
     resources :categories 
     resources :consultant_roles
+    resources :contractor_roles
     resources :data_records
     resources :employee_roles
     resources :globals, :only => [:index, :create, :update]

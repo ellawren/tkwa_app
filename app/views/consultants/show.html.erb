@@ -1,5 +1,5 @@
 <% provide :title, @consultant.name %>
-<%= link_to "Contractors", contractors_path, class: "header-label" %>
+<%= link_to "Consultants", consultants_path, class: "header-label" %>
 <div class="page-header">
     <h1><%= @consultant.display_name %></h1>
     <ul class="controls project">
@@ -10,8 +10,8 @@
                 <li><%= link_to "", consultant_path(@consultant.next.id), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
         <% end %>
         
-        <li><%= link_to "", consultants_path, class: "glyphicon glyphicon-search tip", title:"Search Consultants" %></li>
-        <li><%= link_to "", new_consultant_path, class: "glyphicon glyphicon-plus tip", title:"Add New Consultant" %></li>
+        <li><%= link_to "", consultants_path, class: "glyphicon glyphicon-search tip", title:"Search Companies" %></li>
+        <li><%= link_to "", new_consultant_path(:category => "#{@consultant.category}"), class: "glyphicon glyphicon-plus tip", title:"Add New Company" %></li>
         <li class="delete"><%= link_to "", @consultant, method: :delete, confirm: "Are you sure you want to delete this company and all its data? Do not do this if the compnay has been used on any projects!!!", class: "glyphicon glyphicon-remove tip", title:"Delete This Company" %>
         </li>
     </ul> 
@@ -21,28 +21,58 @@
 
     <%= render 'fields', :f => f %>
 
-    <div class="half">
-            <h2>Projects</h2>
+    <% if @consultant.category == 3 %>
 
-                <ul class="link-list green">
-                    <% @consultant.all_projects.each do |p| %>
-                        <li>
-                            <%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
-                        </li>
-                    <% end %>
-                </ul>
+        <div class="wide reviews">
+
+            <h2>Roles</h2>
+            <div class="header-row">
+                <div class="role">Role</div>
+                <div class="recommended">Rec?</div>
+                <div class="notes">Notes</div>
+            </div>
+            <!-- nested form for consultant_review -->
+                <%= f.fields_for :consultant_reviews do |builder| %>
+                    <%= render 'consultant_review_fields', :f => builder %>
+                <% end %>
+                <%= link_to_add_fields_2 "", f, :consultant_reviews, "add fui-plus consultant-review" %>
+            <!-- end team form -->
+
         </div>
 
-        <div class="half last">
-            <h2>Contacts</h2>
+        <div class="narrow">
+            <h2>Projects</h2>
             <ul class="link-list green">
-                <% Contact.where(work_company: @consultant.name).order("name ASC").each do |c| %>
-                    <li><%= "* " if c.consultant_id.present? %><%= link_to "#{c.display_name} <span class=\"note\">#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+                <% @consultant.all_projects.each do |p| %>
+                    <li>
+                        <%= link_to "#{p.name} (#{p.project_year})<span class=\"note\">#{@consultant.all_roles(p.id)}</span>".html_safe, info_project_path(p) %>
+                    </li>
                 <% end %>
             </ul>
         </div>
 
-        
+    <% end %>
+
+    <div class="wide">
+        <h2 class="no-lower-margin">Notes</h2>
+        <%= f.text_area :notes, rows: 6, class: "wide" %>
+    </div>
+
+
+
+    <div class="narrow">
+        <h2>Category</h2>
+        <% if @consultant.category == 5 || params[:category] == 5 %>
+            <%= f.label(:contractor_category, "Contractor Category", class: "input-label") %>
+            <%= f.collection_select(:contractor_category, ContractorRole.all, :id, :name, { }, { :class => "custom-select" } ) %>
+        <% end %>
+        <h2 class="no-lower-margin">Contacts</h2>
+        <ul class="link-list green">
+            <% Contact.where(work_company: @consultant.name).order("name ASC").each do |c| %>
+                <li><%= "* " if c.consultant_id.present? %><%= link_to "#{c.display_name} <span class=\"note\">#{c.work_title}</span>".html_safe, contact_path(c) %></li>
+            <% end %>
+        </ul>
+    </div>
 
     <div class="save-row">
         <%= f.submit "Save", class: "btn btn-primary save-btn" %>
