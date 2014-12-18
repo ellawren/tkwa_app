@@ -59,13 +59,7 @@
     </div>
 
 
-
     <div class="narrow">
-        <h2>Category</h2>
-        <% if @consultant.category == 5 || params[:category] == 5 %>
-            <%= f.label(:contractor_category, "Contractor Category", class: "input-label") %>
-            <%= f.collection_select(:contractor_category, ContractorRole.all, :id, :name, { }, { :class => "custom-select" } ) %>
-        <% end %>
         <h2 class="no-lower-margin">Contacts</h2>
         <ul class="link-list green">
             <% Contact.where(work_company: @consultant.name).order("name ASC").each do |c| %>
