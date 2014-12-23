@@ -204,7 +204,7 @@
 	.wide .input-row .note { display:inline-block; padding:10px 0px; }
 
 	.narrow { float:left; width:360px; }
-	.narrow input[type="text"], input[type="password"] { float:left; width:176px; }
+	.narrow input[type="text"], input[type="password"] { float:left; width:166px; }
 	.narrow input[type="text"].input-narrow { width:166px; }
 	.narrow .input-cell { width:170px; color:#34495e; }
 	.narrow textarea { width:163px; resize:vertical; }
@@ -1000,6 +1000,9 @@
 	.consultant-category .custom-select { width:200px; background-color:#344953; border-color:#2c3445; color:#fff; padding-top:0px; padding-bottom:0px; background-image: url(/assets/select-arrow-blue.png); }
 	.closed { position:absolute; right:0px; top:100px; }
 	.closed .radio-group.single-row label:last-child { margin-left:30px; }
+	.single-row-checkboxes { position:absolute; top:110px; right:0px; }
+	.single-row-checkboxes label { float:right; width:auto; }
+	.single-row-checkboxes label:last-child { margin-right:30px; }
 
 /* organizations */
 

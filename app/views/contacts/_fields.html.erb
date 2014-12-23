@@ -1,4 +1,4 @@
-    <h2 class="first">Work Information</h2>
+    <h2 class="first">Contact Information</h2>
 
     <div class="wide margin-bottom">
         <div class="input-row">
@@ -14,6 +14,31 @@
             <%= f.label(:work_title, "Title", class: "input-label") %>
             <%= f.text_field :work_title, class: "full-width" %>
         </div>
+        
+        <div class="input-row">
+            <%= f.label(:work_email, "Work Email", class: "input-label") %>
+            <%= f.text_field :work_email, class: "button-right" %>
+            <button class="btn input-button" onclick="mailTo('<%= f.object.work_email %>'); return false;">email</button>
+        </div> 
+
+    </div>
+
+    <div class="narrow contact-phone margin-bottom">
+        
+        <div class="input-row">
+            <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
+            <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
+            <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:work_cell, "Cell Phone", class: "input-label") %>
+            <%= f.text_field :work_cell,value: phone(@contact.work_cell), class: "phone" %>
+        </div>
+    </div>
+
+    <h2 class="no-margin">Company Information</h2>
+    <div class="wide">
+
         <div class="input-row">
             <%= f.label(:work_company, "Company", class: "input-label") %>
             <!-- only auto-fill company info for new records -->
@@ -49,11 +74,6 @@
             <%= f.text_field :work_url, class: "button-right" %>
             <button class="btn input-button" onclick="openURL('contact_work_url'); return false;">website</button>
         </div>  
-        <div class="input-row">
-            <%= f.label(:work_email, "Work Email", class: "input-label") %>
-            <%= f.text_field :work_email, class: "button-right" %>
-            <button class="btn input-button" onclick="mailTo('<%= f.object.work_email %>'); return false;">email</button>
-        </div> 
 
     </div>
 
@@ -65,17 +85,8 @@
             <div class="label-sm">ext</div><%= f.text_field :work_ext, class: "ext" %>
         </div>
         <div class="input-row">
-            <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
-            <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
-            <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
-        </div>
-        <div class="input-row">
             <%= f.label(:work_fax, "Work Fax", class: "input-label") %>
             <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:work_cell, "Cell Phone", class: "input-label") %>
-            <%= f.text_field :work_cell,value: phone(@contact.work_cell), class: "phone" %>
         </div>
         <% unless params[:action] == "new" %>
             <div id="documents">
@@ -93,42 +104,42 @@
                 </a>
             </div>
         <% end %>
+
     </div>
 
-    <h2 class="no-margin">Company Information</h2>
-    <div class="wide">
-
-        <div class="input-row">
-            <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
-            <% if @contact.consultant_id.blank? %>
-                <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
-                <%= f.text_field :consultant_id, class: "small" %>
-            <% else %>
-                <% company = Consultant.find(@contact.consultant_id) %>
-                <% if company %>
-                    <div class="company-address">
-                        <div class="text">
-                            <% if company.name.present? %>
-                                <span class="bold"><%= link_to company.name, consultant_path(company) %></span><br>
-                            <% end %>
-                            <%= "#{company.address}<br>".gsub(/\n/, '<br>').html_safe if company.address.present? %>
-                            <%= "t: #{phone(company.phone)}<br>".html_safe if company.phone.present? %>
-                            <%= "f: #{phone(company.fax)}<br>".html_safe if company.fax.present? %>
-                            <a class="underline" onclick="openURL_direct('<%= company.url %>');"><%= company.url %></a>
+    <div class="gray-box company">
+        <div class="wide">
+            <div class="input-row">
+                <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
+                <% if @contact.consultant_id.blank? %>
+                    <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
+                    <%= f.text_field :consultant_id, class: "small" %>
+                <% else %>
+                    <% company = Consultant.find(@contact.consultant_id) %>
+                    <% if company %>
+                        <div class="company-address">
+                            <div class="text">
+                                <% if company.name.present? %>
+                                    <span class="bold"><%= link_to company.name, consultant_path(company) %></span><br>
+                                <% end %>
+                                <%= "#{company.address}<br>".gsub(/\n/, '<br>').html_safe if company.address.present? %>
+                                <%= "t: #{phone(company.phone)}<br>".html_safe if company.phone.present? %>
+                                <%= "f: #{phone(company.fax)}<br>".html_safe if company.fax.present? %>
+                                <a class="underline" onclick="openURL_direct('<%= company.url %>');"><%= company.url %></a>
+                            </div>
+                            <a class="btn input-button change-company" id="change-company">change</a>
                         </div>
-                        <a class="btn input-button change-company" id="change-company">change</a>
-                    </div>
-                    
-                    <div class="new-company">
-                        <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
-                        <%= f.text_field :consultant_id, class: "small" %>
-                        <a class="text-btn" id="cancel-change-company">cancel</a>
-                    </div>
+                        
+                        <div class="new-company">
+                            <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
+                            <%= f.hidden_field :consultant_id, class: "small" %>
+                            <a class="text-btn" id="cancel-change-company">cancel</a>
+                        </div>
 
+                    <% end %>
                 <% end %>
-            <% end %>
+            </div>
         </div>
-
     </div>
 
     <% unless params[:action] == "new" %> 

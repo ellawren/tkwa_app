@@ -86,7 +86,9 @@
 	.envelope textarea.display { border:none; line-height:20px; height:auto; width:340px; color:#344953; background-color:#f4f6f9; border-radius:0px; padding:3px 6px; resize:none; }
 
 
-
+	/* company */
+	.gray-box.company { margin-top:20px; padding:20px 27px; width:900px; height:auto; }
+	.gray-box.company .wide .input-label { width:122px; }
 
 
 /* EMPLOYEES */
