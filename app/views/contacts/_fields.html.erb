@@ -113,7 +113,7 @@
                 <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
                 <% if @contact.consultant_id.blank? %>
                     <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
-                    <%= f.text_field :consultant_id, class: "small" %>
+                    <%= f.hidden_field :consultant_id, class: "small" %>
                 <% else %>
                     <% company = Consultant.find(@contact.consultant_id) %>
                     <% if company %>
