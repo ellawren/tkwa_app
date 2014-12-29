@@ -24,7 +24,11 @@
     </div>
 
     <div class="narrow contact-phone margin-bottom">
-        
+        <div class="input-row">
+            <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
+            <%= f.text_field :work_phone, value: phone(@contact.work_phone), class: "phone" %>
+            <div class="label-sm">ext</div><%= f.text_field :work_ext, class: "ext" %>
+        </div>
         <div class="input-row">
             <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
             <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
@@ -123,11 +127,6 @@
 
         <div class="narrow contact-phone margin-bottom">
             
-            <div class="input-row">
-                <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
-                <%= f.text_field :work_phone, value: phone(@contact.work_phone), class: "phone" %>
-                <div class="label-sm">ext</div><%= f.text_field :work_ext, class: "ext" %>
-            </div>
             <div class="input-row">
                 <%= f.label(:work_fax, "Work Fax", class: "input-label") %>
                 <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
