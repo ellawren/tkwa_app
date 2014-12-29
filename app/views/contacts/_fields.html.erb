@@ -117,6 +117,7 @@
                 <%= f.text_field :work_url, class: "button-right" %>
                 <button class="btn input-button" onclick="openURL('contact_work_url'); return false;">website</button>
             </div>  
+            
 
         </div>
 
@@ -131,7 +132,7 @@
                 <%= f.label(:work_fax, "Work Fax", class: "input-label") %>
                 <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
             </div>
-            <% unless params[:action] == "new" %>
+            <!--<% unless params[:action] == "new" %>
                 <div id="documents">
                     <a class="circle" href="/contacts/<%= @contact.id %>/transmittal" target="_blank">
                         create<br>transmittal
@@ -146,14 +147,14 @@
                         <div class="glyphicon glyphicon-envelope"></div>
                     </a>
                 </div>
-            <% end %>
-
+            <% end %>-->
+            <a class="btn" id="clear-alt">clear alt info</a>
         </div>
     </div>
     
 
     <% unless params[:action] == "new" %> 
-
+<!--
         <div class="full">
             <% if f.object.associated_projects.present? && f.object.associated_projects.count > 0 %>
                 <% if Contact.at_same_company(f.object.work_company).count == 1 %>
@@ -187,7 +188,7 @@
                 </div>
             <% end %>
         </div>
-
+-->
     <% end %>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
