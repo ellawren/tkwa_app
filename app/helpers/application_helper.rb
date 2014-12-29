@@ -15,7 +15,7 @@ module ApplicationHelper
     end
 
     def this_year
-        Date.today.cwyear
+        Date.today.year
     end
 
     def prev_year
@@ -27,7 +27,21 @@ module ApplicationHelper
     end
 
     def this_week
-        Date.today.cweek
+        if Date.today.cweek == 1
+            if Date.today.month == 12
+                53
+            else
+                Date.today.cweek
+            end
+        elsif Date.today.cweek == 53
+            if Date.today.month == 1
+                1
+            else
+                Date.today.cweek
+            end
+        else
+            Date.today.cweek
+        end
     end
 
     def this_month
@@ -41,7 +55,11 @@ module ApplicationHelper
 
     def prev_week
         if Date.today.cweek == 1
-            Date.today.cweek
+            if Date.today.month == 12
+                52
+            else
+                53
+            end
         else
             Date.today.cweek - 1
         end
