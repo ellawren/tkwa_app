@@ -998,8 +998,8 @@
 	textarea.wide { width:497px; margin-top:10px; }
 
 	.consultant-category .custom-select { background-color:#344953; border-color:#2c3445; color:#fff; padding-top:0px; padding-bottom:0px; background-image: url(/assets/select-arrow-blue.png); }
-	.closed { position:absolute; right:0px; top:100px; }
-	.closed .radio-group.single-row label:last-child { margin-left:30px; }
+	.single-row-checkboxes .closed { position:absolute; right:0px; top:100px; }
+	.single-row-checkboxes .closed .radio-group.single-row label:last-child { margin-left:30px; }
 	.single-row-checkboxes { position:absolute; top:110px; right:8px; }
 	.single-row-checkboxes label { float:right; width:auto; }
 	.single-row-checkboxes label:first-child { margin-left:30px; }
