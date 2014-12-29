@@ -58,6 +58,20 @@ $(document).ready(function() {
     });
     //---
 
+    // show alt company info on contacts page
+    $('#show-alt').click( function() {
+        $('#alt-company').slideDown("slow");
+        $('#show-alt').hide();
+        $('#hide-alt').show();
+     });
+
+    $('#hide-alt').click( function() {
+        $('#alt-company').slideUp("slow");
+        $('#show-alt').show();
+        $('#hide-alt').hide();
+    });
+    //---
+
     // show mailing lists on contacts page
     $('#show-mailing').click( function() {
         $('#mailing-list.hidden').slideDown("slow");

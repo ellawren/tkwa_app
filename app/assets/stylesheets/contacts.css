@@ -26,13 +26,14 @@
 
 
 	/* show/hide stuff on cantact page */
-	a#show, a#hide, a#show-mailing, a#hide-mailing, a#show-others, a#hide-others, a#show-projects, a#hide-projects { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
+	a#show, a#hide, a#show-mailing, a#hide-mailing, a#show-others, a#hide-others, a#show-projects, a#hide-projects, a#show-alt, a#hide-alt { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
 	a#show:hover, a#hide:hover, a#show-mailing:hover, a#hide-mailing:hover, a#show-others:hover, a#hide-others:hover, a#show-projects:hover, a#hide-projects:hover { color:#1abc9c; }
-	a#hide, a#show.hidden { display:inline-block; }
-	a#hide.hidden, a#show, a#hide-mailing, a#hide-others, a#show-projects { display:none; }
+	a#hide, a#show.hidden, a#show-alt.hidden, a#hide-alt { display:inline-block; }
+	a#hide.hidden, a#show, a#hide-mailing, a#hide-others, a#show-projects, a#hide-alt.hidden, a#show-alt { display:none; }
 
-	#personal-info { margin-bottom:30px; float:left;}
-	#personal-info.hidden, #others { display:none; }
+	#personal-info { margin-bottom:30px; float:left; }
+	#alt-company { float:left; }
+	#personal-info.hidden, #alt-company.hidden, #others { display:none; }
 
 	#mailing-list { margin-top:35px; width:100%; float:left; }
 	#mailing-list.hidden { display:none; }
@@ -87,7 +88,7 @@
 
 
 	/* company */
-	.gray-box.company { margin-top:20px; padding:15px 27px 25px 27px; width:900px; height:auto; }
+	.gray-box.company { margin-bottom:20px; padding:15px 27px 25px 27px; width:887px; height:auto; }
 	.gray-box.company .wide .input-label { width:122px; }
 
 
