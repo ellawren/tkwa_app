@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141230162321) do
+ActiveRecord::Schema.define(:version => 20141230184621) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(:version => 20141230162321) do
     t.integer  "category"
     t.text     "notes"
     t.integer  "contractor_category"
+    t.string   "po_box"
+    t.string   "primary"
   end
 
   create_table "contacts", :force => true do |t|
@@ -172,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20141230162321) do
     t.integer  "organization_id"
     t.integer  "consultant_id"
     t.string   "organization_name"
+    t.string   "primary_phone"
   end
 
   create_table "contractor_roles", :force => true do |t|

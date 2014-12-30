@@ -160,7 +160,7 @@
 
 	/* forms + inputs */
 
-	.input-row { float:left; width:100%; }
+	.input-row { float:left; width:100%; position:relative; }
 	.input-row.margin-top { margin-top:15px; }
 	.input-label { color:#9ba6ac; cursor:default; margin-bottom:0px; }
 	.input-cell { float:left; height:20px; padding:10px; border-radius:6px; color:#16a085; font-size:14px; }
@@ -223,12 +223,12 @@
 	.narrow.library .custom-select { width:255px; }
 
 	.narrow.contact-phone .input-label { width:110px; }
-	.narrow.contact-phone input[type="text"] { float:left; width:130px; }
+	.narrow.contact-phone input[type="text"] { float:left; margin-left:15px; width:115px; }
 	.narrow.contact-phone input[type="text"].input-adjust { width:155px; }
 	.narrow.contact-phone input[type="text"].full-width { width:220px; }
 	.narrow.contact-phone input[type="text"].match-select { width:165px; }
 	.narrow.contact-phone .label-sm { float:left; padding:10px 6px 10px 8px; color:#c3cacf; cursor:default; }
-	.narrow.contact-phone input[type="text"].ext { float:left; width:35px; }
+	.narrow.contact-phone input[type="text"].ext { float:left; width:35px; margin-left:0px; }
 	.narrow.contact-phone input[type="text"].ext.input-adjust { width:60px; }
 
 	.narrow.contact-details { width:300px; margin-left:60px; }
@@ -993,7 +993,7 @@
 	#cancel-change-company { float:left; padding:2px 16px; cursor:pointer; }
 	#change-company { margin-top:3px; }
 	.company-address .text { float:left; width:284px; margin-top:12px; margin-bottom:12px; }
-	#contact_organization_name { width:265px; }
+	#contact_organization_name { width:338px; }
 	#contact_consultant_id { width:22px; margin-left:3px; }
 	textarea.wide { width:497px; margin-top:10px; }
 
@@ -1003,6 +1003,13 @@
 	.single-row-checkboxes { position:absolute; top:110px; right:8px; }
 	.single-row-checkboxes label { float:right; width:auto; }
 	.single-row-checkboxes label:first-child { margin-left:30px; }
+
+
+	.select-primary { position:absolute; top:10px; left:125px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
+	.contact-phone .select-primary { position:absolute; top:10px; left:100px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
+
+	.select-primary.selected { background-image:url(/assets/star-filled.png); }
+
 
 /* organizations */
 

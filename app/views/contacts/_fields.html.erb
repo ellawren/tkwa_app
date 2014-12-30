@@ -24,18 +24,22 @@
     </div>
 
     <div class="narrow contact-phone margin-bottom">
+        <%= f.hidden_field :primary_phone %>
         <div class="input-row">
             <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
+            <div id="main-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'main' %>"></div>
             <%= f.text_field :work_phone, value: phone(@contact.work_phone), class: "phone" %>
             <div class="label-sm">ext</div><%= f.text_field :work_ext, class: "ext" %>
         </div>
         <div class="input-row">
             <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
+            <div id="direct-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'direct' %>"></div>
             <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
             <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
         </div>
         <div class="input-row">
             <%= f.label(:work_cell, "Cell Phone", class: "input-label") %>
+            <div id="wcell-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'wcell' %>"></div>
             <%= f.text_field :work_cell,value: phone(@contact.work_cell), class: "phone" %>
         </div>
     </div>
@@ -215,10 +219,12 @@
         <div class="narrow contact-phone">
             <div class="input-row">
                 <%= f.label :home_phone, "Home Phone", class: "input-label" %>
+                <div id="home-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'home' %>"></div>
                 <%= f.text_field :home_phone, value: phone(@contact.home_phone), class: "phone" %>
             </div>
             <div class="input-row">
                 <%= f.label(:home_cell, "Personal Cell", class: "input-label") %>
+                <div id="hcell-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'hcell' %>"></div>
                 <%= f.text_field :home_cell, value: phone(@contact.home_cell), class: "phone" %>
             </div>
         </div>

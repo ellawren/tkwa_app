@@ -30,6 +30,7 @@
 #  organization_id   :integer
 #  consultant_id     :integer
 #  organization_name :string(255)
+#  primary_phone     :string(255)
 #
 
 class Contact < ActiveRecord::Base

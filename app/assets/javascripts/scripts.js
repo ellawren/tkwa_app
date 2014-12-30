@@ -121,6 +121,47 @@ $(document).ready(function() {
     });
     //---
 
+    // select primary address on consultant page
+    $('#street-primary').click( function() {
+        $("#po-box-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#consultant_primary').val("street");
+    });
+    $('#po-box-primary').click( function() {
+        $("#street-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#consultant_primary').val("po");
+    });
+    //---
+
+    // select primary phone on contact page
+    $('#main-primary').click( function() {
+        $(".select-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#contact_primary_phone').val("main");
+    });
+    $('#direct-primary').click( function() {
+        $(".select-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#contact_primary_phone').val("direct");
+    });
+    $('#wcell-primary').click( function() {
+        $(".select-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#contact_primary_phone').val("wcell");
+    });
+    $('#hcell-primary').click( function() {
+        $(".select-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#contact_primary_phone').val("hcell");
+    });
+    $('#home-primary').click( function() {
+        $(".select-primary").removeClass("selected");
+        $(this).addClass("selected");
+        $('#contact_primary_phone').val("home");
+    });
+    //---
+
     // edit row on timesheets
     $('.edit-me').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");

@@ -15,6 +15,8 @@
 #  category            :integer
 #  notes               :text
 #  contractor_category :integer
+#  po_box              :string(255)
+#  primary             :string(255)
 #
 
 require 'spec_helper'
