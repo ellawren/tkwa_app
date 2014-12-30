@@ -1,12 +1,12 @@
-<% provide :title, "Holidays Index" %>
+<% provide :title, "#{@year} Holidays" %>
 <div class="page-header">
-<h1>Holidays Index</h1>
+<h1><%= @year %> Holidays</h1>
 	<%= link_to "Add holiday", new_holiday_path, class: "btn btn-primary btn-right" %>
 </div>
 
 <div class="row">
 	<div class="span2">
-		<h4><%= this_year %> Holidays</h4>
+		<h4><%= @year %> Holidays</h4>
 	</div>
 	<div class="span9">
 		<table class="table holiday-table">
@@ -21,7 +21,7 @@
 			</thead>
 
 			<tbody>
-				<% Holiday.order("date ASC").each do |param| %>
+				<% @holidays.order("date ASC").each do |param| %>
 			  			<tr>
 			  				<td class="span2"><%= param.date_formatted %></td>
 			  				<td class="span3"><%= param.name %></td>

@@ -128,6 +128,10 @@ TkwaApp::Application.routes.draw do
         get :autocomplete_contact_name, :on => :collection
     end
 
+    # HOLIDAYS
+    match '/holidays/by_year/:year',   to: 'holidays#by_year', as: 'holidays_by_year'
+    resources :holidays
+
     resources :billing_types
     resources :building_types
     resources :categories 
@@ -136,7 +140,6 @@ TkwaApp::Application.routes.draw do
     resources :data_records
     resources :employee_roles
     resources :globals, :only => [:index, :create, :update]
-    resources :holidays
     resources :imperatives
     resources :lb_strategy_groups
     resources :lb_strategies

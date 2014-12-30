@@ -992,7 +992,7 @@
 	.new-company .text-btn { margin-top:8px; }
 	#cancel-change-company { float:left; padding:2px 16px; cursor:pointer; }
 	#change-company { margin-top:3px; }
-	.company-address .text { float:left; width:284px; margin-top:12px; }
+	.company-address .text { float:left; width:284px; margin-top:12px; margin-bottom:12px; }
 	#contact_organization_name { width:265px; }
 	#contact_consultant_id { width:22px; margin-left:3px; }
 	textarea.wide { width:497px; margin-top:10px; }
