@@ -352,9 +352,9 @@
     });
 
     $('#set-alt').click( function() {
-        $('#contact_work_company').val("<%= f.object.company.name %>");
-        $('#contact_work_url').val("<%= f.object.company.url %>");
-        $('#contact_work_fax').val("<%= f.object.company.fax %>");
+        $('#contact_work_company').val("<%= f.object.company.name if f.object.company.present? %>");
+        $('#contact_work_url').val("<%= f.object.company.url if f.object.company.present? %>");
+        $('#contact_work_fax').val("<%= f.object.company.fax if f.object.company.present? %>");
     });
     </script>
 <% end %>
