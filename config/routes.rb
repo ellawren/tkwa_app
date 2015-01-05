@@ -76,6 +76,7 @@ TkwaApp::Application.routes.draw do
         end
     end
     match '/consultants',   to: 'consultant_reviews#index', :via => :get
+    match '/consultants/add',   to: 'consultants#add', as: 'add_consultant', via: [:get, :post]
     match '/contractors',   to: 'consultants#contractors', :via => :get
     resources :consultants
     resources :consultant_reviews

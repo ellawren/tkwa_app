@@ -1,0 +1,46 @@
+<% content_for :modal_header do %>
+  	Add Company
+<% end %>
+
+<%= form_for @consultant do |f| %>
+	<div class="modal-body">
+		
+		<%= render 'fields', f: f %>
+
+	</div>
+
+	<div class="modal-footer">
+    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+    	<%= f.submit "Save", class: "btn btn-primary" %>
+	</div>
+
+<% end %>
+<script>
+		$('[data_toggle="checkbox"]').each(function () {
+			var $checkbox = $(this);
+			$checkbox.checkbox();
+		});
+
+		// select primary address on consultant page
+    $('#street-primary').click( function() {
+        if ( $(this).hasClass("selected") ) {
+            $(".select-primary").removeClass("selected");
+            $('#consultant_primary').val("");
+        } else {
+            $(".select-primary").removeClass("selected");
+            $(this).addClass("selected");
+            $('#consultant_primary').val("street");
+        }
+    });
+    $('#po-box-primary').click( function() {
+        if ( $(this).hasClass("selected") ) {
+            $(".select-primary").removeClass("selected");
+            $('#consultant_primary').val("");
+        } else {
+            $(".select-primary").removeClass("selected");
+            $(this).addClass("selected");
+            $('#consultant_primary').val("po");
+        }
+    });
+    //---
+</script>

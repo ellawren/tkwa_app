@@ -76,8 +76,13 @@
 
                     <% end %>
                 <% end %>
-            </div>
         </div>
+        </div>
+            <!-- modal for add consultant edit -->
+                        <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        </div><!-- /.modal -->
+                    <!-- end modal -->
+            <a id="modal-link" href="<%= add_consultant_path(:name => 'current') %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
     </div>
 
     <% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
@@ -152,6 +157,7 @@
                 </div>
             <% end %>-->
             <a class="btn" id="clear-alt">clear alt info</a>
+            <a class="btn" id="set-alt">set alt info</a>
         </div>
     </div>
     
@@ -338,3 +344,17 @@
         </div>
     </div>
 
+<% content_for :scripts do %>
+    <script>
+    //reset modal remote on close
+    $('#myModal').on('hide.bs.modal', function (e) {
+        $(this).data('bs.modal', null);
+    });
+
+    $('#set-alt').click( function() {
+        $('#contact_work_company').val("<%= f.object.company.name %>");
+        $('#contact_work_url').val("<%= f.object.company.url %>");
+        $('#contact_work_fax').val("<%= f.object.company.fax %>");
+    });
+    </script>
+<% end %>

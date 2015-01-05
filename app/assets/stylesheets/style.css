@@ -811,6 +811,14 @@
 	.modal-table.cbilling-table .delete-col { width:50px; }
 	.consultant.modal .modal-notes { color:#16a085; }
 
+	.modal.add-consultant { width:1000px; left:35%; min-height:260px; height:auto; }
+	.modal.add-consultant .modal-body { position:relative; height:100%; padding:10px 50px; height:auto; min-height:100px; max-height:450px; overflow-y:scroll; }
+	.modal.add-consultant .modal-body .wide { width:489px; margin-right:50px; margin-top:40px; margin-bottom:10px; }
+	.modal.add-consultant .modal-body .narrow { margin-top:40px; }
+	.modal.add-consultant .modal-body .single-row-checkboxes { right:60px; top:15px; }
+	.modal.add-consultant .modal-body h2 { display:none; }
+
+
  	/* forecast modal */
 
 	.forecast-modal { left:35%; width:1000px; height:auto; }
@@ -1009,6 +1017,9 @@
 	.contact-phone .select-primary { position:absolute; top:10px; left:100px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
 
 	.select-primary.selected { background-image:url(/assets/star-filled.png); }
+
+
+	.modal-body .select-primary { left:100px; }
 
 
 /* organizations */

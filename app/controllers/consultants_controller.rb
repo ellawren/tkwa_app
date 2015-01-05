@@ -8,6 +8,11 @@ class ConsultantsController < ApplicationController
   	    @consultant = Consultant.find(params[:id])
     end
 
+    def add
+        @consultant = Consultant.new
+    end
+    
+
     def index
         @q = Consultant.order("name ASC").search(params[:q])
         @consultants = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('name ASC')

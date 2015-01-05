@@ -16,7 +16,7 @@
 <div class="wide">
     <div class="input-row">
         <%= f.label(:name, "Company Name", class: "input-label") %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, value: params[:name] %>
     </div>
     <div class="input-row">
         <%= f.label(:address, "Street Address", class: "input-label") %>
