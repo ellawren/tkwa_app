@@ -27,6 +27,14 @@ class ExpenseItem < ActiveRecord::Base
         end
   	end
 
+    def year
+        if self.date_object
+            self.date_object.year
+        else
+            Date.today.year
+        end
+    end
+
     def food=(num)
         num.gsub!(/[$,\s]/,'') if num.is_a?(String)
         self[:food] = num.to_f
@@ -47,7 +55,7 @@ class ExpenseItem < ActiveRecord::Base
   	end
     
     def per_mile
-        Global.where(year: 2014).first.mileage
+        Global.where(year: self.year).first.mileage
     end
 
   	def mileage_comp
