@@ -999,7 +999,7 @@
 	.new-company { display:none; }
 	.new-company .text-btn { margin-top:8px; }
 	#cancel-change-company { float:left; padding:2px 16px; cursor:pointer; }
-	#change-company { margin-top:3px; }
+	#change-company { margin-top:0px; }
 	.company-address .text { float:left; width:284px; margin-top:12px; margin-bottom:12px; }
 	#contact_organization_name { width:338px; }
 	#contact_consultant_id { width:22px; margin-left:3px; }

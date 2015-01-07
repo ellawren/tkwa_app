@@ -16,9 +16,9 @@
         </div>
         
         <div class="input-row">
-            <%= f.label(:work_email, "Work Email", class: "input-label") %>
+            <%= f.label(:work_email, "Email", class: "input-label") %>
             <%= f.text_field :work_email, class: "button-right" %>
-            <button class="btn input-button" onclick="mailTo('<%= f.object.work_email %>'); return false;">email</button>
+            <button class="btn input-button" onclick="mailTo('<%= f.object.work_email %>'); return false;">send</button>
         </div> 
 
     </div>
@@ -46,6 +46,7 @@
 
     <h2 class="no-margin">Company Information</h2>
     <div class="gray-box company">
+        <div>Hey guys - just ignore everything in this gray box for now. I'm making some changes to the contacts page, so it will be a little messy while under construction. You can continue to edit all other fields as usual.<br><br></div>
         <div class="wide">
             <div class="input-row">
                 <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
@@ -83,6 +84,8 @@
                         </div><!-- /.modal -->
                     <!-- end modal -->
             <a id="modal-link" href="<%= add_consultant_path(:name => 'current') %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
+            <a class="btn" id="clear-alt">clear alt info</a>
+            <a class="btn" id="set-alt">set alt info</a>
     </div>
 
     <% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
@@ -91,8 +94,9 @@
         <% @alt = "hidden" %>
     <% end %>
 
-    <h2 class="no-margin">Alternate Company Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>
-    <div id="alt-company" class="<%= @alt %>">
+   <!-- <h2 class="no-margin">Alternate Company Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>-->
+    <!--<div id="alt-company" class="<%= @alt %>">-->
+    <div id="alt-company">
         <div class="wide">
 
             <div class="input-row">
@@ -128,19 +132,18 @@
             <div class="input-row">
                 <%= f.label(:work_url, "Website", class: "input-label") %>
                 <%= f.text_field :work_url, class: "button-right" %>
-                <button class="btn input-button" onclick="openURL('contact_work_url'); return false;">website</button>
+                <button class="btn input-button" onclick="openURL('contact_work_url'); return false;">open</button>
             </div>  
-            
-
         </div>
 
         <div class="narrow contact-phone margin-bottom">
-            
+
             <div class="input-row">
-                <%= f.label(:work_fax, "Work Fax", class: "input-label") %>
+                <%= f.label(:work_fax, "Fax Number", class: "input-label") %>
                 <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
             </div>
-            <!--<% unless params[:action] == "new" %>
+
+            <% unless params[:action] == "new" %>
                 <div id="documents">
                     <a class="circle" href="/contacts/<%= @contact.id %>/transmittal" target="_blank">
                         create<br>transmittal
@@ -155,9 +158,8 @@
                         <div class="glyphicon glyphicon-envelope"></div>
                     </a>
                 </div>
-            <% end %>-->
-            <a class="btn" id="clear-alt">clear alt info</a>
-            <a class="btn" id="set-alt">set alt info</a>
+            <% end %>
+
         </div>
     </div>
     

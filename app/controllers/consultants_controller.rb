@@ -10,6 +10,7 @@ class ConsultantsController < ApplicationController
 
     def add
         @consultant = Consultant.new
+        render :layout => 'modal' 
     end
     
 
