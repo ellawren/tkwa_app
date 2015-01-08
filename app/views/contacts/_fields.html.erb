@@ -80,18 +80,16 @@
         </div>
         </div>
             <!-- modal for add consultant edit -->
-                        <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        </div><!-- /.modal -->
-                    <!-- end modal -->
+                <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                </div><!-- /.modal -->
+            <!-- end modal -->
             <div id="theLink">
                 <a id="modal-link" href="<%= add_consultant_path %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
             </div>
             <div id="altLink">
                 <a id="modal-link" class="modal-btn btn btn-small add-consultant">Add Alt</a>
             </div>
-            <!--<a id="modal-link" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>-->
             <a class="btn" id="clear-alt">Clear Alt Info</a>
-            <!--<a class="btn" id="set-alt">set alt info</a>-->
     </div>
 
     <% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
@@ -167,45 +165,6 @@
 
         </div>
     </div>
-    
-
-    <% unless params[:action] == "new" %> 
-<!--
-        <div class="full">
-            <% if f.object.associated_projects.present? && f.object.associated_projects.count > 0 %>
-                <% if Contact.at_same_company(f.object.work_company).count == 1 %>
-                    <div class="full">
-                <% else %>
-                    <div class="half first">
-                <% end %>
-                    <h2 class="no-margin">Projects <a id="show-projects">show</a><a id="hide-projects">hide</a></h2>
-                    <ul class="contacts-ul" id="projects">
-                    <% f.object.associated_projects.each do |p| %>
-                        <li><%= link_to p.name, info_project_path(p.id), class: "green" %></li>
-                    <% end %>
-                    </ul>
-                </div>
-            <% end %>
-
-            <% if f.object.work_company.present? && Contact.at_same_company(f.object.work_company).count > 1 %>
-                <% if f.object.associated_projects.present? && f.object.associated_projects.count == 0 %>
-                    <div class="full">
-                <% else %>
-                    <div class="half">
-                <% end %>
-                    <h2>Others At <%= f.object.work_company %> (<%= Contact.at_same_company(f.object.work_company).count - 1 %>)<a id="show-others">show</a><a id="hide-others">hide</a></h2>
-                    <ul class="contacts-ul" id="others">
-                        <% Contact.at_same_company(f.object.work_company).each do |c| %>
-                            <% unless c.id == f.object.id %>
-                                <li><%= link_to "#{c.display_name} <span class='detail'>#{c.work_title}</span>".html_safe, contact_path(c) %></li>
-                            <% end %>
-                        <% end %>
-                    </ul>
-                </div>
-            <% end %>
-        </div>
--->
-    <% end %>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
         <% @personal = "visible" %>
@@ -242,22 +201,6 @@
             </div>
         </div>
     </div>
-
-
-<!--    
-    <h2 class="optional">Mailing Lists <a id="show-mailing">show fields</a><a id="hide-mailing">hide fields</a></h2>
-    <div id="mailing-list" class="hidden">
-        <div class="full mailing-list">
-            <%= hidden_field_tag "contact[mailing_list_ids][]", nil %>
-            <% MailingList.all.each do |list| %>
-                <label class="checkbox">
-                    <%= check_box_tag "contact[mailing_list_ids][]", list.id, @contact.mailing_list_ids.include?(list.id), id: dom_id(list), data_toggle: "checkbox" %>
-                    <%= list.name %>
-                </label>
-            <% end %>
-        </div>
-    </div>
--->
 
     <% if @contact.is_employee? %>
 
@@ -350,32 +293,6 @@
             <%= "t: #{phone(f.object.display_phone)}".html_safe if f.object.display_phone.present? %>
         </div>
     </div>
-
-
-<!--<div class="add-consultant modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Add Consultant
-                </h4>
-            </div>
-            <%= form_for @consultant do |c| %>
-
-                <div class="modal-body">
-                    
-                    <%= render 'consultants/fields', f: c %>
-  
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <%= c.submit "Create Consultant", class: "btn btn-primary save-btn" %>
-                </div>
-            <% end %>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div> 
 
 <% content_for :scripts do %>
     <script>
