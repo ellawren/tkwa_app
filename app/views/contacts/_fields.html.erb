@@ -83,9 +83,15 @@
                         <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         </div><!-- /.modal -->
                     <!-- end modal -->
-            <a id="modal-link" href="<%= add_consultant_path(:name => 'current') %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
-            <a class="btn" id="clear-alt">clear alt info</a>
-            <a class="btn" id="set-alt">set alt info</a>
+            <div id="theLink">
+                <a id="modal-link" href="<%= add_consultant_path %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
+            </div>
+            <div id="altLink">
+                <a id="modal-link" class="modal-btn btn btn-small add-consultant">Add Alt</a>
+            </div>
+            <!--<a id="modal-link" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>-->
+            <a class="btn" id="clear-alt">Clear Alt Info</a>
+            <!--<a class="btn" id="set-alt">set alt info</a>-->
     </div>
 
     <% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
@@ -346,6 +352,32 @@
         </div>
     </div>
 
+
+<!--<div class="add-consultant modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Add Consultant
+                </h4>
+            </div>
+            <%= form_for @consultant do |c| %>
+
+                <div class="modal-body">
+                    
+                    <%= render 'consultants/fields', f: c %>
+  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= c.submit "Create Consultant", class: "btn btn-primary save-btn" %>
+                </div>
+            <% end %>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div> 
+
 <% content_for :scripts do %>
     <script>
     //reset modal remote on close
@@ -358,5 +390,21 @@
         $('#contact_work_url').val("<%= f.object.company.url if f.object.company.present? %>");
         $('#contact_work_fax').val("<%= f.object.company.fax if f.object.company.present? %>");
     });
+    $("#contact_organization_name").keyup(function(){
+        val = encodeURIComponent($(this).val());
+        str =  "<a id='modal-link' href='/consultants/add?name=" + val + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add Consultant</a>";
+      $("#theLink").html(str);
+    });
+    $("#altLink a").click(function(){
+        name = encodeURIComponent($("#contact_work_company").val());
+        add = encodeURIComponent($("#contact_work_address").val());
+        web = encodeURIComponent($("#contact_work_url").val());
+        phone = encodeURIComponent($("#contact_work_phone").val());
+        fax = encodeURIComponent($("#contact_work_fax").val());
+        str =  "<a id='modal-link' href='/consultants/add?name=" + name + "&add=" + add + "&web=" + web + "&phone=" + phone + "&fax=" + fax + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add Consultant</a>";
+      $("#theLink").html(str);
+    });
+
     </script>
-<% end %>
+ <% end %>
+

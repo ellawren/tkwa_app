@@ -25,6 +25,7 @@ class ContactsController < ApplicationController
 
     def show
         @contact = Contact.find(params[:id])
+        @consultant = Consultant.new
     end
 
     def envelope

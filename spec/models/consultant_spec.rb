@@ -17,6 +17,7 @@
 #  contractor_category :integer
 #  po_box              :string(255)
 #  primary             :string(255)
+#  temp                :integer
 #
 
 require 'spec_helper'

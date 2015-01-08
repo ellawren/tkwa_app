@@ -39,8 +39,16 @@ class ConsultantsController < ApplicationController
     def create
         @consultant = Consultant.new(params[:consultant])
         if @consultant.save
-            flash[:success] = "Consultant created!"
-            redirect_to consultant_path(@consultant)
+            if @consultant.temp.present?
+                flash[:success] = "Contact updated!"
+                @contact = Contact.find(@consultant.temp)
+                redirect_to contact_path(@contact)
+                @contact.consultant_id = @consultant.id
+                @contact.save
+            else
+                flash[:success] = "Consultant created!"
+                redirect_to consultant_path(@consultant.id)
+            end
         else
             render 'new'
         end

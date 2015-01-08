@@ -4,14 +4,31 @@
     <h1>New <%= Category.find_by_number(params[:category]).name.capitalize %></h1>
 </div>
 
-<%= form_for @consultant do |f| %>
 
-    <%= render 'shared/error_messages', object: f.object %>
-    <%= render 'fields', f: f %>
+<a id="modal-link" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
 
-    <div class="save-row">
-        <%= f.submit "Create Consultant", class: "btn btn-primary save-btn" %>
-    </div>
+<div class="add-consultant modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Add Consultant
+                </h4>
+            </div>
+            <%= form_for @consultant do |c| %>
 
-<% end %>
+                <div class="modal-body">
+                    
+                    <%= render 'consultants/fields', f: c %>
+  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= c.submit "Create Consultant", class: "btn btn-primary save-btn" %>
+                </div>
+            <% end %>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 
