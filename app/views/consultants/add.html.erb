@@ -50,7 +50,7 @@
                 <% if params[:action] == "new" %>
                     <%= f.collection_select(:category, Category.consultant_list, :number, :name, { :selected => "#{params[:category] || 3}"}, { :class => "custom-select" } ) %>
                 <% else %>
-                    <%= f.collection_select(:category, Category.consultant_list, :number, :name, { }, { :class => "custom-select" } ) %>
+                    <%= f.collection_select(:category, Category.consultant_list, :number, :name, { :selected => "12" }, { :class => "custom-select" } ) %>
                 <% end %>
             </div>
 

@@ -28,6 +28,11 @@ class ContactsController < ApplicationController
         @consultant = Consultant.new
     end
 
+    def edit
+        @contact = Contact.find(params[:id])
+        @consultant = Consultant.new
+    end
+
     def envelope
         @contact = Contact.find(params[:id])
         render :layout => 'print' 

@@ -15,7 +15,7 @@
                 <th>Billed to Date</th>
                 <th>Hourly to Date</th>
                 <th>Payroll to Date</th>
-                <th class="actual"><%= monthname_a(prev_month) %> <%= this_year %><br>TKWA Fees Billed</th>
+                <th class="actual"><%= monthname_a(five_month_array[1][0]) %> <%= five_month_array[1][1] %><br>TKWA Fees Billed</th>
                 <th>%</th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                     <td><%= p.text_field :billed_to_date, value: number_to_currency(p.object.billed_to_date), autocomplete: "off" %></td>
                     <td><%= p.text_field :hourly_billed_to_date, value: number_to_currency(p.object.hourly_billed_to_date), autocomplete: "off" %></td>
                     <td><%= p.text_field :payroll, value: number_to_currency(p.object.payroll), autocomplete: "off" %></td>
-                    <% @actual = Actual.where(project_id: p.object.id, year: this_year, month: prev_month).first_or_create %>
+                    <% @actual = Actual.where(project_id: p.object.id, year: five_month_array[1][1], month: five_month_array[1][0]).first_or_create %>
                     <%= p.fields_for "actuals_attributes[]", @actual do |a| %>
                         <td class="actual"><%= a.text_field :amount, value: number_to_currency(a.object.amount) %><%= a.hidden_field :id %><%= a.hidden_field :project_id %><%= a.hidden_field :year %><%= a.hidden_field :month %></td>
                     <% end %>
