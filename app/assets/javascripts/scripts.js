@@ -32,15 +32,16 @@ $(document).ready(function() {
     // change company on contact page
     $('#change-company').click( function() {
         $('.company-address').hide();
-        billing_name = $('#project_billing_name').val();
-        $('#project_billing_name').val("");
         $('.new-company').show();
+        $('#cancel-change-company').show();
+        $(this).hide();
     });
 
     $('#cancel-change-company').click( function() {
         $('.company-address').show();
-        $('#project_billing_name').val(billing_name);
         $('.new-company').hide();
+        $('#change-company').show();
+        $(this).hide();
     });
     //---
 

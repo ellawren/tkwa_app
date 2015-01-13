@@ -1003,7 +1003,7 @@
 	.new-company .text-btn { margin-top:8px; }
 	#cancel-change-company { float:left; padding:2px 16px; cursor:pointer; }
 	#change-company { margin-top:0px; }
-	/*.company-address .text { float:left; width:284px; margin-top:12px; margin-bottom:12px; }*/
+	.company-address .text { float:left; width:284px; margin-top:12px; margin-bottom:12px; }
 	#contact_organization_name { width:338px; }
 	#contact_consultant_id { width:22px; margin-left:3px; }
 	textarea.wide { width:497px; margin-top:10px; }
@@ -1027,7 +1027,7 @@
 
 /* organizations */
 
-	/*.company-info { margin-top:10px; float:left; margin-bottom:15px; }*/
+	.company-info { margin-top:10px; float:left; margin-bottom:15px; }
 
 /* notice bar */
 

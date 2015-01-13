@@ -79,9 +79,9 @@
                             <div class="header">Select Company</div>
                             <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
                             <%= f.hidden_field :consultant_id, class: "small" %>
-                            <a class="text-btn" id="cancel-change-company">cancel</a>
-                        </div>
 
+                        </div>
+                        <a class="btn input-button change-company" id="cancel-change-company">cancel</a>
                         <a class="btn input-button change-company" id="change-company">change company</a>
 
                     <% end %>
@@ -90,42 +90,53 @@
 
             <div class="contact-info">
 
-                <div class="header">Work Information</div>
+                <% if @contact.work_address.present? || @contact.work_phone.present? || @contact.work_cell.present? || @contact.work_email.present? || @contact.work_direct.present? || @contact.work_fax.present? %>
 
-                <% if @contact.work_address.present? %>
-                    <div class="contact-row">
-                        <div class="type">Address</div>
-                        <div class="text"><%= @contact.work_address.gsub(/\n/, '<br>').html_safe %></div>
-                    </div>
-                <% end %>
+                    <div class="header">Work Information</div>
 
-                <% if @contact.work_phone.present? %>
-                    <div class="contact-row">
-                        <div class="type">phone</div>
-                        <div class="text"><%= phone(@contact.work_phone) %><%= " x #{@contact.work_ext}" if @contact.work_ext.present? %></div>
-                    </div>
-                <% end %>
+                    <% if @contact.work_address.present? %>
+                        <div class="contact-row">
+                            <div class="type">Address</div>
+                            <div class="text"><%= @contact.work_address.gsub(/\n/, '<br>').html_safe %></div>
+                        </div>
+                    <% end %>
 
-                <% if @contact.work_direct.present? %>
-                    <div class="contact-row">
-                        <div class="type">direct</div>
-                        <div class="text"><%= phone(@contact.work_direct) %><%= " x #{@contact.direct_ext}" if @contact.direct_ext.present? %></div>
-                    </div>
-                <% end %>
+                    <% if @contact.work_phone.present? %>
+                        <div class="contact-row">
+                            <div class="type">phone</div>
+                            <div class="text"><%= phone(@contact.work_phone) %><%= " x #{@contact.work_ext}" if @contact.work_ext.present? %></div>
+                        </div>
+                    <% end %>
 
-                <% if @contact.work_cell.present? %>
-                    <div class="contact-row">
-                        <div class="type">cell</div>
-                        <div class="text"><%= phone(@contact.work_cell) %></div>
-                    </div>
-                <% end %>
+                    <% if @contact.work_direct.present? %>
+                        <div class="contact-row">
+                            <div class="type">direct</div>
+                            <div class="text"><%= phone(@contact.work_direct) %><%= " x #{@contact.direct_ext}" if @contact.direct_ext.present? %></div>
+                        </div>
+                    <% end %>
 
-                <% if @contact.work_email.present? %>
-                    <div class="contact-row">
-                        <div class="type">email</div>
-                        <div class="text"><a class="underline" onclick="mailTo('<%= @contact.work_email %>'); return false;"><%= @contact.work_email %></a></div>
-                    </div>
-                <% end %>
+                    <% if @contact.work_cell.present? %>
+                        <div class="contact-row">
+                            <div class="type">cell</div>
+                            <div class="text"><%= phone(@contact.work_cell) %></div>
+                        </div>
+                    <% end %>
+
+                    <% if @contact.work_fax.present? %>
+                        <div class="contact-row">
+                            <div class="type">fax</div>
+                            <div class="text"><%= phone(@contact.work_fax) %></div>
+                        </div>
+                    <% end %>
+
+                    <% if @contact.work_email.present? %>
+                        <div class="contact-row">
+                            <div class="type">email</div>
+                            <div class="text"><a class="underline" onclick="mailTo('<%= @contact.work_email %>'); return false;"><%= @contact.work_email %></a></div>
+                        </div>
+                    <% end %>
+
+                 <% end %>
 
                 <% if @contact.home_address.present? || @contact.home_phone.present? || @contact.home_cell.present? || @contact.home_email.present? %>
                     <div class="header extra-margin">Personal Information</div>
@@ -163,7 +174,7 @@
             </div>
 
         </div><!-- end content -->
-        
+
         <div class="save-row">
             <%= f.submit "Save", class: "btn btn-primary save-btn" %>
         </div> 
