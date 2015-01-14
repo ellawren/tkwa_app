@@ -151,7 +151,7 @@
 
 	.show .contact-info { float:right; position:relative; padding: 0 0 60px 0; width:330px; margin-left:50px; min-height:150px; }
 	.show .header { font-weight:900; margin:10px 0; float:left; width:100%; }
-	.show .contact-info .header.extra-margin { margin-top:30px; }
+	.show .contact-info .header.extra-margin { margin-top:20px; }
 	.show .contact-info .contact-row { float:left; width:100%; padding:6px 0; }
 		.show .contact-info .contact-row .type { float:left; width:95px; text-transform:uppercase; font-weight:200; font-size:12px; padding-top:3px; }
 		.show .contact-info .contact-row .text { float:left; width:235px; }
