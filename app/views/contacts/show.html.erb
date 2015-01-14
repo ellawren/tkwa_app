@@ -38,6 +38,9 @@
                         <div id="theLink">
                             <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Set Up A New Company</a>
                         </div>
+                        <div id="altLink">
+                            <a id="modal-link" class="modal-btn btn btn-small add-consultant">Add Alt</a>
+                        </div>
                     <% else %>
                         <% company = Consultant.find(@contact.consultant_id) %>
                         <% if company %>
@@ -95,6 +98,7 @@
                                 </div>
 
                             </div>
+                            <a class="btn" id="clear-alt">clear alt</a>
                             <a class="btn input-button change-company" id="cancel-change-company">cancel</a>
                             <a class="btn input-button change-company" id="change-company">change company</a>
 
@@ -215,6 +219,16 @@
         $("#contact_organization_name").keyup(function(){
             val = encodeURIComponent($(this).val());
             str =  "<a id='modal-link' href='/consultants/add?name=" + val + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Set Up A New Company</a>";
+          $("#theLink").html(str);
+        });
+
+        $("#altLink a").click(function(){
+            name = encodeURIComponent($("#contact_work_company").val());
+            add = encodeURIComponent($("#contact_work_address").val());
+            web = encodeURIComponent($("#contact_work_url").val());
+            phone = encodeURIComponent($("#contact_work_phone").val());
+            fax = encodeURIComponent($("#contact_work_fax").val());
+            str =  "<a id='modal-link' href='/consultants/add?name=" + name + "&add=" + add + "&web=" + web + "&phone=" + phone + "&fax=" + fax + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Set Up A New Company</a>";
           $("#theLink").html(str);
         });
 

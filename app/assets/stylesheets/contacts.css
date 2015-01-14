@@ -133,7 +133,7 @@
 			.show .content-left .notes { float:left; width:560px; margin-top:10px; }
 		.show .content-right { float:right; width:380px; }
 
-	.show .company-info { float:left; position:relative; width:500px; background-color:#f4f6f9; padding:20px 30px 50px; border-radius:8px; margin:10px 0 0 0; min-height:150px; }
+	.show .company-info { float:left; position:relative; width:500px; background-color:#f4f6f9; padding:20px 30px 60px; border-radius:8px; margin:10px 0 0 0; min-height:150px; border:2px solid #344953;}
 	.show .company-info .name { float:left; width:100%; margin-bottom:10px; }
 	.show .company-info .name a { color:#1abc9c; font-size:16px; }
 	.show .company-info .name a:hover { color:#16a085; }
@@ -149,7 +149,7 @@
 	.show .company-info #change-company:hover { color:#7f8b93; background-color:#e1e6eb; }
 	.show .company-info .header { font-weight:900; margin:8px 0 10px; float:left; width:145px; }
 
-	.show .contact-info { float:right; position:relative; padding: 0 0 50px 0; width:330px; margin-left:50px; min-height:150px; }
+	.show .contact-info { float:right; position:relative; padding: 0 0 60px 0; width:330px; margin-left:50px; min-height:150px; }
 	.show .header { font-weight:900; margin:10px 0; float:left; width:100%; }
 	.show .contact-info .header.extra-margin { margin-top:30px; }
 	.show .contact-info .contact-row { float:left; width:100%; padding:6px 0; }
@@ -158,7 +158,7 @@
 		.show .contact-info .contact-row .text a.fax-cover { display:inline-block; margin-left:15px; width:auto; text-decoration:underline; font-weight:normal; font-style:italic; }
 		.show .contact-info .contact-row input, .show .contact-info .contact-row textarea { width:210px; }
 
-	.show #theLink { margin-left:145px; margin-top:10px; }
+	.show #theLink { margin-left:145px; }
 	.show #edit-contact { position:absolute; bottom:0px; right:0px;  }
 
 	#edit-work, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button { display:none; }
@@ -180,4 +180,8 @@
 	.switch-view { position:absolute; bottom:-20px; right:0px;  font-style:italic; color:red; }
 	.show .switch-view { bottom:0px; }
 
-	.company-info .note-text { float:left; margin-left:145px; font-style:italic; color:#9ba6ac; width:330px; }
+	.company-info .note-text { float:left; margin-left:145px; font-style:italic; color:#9ba6ac; width:330px; margin-bottom:10px; }
+	#clear-alt { position:absolute; right:160px; bottom:19px; background-color:#fff; color:#9ba6ac; font-size:13px; font-weight:normal; }
+	#clear-alt:hover { color:#7f8b93; background-color:#e1e6eb; }
+
+
