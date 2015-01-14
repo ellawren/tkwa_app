@@ -76,7 +76,6 @@ $(document).ready(function() {
         $('#contact_work_company').val("");
         $('#contact_work_address').val("");
         $('#contact_work_url').val("");
-        $('#contact_work_fax').val("");
     });
     //---
 

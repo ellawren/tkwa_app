@@ -1,37 +1,230 @@
 <% provide :title, @contact.display_name.html_safe %>
 
 <%= form_for @contact do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+    <div class="show">
+        <% if @contact.is_employee? %>
+                <%= link_to "Employees", contacts_employees_path, class: "header-label" %>
+         <% end %>
+        <div class="page-header">
+            <h1><%= f.text_field :name, class: "form-display-field" %></h1>
+            <ul class="controls">
+                <% if @contact.previous.present? %> 
+                    <li><%= link_to "", contact_path(@contact.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
+                <% end %>
+                <% if @contact.next.present? %> 
+                    <li><%= link_to "", contact_path(@contact.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
+                <% end %>
+                <li><%= link_to "", contacts_path, class: "glyphicon glyphicon-search tip", title:"Search Contacts" %></li>
+                <li><%= link_to "", new_contact_path, class: "glyphicon glyphicon-plus tip", title:"Add New Contact" %></li>
+                <li class="delete">
+                    <%= link_to "", @contact, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Contact" %>
+                </li>
+            </ul>
+            <div class="title"><%= f.text_field :work_title, class: "form-display-field" %></div>
+            <%= link_to "omg this is weird I want the old view back", edit_contact_path(@contact), class: "switch-view" %>
+        </div>
 
-	<% if @contact.is_employee? %>
-	        <%= link_to "Employees", contacts_employees_path, class: "header-label" %>
-	 <% end %>
-	<div class="page-header">
-        <h1><%= @contact.display_name %> &nbsp;<span class="light small"><% unless @contact.category.blank? %><%= "(" + @contact.category + ")" %><% end %></span></h1>
-        <ul class="controls">
-            <% if @contact.previous.present? %> 
-                <li><%= link_to "", contact_path(@contact.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
-            <% end %>
-            <% if @contact.next.present? %> 
-                <li><%= link_to "", contact_path(@contact.next), class: "glyphicon glyphicon-chevron-right tip", title:"Next" %></li>
-            <% end %>
-            <li><%= link_to "", contacts_path, class: "glyphicon glyphicon-search tip", title:"Search Contacts" %></li>
-            <li><%= link_to "", new_contact_path, class: "glyphicon glyphicon-plus tip", title:"Add New Contact" %></li>
-            <li class="delete">
-                <%= link_to "", @contact, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Contact" %>
-            </li>
-        </ul>
-    </div>
+        <div class="content">
 
-   <div class="content">
+            <div class="content-left">
 
-        <%= render 'fields', :f => f %>
-       
+                <div class="company-info">
+
+                    <% if @contact.consultant_id.blank? %>
+                        <div class="header">Select Company</div>
+                        <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
+                        <%= f.hidden_field :consultant_id %>
+                        <div class="note-text">Type all or part of the company name to search, or click below to add a new company.</div>
+                        <div id="theLink">
+                            <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Set Up A New Company</a>
+                        </div>
+                    <% else %>
+                        <% company = Consultant.find(@contact.consultant_id) %>
+                        <% if company %>
+                            <div class="company-address">
+                                <div class="name">
+                                    <%= link_to "#{company.name} <span class=\"count\">(#{company.contacts.count} contacts)</span>".html_safe, consultant_path(company) %>
+                                </div>
+
+                                <% if company.address.present? %>
+                                    <div class="company-row">
+                                        <div class="type">Address</div>
+                                        <div class="text"><%= company.address.gsub(/\n/, '<br>').html_safe %></div>
+                                        <div class="links"><a href="#">transmittal</a><a href="#">map</a></div>
+                                    </div>
+                                <% end %>
+
+                                <% if company.po_box.present? %>
+                                    <div class="company-row">
+                                        <div class="type">p.o. box</div>
+                                        <div class="text"><%= company.po_box.gsub(/\n/, '<br>').html_safe %></div>
+                                        <div class="links"><a href="#">transmittal</a></div>
+                                    </div>
+                                <% end %>
+
+                                <% if company.phone.present? %>
+                                    <div class="company-row">
+                                        <div class="type">phone</div>
+                                        <div class="text"><%= phone(company.phone) %></div>
+                                    </div>
+                                <% end %>
+
+                                <% if company.fax.present? %>
+                                    <div class="company-row">
+                                        <div class="type">fax</div>
+                                        <div class="text"><%= phone(company.fax) %></div>
+                                        <div class="links"><a href="#">fax cover</a></div>
+                                    </div>
+                                <% end %>
+
+                                <% if company.url.present? %>
+                                    <div class="company-row">
+                                        <div class="type">web</div>
+                                        <div class="text"><a class="underline" onclick="openURL_direct('<%= company.url %>');"><%= company.url %></a></div>
+                                    </div>
+                                <% end %>
+                            </div>
+                                 
+                            <div class="new-company">
+                                <div class="header">Select Company</div>
+                                <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
+                                <%= f.hidden_field :consultant_id %>
+                                <div class="note-text">Type all or part of the company name to search, or click below to add a new company.</div>
+                                <div id="theLink">
+                                    <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Set Up A New Company</a>
+                                </div>
+
+                            </div>
+                            <a class="btn input-button change-company" id="cancel-change-company">cancel</a>
+                            <a class="btn input-button change-company" id="change-company">change company</a>
+
+                        <% end %>
+                    <% end %>
+                </div><!-- end company info-->
+
+                <div class="notes">
+                    <div class="header extra-margin">Notes <a id="edit-notes-button" class="text-link">edit</a><a id="show-notes-button" class="text-link">cancel edit</a></div>
+
+                    <div id="show-notes">
+                        <%= @contact.notes.gsub(/\n/, '<br>').html_safe %>
+                    </div>
+
+                    <div id="edit-notes">
+                        <script src="/assets/jquery-te-1.4.0.min.js" type="text/javascript"></script>
+                        <link href="/assets/jquery-te-1.4.0" media="screen" rel="stylesheet" type="text/css" />
+                        <%= f.text_area :notes, rows: "9" %>
+                        <script>
+                            $("#contact_notes").jqte({
+                                center: false,
+                                fsize: false,
+                                format: false,
+                                indent: false,
+                                link: false,
+                                left: false,
+                                outdent: false,
+                                p: false,
+                                right: false,
+                                rule: false,
+                                source: false,
+                                sub: false,
+                                sup: false,
+                                unlink: false
+                            });
+                        </script>
+                    </div>
+                    <div class="added">
+                        Added <%= f.object.created_at.strftime("%-m/%d/%Y") %>
+                        <% if f.object.updated_at %>
+                             // Updated <%= f.object.updated_at.strftime("%-m/%d/%Y") %>
+                        <% end %>
+                        <% if f.object.staff_contact.present? %>
+                             // Contact: <%= f.object.staff_contact %>
+                        <% end %>
+                    </div>
+                </div>
+
+            </div><!-- end content-left-->
+
+            <div class="contact-right">
+                <%= render 'contact_info_fields', :f => f %>
+            </div><!-- end content-right -->
+
+        </div><!-- end content -->
+
         <div class="save-row">
             <%= f.submit "Save", class: "btn btn-primary save-btn" %>
         </div> 
 
-    </div> <!-- end content -->
+    </div>
 
-<% end %>
+
+    <% content_for :scripts do %>
+        <script>
+        //reset modal remote on close
+        $('#myModal').on('hide.bs.modal', function (e) {
+            $(this).data('bs.modal', null);
+        });
+
+        $('#edit-notes-button').click( function() {
+            $('#show-notes-button').show();
+            $(this).hide();
+            $('#show-notes').hide();
+            $('#edit-notes').show();
+        });
+
+        $('#show-notes-button').click( function() {
+            $('#edit-notes-button').show();
+            $(this).hide();
+            $('#show-notes').show();
+            $('#edit-notes').hide();
+        });
+
+        $('#edit-contact-work').click( function() {
+            $('#show-contact-work').show();
+            $(this).hide();
+            $('#show-work').hide();
+            $('#edit-work').show();
+        });
+
+        $('#show-contact-work').click( function() {
+            $('#edit-contact-work').show();
+            $(this).hide();
+            $('#show-work').show();
+            $('#edit-work').hide();
+        });
+
+        $('#edit-contact-personal').click( function() {
+            $('#show-contact-personal').show();
+            $(this).hide();
+            $('#show-personal').hide();
+            $('#edit-personal').show();
+        });
+
+        $('#show-contact-personal').click( function() {
+            $('#edit-contact-personal').show();
+            $(this).hide();
+            $('#show-personal').show();
+            $('#edit-personal').hide();
+        });
+
+        $('#set-alt').click( function() {
+            $('#contact_work_company').val("<%= f.object.company.name.html_safe if f.object.company.present? %>");
+            $('#contact_work_url').val("<%= f.object.company.url if f.object.company.present? %>");
+            $('#contact_work_fax').val("<%= f.object.company.fax if f.object.company.present? %>");
+        });
+        $("#contact_organization_name").keyup(function(){
+            val = encodeURIComponent($(this).val());
+            str =  "<a id='modal-link' href='/consultants/add?name=" + val + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Set Up A New Company</a>";
+          $("#theLink").html(str);
+        });
+
+        </script>
+     <% end %>
+
+ <% end %>
+
+ <!-- modal for add consultant edit -->
+    <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div><!-- /.modal -->
+<!-- end modal -->
 

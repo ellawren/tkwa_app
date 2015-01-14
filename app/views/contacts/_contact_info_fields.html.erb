@@ -1,0 +1,179 @@
+<div class="contact-info">
+
+    <div class="header">Work Information <a id="edit-contact-work" class="text-link">edit</a><a id="show-contact-work" class="text-link">cancel edit</a></div>
+
+    <!-- SHOW WORK INFO FIELDS -->
+    <div id="show-work">
+
+        <% if @contact.work_address.present? || @contact.work_phone.present? || @contact.work_cell.present? || @contact.work_email.present? || @contact.work_direct.present? || @contact.work_fax.present? %>
+
+            <% if @contact.work_company.present? %>
+                <div class="contact-row">
+                    <div class="type">company</div>
+                    <div class="text"><%= @contact.work_company %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.work_address.present? %>
+                <div class="contact-row">
+                    <div class="type">Address</div>
+                    <div class="text"><%= @contact.work_address.gsub(/\n/, '<br>').html_safe %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.work_phone.present? %>
+                <div class="contact-row">
+                    <div class="type">phone</div>
+                    <div class="text"><%= phone(@contact.work_phone) %><%= " x #{@contact.work_ext}" if @contact.work_ext.present? %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.work_direct.present? %>
+                <div class="contact-row">
+                    <div class="type">direct</div>
+                    <div class="text"><%= phone(@contact.work_direct) %><%= " x #{@contact.direct_ext}" if @contact.direct_ext.present? %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.work_cell.present? %>
+                <div class="contact-row">
+                    <div class="type">cell</div>
+                    <div class="text"><%= phone(@contact.work_cell) %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.work_fax.present? %>
+                <div class="contact-row">
+                    <div class="type">fax</div>
+                    <div class="text"><%= phone(@contact.work_fax) %><a href="#" class="fax-cover">fax cover</a></div>
+                    
+                </div>
+            <% end %>
+
+            <% if @contact.work_email.present? %>
+                <div class="contact-row">
+                    <div class="type">email</div>
+                    <div class="text"><a class="underline" onclick="mailTo('<%= @contact.work_email %>'); return false;"><%= @contact.work_email %></a></div>
+                </div>
+            <% end %>
+
+        <% end %>
+    </div>
+    <!-- end show work -->
+
+    <!-- EDIT WORK INFO FIELDS -->
+    <div id="edit-work" class="edit">
+
+        <div class="contact-row">
+            <div class="type">company</div>
+            <%= f.text_field :work_company %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">address</div>
+            <%= f.text_area :work_address, rows: 3 %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">phone</div>
+            <%= f.text_field :work_phone, value: phone(@contact.work_phone), class: "phone" %>
+            <div class="extension">ext</div>
+            <%= f.text_field :work_ext, class: "ext" %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">direct</div>
+            <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
+            <div class="extension">ext</div>
+            <%= f.text_field :work_direct, class: "ext" %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">cell</div>
+            <%= f.text_field :work_cell, value: phone(@contact.work_cell), class: "phone" %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">fax</div>
+            <%= f.text_field :work_fax, value: phone(@contact.work_fax), class: "phone" %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">web</div>
+            <%= f.text_field :work_url %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">email</div>
+            <%= f.text_field :work_email %>
+        </div>
+
+    </div>
+    <!-- end edit work -->
+
+    <div class="header extra-margin">Personal Information <a id="edit-contact-personal" class="text-link">edit</a><a id="show-contact-personal" class="text-link">cancel edit</a></div>
+
+    <!-- SHOW PERSONAL INFO FIELDS -->
+    <div id="show-personal">
+        <% if @contact.home_address.present? || @contact.home_phone.present? || @contact.home_cell.present? || @contact.home_email.present? %>
+
+            <% if @contact.home_address.present? %>
+                <div class="contact-row">
+                    <div class="type">Address</div>
+                    <div class="text"><%= @contact.home_address.gsub(/\n/, '<br>').html_safe %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.home_phone.present? %>
+                <div class="contact-row">
+                    <div class="type">phone</div>
+                    <div class="text"><%= phone(@contact.home_phone) %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.home_cell.present? %>
+                <div class="contact-row">
+                    <div class="type">cell</div>
+                    <div class="text"><%= phone(@contact.home_cell) %></div>
+                </div>
+            <% end %>
+
+            <% if @contact.home_email.present? %>
+                <div class="contact-row">
+                    <div class="type">email</div>
+                    <div class="text"><a class="underline" onclick="mailTo('<%= @contact.home_email %>'); return false;"><%= @contact.home_email %></a></div>
+                </div>
+            <% end %>
+
+        <% end %>
+    </div>
+    <!-- end show personal -->
+
+    <!-- EDIT PERSONAL INFO FIELDS -->
+    <div id="edit-personal" class="edit">
+
+        <div class="contact-row">
+            <div class="type">address</div>
+            <%= f.text_area :home_address, rows: 3 %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">phone</div>
+            <%= f.text_field :home_phone, value: phone(@contact.home_phone), class: "phone" %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">cell</div>
+            <%= f.text_field :home_cell, value: phone(@contact.home_cell), class: "phone" %>
+        </div>
+
+        <div class="contact-row">
+            <div class="type">email</div>
+            <%= f.text_field :home_email %>
+        </div>
+
+    </div>
+    <!-- end edit personal -->
+
+</div>
+

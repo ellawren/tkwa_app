@@ -91,7 +91,11 @@ class Consultant < ActiveRecord::Base
         :conditions => ["consultants.category = ?", 1],
     }	
 
-	def display_name
+	def contacts
+        Contact.where(consultant_id: self.id)
+    end
+
+    def display_name
 		s = "#{self.name}" 
 		s << " (MBE)" if self.mbe == true
 		s << " (Closed)" if self.defunct == true
