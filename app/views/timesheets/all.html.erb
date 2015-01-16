@@ -26,7 +26,7 @@
 	<tbody>
 		<% @users.each do |user| %>
 			<% d = DataRecord.where(user_id: user.id, year: @year).first %>
-			<% if @week >= d.start_week && @week <= d.end_week %>
+			<% if d && @week >= d.start_week && @week <= d.end_week %>
 				<% t = Timesheet.where(user_id: user.id, week: @week, year: @year).first_or_create %>
 				<tr>
 
