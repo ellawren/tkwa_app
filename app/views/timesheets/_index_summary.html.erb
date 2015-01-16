@@ -1,6 +1,19 @@
 	<div class="gray-box timesheets">
 		<% if @timesheet.data_record.pay_type == "Salary" %>
-			<!--<div class="stats utilization">
+			<div class="stats non-billable">
+				<label class="input-label">Remaining Non-Billable Hours</label>
+				<ul class="nb-targets">
+					<% @timesheet.nb_categories.each do |c| %>
+						<% target = eval("@timesheet.#{c.shorthand.downcase!}") %>
+						<% total = eval("@timesheet.data_record.#{c.shorthand}_target") %>
+						<li>
+							<div class="nb-name"><%= c.name %>:</div>
+							<div class="hours <%= 'over' if target < 0 %>"><%= number_with_precision(target, strip_insignificant_zeros: true) %></div> / <%= number_with_precision(total, strip_insignificant_zeros: true) %></li>
+					<% end %>
+				</ul>
+			</div>
+
+			<div class="stats utilization">
 				<label class="input-label">Utilization Rate</label>
 				<div class="number">
 					<% if @timesheet.ytd_total > 0 %>
@@ -11,17 +24,9 @@
 				</div>
 				<div class="detail">percent billable hours
 				</div>
-			</div>-->
+			</div>
 		<% end %>
-		<div class="stats non-billable">
-			<label class="input-label">Remaining Non-Billable Hours</label>
-			<ul class="nb-targets">
-				<% @timesheet.nb_categories.each do |c| %>
-					<% target = eval("@timesheet.#{c.shorthand.downcase!}") %>
-					<li><%= c.name %>: <div class="hours <%= 'over' if target < 0 %>"><%= target %></div></li>
-				<% end %>
-			</ul>
-		</div>
+		
 		<div class="stats">
 			<label class="input-label">Remaining Vacation</label>
 			<div class="number">
@@ -69,25 +74,24 @@
 	        				<% end %>
 	        			</div>
 					</div>
-					
-					<div class="arrow-left"></div>
-					<div class="arrow-body">
-        				<% if @timesheet.data_record.overage_from_prev.to_f > 0 %>
-        					You can be under by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f %></span> hours due to overage from last year.
+					<div class="detail">
+						<% if @timesheet.data_record.overage_from_prev.to_f > 0 %>
+        					You can be under by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f %></span> hours due to overage from last year
         				<% elsif @timesheet.data_record.overage_from_prev.to_f < 0 %>
-        					You need to be over by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f * -1 %></span> hours to make up for a shortfall last year.
+        					You need to be over by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f * -1 %></span> hours to make up for a shortfall last year
         				<% else %>
         					<% if @timesheet.goal == @timesheet.ytd_total %>
         						<br>You are right on target!
         					<% elsif @timesheet.goal > @timesheet.ytd_total %>
-        						You are currently below your target hours for <%= this_year %>.
+        						You are currently below your target hours for <%= this_year %>
         					<% elsif @timesheet.goal < @timesheet.ytd_total %>
-        						You are currently above your target hours for <%= this_year %>.
+        						You are currently above your target hours for <%= this_year %>
         					<% end %>
         				<% end %>
 					</div>
 					
 				</div>
+
 			</div>
 		<% end %>
 		

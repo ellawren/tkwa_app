@@ -33,7 +33,7 @@ class TimesheetsController < ApplicationController
         if @year == Date.today.cwyear
             @week = Date.today.cweek
         elsif @year < Date.today.cwyear
-            @week = weeks_in_year(@year)
+            @week = 53
         else
             @week = 1
         end
