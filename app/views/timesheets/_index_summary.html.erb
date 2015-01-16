@@ -1,30 +1,35 @@
 	<div class="gray-box timesheets">
 		<% if @timesheet.data_record.pay_type == "Salary" %>
-			<div class="stats non-billable">
-				<label class="input-label">Remaining Non-Billable Hours</label>
-				<ul class="nb-targets">
-					<% @timesheet.nb_categories.each do |c| %>
-						<% target = eval("@timesheet.#{c.shorthand.downcase!}") %>
-						<% total = eval("@timesheet.data_record.#{c.shorthand}_target") %>
-						<li>
-							<div class="nb-name"><%= c.name %>:</div>
-							<div class="hours <%= 'over' if target < 0 %>"><%= number_with_precision(target, strip_insignificant_zeros: true) %></div> / <%= number_with_precision(total, strip_insignificant_zeros: true) %></li>
-					<% end %>
-				</ul>
-			</div>
 
-			<div class="stats utilization">
-				<label class="input-label">Utilization Rate</label>
-				<div class="number">
-					<% if @timesheet.ytd_total > 0 %>
-						<%= number_to_percentage((@timesheet.ytd_billable / @timesheet.ytd_total * 100), precision: 0) %>
-					<% else %>
-						0%
-					<% end %>
+			<% if @timesheet.data_record.stp_target || @timesheet.data_record.mtg_target || @timesheet.data_record.adm_target || @timesheet.data_record.cmp_target || @timesheet.data_record.edu_target || @timesheet.data_record.sus_target || @timesheet.data_record.mkp_target || @timesheet.data_record.mkg_target %>
+				<div class="stats non-billable">
+					<label class="input-label">Remaining Non-Billable Hours</label>
+					<ul class="nb-targets">
+						<% @timesheet.nb_categories.each do |c| %>
+							<% target = eval("@timesheet.#{c.shorthand.downcase!}") %>
+							<% total = eval("@timesheet.data_record.#{c.shorthand}_target") %>
+							<li>
+								<div class="nb-name"><%= c.name %>:</div>
+								<div class="hours <%= 'over' if target < 0 %>"><%= number_with_precision(target, strip_insignificant_zeros: true) %></div> / <%= number_with_precision(total, strip_insignificant_zeros: true) %></li>
+						<% end %>
+					</ul>
 				</div>
-				<div class="detail">percent billable hours
+
+				<div class="stats utilization">
+					<label class="input-label">Utilization Rate</label>
+					<div class="number">
+						<% if @timesheet.ytd_total > 0 %>
+							<%= number_to_percentage((@timesheet.ytd_billable / @timesheet.ytd_total * 100), precision: 0) %>
+						<% else %>
+							0%
+						<% end %>
+					</div>
+					<div class="detail">percent billable hours
+					</div>
 				</div>
-			</div>
+				
+			<% end %>
+
 		<% end %>
 		
 		<div class="stats">
@@ -76,7 +81,7 @@
 					</div>
 					<div class="detail">
 						<% if @timesheet.data_record.overage_from_prev.to_f > 0 %>
-        					You can be under by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f %></span> hours due to overage from last year
+        					You can be under by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f %></span> hours due to an overage from last year
         				<% elsif @timesheet.data_record.overage_from_prev.to_f < 0 %>
         					You must be over by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f * -1 %></span> hours due to a shortfall last year
         				<% else %>
