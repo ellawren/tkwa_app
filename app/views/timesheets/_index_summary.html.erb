@@ -81,7 +81,7 @@
         					You need to be over by <span class="bold"><%= @timesheet.data_record.overage_from_prev.to_f * -1 %></span> hours to make up for a shortfall last year
         				<% else %>
         					<% if @timesheet.goal == @timesheet.ytd_total %>
-        						<br>You are right on target!
+        						You are right on target!
         					<% elsif @timesheet.goal > @timesheet.ytd_total %>
         						You are currently below your target hours for <%= this_year %>
         					<% elsif @timesheet.goal < @timesheet.ytd_total %>
