@@ -6,58 +6,58 @@
     <div id="show-work">
 
         <% if @contact.work_address.present? || @contact.work_phone.present? || @contact.work_cell.present? || @contact.work_email.present? || @contact.work_direct.present? || @contact.work_fax.present? %>
+            <div class="outlined-box">
+                <% if @contact.work_company.present? %>
+                    <div class="contact-row">
+                        <div class="type">company</div>
+                        <div class="text"><%= @contact.work_company %></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.work_company.present? %>
-                <div class="contact-row">
-                    <div class="type">company</div>
-                    <div class="text"><%= @contact.work_company %></div>
-                </div>
-            <% end %>
+                <% if @contact.work_address.present? %>
+                    <div class="contact-row">
+                        <div class="type">Address</div>
+                        <div class="text"><%= @contact.work_address.gsub(/\n/, '<br>').html_safe %></div>
+                        <div class="links"><a href="#">transmittal</a><a href="#">map</a></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.work_address.present? %>
-                <div class="contact-row">
-                    <div class="type">Address</div>
-                    <div class="text"><%= @contact.work_address.gsub(/\n/, '<br>').html_safe %></div>
-                    <div class="links"><a href="#">transmittal</a><a href="#">map</a></div>
-                </div>
-            <% end %>
+                <% if @contact.work_phone.present? %>
+                    <div class="contact-row">
+                        <div class="type">phone</div>
+                        <div class="text"><%= phone(@contact.work_phone) %><%= " x #{@contact.work_ext}" if @contact.work_ext.present? %></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.work_phone.present? %>
-                <div class="contact-row">
-                    <div class="type">phone</div>
-                    <div class="text"><%= phone(@contact.work_phone) %><%= " x #{@contact.work_ext}" if @contact.work_ext.present? %></div>
-                </div>
-            <% end %>
+                <% if @contact.work_direct.present? %>
+                    <div class="contact-row">
+                        <div class="type">direct</div>
+                        <div class="text"><%= phone(@contact.work_direct) %><%= " x #{@contact.direct_ext}" if @contact.direct_ext.present? %></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.work_direct.present? %>
-                <div class="contact-row">
-                    <div class="type">direct</div>
-                    <div class="text"><%= phone(@contact.work_direct) %><%= " x #{@contact.direct_ext}" if @contact.direct_ext.present? %></div>
-                </div>
-            <% end %>
+                <% if @contact.work_cell.present? %>
+                    <div class="contact-row">
+                        <div class="type">cell</div>
+                        <div class="text"><%= phone(@contact.work_cell) %></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.work_cell.present? %>
-                <div class="contact-row">
-                    <div class="type">cell</div>
-                    <div class="text"><%= phone(@contact.work_cell) %></div>
-                </div>
-            <% end %>
+                <% if @contact.work_fax.present? %>
+                    <div class="contact-row">
+                        <div class="type">fax</div>
+                        <div class="text"><%= phone(@contact.work_fax) %></div>
+                        <div class="links"><a href="#" class="fax-cover">fax cover</a></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.work_fax.present? %>
-                <div class="contact-row">
-                    <div class="type">fax</div>
-                    <div class="text"><%= phone(@contact.work_fax) %></div>
-                    <div class="links"><a href="#" class="fax-cover">fax cover</a></div>
-                </div>
-            <% end %>
-
-            <% if @contact.work_email.present? %>
-                <div class="contact-row">
-                    <div class="type">email</div>
-                    <div class="text"><a class="underline" onclick="mailTo('<%= @contact.work_email %>'); return false;"><%= @contact.work_email %></a></div>
-                </div>
-            <% end %>
-
+                <% if @contact.work_email.present? %>
+                    <div class="contact-row">
+                        <div class="type">email</div>
+                        <div class="text"><a class="underline" onclick="mailTo('<%= @contact.work_email %>'); return false;"><%= @contact.work_email %></a></div>
+                    </div>
+                <% end %>
+            </div>
         <% end %>
     </div>
     <!-- end show work -->
@@ -118,33 +118,37 @@
     <div id="show-personal">
         <% if @contact.home_address.present? || @contact.home_phone.present? || @contact.home_cell.present? || @contact.home_email.present? %>
 
-            <% if @contact.home_address.present? %>
-                <div class="contact-row">
-                    <div class="type">Address</div>
-                    <div class="text"><%= @contact.home_address.gsub(/\n/, '<br>').html_safe %></div>
-                </div>
-            <% end %>
+            <div class="outlined-box">
 
-            <% if @contact.home_phone.present? %>
-                <div class="contact-row">
-                    <div class="type">phone</div>
-                    <div class="text"><%= phone(@contact.home_phone) %></div>
-                </div>
-            <% end %>
+                <% if @contact.home_address.present? %>
+                    <div class="contact-row">
+                        <div class="type">Address</div>
+                        <div class="text"><%= @contact.home_address.gsub(/\n/, '<br>').html_safe %></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.home_cell.present? %>
-                <div class="contact-row">
-                    <div class="type">cell</div>
-                    <div class="text"><%= phone(@contact.home_cell) %></div>
-                </div>
-            <% end %>
+                <% if @contact.home_phone.present? %>
+                    <div class="contact-row">
+                        <div class="type">phone</div>
+                        <div class="text"><%= phone(@contact.home_phone) %></div>
+                    </div>
+                <% end %>
 
-            <% if @contact.home_email.present? %>
-                <div class="contact-row">
-                    <div class="type">email</div>
-                    <div class="text"><a class="underline" onclick="mailTo('<%= @contact.home_email %>'); return false;"><%= @contact.home_email %></a></div>
-                </div>
-            <% end %>
+                <% if @contact.home_cell.present? %>
+                    <div class="contact-row">
+                        <div class="type">cell</div>
+                        <div class="text"><%= phone(@contact.home_cell) %></div>
+                    </div>
+                <% end %>
+
+                <% if @contact.home_email.present? %>
+                    <div class="contact-row">
+                        <div class="type">email</div>
+                        <div class="text"><a class="underline" onclick="mailTo('<%= @contact.home_email %>'); return false;"><%= @contact.home_email %></a></div>
+                    </div>
+                <% end %>
+
+            </div>
 
         <% end %>
     </div>

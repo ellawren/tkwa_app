@@ -158,7 +158,7 @@
 		.show .contact-info .contact-row .type { float:left; width:125px; text-transform:uppercase; font-weight:200; font-size:12px; padding-top:3px; }
 		.show .contact-info .contact-row .text { float:left; width:290px; }
 		.show .contact-info .contact-row .text a.fax-cover { display:inline-block; margin-left:15px; width:auto; text-decoration:underline; font-weight:normal; font-style:italic; }
-		.show .contact-info .contact-row input, .show .contact-info .contact-row textarea { width:210px; }
+		.show .contact-info .contact-row input, .show .contact-info .contact-row textarea { width:260px; }
 	.show .contact-info .contact-row .links { float:left; width:75px; }
 			.show .contact-info .contact-row .links a { float:left; width:100%; text-decoration:underline; font-weight:normal; font-style:italic; }
 
@@ -167,7 +167,7 @@
 
 	#edit-work, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
 	.show .edit .contact-row { padding:0px; }
-	.show .edit .contact-row .type { padding-top:10px; width:75px; }
+	.show .edit .contact-row .type { padding-top:10px; width:125px; }
 	.show .edit .contact-row input.phone { width:115px; }
 	.show .edit .contact-row input.ext { width:36px; }
 	.show .edit .contact-row .extension { display:inline-block; text-transform:uppercase; font-weight:200; font-size:12px; padding:0 3px;}
@@ -178,15 +178,17 @@
 	h1 input.form-display-field { color:#2c3445; font-size:28px; font-weight:900; padding-bottom:2px; margin-bottom:1px; width:660px; }
 	.show .page-header .title input.form-display-field { height:auto; color:#2c3445; font-style:italic; width:660px; }
 
-	#show-notes { float:left; width:100%; border-top:1px solid #e1e6eb; background-image:url(/assets/rule.png); padding-bottom:10px; padding-top:1px; line-height:20px; }
+	#show-notes { float:left; width:100%; margin-bottom:20px; }
 	.added { float:left; width:100%; color:#9ba6ac; font-style:italic; }
 	.show .page-header { height:auto; margin-bottom:0px; }
 	.switch-view { position:absolute; bottom:-20px; right:0px;  font-style:italic; color:red; }
 	.show .switch-view { bottom:0px; }
 
 	.company-info .note-text { float:left; margin-left:145px; font-style:italic; color:#9ba6ac; width:330px; margin-bottom:10px; }
-	#clear-alt { position:absolute; right:160px; bottom:19px; background-color:#fff; color:#9ba6ac; font-size:13px; font-weight:normal; }
-	#clear-alt:hover { color:#7f8b93; background-color:#e1e6eb; }
+	/*#clear-alt { position:absolute; right:160px; bottom:19px; background-color:#fff; color:#9ba6ac; font-size:13px; font-weight:normal; }
+	#clear-alt:hover { color:#7f8b93; background-color:#e1e6eb; }*/
 
 	.contact-right { float:right; width:320px; }
+
+	.outlined-box { float:left; border-radius:8px; border:2px solid #ced5da; padding:10px 0;}
 

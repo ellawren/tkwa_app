@@ -47,7 +47,7 @@
                                     <%= link_to "#{company.name} <span class=\"count\">(#{company.contacts.count}  contact#{'s' unless company.contacts.count==1})</span>".html_safe, consultant_path(company) %>
                                 </div>
                                 <div class="links">
-                                    <a d="clear-alt">clear alt</a>
+                                    <a id="clear-alt">clear alt</a>
                                     <a class="change-company" id="cancel-change-company">cancel</a>
                                     <a class="change-company" id="change-company">change company</a>
                                 </div>
@@ -95,7 +95,6 @@
                                 <div class="header">Select Company</div>
                                 <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
                                 <%= f.hidden_field :consultant_id %>
-                                <div class="note-text">Type all or part of the company name to search, or click below to add a new company.</div>
                                 <div id="theLink">
                                     <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add New</a>
                                 </div>
