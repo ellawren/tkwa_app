@@ -30,7 +30,7 @@
 		<div class="stats">
 			<label class="input-label">Remaining Vacation</label>
 			<div class="number">
-				<%= @timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f - @timesheet.ytd_vacation  %>
+				<%= number_with_precision(@timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f - @timesheet.ytd_vacation, strip_insignificant_zeros: true)  %>
 			</div>
 			<div class="detail">used <%= number_with_precision(@timesheet.ytd_vacation, strip_insignificant_zeros: true) %> of <%= number_with_precision((@timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f), strip_insignificant_zeros: true) %> hours 
 			</div>
