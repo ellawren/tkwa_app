@@ -1004,7 +1004,7 @@
 	#cancel-change-company { float:left; padding:2px 16px; cursor:pointer; }
 	#change-company { margin-top:0px; }
 	.company-address .text { float:left; width:284px; margin-top:12px; margin-bottom:12px; }
-	#contact_organization_name { width:318px; }
+	#contact_organization_name { float:left; width:185px; margin-right:5px; }
 	#contact_consultant_id { width:22px; margin-left:3px; }
 	textarea.wide { width:497px; margin-top:10px; }
 

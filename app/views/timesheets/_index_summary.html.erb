@@ -27,7 +27,7 @@
 					<div class="detail">percent billable hours
 					</div>
 				</div>
-				
+
 			<% end %>
 
 		<% end %>
@@ -47,7 +47,7 @@
 					<div class="token">
 						<div class="circle target">
 							<div class="title">Target</div>
-							<%= @timesheet.goal %>
+							<%= number_with_precision(@timesheet.goal, strip_insignificant_zeros: true) %>
 						</div>
 					</div>
 					

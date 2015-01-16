@@ -30,12 +30,11 @@
                 <div class="company-info">
 
                     <% if @contact.consultant_id.blank? %>
-                        <div class="header">Select Company</div>
+                        <div class="header">Company</div>
                         <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
                         <%= f.hidden_field :consultant_id %>
-                        <div class="note-text">Type all or part of the company name to search, or click below to add a new company.</div>
                         <div id="theLink">
-                            <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Set Up A New Company</a>
+                            <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add New</a>
                         </div>
                         <div id="altLink">
                             <a id="modal-link" class="modal-btn btn btn-small add-consultant">Add Alt</a>
@@ -46,6 +45,11 @@
                             <div class="company-address">
                                 <div class="name">
                                     <%= link_to "#{company.name} <span class=\"count\">(#{company.contacts.count}  contact#{'s' unless company.contacts.count==1})</span>".html_safe, consultant_path(company) %>
+                                </div>
+                                <div class="links">
+                                    <a d="clear-alt">clear alt</a>
+                                    <a class="change-company" id="cancel-change-company">cancel</a>
+                                    <a class="change-company" id="change-company">change company</a>
                                 </div>
 
                                 <% if company.address.present? %>
@@ -93,18 +97,23 @@
                                 <%= f.hidden_field :consultant_id %>
                                 <div class="note-text">Type all or part of the company name to search, or click below to add a new company.</div>
                                 <div id="theLink">
-                                    <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Set Up A New Company</a>
+                                    <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add New</a>
                                 </div>
 
                             </div>
-                            <a class="btn" id="clear-alt">clear alt</a>
-                            <a class="btn input-button change-company" id="cancel-change-company">cancel</a>
-                            <a class="btn input-button change-company" id="change-company">change company</a>
+                            
 
                         <% end %>
                     <% end %>
                 </div><!-- end company info-->
 
+                <%= render 'contact_info_fields', :f => f %>
+
+                
+
+            </div><!-- end content-left-->
+
+            <div class="contact-right">
                 <div class="notes">
                     <div class="header extra-margin">Notes <a id="edit-notes-button" class="text-link">edit</a><a id="show-notes-button" class="text-link">cancel edit</a></div>
 
@@ -145,11 +154,7 @@
                         <% end %>
                     </div>
                 </div>
-
-            </div><!-- end content-left-->
-
-            <div class="contact-right">
-                <%= render 'contact_info_fields', :f => f %>
+                
             </div><!-- end content-right -->
 
         </div><!-- end content -->
@@ -217,7 +222,7 @@
         });
         $("#contact_organization_name").keyup(function(){
             val = encodeURIComponent($(this).val());
-            str =  "<a id='modal-link' href='/consultants/add?name=" + val + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Set Up A New Company</a>";
+            str =  "<a id='modal-link' href='/consultants/add?name=" + val + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add New</a>";
           $("#theLink").html(str);
         });
 
@@ -227,7 +232,7 @@
             web = encodeURIComponent($("#contact_work_url").val());
             phone = encodeURIComponent($("#contact_work_phone").val());
             fax = encodeURIComponent($("#contact_work_fax").val());
-            str =  "<a id='modal-link' href='/consultants/add?name=" + name + "&add=" + add + "&web=" + web + "&phone=" + phone + "&fax=" + fax + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Set Up A New Company</a>";
+            str =  "<a id='modal-link' href='/consultants/add?name=" + name + "&add=" + add + "&web=" + web + "&phone=" + phone + "&fax=" + fax + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add New</a>";
           $("#theLink").html(str);
         });
 
