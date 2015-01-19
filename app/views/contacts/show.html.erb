@@ -44,7 +44,7 @@
                         <% if company %>
                             <div class="company-address">
                                 <div class="name">
-                                    <%= link_to "#{company.name} <span class=\"count\">(#{company.contacts.count}  contact#{'s' unless company.contacts.count==1})</span>".html_safe, consultant_path(company) %>
+                                    <%= link_to "#{company.name} <div class=\"count\">(#{company.contacts.count}  contact#{'s' unless company.contacts.count==1})</div>".html_safe, consultant_path(company) %>
                                 </div>
                                 <div class="links">
                                     <a id="clear-alt">clear alt</a>

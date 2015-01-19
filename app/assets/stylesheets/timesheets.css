@@ -198,7 +198,6 @@
 	.timesheets.gray-box .stats.utilization { float:left; width:155px; height:140px; margin-left:10px; }
 
 .timesheets.gray-box .stats .number { float:left; width:100%; font-size:56px; margin:10px 0 11px; font-weight:200; }
-.timesheets.gray-box .stats.utilization .number { margin-left:-6px; }
 .timesheets.gray-box .stats .detail { float:left; font-style:normal; color:#9ba6ac; font-size:12px; margin-top:5px; }
 	.timesheets.gray-box #summary .content .detail { float:left; width:100%; text-align:left; margin-top:9px; }
 
@@ -283,6 +282,10 @@ input#reopen-timesheet { margin-top:0px; }
 .print .timesheets.gray-box .stats.utilization { width:160px; }
 .print .timesheets .table-head { border-bottom:2px solid #344953; }
 
+.print .timesheets.gray-box #summary { width:330px; }
+.print .timesheets.gray-box .stats { width:150px; }
+.print .timesheets.gray-box .stats.utilization { width:155px; }
+.print .timesheets.gray-box .stats.non-billable { width:210px; }
 
 .approved { display:none; }
 @media print {
