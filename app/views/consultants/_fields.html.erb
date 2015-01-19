@@ -19,6 +19,10 @@
         <%= f.text_field :name %>
     </div>
     <div class="input-row">
+        <%= f.label(:location, "Location", class: "input-label") %>
+        <%= f.text_field :location %>
+    </div>
+    <div class="input-row">
         <%= f.label(:address, "Street Address", class: "input-label") %>
         <div id="street-primary" class="select-primary <%= 'selected' if f.object.primary == 'street' %>"></div>
         <%= f.text_area :address, class: "button-right", rows: "2" %>

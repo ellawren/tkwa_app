@@ -18,6 +18,8 @@
 #  po_box              :string(255)
 #  primary             :string(255)
 #  temp                :integer
+#  location            :string(255)
+#  department          :string(255)
 #
 
 class Consultant < ActiveRecord::Base
@@ -93,6 +95,14 @@ class Consultant < ActiveRecord::Base
 
 	def contacts
         Contact.where(consultant_id: self.id)
+    end
+
+    def name_and_location
+        if self.location?
+            "#{name} (#{location})"
+        else
+            name
+        end
     end
 
     def display_name

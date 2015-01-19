@@ -18,6 +18,8 @@
 #  po_box              :string(255)
 #  primary             :string(255)
 #  temp                :integer
+#  location            :string(255)
+#  department          :string(255)
 #
 
 require 'spec_helper'

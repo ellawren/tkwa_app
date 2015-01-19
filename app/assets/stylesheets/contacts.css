@@ -134,10 +134,10 @@
 		.show .content-right { float:right; width:380px; }
 
 	.show .company-info { float:left; position:relative; width:510px; background-color:#f4f6f9; padding:20px 20px 10px 30px; border-radius:8px; margin:10px 0 20px 0; border:2px solid #344953;}
-	.show .company-info .name { float:left; width:400px; margin-bottom:10px; }
+	.show .company-info .name { float:left; width:400px; margin-bottom:10px; line-height:18px; }
 	.show .company-info .name a { color:#1abc9c; font-size:16px; }
 	.show .company-info .name a:hover { color:#16a085; }
-	.show .company-info .name .count { display:inline-block; font-weight:200; font-style:italic; font-size:13px; }
+	.show .company-info .name .count { display:inline-block; font-weight:200; font-style:italic; font-size:13px; line-height:18px; }
 	.show .company-info .links { float:right; width:100px; margin-bottom:10px; }
 		.show .company-info .links a { float:right; font-weight:normal; width:auto; font-style:italic; cursor:pointer; text-decoration:underline; }
 
@@ -166,6 +166,7 @@
 	.show #edit-contact { position:absolute; bottom:0px; right:0px;  }
 
 	#edit-work, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
+	#edit-work { float:left; margin-bottom:30px; }
 	.show .edit .contact-row { padding:0px; }
 	.show .edit .contact-row .type { padding-top:10px; width:125px; }
 	.show .edit .contact-row input.phone { width:115px; }
