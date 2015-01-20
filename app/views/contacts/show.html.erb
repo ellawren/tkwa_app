@@ -6,7 +6,7 @@
                 <%= link_to "Employees", contacts_employees_path, class: "header-label" %>
          <% end %>
         <div class="page-header">
-            <h1><%= f.text_field :name, class: "form-display-field" %></h1>
+            <h1><%= f.text_field :name, class: "form-display-field", placeholder: "Add Name" %></h1>
             <ul class="controls">
                 <% if @contact.previous.present? %> 
                     <li><%= link_to "", contact_path(@contact.previous), class: "glyphicon glyphicon-chevron-left tip", title:"Previous" %></li>
@@ -20,7 +20,7 @@
                     <%= link_to "", @contact, method: :delete, confirm: "You sure?", class: "glyphicon glyphicon-remove tip", title:"Delete This Contact" %>
                 </li>
             </ul>
-            <div class="title"><%= f.text_field :work_title, class: "form-display-field" %></div>
+            <div class="title"><%= f.text_field :work_title, class: "form-display-field", placeholder: "Add Title" %></div>
             <%= link_to "omg this is weird I want the old view back", edit_contact_path(@contact), class: "switch-view" %>
         </div>
 
@@ -44,7 +44,7 @@
                         <% if company %>
                             <div class="company-address">
                                 <div class="name">
-                                    <%= link_to "#{company.name} <div class=\"count\">(#{company.contacts.count}  contact#{'s' unless company.contacts.count==1})</div>".html_safe, consultant_path(company) %>
+                                    <%= link_to company.name, consultant_path(company) %>
                                 </div>
                                 <div class="links">
                                     <a id="clear-alt">clear alt</a>
@@ -89,6 +89,9 @@
                                         <div class="text"><a class="underline" onclick="openURL_direct('<%= company.url %>');"><%= company.url %></a></div>
                                     </div>
                                 <% end %>
+                                <div class="count">
+                                    <%= link_to "#{company.contacts.count}  contact#{'s' unless company.contacts.count==1}", consultant_path(company)  %>
+                                </div>
                             </div>
                                  
                             <div class="new-company">
@@ -167,6 +170,7 @@
 
     <% content_for :scripts do %>
         <script>
+
         //reset modal remote on close
         $('#myModal').on('hide.bs.modal', function (e) {
             $(this).data('bs.modal', null);

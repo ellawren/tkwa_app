@@ -134,10 +134,13 @@
 		.show .content-right { float:right; width:380px; }
 
 	.show .company-info { float:left; position:relative; width:510px; background-color:#f4f6f9; padding:20px 20px 10px 30px; border-radius:8px; margin:10px 0 20px 0; border:2px solid #344953;}
-	.show .company-info .name { float:left; width:400px; margin-bottom:10px; line-height:18px; }
+	.show .company-info .name { float:left; width:400px; margin-bottom:10px; }
 	.show .company-info .name a { color:#1abc9c; font-size:16px; }
 	.show .company-info .name a:hover { color:#16a085; }
-	.show .company-info .name .count { display:inline-block; font-weight:200; font-style:italic; font-size:13px; line-height:18px; }
+	.show .company-info .count { width:100%; float:left; display:block; }
+		.show .company-info .count a { font-size:13px; font-style:italic; color:#1abc9c; }
+		.show .company-info .count a:hover { color:#16a085; }
+
 	.show .company-info .links { float:right; width:100px; margin-bottom:10px; }
 		.show .company-info .links a { float:right; font-weight:normal; width:auto; font-style:italic; cursor:pointer; text-decoration:underline; }
 
@@ -189,7 +192,7 @@
 	/*#clear-alt { position:absolute; right:160px; bottom:19px; background-color:#fff; color:#9ba6ac; font-size:13px; font-weight:normal; }
 	#clear-alt:hover { color:#7f8b93; background-color:#e1e6eb; }*/
 
-	.contact-right { float:right; width:320px; }
+	.contact-right { float:right; width:320px; margin-top:10px; }
 
 	.outlined-box { float:left; border-radius:8px; border:2px solid #ced5da; padding:10px 0; margin-bottom:20px; }
 

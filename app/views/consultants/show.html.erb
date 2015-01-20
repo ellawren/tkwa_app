@@ -12,7 +12,7 @@
         
         <li><%= link_to "", consultants_path, class: "glyphicon glyphicon-search tip", title:"Search Companies" %></li>
         <li><%= link_to "", new_consultant_path(:category => "#{@consultant.category}"), class: "glyphicon glyphicon-plus tip", title:"Add New Company" %></li>
-        <li class="delete"><%= link_to "", @consultant, method: :delete, confirm: "Are you sure you want to delete this company and all its data? Do not do this if the compnay has been used on any projects!!!", class: "glyphicon glyphicon-remove tip", title:"Delete This Company" %>
+        <li class="delete"><%= link_to "", @consultant, method: :delete, confirm: "Are you sure you want to delete this company and all its data? Do not do this if the company has been used on any projects!!!", class: "glyphicon glyphicon-remove tip", title:"Delete This Company" %>
         </li>
     </ul> 
 </div>

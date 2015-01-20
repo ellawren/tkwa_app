@@ -46,7 +46,7 @@ class ConsultantsController < ApplicationController
                 @contact.consultant_id = @consultant.id
                 @contact.save
             else
-                flash[:success] = "Consultant created!"
+                flash[:success] = "Company created!"
                 redirect_to consultant_path(@consultant.id)
             end
         else
@@ -57,7 +57,7 @@ class ConsultantsController < ApplicationController
     def update
         @consultant = Consultant.find(params[:id])
         if @consultant.update_attributes(params[:consultant])
-            flash[:success] = "Consultant updated!"
+            flash[:success] = "Company updated!"
             redirect_to consultant_path(@consultant)
         else
             render 'edit'
@@ -65,9 +65,15 @@ class ConsultantsController < ApplicationController
     end
 
     def destroy
-        Consultant.find(params[:id]).destroy
-        flash[:success] = "Consultant destroyed."
-        redirect_to consultants_path
+        @consultant = Consultant.find(params[:id])
+        if @consultant.contacts.count > 0
+            flash[:error] = "Company can't be deleted. Please reassign contacts first."
+            redirect_to consultant_path(@consultant)
+        else
+            @consultant.destroy
+            flash[:success] = "Company destroyed."
+            redirect_to consultants_path
+        end
     end
 
 end
