@@ -102,6 +102,14 @@ class Contact < ActiveRecord::Base
         end
     end
 
+    def company_name
+        if self.consultant_id
+            Consultant.find(self.consultant_id).name
+        else
+            work_company
+        end
+    end
+
     def city
         city = work_address.match /^[A-Za-z ]*,/
         city.to_s.gsub(/,/, '')

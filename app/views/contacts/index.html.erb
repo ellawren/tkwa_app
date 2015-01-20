@@ -40,6 +40,8 @@ end %>
 			<%= f.text_field :home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont, class: "search-address contact", placeholder: "Phone (no spaces or punctuation)" %>
 			<br><br><p class="note">Search in notes field:</p>
 			<%= f.text_field :notes_cont, class: "search-address notes", placeholder: "Notes" %>
+			<%= f.text_field :id_gt, class: "id-search", placeholder: "ID <" %>
+			<%= f.text_field :id_lt, class: "id-search", placeholder: "ID >" %>
 		</div>
 			     
 	<% end %>
@@ -63,6 +65,7 @@ end %>
 				<tr>
 					<th>Name</th>
 					<th>Company</th>
+					<th>ID</th>
 					<th>Category</th>
 				</tr>
 			</thead>

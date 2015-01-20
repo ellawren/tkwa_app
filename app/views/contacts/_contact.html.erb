@@ -1,5 +1,6 @@
 					<tr class="results-row">
 		                <td class="bold"><% if f.name %><%= link_to f.name, contact_path(f) %><% else %><%= link_to "", contact_path(f) %><% end %></td>
-		                <td><%= link_to "#{'* ' if f.consultant_id.present? }#{f.work_company}", contact_path(f) %></td>
+		                <td><%= link_to f.company_name, contact_path(f) %></td>
+		                <td><%= link_to f.id, contact_path(f) %></td>
 		                <td><%= link_to "#{f.category}", contact_path(f) %></td>
 		            </tr>
