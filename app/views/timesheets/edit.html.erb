@@ -29,10 +29,19 @@
 		</div><!-- /.modal -->
 	<!-- end modal -->
 
-	<!-- modal for consultant billing edit -->
+	<!-- modal for add project edit -->
 	    <div class="employee-team modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    </div><!-- /.modal -->
 	<!-- end modal -->
+
+	<script>
+	$('#myModal').on('show.bs.modal', function() {
+		var c = confirm("Be sure to save your timesheet before adding a project, because it will refresh the page and unsaved data will be lost. Continue?");
+		if (c == false) { 
+			return false;
+		}
+	});
+	</script>
 
 	<%= form_for(@timesheet, :html => { :class => "#{'complete' if @timesheet.complete == true}" }) do |f| %>
 
@@ -69,7 +78,7 @@
 		    		<!-- this is commented out because new lines are automatically added to the view -->
 		    		<% if @timesheet.complete == false %>
 		        		<%= link_to_add_fields "", f, :time_entries, "add fui-plus timesheets" %>
-		        		<a href="/employee_teams/new?user_id=<%= @user.id %>" data-target="#myModal" data-toggle="modal" class="add fui-plus add-project"></a>
+		        		<a href="/employee_teams/new?user_id=<%= @user.id %>" data-target="#myModal" data-toggle="modal"  class="add fui-plus add-project"></a>
 		        	<% end %>
 		   			<!-- end team form -->
 		   		</div>	

@@ -51,6 +51,13 @@
                     </div>
                 <% end %>
 
+                <% if @contact.work_url.present? %>
+                    <div class="contact-row">
+                        <div class="type">web</div>
+                        <div class="text"><a class="underline" onclick="openURL_direct('<%= @contact.work_url %>');"><%= @contact.work_url %></a></a></div>
+                    </div>
+                <% end %>
+
                 <% if @contact.work_email.present? %>
                     <div class="contact-row">
                         <div class="type">email</div>
