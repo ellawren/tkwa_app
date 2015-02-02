@@ -10,6 +10,7 @@
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  year       :integer
+#  month      :integer
 #
 
 class Vacation < ActiveRecord::Base
@@ -27,9 +28,13 @@ class Vacation < ActiveRecord::Base
         Date.strptime(self.start_date, "%m/%d/%Y")
     end
 
-    before_save :year_parse
+    before_save :year_parse, :month_parse
     def year_parse
         self.year = date_object.year
+    end
+
+    def month_parse
+        self.month = date_object.month
     end
 
 end

@@ -36,7 +36,7 @@
 </div>
 
 <div id="vacation">
-    <h2><%= this_year %> Vacations</h2>
+    <h2><%= this_year %> Vacations <%= link_to "all vacations", all_vacations_path(this_year), class: "control-link-text" %></h2>
     <%= form_for @user do |f| %>
 
         <div class="vacation-list">

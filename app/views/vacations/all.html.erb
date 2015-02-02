@@ -1,36 +1,42 @@
-	<% provide :title, "Vacations Index" %>
+	<% provide :title, "#{@year} Vacations" %>
 	<div class="page-header">
-		<h1>Vacations Index</h1>
+		<h1><%= @year %> Vacations</h1>
 	</div>
 
 <br /><br /><br />
 
-	<div class="row">
-		<div class="span2">
-			<h4><%= this_year %> Vacations</h4>
-		</div>
-		<div class="span9">
-			<table class="table holiday-table">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Start Date</th>
-						<th>End Date</th>
-						<th>Hours</th>
-					</tr>
-				</thead>
+<% @months.each do |m| %>
+	<% @vacations_by_month = @vacations.where(month: m) %>
+	<% if @vacations_by_month.count > 0 %>
+		<div class="row">
+			<div class="span2">
+				<h4><%= monthname(m) %></h4>
+			</div>
+			<div class="span9">
+				<table class="table holiday-table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+							<th>Hours</th>
+						</tr>
+					</thead>
 
-				<tbody>
-					<% Vacation.current.each do |param| %>
-			  			<tr>
-			  				<td><%= User.find(param.user_id).name %></td>
-			  				<td><%= param.start_date %></td>
-			  				<td><%= param.end_date %></td>
-                            <td><%= param.hours %></td>
-			  			</tr>
-					<% end %>
-				</tbody>
-			</table>
+					<tbody>
+						<% @vacations.where(month: m).each do |param| %>
+				  			<tr>
+				  				<td><%= User.find(param.user_id).name %></td>
+				  				<td><%= param.start_date %></td>
+				  				<td><%= param.end_date %></td>
+	                            <td><%= param.hours %></td>
+				  			</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-	<br /><br />
+		<br /><br />
+	<% end %>
+
+<% end %>

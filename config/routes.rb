@@ -34,7 +34,7 @@ TkwaApp::Application.routes.draw do
     match '/timesheets/all/:year/:week',                to: 'timesheets#all', as: 'all_timesheets'
     match '/timesheets/non_billable/:year',             to: 'timesheets#non_billable', as: 'non_billable'
     match '/users/:user_id/data_records/:id',           to: 'data_records#edit', as: 'user_data_record'
-    match '/vacations',  to: 'vacations#all',           as: 'all_vacations'
+    match '/vacations/:year',  to: 'vacations#all',     as: 'all_vacations'
 
     resources :users do
         resources :timesheets

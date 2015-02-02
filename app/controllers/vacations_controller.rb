@@ -1,5 +1,4 @@
 class VacationsController < ApplicationController
-    
     def new
   	    @vacation = Vacation.new
     end
@@ -9,7 +8,9 @@ class VacationsController < ApplicationController
     end
 
     def all
-  	    @vacations = Vacation.all
+        @year = params[:year]
+  	    @vacations = Vacation.where(year: @year)
+        @months = [1,2,3,4,5,6,7,8,9,10,11,12]
     end
 
     def index

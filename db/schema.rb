@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150119212341) do
+ActiveRecord::Schema.define(:version => 20150202204518) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -787,6 +787,7 @@ ActiveRecord::Schema.define(:version => 20150119212341) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "year"
+    t.integer  "month"
   end
 
   add_index "vacations", ["user_id"], :name => "index_vacations_on_user_id"
