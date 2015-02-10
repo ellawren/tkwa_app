@@ -61,10 +61,6 @@ class Contact < ActiveRecord::Base
         if self.notes
             self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/^<br>/, '') # get rid of extra line breaks
         end
-        if self.name
-            self.first = self.name.split.first
-            self.last = self.name.split.last
-        end
     end
               
     scope :consultant_list, {
