@@ -31,6 +31,8 @@
 #  consultant_id     :integer
 #  organization_name :string(255)
 #  primary_phone     :string(255)
+#  first             :string(255)
+#  last              :string(255)
 #
 
 require 'spec_helper'

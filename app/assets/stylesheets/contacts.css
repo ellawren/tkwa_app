@@ -168,7 +168,7 @@
 	.show #theLink {  }
 	.show #edit-contact { position:absolute; bottom:0px; right:0px;  }
 
-	#edit-work, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
+	#edit-work, /*#edit-personal*/#show-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
 	#edit-work { float:left; margin-bottom:30px; }
 	.show .edit .contact-row { padding:0px; }
 	.show .edit .contact-row .type { padding-top:10px; width:125px; }
@@ -195,4 +195,12 @@
 	.contact-right { float:right; width:320px; margin-top:10px; }
 
 	.outlined-box { float:left; border-radius:8px; border:2px solid #ced5da; padding:10px 0; margin-bottom:20px; }
+
+	.show .contact-info .contact-row input.first-name { width:80px; }
+	.show .contact-info .contact-row input.last-name { width:153px; }
+
+
+
+
+
 

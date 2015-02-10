@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150202204518) do
+ActiveRecord::Schema.define(:version => 20150210191355) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -178,6 +178,8 @@ ActiveRecord::Schema.define(:version => 20150202204518) do
     t.integer  "consultant_id"
     t.string   "organization_name"
     t.string   "primary_phone"
+    t.string   "first"
+    t.string   "last"
   end
 
   create_table "contractor_roles", :force => true do |t|

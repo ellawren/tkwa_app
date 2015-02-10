@@ -164,6 +164,13 @@
     <!-- EDIT PERSONAL INFO FIELDS -->
     <div id="edit-personal" class="edit">
 
+
+        <div class="contact-row">
+            <div class="type">name</div>
+            <%= f.text_field :first, placeholder: "First", class: "first-name" %>
+            <%= f.text_field :last, placeholder: "Last", class: "last-name" %>
+        </div>
+
         <div class="contact-row">
             <div class="type">address</div>
             <%= f.text_area :home_address, rows: 3 %>

@@ -31,6 +31,8 @@
 #  consultant_id     :integer
 #  organization_name :string(255)
 #  primary_phone     :string(255)
+#  first             :string(255)
+#  last              :string(255)
 #
 
 class Contact < ActiveRecord::Base
@@ -58,6 +60,10 @@ class Contact < ActiveRecord::Base
         self.work_company = self.work_company.to_s.gsub(/\s\[{1}.*\]{1}\z/, '')
         if self.notes
             self.notes = self.notes.gsub(/(<br>){3}/, '<br><br>').gsub(/^<br>/, '') # get rid of extra line breaks
+        end
+        if self.name
+            self.first = self.name.split.first
+            self.last = self.name.split.last
         end
     end
               
@@ -93,6 +99,18 @@ class Contact < ActiveRecord::Base
             name
         else
             work_company
+        end
+    end
+
+    def first_name_calc
+        if name
+            name.split.first
+        end
+    end
+
+    def last_name_calc
+        if name
+            name.split.last
         end
     end
 
