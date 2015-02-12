@@ -1,5 +1,13 @@
 TkwaApp::Application.routes.draw do
 
+  get "tags/new"
+
+  get "tags/show"
+
+  get "tags/edit"
+
+  get "tags/index"
+
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'

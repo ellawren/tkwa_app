@@ -45,6 +45,10 @@ class Contact < ActiveRecord::Base
 
     has_many :projects, :through => :employee_teams
 
+    belongs_to :consultant
+
+    has_and_belongs_to_many :tags
+
     has_many :list_members, :dependent => :destroy
     has_many :mailing_lists, :through => :list_members
 

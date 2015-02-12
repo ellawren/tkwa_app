@@ -24,6 +24,8 @@
 
 class Consultant < ActiveRecord::Base
 
+    has_many :contacts
+
 	has_many :consultant_teams
 	has_many :projects, :through => :consultant_teams,  :select => 'distinct projects.*'
 
