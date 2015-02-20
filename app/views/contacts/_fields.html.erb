@@ -2,51 +2,43 @@
 
     <div class="wide margin-bottom">
         <div class="input-row">
-            <%= f.label(:name, "Full Name", class: "input-label") %>
-            <% if params[:action] == "new" && params[:name].present? %> 
-                <% val = params[:name] %>
-            <% else %>
-                <% val = f.object.name %>
-            <% end %>
-            <%= f.text_field(:name, :value => val, class: "bold")  %>
+            <%= f.label(:name, "Name", class: "input-label") %>
+
+            <%= f.text_field :first, placeholder: "First", class: "first-name" %>
+            <%= f.text_field :last, placeholder: "Last", class: "last-name" %>
         </div>
         <div class="input-row">
             <%= f.label(:work_title, "Title", class: "input-label") %>
             <%= f.text_field :work_title, class: "full-width" %>
         </div>
-        
         <div class="input-row">
-            <%= f.label(:work_email, "Email", class: "input-label") %>
-            <%= f.text_field :work_email, class: "button-right" %>
-            <button class="btn input-button" onclick="mailTo('<%= f.object.work_email %>'); return false;">send</button>
-        </div> 
-
+            <%= f.label(:work_department, "Department", class: "input-label") %>
+            <%= f.text_field :work_department, class: "full-width" %>
+        </div>
     </div>
 
     <div class="narrow contact-phone margin-bottom">
-        <%= f.hidden_field :primary_phone %>
-        <div class="input-row">
-            <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
-            <div id="main-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'main' %>"></div>
-            <%= f.text_field :work_phone, value: phone(@contact.work_phone), class: "phone" %>
-            <div class="label-sm">ext</div><%= f.text_field :work_ext, class: "ext" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
-            <div id="direct-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'direct' %>"></div>
-            <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
-            <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
-        </div>
-        <div class="input-row">
-            <%= f.label(:work_cell, "Cell Phone", class: "input-label") %>
-            <div id="wcell-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'wcell' %>"></div>
-            <%= f.text_field :work_cell,value: phone(@contact.work_cell), class: "phone" %>
-        </div>
+                    <% unless params[:action] == "new" %>
+                <div id="documents">
+                    <a class="circle" href="/contacts/<%= @contact.id %>/transmittal" target="_blank">
+                        create<br>transmittal
+                        <div class="glyphicon glyphicon-file"></div>
+                    </a>
+                    <a class="circle" href="/contacts/<%= @contact.id %>/fax" target="_blank">
+                        create<br>fax cover
+                        <div class="glyphicon glyphicon-print"></div>
+                    </a>
+                    <a class="circle" href="/contacts/<%= @contact.id %>/envelope" target="_blank">
+                        create<br>envelope
+                        <div class="glyphicon glyphicon-envelope"></div>
+                    </a>
+                </div>
+            <% end %>
+        
     </div>
 
     <h2 class="no-margin">Company Information</h2>
     <div class="gray-box company">
-        <div>Hey guys - just ignore everything in this gray box for now, I'm making some changes to this page. You can continue to edit all other fields as usual.<br><br></div>
         <div class="wide">
             <div class="input-row">
                 <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
@@ -98,7 +90,7 @@
         <% @alt = "hidden" %>
     <% end %>
 
-   <h2 class="no-margin">Alternate Company Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>
+   <h2 class="no-margin">Direct Contact Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>
     <div id="alt-company" class="<%= @alt %>">
         <div class="wide">
 
@@ -136,32 +128,40 @@
                 <%= f.label(:work_url, "Website", class: "input-label") %>
                 <%= f.text_field :work_url, class: "button-right" %>
                 <button class="btn input-button" onclick="openURL('contact_work_url'); return false;">open</button>
-            </div>  
+            </div>
+            <div class="input-row">
+                <%= f.label(:work_email, "Email", class: "input-label") %>
+                <%= f.text_field :work_email, class: "button-right" %>
+                <button class="btn input-button" onclick="mailTo('<%= f.object.work_email %>'); return false;">send</button>
+            </div>   
         </div>
 
         <div class="narrow contact-phone margin-bottom">
+            <%= f.hidden_field :primary_phone %>
+        <div class="input-row">
+            <%= f.label(:work_phone, "Main Phone", class: "input-label") %>
+            <div id="main-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'main' %>"></div>
+            <%= f.text_field :work_phone, value: phone(@contact.work_phone), class: "phone" %>
+            <div class="label-sm">ext</div><%= f.text_field :work_ext, class: "ext" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:work_direct, "Direct Phone", class: "input-label") %>
+            <div id="direct-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'direct' %>"></div>
+            <%= f.text_field :work_direct, value: phone(@contact.work_direct), class: "phone" %>
+            <div class="label-sm">ext</div><%= f.text_field :direct_ext, class: "ext" %>
+        </div>
+        <div class="input-row">
+            <%= f.label(:work_cell, "Cell Phone", class: "input-label") %>
+            <div id="wcell-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'wcell' %>"></div>
+            <%= f.text_field :work_cell,value: phone(@contact.work_cell), class: "phone" %>
+        </div>
 
             <div class="input-row">
                 <%= f.label(:work_fax, "Fax Number", class: "input-label") %>
                 <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
             </div>
 
-            <% unless params[:action] == "new" %>
-                <div id="documents">
-                    <a class="circle" href="/contacts/<%= @contact.id %>/transmittal" target="_blank">
-                        create<br>transmittal
-                        <div class="glyphicon glyphicon-file"></div>
-                    </a>
-                    <a class="circle" href="/contacts/<%= @contact.id %>/fax" target="_blank">
-                        create<br>fax cover
-                        <div class="glyphicon glyphicon-print"></div>
-                    </a>
-                    <a class="circle" href="/contacts/<%= @contact.id %>/envelope" target="_blank">
-                        create<br>envelope
-                        <div class="glyphicon glyphicon-envelope"></div>
-                    </a>
-                </div>
-            <% end %>
+
 
         </div>
     </div>

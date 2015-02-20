@@ -95,11 +95,15 @@ class Contact < ActiveRecord::Base
     #------------------------------------
 
     def display_name
-        if name.present?
-            name
+        if first.present? || last.present?
+            "#{first} #{last}"
         else
-            work_company
+            company_name
         end
+    end
+
+    def full_name
+        "#{self.first.strip if self.first.present?}#{" " + self.last.strip if self.last.present?}"
     end
 
     def first_name_calc

@@ -171,54 +171,46 @@
 
     <% content_for :scripts do %>
         <script>
-
         //reset modal remote on close
         $('#myModal').on('hide.bs.modal', function (e) {
             $(this).data('bs.modal', null);
         });
-
         $('#edit-notes-button').click( function() {
             $('#show-notes-button').show();
             $(this).hide();
             $('#show-notes').hide();
             $('#edit-notes').show();
         });
-
         $('#show-notes-button').click( function() {
             $('#edit-notes-button').show();
             $(this).hide();
             $('#show-notes').show();
             $('#edit-notes').hide();
         });
-
         $('#edit-contact-work').click( function() {
             $('#show-contact-work').show();
             $(this).hide();
             $('#show-work').hide();
             $('#edit-work').show();
         });
-
         $('#show-contact-work').click( function() {
             $('#edit-contact-work').show();
             $(this).hide();
             $('#show-work').show();
             $('#edit-work').hide();
         });
-
         $('#edit-contact-personal').click( function() {
             $('#show-contact-personal').show();
             $(this).hide();
             $('#show-personal').hide();
             $('#edit-personal').show();
         });
-
         $('#show-contact-personal').click( function() {
             $('#edit-contact-personal').show();
             $(this).hide();
             $('#show-personal').show();
             $('#edit-personal').hide();
         });
-
         $('#set-alt').click( function() {
             $('#contact_work_company').val("<%= f.object.company.name.html_safe if f.object.company.present? %>");
             $('#contact_work_url').val("<%= f.object.company.url if f.object.company.present? %>");
@@ -229,7 +221,6 @@
             str =  "<a id='modal-link' href='/consultants/add?name=" + val + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add New</a>";
           $("#theLink").html(str);
         });
-
         $("#altLink a").click(function(){
             name = encodeURIComponent($("#contact_work_company").val());
             add = encodeURIComponent($("#contact_work_address").val());
@@ -239,7 +230,6 @@
             str =  "<a id='modal-link' href='/consultants/add?name=" + name + "&add=" + add + "&web=" + web + "&phone=" + phone + "&fax=" + fax + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add New</a>";
           $("#theLink").html(str);
         });
-
         </script>
      <% end %>
 
@@ -249,4 +239,3 @@
     <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     </div><!-- /.modal -->
 <!-- end modal -->
-
