@@ -23,6 +23,7 @@
 #  sus_target        :decimal(6, 2)
 #  mkp_target        :decimal(6, 2)
 #  mkg_target        :decimal(6, 2)
+#  com_target        :decimal(6, 2)
 #
 
 class DataRecord < ActiveRecord::Base
