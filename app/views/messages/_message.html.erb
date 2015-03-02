@@ -6,7 +6,7 @@
         <% unless message.project_id.blank? %><%= link_to Project.find(message.project_id).name, Project.find(message.project_id) %><% end %>
     </div>
     <div class="content">
-		        <%= message.content %>
+		        <%= message.content.gsub(/\n/, '<br />') %>
     </div>
     <div class="byline">
 			<%= User.find(message.user_id).name %>

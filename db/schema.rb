@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150302160723) do
+ActiveRecord::Schema.define(:version => 20150302163105) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -372,7 +372,7 @@ ActiveRecord::Schema.define(:version => 20150302160723) do
   add_index "marketing_categories_projects", ["marketing_category_id", "project_id"], :name => "marketing_projects_index", :unique => true
 
   create_table "messages", :force => true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at", :null => false
