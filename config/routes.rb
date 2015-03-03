@@ -1,13 +1,5 @@
 TkwaApp::Application.routes.draw do
 
-  get "tags/new"
-
-  get "tags/show"
-
-  get "tags/edit"
-
-  get "tags/index"
-
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
@@ -15,7 +7,7 @@ TkwaApp::Application.routes.draw do
     post '/csv_import' => 'projects#csv_import'
     match '/projects/import',   to: 'projects#import'
     match '/projects/fees_billed_by_month',   to: 'projects#fees_billed_by_month', as: 'fees_billed_by_month'
-     match '/projects/billing_worksheet',   to: 'projects#billing_worksheet', as: 'billing_worksheet'
+    match '/projects/billing_worksheet',   to: 'projects#billing_worksheet', as: 'billing_worksheet'
     match '/projects/all' => 'projects#update_all', :as => :update_all, :via => :put
     resources :projects do
         resources :employee_teams
@@ -166,6 +158,7 @@ TkwaApp::Application.routes.draw do
     resources :sessions, 		only: [:new, :create, :destroy]
     resources :subjects
     resources :shop_drawings
+    resources :tags
     resources :tasks
     resources :timesheets, :only => [:index, :create, :update]
     resources :vacation_records

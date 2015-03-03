@@ -1,0 +1,19 @@
+
+<div class="tag-object">
+	
+	<% if f.object.name %>
+		<li>
+			<%= f.object.name %>
+			<%= f.hidden_field :_destroy %>
+			<%= link_to_remove_fields_tags "  ", f %>
+		</li>
+	<% else %>
+		<div class="tag-edit">
+			<%= f.text_field :name, class: "tag-input" %>
+			<%= f.hidden_field :_destroy %>
+			<%= link_to_remove_fields_tags "  ", f %>
+		<div>
+	<% end %>
+</div>
+
+

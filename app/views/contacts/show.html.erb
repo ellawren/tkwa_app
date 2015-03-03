@@ -117,6 +117,18 @@
             </div><!-- end content-left-->
 
             <div class="contact-right">
+                <div class="tags">
+                    <div class="header extra-margin">Tags</div>
+                    <ul class="tag-list">
+                        <!-- nested form for tags -->
+                            <%= f.fields_for :tags do |builder| %>
+                                <%= render 'tag_fields', :f => builder %>
+                            <% end %>
+                            <%= link_to_add_fields_2 "", f, :tags, "add fui-plus add-tag" %>
+                        <!-- end tags form -->
+                    </ul>
+                    
+                </div>
                 <div class="notes">
                     <div class="header extra-margin">Notes <a id="edit-notes-button" class="text-link">edit</a><a id="show-notes-button" class="text-link">cancel edit</a></div>
 

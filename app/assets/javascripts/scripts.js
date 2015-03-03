@@ -354,6 +354,12 @@ function remove_fields_image_box(link) {
   $(link).closest(".image_box").hide();
 }
 
+function remove_fields_tags(link) {
+  $(link).prev("input[type=hidden]").val("1");
+  //$(link).closest(".input").hide();
+  $(link).closest(".tag-object").hide();
+}
+
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")

@@ -1,2 +1,13 @@
-<h1>Tags#index</h1>
-<p>Find me in app/views/tags/index.html.erb</p>
+	<% provide :title, "Tags" %>
+	<div class="page-header">
+		<h1>Tags</h1>
+		<%= link_to "Add Tag", new_tag_path, class: "btn btn-primary btn-right" %>
+	</div>
+
+<ul class="link-list">
+	<% @tags.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_tag_path(param.id) %>
+			</li>
+	<% end %>
+</ul>

@@ -310,6 +310,7 @@
 	.add.patterns:after { content:"new pattern"; }
 	.add.pattern-image:after { content:"add image"; }
 	.add.marketing-categories:after { content:"add category"; }
+	.add.add-tag:after { content:"add tag"; }
 	.half .add { margin-top:15px; }
 	.add.category { margin-left:82px; margin-top:10px; }
 	.add.schedule{ float:left; display:block; }

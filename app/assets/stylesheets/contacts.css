@@ -202,3 +202,22 @@
 	.wide input[type="text"].first-name { width:140px; margin-right:3px; }
 	.wide input[type="text"].last-name { width:173px; }
 
+	.tags { float:left; width:100%; margin-bottom:20px; }
+	ul.tag-list { float:left; width:100%; margin-left:0px; }
+	ul.tag-list li { float:left; width:auto; color:#fff; background-color:#0ba0d4; padding:3px 7px 3px 10px; border-radius:5px; list-style:none; margin:3px 3px 0 0; }
+
+	ul.tag-list li a.delete { float:right; margin:0 0 0 10px; font-size:14px; color:#2984b6; text-decoration:none; }
+	ul.tag-list li a.delete:hover { color:#fff; text-decoration:none; }
+	.add.add-tag { float:left; display:block; width:100%; margin-top:20px; }
+	.add.add-tag.fui-plus:before { background-color:#2984b6; }
+	.add.add-tag:after { color:#2984b6; }
+	.add.add-tag:hover { opacity:.8; }
+
+	.tag-input { float:left; margin-top:6px; }
+	input[type="text"].tag-input { color:#0ba0d4; }
+	input[type="text"].tag-input:focus { border-color:#0ba0d4; }
+	.tags a.delete { margin:10px 0 0 6px; text-decoration:none; }
+	.tags a.delete:hover { color:#0ba0d4; }
+
+	.tag-object .tag-edit { float:left; display:block; width:100%;}
+

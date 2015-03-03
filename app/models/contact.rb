@@ -48,6 +48,8 @@ class Contact < ActiveRecord::Base
     belongs_to :consultant
 
     has_and_belongs_to_many :tags
+    accepts_nested_attributes_for :tags, :allow_destroy => true, :reject_if => lambda { |a| a[:name].blank? }
+
 
     has_many :list_members, :dependent => :destroy
     has_many :mailing_lists, :through => :list_members
