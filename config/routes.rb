@@ -75,6 +75,9 @@ TkwaApp::Application.routes.draw do
             get 'transmittal', 'fax', 'envelope'
         end
     end
+    resources :tags do
+        get :autocomplete_tag_name, :on => :collection
+    end
     
     match '/consultants/add',   to: 'consultants#add', as: 'add_consultant', via: [:get, :post]
     match '/contractors',   to: 'consultants#contractors', :via => :get
@@ -133,6 +136,8 @@ TkwaApp::Application.routes.draw do
     match '/holidays/by_year/:year',   to: 'holidays#by_year', as: 'holidays_by_year'
     resources :holidays
 
+
+
     resources :billing_types
     resources :building_types
     resources :categories 
@@ -158,7 +163,7 @@ TkwaApp::Application.routes.draw do
     resources :sessions, 		only: [:new, :create, :destroy]
     resources :subjects
     resources :shop_drawings
-    resources :tags
+
     resources :tasks
     resources :timesheets, :only => [:index, :create, :update]
     resources :vacation_records

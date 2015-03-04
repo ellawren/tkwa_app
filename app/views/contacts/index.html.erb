@@ -26,8 +26,9 @@ end %>
 	        <div><%= f.radio_button(:cat_number_eq, "6") %><label class="radio">Supplier</label></div>
 		</div>
 
-		<%= f.text_field :name_cont, class: "search-name contact", placeholder: "Contact Name" %>
-		<%= f.text_field :consultant_name_cont, class: "search-name contact company", placeholder: "Company Name" %> 
+		<%= f.text_field :first_cont, class: "search-name-first contact", placeholder: "First " %>
+		<%= f.text_field :last_cont, class: "search-name-last contact", placeholder: "Last" %>
+		<%= f.text_field :consultant_name_cont, class: "search-name contact company", placeholder: "Company" %> 
 
 		<%= f.submit "Search", class: "btn btn-primary search-btn contact" %>
 		<a class="more-options">show more options</a>
@@ -65,8 +66,6 @@ end %>
 				<tr>
 					<th>Name</th>
 					<th>Company</th>
-					<th>ID</th>
-					<th>Category</th>
 				</tr>
 			</thead>
 		    <tbody>

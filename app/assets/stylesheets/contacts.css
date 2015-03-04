@@ -133,7 +133,7 @@
 			.show .content-left .notes { float:left; width:560px; margin-top:10px; }
 		.show .content-right { float:right; width:380px; }
 
-	.show .company-info { float:left; position:relative; width:510px; background-color:#f4f6f9; padding:20px 20px 10px 30px; border-radius:8px; margin:10px 0 20px 0; border:2px solid #344953;}
+	.show .company-info { float:left; position:relative; width:510px; background-color:#f4f6f9; padding:20px 20px 10px 30px; border-radius:8px; margin:0px 0 20px 0; border:2px solid #344953;}
 	.show .company-info .name { float:left; width:400px; margin-bottom:10px; }
 	.show .company-info .name a { color:#1abc9c; font-size:16px; }
 	.show .company-info .name a:hover { color:#16a085; }
@@ -156,19 +156,21 @@
 
 	.show .contact-info { float:left; position:relative; padding: 0 0 10px 0; width:560px;  }
 	.show .header { font-weight:900; margin:0 0 10px; float:left; width:100%; }
+		.show .header.margin-top { margin-top:10px; }
+
 	.show .contact-info .header.extra-margin { margin-top:30px; }
 	.show .contact-info .contact-row { float:left; width:500px; padding:6px 0; margin:0 30px; }
 		.show .contact-info .contact-row .type { float:left; width:125px; text-transform:uppercase; font-weight:200; font-size:12px; padding-top:3px; }
 		.show .contact-info .contact-row .text { float:left; width:290px; }
 		.show .contact-info .contact-row .text a.fax-cover { display:inline-block; margin-left:15px; width:auto; text-decoration:underline; font-weight:normal; font-style:italic; }
-		.show .contact-info .contact-row input, .show .contact-info .contact-row textarea { width:260px; }
+		.show .contact-info .contact-row input, .show .contact-info .contact-row textarea { width:350px; }
 	.show .contact-info .contact-row .links { float:left; width:75px; }
 			.show .contact-info .contact-row .links a { float:left; width:100%; text-decoration:underline; font-weight:normal; font-style:italic; }
 
 	.show #theLink {  }
 	.show #edit-contact { position:absolute; bottom:0px; right:0px;  }
 
-	#edit-work, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
+	#edit-work, #edit-name, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
 	#edit-work { float:left; margin-bottom:30px; }
 	.show .edit .contact-row { padding:0px; }
 	.show .edit .contact-row .type { padding-top:10px; width:125px; }
@@ -180,7 +182,7 @@
 
 	input.form-display-field { padding:0px; border:none; margin:0px; }
 	h1 input.form-display-field { color:#2c3445; font-size:28px; font-weight:900; padding-bottom:2px; margin-bottom:1px; width:660px; }
-	.show .page-header .title input.form-display-field { height:auto; color:#2c3445; font-style:italic; width:660px; }
+	.show .page-header .title { height:16px; color:#2c3445; font-style:italic; width:660px; }
 
 	#show-notes { float:left; width:100%; margin-bottom:20px; }
 	.added { float:left; width:100%; color:#9ba6ac; font-style:italic; }
@@ -196,8 +198,8 @@
 
 	.outlined-box { float:left; border-radius:8px; border:2px solid #ced5da; padding:10px 0; margin-bottom:20px; }
 
-	.show .contact-info .contact-row input.first-name { width:80px; }
-	.show .contact-info .contact-row input.last-name { width:153px; }
+	.show .contact-info .contact-row input.first-name { width:150px; }
+	.show .contact-info .contact-row input.last-name { width:173px; }
 
 	.wide input[type="text"].first-name { width:140px; margin-right:3px; }
 	.wide input[type="text"].last-name { width:173px; }

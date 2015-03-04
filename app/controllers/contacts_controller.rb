@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     def index
         @q = Contact.search(params[:q])
         @categories = Category.all
-        @contacts = @q.result(:distinct => true).includes(:consultant).paginate(:page => params[:page], :per_page => 30).order('name, work_company')
+        @contacts = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('name, work_company')
         if params.has_key?(:q) && @contacts.count == 1 
             redirect_to contact_path(@contacts.first(params[:id]))
         else

@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+    autocomplete :tag, :name, :full => true
+
   	def index
   	    @tags = Tag.all
     end

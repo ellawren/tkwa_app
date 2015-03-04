@@ -421,8 +421,10 @@
 	#contact_search .status-options input[type="radio"]:checked+label:after { left:160px; } 
 
 	input.search-name { width:330px; padding:2px 10px 1px; margin-top:7px; margin-right:0px; border-radius:8px; }
-	input.search-name.contact { float:left; width:360px; margin:7px 0 0 30px; padding:2px 10px 1px; }
-	input.search-name.contact.company { margin-top:3px; }
+	input.search-name-first.contact { float:left; width:144px; margin:7px 0 0 30px; padding:2px 10px 1px; }
+	input.search-name-last.contact { float:left; width:160px; margin:7px 0 0 2px; padding:2px 10px 1px; }
+
+	input.search-name.contact.company { float:left; margin:3px 0 0 30px; }
 	input.search-name.patterns { float:left; width:200px; }
 	input.search-name.library { float:left; width:360px; margin:10px 0 0 30px; padding:2px 10px 1px; }
 
@@ -439,7 +441,7 @@
 	.description.scope { margin-bottom:10px; }
 
 	.btn.btn-primary.search-btn { width:180px; margin-top:2px; margin-left:10px; border-radius:8px; font-size:16px; }
-	.btn.btn-primary.search-btn.contact { float:left; height:38px; margin-top:-38px; margin-left:20px; }
+	.btn.btn-primary.search-btn.contact { float:right; height:38px; margin-top:-38px; margin-right:120px; }
 	.btn.btn-primary.search-btn.company { float:left; height:38px; margin-top:3px; margin-left:20px; }
 	.btn.btn-primary.search-btn.patterns { float:left; height:24px; margin-top:13px; }
 	.btn.btn-primary.search-btn.consultants { margin-top:29px; }

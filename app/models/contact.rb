@@ -98,7 +98,7 @@ class Contact < ActiveRecord::Base
 
     def display_name
         if first.present? || last.present?
-            "#{first} #{last}"
+            "#{first} #{last}".strip
         else
             company_name
         end

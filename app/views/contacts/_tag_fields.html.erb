@@ -9,7 +9,7 @@
 		</li>
 	<% else %>
 		<div class="tag-edit">
-			<%= f.text_field :name, class: "tag-input" %>
+			<%= f.autocomplete_field :name, autocomplete_tag_name_tags_path %>
 			<%= f.hidden_field :_destroy %>
 			<%= link_to_remove_fields_tags "  ", f %>
 		<div>
