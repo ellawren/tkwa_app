@@ -170,7 +170,7 @@
 	.show #theLink {  }
 	.show #edit-contact { position:absolute; bottom:0px; right:0px;  }
 
-	#edit-work, #edit-name, #edit-personal, #show-contact-work, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
+	#edit-work, #edit-name, #edit-personal, #show-contact-work, #show-contact-name, #show-contact-personal, #edit-notes, #show-notes-button, #cancel-change-company{ display:none; }
 	#edit-work { float:left; margin-bottom:30px; }
 	.show .edit .contact-row { padding:0px; }
 	.show .edit .contact-row .type { padding-top:10px; width:125px; }

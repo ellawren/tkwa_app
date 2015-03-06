@@ -30,28 +30,6 @@
                 <div class="contact-info">
                     <div class="header margin-top">Name & Title<a id="edit-contact-name" class="text-link">edit</a><a id="show-contact-name" class="text-link">cancel edit</a></div>
 
-                    <!-- SHOW NAME FIELDS -->
-                    <div id="show-name">
-                        <% if @contact.first.present? || @contact.last.present? || @contact.work_title.present? %>
-                            <div class="outlined-box">
-                                <% if @contact.first.present? || @contact.last.present? %>
-                                    <div class="contact-row">
-                                        <div class="type">Name</div>
-                                        <div class="text"><%= @contact.full_name %></div>
-                                    </div>
-                                <% end %>
-
-                                <% if @contact.work_title.present? %>
-                                    <div class="contact-row">
-                                        <div class="type">Title</div>
-                                        <div class="text"><%= @contact.work_title %></div>
-                                    </div>
-                                <% end %>
-                            </div>
-                        <% end %>
-                    </div>
-                    <!-- end show name -->
-
                     <!-- EDIT NAME FIELDS -->
                     <div id="edit-name" class="edit">
                         <div class="contact-row">
@@ -63,7 +41,7 @@
                             <div class="type">title</div>
                             <%= f.text_field :work_title, placeholder: "Title" %>
                         </div>
-                    </div>
+                    </div><!-- end edit name -->
                 </div>
 
                 <div class="header">Company</div>
@@ -241,13 +219,11 @@
         $('#edit-contact-name').click( function() {
             $('#show-contact-name').show();
             $(this).hide();
-            $('#show-name').hide();
             $('#edit-name').show();
         });
         $('#show-contact-name').click( function() {
             $('#edit-contact-name').show();
             $(this).hide();
-            $('#show-name').show();
             $('#edit-name').hide();
         });
         $('#edit-contact-work').click( function() {
