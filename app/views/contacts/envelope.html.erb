@@ -16,7 +16,7 @@
 	   	</div>
 	   	
 	   	<div class="address">
-	   		<textarea class="display" rows="5"><%= @contact.name %>&#013;&#010;<%= @contact.work_company %>&#013;&#010;<%= @contact.work_address %></textarea>
+	   		<textarea class="display" rows="5"><%= @contact.name %><%= "&#013;&#010;#{@contact.company.name}".html_safe if @contact.company.name %><%= "&#013;&#010;#{@contact.address_calc}".html_safe if @contact.address_calc %></textarea>
 	    </div>
 		
     </div> <!-- end content -->

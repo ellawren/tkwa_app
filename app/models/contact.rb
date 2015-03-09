@@ -161,9 +161,21 @@ class Contact < ActiveRecord::Base
 
     def display_address
         if work_address.present?
-            work_address.gsub(/\n/, '<br>').html_safe
+            "#{company.name}<br>#{work_address.gsub(/\n/, '<br>')}".html_safe
+        elsif company.address.present?
+            "#{company.name}<br>#{company.default_address.gsub(/\n/, '<br>')}".html_safe
         elsif home_address.present?
             home_address.gsub(/\n/, '<br>').html_safe
+        end
+    end
+
+    def address_calc
+        if work_address.present?
+            work_address
+        elsif company.default_address.present?
+           company.default_address
+        elsif home_address.present?
+            home_address
         end
     end
 

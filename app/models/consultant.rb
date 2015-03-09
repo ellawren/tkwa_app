@@ -114,6 +114,14 @@ class Consultant < ActiveRecord::Base
 		s
 	end
 
+    def default_address
+        if po_box.present?
+            po_box
+        elsif address.present?
+            address
+        end
+    end
+
     def category_name
         Category.find_by_number(self.category).name
     end
