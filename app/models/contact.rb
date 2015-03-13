@@ -160,13 +160,18 @@ class Contact < ActiveRecord::Base
     end
 
     def display_address
-        if work_address.present?
-            "#{company.name}<br>#{work_address.gsub(/\n/, '<br>')}".html_safe
-        elsif company.address.present?
-            "#{company.name}<br>#{company.default_address.gsub(/\n/, '<br>')}".html_safe
-        elsif home_address.present?
-            home_address.gsub(/\n/, '<br>').html_safe
+        str = ""
+        if company
+            str << "#{company.name}"
         end
+        if work_address.present?
+            str << "#{work_address.gsub(/\n/, '<br>')}".html_safe
+        elsif company && company.address.present?
+            str << "#{company.default_address.gsub(/\n/, '<br>')}".html_safe
+        elsif home_address.present?
+            str << "#{home_address.gsub(/\n/, '<br>').html_safe}"
+        end
+        str
     end
 
     def address_calc
