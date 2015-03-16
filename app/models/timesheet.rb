@@ -162,7 +162,7 @@ class Timesheet < ActiveRecord::Base
         array.push(NonBillableCategory.find(5) ) if self.data_record.edu_target.to_f > 0
         array.push(NonBillableCategory.find(7) ) if self.data_record.mkp_target.to_f > 0
         array.push(NonBillableCategory.find(8) ) if self.data_record.mkg_target.to_f > 0
-        array.push(NonBillableCategory.find(10) ) if self.data_record.mkg_target.to_f > 0
+        array.push(NonBillableCategory.find(10) ) if self.data_record.com_target.to_f > 0
             
         array
     end
