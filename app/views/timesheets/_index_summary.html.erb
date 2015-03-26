@@ -1,7 +1,7 @@
 	<div class="gray-box timesheets">
 		<% if @timesheet.data_record.pay_type == "Salary" %>
 
-			<% if @timesheet.data_record.stp_target || @timesheet.data_record.mtg_target || @timesheet.data_record.adm_target || @timesheet.data_record.cmp_target || @timesheet.data_record.edu_target || @timesheet.data_record.sus_target || @timesheet.data_record.mkp_target || @timesheet.data_record.mkg_target %>
+			<% if @timesheet.data_record.stp_target || @timesheet.data_record.mtg_target || @timesheet.data_record.adm_target || @timesheet.data_record.cmp_target || @timesheet.data_record.edu_target || @timesheet.data_record.sus_target || @timesheet.data_record.mkp_target || @timesheet.data_record.mkg_target || @timesheet.data_record.com_target || @timesheet.data_record.brg_target %>
 				<div class="stats non-billable">
 					<label class="input-label">Remaining Non-Billable Hours</label>
 					<ul class="nb-targets">

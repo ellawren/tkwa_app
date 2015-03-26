@@ -107,6 +107,10 @@ class Timesheet < ActiveRecord::Base
         non_billable_entries.where(timesheet_id: self.id, user_id: user_id, category: "10").sum(:total)
     end
 
+    def nb_brg
+        non_billable_entries.where(timesheet_id: self.id, user_id: user_id, category: "11").sum(:total)
+    end
+
     # SUMMARY
     def ytd_vacation
         Timesheet.where(year: year, user_id: user_id, week: 1..week).sum(:vacation_hours_saved)
@@ -152,6 +156,10 @@ class Timesheet < ActiveRecord::Base
         self.data_record.com_target.to_f - Timesheet.where(user_id: user.id, year: year, week: data_record.start_week..week).sum(&:nb_com).to_f
     end
 
+    def brg
+        self.data_record.com_target.to_f - Timesheet.where(user_id: user.id, year: year, week: data_record.start_week..week).sum(&:nb_brg).to_f
+    end
+
     def nb_categories
         array = []
         
@@ -163,6 +171,7 @@ class Timesheet < ActiveRecord::Base
         array.push(NonBillableCategory.find(7) ) if self.data_record.mkp_target.to_f > 0
         array.push(NonBillableCategory.find(8) ) if self.data_record.mkg_target.to_f > 0
         array.push(NonBillableCategory.find(10) ) if self.data_record.com_target.to_f > 0
+        array.push(NonBillableCategory.find(11) ) if self.data_record.brg_target.to_f > 0
             
         array
     end

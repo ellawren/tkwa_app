@@ -852,11 +852,11 @@
 	.modal-table.data-table .custom-select.number { width:60px; }
 	.modal-table.data-table .custom-select.pay-type { width:100px; }
 	.modal-table.data-table .custom-select.name { width:190px; }
-	.modal-table.data-table td.number-input { width:75px; text-align:left; padding-left:3px; }
-	.modal-table.data-table td.number-input input { width:46px; }
-	.modal-table.data-table.targets { width:860px; }
+	.modal-table.data-table td.number-input { width:60px; text-align:left; padding-left:3px; }
+	.modal-table.data-table td.number-input input { width:38px; }
+	.modal-table.data-table.targets { width:810px; }
 	.modal-table.data-table.targets th { padding-left:4px; }
-	.modal-table.data-table.targets td.first-spacer { width:185px; }
+	.modal-table.data-table.targets td.first-spacer { max-width:135px; min-width:135px; }
 
 
 	/* vacation records modal */
