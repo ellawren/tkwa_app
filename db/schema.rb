@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150326175127) do
+ActiveRecord::Schema.define(:version => 20150331215639) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -215,7 +215,6 @@ ActiveRecord::Schema.define(:version => 20150326175127) do
     t.decimal  "mkp_target",        :precision => 6, :scale => 2
     t.decimal  "mkg_target",        :precision => 6, :scale => 2
     t.decimal  "com_target",        :precision => 6, :scale => 2
-    t.decimal  "brg_target",        :precision => 6, :scale => 2
   end
 
   add_index "data_records", ["user_id", "year"], :name => "index_data_records_on_user_id_and_year", :unique => true

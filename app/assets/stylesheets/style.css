@@ -65,6 +65,7 @@
 	ul.link-list li { margin-bottom:2px; }
 	a.underline { text-decoration:underline; color:#1abc9c; cursor:pointer; font-weight:400; }
 	a.underline:hover { color:#16a085; }
+	a.form-link { display:block; margin:5px 0 5px 150px; }
 
 	/* transitions */
 
