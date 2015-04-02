@@ -1,6 +1,6 @@
 worker_processes Integer(ENV["WEB_CONCURRENCY"] || 2)
 listen ENV['PORT'], :backlog => 200
-timeout 15
+timeout 30
 preload_app true
 
 before_fork do |server, worker|
