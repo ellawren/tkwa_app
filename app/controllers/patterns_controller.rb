@@ -11,7 +11,7 @@ class PatternsController < ApplicationController
 
 	def index
 		@q = Pattern.search(params[:q])
-	    @patterns = @q.result(:distinct => true)
+	    @patterns = @q.result(:distinct => true).order("project_id ASC, number ASC")
 	end
 
 	def all
