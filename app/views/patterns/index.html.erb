@@ -8,8 +8,15 @@
 
 	<%= search_form_for @q do |f| %>
 
-		<%= f.collection_select(:project_id_eq, Project.with_patterns, :id, :name, { :include_blank => true, :prompt => 'Project Name' }, { :class => "pattern-name custom-select" } ) %>
-    <%= f.text_field :name_cont, class: "search-name", placeholder: "Pattern Name" %>   
+		<div class="search-fields">
+			<div class="search-by first">Project</div>
+			<%= f.collection_select(:project_id_eq, Project.with_patterns, :id, :name, { :include_blank => true, :prompt => 'Project Name' }, { :class => "pattern-name custom-select" } ) %>
+			<div class="search-by">Pattern Name</div>
+    		<%= f.text_field :name_cont, class: "search-name", placeholder: "Pattern Name" %>   
+    		<div class="search-by">Issue/Solution Text</div>
+    		<%= f.text_field :issue_or_solution_cont, class: "search-name", placeholder: "Issue/Solution Text" %>   
+    	</div>
+
 		<%= f.submit "Search", class: "btn btn-primary search-btn patterns" %>
 			     
 	<% end %>
@@ -22,7 +29,7 @@
 		<div class="search-results">No matches.<br><a href="/patterns">Clear search and try again.</a></div>
 	<% else %>
 
-	<h2>Search Results</h2>
+	<h2>Search Results (<%= @patterns.count %>) <a class="reset" href="/patterns">reset search</a></h2>
 
 		<ul id="pattern-tiles" >
 		        <% @patterns.each do |param| %>

@@ -9,6 +9,7 @@
 <div class="gray-box patterns">
 	<%= collection_select(:search, :select, Project.with_patterns, :id, :name, { :include_blank => true, :prompt => "Select Project..." }, { :class => "pattern-name custom-select" } ) %>
 	<a id="search-patterns" class="btn btn-primary search-btn patterns">Show Patterns</a>
+
 </div>
 
 
@@ -19,9 +20,9 @@
         <%= link_to "Add A New Pattern", new_pattern_path, :class => "tile-label" %>
     </div>
 
-    <div class="tile-box disabled">
-        <%= link_to image_tag("patterns-small.png", :alt => "browse-patterns", :class => "round-icon"), "" %>
-        <%= link_to "Search Patterns", "", :class => "tile-label" %>
+    <div class="tile-box">
+        <%= link_to image_tag("patterns-small.png", :alt => "browse-patterns", :class => "round-icon"), patterns_path %>
+        <%= link_to "Search Patterns", patterns_path, :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
