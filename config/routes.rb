@@ -147,6 +147,7 @@ TkwaApp::Application.routes.draw do
     resources :employee_roles
     resources :globals, :only => [:index, :create, :update]
     resources :imperatives
+    resources :keywords
     resources :lb_strategy_groups
     resources :lb_strategies
     resources :petals

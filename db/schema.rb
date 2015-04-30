@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150331215639) do
+ActiveRecord::Schema.define(:version => 20150430162030) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -322,6 +322,19 @@ ActiveRecord::Schema.define(:version => 20150331215639) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "keywords", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "keywords_patterns", :id => false, :force => true do |t|
+    t.integer "keyword_id", :null => false
+    t.integer "pattern_id", :null => false
+  end
+
+  add_index "keywords_patterns", ["keyword_id", "pattern_id"], :name => "index_keywords_patterns_on_keyword_id_and_pattern_id", :unique => true
 
   create_table "lb_strategies", :force => true do |t|
     t.integer  "lb_strategy_group_id"

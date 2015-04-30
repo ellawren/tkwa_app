@@ -34,6 +34,8 @@ class Pattern < ActiveRecord::Base
     has_many :pattern_images, :dependent => :destroy
     accepts_nested_attributes_for :pattern_images, :allow_destroy => true, :reject_if => lambda { |a| a[:pattern_id].blank? || a[:photo].blank? }
 
+    has_and_belongs_to_many :keywords
+
 	has_attached_file :diagram, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "200x200>" }
 	has_attached_file :photo, :styles => { :large => "600x600>", :medium => "300x300>", :thumb => "200x200>" }
 

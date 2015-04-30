@@ -121,6 +121,20 @@ $(document).ready(function() {
     });
     //---
 
+     // show keywords on pattern page
+    $('#show-keywords').click( function() {
+        $('.keywords').slideDown("slow");
+        $('#show-keywords').hide();
+        $('#hide-keywords').show();
+     });
+
+    $('#hide-keywords').click( function() {
+        $('.keywords').slideUp("slow");
+        $('#show-keywords').show();
+        $('#hide-keywords').hide();
+    });
+    //---
+
     // select primary address on consultant page
     $('#street-primary').click( function() {
         if ( $(this).hasClass("selected") ) {
