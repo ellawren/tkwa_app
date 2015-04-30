@@ -127,8 +127,9 @@ img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; bo
 
 /* keywords */
 a#show-keywords, a#hide-keywords { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
-a#hide-keywords { display:none; }
-.keywords { display:none; float:left; width:100%; }
+/*a#hide-keywords { display:none; }*/
+a#show-keywords { display:none; }
+.keywords { /*display:none;*/ float:left; width:100%; }
 .keywords label { float:left; width:155px; }
 
 /* Print Letter */
