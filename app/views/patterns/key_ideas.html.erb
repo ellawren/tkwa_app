@@ -1,13 +1,13 @@
 <% provide :title, "Patterns" %>
   <div class="page-header">
-    <h1>Key Ideas</h1>
+    <h1 class="full">Key Ideas<%= link_to "edit keywords", keywords_path, class: "btn right" %><%= link_to "edit categories", key_categories_path, class: "btn right" %></h1>
   </div>
 
 <% KeyCategory.all.each do |k| %>
-	<h2><%= k.name %></h2>
+	<h2 class="first"><%= k.name %></h2>
 
-	<ul class="link-list">
-		<% k.keywords.each do |param| %>
+	<ul class="key-idea-list">
+		<% k.keywords.order("name ASC").each do |param| %>
 			<li>
 				<%= link_to param.name, keyword_path(param.id) %>
 			</li>

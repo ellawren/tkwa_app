@@ -29,7 +29,7 @@ class KeywordsController < ApplicationController
         @keyword = Keyword.find(params[:id])
         if @keyword.update_attributes(params[:keyword])
             flash[:success] = "Keyword updated!"
-            redirect_to keywords_path
+            redirect_to keyword_path(@keyword)
         else
             render 'edit'
         end

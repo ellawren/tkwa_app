@@ -30,6 +30,8 @@
 	.page-header.auto { height:auto; }
 	.page-header h1 { font-size:28px; color:#16a085; display:inline-block; width:660px; margin:0px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 		.page-header.timesheet h1 { width:680px; }
+		.page-header h1.full { width:100%; }
+
 	.page-header h1.blue { color:#34495e; }
 	.page-header h1 .light { font-weight:200; margin-right:10px; color:#1abc9c; }
 	.page-header h1 .light.small { font-size:18px; }
@@ -66,6 +68,7 @@
 	a.underline { text-decoration:underline; color:#1abc9c; cursor:pointer; font-weight:400; }
 	a.underline:hover { color:#16a085; }
 	a.form-link { display:block; margin:5px 0 5px 150px; }
+	a.btn.right { float:right; margin-left:3px; }
 
 	/* transitions */
 
@@ -77,7 +80,7 @@
 	.timesheets .table-body .project-cell, .edit-me, input#reopen-timesheet, #documents a.circle .glyphicon, .employee-list li,
 	.employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet, .timesheets.table tr:hover td,
 	.tracking-table tbody tr:hover td, .half .row, .narrow.recommendations .add-image .text, table.expense-reports-index tr,
-	table.expense-reports tr, .print-header ul li
+	table.expense-reports tr, .print-header ul li, ul.key-idea-list li 
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 	/* stuff */
