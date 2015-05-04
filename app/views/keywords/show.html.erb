@@ -1,6 +1,6 @@
 <h1><%= @keyword.name %><%= link_to "edit category", edit_keyword_path(@keyword), class: "btn right" %></h1>
 
-<h2>Patterns with this keyword</h2>
+<h2>Patterns with this keyword (<%= @keyword.patterns.count %>)</h2>
 
 <ul id="pattern-tiles" >
 	<% @keyword.patterns.each do |param| %>
