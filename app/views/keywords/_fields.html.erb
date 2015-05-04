@@ -6,7 +6,9 @@
     <div class="input-row">
         <%= f.label(:key_category_id, "Category", class: "input-label") %>
         <%= f.collection_select(:key_category_id, KeyCategory.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
-        <%= link_to "view", edit_key_category_path(@keyword.key_category_id), class: "btn input-button" %>
+        <% if @keyword.key_category_id.present? %>
+        	<%= link_to "view", edit_key_category_path(@keyword.key_category_id), class: "btn input-button" %>
+        <% end %>
     </div>
 
 </div>
