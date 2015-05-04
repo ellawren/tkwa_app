@@ -3,4 +3,10 @@
         <%= f.label(:name, "Keyword", class: "input-label") %>
         <%= f.text_field :name %>
     </div>
+    <div class="input-row">
+        <%= f.label(:key_category_id, "Category", class: "input-label") %>
+        <%= f.collection_select(:key_category_id, KeyCategory.all, :id, :name, { :include_blank => true }, { :class => "project-name chzn-select custom-select" } ) %>
+        <%= link_to "view", edit_key_category_path(@keyword.key_category_id), class: "btn input-button" %>
+    </div>
+
 </div>

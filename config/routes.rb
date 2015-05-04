@@ -102,6 +102,7 @@ TkwaApp::Application.routes.draw do
     match '/patterns/by_project/:id/print',   to: 'patterns#print', as: 'patterns_print'
     match '/patterns/by_project/:id/print_tabloid',   to: 'patterns#print_tabloid', as: 'patterns_print_tabloid'
     match '/patterns/by_project/:id/simple',   to: 'patterns#simple', as: 'patterns_simple'
+    match '/patterns/key_ideas',   to: 'patterns#key_ideas', as: 'patterns_key_ideas'
     resources :patterns do
         resources :pattern_images
     end
@@ -148,6 +149,7 @@ TkwaApp::Application.routes.draw do
     resources :globals, :only => [:index, :create, :update]
     resources :imperatives
     resources :keywords
+    resources :key_categories
     resources :lb_strategy_groups
     resources :lb_strategies
     resources :petals

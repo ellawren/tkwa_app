@@ -1,0 +1,16 @@
+<% provide :title, "New Key Category" %>
+<%= link_to "Key Categories", key_categories_path, class: "header-label" %>
+<div class="page-header">
+    <h1>New Key Category</h1>
+</div>
+
+<%= form_for @key_category do |f| %>
+
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'fields', f: f %>
+
+    <div class="save-row">
+        <%= f.submit "Create Key Category", class: "btn btn-primary save-btn" %>
+    </div>
+
+<% end %>

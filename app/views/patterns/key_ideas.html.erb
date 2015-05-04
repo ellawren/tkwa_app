@@ -1,0 +1,20 @@
+<% provide :title, "Patterns" %>
+  <div class="page-header">
+    <h1>Key Ideas</h1>
+  </div>
+
+<% KeyCategory.all.each do |k| %>
+	<h2><%= k.name %></h2>
+
+	<ul class="link-list">
+		<% k.keywords.each do |param| %>
+			<li>
+				<%= link_to param.name, keyword_path(param.id) %>
+			</li>
+		<% end %>
+	</ul>	
+
+<% end %>
+
+
+

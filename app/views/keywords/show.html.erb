@@ -1,1 +1,12 @@
 <h1><%= @keyword.name %></h1>
+
+
+<h2>Patterns with this keyword</h2>
+
+    <ul class="link-list">
+	<% @keyword.patterns.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_pattern_path(param.id) %>
+			</li>
+	<% end %>
+	</ul>	

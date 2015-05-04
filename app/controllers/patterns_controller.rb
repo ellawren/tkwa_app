@@ -18,6 +18,10 @@ class PatternsController < ApplicationController
 	    @patterns = Pattern.by_project.paginate(:page => params[:page], :per_page => 30)
 	end
 
+	def key_ideas
+	end
+
+
 	def show
 	    @pattern = Pattern.find(params[:id])
 	end
