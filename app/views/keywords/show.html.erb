@@ -1,12 +1,9 @@
 <h1><%= @keyword.name %><%= link_to "edit category", edit_keyword_path(@keyword), class: "btn right" %></h1>
 
-
 <h2>Patterns with this keyword</h2>
 
-    <ul class="link-list">
+<ul id="pattern-tiles" >
 	<% @keyword.patterns.each do |param| %>
-			<li>
-				<%= link_to param.name, edit_pattern_path(param.id) %>
-			</li>
+			<%= render 'pattern', :f => param %>
 	<% end %>
-	</ul>	
+</ul>	

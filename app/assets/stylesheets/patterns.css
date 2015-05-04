@@ -134,7 +134,7 @@ a#show-keywords { display:none; }
 
 ul.key-idea-list { float:left; display:block; margin-left:0px; }
 ul.key-idea-list li { list-style:none; display:block; float:left; }
-ul.key-idea-list li a { display:block; float:left; font-weight:200; font-size:16px; line-height:20px; width:90px; height:40px; border:2px solid #e1e6eb; margin:0 3px 3px 0; border-radius:8px; padding:20px 15px 20px 15px; text-align:center; }
+ul.key-idea-list li a { display:block; float:left; font-weight:200; font-size:16px; line-height:20px; width:90px; height:40px; border:2px solid #e1e6eb; margin:0 3px 3px 0; border-radius:8px; padding:20px 10px; text-align:center; }
 ul.key-idea-list li a:hover { background-color:#f4f6f9; border-color:#1abc9c; }
 
 /* Print Letter */
