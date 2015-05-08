@@ -606,9 +606,9 @@
 	.photo .image-name { float:left; width:180px; padding:6px 6px 6px 10px; border:2px solid #e1e6eb; border-radius:6px; min-height:20px; color:#16a085; font-size:13px; margin-right:0px; }
 	.photo .add-image { float:left; margin-left:160px; margin-top:5px; }
 	.photo .add-image input { position:absolute; top:-30px; left:-5px; height:60px; cursor:pointer; }
-	.photo .add-image .text { line-height:34px; }
-	.photo label[for="user_delete_photo"] { position:static; color:#34495e; text-align:center; float:left; background-color:#bcc6cc; font-size:12px; overflow:hidden; width:118px; height:24px; padding-top:3px; border-radius:8px; margin:4px 0 0 160px; }
-	.photo .delete-photo input[type="checkbox"] { position:absolute; top:-20px; }
+	.photo .add-image .text { line-height:20px; }
+	.photo label[for="user_delete_photo"], .photo label[for="keyword_delete_image"] { position:static; color:#34495e; text-align:center; float:left; background-color:#bcc6cc; font-size:12px; overflow:hidden; width:118px; height:24px; padding-top:3px; border-radius:8px; margin:4px 0 0 160px; }
+	.photo .delete-photo input[type="checkbox"], .photo .delete-image input[type="checkbox"] { position:absolute; top:-20px; }
 	.photo .delete-photo:hover { background-color:#e1e6eb; }
 
 

@@ -11,4 +11,38 @@
         <% end %>
     </div>
 
+    <div class="narrow photo">
+        <div class="input-row">
+            <label class="input-label">Image</label>
+            <div class="image-name" id="image-name"><%= f.object.image_file_name %></div>
+                    <div class="add-image" >
+                        <%= f.file_field :image %>
+                        <div class="text">Change Image</div>
+                    </div>
+                    <label for="keyword_delete_image" class="delete-image">
+                        Delete Image
+                        <%= f.check_box(:delete_image) %>
+                    </label>
+
+        </div>
+    </div>  
+
 </div>
+
+<script>
+    $('#keyword_image').live('change', function(){
+        text = $(this).val().replace(/C:\\fakepath\\/i, '');
+        $('#image-name').html(text);
+        $('#image-placeholder').empty();
+    });
+   
+    $('#keyword_delete_image').live('change', function(){
+        if($(this).is(':checked')){
+            $('#image-placeholder').empty();
+            $('#image-name').empty();
+            $('label[for="keyword_delete_image"]').addClass('checked');
+        } else {
+            location.reload();
+        }
+    });
+</script>

@@ -4,7 +4,7 @@
     <h1><%= @keyword.name %></h1>
 </div>
 
-<%= form_for @keyword do |f| %>
+<%= form_for(@keyword, :multipart => true, class: "form-horizontal" ) do |f| %>
 
     <%= render 'shared/error_messages', object: f.object %>
     <%= render 'fields', f: f %>

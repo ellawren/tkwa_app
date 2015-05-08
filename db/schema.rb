@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150504172929) do
+ActiveRecord::Schema.define(:version => 20150508142912) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -331,9 +331,13 @@ ActiveRecord::Schema.define(:version => 20150504172929) do
 
   create_table "keywords", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "key_category_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "keywords_patterns", :id => false, :force => true do |t|
