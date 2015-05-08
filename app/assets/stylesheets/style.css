@@ -81,7 +81,7 @@
 	.timesheets .table-body .project-cell, .edit-me, input#reopen-timesheet, #documents a.circle .glyphicon, .employee-list li,
 	.employee-list li .link a.btn, .jqte_tool, input#close-timesheet, input#reopen-timesheet, .timesheets.table tr:hover td,
 	.tracking-table tbody tr:hover td, .half .row, .narrow.recommendations .add-image .text, table.expense-reports-index tr,
-	table.expense-reports tr, .print-header ul li, ul.key-idea-list li 
+	table.expense-reports tr, .print-header ul li, ul.key-idea-list li, .user-round-med 
  	{ -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; }
 
 	/* stuff */
