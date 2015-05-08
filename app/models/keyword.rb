@@ -18,7 +18,7 @@ class Keyword < ActiveRecord::Base
 	has_and_belongs_to_many :patterns
 	belongs_to :key_category
 
-	has_attached_file :image, :styles => { :large => "300x300#", :medium => "210x210#", :thumb => "80x80#"}, :default_url => "generic_avatar_:style.png"
+	has_attached_file :image, :styles => { :large => "300x300#", :medium => "210x210#", :thumb => "80x80#"}, :default_url => "image_:style.png"
     attr_accessor :delete_image
     before_validation { image.clear if delete_image == '1' }
 

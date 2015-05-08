@@ -1,7 +1,7 @@
 <% provide :title, "New Keyword" %>
-<%= link_to "Keywords", keywords_path, class: "header-label" %>
+<%= link_to "Key Ideas", keywords_path, class: "header-label" %>
 <div class="page-header">
-    <h1>New Keyword</h1>
+    <h1>New Key Idea</h1>
 </div>
 
 <%= form_for(@keyword, :multipart => true, class: "form-horizontal" ) do |f| %>
@@ -10,7 +10,7 @@
     <%= render 'fields', f: f %>
 
     <div class="save-row">
-        <%= f.submit "Create Keyword", class: "btn btn-primary save-btn" %>
+        <%= f.submit "Create Key Idea", class: "btn btn-primary save-btn" %>
     </div>
 
 <% end %>

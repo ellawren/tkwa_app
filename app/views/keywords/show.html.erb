@@ -1,4 +1,8 @@
-<h1><%= @keyword.name %><%= link_to "edit category", edit_keyword_path(@keyword), class: "btn right" %></h1>
+<div class="page-header keyword">
+    <%= image_tag @keyword.image.url(:thumb), class: "user-round" %><h1><%= @keyword.name %></h1>
+    <%= link_to "edit category", edit_keyword_path(@keyword), class: "btn right" %>
+</div>
+
 
 <h2>Patterns with this keyword (<%= @keyword.patterns.count %>)</h2>
 

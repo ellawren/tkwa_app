@@ -1,6 +1,6 @@
 <% provide :title, "Patterns" %>
   <div class="page-header">
-    <h1 class="full">Key Ideas<%= link_to "edit keywords", keywords_path, class: "btn right" %><%= link_to "edit categories", key_categories_path, class: "btn right" %></h1>
+    <h1 class="full">Key Ideas<%= link_to "edit key ideas", keywords_path, class: "btn right" %><%= link_to "edit categories", key_categories_path, class: "btn right" %></h1>
   </div>
 
 <% KeyCategory.all.each do |k| %>
@@ -9,6 +9,7 @@
 	<ul class="key-idea-list">
 		<% k.keywords.order("name ASC").each do |param| %>
 			<li>
+				<%= image_tag param.image.url(:medium), class: "user-round-med" %>
 				<%= link_to param.name, keyword_path(param.id) %>
 			</li>
 		<% end %>

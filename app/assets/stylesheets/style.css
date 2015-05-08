@@ -69,7 +69,7 @@
 	a.underline { text-decoration:underline; color:#1abc9c; cursor:pointer; font-weight:400; }
 	a.underline:hover { color:#16a085; }
 	a.form-link { display:block; margin:5px 0 5px 150px; }
-	a.btn.right { float:right; margin-left:3px; }
+	a.btn.right { float:right; margin-left:3px; margin-top:14px; }
 
 	/* transitions */
 
@@ -601,7 +601,9 @@
 	.image-box input[type="checkbox"] { position:absolute; left:-20px; width:100%; height:100%; }
 	.user-round { border-radius:40px; border:2px solid #bcc6cc; margin:-6px 10px 20px 0; }
 	.user-round-sm { width:50px; height:50px; border-radius:50px; border:2px solid #bcc6cc; margin:-6px 10px 20px 0; }
+
 	.custom-select.birth-month { width:104px; }
+
 	.custom-select.birth-day { width:80px; margin-left:4px; }
 	.photo { position:relative; overflow:hidden; }
 	.photo .image-name { float:left; width:180px; padding:6px 6px 6px 10px; border:2px solid #e1e6eb; border-radius:6px; min-height:20px; color:#16a085; font-size:13px; margin-right:0px; }
