@@ -8,14 +8,18 @@
 						<div class="title"><%= link_to f.name, edit_pattern_path(f) %></div>
 						<div class="issue"><%= simple_format f.issue %></div>
 						<div class="solution"><%= simple_format f.solution %></div>
-						<% if f.diagram_file_name %>
-							<div class="diagram">
-		                        <%= image_tag f.diagram.url(:medium) %>
-							</div>
-						<% end %>
-						<% if f.photo_file_name %>
-							<div class="photo">
-		                        <%= image_tag f.photo.url(:medium) %>
+						<% if f.diagram_file_name || f.photo_file_name %>
+							<div class="pattern-image-box">
+								<% if f.diagram_file_name %>
+									<div class="diagram">
+				                        <%= image_tag f.diagram.url(:medium) %>
+									</div>
+								<% end %>
+								<% if f.photo_file_name %>
+									<div class="photo">
+				                        <%= image_tag f.photo.url(:medium) %>
+									</div>
+								<% end %>
 							</div>
 						<% end %>
 					</li>

@@ -124,12 +124,14 @@ $(document).ready(function() {
      // show keywords on pattern page
     $('#show-keywords').click( function() {
         $('.keywords').slideDown("slow");
+        $('.keyword-icons').slideUp("slow");
         $('#show-keywords').hide();
         $('#hide-keywords').show();
      });
 
     $('#hide-keywords').click( function() {
         $('.keywords').slideUp("slow");
+        $('.keyword-icons').slideDown("slow");
         $('#show-keywords').show();
         $('#hide-keywords').hide();
     });

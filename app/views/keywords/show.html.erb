@@ -1,10 +1,12 @@
+<%= link_to "Key Ideas", patterns_key_ideas_path, class: "header-label" %>
+
 <div class="page-header keyword">
     <%= image_tag @keyword.image.url(:thumb), class: "user-round" %><h1><%= @keyword.name %></h1>
     <%= link_to "edit category", edit_keyword_path(@keyword), class: "btn right" %>
 </div>
 
 
-<h2>Patterns with this keyword (<%= @keyword.patterns.count %>)</h2>
+<h2 class="first">Patterns with this keyword (<%= @keyword.patterns.count %>)</h2>
 
 <ul id="pattern-tiles" >
 	<% @keyword.patterns.each do |param| %>

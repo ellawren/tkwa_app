@@ -54,7 +54,7 @@ input.uploadFile { display:none; }
 
 /* pattern browser */
 
-ul#pattern-tiles { float:left; width:100%; margin:20px 0 0 0; list-style:none; }
+ul#pattern-tiles { float:left; width:100%; margin:0; list-style:none; }
 ul#pattern-tiles li { float:left; width:92%; height:auto; padding:24px 4%; margin:0 33px 10px 0; border:2px solid #e1e6eb; border-radius:8px; }
 ul#pattern-tiles li .header { float:left; width:100%; display:block; margin-bottom:8px; }	
 	ul#pattern-tiles li .project { float:left; width:auto; height:20px; padding:1px 8px; margin:0 0 6px 0; background-color:#f3f6f9; font-size:10px; font-weight:300; text-transform:uppercase; }
@@ -76,6 +76,8 @@ ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before  { width:
 	ul#pattern-tiles li .solution:before { content:"solution"; border-color:#1abc9c; color:#1abc9c; }
 	ul#pattern-tiles li .diagram:before { content:"diagram"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
 	ul#pattern-tiles li .photo:before { content:"photo"; text-align:left; margin-bottom:15px; border-color:#0ba0d4; color:#0ba0d4; }
+
+ul#pattern-tiles .pattern-image-box { float:left; width:200px; }
 
 ul#pattern-tiles li .diagram, ul#pattern-tiles li .photo { float:left; width:200px; max-height:260px; overflow:hidden; clear:all; text-align:center; margin-bottom:8px; }
 ul#pattern-tiles li .diagram img, ul#pattern-tiles li .photo img { width:200px; max-height:200px; width:auto; height:auto; }
@@ -133,9 +135,9 @@ img.pattern-image { float:left; width:300px; height:auto; margin-bottom:10px; bo
 
 /* keywords */
 a#show-keywords, a#hide-keywords { cursor:pointer; font-weight:400; font-size:13px; display:inline-block; margin-left:6px; color:#9ba6ac; font-style:italic; }
-/*a#hide-keywords { display:none; }*/
-a#show-keywords { display:none; }
-.keywords { /*display:none;*/ float:left; width:100%; }
+a#hide-keywords { display:none; }
+
+.keywords { display:none; float:left; width:100%; }
 .keywords label { float:left; width:155px; }
 
 ul.key-idea-list { float:left; display:block; margin-left:0px; }
@@ -145,6 +147,8 @@ ul.key-idea-list li a:hover { color:#1abc9c; }
 ul.key-idea-list li a:hover .user-round-med { border-color:#1abc9c; }
 ul.key-idea-list li a .text { display:block; padding-left:6px; }
 .user-round-med { border-radius:100px; border:2px solid #bcc6cc; margin-bottom:4px;  }
+
+.keyword-icons { float:left; width:100%; }
 
 
 /* Print Letter */

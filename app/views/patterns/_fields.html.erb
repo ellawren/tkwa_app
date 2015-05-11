@@ -119,7 +119,7 @@
             
         </div>
 
-        <h2 class="patterns">Key Ideas <a id="show-keywords">show</a><a id="hide-keywords">hide</a></h2>
+        <h2 class="patterns">Key Ideas <a id="show-keywords">edit</a><a id="hide-keywords">cancel edit</a></h2>
 
         <div class="keywords">
             <%= hidden_field_tag "pattern[keyword_ids][]", nil %>
@@ -129,6 +129,19 @@
                     <%= k.name %>
                 </label>
             <% end %>
+        </div>
+
+        <div class="keyword-icons">
+            <ul class="key-idea-list">
+                <% @pattern.keywords.order("name ASC").each do |param| %>
+                    <li>
+                        <%= link_to keyword_path(param.id) do %>
+                            <%= image_tag param.image.url(:medium), class: "user-round-med" %>
+                            <div class="text"><%= param.name %></div>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>   
         </div>
 
         <h2 class="patterns">Background Data</h2>
