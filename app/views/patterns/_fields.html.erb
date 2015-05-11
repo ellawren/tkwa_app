@@ -123,11 +123,17 @@
 
         <div class="keywords">
             <%= hidden_field_tag "pattern[keyword_ids][]", nil %>
-            <% Keyword.order("name ASC").each do |k| %>
-                <label class="checkbox">
-                    <%= check_box_tag "pattern[keyword_ids][]", k.id, @pattern.keyword_ids.include?(k.id), id: dom_id(k), data_toggle: "checkbox" %>
-                    <%= k.name %>
-                </label>
+            <% KeyCategory.all.each do |cat| %>
+                <div class="column-fifth">
+                    <h2 class="first"><%= cat.name %></h2>
+
+                    <% cat.keywords.order("name ASC").each do |k| %>
+                        <label class="checkbox">
+                            <%= check_box_tag "pattern[keyword_ids][]", k.id, @pattern.keyword_ids.include?(k.id), id: dom_id(k), data_toggle: "checkbox" %>
+                            <%= k.name %>
+                        </label>
+                    <% end %>
+                </div>
             <% end %>
         </div>
 
