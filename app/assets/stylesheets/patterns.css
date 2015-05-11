@@ -80,6 +80,12 @@ ul#pattern-tiles li .diagram:before, ul#pattern-tiles li .photo:before  { width:
 ul#pattern-tiles li .diagram, ul#pattern-tiles li .photo { float:left; width:200px; max-height:260px; overflow:hidden; clear:all; text-align:center; margin-bottom:8px; }
 ul#pattern-tiles li .diagram img, ul#pattern-tiles li .photo img { width:200px; max-height:200px; width:auto; height:auto; }
 
+/* no diagram */
+ul#pattern-tiles li.no-diagram .issue, ul#pattern-tiles li.no-diagram .solution { width:410px;  }
+ul#pattern-tiles li.no-diagram .solution { margin-right:0px; }
+ul#pattern-tiles li.no-diagram .diagram, ul#pattern-tiles li.no-diagram .photo { display:none; }
+ul#pattern-tiles li.no-diagram .issue:before, ul#pattern-tiles li.no-diagram .solution:before { width:410px; }
+
 h1.pattern-header { color:#344953; font-weight:300; }
 h1 .pattern-number, h1 .pattern-name { border:none; border-radius:6px; font-size:22px; color:#344953; padding:0px 3px; -webkit-transition: all 0.30s ease-in-out; -moz-transition: all 0.30s ease-in-out; -ms-transition: all 0.30s ease-in-out; -o-transition: all 0.30s ease-in-out; } 
 h1 .pattern-number { width:30px; font-weight:300; }

@@ -1,16 +1,21 @@
 
-		            <li>
+		            <li class="<%= "no-diagram" if f.diagram_file_name.blank? && f.photo_file_name.blank? %>">
 						<div class="header">
 							<div class="project"><%= link_to Project.find(f.project_id).name, patterns_by_project_path(f.project_id) %></div>
 							<div class="detail">Written on <%= f.created_at.strftime("%B %-d, %Y") %><% if f.author.present? %> by <%= f.author %><% end %></div>
 						</div>
 						<div class="number"><%= f.number %> /</div>
 						<div class="title"><%= link_to f.name, edit_pattern_path(f) %></div>
-						<div class="issue"><%= f.issue %></div>
-						<div class="solution"><%= f.solution %></div>
-						<div class="diagram">
-							<% if f.diagram_file_name %>
-		                        <%= image_tag f.diagram.url(:medium), class: "diagram" %>
-		                    <% end %>
-						</div>
+						<div class="issue"><%= simple_format f.issue %></div>
+						<div class="solution"><%= simple_format f.solution %></div>
+						<% if f.diagram_file_name %>
+							<div class="diagram">
+		                        <%= image_tag f.diagram.url(:medium) %>
+							</div>
+						<% end %>
+						<% if f.photo_file_name %>
+							<div class="photo">
+		                        <%= image_tag f.photo.url(:medium) %>
+							</div>
+						<% end %>
 					</li>

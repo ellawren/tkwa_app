@@ -1,5 +1,5 @@
  
-<li id="<%= f.object.id %>" class="pattern" name="pattern-<%= f.object.id %>">
+<li id="<%= f.object.id %>" class="pattern <%= "no-diagram" if f.object.diagram_file_name.blank? && f.object.photo_file_name.blank? %>" name="pattern-<%= f.object.id %>">
     <div class="view-fields">
         <div class="header">
             <div class="number"><%= f.object.number %> /</div>
