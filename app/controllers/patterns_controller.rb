@@ -43,7 +43,10 @@ class PatternsController < ApplicationController
     	respond_to do |format|
 	      	format.html { render :layout => 'patterns-print' }
 	      	format.pdf do
-	        	render :pdf => "#{@project.name} Patterns", :layout => 'pdf.html.erb' 
+	        	#this was the original line, refers to wicked pdf layout so no longer applicable:
+	        	#render :pdf => "#{@project.name} Patterns", :layout => 'pdf.html.erb' 
+	        	pdf = PatternPdf.new(@patterns, @project.name, view_context)
+	        	send_data pdf.render, filename: "patterns-081314.pdf", type: "application/pdf"
 	      	end
 	    end
 	end

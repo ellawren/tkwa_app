@@ -75,23 +75,26 @@
                 <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 </div><!-- /.modal -->
             <!-- end modal -->
-            <div id="theLink">
+            <!--<div id="theLink">
                 <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
             </div>
             <div id="altLink">
                 <a id="modal-link" class="modal-btn btn btn-small add-consultant">Add Alt</a>
-            </div>
-            <a class="btn" id="clear-alt">Clear Alt Info</a>
+            </div>-->
+            <!--<a class="btn" id="clear-alt">Clear Alt Info</a>-->
+            <a class="btn" id="copy-to-alt">Company</a>
+            <a class="btn" id="copy-phone">Phone</a>
+            <a class="btn" id="copy-fax">Fax</a>
     </div>
 
-    <% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
+    <!--<% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
         <% @alt = "visible" %>
     <% else %>
         <% @alt = "hidden" %>
-    <% end %>
+    <% end %>-->
 
    <h2 class="no-margin">Direct Contact Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>
-    <div id="alt-company" class="<%= @alt %>">
+    <div id="alt-company" class="visible">
         <div class="wide">
 
             <div class="input-row">
@@ -319,6 +322,16 @@
         fax = encodeURIComponent($("#contact_work_fax").val());
         str =  "<a id='modal-link' href='/consultants/add?name=" + name + "&add=" + add + "&web=" + web + "&phone=" + phone + "&fax=" + fax + "&ref=<%= @contact.id %>' data-target='#myModal' data-toggle='modal' class='modal-btn btn btn-small add-consultant'>Add Consultant</a>";
       $("#theLink").html(str);
+    });
+    $('#copy-to-alt').click( function() {
+        $('#contact_work_company').val("<%= f.object.company.name.html_safe if f.object.company.present? %>");
+        $('#contact_work_url').val("<%= f.object.company.url if f.object.company.present? %>");
+    });
+    $('#copy-phone').click( function() {
+        $('#contact_work_phone').val("<%= f.object.company.phone if f.object.company.present? %>");
+    });
+    $('#copy-fax').click( function() {
+        $('#contact_work_fax').val("<%= f.object.company.fax if f.object.company.present? %>");
     });
 
     </script>

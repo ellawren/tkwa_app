@@ -56,7 +56,7 @@ class ContactsController < ApplicationController
         @contact = Contact.new(params[:contact])
         if @contact.save
             flash[:success] = "Contact created successfully!"
-            redirect_to @contact
+            redirect_to edit_contact_path(@contact)
         else
             render 'new'
         end
@@ -66,7 +66,7 @@ class ContactsController < ApplicationController
         @contact = Contact.find(params[:id])
         if @contact.update_attributes(params[:contact])
             flash[:success] = "Contact updated successfully!"
-            redirect_to @contact
+            redirect_to edit_contact_path(@contact)
         else
             render 'show'
         end
