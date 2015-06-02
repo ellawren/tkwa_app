@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
         @categories = Category.all
         @contacts = @q.result(:distinct => true).paginate(:page => params[:page], :per_page => 30).order('name, work_company')
         if params.has_key?(:q) && @contacts.count == 1 
-            redirect_to contact_path(@contacts.first(params[:id]))
+            redirect_to edit_contact_path(@contacts.first(params[:id]))
         else
             render 'index'
         end

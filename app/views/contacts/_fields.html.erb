@@ -37,64 +37,14 @@
         
     </div>
 
-    <h2 class="no-margin">Company Information</h2>
-    <div class="gray-box company">
-        <div class="wide">
-            <div class="input-row">
-                <%= f.label(:consultant_id, "Company", class: "input-label" ) %>
-                <% if @contact.consultant_id.blank? %>
-                    <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
-                    <%= f.hidden_field :consultant_id, class: "small" %>
-                <% else %>
-                    <% company = Consultant.find(@contact.consultant_id) %>
-                    <% if company %>
-                        <div class="company-address">
-                            <div class="text">
-                                <% if company.name.present? %>
-                                    <span class="bold"><%= link_to company.name, consultant_path(company) %></span><br>
-                                <% end %>
-                                <%= "#{company.address}<br>".gsub(/\n/, '<br>').html_safe if company.address.present? %>
-                                <%= "t: #{phone(company.phone)}<br>".html_safe if company.phone.present? %>
-                                <%= "f: #{phone(company.fax)}<br>".html_safe if company.fax.present? %>
-                                <a class="underline" onclick="openURL_direct('<%= company.url %>');"><%= company.url %></a>
-                            </div>
-                            <a class="btn input-button change-company" id="change-company">change</a>
-                        </div>
-                        
-                        <div class="new-company">
-                            <%= f.autocomplete_field :organization_name, autocomplete_consultant_name_contacts_path, :update_elements => {:id => '#contact_consultant_id', :name => '#contact_work_company'}, class: "bold" %>
-                            <%= f.hidden_field :consultant_id, class: "small" %>
-                            <a class="text-btn" id="cancel-change-company">cancel</a>
-                        </div>
-
-                    <% end %>
-                <% end %>
-        </div>
-        </div>
-            <!-- modal for add consultant edit -->
-                <div class="add-consultant modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                </div><!-- /.modal -->
-            <!-- end modal -->
-            <!--<div id="theLink">
-                <a id="modal-link" href="<%= add_consultant_path(ref: @contact.id) %>" data-target="#myModal" data-toggle="modal" class="modal-btn btn btn-small add-consultant">Add Consultant</a>
-            </div>
-            <div id="altLink">
-                <a id="modal-link" class="modal-btn btn btn-small add-consultant">Add Alt</a>
-            </div>-->
-            <!--<a class="btn" id="clear-alt">Clear Alt Info</a>-->
-            <a class="btn" id="copy-to-alt">Company</a>
-            <a class="btn" id="copy-phone">Phone</a>
-            <a class="btn" id="copy-fax">Fax</a>
-    </div>
-
-    <!--<% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_url.present? || f.object.work_url.present? %>
+    <% if f.object.work_company.present? || f.object.work_address.present? || f.object.work_po_box.present? || f.object.work_url.present? || f.object.work_email.present? || f.object.work_phone.present? || f.object.work_direct.present? || f.object.work_cell.present? || f.object.work_fax.present?  %>
         <% @alt = "visible" %>
     <% else %>
         <% @alt = "hidden" %>
-    <% end %>-->
+    <% end %>
 
-   <h2 class="no-margin">Direct Contact Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>
-    <div id="alt-company" class="visible">
+   <h2 class="no-margin">Work Information <a id="show-alt" class="<%= @alt %>">show</a><a id="hide-alt" class="<%= @alt %>">hide</a></h2>
+    <div id="alt-company" class="<%= @alt %>">
         <div class="wide">
 
             <div class="input-row">
@@ -123,10 +73,14 @@
                 <% end %>
             </div>  
             <div class="input-row">
-                <%= f.label(:work_address, "Address", class: "input-label") %>
-                <%= f.text_area :work_address, class: "button-right", rows: "3" %>
+                <%= f.label(:work_address, "Street Address", class: "input-label") %>
+                <%= f.text_area :work_address, class: "button-right", rows: "2" %>
                 <button class="btn input-button" onclick="showMap('contact_work_address'); return false;">map</button>
-            </div>   
+            </div>  
+            <div class="input-row">
+                <%= f.label(:work_po_box, "P.O. Box", class: "input-label") %>
+                <%= f.text_area :work_po_box, class: "button-right", rows: "2"  %>
+            </div>    
             <div class="input-row">
                 <%= f.label(:work_url, "Website", class: "input-label") %>
                 <%= f.text_field :work_url, class: "button-right" %>
@@ -158,15 +112,15 @@
             <div id="wcell-primary" class="select-primary <%= 'selected' if f.object.primary_phone == 'wcell' %>"></div>
             <%= f.text_field :work_cell,value: phone(@contact.work_cell), class: "phone" %>
         </div>
-
             <div class="input-row">
                 <%= f.label(:work_fax, "Fax Number", class: "input-label") %>
                 <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
             </div>
-
-
-
         </div>
+        
+        <% if @contact.company.present? %>
+        <div class="po-box" style="float:left; margin-top:10px; background-color:#f8f8f8; padding:20px; color:red; "><%= @contact.company.po_box.gsub(/\n/, '<br>').html_safe %></div>
+        <% end %>
     </div>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>

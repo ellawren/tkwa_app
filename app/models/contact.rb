@@ -33,6 +33,7 @@
 #  primary_phone     :string(255)
 #  first             :string(255)
 #  last              :string(255)
+#  work_po_box       :string(255)
 #
 
 class Contact < ActiveRecord::Base
