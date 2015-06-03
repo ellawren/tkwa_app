@@ -242,8 +242,8 @@
             <%= f.autocomplete_field :staff_contact, autocomplete_contact_name_contacts_path,  class: "match-select" %>
         </div>
         <div class="formatted-address">
-            <% if f.object.name.present? %>
-                <span class="bold"><%= f.object.name %></span><br>
+            <% if f.object.full_name.present? %>
+                <span class="bold"><%= f.object.full_name %></span><br>
                 <%= "#{f.object.work_company}<br>".html_safe if f.object.work_company.present? %>
             <% else %>
                 <span class="bold"><%= f.object.work_company %></span><br>
