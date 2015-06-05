@@ -118,11 +118,11 @@
             </div>
         </div>
         
-        <!--<% if @contact.company.present? %>
+        <% if @contact.company.present? %>
             <% if @contact.company.po_box.present? %>
                 <div class="po-box" style="float:left; margin-top:10px; background-color:#f8f8f8; padding:20px; color:red; "><%= @contact.company.po_box.gsub(/\n/, '<br>').html_safe %></div>
             <% end %>
-        <% end %>-->
+        <% end %>
     </div>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
