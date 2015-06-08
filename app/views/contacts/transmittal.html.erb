@@ -24,7 +24,7 @@
 	   		<div class="row">
 	   			<div class="display-label">To:</div>
 	   			<div class="display-data">
-	   				<textarea class="display" rows="5"><%= @contact.name %><%= "&#013;&#010;#{@contact.company.name}".html_safe if @contact.company %><%= "&#013;&#010;#{@contact.address_calc}".html_safe if @contact.address_calc %></textarea>
+	   				<textarea class="display" rows="5"><%= @contact.full_name %><%= "&#013;&#010;#{@contact.work_company}".html_safe if @contact.work_company %><%= "&#013;&#010;#{@contact.display_address}".html_safe if @contact.display_address %></textarea>
 	       		</div>
 	       	</div>
 	    </div>

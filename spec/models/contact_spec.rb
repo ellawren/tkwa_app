@@ -34,6 +34,7 @@
 #  first             :string(255)
 #  last              :string(255)
 #  work_po_box       :string(255)
+#  primary_address   :string(255)
 #
 
 require 'spec_helper'

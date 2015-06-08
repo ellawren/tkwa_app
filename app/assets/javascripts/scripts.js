@@ -213,6 +213,39 @@ $(document).ready(function() {
     });
     //---
 
+    // select primary address on contact page
+    $('#address-primary').click( function() {
+        if ( $(this).hasClass("selected") ) {
+            $(".select-primary-address").removeClass("selected");
+            $('#contact_primary_address').val("");
+        } else {
+            $(".select-primary-address").removeClass("selected");
+            $(this).addClass("selected");
+            $('#contact_primary_address').val("address");
+        }
+    });
+    $('#po-primary').click( function() {
+        if ( $(this).hasClass("selected") ) {
+            $(".select-primary-address").removeClass("selected");
+            $('#contact_primary_address').val("");
+        } else {
+            $(".select-primary-address").removeClass("selected");
+            $(this).addClass("selected");
+            $('#contact_primary_address').val("po");
+        }
+    });
+    $('#home-address-primary').click( function() {
+        if ( $(this).hasClass("selected") ) {
+            $(".select-primary-address").removeClass("selected");
+            $('#contact_primary_address').val("");
+        } else {
+            $(".select-primary-address").removeClass("selected");
+            $(this).addClass("selected");
+            $('#contact_primary_address').val("home");
+        }
+    });
+
+
     // edit row on timesheets
     $('.edit-me').click( function() {
         id = $(this).parent().parent(".table-row").attr("id");

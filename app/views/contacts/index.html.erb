@@ -36,7 +36,7 @@ end %>
 
 		<div id="more-options">
 			<p class="note">The following fields will search in both work and home data:</p>
-			<%= f.text_field :work_address_or_home_address_cont, class: "search-address contact", placeholder: "Address" %>
+			<%= f.text_field :work_address_or_home_address_or_work_po_box_cont, class: "search-address contact", placeholder: "Address" %>
 			<%= f.text_field :work_email_or_home_email_cont, class: "search-address contact", placeholder: "Email" %>
 			<%= f.text_field :home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont, class: "search-address contact", placeholder: "Phone (no spaces or punctuation)" %>
 			<br><br><p class="note">Search in notes field:</p>
@@ -92,9 +92,9 @@ end %>
         <%= link_to "View Employees", contacts_employees_path, :class => "tile-label" %>
     </div>
 
-    <div class="tile-box">
-        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
-        <%= link_to "Consultants", consultants_path, :class => "tile-label" %>
+    <div class="tile-box disabled">
+        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), "" %>
+        <%= link_to "Consultants", "", :class => "tile-label" %>
     </div>
 
   </div> <!-- end tiles -->

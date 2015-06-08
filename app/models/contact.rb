@@ -34,6 +34,7 @@
 #  first             :string(255)
 #  last              :string(255)
 #  work_po_box       :string(255)
+#  primary_address   :string(255)
 #
 
 class Contact < ActiveRecord::Base
@@ -161,20 +162,16 @@ class Contact < ActiveRecord::Base
     end
 
     def display_address
-        str = ""
-        if work_address.present?
-            str << "#{work_address.gsub(/\n/, '<br>')}".html_safe
-        elsif home_address.present?
-            str << "#{home_address.gsub(/\n/, '<br>').html_safe}"
-        end
-        str
-    end
-
-    def address_calc
-        if work_address.present?
+        #check if po_box or home are starred first and use those
+        if self.primary_address == "po" && work_po_box.present?
+            work_po_box
+        elsif self.primary_address == "home" && home_address.present?
+            home_address
+        #if home & po are not starred, default first to work address, then po, then home
+        elsif work_address.present?
             work_address
-        elsif company.default_address.present?
-           company.default_address
+        elsif work_po_box.present?
+            work_po_box
         elsif home_address.present?
             home_address
         end

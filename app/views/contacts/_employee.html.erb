@@ -8,7 +8,7 @@
     </label>
 	
 	<div class="photo"><%= image_tag user.photo.url(:thumb) if user %></div>
-    <div class="name"><%= link_to f.name, contact_path(f) %></div>
+    <div class="name"><%= link_to f.name, edit_contact_path(f) %></div>
     <div class="ext"><%= f.work_ext %></div>
     <div class="cell"><%= number_to_phone(f.cell_phone, :area_code => true) %></div>
     <div class="email"><a class="button mail-link" onclick="mailTo('<%= f.work_email %>');"><%= f.work_email %></a></div>

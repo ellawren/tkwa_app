@@ -11,10 +11,6 @@
             <%= f.label(:work_title, "Title", class: "input-label") %>
             <%= f.text_field :work_title, class: "full-width" %>
         </div>
-        <div class="input-row">
-            <%= f.label(:work_department, "Department", class: "input-label") %>
-            <%= f.text_field :work_department, class: "full-width" %>
-        </div>
     </div>
 
     <div class="narrow contact-phone margin-bottom">
@@ -51,7 +47,7 @@
                 <%= f.label(:work_company, "Company", class: "input-label") %>
                 <!-- only auto-fill company info for new records -->
                 <% if params[:action] == "new" %>
-                    <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'}, class: "bold" %>
+                    <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, :update_elements => {:work_address => '#contact_work_address', :work_po_box => '#contact_work_po_box', :work_phone => '#contact_work_phone', :work_url => '#contact_work_url', :work_fax => '#contact_work_fax'}, class: "bold" %>
                     <script>
                     /* formats autocomplete number fields for readability */
                     $('#contact_work_company').on('railsAutocomplete.select', function(){
@@ -72,13 +68,16 @@
                     <%= f.autocomplete_field :work_company, autocomplete_contact_work_company_contacts_path, class: "bold" %>
                 <% end %>
             </div>  
+            <%= f.hidden_field :primary_address %>
             <div class="input-row">
                 <%= f.label(:work_address, "Street Address", class: "input-label") %>
+                <div id="address-primary" class="select-primary-address <%= 'selected' if f.object.primary_address == 'address' %>"></div>
                 <%= f.text_area :work_address, class: "button-right", rows: "2" %>
                 <button class="btn input-button" onclick="showMap('contact_work_address'); return false;">map</button>
             </div>  
             <div class="input-row">
                 <%= f.label(:work_po_box, "P.O. Box", class: "input-label") %>
+                <div id="po-primary" class="select-primary-address <%= 'selected' if f.object.primary_address == 'po' %>"></div>
                 <%= f.text_area :work_po_box, class: "button-right", rows: "2"  %>
             </div>    
             <div class="input-row">
@@ -117,12 +116,7 @@
                 <%= f.text_field :work_fax,value: phone(@contact.work_fax), class: "phone" %>
             </div>
         </div>
-        
-        <% if @contact.company.present? %>
-            <% if @contact.company.po_box.present? %>
-                <div class="po-box" style="float:left; margin-top:10px; background-color:#f8f8f8; padding:20px; color:red; "><%= @contact.company.po_box.gsub(/\n/, '<br>').html_safe %></div>
-            <% end %>
-        <% end %>
+    
     </div>
 
     <% if f.object.home_address.present? || f.object.home_email.present? || f.object.home_phone.present? || f.object.home_cell.present? %>
@@ -137,6 +131,7 @@
         <div class="wide">
             <div class="input-row">
                 <%= f.label(:home_address, "Home Address", class: "input-label") %>
+                <div id="home-address-primary" class="select-primary-address <%= 'selected' if f.object.primary_address == 'home' %>"></div>
                 <%= f.text_area :home_address, class: "button-right", rows: "2" %>
                 <button class="btn input-button" onclick="showMap('contact_home_address'); return false;">map</button>
             </div>    
@@ -248,7 +243,7 @@
             <% else %>
                 <span class="bold"><%= f.object.work_company %></span><br>
             <% end %>
-            <%= "#{f.object.display_address}<br>".html_safe if f.object.display_address.present? %>
+            <%= "#{@contact.display_address.gsub(/\n/, '<br>')}<br>".html_safe if @contact.display_address.present? %>
             <%= "t: #{phone(f.object.display_phone)}".html_safe if f.object.display_phone.present? %>
         </div>
     </div>

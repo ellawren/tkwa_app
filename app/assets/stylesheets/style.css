@@ -1037,10 +1037,10 @@
 	.single-row-checkboxes label:first-child { margin-left:30px; }
 
 
-	.select-primary { position:absolute; top:10px; left:125px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
-	.contact-phone .select-primary { position:absolute; top:10px; left:100px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
+	.select-primary, .select-primary-address { position:absolute; top:10px; left:125px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
+	.contact-phone .select-primary, .contact-phone .select-primary-address { position:absolute; top:10px; left:100px; width:20px; height:20px; background-image:url(/assets/star-empty.png); cursor:pointer; }
 
-	.select-primary.selected { background-image:url(/assets/star-filled.png); }
+	.select-primary.selected, .select-primary-address.selected { background-image:url(/assets/star-filled.png); }
 
 
 	.modal-body .select-primary { left:100px; }
