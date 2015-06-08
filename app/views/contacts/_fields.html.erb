@@ -196,7 +196,7 @@
 
     <div class="wide contact-notes">
         <div class="input-row">
-            <%= f.text_area :notes, rows: "9" %>
+            <%= f.text_area :notes, rows: "10" %>
         </div> 
         <% unless params[:action] == "new" %>
             <div class="input-row added">
@@ -244,7 +244,8 @@
                 <span class="bold"><%= f.object.work_company %></span><br>
             <% end %>
             <%= "#{@contact.display_address.gsub(/\n/, '<br>')}<br>".html_safe if @contact.display_address.present? %>
-            <%= "t: #{phone(f.object.display_phone)}".html_safe if f.object.display_phone.present? %>
+            <%= "t: #{phone(f.object.display_phone)}<br>".html_safe if f.object.display_phone.present? %>
+            <%= "e: #{f.object.work_email}".html_safe if f.object.work_email.present? %>
         </div>
     </div>
 
