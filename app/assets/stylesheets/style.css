@@ -1081,6 +1081,9 @@
 	.table.forecast.index tbody { overflow-y:visible; max-height:none; }
 	.table.forecast.index thead { display: table-header-group; }
 	.table.forecast.index tfoot { display: table-footer-group; }
+	ul#pattern-tiles li .header .btn.edit-pattern { display:none; }
+	.page-header .btn-right { display:none; }
+	ul#pattern-tiles li.pattern { page-break-inside: avoid; }
 
 }
 
