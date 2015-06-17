@@ -20,10 +20,10 @@ end %>
 
 		<div class="status-options">
 			<div><%= f.radio_button(:cat_number_eq, "") %><label class="radio">All</label></div>
-	        <div><%= f.radio_button(:cat_number_eq, "1") %><label class="radio">Client</label></div>
+	        <!--<div><%= f.radio_button(:cat_number_eq, "1") %><label class="radio">Client</label></div>
 	        <div><%= f.radio_button(:cat_number_eq, "3") %><label class="radio">Consultant</label></div>
 	        <div><%= f.radio_button(:cat_number_eq, "5") %><label class="radio">Contractor</label></div>
-	        <div><%= f.radio_button(:cat_number_eq, "6") %><label class="radio">Supplier</label></div>
+	        <div><%= f.radio_button(:cat_number_eq, "6") %><label class="radio">Supplier</label></div>-->
 		</div>
 
 		<%= f.text_field :first_cont, class: "search-name-first contact", placeholder: "First " %>
@@ -41,6 +41,8 @@ end %>
 			<%= f.text_field :home_phone_or_work_cell_or_home_cell_or_work_direct_or_work_phone_cont, class: "search-address contact", placeholder: "Phone (no spaces or punctuation)" %>
 			<br><br><p class="note">Search in notes field:</p>
 			<%= f.text_field :notes_cont, class: "search-address notes", placeholder: "Notes" %>
+			<br><br><p class="note">Category:</p>
+			<%= f.collection_select(:cat_number_eq, Category.all, :number, :name, { :include_blank => true }, { :class => "custom-select" } ) %>
 		</div>
 			     
 	<% end %>

@@ -429,7 +429,7 @@
 	input.search-name-first.contact { float:left; width:144px; margin:7px 0 0 30px; padding:2px 10px 1px; }
 	input.search-name-last.contact { float:left; width:160px; margin:7px 0 0 2px; padding:2px 10px 1px; }
 
-	input.search-name.contact.company { float:left; margin:3px 0 0 30px; }
+	input.search-name.contact.company { float:left; margin:3px 0 0 170px; margin-bottom:15px; }
 	input.search-name.patterns { float:left; width:200px;  }
 	input.search-name.library { float:left; width:360px; margin:10px 0 0 30px; padding:2px 10px 1px; }
 
