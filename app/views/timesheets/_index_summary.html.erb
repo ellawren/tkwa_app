@@ -1,7 +1,7 @@
 	<div class="gray-box timesheets">
-		<% if @timesheet.data_record.pay_type == "Salary" %>
+		
 
-			<% if @timesheet.data_record.stp_target || @timesheet.data_record.mtg_target || @timesheet.data_record.adm_target || @timesheet.data_record.cmp_target || @timesheet.data_record.edu_target || @timesheet.data_record.sus_target || @timesheet.data_record.mkp_target || @timesheet.data_record.mkg_target || @timesheet.data_record.com_target %>
+		<% if @timesheet.data_record.stp_target || @timesheet.data_record.mtg_target || @timesheet.data_record.adm_target || @timesheet.data_record.cmp_target || @timesheet.data_record.edu_target || @timesheet.data_record.sus_target || @timesheet.data_record.mkp_target || @timesheet.data_record.mkg_target || @timesheet.data_record.com_target %>
 				<div class="stats non-billable">
 					<label class="input-label">Remaining Non-Billable Hours</label>
 					<ul class="nb-targets">
@@ -14,7 +14,9 @@
 						<% end %>
 					</ul>
 				</div>
+		<% end %>
 
+		<% if @timesheet.data_record.pay_type == "Salary" %>
 				<div class="stats utilization">
 					<label class="input-label">Utilization Rate</label>
 					<div class="number">
@@ -27,9 +29,6 @@
 					<div class="detail">percent billable hours
 					</div>
 				</div>
-
-			<% end %>
-
 		<% end %>
 		
 		<div class="stats">
@@ -40,6 +39,7 @@
 			<div class="detail">used <%= number_with_precision(@timesheet.ytd_vacation, strip_insignificant_zeros: true) %> of <%= number_with_precision((@timesheet.vacation_record.hours.to_f + @timesheet.vacation_record.rollover.to_f), strip_insignificant_zeros: true) %> hours 
 			</div>
 		</div>
+
 		<% if @timesheet.data_record.pay_type == "Salary" %>
 			<div id="summary">
 				<label class="input-label">Target Hours (Weeks <%= @timesheet.data_record.start_week %> - <%= @timesheet.week %>) <span class="italic">**submitted timesheets only**</span></label>
@@ -97,7 +97,22 @@
 					
 				</div>
 
+			
+
+		<% else %>
+
+			<div id="summary">
+				<label class="input-label">Total Hours (Weeks <%= @timesheet.data_record.start_week %> - <%= @timesheet.week %>) <span class="italic">**submitted timesheets only**</span></label>
+				<div class="content">
+					<div class="token">
+						<div class="circle actual">
+							<div class="title">Actual</div>
+							<%= number_with_precision(@timesheet.ytd_total, strip_insignificant_zeros: true) %>
+						</div>
+					</div>
+				</div>
 			</div>
+
 		<% end %>
 		
 	</div>  <!-- end box-->
