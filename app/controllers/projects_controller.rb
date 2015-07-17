@@ -24,14 +24,19 @@ class ProjectsController < ApplicationController
         if @project.consultant_teams.count == 0 
             1.times { @project.consultant_teams.build }
         end
+
+        @actuals = []
         date = Date.today.beginning_of_month
-        (1..12).each do
-            Actual.where(project_id: @project.id, year: date.cwyear, month: date.month).first_or_create
-            date = (date - 1).beginning_of_month
-        end
-        @actuals = @project.actuals.order("year ASC, month ASC, id ASC")
+        array = (date-365..date).select {|d| d.day == 1}
+        array.each { |a| 
+            @actuals << Actual.where(project_id: @project.id, year: a.cwyear, month: a.month).first_or_create
+        }
+        
         render :layout => 'single_project' 
+
     end
+
+        
   
     def scope
         @project = Project.find(params[:id])
