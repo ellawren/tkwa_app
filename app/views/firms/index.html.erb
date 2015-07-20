@@ -1,0 +1,13 @@
+<% provide :title, "Firms" %>
+<div class="page-header">
+	<h1>Firms</h1>
+	<%= link_to "Add Firm", new_firm_path, class: "btn btn-primary btn-right" %>
+</div>
+
+<ul class="link-list">
+	<% @firms.each do |param| %>
+			<li>
+				<%= link_to param.name, edit_tag_path(param.id) %>
+			</li>
+	<% end %>
+</ul>

@@ -69,6 +69,7 @@
 #  mkt_last_edited_by    :string(255)
 #  mkt_active            :boolean         default(FALSE)
 #  mkt_display_name      :string(255)
+#  firm                  :integer         default(1)
 #
 
 require 'spec_helper'

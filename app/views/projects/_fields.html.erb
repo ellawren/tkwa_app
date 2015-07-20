@@ -88,6 +88,13 @@
                 <%= f.label(:number, "Number", class: "input-label") %>
                 <%= f.text_field :number, autocomplete: "off" %>
             </div>
+            <% if Firm.count > 0 %>
+                <div class="input-row">
+                    <%= f.label(:firm, "Firm", class: "input-label") %>
+                    <%= f.collection_select(:firm, Firm.all, :id, :name, { }, { :class => "custom-select" } ) %>
+                </div>
+            <% end %>
+            
             <div class="input-row">
                 <%= f.label(:building_type_id, "Project Type", class: "input-label") %>
                 <%= f.collection_select(:building_type_id, BuildingType.all, :id, :name, { :include_blank => true }, { :class => "custom-select" } ) %>

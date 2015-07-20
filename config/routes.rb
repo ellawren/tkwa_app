@@ -1,5 +1,6 @@
 TkwaApp::Application.routes.draw do
 
+
     # PROJECTS
     match '/projects/current',  to: 'projects#current'
     match '/projects/forecast',   to: 'projects#forecast_index'
@@ -146,6 +147,7 @@ TkwaApp::Application.routes.draw do
     resources :contractor_roles
     resources :data_records
     resources :employee_roles
+    resources :firms
     resources :globals, :only => [:index, :create, :update]
     resources :imperatives
     resources :keywords

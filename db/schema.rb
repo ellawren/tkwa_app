@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150608155718) do
+ActiveRecord::Schema.define(:version => 20150720142635) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -294,6 +294,12 @@ ActiveRecord::Schema.define(:version => 20150608155718) do
     t.datetime "updated_at",                      :null => false
     t.boolean  "printed",      :default => false
     t.date     "date_printed"
+  end
+
+  create_table "firms", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "globals", :force => true do |t|
@@ -619,6 +625,7 @@ ActiveRecord::Schema.define(:version => 20150608155718) do
     t.string   "mkt_last_edited_by"
     t.boolean  "mkt_active",                                           :default => false
     t.string   "mkt_display_name"
+    t.integer  "firm",                                                 :default => 1
   end
 
   add_index "projects", ["name"], :name => "index_projects_on_name"
