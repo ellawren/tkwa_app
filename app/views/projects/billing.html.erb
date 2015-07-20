@@ -61,7 +61,7 @@
         </div> 
 
 
-    <h2>TKWA Fees Billed By Month<%= link_to "all TKWA fees billed by month", fees_billed_by_month_path, class: "control-link-billing" %></h2>
+    <h2><%= Firm.find(@project.firm_id).name %> Fees Billed By Month<%= link_to "all #{Firm.find(@project.firm_id).name} fees billed by month", fees_billed_by_month_path(@project.firm_id), class: "control-link-billing" %></h2>
 
         <table class="table actuals-table" id="actuals">
             <tr class="tr">

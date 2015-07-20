@@ -23,8 +23,12 @@ class Actual < ActiveRecord::Base
         self[:amount] = num.to_f
     end
 
-    def self.total_for_month(year, month)
-    	Actual.where(month: month, year: year).sum(:amount)
+    def firm_id
+        Project.find(self.project_id).firm_id
+    end
+
+    def self.total_for_month(year, month, firm)
+    	Actual.joins(:project).where(month: month, year: year, :projects => { :firm_id => firm }).sum(:amount)
     end
 
 end

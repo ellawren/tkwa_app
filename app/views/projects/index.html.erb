@@ -99,14 +99,15 @@
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), fees_billed_by_month_path %>
-        <%= link_to "TKWA Fees Billed By Month", fees_billed_by_month_path, :class => "tile-label" %>
+        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), fees_billed_by_month_path(1) %>
+        <%= link_to "TKWA Fees Billed By Month", fees_billed_by_month_path(1), :class => "tile-label" %>
     </div>
 
     <div class="tile-box">
-        <%= link_to image_tag("consultants.png", :alt => "consultants", :class => "round-icon"), consultants_path %>
-        <%= link_to "Consultants", consultants_path, :class => "tile-label" %>
+        <%= link_to image_tag("money.png", :alt => "forecast", :class => "round-icon"), fees_billed_by_month_path(2) %>
+        <%= link_to "Bridge3 Fees Billed By Month", fees_billed_by_month_path(2), :class => "tile-label" %>
     </div>
+
 
 </div> <!-- end icons -->
 

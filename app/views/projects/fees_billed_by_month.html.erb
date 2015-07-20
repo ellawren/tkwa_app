@@ -1,6 +1,6 @@
 <% provide :title, "TKWA Fees Billed By Month" %>
 <div class="page-header auto">
-    <h1>TKWA Fees Billed By Month</h1>
+    <h1><%= Firm.find(@firm).name %> Fees Billed By Month</h1>
     <%= link_to "Billing Worksheet", billing_worksheet_path, class: "btn btn-right" %>
 </div>
 <p class="description detail">Showing all current projects as well as completed projects with billings in the last 5 months. Completed projects are noted with a red dot.</p>
@@ -58,12 +58,12 @@
         <tfoot>
             <tr>
                 <td></td>
-                <td class="project-name">Total (all projects)</td>
-                <td><%= number_to_currency(Actual.total_for_month(five_month_array[4][1], five_month_array[4][0])) %></td>
-                <td><%= number_to_currency(Actual.total_for_month(five_month_array[3][1], five_month_array[3][0])) %></td>
-                <td><%= number_to_currency(Actual.total_for_month(five_month_array[2][1], five_month_array[2][0])) %></td>
-                <td class="actual"><%= number_to_currency(Actual.total_for_month(five_month_array[1][1], five_month_array[1][0])) %></td>
-                <td><%= number_to_currency(Actual.total_for_month(five_month_array[0][1], five_month_array[0][0])) %></td>
+                <td class="project-name"><%= Firm.find(@firm).name %> Total (all projects)</td>
+                <td><%= number_to_currency(Actual.total_for_month(five_month_array[4][1], five_month_array[4][0], @firm)) %></td>
+                <td><%= number_to_currency(Actual.total_for_month(five_month_array[3][1], five_month_array[3][0], @firm)) %></td>
+                <td><%= number_to_currency(Actual.total_for_month(five_month_array[2][1], five_month_array[2][0], @firm)) %></td>
+                <td class="actual"><%= number_to_currency(Actual.total_for_month(five_month_array[1][1], five_month_array[1][0], @firm)) %></td>
+                <td><%= number_to_currency(Actual.total_for_month(five_month_array[0][1], five_month_array[0][0], @firm)) %></td>
             </tr>
         </tfoot>
         

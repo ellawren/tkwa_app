@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150720142635) do
+ActiveRecord::Schema.define(:version => 20150720152046) do
 
   create_table "actuals", :force => true do |t|
     t.integer  "year"
@@ -625,7 +625,7 @@ ActiveRecord::Schema.define(:version => 20150720142635) do
     t.string   "mkt_last_edited_by"
     t.boolean  "mkt_active",                                           :default => false
     t.string   "mkt_display_name"
-    t.integer  "firm",                                                 :default => 1
+    t.integer  "firm_id",                                              :default => 1
   end
 
   add_index "projects", ["name"], :name => "index_projects_on_name"

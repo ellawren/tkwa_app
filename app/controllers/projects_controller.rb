@@ -35,8 +35,6 @@ class ProjectsController < ApplicationController
         render :layout => 'single_project' 
 
     end
-
-        
   
     def scope
         @project = Project.find(params[:id])
@@ -82,7 +80,8 @@ class ProjectsController < ApplicationController
     end
 
     def fees_billed_by_month #edit_all
-        @projects = Project.current_and_billing.order("name ASC").paginate(:page => params[:page], :per_page => 15)
+        @firm = params[:firm]
+        @projects = Project.by_firm(@firm).current_and_billing.order("name ASC").paginate(:page => params[:page], :per_page => 15)
     end
 
     def update_all #for monthly_billing

@@ -90,8 +90,8 @@
             </div>
             <% if Firm.count > 0 %>
                 <div class="input-row">
-                    <%= f.label(:firm, "Firm", class: "input-label") %>
-                    <%= f.collection_select(:firm, Firm.all, :id, :name, { }, { :class => "custom-select" } ) %>
+                    <%= f.label(:firm_id, "Firm", class: "input-label") %>
+                    <%= f.collection_select(:firm_id, Firm.all, :id, :name, { }, { :class => "custom-select" } ) %>
                 </div>
             <% end %>
             

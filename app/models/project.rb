@@ -69,7 +69,7 @@
 #  mkt_last_edited_by    :string(255)
 #  mkt_active            :boolean         default(FALSE)
 #  mkt_display_name      :string(255)
-#  firm                  :integer         default(1)
+#  firm_id               :integer         default(1)
 #
 
 class Project < ActiveRecord::Base
@@ -114,6 +114,8 @@ class Project < ActiveRecord::Base
     has_many :expense_items # this doesn't really matter since it's not ever called upon
 
     has_many :lb_strategy_groups
+
+    belongs_to :firm
 
     # allows project page to add items via checkboxes
     accepts_nested_attributes_for :services
@@ -194,6 +196,14 @@ class Project < ActiveRecord::Base
         :conditions => ["status = ? OR recent_billing = ?", 'current', true ],
         :order => ["name ASC" ]
     }
+
+    scope :current_and_billing, {
+        :select => "projects.*",
+        :conditions => ["status = ? OR recent_billing = ?", 'current', true ],
+        :order => ["name ASC" ]
+    }
+
+    scope :by_firm, lambda {|id| where("firm_id = ?", id) }
 
     scope :alpha, {
         :select => "projects.*",
